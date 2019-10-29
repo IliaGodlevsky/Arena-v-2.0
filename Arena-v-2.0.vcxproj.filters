@@ -40,6 +40,9 @@
     <Filter Include="Vital">
       <UniqueIdentifier>{43ab7093-91ec-46aa-aec5-c1786ecd9b29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{c4302b97-4093-47d0-b467-b3639a993205}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Unit.h">
@@ -66,6 +69,9 @@
     <ClInclude Include="Vitals.h">
       <Filter>Vital</Filter>
     </ClInclude>
+    <ClInclude Include="UnitState.h">
+      <Filter>States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Unit.cpp">
@@ -76,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="Vital.cpp">
       <Filter>Vital</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic.cpp">
+      <Filter>Magic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
