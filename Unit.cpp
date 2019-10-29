@@ -49,3 +49,64 @@ Unit::~Unit()
 	ReleaseMemory(armors);
 	delete current_state;
 }
+
+bool Unit::TakeArm(Weapon* weapon)
+{
+	return PushStuff(weapons, weapon);
+}
+
+bool Unit::TakeMagic(Magic* magic)
+{
+	return PushStuff(this->magic, magic);
+}
+
+bool Unit::TakeMagicOnMe(Magic* magic)
+{
+	return PushStuff(on_me, magic);
+}
+
+bool Unit::TakeArmor(Armor* armor)
+{
+	return PushStuff(armors, armor);
+}
+
+void Unit::SetState(UnitState* state) // take care
+{
+	if (state != nullptr)
+	{
+		delete current_state;
+		current_state = state->Clone();
+	}
+}
+
+void Unit::CopyMagicOnMe(const Unit& unit)
+{
+	ReleaseMemory(on_me);
+	CopyStuff(on_me, unit.on_me);
+}
+
+void Unit::CopyArmor(const Unit& unit)
+{
+	ReleaseMemory(armors);
+	CopyStuff(armors, unit.armors);
+}
+
+void Unit::CopyWeapon(const Unit& unit)
+{
+	ReleaseMemory(weapons);
+	CopyStuff(weapons, unit.weapons);
+}
+
+void Unit::CopyMagic(const Unit& unit)
+{
+	ReleaseMemory(magic);
+	CopyStuff(magic, unit.magic);
+}
+
+void Unit::CopyUnitsStuff(const Unit& unit)
+{
+	CopyArmor(unit);
+	CopyWeapon(unit);
+	CopyMagic(unit);
+	CopyMagicOnMe(unit);
+}
