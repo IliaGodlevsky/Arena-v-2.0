@@ -115,6 +115,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Arena.h" />
+    <ClInclude Include="Armor.h" />
+    <ClInclude Include="Vitals.h" />
+    <ClInclude Include="Decision.h" />
+    <ClInclude Include="Magic.h" />
+    <ClInclude Include="Unit.h" />
+    <ClInclude Include="UnitFactory.h" />
+    <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Arena.cpp" />
+    <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="Vital.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
