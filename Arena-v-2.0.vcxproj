@@ -117,6 +117,9 @@
   <ItemGroup>
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Armor.h" />
+    <ClInclude Include="BattleParam.h" />
+    <ClInclude Include="Interfaces.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="UnitState.h" />
     <ClInclude Include="Vitals.h" />
     <ClInclude Include="Decision.h" />

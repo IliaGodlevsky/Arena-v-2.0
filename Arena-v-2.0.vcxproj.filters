@@ -37,11 +37,11 @@
     <Filter Include="Arena">
       <UniqueIdentifier>{30846e38-ea15-4005-a731-a6ca71f38b7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Vital">
-      <UniqueIdentifier>{43ab7093-91ec-46aa-aec5-c1786ecd9b29}</UniqueIdentifier>
-    </Filter>
     <Filter Include="States">
       <UniqueIdentifier>{c4302b97-4093-47d0-b467-b3639a993205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitParams">
+      <UniqueIdentifier>{43ab7093-91ec-46aa-aec5-c1786ecd9b29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,10 +67,19 @@
       <Filter>Arena</Filter>
     </ClInclude>
     <ClInclude Include="Vitals.h">
-      <Filter>Vital</Filter>
+      <Filter>UnitParams</Filter>
     </ClInclude>
     <ClInclude Include="UnitState.h">
       <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleParam.h">
+      <Filter>UnitParams</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>UnitParams</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +90,7 @@
       <Filter>Arena</Filter>
     </ClCompile>
     <ClCompile Include="Vital.cpp">
-      <Filter>Vital</Filter>
+      <Filter>UnitParams</Filter>
     </ClCompile>
     <ClCompile Include="Magic.cpp">
       <Filter>Magic</Filter>

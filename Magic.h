@@ -11,12 +11,13 @@ public:
 	Magic(int mana_cost, int duration);
 	virtual void Effect(Unit* unit)const = 0;
 	virtual Magic* Clone() const = 0;
-	void SetTimeOfActivetion(int round);
+	void SetTimeOfActivation(int round);
+	bool Expired(int round)const;
 	virtual ~Magic();
 protected:
 	int mana_cost;
 	int duration;
-	int round_of_spell;
+	int activation_time;
 };
 
 class DamageBuff : virtual public Magic

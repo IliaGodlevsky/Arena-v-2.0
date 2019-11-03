@@ -12,6 +12,8 @@
 #include "Armor.h"
 #include "Weapon.h"
 #include "UnitState.h"
+#include "Level.h"
+#include "BattleParam.h"
 
 template<class Pointer>
 void ReleaseMemory(std::vector<Pointer>& container);
@@ -45,11 +47,9 @@ public:
 	virtual void Act(Decision* decision) = 0;
 	virtual bool Injure(const Weapon* weapon, Unit* unit) = 0;
 	virtual bool Spell(const Magic* magic, Unit* unit) = 0;
-	void Show()const;
+	virtual void Show()const;
 	void SetState(UnitState* state);
 public:
-	void ChangeArmor(int armor);
-	void ChangeDamage(int damage);
 	int Damage()const;
 	int Arm()const;
 protected:
@@ -68,6 +68,9 @@ protected:
 	UnitState* current_state;
 	Vital health;
 	Vital mana;
+	BattleParam damage;
+	BattleParam armor;
+	Level level;
 };
 
 class Warrior : virtual public Unit
