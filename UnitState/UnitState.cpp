@@ -21,6 +21,8 @@ namespace Arena
 	}
 
 
+
+
 	IsDead::IsDead(Unit* unit, int duration)
 		: UnitState(unit, duration)
 	{
@@ -38,6 +40,9 @@ namespace Arena
 		return Injure(unit);
 	}
 
+
+
+
 	IsMuted::IsMuted(Unit* unit, int duration)
 		: UnitState(unit, duration)
 	{
@@ -54,6 +59,9 @@ namespace Arena
 		std::cout << "\aYou are muted. You can't cast spells\n";
 		return false;
 	}
+
+
+
 
 	IsStunned::IsStunned(Unit* unit, int duration)
 		: IsMuted(unit, duration)
