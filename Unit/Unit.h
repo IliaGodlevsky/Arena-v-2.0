@@ -35,7 +35,7 @@ namespace Arena
 		bool IsDead()const;
 	private:
 		void TakeOffExpiredSpells();
-		
+		void TakeOffExpiredStates();
 	private:
 		Vitals mana;
 		Vitals health;

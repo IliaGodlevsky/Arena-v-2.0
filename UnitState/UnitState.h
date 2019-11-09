@@ -24,7 +24,7 @@ namespace Arena
 	class IsDead : public UnitState
 	{
 	public:
-		IsDead(Unit* unit, int duration);
+		IsDead(Unit* unit);
 		bool Injure(Unit* unit);
 		bool Spell(Unit* unit);
 	};

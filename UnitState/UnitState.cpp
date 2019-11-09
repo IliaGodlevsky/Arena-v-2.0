@@ -23,8 +23,8 @@ namespace Arena
 
 
 
-	IsDead::IsDead(Unit* unit, int duration)
-		: UnitState(unit, duration)
+	IsDead::IsDead(Unit* unit)
+		: UnitState(unit, INT_MAX)
 	{
 
 	}
