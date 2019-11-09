@@ -13,7 +13,8 @@ namespace Arena
 	class Magic
 	{
 	public:
-		Magic(const std::string& name, int mana_cost, int duration);
+		Magic(const std::string& name, 
+			int mana_cost, int duration);
 		Magic(const Magic& magic);
 		Magic(Magic&& magic);
 		Magic& operator=(const Magic& magic);
@@ -80,7 +81,6 @@ namespace Arena
 		void Effect(Unit* unit)const;
 		void Uneffect(Unit* unit)const;
 		BattlesDebuff* Clone()const;
-
 	};
 
 	class DamageBuff : virtual public Magic
@@ -149,8 +149,23 @@ namespace Arena
 
 	};
 
+	class AttackAndStun : public Magic
+	{
+
+	};
+
 	class PoisonAndAttack 
 		: public Attack, public Poison
+	{
+
+	};
+
+	class Dispel : public Magic
+	{
+
+	};
+
+	class Silence : public Magic
 	{
 
 	};

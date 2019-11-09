@@ -6,7 +6,8 @@
 #include <string>
 #include <vector>
 
-#include "..\Magic\Magic.h"
+#include "../Magic\Magic.h"
+#include "../UnitState/UnitState.h"
 
 namespace Arena
 {
@@ -21,17 +22,20 @@ namespace Arena
 	public:
 		bool Injure(Unit* unit);
 		bool Spell(Unit* unit);
-		void Decide(Decision* decision); // todo: make return value
-		void SetState(UnitState* state);
-		void CheckStatus();
+	public:
+		void Decide(Decision* decision); // todo: make return value of decision
+		void AddState(UnitState* state);
+		void ReloadStatus();
 	public:
 		void DamageChange(int damage);
 		void ArmorChange(int armor);
 		void RegenerationChange(int regeneration);
 		void PayMana(int mana_cost);
 		int CurrentMana()const;
+		bool IsDead()const;
 	private:
 		void TakeOffExpiredSpells();
+		
 	private:
 		Vitals mana;
 		Vitals health;
@@ -39,10 +43,11 @@ namespace Arena
 		Battles armor;
 	private:
 		using SpellBook = std::vector<Magic*>;
+		using SpellsUnder = SpellBook;
 	private:
-		UnitState* state;
+		std::vector<UnitState*> states;
 		UnitBattleState* battle_state;
-		std::vector<Magic*> spells_on_me;
+		SpellsUnder spells_on_me;
 		SpellBook spell_book;
 		Weapon* weapon;
 		Armor* armor;

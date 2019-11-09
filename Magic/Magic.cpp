@@ -1,5 +1,3 @@
-
-
 #include "Magic.h"
 
 constexpr auto START_TIME = 0;

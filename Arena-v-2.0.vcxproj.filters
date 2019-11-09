@@ -15,6 +15,9 @@
     <Filter Include="Magic">
       <UniqueIdentifier>{1aeebda8-60b7-4f9c-9a00-602747d6584a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UnitState">
+      <UniqueIdentifier>{b3667158-888a-4bfa-92bc-96850e01e6d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Unit\Unit.h">
@@ -23,13 +26,19 @@
     <ClInclude Include="Magic\Magic.h">
       <Filter>Magic</Filter>
     </ClInclude>
+    <ClInclude Include="UnitState\UnitState.h">
+      <Filter>UnitState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Unit\Unit.cpp">
       <Filter>Units</Filter>
     </ClCompile>
     <ClCompile Include="Magic\Magic.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\UnitState.cpp">
+      <Filter>UnitState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

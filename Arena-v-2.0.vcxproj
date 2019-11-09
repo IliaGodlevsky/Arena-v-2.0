@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Magic\Magic.h" />
+    <ClInclude Include="UnitState\UnitState.h" />
     <ClInclude Include="Unit\Unit.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Magic\Magic.cpp" />
+    <ClCompile Include="UnitState\UnitState.cpp" />
     <ClCompile Include="Unit\Unit.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
