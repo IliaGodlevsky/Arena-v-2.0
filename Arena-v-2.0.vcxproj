@@ -18,6 +18,14 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Magic\Magic.h" />
+    <ClInclude Include="Unit\Unit.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Magic\Magic.cpp" />
+    <ClCompile Include="Unit\Unit.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{6FDFD937-155D-4E44-B2E2-7B829FAAC72C}</ProjectGuid>
@@ -114,26 +122,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Arena.h" />
-    <ClInclude Include="Armor.h" />
-    <ClInclude Include="BattleParam.h" />
-    <ClInclude Include="Interfaces.h" />
-    <ClInclude Include="Level.h" />
-    <ClInclude Include="UnitState.h" />
-    <ClInclude Include="Vitals.h" />
-    <ClInclude Include="Decision.h" />
-    <ClInclude Include="Magic.h" />
-    <ClInclude Include="Unit.h" />
-    <ClInclude Include="UnitFactory.h" />
-    <ClInclude Include="Weapon.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Arena.cpp" />
-    <ClCompile Include="Magic.cpp" />
-    <ClCompile Include="Unit.cpp" />
-    <ClCompile Include="Vital.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

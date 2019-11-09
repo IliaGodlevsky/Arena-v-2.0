@@ -5,95 +5,31 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Units">
-      <UniqueIdentifier>{2dec64cb-c77d-407d-9658-fa95df62ab2f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Weapons">
-      <UniqueIdentifier>{86cc3628-c3a7-41f1-988a-b035e6a18bf6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Armor">
-      <UniqueIdentifier>{5a0eb943-bf84-4792-a02f-206d78864836}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Decisions">
-      <UniqueIdentifier>{ae199f3d-f1a2-41d4-8454-a86651b2adf8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Factories">
-      <UniqueIdentifier>{1d0d717e-d40d-448f-90e8-861aae77f001}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Factories\UnitFactory">
-      <UniqueIdentifier>{e68a1f84-3e68-480e-9921-09abfa1430c0}</UniqueIdentifier>
+      <UniqueIdentifier>{7c35e050-bd1c-4e69-bba4-1e2bb2b4925f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Magic">
-      <UniqueIdentifier>{69eb7974-7379-4102-a2b6-aee2be832dba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Arena">
-      <UniqueIdentifier>{30846e38-ea15-4005-a731-a6ca71f38b7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="States">
-      <UniqueIdentifier>{c4302b97-4093-47d0-b467-b3639a993205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UnitParams">
-      <UniqueIdentifier>{43ab7093-91ec-46aa-aec5-c1786ecd9b29}</UniqueIdentifier>
+      <UniqueIdentifier>{1aeebda8-60b7-4f9c-9a00-602747d6584a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Unit.h">
+    <ClInclude Include="Unit\Unit.h">
       <Filter>Units</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="Armor.h">
-      <Filter>Armor</Filter>
-    </ClInclude>
-    <ClInclude Include="Decision.h">
-      <Filter>Decisions</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitFactory.h">
-      <Filter>Factories\UnitFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="Magic.h">
+    <ClInclude Include="Magic\Magic.h">
       <Filter>Magic</Filter>
-    </ClInclude>
-    <ClInclude Include="Arena.h">
-      <Filter>Arena</Filter>
-    </ClInclude>
-    <ClInclude Include="Vitals.h">
-      <Filter>UnitParams</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState.h">
-      <Filter>States</Filter>
-    </ClInclude>
-    <ClInclude Include="BattleParam.h">
-      <Filter>UnitParams</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>UnitParams</Filter>
-    </ClInclude>
-    <ClInclude Include="Interfaces.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Unit.cpp">
+    <ClCompile Include="Unit\Unit.cpp">
       <Filter>Units</Filter>
     </ClCompile>
-    <ClCompile Include="Arena.cpp">
-      <Filter>Arena</Filter>
-    </ClCompile>
-    <ClCompile Include="Vital.cpp">
-      <Filter>UnitParams</Filter>
-    </ClCompile>
-    <ClCompile Include="Magic.cpp">
-      <Filter>Magic</Filter>
+    <ClCompile Include="Magic\Magic.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
