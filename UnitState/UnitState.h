@@ -45,7 +45,18 @@ namespace Arena
 		bool Spell(Unit* unit);
 	};
 
-
+	class StateHolder
+	{
+	public:
+		StateHolder(Unit* unit);
+		void AddState(UnitState* state);
+		bool IsStunned()const;
+		bool IsMuted()const;
+		bool isDead()const;
+	private:
+		Unit* unit;
+		std::vector<UnitState*> states;
+	};
 }
 
 #endif

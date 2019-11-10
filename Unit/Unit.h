@@ -27,6 +27,7 @@ namespace Arena
 		void AddState(UnitState* state);
 		void TakeSpellOnMe(const Magic* magic);
 		void ReloadStatus();
+		bool HaveThisSpell(const Magic* magic);
 	public:
 		void DamageChange(int damage);
 		void ArmorChange(int armor);
