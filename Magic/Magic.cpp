@@ -54,6 +54,11 @@ namespace Arena
 		unit->CurrentMana() >= mana_cost;
 	}
 
+	void Magic::ToSpellsUnder(Unit* unit)const
+	{
+		unit->TakeSpellOnMe(this);
+	}
+
 	// DamageDebuff
 
 	DamageDebuff::DamageDebuff(const std::string& name,
@@ -255,4 +260,208 @@ namespace Arena
 		return new DamageBuff(name, mana_cost, duration, damage_amplify);
 	}
 
+	// ArmorBuff
+
+	ArmorBuff::ArmorBuff(const std::string& name, int mana_cost,
+		int duration, int armor_amplify)
+		: Magic(name, mana_cost, duration), armor_amplify(armor_amplify)
+	{
+
+	}
+
+	ArmorBuff::ArmorBuff(const ArmorBuff& ab) : Magic(ab)
+	{
+		armor_amplify = ab.armor_amplify;
+	}
+
+	ArmorBuff::ArmorBuff(ArmorBuff&& ab) : ArmorBuff(ab)
+	{
+
+	}
+
+	ArmorBuff& ArmorBuff::operator=(const ArmorBuff& ab)
+	{
+		if (this == &ab)
+			return *this;
+		Magic::operator=(ab);
+		armor_amplify = ab.armor_amplify;
+		return *this;
+	}
+
+	ArmorBuff& ArmorBuff::operator=(ArmorBuff&& ab)
+	{
+		return operator=(ab);
+	}
+
+	void ArmorBuff::Effect(Unit* unit)const
+	{
+		unit->ArmorChange(armor_amplify);
+	}
+
+	void ArmorBuff::Uneffect(Unit* unit)const
+	{
+		unit->ArmorChange(-armor_amplify);
+	}
+
+	ArmorBuff* ArmorBuff::Clone()const
+	{
+		return new ArmorBuff(name, mana_cost, duration, armor_amplify);
+	}
+
+	// BattlesBuff
+
+	BattlesBuff::BattlesBuff(const std::string& name, int mana_cost,
+		int duration, int armor_amplify, int damage_amplify)
+		: Magic(name, mana_cost, duration),
+		DamageBuff(name, mana_cost, duration, damage_amplify),
+		ArmorBuff(name, mana_cost, duration, armor_amplify)
+	{
+
+	}
+
+	BattlesBuff::BattlesBuff(const BattlesBuff& bb)
+		: Magic(bb), DamageBuff(bb), ArmorBuff(bb)
+	{
+
+	}
+
+	BattlesBuff::BattlesBuff(BattlesBuff&& bb) : BattlesBuff(bb)
+	{
+
+	}
+
+	BattlesBuff& BattlesBuff::operator=(const BattlesBuff& bb)
+	{
+		if (this == &bb)
+			return *this;
+		DamageBuff::operator=(bb);
+		ArmorBuff::operator=(bb);
+		return *this;
+	}
+
+	BattlesBuff& BattlesBuff::operator=(BattlesBuff&& bb)
+	{
+		return operator=(bb);
+	}
+
+	void BattlesBuff::Effect(Unit* unit)const
+	{
+		DamageBuff::Effect(unit);
+		ArmorBuff::Effect(unit);
+	}
+
+	void BattlesBuff::Uneffect(Unit* unit)const
+	{
+		DamageBuff::Uneffect(unit);
+		ArmorBuff::Uneffect(unit);
+	}
+
+	BattlesBuff* BattlesBuff::Clone()const
+	{
+		return new BattlesBuff(name, mana_cost, duration, armor_amplify, damage_amplify);
+	}
+
+	//OffsetDamageBuff
+
+	OffsetDamageBuff::OffsetDamageBuff(const std::string& name, int mana_cost,
+		int duration, int armor_reduce, int damage_amplify)
+		: Magic(name, mana_cost, duration),
+		DamageBuff(name, mana_cost, duration, damage_amplify),
+		ArmorDebuff(name, mana_cost, duration, armor_reduce) 
+	{
+
+	}
+
+	OffsetDamageBuff::OffsetDamageBuff(const OffsetDamageBuff& ob)
+		: Magic(ob), DamageBuff(ob), ArmorDebuff(ob)
+	{
+
+	}
+
+	OffsetDamageBuff::OffsetDamageBuff(OffsetDamageBuff&& ob)
+		: OffsetDamageBuff(ob)
+	{
+
+	}
+
+	OffsetDamageBuff& OffsetDamageBuff::operator=(const OffsetDamageBuff& ob)
+	{
+		if (this == &ob)
+			return *this;
+		DamageBuff::operator=(ob);
+		ArmorDebuff::operator=(ob);
+		return *this;
+	}
+
+	OffsetDamageBuff& OffsetDamageBuff::operator=(OffsetDamageBuff&& ob)
+	{
+		return operator=(ob);
+	}
+
+	void OffsetDamageBuff::Effect(Unit* unit)const
+	{
+		DamageBuff::Effect(unit);
+		ArmorDebuff::Effect(unit);
+	}
+
+	void OffsetDamageBuff::Uneffect(Unit* unit)const
+	{
+		DamageBuff::Uneffect(unit);
+		ArmorDebuff::Uneffect(unit);
+	}
+
+	OffsetDamageBuff* OffsetDamageBuff::Clone()const
+	{
+		return new OffsetDamageBuff(name, mana_cost, duration, armor_reduction, damage_amplify);
+	}
+
+	// AttackAndStun
+
+
+	AttackAndStun::AttackAndStun(const std::string& name, int mana_cost,
+		int duration, int damage)
+		: Magic(name, mana_cost, duration),
+		Attack(name, mana_cost, damage)
+	{
+		this->duration = duration;
+	}
+	AttackAndStun::AttackAndStun(const AttackAndStun& as)
+		: Magic(as), Attack(as)
+	{
+
+	}
+
+	AttackAndStun::AttackAndStun(AttackAndStun&& as) : AttackAndStun(as)
+	{
+
+	}
+
+	AttackAndStun& AttackAndStun::operator=(const AttackAndStun& as)
+	{
+		if (this == &as)
+			return *this;
+		Attack::operator=(as);
+		return *this;
+	}
+
+	AttackAndStun& AttackAndStun::operator=(AttackAndStun&& as)
+	{
+		return operator=(as);
+	}
+
+	void AttackAndStun::Effect(Unit* unit)const
+	{
+		unit->HealthChange(-damage);
+		unit->AddState(new IsStunned(unit, duration));
+	}
+
+	void AttackAndStun::Uneffect(Unit* unit)const
+	{
+		return;
+	}
+
+	AttackAndStun* AttackAndStun::Clone()const
+	{
+		return new AttackAndStun(name, mana_cost, duration, damage);
+	}
 }

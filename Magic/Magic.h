@@ -27,6 +27,8 @@ namespace Arena
 		void SetStartTime(int round);
 		bool IsExpired(int round)const;
 		bool EnougnMana(const Unit* unit)const;
+	private:
+		virtual void ToSpellsUnder(Unit* unit)const;
 	protected:
 		std::string name;
 		int mana_cost;
@@ -102,6 +104,7 @@ namespace Arena
 
 	class ArmorBuff : virtual public Magic
 	{
+	public:
 		ArmorBuff(const std::string& name, int mana_cost,
 			int duration, int armor_amplify);
 		ArmorBuff(const ArmorBuff& ab);
@@ -119,13 +122,33 @@ namespace Arena
 	class BattlesBuff 
 		: public DamageBuff, public ArmorBuff
 	{
-
+	public:
+		BattlesBuff(const std::string& name, int mana_cost,
+			int duration, int armor_amplify, int damage_amplify);
+		BattlesBuff(const BattlesBuff& bb);
+		BattlesBuff(BattlesBuff&& bb);
+		BattlesBuff& operator=(const BattlesBuff& bb);
+		BattlesBuff& operator=(BattlesBuff&& bb);
+	public:
+		void Effect(Unit* unit)const;
+		void Uneffect(Unit* unit)const;
+		BattlesBuff* Clone()const;
 	};
 
 	class OffsetDamageBuff 
 		: public DamageBuff, public ArmorDebuff
 	{
-
+	public:
+		OffsetDamageBuff(const std::string& name, int mana_cost,
+			int duration, int armor_reduce, int damage_amplify);
+		OffsetDamageBuff(const OffsetDamageBuff& ob);
+		OffsetDamageBuff(OffsetDamageBuff&& ob);
+		OffsetDamageBuff& operator=(const OffsetDamageBuff& ob);
+		OffsetDamageBuff& operator=(OffsetDamageBuff&& ob);
+	public:
+		void Effect(Unit* unit)const;
+		void Uneffect(Unit* unit)const;
+		OffsetDamageBuff* Clone()const;
 	};
 
 	class Heal : virtual public Magic
@@ -140,7 +163,20 @@ namespace Arena
 
 	class Attack : virtual public Magic
 	{
-
+	public:
+		Attack(const std::string& name, 
+			int mana_cost, int damage);
+		Attack(const Attack& as);
+		Attack(Attack&& as);
+		Attack& operator=(const Attack& as);
+		Attack& operator=(Attack&& as);
+		virtual ~Attack();
+	public:
+		void Effect(Unit* unit)const;
+		void Uneffect(Unit* unit)const;
+		Attack* Clone()const;
+	protected:
+		int damage;
 	};
 
 	class AttackAndArmorDebuff 
@@ -149,9 +185,19 @@ namespace Arena
 
 	};
 
-	class AttackAndStun : public Magic
+	class AttackAndStun : public Attack
 	{
-
+	public:
+		AttackAndStun(const std::string& name, int mana_cost,
+			int duration, int damage);
+		AttackAndStun(const AttackAndStun& as);
+		AttackAndStun(AttackAndStun&& as);
+		AttackAndStun& operator=(const AttackAndStun& as);
+		AttackAndStun& operator=(AttackAndStun&& as);
+	public:
+		void Effect(Unit* unit)const;
+		void Uneffect(Unit* unit)const;
+		AttackAndStun* Clone()const;
 	};
 
 	class PoisonAndAttack 

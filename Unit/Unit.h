@@ -25,10 +25,12 @@ namespace Arena
 	public:
 		void Decide(Decision* decision); // todo: make return value of decision
 		void AddState(UnitState* state);
+		void TakeSpellOnMe(const Magic* magic);
 		void ReloadStatus();
 	public:
 		void DamageChange(int damage);
 		void ArmorChange(int armor);
+		void HealthChange(int health);
 		void RegenerationChange(int regeneration);
 		void PayMana(int mana_cost);
 		int CurrentMana()const;
