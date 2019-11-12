@@ -13,6 +13,7 @@ namespace Arena
 {
 	class Unit
 	{
+		friend class StateHolder;
 	public:
 		Unit(std::string name);
 		Unit(const Unit& unit);
@@ -20,14 +21,9 @@ namespace Arena
 		Unit& operator=(const Unit& unit);
 		Unit& operator=(Unit&& unit);
 	public:
-		bool Injure(Unit* unit);
-		bool Spell(Unit* unit);
-	public:
-		void Decide(Decision* decision); // todo: make return value of decision
 		void AddState(UnitState* state);
 		void TakeSpellOnMe(const Magic* magic);
-		void ReloadStatus();
-		bool HaveThisSpell(const Magic* magic);
+		bool HaveSpell(const Magic* magic);
 	public:
 		void DamageChange(int damage);
 		void ArmorChange(int armor);
@@ -36,24 +32,11 @@ namespace Arena
 		void PayMana(int mana_cost);
 		int CurrentMana()const;
 		bool IsDead()const;
+		int Damage()const;
+		int Armor()const;
 	private:
-		void TakeOffExpiredSpells();
-		void TakeOffExpiredStates();
-	private:
-		Vitals mana;
-		Vitals health;
-		Battles damage;
-		Battles armor;
-	private:
-		using SpellBook = std::vector<Magic*>;
-		using SpellsUnder = SpellBook;
-	private:
-		std::vector<UnitState*> states;
-		UnitBattleState* battle_state;
-		SpellsUnder spells_on_me;
-		SpellBook spell_book;
-		Weapon* weapon;
-		Armor* armor;
+		StateHolder* state;
+
 	};
 }
 #endif

@@ -105,8 +105,7 @@ namespace Arena
 
 	DamageDebuff* DamageDebuff::Clone()const
 	{
-		return new DamageDebuff(name, mana_cost, 
-			duration, damage_reduction);
+		return new DamageDebuff(*this);
 	}
 
 	// ArmorDebuff
@@ -154,8 +153,7 @@ namespace Arena
 
 	ArmorDebuff* ArmorDebuff::Clone()const
 	{
-		return new ArmorDebuff(name, mana_cost, 
-			duration, armor_reduction);
+		return new ArmorDebuff(*this);
 	}
 
 	// BattleDebuff
@@ -208,8 +206,7 @@ namespace Arena
 
 	BattlesDebuff* BattlesDebuff::Clone()const
 	{
-		return new BattlesDebuff(name, mana_cost, duration, 
-			damage_reduction, armor_reduction);
+		return new BattlesDebuff(*this);
 	}
 
 	// DamageBuff
@@ -257,7 +254,7 @@ namespace Arena
 
 	DamageBuff* DamageBuff::Clone()const
 	{
-		return new DamageBuff(name, mana_cost, duration, damage_amplify);
+		return new DamageBuff(*this);
 	}
 
 	// ArmorBuff
@@ -305,7 +302,7 @@ namespace Arena
 
 	ArmorBuff* ArmorBuff::Clone()const
 	{
-		return new ArmorBuff(name, mana_cost, duration, armor_amplify);
+		return new ArmorBuff(*this);
 	}
 
 	// BattlesBuff
@@ -358,7 +355,7 @@ namespace Arena
 
 	BattlesBuff* BattlesBuff::Clone()const
 	{
-		return new BattlesBuff(name, mana_cost, duration, armor_amplify, damage_amplify);
+		return new BattlesBuff(*this);
 	}
 
 	//OffsetDamageBuff
@@ -412,7 +409,7 @@ namespace Arena
 
 	OffsetDamageBuff* OffsetDamageBuff::Clone()const
 	{
-		return new OffsetDamageBuff(name, mana_cost, duration, armor_reduction, damage_amplify);
+		return new OffsetDamageBuff(*this);
 	}
 
 	// AttackAndStun
@@ -452,7 +449,6 @@ namespace Arena
 	void AttackAndStun::Effect(Unit* unit)const
 	{
 		unit->HealthChange(-damage);
-		unit->AddState(new IsStunned(unit, duration));
 	}
 
 	void AttackAndStun::Uneffect(Unit* unit)const
@@ -462,6 +458,265 @@ namespace Arena
 
 	AttackAndStun* AttackAndStun::Clone()const
 	{
-		return new AttackAndStun(name, mana_cost, duration, damage);
+		return new AttackAndStun(*this);
+	}
+
+	void AttackAndStun::ToSpellsUnder(Unit* unit)const
+	{
+		Magic::ToSpellsUnder(unit);
+		unit->AddState(new IsStunned(duration));
+	}
+
+	// Heal
+
+	Heal::Heal(const std::string& name, int mana_cost,
+		int healing) 
+		: Magic(name, mana_cost, 0), healing(healing)
+	{
+
+	}
+
+	Heal::Heal(const Heal& h) : Magic(h)
+	{
+		healing = h.healing;
+	}
+
+	Heal::Heal(Heal&& h) : Heal(h)
+	{
+
+	}
+
+	Heal& Heal::operator=(const Heal& h)
+	{
+		if (this == &h)
+			return *this;
+		Magic::operator =(h);
+		healing = h.healing;
+		return *this;
+	}
+
+	Heal& Heal::operator=(Heal&& h)
+	{
+		return operator=(h);
+	}
+
+	void Heal::Effect(Unit* unit)const
+	{
+		unit->HealthChange(healing);
+	}
+
+	void Heal::Uneffect(Unit* unit)const
+	{
+		return;
+	}
+
+	Heal* Heal::Clone()const
+	{
+		return new Heal(*this);
+	}
+
+	Poison::Poison(const std::string& name, int mana_cost,
+		int duration, int regeneration_reduce)
+		: Magic(name, mana_cost,duration),
+		regeneration_reduce(regeneration_reduce)
+	{
+
+	}
+
+	Poison::Poison(const Poison& p) : Magic(p)
+	{
+		regeneration_reduce = p.regeneration_reduce;
+	}
+
+	Poison::Poison(Poison&& p) : Poison(p)
+	{
+
+	}
+
+	Poison& Poison::operator=(const Poison& p)
+	{
+		if (this == &p)
+			return *this;
+		Magic::operator=(p);
+		regeneration_reduce = p.regeneration_reduce;
+		return *this;
+	}
+
+	Poison& Poison::operator=(Poison&& p)
+	{
+		return operator=(p);
+	}
+
+	void Poison::Effect(Unit* unit)const
+	{
+		unit->RegenerationChange(-regeneration_reduce);
+	}
+
+	void Poison::Uneffect(Unit* unit)const
+	{
+		unit->RegenerationChange(regeneration_reduce);
+	}
+
+	Poison* Poison::Clone()const
+	{
+		return new Poison(*this);
+	}
+
+	// Attack
+
+	Attack::Attack(const std::string& name,
+		int mana_cost, int damage)
+		: Magic(name, mana_cost, 0),
+		damage(damage)
+	{
+
+	}
+
+	Attack::Attack(const Attack& a) : Magic(a)
+	{
+		damage = a.damage;
+	}
+
+	Attack::Attack(Attack&& a) : Attack(a)
+	{
+
+	}
+
+	Attack& Attack::operator=(const Attack& a)
+	{
+		if (this == &a)
+			return *this;
+		Magic::operator=(a);
+		damage = a.damage;
+		return *this;
+	}
+
+	Attack& Attack::operator=(Attack&& a)
+	{
+		return operator=(a);
+	}
+
+	Attack::~Attack() {}
+
+	void Attack::Effect(Unit* unit)const
+	{
+		unit->HealthChange(-damage);
+	}
+
+	void Attack::Uneffect(Unit* unit)const
+	{
+		return;
+	}
+
+	Attack* Attack::Clone()const
+	{
+		return new Attack(*this);
+	}
+
+	// AttackAndArmorDebuff
+
+	AttackAndArmorDebuff::AttackAndArmorDebuff(const std::string& name,
+		int duration, int mana_cost, int damage, int armor_debuff)
+		: Magic(name, mana_cost, duration),
+		Attack(name, mana_cost, damage),
+		ArmorDebuff(name, mana_cost, duration, armor_debuff)
+	{
+
+	}
+
+	AttackAndArmorDebuff::AttackAndArmorDebuff(const AttackAndArmorDebuff& aa)
+		: Magic(aa), Attack(aa), ArmorDebuff(aa)
+	{
+
+	}
+
+	AttackAndArmorDebuff::AttackAndArmorDebuff(AttackAndArmorDebuff&& aa)
+		: AttackAndArmorDebuff(aa)
+	{
+
+	}
+
+	AttackAndArmorDebuff& AttackAndArmorDebuff::operator=(const AttackAndArmorDebuff& aa)
+	{
+		if (this == &aa)
+			return *this;
+		Attack::operator=(aa);
+		ArmorDebuff::operator=(aa);
+		return *this;
+	}
+
+	AttackAndArmorDebuff& AttackAndArmorDebuff::operator=(AttackAndArmorDebuff&& aa)
+	{
+		return operator=(aa);
+	}
+
+	void AttackAndArmorDebuff::Effect(Unit* unit)const
+	{
+		Attack::Effect(unit);
+		ArmorDebuff::Effect(unit);
+	}
+
+	void AttackAndArmorDebuff::Uneffect(Unit* unit)const
+	{
+		ArmorDebuff::Uneffect(unit);
+	}
+
+	AttackAndArmorDebuff* AttackAndArmorDebuff::Clone()const
+	{
+		return new AttackAndArmorDebuff(*this);
+	}
+
+	// PoisonAndAttack
+
+
+	PoisonAndAttack::PoisonAndAttack(const std::string& name, int mana_cost,
+		int duration, int regeneration_reduce, int damage)
+		:Magic(name, mana_cost, duration),
+		Poison(name, mana_cost, duration, regeneration_reduce),
+		Attack(name, mana_cost, damage)
+	{
+
+	}
+
+	PoisonAndAttack::PoisonAndAttack(const PoisonAndAttack& ap)
+		: Magic(ap), Attack(ap), Poison(ap) 
+	{
+
+	}
+
+	PoisonAndAttack::PoisonAndAttack(PoisonAndAttack&& ap) 
+		: PoisonAndAttack(ap)
+	{
+
+	}
+
+	PoisonAndAttack& PoisonAndAttack::operator=(const PoisonAndAttack& ap)
+	{
+		if (this == &ap)
+			return *this;
+		Poison::operator=(ap);
+		Attack::operator=(ap);
+		return *this;
+	}
+
+	PoisonAndAttack& PoisonAndAttack::operator=(PoisonAndAttack&& ap)
+	{
+		return operator=(ap);
+	}
+
+	void PoisonAndAttack::Effect(Unit* unit)const
+	{
+		Poison::Effect(unit);
+		Attack::Effect(unit);
+	}
+
+	void PoisonAndAttack::Uneffect(Unit* unit)const
+	{
+		Poison::Uneffect(unit);
+	}
+
+	PoisonAndAttack* PoisonAndAttack::Clone()const
+	{
+		return new PoisonAndAttack(*this);
 	}
 }

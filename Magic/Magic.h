@@ -27,7 +27,6 @@ namespace Arena
 		void SetStartTime(int round);
 		bool IsExpired(int round)const;
 		bool EnougnMana(const Unit* unit)const;
-	private:
 		virtual void ToSpellsUnder(Unit* unit)const;
 	protected:
 		std::string name;
@@ -153,12 +152,36 @@ namespace Arena
 
 	class Heal : virtual public Magic
 	{
-
+	public:
+		Heal(const std::string& name, int mana_cost,
+			int healing);
+		Heal(const Heal& h);
+		Heal(Heal&& h);
+		Heal& operator=(const Heal& h);
+		Heal& operator=(Heal&& h);
+	public:
+		void Effect(Unit* unit)const;
+		void Uneffect(Unit* unit)const;
+		Heal* Clone()const;
+	protected:
+		int healing;
 	};
 
 	class Poison : virtual public Magic
 	{
-
+	public:
+		Poison(const std::string& name, int mana_cost,
+			int duration, int regeneration_reduce);
+		Poison(const Poison& p);
+		Poison(Poison&& p);
+		Poison& operator=(const Poison& p);
+		Poison& operator=(Poison&& p);
+	public:
+		void Effect(Unit* unit)const;
+		void Uneffect(Unit* unit)const;
+		Poison* Clone()const;
+	protected:
+		int regeneration_reduce;
 	};
 
 	class Attack : virtual public Magic
@@ -166,10 +189,10 @@ namespace Arena
 	public:
 		Attack(const std::string& name, 
 			int mana_cost, int damage);
-		Attack(const Attack& as);
-		Attack(Attack&& as);
-		Attack& operator=(const Attack& as);
-		Attack& operator=(Attack&& as);
+		Attack(const Attack& a);
+		Attack(Attack&& a);
+		Attack& operator=(const Attack& a);
+		Attack& operator=(Attack&& a);
 		virtual ~Attack();
 	public:
 		void Effect(Unit* unit)const;
@@ -182,7 +205,17 @@ namespace Arena
 	class AttackAndArmorDebuff 
 		: public Attack, public ArmorDebuff
 	{
-
+	public:
+		AttackAndArmorDebuff(const std::string& name,
+			int duration, int mana_cost, int damage, int armor_debuff);
+		AttackAndArmorDebuff(const AttackAndArmorDebuff& aa);
+		AttackAndArmorDebuff(AttackAndArmorDebuff&& aa);
+		AttackAndArmorDebuff& operator=(const AttackAndArmorDebuff& aa);
+		AttackAndArmorDebuff& operator=(AttackAndArmorDebuff&& aa);
+	public:
+		void Effect(Unit* unit)const;
+		void Uneffect(Unit* unit)const;
+		AttackAndArmorDebuff* Clone()const;
 	};
 
 	class AttackAndStun : public Attack
@@ -198,12 +231,23 @@ namespace Arena
 		void Effect(Unit* unit)const;
 		void Uneffect(Unit* unit)const;
 		AttackAndStun* Clone()const;
+		void ToSpellsUnder(Unit* unit)const;
 	};
 
 	class PoisonAndAttack 
 		: public Attack, public Poison
 	{
-
+	public:
+		PoisonAndAttack(const std::string& name, int mana_cost,
+			int duration, int regeneration_reduce, int damage);
+		PoisonAndAttack(const PoisonAndAttack& ap);
+		PoisonAndAttack(PoisonAndAttack&& ap);
+		PoisonAndAttack& operator=(const PoisonAndAttack& ap);
+		PoisonAndAttack& operator=(PoisonAndAttack&& ap);
+	public:
+		void Effect(Unit* unit)const;
+		void Uneffect(Unit* unit)const;
+		PoisonAndAttack* Clone()const;
 	};
 
 	class Dispel : public Magic
