@@ -8,6 +8,7 @@
 
 #include "../Magic\Magic.h"
 #include "../UnitState/UnitState.h"
+#include "../Vitals/Vitals.h"
 
 namespace Arena
 {
@@ -15,6 +16,7 @@ namespace Arena
 	{
 		friend class StateHolder;
 	public:
+		Unit(std::string name, Vitals health, Vitals mana);
 		Unit(std::string name);
 		Unit(const Unit& unit);
 		Unit(Unit&& unit);
@@ -34,9 +36,13 @@ namespace Arena
 		bool IsDead()const;
 		int Damage()const;
 		int Armor()const;
+	public:
+		SpellsOnMe on_me;
+		Vitals health;
+		Vitals mana;
 	private:
 		StateHolder* state;
-
+		std::vector<Magic*> spells;
 	};
 }
 #endif

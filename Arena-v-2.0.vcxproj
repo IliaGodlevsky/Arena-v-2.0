@@ -22,11 +22,13 @@
     <ClInclude Include="Magic\Magic.h" />
     <ClInclude Include="UnitState\UnitState.h" />
     <ClInclude Include="Unit\Unit.h" />
+    <ClInclude Include="Vitals\Vitals.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Magic\Magic.cpp" />
     <ClCompile Include="UnitState\UnitState.cpp" />
     <ClCompile Include="Unit\Unit.cpp" />
+    <ClCompile Include="Vitals\Vitals.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

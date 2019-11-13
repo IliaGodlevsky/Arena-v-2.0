@@ -9,7 +9,6 @@
 
 namespace Arena
 {
-
 	class Magic
 	{
 	public:
@@ -258,6 +257,15 @@ namespace Arena
 	class Silence : public Magic
 	{
 
+	};
+
+	class SpellsOnMe
+	{
+	public:
+		void TakeOfExpired();
+		void TakeMagic(const Magic* magic);
+	private:
+		std::vector<const Magic*> on_me;
 	};
 }
 

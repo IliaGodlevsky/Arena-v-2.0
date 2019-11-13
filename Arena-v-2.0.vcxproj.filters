@@ -18,6 +18,9 @@
     <Filter Include="UnitState">
       <UniqueIdentifier>{b3667158-888a-4bfa-92bc-96850e01e6d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vitals">
+      <UniqueIdentifier>{0559a82c-238f-4365-b70b-134216a656c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Unit\Unit.h">
@@ -29,6 +32,9 @@
     <ClInclude Include="UnitState\UnitState.h">
       <Filter>UnitState</Filter>
     </ClInclude>
+    <ClInclude Include="Vitals\Vitals.h">
+      <Filter>Vitals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Unit\Unit.cpp">
@@ -39,6 +45,9 @@
     </ClCompile>
     <ClCompile Include="UnitState\UnitState.cpp">
       <Filter>UnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="Vitals\Vitals.cpp">
+      <Filter>Vitals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
