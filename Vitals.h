@@ -28,6 +28,4 @@ private:
 private:
 	void FixOverflow();
 };
-
-
 #endif

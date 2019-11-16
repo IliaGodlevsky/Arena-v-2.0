@@ -9,57 +9,16 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Units">
-      <UniqueIdentifier>{7c35e050-bd1c-4e69-bba4-1e2bb2b4925f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Magic">
-      <UniqueIdentifier>{1aeebda8-60b7-4f9c-9a00-602747d6584a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UnitState">
-      <UniqueIdentifier>{b3667158-888a-4bfa-92bc-96850e01e6d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Vitals">
       <UniqueIdentifier>{0559a82c-238f-4365-b70b-134216a656c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Weapon">
-      <UniqueIdentifier>{12d562cd-df9e-4936-ac49-98ede0a23f24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Package">
-      <UniqueIdentifier>{a9df0729-6804-45ec-904d-bcfba243cb0c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Unit\Unit.h">
-      <Filter>Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Magic\Magic.h">
-      <Filter>Magic</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\UnitState.h">
-      <Filter>UnitState</Filter>
-    </ClInclude>
     <ClInclude Include="Vitals\Vitals.h">
       <Filter>Vitals</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon\Weapon.h">
-      <Filter>Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="Package\Package.h">
-      <Filter>Package</Filter>
-    </ClInclude>
-    <ClInclude Include="Decision.h" />
-    <ClInclude Include="Arena.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Unit\Unit.cpp">
-      <Filter>Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Magic\Magic.cpp">
-      <Filter>Magic</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\UnitState.cpp">
-      <Filter>UnitState</Filter>
-    </ClCompile>
     <ClCompile Include="Vitals\Vitals.cpp">
       <Filter>Vitals</Filter>
     </ClCompile>
