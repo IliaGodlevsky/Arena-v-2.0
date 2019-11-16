@@ -21,6 +21,12 @@
     <Filter Include="Vitals">
       <UniqueIdentifier>{0559a82c-238f-4365-b70b-134216a656c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Weapon">
+      <UniqueIdentifier>{12d562cd-df9e-4936-ac49-98ede0a23f24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Package">
+      <UniqueIdentifier>{a9df0729-6804-45ec-904d-bcfba243cb0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Unit\Unit.h">
@@ -35,6 +41,14 @@
     <ClInclude Include="Vitals\Vitals.h">
       <Filter>Vitals</Filter>
     </ClInclude>
+    <ClInclude Include="Weapon\Weapon.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Package\Package.h">
+      <Filter>Package</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision.h" />
+    <ClInclude Include="Arena.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Unit\Unit.cpp">
