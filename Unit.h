@@ -17,13 +17,19 @@ public:
 	bool Injure(Unit* unit, Weapon* weapon);
 	bool Spell(Unit* unit, Magic* magic);
 	void Act(Decision* decision);
+	int CalcDamage()const;
+	void TakeDamage(int damage);
+	int CalcReduce(int damage);
+public:
 	Battles damage;
 	Battles armor;
 	Vitals health;
 	Vitals mana;
+	SpellBook spell_book;
+	SpellsOnMe on_me;
 private:
 	Weapon* weapon;
-	Armor* armor;
+	Armor* mail;
 };
 
 #endif

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arena.h" />
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Battles.h" />
     <ClInclude Include="Decision.h" />
@@ -26,12 +27,16 @@
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Vitals.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WeaponMagic.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Arena.cpp" />
+    <ClCompile Include="Armor.cpp" />
     <ClCompile Include="Magic.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Vitals.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WeaponMagic.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

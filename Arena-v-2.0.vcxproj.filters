@@ -9,34 +9,87 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Weapon">
+      <UniqueIdentifier>{3c02465e-a26d-4540-81a6-c18f9b01a3e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vitals">
+      <UniqueIdentifier>{da5ace1c-cb13-4ede-8676-d44a6e3de7b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Armor">
+      <UniqueIdentifier>{70a3b256-c8cf-4710-9a41-589145f16224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit">
+      <UniqueIdentifier>{82c88f3e-660f-4481-99c3-ee955da0b1a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arena">
+      <UniqueIdentifier>{5ffb4915-996e-4cf8-b7fa-fc333358b207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Battles">
+      <UniqueIdentifier>{8ab6fd48-d66a-4a43-8ad7-42ebb2b22323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decision">
+      <UniqueIdentifier>{a1d1c777-62cb-48c5-8ec7-e17cce3d47cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spells">
+      <UniqueIdentifier>{9cd2bedf-1b75-4ee5-baf4-fc69ac1f751b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spells\Magic">
+      <UniqueIdentifier>{4298ff39-e3b4-44dc-97ac-d3bb8d58a938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spells\WeaponMagic">
+      <UniqueIdentifier>{672c7dea-f0c6-4268-b8f7-1e1b6997dc26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Armor.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Magic.h">
+      <Filter>Spells\Magic</Filter>
     </ClInclude>
-    <ClInclude Include="Unit.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Weapon.h">
+      <Filter>Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Vitals.h">
-      <Filter>Source Files</Filter>
+      <Filter>Vitals</Filter>
     </ClInclude>
-    <ClInclude Include="Decision.h" />
-    <ClInclude Include="Magic.h" />
-    <ClInclude Include="Weapon.h" />
-    <ClInclude Include="Battles.h" />
+    <ClInclude Include="Armor.h">
+      <Filter>Armor</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Arena.h">
+      <Filter>Arena</Filter>
+    </ClInclude>
+    <ClInclude Include="Battles.h">
+      <Filter>Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision.h">
+      <Filter>Decision</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponMagic.h">
+      <Filter>Spells\WeaponMagic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vitals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Unit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Magic.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Spells\Magic</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Vitals.cpp">
+      <Filter>Vitals</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Arena.cpp">
+      <Filter>Arena</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponMagic.cpp">
+      <Filter>Spells\WeaponMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor.cpp">
+      <Filter>Armor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

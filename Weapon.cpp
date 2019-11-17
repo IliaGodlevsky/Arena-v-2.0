@@ -1,42 +1,88 @@
-#include <random>
-
 #include "Weapon.h"
+#include "WeaponMagic.h"
 
-WeaponMagic::WeaponMagic(std::string name,
-	int duration, int propability = 20)
-	: Magic(name, 0, duration), propability(propability)
+Weapon::Weapon(int damage): damage(damage)
 {
 
 }
 
-WeaponMagic::~WeaponMagic() {}
+Weapon::~Weapon() {}
 
-bool WeaponMagic::IsCasted()const
-{
-	const int MAX_PROPABILITY = 100;
-	std::random_device seed();
-	std::mt19937 engine(seed);
-	std::uniform_int_distribution<int> rand(0, MAX_PROPABILITY);
-	return rand(engine) == propability;
-}
-
-Degenerate::Degenerate(std::string name, int duration,
-	int degeneration, int propability)
-	: WeaponMagic(name, duration, propability),
-	degeneration(degeneration)
+Weapon::Weapon(const Weapon& weapon)
+	: damage(weapon.damage)
 {
 
 }
-void Degenerate::Effect(Unit* unit)const
+
+Weapon& Weapon::operator=(const Weapon& weapon)
 {
-	if (IsCasted())
-		unit->health.ChangeRegeneration(-degeneration);
+	if (this == &weapon)
+		return *this;
+	damage = weapon.damage;
+	return *this;
 }
-void Degenerate::Uneffect(Unit* unit)const
+
+Sword::Sword(int damage)
+	: Weapon(damage), open_wounds(new Degenerate("Open wounds", 2, 4))
 {
-	unit->health.ChangeRegeneration(degeneration);
+	
 }
-Degenerate* Degenerate::Clone()const
+
+Sword::~Sword()
+{
+	
+}
+
+void Sword::Injure(Unit* unit)const
+{
+	qq
+	open_wounds->Effect(unit);
+}
+
+Sword::Sword(const Sword& sword)
+	: Weapon(sword), 
+	open_wounds(sword.open_wounds->Clone())
 {
 
+}
+
+Sword& Sword::operator=(const Sword& sword)
+{
+	if (this == &sword)
+		return *this;
+	Weapon::operator=(sword);
+	open_wounds = spell_ptr<Magic>(open_wounds->Clone());
+	return *this;
+}
+
+Axe::Axe(int damage)
+	: Weapon(damage), crush(new Crush("Crush", 10))
+{
+	
+}
+
+Axe::~Axe()
+{
+
+}
+
+void Axe::Injure(Unit* unit)const
+{
+	unit->health = unit->health - damage.Value();
+	crush->Effect(unit);
+}
+
+Axe::Axe(const Axe& axe)
+	: Weapon(axe), crush(axe.crush->Clone())
+{
+
+}
+
+Axe& Axe::operator=(const Axe& axe)
+{
+	if (this == &axe)
+		return *this;
+	Weapon::operator=(axe);
+	crush = spell_ptr<Magic>(axe.crush->Clone());
+	return *this;
 }
