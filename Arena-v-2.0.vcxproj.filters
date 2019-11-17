@@ -9,18 +9,34 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Vitals">
-      <UniqueIdentifier>{0559a82c-238f-4365-b70b-134216a656c8}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Vitals\Vitals.h">
-      <Filter>Vitals</Filter>
+    <ClInclude Include="Armor.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vitals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision.h" />
+    <ClInclude Include="Magic.h" />
+    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Battles.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vitals\Vitals.cpp">
-      <Filter>Vitals</Filter>
+    <ClCompile Include="Vitals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
