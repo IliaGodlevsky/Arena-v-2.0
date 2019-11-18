@@ -10,6 +10,7 @@
 #include "Unit.h"
 
 class Magic;
+
 using MagicPtr = std::unique_ptr<Magic>;
 
 // abstract base class (could't create an instance of this class)
@@ -43,9 +44,9 @@ class DamageBuff : virtual public Magic
 public:
 	DamageBuff(std::string name, int mana_cost,
 		int duration, int damage_amplify);
-	void Effect(UnitPtr unit) override;
-	void Uneffect(UnitPtr unit)const override;
-	MagicPtr Clone()const override;
+	virtual void Effect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit)const;
+	virtual MagicPtr Clone()const override;
 public:
 	friend bool operator==(const DamageBuff& first, const DamageBuff& second);
 	friend bool operator!=(const DamageBuff& first, const DamageBuff& second);
@@ -60,9 +61,9 @@ class ArmorBuff : virtual public Magic
 public:
 	ArmorBuff(std::string name, int mana_cost, 
 		int duration, int armor_amplify);
-	void Effect(UnitPtr unit) override;
-	void Uneffect(UnitPtr unit)const override;
-	MagicPtr Clone()const override;
+	virtual void Effect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit)const;
+	virtual MagicPtr Clone()const override;
 public:
 	friend bool operator==(const ArmorBuff& first, const ArmorBuff& second);
 	friend bool operator!=(const ArmorBuff& first, const ArmorBuff& second);
@@ -78,9 +79,9 @@ class ArmorAndDamageBuff
 public:
 	ArmorAndDamageBuff(std::string name, int mana_cost, 
 		int duration, int armor_amplify, int damage_amplify);
-	void Effect(UnitPtr unit)override;
-	void Uneffect(UnitPtr unit)const override;
-	MagicPtr Clone()const override;
+	void Effect(UnitPtr unit);
+	void Uneffect(UnitPtr unit)const;
+	MagicPtr Clone()const;
 public:
 	friend bool operator==(const ArmorAndDamageBuff& first, const ArmorAndDamageBuff& second);
 	friend bool operator!=(const ArmorAndDamageBuff& first, const ArmorAndDamageBuff& second);

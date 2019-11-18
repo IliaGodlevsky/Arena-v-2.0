@@ -21,6 +21,16 @@ bool WeaponMagic::IsCasted()const
 	return rand(engine) <= propability;
 }
 
+bool operator==(const WeaponMagic& first, const WeaponMagic& second)
+{
+
+}
+
+bool operator!=(const WeaponMagic& first, const WeaponMagic& second)
+{
+
+}
+
 Degenerate::Degenerate(std::string name, int duration,
 	int degeneration, int propability)
 	: WeaponMagic(name, duration, propability),
@@ -49,6 +59,16 @@ MagicPtr Degenerate::Clone()const
 	return MagicPtr(new Degenerate(name, duration, degeneration, propability));
 }
 
+bool operator==(const Degenerate& first, const Degenerate& second)
+{
+	
+}
+
+bool operator!=(const Degenerate& first, const Degenerate& second)
+{
+
+}
+
 
 
 Crush::Crush(std::string name, int damage,
@@ -72,4 +92,14 @@ void Crush::Uneffect(UnitPtr unit)const
 MagicPtr Crush::Clone()const
 {
 	return MagicPtr(new Crush(name, damage, propability));
+}
+
+bool operator==(const Crush& first, const Crush& second)
+{
+
+}
+
+bool operator!=(const Crush& first, const Crush& second)
+{
+
 }
