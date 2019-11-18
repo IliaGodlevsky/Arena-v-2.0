@@ -23,12 +23,13 @@ bool WeaponMagic::IsCasted()const
 
 bool operator==(const WeaponMagic& first, const WeaponMagic& second)
 {
-
+	return (const Magic&)first == (const Magic&)second
+		&& first.propability == second.propability;
 }
 
 bool operator!=(const WeaponMagic& first, const WeaponMagic& second)
 {
-
+	return !(first == second);
 }
 
 Degenerate::Degenerate(std::string name, int duration,
@@ -61,12 +62,13 @@ MagicPtr Degenerate::Clone()const
 
 bool operator==(const Degenerate& first, const Degenerate& second)
 {
-	
+	return (const WeaponMagic&)first == (const WeaponMagic&)second
+		&& first.degeneration == second.degeneration;
 }
 
 bool operator!=(const Degenerate& first, const Degenerate& second)
 {
-
+	return !(first == second);
 }
 
 
@@ -96,7 +98,8 @@ MagicPtr Crush::Clone()const
 
 bool operator==(const Crush& first, const Crush& second)
 {
-
+	return (const WeaponMagic&)first == (const WeaponMagic&)second
+		&& first.damage == second.damage;
 }
 
 bool operator!=(const Crush& first, const Crush& second)
