@@ -21,6 +21,6 @@ private:
 	Arena();
 private:
 	std::vector<Decision*> decisions;
-	std::vector<Unit*> arena;
+	std::vector<UnitPtr> arena;
 	static int round;
 };
