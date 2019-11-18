@@ -10,7 +10,7 @@ bool Unit::Injure(UnitPtr unit)
 	return true;
 }
 
-bool Unit::Spell(UnitPtr unit, MagicPtr<>& magic)
+bool Unit::Spell(UnitPtr unit, MagicPtr& magic)
 {
 	if (magic == nullptr)
 		return false;
@@ -20,10 +20,10 @@ bool Unit::Spell(UnitPtr unit, MagicPtr<>& magic)
 
 void Unit::Act(Decision* decision)
 {
-	Unit* unit_to_attack = decision->ChooseUnitToAttack(this);
-	Magic* magic_to_spell = decision->ChooseMagicToCast(this);
-	Unit* unit_to_cast = decision->ChooseUnitToCast(this);
-	Spell(unit_to_cast, magic_to_spell);
+	UnitPtr unit_to_attack = decision->ChooseUnitToAttack(this);
+	MagicPtr magic_to_cast = decision->ChooseMagicToCast(this);
+	UnitPtr unit_to_cast = decision->ChooseUnitToCast(this);
+	Spell(unit_to_cast, magic_to_cast);
 	Injure(unit_to_attack);
 }
 

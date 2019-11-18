@@ -26,7 +26,7 @@ public:
 	~Sword();
 	void Injure(UnitPtr unit, int additional_damage = 0)const override;
 private:
-	MagicPtr<> open_wounds;
+	MagicPtr open_wounds;
 };
 
 class Axe : public Weapon
@@ -38,6 +38,6 @@ public:
 	~Axe();
 	void Injure(UnitPtr unit, int additional_damage = 0)const override;
 private:
-	MagicPtr<> crush;
+	MagicPtr crush;
 };
 #endif

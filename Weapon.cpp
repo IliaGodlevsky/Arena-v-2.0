@@ -51,7 +51,7 @@ Sword& Sword::operator=(const Sword& sword)
 	if (this == &sword)
 		return *this;
 	Weapon::operator=(sword);
-	open_wounds = MagicPtr<>(open_wounds->Clone());
+	open_wounds = MagicPtr(open_wounds->Clone());
 	return *this;
 }
 
@@ -66,7 +66,7 @@ Axe::~Axe()
 
 }
 
-void Axe::Injure(Unit* unit, int additional_damage)const
+void Axe::Injure(UnitPtr unit, int additional_damage)const
 {
 	unit->TakeDamage(damage.Value() + additional_damage);
 	crush->Effect(unit);
@@ -83,6 +83,6 @@ Axe& Axe::operator=(const Axe& axe)
 	if (this == &axe)
 		return *this;
 	Weapon::operator=(axe);
-	crush = spell_ptr<Magic>(axe.crush->Clone());
+	crush = MagicPtr(axe.crush->Clone());
 	return *this;
 }

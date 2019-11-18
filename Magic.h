@@ -81,7 +81,7 @@ public:
 		int duration, int armor_amplify, int damage_amplify);
 	void Effect(UnitPtr unit);
 	void Uneffect(UnitPtr unit)const;
-	MagicPtr Clone()const;
+	MagicPtr Clone()const override;
 public:
 	friend bool operator==(const ArmorAndDamageBuff& first, const ArmorAndDamageBuff& second);
 	friend bool operator!=(const ArmorAndDamageBuff& first, const ArmorAndDamageBuff& second);
