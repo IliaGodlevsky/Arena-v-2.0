@@ -8,28 +8,36 @@
 #include "Armor.h"
 #include "Weapon.h"
 #include "Battles.h"
+#include "Decision.h"
 
-class Decision;
+class Unit;
+
+using UnitPtr = std::shared_ptr<Unit>;
 
 class Unit
 {
 public:
-	bool Injure(Unit* unit, Weapon* weapon);
-	bool Spell(Unit* unit, Magic* magic);
+	bool Injure(UnitPtr unit);
+	bool Spell(UnitPtr unit, MagicPtr& magic);
 	void Act(Decision* decision);
-	int CalcDamage()const;
 	void TakeDamage(int damage);
-	int CalcReduce(int damage);
 public:
 	Battles damage;
 	Battles armor;
 	Vitals health;
 	Vitals mana;
-	SpellBook spell_book;
 	SpellsOnMe on_me;
 private:
-	Weapon* weapon;
-	Armor* mail;
+	int AbsorbCalc(int damage)const;
+private:
+	Spells spell_book;
+	std::unique_ptr<Weapon> weapon;
+	std::unique_ptr<Armor> mail;
+};
+
+class Boss : public Unit
+{
+
 };
 
 #endif

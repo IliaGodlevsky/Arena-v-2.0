@@ -29,24 +29,24 @@ Degenerate::Degenerate(std::string name, int duration,
 
 }
 
-void Degenerate::Effect(Unit* unit)
+void Degenerate::Effect(UnitPtr unit)
 {
 	if (IsCasted())
 	{
 		SetStartTime(Arena::CurrentRound());
 		unit->health.ChangeRegeneration(-degeneration);
-		unit->on_me.AddMagic(spell_ptr<Degenerate>(Clone()));
+		unit->on_me.push_back(MagicPtr(Clone()));
 	}
 }
 
-void Degenerate::Uneffect(Unit* unit)const
+void Degenerate::Uneffect(UnitPtr unit)const
 {
 	unit->health.ChangeRegeneration(degeneration);
 }
 
-Degenerate* Degenerate::Clone()const
+MagicPtr Degenerate::Clone()const
 {
-	return new Degenerate(name, duration, degeneration, propability);
+	return MagicPtr(new Degenerate(name, duration, degeneration, propability));
 }
 
 
@@ -58,18 +58,18 @@ Crush::Crush(std::string name, int damage,
 
 }
 
-void Crush::Effect(Unit* unit)
+void Crush::Effect(UnitPtr unit)
 {
 	if (IsCasted())
 		unit->health = unit->health - damage;
 }
 
-void Crush::Uneffect(Unit* unit)const
+void Crush::Uneffect(UnitPtr unit)const
 {
 	return;
 }
 
-Crush* Crush::Clone()const
+MagicPtr Crush::Clone()const
 {
-	return new Crush(name, damage, propability);
+	return MagicPtr(new Crush(name, damage, propability));
 }

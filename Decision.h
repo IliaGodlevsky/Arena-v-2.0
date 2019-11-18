@@ -10,29 +10,28 @@
 class Decision
 {
 public:
-	Decision(Unit*, const std::vector<Unit*>&);
-	virtual Unit* ChooseUnitToAttack() = 0;
-	virtual Magic* ChooseMagicToCast() = 0;
-	virtual Unit* ChooseUnitToCast() = 0;
+	Decision(const std::vector<Unit*>&);
+	virtual Unit* ChooseUnitToAttack(Unit* deciding_unit) = 0;
+	virtual Magic* ChooseMagicToCast(Unit* deciding_unit) = 0;
+	virtual Unit* ChooseUnitToCast(Unit* deciding_unit) = 0;
 protected:
 	std::vector<Unit*>* arena;
-	Unit* deciding_unit;
 };
 
 class HumanDecision : public Decision
 {
 public:
-	Unit* ChooseUnitToAttack() override;
+	Unit* ChooseUnitToAttack(Unit* deciding_unit) override;
 	Magic* ChooseMagicToCast() override;
-	Unit* ChooseUnitToCast() override;
+	Unit* ChooseUnitToCast(Unit* deciding_unit) override;
 };
 
 class ComputerDecision : public Decision
 {
 public:
-	Unit* ChooseUnitToAttack() override;
+	Unit* ChooseUnitToAttack(Unit* deciding_unit) override;
 	Magic* ChooseMagicToCast() override;
-	Unit* ChooseUnitToCast() override;
+	Unit* ChooseUnitToCast(Unit* deciding_unit) override;
 };
 
 #endif

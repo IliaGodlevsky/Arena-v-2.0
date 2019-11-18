@@ -17,6 +17,7 @@ public:
 	void TakeOfLosers();
 	bool GameOver()const;
 private:
+	int SetNumberOfUnits()const;
 	Arena();
 private:
 	std::vector<Decision*> decisions;

@@ -33,9 +33,9 @@ Sword::~Sword()
 	
 }
 
-void Sword::Injure(Unit* unit)const
+void Sword::Injure(UnitPtr unit, int additional_damage)const
 {
-	qq
+	unit->TakeDamage(damage.Value() + additional_damage);
 	open_wounds->Effect(unit);
 }
 
@@ -51,7 +51,7 @@ Sword& Sword::operator=(const Sword& sword)
 	if (this == &sword)
 		return *this;
 	Weapon::operator=(sword);
-	open_wounds = spell_ptr<Magic>(open_wounds->Clone());
+	open_wounds = MagicPtr<>(open_wounds->Clone());
 	return *this;
 }
 
@@ -66,9 +66,9 @@ Axe::~Axe()
 
 }
 
-void Axe::Injure(Unit* unit)const
+void Axe::Injure(Unit* unit, int additional_damage)const
 {
-	unit->health = unit->health - damage.Value();
+	unit->TakeDamage(damage.Value() + additional_damage);
 	crush->Effect(unit);
 }
 

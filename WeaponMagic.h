@@ -18,9 +18,9 @@ class Degenerate : public WeaponMagic
 public:
 	Degenerate(std::string name, int duration,
 		int degeneratin, int propability = 20);
-	void Effect(Unit* unit) override;
-	void Uneffect(Unit* unit)const override;
-	Degenerate* Clone()const override;
+	void Effect(UnitPtr unit) override;
+	void Uneffect(UnitPtr unit)const override;
+	MagicPtr Clone()const override;
 protected:
 	int degeneration;
 };
@@ -30,9 +30,9 @@ class Crush : public WeaponMagic
 public:
 	Crush(std::string name, int damage,
 		int propability = 20);
-	void Effect(Unit* unit) override;
-	void Uneffect(Unit* unit)const override;
-	Crush* Clone()const override;
+	void Effect(UnitPtr unit) override;
+	void Uneffect(UnitPtr unit)const override;
+	MagicPtr Clone()const override;
 protected:
 	int damage;
 };

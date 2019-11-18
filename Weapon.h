@@ -12,7 +12,7 @@ public:
 	Weapon(const Weapon& weapon);
 	Weapon& operator=(const Weapon& weapon);
 	virtual ~Weapon();
-	virtual void Injure(Unit* unit)const = 0;
+	virtual void Injure(UnitPtr unit, int additional_damage = 0)const = 0;
 protected:
 	Battles damage;
 };
@@ -24,9 +24,9 @@ public:
 	Sword(const Sword& sword);
 	Sword& operator=(const Sword& sword);
 	~Sword();
-	void Injure(Unit* unit)const override;
+	void Injure(UnitPtr unit, int additional_damage = 0)const override;
 private:
-	spell_ptr<Magic> open_wounds;
+	MagicPtr<> open_wounds;
 };
 
 class Axe : public Weapon
@@ -36,8 +36,8 @@ public:
 	Axe(const Axe& axe);
 	Axe& operator=(const Axe& axe);
 	~Axe();
-	void Injure(Unit* unit)const override;
+	void Injure(UnitPtr unit, int additional_damage = 0)const override;
 private:
-	spell_ptr<Magic> crush;
+	MagicPtr<> crush;
 };
 #endif
