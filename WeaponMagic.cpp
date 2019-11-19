@@ -77,7 +77,7 @@ Crush::Crush(std::string name, int damage,
 	int propability)
 	: WeaponMagic(name, 0, propability), damage(damage)
 {
-
+	
 }
 
 void Crush::Effect(UnitPtr unit)
