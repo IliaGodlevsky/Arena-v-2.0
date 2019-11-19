@@ -1,4 +1,5 @@
 #include "Armor.h"
+#include "Unit.h"
 
 Armor::Armor(int armor)
 	: armor(armor)

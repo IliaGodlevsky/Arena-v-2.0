@@ -23,6 +23,7 @@
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Battles.h" />
     <ClInclude Include="Decision.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="Magic.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Vitals.h" />
@@ -32,6 +33,8 @@
   <ItemGroup>
     <ClCompile Include="Arena.cpp" />
     <ClCompile Include="Armor.cpp" />
+    <ClCompile Include="Battles.cpp" />
+    <ClCompile Include="Decision.cpp" />
     <ClCompile Include="Magic.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Vitals.cpp" />

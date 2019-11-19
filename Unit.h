@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef UNIT_H_
 #define UNIT_H_
 
@@ -7,12 +5,9 @@
 #include "Magic.h"
 #include "Armor.h"
 #include "Weapon.h"
-#include "Battles.h"
 #include "Decision.h"
 
-class Unit;
-
-using UnitPtr = std::shared_ptr<Unit>;
+#include "Globals.h"
 
 class Unit
 {
@@ -21,6 +16,12 @@ public:
 	bool Spell(UnitPtr unit, MagicPtr& magic);
 	void Act(Decision* decision);
 	void TakeDamage(int damage);
+	void ShowUnitNames();
+	void ShowSpells();
+	void ShowSpellsOnMe();
+	int NumberOfSpells()const;
+	const MagicPtr& GetMagic(int index)const;
+	MagicPtr& GerMagic(int index);
 public:
 	Battles damage;
 	Battles armor;

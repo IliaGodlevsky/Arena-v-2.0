@@ -1,8 +1,7 @@
 #include "Magic.h"
 #include "Arena.h"
 
-Magic::Magic(std::string name,
-	int mana_cost, int duration)
+Magic::Magic(std::string name, int mana_cost, int duration)
 	: name(name),mana_cost(mana_cost), duration(duration)
 {
 

@@ -1,5 +1,6 @@
 #include "Weapon.h"
 #include "WeaponMagic.h"
+#include "Unit.h"
 
 Weapon::Weapon(int damage): damage(damage)
 {

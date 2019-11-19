@@ -1,10 +1,9 @@
-#include <random>
-
 #include "WeaponMagic.h"
 #include "Arena.h"
 
-WeaponMagic::WeaponMagic(std::string name,
-	int duration, int propability = 20)
+#include <random>
+
+WeaponMagic::WeaponMagic(std::string name, int duration, int propability)
 	: Magic(name, 0, duration), propability(propability)
 {
 
@@ -15,10 +14,11 @@ WeaponMagic::~WeaponMagic() {}
 bool WeaponMagic::IsCasted()const
 {
 	const int MAX_PROPABILITY = 100;
-	std::random_device seed();
-	std::mt19937 engine(seed);
-	std::uniform_int_distribution<int> rand(0, MAX_PROPABILITY);
-	return rand(engine) <= propability;
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(0, MAX_PROPABILITY);
+	int currentChance = distribution(generator);
+
+	return currentChance <= propability;
 }
 
 bool operator==(const WeaponMagic& first, const WeaponMagic& second)
@@ -104,5 +104,5 @@ bool operator==(const Crush& first, const Crush& second)
 
 bool operator!=(const Crush& first, const Crush& second)
 {
-
+	return false;
 }

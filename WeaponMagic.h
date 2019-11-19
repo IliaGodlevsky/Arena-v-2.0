@@ -1,15 +1,12 @@
-#pragma once
-
-#include "Unit.h"
-
 #ifndef WEAPON_MAGIC_H_
 #define WEAPON_MAGIC_H_
+
+#include "Magic.h"
 
 class WeaponMagic : public Magic
 {
 public:
-	WeaponMagic(std::string name, int duration,
-		int propability = 20);
+	WeaponMagic(std::string name, int duration, int propability = 20);
 	virtual ~WeaponMagic();
 public:
 	friend bool operator==(const WeaponMagic& first, const WeaponMagic& second);
@@ -27,6 +24,7 @@ public:
 	void Effect(UnitPtr unit);
 	void Uneffect(UnitPtr unit)const;
 	MagicPtr Clone()const override;
+	bool IsBuff()const;
 public:
 	friend bool operator==(const Degenerate& first, const Degenerate& second);
 	friend bool operator!=(const Degenerate& first, const Degenerate& second);
@@ -42,6 +40,7 @@ public:
 	void Effect(UnitPtr unit);
 	void Uneffect(UnitPtr unit)const;
 	MagicPtr Clone()const override;
+	bool IsBuff()const;
 public:
 	friend bool operator==(const Crush& first, const Crush& second);
 	friend bool operator!=(const Crush& first, const Crush& second);

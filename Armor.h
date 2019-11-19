@@ -1,9 +1,9 @@
-#pragma once
-
 #ifndef ARMOR_H_
 #define ARMOR_H_
 
-#include "Unit.h"
+#include "Globals.h"
+#include "Battles.h"
+#include "Vitals.h"
 
 class Armor
 {

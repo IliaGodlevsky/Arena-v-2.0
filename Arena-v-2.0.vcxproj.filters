@@ -68,6 +68,7 @@
     <ClInclude Include="WeaponMagic.h">
       <Filter>Spells\WeaponMagic</Filter>
     </ClInclude>
+    <ClInclude Include="Globals.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Magic.cpp">
@@ -90,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="Armor.cpp">
       <Filter>Armor</Filter>
+    </ClCompile>
+    <ClCompile Include="Battles.cpp">
+      <Filter>Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="Decision.cpp">
+      <Filter>Decision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,9 +1,9 @@
-#pragma once
-
 #ifndef WEAPON_H_
 #define WEAPON_H_
 
-#include "Unit.h"
+#include "Globals.h"
+
+#include "Battles.h"
 
 class Weapon
 {

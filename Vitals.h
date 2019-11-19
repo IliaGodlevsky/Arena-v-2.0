@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef VITALS_H_
 #define VITALS_H_
 
