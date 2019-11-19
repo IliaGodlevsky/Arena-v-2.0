@@ -18,11 +18,11 @@ HumanDecision::HumanDecision(std::vector<UnitPtr>& arena)
 
 UnitPtr HumanDecision::ChooseUnitToAttack(UnitPtr deciding_unit)
 {
-	int unit_number = Input(UNIT_TO_ATTACK_CHOOSE, 
+	int unit_number = Input(UNIT_TO_ATTACK_CHOOSE,
 		arena.size(), 0);
 	ShowUnits();
 	while (arena[unit_number] == deciding_unit)
-		unit_number = Input(UNIT_TO_ATTACK_CHOOSE, 
+		unit_number = Input(UNIT_TO_ATTACK_CHOOSE,
 			arena.size(), 0);
 	return arena[unit_number];
 }
@@ -37,15 +37,13 @@ MagicPtr HumanDecision::ChooseMagicToCast(UnitPtr deciding_unit)
 
 UnitPtr HumanDecision::ChooseUnitToCast(UnitPtr deciding_unit, const MagicPtr& magic_to_spell)
 {
-	int unit_to_cast = 0;
-	std::cout << "Choose unit to attack: ";
+	int unit_to_cast = Input(UNIT_TO_CAST_CHOOSE,
+		arena.size(), 0);
 	std::cin >> unit_to_cast;
 	while (( magic_to_spell->IsBuff() && arena[unit_to_cast] != deciding_unit)
 		|| (!magic_to_spell->IsBuff() && arena[unit_to_cast] == deciding_unit))
-	{
-		std::cout << "Choose unit to attack: ";
-		std::cin >> unit_to_cast;
-	}
+		unit_to_cast = Input(UNIT_TO_CAST_CHOOSE,
+			arena.size(), 0);
 	return arena[unit_to_cast];
 }
 

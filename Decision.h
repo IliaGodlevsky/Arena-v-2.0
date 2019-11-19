@@ -23,6 +23,7 @@ public:
 	UnitPtr ChooseUnitToCast(UnitPtr deciding_unit, const MagicPtr& magic_to_spell);
 private:
 	void EatLine()const;
+	bool Error(int choice, int upper, int lower)const;
 	int Input(const std::string& message, int upper, int lower)const;
 	void ShowUnits()const;
 private:
