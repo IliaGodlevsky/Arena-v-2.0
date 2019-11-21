@@ -1,6 +1,7 @@
 #include <cmath>
 
 #include "Unit.h"
+#include "Arena.h"
 
 bool Unit::Injure(UnitPtr unit)
 {
@@ -15,6 +16,7 @@ bool Unit::Spell(UnitPtr unit, MagicPtr& magic)
 	if (nullptr == magic)
 		return false;
 	magic->Effect(unit);
+	mana = mana - magic->Cost();
 	return true;
 }
 
@@ -23,13 +25,13 @@ void Unit::Act(Decision* decision)
 	UnitPtr unit_to_attack = decision->ChooseUnitToAttack(UnitPtr(this));
 	MagicPtr magic_to_cast = decision->ChooseMagicToCast(UnitPtr(this));
 	UnitPtr unit_to_cast = decision->ChooseUnitToCast(UnitPtr(this), magic_to_cast);
-	Spell(unit_to_cast, magic_to_cast);
-	Injure(unit_to_attack);
+
 }
 
 void Unit::TakeDamage(int damage)
 {
-	health = health - AbsorbCalc(damage);
+	if (!sheild->Reflect())
+		health = health - AbsorbCalc(damage);
 }
 
 int Unit::AbsorbCalc(int damage)const

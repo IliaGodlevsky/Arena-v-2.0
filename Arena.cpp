@@ -34,3 +34,11 @@ bool Arena::GameOver()const
 {
 	return arena.size() == 1;
 }
+
+void Arena::GameCycle()
+{
+	for (size_t i = 0; i < arena.size(); i++)
+	{
+		arena[i]->ShowUnitName();
+	}
+}

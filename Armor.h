@@ -4,16 +4,22 @@
 #include "Globals.h"
 #include "Battles.h"
 #include "Vitals.h"
+#include "DefenceEquipment.h"
 
 class Armor
 {
 public:
-	Armor(int armor);
+	explicit Armor(int armor);
 	virtual void PutOn(UnitPtr unit)const = 0;
 	virtual void PutOff(UnitPtr unit)const = 0;
-	virtual ~Armor() = default;
 protected:
 	Battles armor;
+};
+
+class LetherArmor : public Armor
+{
+public:
+	LetherArmor(int armor);
 };
 
 class Mail : public Armor

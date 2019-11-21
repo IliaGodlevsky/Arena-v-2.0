@@ -19,11 +19,11 @@ public:
 	virtual bool IsExpired(int round)const final;
 	virtual void SetStartTime(int round) final;
 	virtual bool EnoughMana(int current_mana)const final;
-	virtual std::string ShowName()const final;
+	virtual int Cost()const final;
 	virtual void ShowMagic()const final;
-public:
-	friend bool operator==(const Magic& first, const Magic& second);
-	friend bool operator!=(const Magic& first, const Magic& second);
+	virtual bool Equal(const MagicPtr& magic)const;
+protected:
+	virtual void PutOn(UnitPtr unit)const = 0;
 protected:
 	std::string name;
 	int mana_cost;
@@ -39,14 +39,12 @@ public:
 	virtual void Effect(UnitPtr unit) override;
 	virtual void Uneffect(UnitPtr unit)const;
 	virtual MagicPtr Clone()const override;
+	virtual bool Equal(const MagicPtr& magic)const;
 	virtual bool IsBuff()const;
-public:
-	friend bool operator==(const DamageBuff& first, const DamageBuff& second);
-	friend bool operator!=(const DamageBuff& first, const DamageBuff& second);
 protected:
 	int damage_amplify;
 protected:
-	void PutOn(UnitPtr unit)const;
+	virtual void PutOn(UnitPtr unit)const;
 };
 
 class ArmorBuff : virtual public Magic
@@ -58,13 +56,11 @@ public:
 	virtual void Uneffect(UnitPtr unit)const;
 	virtual MagicPtr Clone()const override;
 	virtual bool IsBuff()const;
-public:
-	friend bool operator==(const ArmorBuff& first, const ArmorBuff& second);
-	friend bool operator!=(const ArmorBuff& first, const ArmorBuff& second);
+	virtual bool Equal(const MagicPtr& magic)const;
 protected:
 	int armor_amplify;
 protected:
-	void PutOn(UnitPtr unit)const;
+	virtual void PutOn(UnitPtr unit)const;
 };
 
 class ArmorAndDamageBuff 
@@ -77,10 +73,135 @@ public:
 	void Uneffect(UnitPtr unit)const;
 	MagicPtr Clone()const override;
 	bool IsBuff()const;
-public:
-	friend bool operator==(const ArmorAndDamageBuff& first, const ArmorAndDamageBuff& second);
-	friend bool operator!=(const ArmorAndDamageBuff& first, const ArmorAndDamageBuff& second);
+	bool Equal(const MagicPtr& magic)const;
+protected:
+	void PutOn(UnitPtr unit)const;
 };
+
+class DamageDebuff : virtual public Magic
+{
+public:
+	DamageDebuff(std::string name, int mana_cost, int duration,
+		int damage_reduce);
+	virtual void Effect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit)const;
+	virtual MagicPtr Clone()const override;
+	virtual bool IsBuff()const;
+	virtual bool Equal(const MagicPtr& magic)const;
+protected:
+	int damage_reduce;
+protected:
+	virtual void PutOn(UnitPtr unit)const;
+};
+
+class ArmorDebuff : virtual public Magic
+{
+public:
+	ArmorDebuff(std::string name, int mana_cost, int duration,
+		int armor_reduce);
+	virtual void Effect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit)const;
+	virtual MagicPtr Clone()const override;
+	virtual bool IsBuff()const;
+	virtual bool Equal(const MagicPtr& magic)const;
+protected:
+	int armor_reduce;
+protected:
+	virtual void PutOn(UnitPtr unit)const;
+};
+
+class ArmorAndDamageDebuff
+	: public DamageDebuff, public ArmorDebuff
+{
+public:
+	ArmorAndDamageDebuff(std::string name, int mana_cost,
+		int duration, int armor_reduce, int damage_reduce);
+	void Effect(UnitPtr unit);
+	void Uneffect(UnitPtr unit)const;
+	MagicPtr Clone()const override;
+	bool IsBuff()const;
+	bool Equal(const MagicPtr& magic)const;
+protected:
+	void PutOn(UnitPtr unit)const;
+};
+
+class OffsetDamageBuff
+	: public DamageBuff, public ArmorDebuff
+{
+public:
+	OffsetDamageBuff(std::string name, int mana_cost,
+		int duration, int armor_reduce, int damage_amplify);
+	void Effect(UnitPtr unit);
+	void Uneffect(UnitPtr unit)const;
+	MagicPtr Clone()const override;
+	bool IsBuff()const;
+	bool Equal(const MagicPtr& magic)const;
+protected:
+	void PutOn(UnitPtr unit)const;
+};
+
+class Attack : virtual public Magic
+{
+public:
+	Attack(std::string name, int mana_cost, int damage);
+	virtual void Effect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit);
+	virtual MagicPtr Clone()const override;
+	virtual bool IsBuff()const;
+	virtual bool Equal(const MagicPtr& magic)const;
+protected:
+	virtual void PutOn(UnitPtr unit)const;
+protected:
+	int damage;
+};
+
+class AttackAndArmorDebuff :
+	public ArmorDebuff, public Attack
+{
+public:
+	AttackAndArmorDebuff(std::string name, int mana_cost, int duration,
+		int damage, int armor_reduce);
+	void Effect(UnitPtr unit);
+	void Uneffect(UnitPtr unit);
+	MagicPtr Clone()const override;
+	bool IsBuff()const;
+	bool Equal(const MagicPtr& magic)const;
+protected:
+	void PutOn(UnitPtr unit)const;
+};
+
+class Poison : virtual public Magic
+{
+public:
+	Poison(std::string name, int mana_cost, int duration,
+		int regen_reduce);
+	virtual void Effect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit);
+	virtual MagicPtr Clone()const override;
+	virtual bool IsBuff()const;
+	virtual bool Equal(const MagicPtr& magic)const;
+protected:
+	virtual void PutOn(UnitPtr unit)const;
+protected:
+	int regen_reduce;
+};
+
+class PoisonAndAttack
+	: public Poison, public Attack
+{
+public:
+	PoisonAndAttack(std::string name, int mana_cost, int duration,
+		int damage, int regen_reduce);
+	void Effect(UnitPtr unit);
+	void Uneffect(UnitPtr unit);
+	MagicPtr Clone()const override;
+	bool IsBuff()const;
+	bool Equal(const MagicPtr& magic)const;
+protected:
+	void PutOn(UnitPtr unit)const;
+};
+
+
 
 using Spells = std::vector<MagicPtr>;
 
@@ -90,8 +211,17 @@ public:
 	SpellsOnMe(UnitPtr unit);
 	void TakeOfExpired(int round);
 	bool HaveSpell(const MagicPtr& spell)const;
+	void ShowSpells()const;
 private:
 	UnitPtr unit;
+};
+
+class SpellBook : public Spells
+{
+public:
+	SpellBook(UnitPtr unit);
+	bool CanCastAnySpell()const;
+	void ShowSpells();
 };
 
 #endif

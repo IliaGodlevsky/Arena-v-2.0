@@ -2,7 +2,8 @@
 #include "WeaponMagic.h"
 #include "Unit.h"
 
-Weapon::Weapon(int damage): damage(damage)
+Weapon::Weapon(int damage)
+	: damage(damage)
 {
 
 }
@@ -34,9 +35,9 @@ Sword::~Sword()
 	
 }
 
-void Sword::Injure(UnitPtr unit, int additional_damage)const
+void Sword::Injure(UnitPtr unit, int dmg)const
 {
-	unit->TakeDamage(damage.Value() + additional_damage);
+	unit->TakeDamage(Multiply(damage.Value() + dmg));
 	open_wounds->Effect(unit);
 }
 
@@ -56,6 +57,11 @@ Sword& Sword::operator=(const Sword& sword)
 	return *this;
 }
 
+int Sword::Multiply(int dmg)const
+{
+	return dmg;
+}
+
 Axe::Axe(int damage)
 	: Weapon(damage), crush(new Crush("Crush", 10))
 {
@@ -67,9 +73,9 @@ Axe::~Axe()
 
 }
 
-void Axe::Injure(UnitPtr unit, int additional_damage)const
+void Axe::Injure(UnitPtr unit, int dmg)const
 {
-	unit->TakeDamage(damage.Value() + additional_damage);
+	unit->TakeDamage(Multiply(damage.Value() + dmg));
 	crush->Effect(unit);
 }
 
@@ -86,4 +92,9 @@ Axe& Axe::operator=(const Axe& axe)
 	Weapon::operator=(axe);
 	crush = MagicPtr(axe.crush->Clone());
 	return *this;
+}
+
+int Axe::Multiply(int dmg)const
+{
+	return dmg;
 }

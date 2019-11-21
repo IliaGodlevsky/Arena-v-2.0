@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef ARENA_H_
+#define ARENA_H_
+
 #include <vector>
 
 #include "Unit.h"
@@ -16,6 +19,7 @@ public:
 	Arena& operator=(Arena&&) = delete;
 	void TakeOfLosers();
 	bool GameOver()const;
+	void GameCycle();
 private:
 	int SetNumberOfUnits()const;
 	Arena();
@@ -24,3 +28,5 @@ private:
 	std::vector<UnitPtr> arena;
 	static int round;
 };
+
+#endif

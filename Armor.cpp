@@ -7,6 +7,16 @@ Armor::Armor(int armor)
 
 }
 
+void Armor::PutOn(UnitPtr unit)const
+{
+	unit->armor.ChangeValue(armor.Value());
+}
+
+void Armor::PutOff(UnitPtr unit)const
+{
+	unit->armor.ChangeValue(-armor.Value());
+}
+
 Mail::Mail(int armor, Vitals health)
 	: Armor(armor), health(health)
 {
@@ -15,13 +25,13 @@ Mail::Mail(int armor, Vitals health)
 
 void Mail::PutOn(UnitPtr unit)const
 {
-	unit->armor.ChangeValue(armor.Value());
+	Armor::PutOn(unit);
 	unit->health = unit->health + health;
 }
 
 void Mail::PutOff(UnitPtr unit)const
 {
-	unit->armor.ChangeValue(-armor.Value());
+	Armor::PutOff(unit);
 	unit->health = unit->health - health;
 }
 
@@ -33,10 +43,10 @@ WizardCloak::WizardCloak(int armor, Vitals mana)
 
 void WizardCloak::PutOn(UnitPtr unit)const
 {
-
+	unit->mana = unit->mana + mana;
 }
 
 void WizardCloak::PutOff(UnitPtr unit)const
 {
-
+	unit->health = unit->health - health;
 }

@@ -9,14 +9,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Weapon">
-      <UniqueIdentifier>{3c02465e-a26d-4540-81a6-c18f9b01a3e8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Vitals">
       <UniqueIdentifier>{da5ace1c-cb13-4ede-8676-d44a6e3de7b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Armor">
-      <UniqueIdentifier>{70a3b256-c8cf-4710-9a41-589145f16224}</UniqueIdentifier>
     </Filter>
     <Filter Include="Unit">
       <UniqueIdentifier>{82c88f3e-660f-4481-99c3-ee955da0b1a5}</UniqueIdentifier>
@@ -39,6 +33,18 @@
     <Filter Include="Spells\WeaponMagic">
       <UniqueIdentifier>{672c7dea-f0c6-4268-b8f7-1e1b6997dc26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Equipment">
+      <UniqueIdentifier>{46b0ef98-518e-4573-bf1a-b024929ce722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equipment\Armor">
+      <UniqueIdentifier>{70a3b256-c8cf-4710-9a41-589145f16224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equipment\Shield">
+      <UniqueIdentifier>{a47d8470-c512-421b-a7be-f6487546c9dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Weapon">
+      <UniqueIdentifier>{3c02465e-a26d-4540-81a6-c18f9b01a3e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Magic.h">
@@ -51,7 +57,7 @@
       <Filter>Vitals</Filter>
     </ClInclude>
     <ClInclude Include="Armor.h">
-      <Filter>Armor</Filter>
+      <Filter>Equipment\Armor</Filter>
     </ClInclude>
     <ClInclude Include="Unit.h">
       <Filter>Unit</Filter>
@@ -69,6 +75,9 @@
       <Filter>Spells\WeaponMagic</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="Sheild.h">
+      <Filter>Equipment\Shield</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Magic.cpp">
@@ -90,13 +99,19 @@
       <Filter>Spells\WeaponMagic</Filter>
     </ClCompile>
     <ClCompile Include="Armor.cpp">
-      <Filter>Armor</Filter>
+      <Filter>Equipment\Armor</Filter>
     </ClCompile>
     <ClCompile Include="Battles.cpp">
       <Filter>Battles</Filter>
     </ClCompile>
     <ClCompile Include="Decision.cpp">
       <Filter>Decision</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>Equipment\Shield</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

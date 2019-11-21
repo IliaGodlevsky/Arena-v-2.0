@@ -25,6 +25,7 @@
     <ClInclude Include="Decision.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Magic.h" />
+    <ClInclude Include="Sheild.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Vitals.h" />
     <ClInclude Include="Weapon.h" />
@@ -36,6 +37,8 @@
     <ClCompile Include="Battles.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="Magic.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Vitals.cpp" />
     <ClCompile Include="Weapon.cpp" />

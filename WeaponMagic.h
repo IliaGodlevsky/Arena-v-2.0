@@ -8,44 +8,46 @@ class WeaponMagic : public Magic
 public:
 	WeaponMagic(std::string name, int duration, int propability = 20);
 	virtual ~WeaponMagic();
-public:
-	friend bool operator==(const WeaponMagic& first, const WeaponMagic& second);
-	friend bool operator!=(const WeaponMagic& first, const WeaponMagic& second);
 protected:
 	virtual bool IsCasted()const final;
 	int propability;
 };
 
-class Degenerate : public WeaponMagic
+class Degenerate : virtual public WeaponMagic
 {
 public:
 	Degenerate(std::string name, int duration,
 		int degeneratin, int propability = 20);
-	void Effect(UnitPtr unit);
-	void Uneffect(UnitPtr unit)const;
-	MagicPtr Clone()const override;
-	bool IsBuff()const;
-public:
-	friend bool operator==(const Degenerate& first, const Degenerate& second);
-	friend bool operator!=(const Degenerate& first, const Degenerate& second);
+	virtual void Effect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit)const;
+	virtual MagicPtr Clone()const override;
+	virtual bool IsBuff()const;
+	virtual bool Equal(const MagicPtr& magic)const;
+protected:
+	virtual void PutOn(UnitPtr unit)const;
 protected:
 	int degeneration;
 };
 
-class Crush : public WeaponMagic
+class Crush : virtual public WeaponMagic
 {
 public:
 	Crush(std::string name, int damage,
 		int propability = 20);
-	void Effect(UnitPtr unit);
-	void Uneffect(UnitPtr unit)const;
-	MagicPtr Clone()const override;
-	bool IsBuff()const;
-public:
-	friend bool operator==(const Crush& first, const Crush& second);
-	friend bool operator!=(const Crush& first, const Crush& second);
+	virtual void Effect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit)const;
+	virtual MagicPtr Clone()const override;
+	virtual bool IsBuff()const;
+	virtual bool Equal(const MagicPtr& magic)const;
+protected:
+	virtual void PutOn(UnitPtr unit)const;
 protected:
 	int damage;
+};
+
+class Corruption : virtual public WeaponMagic
+{
+
 };
 
 #endif

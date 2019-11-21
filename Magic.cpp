@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Magic.h"
 #include "Arena.h"
 
@@ -8,6 +10,11 @@ Magic::Magic(std::string name, int mana_cost, int duration)
 }
 
 Magic::~Magic() {}
+
+void Magic::Effect(UnitPtr unit)
+{
+	SetStartTime(Arena::CurrentRound());
+}
 
 bool Magic::IsExpired(int round)const
 {
@@ -24,25 +31,22 @@ bool Magic::EnoughMana(int current_mana)const
 	return current_mana >= mana_cost;
 }
 
-std::string Magic::ShowName()const
+void Magic::ShowMagic()const
 {
-	return name;
+	std::cout << "<" << name << ": " << mana_cost << ">\n";
 }
 
-bool operator==(const Magic& first, const Magic& second)
+bool Magic::Equal(const MagicPtr& magic)const
 {
-	const bool equal_name = first.name == second.name;
-	const bool equal_mana_cost = first.mana_cost == second.mana_cost;
-	const bool equal_duration = first.duration == second.duration;
-	return equal_name && equal_mana_cost && equal_duration;
+	return name == magic->name
+		&& mana_cost == magic->mana_cost
+		&& duration == magic->duration;
 }
 
-bool operator!=(const Magic& first, const Magic& second)
+int Magic::Cost()const
 {
-	return !(first == second);
+	return mana_cost;
 }
-
-
 
 
 
@@ -57,7 +61,7 @@ DamageBuff::DamageBuff(std::string name, int mana_cost,
 void DamageBuff::Effect(UnitPtr unit)
 {
 	PutOn(unit);
-	SetStartTime(Arena::CurrentRound());
+	Magic::Effect(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -76,15 +80,21 @@ void DamageBuff::PutOn(UnitPtr unit)const
 	unit->damage.ChangeValue(damage_amplify);
 }
 
-bool operator==(const DamageBuff& first, const DamageBuff& second)
+bool DamageBuff::Equal(const MagicPtr& magic)const
 {
-	return (const Magic&)first == (const Magic&)second
-		&& first.damage_amplify == second.damage_amplify;
+	try
+	{
+		DamageBuff& temp = dynamic_cast<DamageBuff&>(*magic);
+		return Magic::Equal(magic)
+			&& damage_amplify == temp.damage_amplify;
+	}
+	catch (std::bad_cast& cast) { return false; }
+	
 }
 
-bool operator!=(const DamageBuff& first, const DamageBuff& second)
+bool DamageBuff::IsBuff()const
 {
-	return !(first == second);
+	return true;
 }
 
 
@@ -101,7 +111,7 @@ ArmorBuff::ArmorBuff(std::string name, int mana_cost,
 void ArmorBuff::Effect(UnitPtr unit)
 {
 	PutOn(unit);
-	SetStartTime(Arena::CurrentRound());
+	Magic::Effect(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -120,16 +130,23 @@ void ArmorBuff::PutOn(UnitPtr unit)const
 	unit->armor.ChangeValue(armor_amplify);
 }
 
-bool operator==(const ArmorBuff& first, const ArmorBuff& second)
+bool ArmorBuff::IsBuff()const
 {
-	return (const Magic&)first == (const Magic&)second
-		&& first.armor_amplify == second.armor_amplify;
+	return true;
 }
 
-bool operator!=(const ArmorBuff& first, const ArmorBuff& second)
+bool ArmorBuff::Equal(const MagicPtr& magic)const
 {
-	return !(first == second);
+	try
+	{
+		ArmorBuff& temp = dynamic_cast<ArmorBuff&>(*magic);
+		return Magic::Equal(magic)
+			&& armor_amplify == temp.armor_amplify;
+	}
+	catch (std::bad_cast& cast) { return false; }
 }
+
+
 
 
 ArmorAndDamageBuff::ArmorAndDamageBuff(std::string name,
@@ -144,9 +161,8 @@ ArmorAndDamageBuff::ArmorAndDamageBuff(std::string name,
 
 void ArmorAndDamageBuff::Effect(UnitPtr unit)
 {
-	DamageBuff::PutOn(unit);
-	ArmorBuff::PutOn(unit);
-	SetStartTime(Arena::CurrentRound());
+	PutOn(unit);
+	Magic::Effect(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -162,16 +178,210 @@ MagicPtr ArmorAndDamageBuff::Clone()const
 		armor_amplify, damage_amplify));
 }
 
-bool operator==(const ArmorAndDamageBuff& first, const ArmorAndDamageBuff& second)
+bool ArmorAndDamageBuff::IsBuff()const
 {
-	return (const ArmorBuff&)first == (const ArmorBuff&)second
-		&& (const DamageBuff&)first == (const DamageBuff&)second;
+	return true;
 }
 
-bool operator!=(const ArmorAndDamageBuff& first, const ArmorAndDamageBuff& second)
+bool ArmorAndDamageBuff::Equal(const MagicPtr& magic)const
 {
-	return !(first == second);
+	return DamageBuff::Equal(magic) && ArmorBuff::Equal(magic);
 }
+
+void ArmorAndDamageBuff::PutOn(UnitPtr unit)const
+{
+	DamageBuff::PutOn(unit);
+	ArmorBuff::PutOn(unit);
+}
+
+
+
+
+DamageDebuff::DamageDebuff(std::string name,
+	int mana_cost, int duration, int damage_reduce)
+	: Magic(name, mana_cost, duration), damage_reduce(damage_reduce)
+{
+
+}
+
+void DamageDebuff::Effect(UnitPtr unit)
+{
+	PutOn(unit);
+	Magic::Effect(unit);
+	unit->on_me.push_back(MagicPtr(Clone()));
+}
+
+void DamageDebuff::Uneffect(UnitPtr unit)const
+{
+	unit->damage.ChangeValue(damage_reduce);
+}
+
+MagicPtr DamageDebuff::Clone()const
+{
+	return MagicPtr(new DamageDebuff(name, mana_cost, duration, damage_reduce));
+}
+
+bool DamageDebuff::IsBuff()const
+{
+	return false;
+}
+
+bool DamageDebuff::Equal(const MagicPtr& magic)const
+{
+	try
+	{
+		DamageDebuff& temp = dynamic_cast<DamageDebuff&>(*magic);
+		return Magic::Equal(magic)
+			&& damage_reduce == temp.damage_reduce;
+	}
+	catch (std::bad_cast& cast) { return false; }
+}
+
+void DamageDebuff::PutOn(UnitPtr unit)const
+{
+	unit->damage.ChangeValue(-damage_reduce);
+}
+
+
+
+
+
+ArmorDebuff::ArmorDebuff(std::string name, int mana_cost,
+	int duration, int armor_reduce)
+	: Magic(name, mana_cost, duration), armor_reduce(armor_reduce)
+{
+
+}
+
+void ArmorDebuff::Effect(UnitPtr unit)
+{
+	PutOn(unit);
+	Magic::Effect(unit);
+	unit->on_me.push_back(MagicPtr(Clone()));
+}
+
+void ArmorDebuff::Uneffect(UnitPtr unit)const
+{
+	unit->armor.ChangeValue(armor_reduce);
+}
+
+MagicPtr ArmorDebuff::Clone()const
+{
+	return MagicPtr(new ArmorDebuff(name, mana_cost, 
+		duration, armor_reduce));
+}
+
+bool ArmorDebuff::IsBuff()const
+{
+	return false;
+}
+
+bool ArmorDebuff::Equal(const MagicPtr& magic)const
+{
+	try
+	{
+		ArmorDebuff& temp = dynamic_cast<ArmorDebuff&>(*magic);
+		return Magic::Equal(magic)
+			&& armor_reduce == temp.armor_reduce;
+	}
+	catch (std::bad_cast& cast) { return false; }
+}
+
+void ArmorDebuff::PutOn(UnitPtr unit)const
+{
+	unit->armor.ChangeValue(-armor_reduce);
+}
+
+
+ArmorAndDamageDebuff::ArmorAndDamageDebuff(std::string name,
+	int mana_cost, int duration, int armor_reduce, int damage_reduce)
+	: Magic(name, mana_cost, duration),
+	ArmorDebuff(name, mana_cost, duration, armor_reduce),
+	DamageDebuff(name, mana_cost, duration, damage_reduce)
+{
+
+}
+
+void ArmorAndDamageDebuff::Effect(UnitPtr unit)
+{
+	PutOn(unit);
+	Magic::Effect(unit);
+	unit->on_me.push_back(MagicPtr(Clone()));
+}
+
+void ArmorAndDamageDebuff::Uneffect(UnitPtr unit)const
+{
+	DamageDebuff::Uneffect(unit);
+	ArmorDebuff::Uneffect(unit);
+}
+
+MagicPtr ArmorAndDamageDebuff::Clone()const
+{
+	return MagicPtr(new ArmorAndDamageDebuff(name, mana_cost, 
+		duration, armor_reduce, damage_reduce));
+}
+bool ArmorAndDamageDebuff::IsBuff()const
+{
+	return false;
+}
+
+bool ArmorAndDamageDebuff::Equal(const MagicPtr& magic)const
+{
+	return ArmorDebuff::Equal(magic) && DamageDebuff::Equal(magic);
+}
+
+void ArmorAndDamageDebuff::PutOn(UnitPtr unit)const
+{
+	DamageDebuff::PutOn(unit);
+	ArmorDebuff::PutOn(unit);
+}
+
+
+
+OffsetDamageBuff::OffsetDamageBuff(std::string name, int mana_cost,
+	int duration, int armor_reduce, int damage_amplify)
+	: Magic(name, mana_cost, duration),
+	DamageBuff(name, mana_cost, duration, damage_amplify),
+	ArmorDebuff(name, mana_cost, duration, armor_reduce)
+{
+
+}
+
+void OffsetDamageBuff::Effect(UnitPtr unit)
+{
+	PutOn(unit);
+	Magic::Effect(unit);
+	unit->on_me.push_back(MagicPtr(Clone()));
+}
+
+void OffsetDamageBuff::Uneffect(UnitPtr unit)const
+{
+	DamageBuff::Uneffect(unit);
+	ArmorDebuff::Uneffect(unit);
+}
+
+MagicPtr OffsetDamageBuff::Clone()const
+{
+	return MagicPtr(new OffsetDamageBuff(name, mana_cost, duration, 
+		armor_reduce, damage_amplify));
+}
+
+bool OffsetDamageBuff::IsBuff()const
+{
+	return true;
+}
+
+bool OffsetDamageBuff::Equal(const MagicPtr& magic)const
+{
+	return DamageBuff::Equal(magic) && ArmorDebuff::Equal(magic);
+}
+
+void OffsetDamageBuff::PutOn(UnitPtr unit)const
+{
+	DamageBuff::PutOn(unit);
+	ArmorDebuff::PutOn(unit);
+}
+
 
 
 
@@ -195,7 +405,7 @@ void SpellsOnMe::TakeOfExpired(int round)
 bool SpellsOnMe::HaveSpell(const MagicPtr& spell)const
 {
 	for (size_t i = 0; i < size(); i++)
-		if (*operator[](i) == *spell)
+		if (operator[](i)->Equal(spell))
 			return true;
 	return false;
 }
