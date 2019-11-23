@@ -20,12 +20,26 @@ public:
 	void TakeOfLosers();
 	bool GameOver()const;
 	void GameCycle();
+	~Arena();
 private:
 	int SetNumberOfUnits()const;
+	void SetArenaConsistance();
+	void FillWeaponary();
+	void FillArmory();
+	void FillSpells();
 	Arena();
-private:
+private: // vectors
+	std::vector<Weapon*> weapons;
+	std::vector<Armor*> armors;
+	std::vector<Shield*> shields;
+	std::vector<MagicPtr> spells;
 	std::vector<Decision*> decisions;
 	std::vector<UnitPtr> arena;
+private:
+	const int MIN_PLAYERS = 2;
+	const int MAX_PLAYERS = 5;
+	Decision* human;
+	Decision* computer;
 	static int round;
 };
 

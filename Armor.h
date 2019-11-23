@@ -4,7 +4,6 @@
 #include "Globals.h"
 #include "Battles.h"
 #include "Vitals.h"
-#include "DefenceEquipment.h"
 
 class Armor
 {

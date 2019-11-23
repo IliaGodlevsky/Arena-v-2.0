@@ -62,13 +62,12 @@ void Degenerate::PutOn(UnitPtr unit)const
 
 bool Degenerate::Equal(const MagicPtr& magic)const
 {
-	try
+	if (typeid(*magic) == typeid(*this))
 	{
-		Degenerate& temp = dynamic_cast<Degenerate&>(*magic);
-		return Magic::Equal(magic)
-			&& degeneration == temp.degeneration;
+		Degenerate* temp = dynamic_cast<Degenerate*>(magic.get());
+		return Magic::Equal(magic) && degeneration == temp->degeneration;
 	}
-	catch (std::bad_cast& cast) { return false; }
+	return false;
 }
 
 
@@ -108,11 +107,10 @@ void Crush::PutOn(UnitPtr unit)const
 
 bool Crush::Equal(const MagicPtr& magic)const
 {
-	try
+	if (typeid(*magic) == typeid(*this))
 	{
-		Crush& temp = dynamic_cast<Crush&>(*magic);
-		return Magic::Equal(magic)
-			&& damage == temp.damage;
+		Crush* temp = dynamic_cast<Crush*>(magic.get());
+		return Magic::Equal(magic) && damage == temp->damage;
 	}
-	catch (std::bad_cast& cast) { return false; }
+	return false;
 }

@@ -7,6 +7,7 @@
 
 class Unit;
 using UnitPtr = std::shared_ptr<Unit>;
+using Gladiators = std::vector<UnitPtr>;
 
 class Magic;
 using MagicPtr = std::unique_ptr<Magic>;

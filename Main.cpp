@@ -13,7 +13,5 @@ int main()
 {
 	Arena& arena = Arena::GetInstance();
 	while (!arena.GameOver())
-	{
 		arena.GameCycle();
-	}
 }

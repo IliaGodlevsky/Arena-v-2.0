@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iostream>
 
 #include "Unit.h"
 #include "Arena.h"
@@ -20,18 +21,14 @@ bool Unit::Spell(UnitPtr unit, MagicPtr& magic)
 	return true;
 }
 
-void Unit::Act(Decision* decision)
-{
-	UnitPtr unit_to_attack = decision->ChooseUnitToAttack(UnitPtr(this));
-	MagicPtr magic_to_cast = decision->ChooseMagicToCast(UnitPtr(this));
-	UnitPtr unit_to_cast = decision->ChooseUnitToCast(UnitPtr(this), magic_to_cast);
-
-}
-
-void Unit::TakeDamage(int damage)
+bool Unit::TakeDamage(int damage)
 {
 	if (!sheild->Reflect())
+	{
 		health = health - AbsorbCalc(damage);
+		return true;
+	}
+	return false;
 }
 
 int Unit::AbsorbCalc(int damage)const

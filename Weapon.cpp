@@ -37,8 +37,8 @@ Sword::~Sword()
 
 void Sword::Injure(UnitPtr unit, int dmg)const
 {
-	unit->TakeDamage(Multiply(damage.Value() + dmg));
-	open_wounds->Effect(unit);
+	if(unit->TakeDamage(Multiply(damage.Value() + dmg)))
+		open_wounds->Effect(unit);
 }
 
 Sword::Sword(const Sword& sword)

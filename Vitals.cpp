@@ -60,3 +60,33 @@ void Vitals::FixOverflow()
 	if (value < DEAD_LINE)
 		value = DEAD_LINE;
 }
+
+bool Vitals::operator>(int damage)const
+{
+	return value > damage;
+}
+
+bool Vitals::operator<(int damage)const
+{
+	return value < damage;
+}
+
+bool Vitals::operator==(int damage)const
+{
+	return value == damage;
+}
+
+bool Vitals::operator!=(int damage)const
+{
+	return value != damage;
+}
+
+bool Vitals::operator>=(int damage)const
+{
+	return value >= damage;
+}
+
+bool Vitals::operator<=(int damage)const
+{
+	return value <= damage;
+}

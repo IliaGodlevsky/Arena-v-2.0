@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-// abstract base class (could't create an instance of this class)
+// abstract base class (couldn't create an instance of this class)
 class Magic
 {
 public:
@@ -153,21 +153,6 @@ protected:
 	virtual void PutOn(UnitPtr unit)const;
 protected:
 	int damage;
-};
-
-class AttackAndArmorDebuff :
-	public ArmorDebuff, public Attack
-{
-public:
-	AttackAndArmorDebuff(std::string name, int mana_cost, int duration,
-		int damage, int armor_reduce);
-	void Effect(UnitPtr unit);
-	void Uneffect(UnitPtr unit);
-	MagicPtr Clone()const override;
-	bool IsBuff()const;
-	bool Equal(const MagicPtr& magic)const;
-protected:
-	void PutOn(UnitPtr unit)const;
 };
 
 class Poison : virtual public Magic

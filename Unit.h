@@ -13,11 +13,14 @@
 
 class Unit
 {
+	friend class ComputerDecision;
 public:
-	void Act(Decision* decision);
-	void TakeDamage(int damage);
+	Unit();
+	bool TakeDamage(int damage);
 	void ShowUnitName();
 	void LevelUp();
+	bool Injure(UnitPtr unit);
+	bool Spell(UnitPtr unit, MagicPtr& magic);
 public:
 	Battles damage;
 	Battles armor;
@@ -31,13 +34,6 @@ private:
 	std::unique_ptr<Shield> sheild;
 private:
 	int AbsorbCalc(int damage)const;
-	bool Injure(UnitPtr unit);
-	bool Spell(UnitPtr unit, MagicPtr& magic);
-};
-
-class Boss : public Unit
-{
-
 };
 
 #endif

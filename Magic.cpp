@@ -82,14 +82,12 @@ void DamageBuff::PutOn(UnitPtr unit)const
 
 bool DamageBuff::Equal(const MagicPtr& magic)const
 {
-	try
+	if (typeid(*magic) == typeid(*this))
 	{
-		DamageBuff& temp = dynamic_cast<DamageBuff&>(*magic);
-		return Magic::Equal(magic)
-			&& damage_amplify == temp.damage_amplify;
+		DamageBuff* temp = dynamic_cast<DamageBuff*>(magic.get());
+		return Magic::Equal(magic) && damage_amplify == temp->damage_amplify;
 	}
-	catch (std::bad_cast& cast) { return false; }
-	
+	return false;
 }
 
 bool DamageBuff::IsBuff()const
@@ -137,13 +135,12 @@ bool ArmorBuff::IsBuff()const
 
 bool ArmorBuff::Equal(const MagicPtr& magic)const
 {
-	try
+	if (typeid(*magic) == typeid(*this))
 	{
-		ArmorBuff& temp = dynamic_cast<ArmorBuff&>(*magic);
-		return Magic::Equal(magic)
-			&& armor_amplify == temp.armor_amplify;
+		ArmorBuff* temp = dynamic_cast<ArmorBuff*>(magic.get());
+		return Magic::Equal(magic) && armor_amplify == temp->armor_amplify;
 	}
-	catch (std::bad_cast& cast) { return false; }
+	return false;
 }
 
 
@@ -228,13 +225,12 @@ bool DamageDebuff::IsBuff()const
 
 bool DamageDebuff::Equal(const MagicPtr& magic)const
 {
-	try
+	if (typeid(*magic) == typeid(*this))
 	{
-		DamageDebuff& temp = dynamic_cast<DamageDebuff&>(*magic);
-		return Magic::Equal(magic)
-			&& damage_reduce == temp.damage_reduce;
+		DamageDebuff* temp = dynamic_cast<DamageDebuff*>(magic.get());
+		return Magic::Equal(magic) && damage_reduce == temp->damage_reduce;
 	}
-	catch (std::bad_cast& cast) { return false; }
+	return false;
 }
 
 void DamageDebuff::PutOn(UnitPtr unit)const
@@ -278,13 +274,12 @@ bool ArmorDebuff::IsBuff()const
 
 bool ArmorDebuff::Equal(const MagicPtr& magic)const
 {
-	try
+	if (typeid(*magic) == typeid(*this))
 	{
-		ArmorDebuff& temp = dynamic_cast<ArmorDebuff&>(*magic);
-		return Magic::Equal(magic)
-			&& armor_reduce == temp.armor_reduce;
+		ArmorDebuff* temp = dynamic_cast<ArmorDebuff*>(magic.get());
+		return Magic::Equal(magic) && armor_reduce == temp->armor_reduce;
 	}
-	catch (std::bad_cast& cast) { return false; }
+	return false;
 }
 
 void ArmorDebuff::PutOn(UnitPtr unit)const
@@ -327,7 +322,14 @@ bool ArmorAndDamageDebuff::IsBuff()const
 
 bool ArmorAndDamageDebuff::Equal(const MagicPtr& magic)const
 {
-	return ArmorDebuff::Equal(magic) && DamageDebuff::Equal(magic);
+	if (typeid(*magic) == typeid(*this))
+	{
+		ArmorAndDamageDebuff* temp = 
+			dynamic_cast<ArmorAndDamageDebuff*>(magic.get());
+		return Magic::Equal(magic) && armor_reduce == temp->armor_reduce
+			&& damage_reduce == temp->damage_reduce;
+	}
+	return false;
 }
 
 void ArmorAndDamageDebuff::PutOn(UnitPtr unit)const
@@ -373,7 +375,14 @@ bool OffsetDamageBuff::IsBuff()const
 
 bool OffsetDamageBuff::Equal(const MagicPtr& magic)const
 {
-	return DamageBuff::Equal(magic) && ArmorDebuff::Equal(magic);
+	if (typeid(*magic) == typeid(*this))
+	{
+		OffsetDamageBuff* temp =
+			dynamic_cast<OffsetDamageBuff*>(magic.get());
+		return Magic::Equal(magic) && armor_reduce == temp->armor_reduce
+			&& damage_amplify == temp->damage_amplify;
+	}
+	return false;
 }
 
 void OffsetDamageBuff::PutOn(UnitPtr unit)const
@@ -398,6 +407,7 @@ void SpellsOnMe::TakeOfExpired(int round)
 		{
 			operator[](i)->Uneffect(unit);
 			erase(begin() + i);
+			i--;
 		}
 	}
 }
