@@ -18,13 +18,16 @@ protected:
 class LetherArmor : public Armor
 {
 public:
-	LetherArmor(int armor);
+	explicit LetherArmor(int armor);
+	void PutOn(UnitPtr unit)const;
+	void PutOff(UnitPtr unit)const;
+
 };
 
 class Mail : public Armor
 {
 public:
-	Mail(int armor, Vitals health);
+	explicit Mail(int armor, Vitals health);
 	void PutOn(UnitPtr unit)const override;
 	void PutOff(UnitPtr unit)const override;
 private:

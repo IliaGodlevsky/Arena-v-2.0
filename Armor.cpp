@@ -48,5 +48,5 @@ void WizardCloak::PutOn(UnitPtr unit)const
 
 void WizardCloak::PutOff(UnitPtr unit)const
 {
-	unit->health = unit->health - health;
+	unit->mana = unit->mana - mana;
 }

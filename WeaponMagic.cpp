@@ -34,8 +34,8 @@ void Degenerate::Effect(UnitPtr unit)
 {
 	if (IsCasted())
 	{
-		PutOn(unit);
 		Magic::Effect(unit);
+		PutOn(unit);
 		unit->on_me.push_back(MagicPtr(Clone()));
 	}
 }

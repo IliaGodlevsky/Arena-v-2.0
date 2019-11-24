@@ -4,6 +4,12 @@
 #include "Unit.h"
 #include "Arena.h"
 
+Unit::Unit()
+	: on_me(*this)
+{
+
+}
+
 bool Unit::Injure(UnitPtr unit)
 {
 	if (nullptr == weapon)
@@ -16,6 +22,7 @@ bool Unit::Spell(UnitPtr unit, MagicPtr& magic)
 {
 	if (nullptr == magic)
 		return false;
+	// TODO : if unit have this spell, this spell must be recasted
 	magic->Effect(unit);
 	mana = mana - magic->Cost();
 	return true;

@@ -145,7 +145,7 @@ class Attack : virtual public Magic
 public:
 	Attack(std::string name, int mana_cost, int damage);
 	virtual void Effect(UnitPtr unit);
-	virtual void Uneffect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit)const;
 	virtual MagicPtr Clone()const override;
 	virtual bool IsBuff()const;
 	virtual bool Equal(const MagicPtr& magic)const;
@@ -161,7 +161,7 @@ public:
 	Poison(std::string name, int mana_cost, int duration,
 		int regen_reduce);
 	virtual void Effect(UnitPtr unit);
-	virtual void Uneffect(UnitPtr unit);
+	virtual void Uneffect(UnitPtr unit)const;
 	virtual MagicPtr Clone()const override;
 	virtual bool IsBuff()const;
 	virtual bool Equal(const MagicPtr& magic)const;
@@ -178,7 +178,7 @@ public:
 	PoisonAndAttack(std::string name, int mana_cost, int duration,
 		int damage, int regen_reduce);
 	void Effect(UnitPtr unit);
-	void Uneffect(UnitPtr unit);
+	void Uneffect(UnitPtr unit)const;
 	MagicPtr Clone()const override;
 	bool IsBuff()const;
 	bool Equal(const MagicPtr& magic)const;
@@ -193,10 +193,11 @@ using Spells = std::vector<MagicPtr>;
 class SpellsOnMe : public Spells
 {
 public:
-	SpellsOnMe(UnitPtr unit);
 	void TakeOfExpired(int round);
-	bool HaveSpell(const MagicPtr& spell)const;
+	size_t HaveSpell(const MagicPtr& spell)const;
+	void Expire(size_t spell_index);
 	void ShowSpells()const;
+	void TakeUnitToControl(UnitPtr unit);
 private:
 	UnitPtr unit;
 };

@@ -74,7 +74,8 @@ void HumanDecision::EatLine()const
 
 int HumanDecision::Input(const std::string& message, int upper, int lower)const
 {
-
+	// TODO: do input
+	return 0;
 }
 
 bool HumanDecision::WrongSpellToCast(const UnitPtr& caster, const UnitPtr& aim,
@@ -104,7 +105,6 @@ MagicPtr ComputerDecision::ChooseMagicToCast(const UnitPtr& deciding_unit)const
 	if (!deciding_unit->spell_book.CanCastAnySpell())
 		return nullptr;
 	return MagicPtr(deciding_unit->spell_book[RandInd(arena.size() - 1)]->Clone());
-
 }
 
 UnitPtr ComputerDecision::ChooseUnitToCast(const UnitPtr& deciding_unit, 

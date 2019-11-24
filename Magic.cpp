@@ -13,6 +13,10 @@ Magic::~Magic() {}
 
 void Magic::Effect(UnitPtr unit)
 {
+	// number of spell that must be deleted 
+	// from the spells that are on unit
+	size_t del = unit->on_me.HaveSpell(MagicPtr(Clone()));
+	unit->on_me.Expire(del);
 	SetStartTime(Arena::CurrentRound());
 }
 
@@ -60,8 +64,8 @@ DamageBuff::DamageBuff(std::string name, int mana_cost,
 
 void DamageBuff::Effect(UnitPtr unit)
 {
-	PutOn(unit);
 	Magic::Effect(unit);
+	PutOn(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -108,8 +112,8 @@ ArmorBuff::ArmorBuff(std::string name, int mana_cost,
 
 void ArmorBuff::Effect(UnitPtr unit)
 {
-	PutOn(unit);
 	Magic::Effect(unit);
+	PutOn(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -158,8 +162,8 @@ ArmorAndDamageBuff::ArmorAndDamageBuff(std::string name,
 
 void ArmorAndDamageBuff::Effect(UnitPtr unit)
 {
-	PutOn(unit);
 	Magic::Effect(unit);
+	PutOn(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -203,8 +207,8 @@ DamageDebuff::DamageDebuff(std::string name,
 
 void DamageDebuff::Effect(UnitPtr unit)
 {
-	PutOn(unit);
 	Magic::Effect(unit);
+	PutOn(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -251,8 +255,8 @@ ArmorDebuff::ArmorDebuff(std::string name, int mana_cost,
 
 void ArmorDebuff::Effect(UnitPtr unit)
 {
-	PutOn(unit);
 	Magic::Effect(unit);
+	PutOn(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -299,8 +303,8 @@ ArmorAndDamageDebuff::ArmorAndDamageDebuff(std::string name,
 
 void ArmorAndDamageDebuff::Effect(UnitPtr unit)
 {
-	PutOn(unit);
 	Magic::Effect(unit);
+	PutOn(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -351,8 +355,8 @@ OffsetDamageBuff::OffsetDamageBuff(std::string name, int mana_cost,
 
 void OffsetDamageBuff::Effect(UnitPtr unit)
 {
-	PutOn(unit);
 	Magic::Effect(unit);
+	PutOn(unit);
 	unit->on_me.push_back(MagicPtr(Clone()));
 }
 
@@ -391,13 +395,149 @@ void OffsetDamageBuff::PutOn(UnitPtr unit)const
 	ArmorDebuff::PutOn(unit);
 }
 
-
-
-
-SpellsOnMe::SpellsOnMe(UnitPtr unit)
+Attack::Attack(std::string name, int mana_cost, int damage)
+	: Magic(name, mana_cost, 0), damage(damage)
 {
-	this->unit = unit;
+
 }
+
+void Attack::Effect(UnitPtr unit)
+{
+	unit->health = unit->health - damage;
+}
+
+void Attack::Uneffect(UnitPtr unit)const
+{
+	return;
+}
+
+MagicPtr Attack::Clone()const
+{
+	return MagicPtr(new Attack(name, mana_cost, damage));
+}
+
+bool Attack::IsBuff()const
+{
+	return false;
+}
+
+bool Attack::Equal(const MagicPtr& magic)const
+{
+	if (typeid(*magic) == typeid(*this))
+	{
+		Attack* temp = dynamic_cast<Attack*>(magic.get());
+		return Magic::Equal(magic) && damage == temp->damage;
+	}
+	return false;
+}
+
+void Attack::PutOn(UnitPtr unit)const
+{
+	return;
+}
+
+
+
+Poison::Poison(std::string name, int mana_cost, int duration,
+	int regen_reduce)
+	: Magic(name, mana_cost, duration), regen_reduce(regen_reduce)
+{
+
+}
+
+void Poison::Effect(UnitPtr unit)
+{
+	Magic::Effect(unit);
+	PutOn(unit);
+	unit->on_me.push_back(MagicPtr(Clone()));
+}
+
+void Poison::Uneffect(UnitPtr unit)const
+{
+	unit->health.ChangeRegeneration(regen_reduce);
+}
+
+MagicPtr Poison::Clone()const
+{
+
+}
+
+bool Poison::IsBuff()const
+{
+	return false;
+}
+
+bool Poison::Equal(const MagicPtr& magic)const
+{
+	if (typeid(*magic) == typeid(*this))
+	{
+		Poison* temp = dynamic_cast<Poison*>(magic.get());
+		return Magic::Equal(magic) && regen_reduce == temp->regen_reduce;
+	}
+	return false;
+}
+
+void Poison::PutOn(UnitPtr unit)const
+{
+	unit->health.ChangeRegeneration(-regen_reduce);
+}
+
+
+
+
+PoisonAndAttack::PoisonAndAttack(std::string name, int mana_cost,
+	int duration, int damage, int regen_reduce)
+	: Magic(name, mana_cost, duration),
+	Poison(name, mana_cost, duration, regen_reduce),
+	Attack(name, mana_cost, damage)
+{
+
+}
+
+void PoisonAndAttack::Effect(UnitPtr unit)
+{
+	Magic::Effect(unit);
+	PutOn(unit);
+	unit->on_me.push_back(MagicPtr(Clone()));
+}
+
+void PoisonAndAttack::Uneffect(UnitPtr unit)const
+{
+	Poison::Uneffect(unit);
+	Attack::Uneffect(unit);
+}
+
+MagicPtr PoisonAndAttack::Clone()const
+{
+	return MagicPtr(new PoisonAndAttack(name, mana_cost, 
+		duration, damage, regen_reduce));
+}
+
+bool PoisonAndAttack::IsBuff()const
+{
+	return false;
+}
+
+bool PoisonAndAttack::Equal(const MagicPtr& magic)const
+{
+	if (typeid(*magic) == typeid(*this))
+	{
+		PoisonAndAttack* temp = dynamic_cast<PoisonAndAttack*>(magic.get());
+		return Magic::Equal(magic) && regen_reduce == temp->regen_reduce
+			&& damage == temp->damage;
+	}
+	return false;
+}
+
+void PoisonAndAttack::PutOn(UnitPtr unit)const
+{
+	Attack::PutOn(unit);
+	Poison::PutOn(unit);
+}
+
+
+
+
 
 void SpellsOnMe::TakeOfExpired(int round)
 {
@@ -412,10 +552,19 @@ void SpellsOnMe::TakeOfExpired(int round)
 	}
 }
 
-bool SpellsOnMe::HaveSpell(const MagicPtr& spell)const
+size_t SpellsOnMe::HaveSpell(const MagicPtr& spell)const
 {
 	for (size_t i = 0; i < size(); i++)
 		if (operator[](i)->Equal(spell))
-			return true;
-	return false;
+			return i;
+	return size();
+}
+
+void SpellsOnMe::Expire(size_t spell_index)
+{
+	if (spell_index < size())
+	{
+		operator[](spell_index)->Uneffect(unit);
+		erase(begin() + spell_index);
+	}
 }
