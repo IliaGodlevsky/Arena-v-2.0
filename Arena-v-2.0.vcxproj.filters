@@ -60,9 +60,6 @@
     <Filter Include="PosibilityCounter">
       <UniqueIdentifier>{2941f3b6-2241-4985-9887-1ec54e3bb6fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Saver">
-      <UniqueIdentifier>{dd6d4513-3d96-4ed0-aaaa-a9a8f080cf22}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Magic.h">
@@ -113,9 +110,6 @@
     </ClInclude>
     <ClInclude Include="PosibilityCounter.h">
       <Filter>PosibilityCounter</Filter>
-    </ClInclude>
-    <ClInclude Include="Saver.h">
-      <Filter>Saver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

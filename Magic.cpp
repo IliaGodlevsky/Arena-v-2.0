@@ -727,6 +727,7 @@ Dispel::Dispel(std::string name, int mana_cost)
 void Dispel::Effect(Unit& unit)
 {
 	unit.on_me.ExpireAllSpells();
+	unit.state.ExpireAllStates();
 }
 
 void Dispel::Uneffect(Unit& unit)const
