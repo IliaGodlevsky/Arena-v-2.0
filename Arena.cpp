@@ -2,8 +2,6 @@
 
 Arena::Arena()
 {
-	human = new HumanDecision(arena);
-	computer = new ComputerDecision(arena);
 	arena.resize(SetNumberOfUnits());
 	SetArenaConsistance();
 	FillArmory();
@@ -40,7 +38,7 @@ void Arena::TakeOfLosers()
 {
 	for (size_t i = 0; i < arena.size(); i++)
 	{
-		if (arena[i]->health.IsDead())
+		if (!arena[i]->IsAlive())
 		{
 			arena.erase(arena.begin() + i);
 			i--;
@@ -55,18 +53,29 @@ bool Arena::GameOver()const
 
 void Arena::GameCycle()
 {
-	UnitPtr unit_to_attack = nullptr;
-	UnitPtr unit_to_cast = nullptr;
+	Unit* unit_to_attack = nullptr;
+	Unit* unit_to_cast = nullptr;
 	MagicPtr magic_to_spell = nullptr;
-	for (size_t i = 0; i < arena.size(); i++)
+	size_t player_index_number = 0;
+	while(!GameOver())
 	{
-		arena[i]->ShowUnitName();
-		magic_to_spell = decisions[i]->ChooseMagicToCast(arena[i]);
-		unit_to_cast = decisions[i]->ChooseUnitToCast(arena[i], magic_to_spell);
-		arena[i]->Spell(unit_to_cast, magic_to_spell);
+		for (size_t i = 0; i < arena.size(); i++)
+			arena[i]->Scan();
+		arena[player_index_number]->ShowFullInfo();
+		magic_to_spell = arena[player_index_number]->ChooseMagicToCast();
+		unit_to_cast = arena[player_index_number]->ChooseUnitToCast(magic_to_spell);
+		arena[player_index_number]->Spell(*unit_to_cast, magic_to_spell);
+		if (!unit_to_cast->IsAlive())
+			arena[player_index_number]->LevelUp();
 		TakeOfLosers();
-		unit_to_attack = decisions[i]->ChooseUnitToAttack(arena[i]);
-		arena[i]->Injure(unit_to_attack);
+		unit_to_attack = arena[player_index_number]->ChooseUnitToAttack();
+		arena[player_index_number]->Injure(*unit_to_attack);
+		if (!unit_to_cast->IsAlive())
+			arena[player_index_number]->LevelUp();
 		TakeOfLosers();
+		round++;
+		player_index_number++;
+		if (player_index_number >= arena.size())
+			player_index_number = 0;
 	}
 }

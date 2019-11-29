@@ -18,13 +18,9 @@ public:
 	Vitals operator-(const Vitals& vit)const;
 	void ChangeRegeneration(int regen);
 	bool IsDead()const;
-public:
-	bool operator>(int damage)const;
-	bool operator<(int damage)const;
-	bool operator==(int damage)const;
-	bool operator!=(int damage)const;
-	bool operator>=(int damage)const;
-	bool operator<=(int damage)const;
+	void ShowFullInfo()const;
+	void ShowShortInfo()const;
+	operator int()const;
 private:
 	enum { DEAD_LINE };
 	int value = 0;

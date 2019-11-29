@@ -1,9 +1,11 @@
+#include <iostream>
+
 #include "Weapon.h"
 #include "WeaponMagic.h"
 #include "Unit.h"
 
-Weapon::Weapon(int damage)
-	: damage(damage)
+Weapon::Weapon(std::string name, int damage)
+	: name(name),damage(damage)
 {
 
 }
@@ -24,8 +26,24 @@ Weapon& Weapon::operator=(const Weapon& weapon)
 	return *this;
 }
 
-Sword::Sword(int damage)
-	: Weapon(damage), open_wounds(new Degenerate("Open wounds", 2, 4))
+bool Weapon::CanSmash(const Unit& unit)const
+{
+	return unit.health <= unit.AbsorbCalc(damage);
+}
+
+void Weapon::ShowFullInfo()const
+{
+	std::cout << "Name: " << name << std::endl;
+	std::cout << "Damage: " << damage << std::endl;
+}
+
+void Weapon::ShowShortInfo()const
+{
+	std::cout << "<" << name << ">";
+}
+
+Sword::Sword(std::string name, int damage)
+	: Weapon(name,damage), open_wounds(new Degenerate("Open wounds", 2, 4))
 {
 	
 }
@@ -35,9 +53,9 @@ Sword::~Sword()
 	
 }
 
-void Sword::Injure(UnitPtr unit, int dmg)const
+void Sword::Injure(Unit& unit, int dmg)const
 {
-	if(unit->TakeDamage(Multiply(damage.Value() + dmg)))
+	if(unit.TakeDamage(Multiply(damage + dmg)))
 		open_wounds->Effect(unit);
 }
 
@@ -62,8 +80,14 @@ int Sword::Multiply(int dmg)const
 	return dmg;
 }
 
-Axe::Axe(int damage)
-	: Weapon(damage), crush(new Crush("Crush", 10))
+void Sword::ShowFullInfo()const
+{
+	Weapon::ShowFullInfo();
+	open_wounds->ShowFullInfo();
+}
+
+Axe::Axe(std::string name, int damage)
+	: Weapon(name, damage), crush(new Crush("Crush", 10))
 {
 	
 }
@@ -73,10 +97,10 @@ Axe::~Axe()
 
 }
 
-void Axe::Injure(UnitPtr unit, int dmg)const
+void Axe::Injure(Unit& unit, int dmg)const
 {
-	unit->TakeDamage(Multiply(damage.Value() + dmg));
-	crush->Effect(unit);
+	if (unit.TakeDamage(Multiply(damage + dmg)))
+		crush->Effect(unit);
 }
 
 Axe::Axe(const Axe& axe)
@@ -97,4 +121,10 @@ Axe& Axe::operator=(const Axe& axe)
 int Axe::Multiply(int dmg)const
 {
 	return dmg;
+}
+
+void Axe::ShowFullInfo()const
+{
+	Weapon::ShowFullInfo();
+	crush->ShowFullInfo();
 }

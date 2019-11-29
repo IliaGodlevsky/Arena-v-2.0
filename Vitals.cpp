@@ -40,7 +40,9 @@ Vitals Vitals::operator-(const Vitals& vit)const
 	int val = static_cast<int>(fdim(value,vit.value));
 	int max_val = static_cast<int>(fdim(max_value, vit.max_value));
 	int regen = value_regeneration - vit.value_regeneration;
-	return Vitals(val, max_val, regen);
+	Vitals temp(val, max_val, regen);
+	temp.FixOverflow();
+	return temp;
 }
 
 void Vitals::ChangeRegeneration(int regen)

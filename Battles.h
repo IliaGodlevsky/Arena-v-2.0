@@ -6,7 +6,9 @@ class Battles
 public:
 	explicit Battles(int value);
 	void ChangeValue(int value);
-	int Value()const;
+	void ShowFullInfo()const;
+	void ShowShortInfo()const;
+	operator int()const;
 protected:
 	int value;
 };

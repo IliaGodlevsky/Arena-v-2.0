@@ -11,7 +11,7 @@ void Battles::ChangeValue(int value)
 	this->value = value;
 }
 
-int Battles::Value()const
+Battles::operator int()const
 {
 	return value;
 }

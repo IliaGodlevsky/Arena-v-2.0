@@ -8,28 +8,33 @@
 class Weapon
 {
 public:
-	Weapon(int damage);
+	Weapon(std::string name, int damage);
 	Weapon(const Weapon& weapon);
 	Weapon& operator=(const Weapon& weapon);
-	virtual ~Weapon();
+	virtual ~Weapon() = default;
 public:
-	virtual void Injure(UnitPtr unit, int dmg = 0)const = 0;
+	virtual void Injure(Unit& unit, int dmg )const = 0;
+	virtual void ShowFullInfo()const = 0;
+	virtual void ShowShortInfo()const final;
+	virtual bool CanSmash(const Unit& unit)const final;
 protected:
-	virtual int Multiply(int dmg = 0)const = 0;
+	virtual int Multiply(int dmg)const = 0;
 protected:
 	Battles damage;
+	std::string name;
 };
 
 class Sword : public Weapon
 {
 public:
-	Sword(int damage);
+	Sword(std::string name, int damage);
 	Sword(const Sword& sword);
 	Sword& operator=(const Sword& sword);
 	~Sword();
-	void Injure(UnitPtr unit, int dmg = 0)const override;
+	void Injure(Unit& unit, int dmg)const override;
+	void ShowFullInfo()const override;
 protected:
-	int Multiply(int dmg = 0)const;
+	int Multiply(int dmg)const;
 private:
 	MagicPtr open_wounds;
 };
@@ -37,20 +42,16 @@ private:
 class Axe : public Weapon
 {
 public:
-	Axe(int damage);
+	Axe(std::string name, int damage);
 	Axe(const Axe& axe);
 	Axe& operator=(const Axe& axe);
 	~Axe();
-	void Injure(UnitPtr unit, int dmg = 0)const override;
+	void Injure(Unit& unit, int dmg)const override;
+	void ShowFullInfo()const override;
 protected:
-	int Multiply(int dmg = 0)const;
+	int Multiply(int dmg)const;
 private:
 	MagicPtr crush;
-};
-
-class Spear : public Weapon
-{
-
 };
 
 

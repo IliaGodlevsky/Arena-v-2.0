@@ -8,28 +8,25 @@
 class Armor
 {
 public:
-	explicit Armor(int armor);
-	virtual void PutOn(UnitPtr unit)const = 0;
-	virtual void PutOff(UnitPtr unit)const = 0;
+	explicit Armor(std::string name, int armor);
+	virtual void PutOn(Unit& unit)const;
+	virtual void PutOff(Unit& unit)const;
+	virtual ~Armor() = default;
+	virtual void ShowFullInfo()const;
+	virtual void ShowShortInfo()const final;
 protected:
+	std::string name;
 	Battles armor;
-};
-
-class LetherArmor : public Armor
-{
-public:
-	explicit LetherArmor(int armor);
-	void PutOn(UnitPtr unit)const;
-	void PutOff(UnitPtr unit)const;
-
 };
 
 class Mail : public Armor
 {
 public:
-	explicit Mail(int armor, Vitals health);
-	void PutOn(UnitPtr unit)const override;
-	void PutOff(UnitPtr unit)const override;
+	Mail(std::string name, 
+		int armor, Vitals health);
+	void PutOn(Unit& unit)const override;
+	void PutOff(Unit& unit)const override;
+	void ShowFullInfo()const override;
 private:
 	Vitals health;
 };
@@ -37,12 +34,25 @@ private:
 class WizardCloak : public Armor
 {
 public:
-	WizardCloak(int armor, Vitals mana);
-	void PutOn(UnitPtr unit)const override;
-	void PutOff(UnitPtr unit)const override;
+	WizardCloak(std::string name, 
+		int armor, Vitals mana);
+	void PutOn(Unit& unit)const override;
+	void PutOff(Unit& unit)const override;
+	void ShowFullInfo()const override;
 private:
 	Vitals mana;
 };
 
-
+class LegionerChains : public Armor
+{
+public:
+	LegionerChains(std::string name, int armor, 
+		Vitals health, Vitals mana);
+	void PutOn(Unit& unit)const override;
+	void PutOff(Unit& unit)const override;
+	void ShowFullInfo()const override;
+private:
+	Vitals health;
+	Vitals mana;
+};
 #endif

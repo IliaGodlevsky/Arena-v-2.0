@@ -3,8 +3,6 @@
 #ifndef ARENA_H_
 #define ARENA_H_
 
-#include <vector>
-
 #include "Unit.h"
 
 // Singleton
@@ -33,13 +31,10 @@ private: // vectors
 	std::vector<Armor*> armors;
 	std::vector<Shield*> shields;
 	std::vector<MagicPtr> spells;
-	std::vector<Decision*> decisions;
-	std::vector<UnitPtr> arena;
+	std::vector<Unit*> arena;
 private:
 	const int MIN_PLAYERS = 2;
 	const int MAX_PLAYERS = 5;
-	Decision* human;
-	Decision* computer;
 	static int round;
 };
 

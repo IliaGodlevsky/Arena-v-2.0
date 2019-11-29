@@ -9,23 +9,25 @@
 class Shield : public Armor
 {
 public:
-	Shield(int armor, int reflect_chance);
-	virtual void PutOn(UnitPtr unit)const;
-	virtual void PutOff(UnitPtr unit)const;
-	virtual bool Reflect()const;
+	Shield(std::string name, int armor, 
+		int reflect_chance);
+	virtual void PutOn(Unit& unit)const;
+	virtual void PutOff(Unit& unit)const;
+	virtual void ShowFullInfo()const;
+	virtual bool Reflect()const final;
+	virtual ~Shield() = default;
 protected:
 	int reflect_chance;
-	Battles armor;
 };
 
 class TowerShield : public Shield
 {
 public:
-	TowerShield(int armor, Vitals health, 
-		int reflect_chance);
-	void PutOn(UnitPtr unit)const;
-	void PutOff(UnitPtr unit)const;
-	bool Reflect()const;
+	TowerShield(std::string name, int armor, 
+		Vitals health, int reflect_chance);
+	void PutOn(Unit& unit)const;
+	void PutOff(Unit& unit)const;
+	void ShowFullInfo()const override;
 protected:
 	Vitals health;
 };
@@ -33,11 +35,12 @@ protected:
 class LegionShield : public Shield
 {
 public:
-	LegionShield(int armor, Vitals health,
-		Vitals mana, int reflcet_chance);
-	void PutOn(UnitPtr unit)const;
-	void PutOff(UnitPtr unit)const;
-	bool Reflect()const;
+	LegionShield(std::string name,int armor, 
+		Vitals health, Vitals mana, 
+		int reflcet_chance);
+	void PutOn(Unit& unit)const;
+	void PutOff(Unit& unit)const;
+	void ShowFullInfo()const override;
 protected:
 	Vitals health;
 	Vitals mana;

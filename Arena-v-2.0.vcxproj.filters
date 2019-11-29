@@ -45,6 +45,21 @@
     <Filter Include="Weapon">
       <UniqueIdentifier>{3c02465e-a26d-4540-81a6-c18f9b01a3e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Spells Containers">
+      <UniqueIdentifier>{8f6a4fa8-d7b2-4c12-8c8f-f050ce203510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{20ecee96-c689-4094-96d1-0cac89ec7e34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State">
+      <UniqueIdentifier>{eb4d710a-8c0c-497e-bd47-e27109314028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Durationmeter">
+      <UniqueIdentifier>{9a36a787-f594-462a-850d-27202fe3f24e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PosibilityCounter">
+      <UniqueIdentifier>{2941f3b6-2241-4985-9887-1ec54e3bb6fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Magic.h">
@@ -77,6 +92,24 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Sheild.h">
       <Filter>Equipment\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellsOnMe.h">
+      <Filter>Spells Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellBook.h">
+      <Filter>Spells Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="Durationmeter.h">
+      <Filter>Durationmeter</Filter>
+    </ClInclude>
+    <ClInclude Include="PosibilityCounter.h">
+      <Filter>PosibilityCounter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +145,24 @@
     </ClCompile>
     <ClCompile Include="Shield.cpp">
       <Filter>Equipment\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="SpellsOnMe.cpp">
+      <Filter>Spells Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="SpellBook.cpp">
+      <Filter>Spells Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="Durationmeter.cpp">
+      <Filter>Durationmeter</Filter>
+    </ClCompile>
+    <ClCompile Include="PosibilityCounter.cpp">
+      <Filter>PosibilityCounter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

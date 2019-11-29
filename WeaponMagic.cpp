@@ -1,8 +1,15 @@
 #include <random>
+#include <iostream>
 
 #include "WeaponMagic.h"
 #include "Arena.h"
 
+int randomNumber(int maxRange, int minRange)
+{
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(minRange, maxRange);
+	return distribution(generator);
+}
 WeaponMagic::WeaponMagic(std::string name, int duration, int propability)
 	: Magic(name, 0, duration), propability(propability)
 {
@@ -14,12 +21,18 @@ WeaponMagic::~WeaponMagic() {}
 bool WeaponMagic::IsCasted()const
 {
 	const int MAX_PROPABILITY = 100;
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distribution(0, MAX_PROPABILITY);
-	int currentChance = distribution(generator);
-	return currentChance <= propability;
+	return randomNumber(MAX_PROPABILITY) <= propability;
 }
 
+void WeaponMagic::ShowFullInfo()const
+{
+	Data();
+}
+
+void WeaponMagic::Data()const
+{
+	
+}
 
 
 Degenerate::Degenerate(std::string name, int duration,
@@ -30,24 +43,24 @@ Degenerate::Degenerate(std::string name, int duration,
 
 }
 
-void Degenerate::Effect(UnitPtr unit)
+void Degenerate::Effect(Unit& unit)
 {
 	if (IsCasted())
 	{
 		Magic::Effect(unit);
 		PutOn(unit);
-		unit->on_me.push_back(MagicPtr(Clone()));
+		unit.on_me.push_back(MagicPtr(Clone()));
 	}
 }
 
-void Degenerate::Uneffect(UnitPtr unit)const
+void Degenerate::Uneffect(Unit& unit)const
 {
-	unit->health.ChangeRegeneration(degeneration);
+	unit.health.ChangeRegeneration(degeneration);
 }
 
 MagicPtr Degenerate::Clone()const
 {
-	return MagicPtr(new Degenerate(name, duration, degeneration, propability));
+	return MagicPtr(new Degenerate(name, durationmeter, degeneration, propability));
 }
 
 bool Degenerate::IsBuff()const
@@ -55,9 +68,9 @@ bool Degenerate::IsBuff()const
 	return false;
 }
 
-void Degenerate::PutOn(UnitPtr unit)const
+void Degenerate::PutOn(Unit& unit)const
 {
-	unit->health.ChangeRegeneration(-degeneration);
+	unit.health.ChangeRegeneration(-degeneration);
 }
 
 bool Degenerate::Equal(const MagicPtr& magic)const
@@ -79,13 +92,13 @@ Crush::Crush(std::string name, int damage,
 	
 }
 
-void Crush::Effect(UnitPtr unit)
+void Crush::Effect(Unit& unit)
 {
 	if (IsCasted())
 		PutOn(unit);
 }
 
-void Crush::Uneffect(UnitPtr unit)const
+void Crush::Uneffect(Unit& unit)const
 {
 	return;
 }
@@ -100,9 +113,9 @@ bool Crush::IsBuff()const
 	return false;
 }
 
-void Crush::PutOn(UnitPtr unit)const
+void Crush::PutOn(Unit& unit)const
 {
-	unit->health = unit->health - damage;
+	unit.health = unit.health - damage;
 }
 
 bool Crush::Equal(const MagicPtr& magic)const
