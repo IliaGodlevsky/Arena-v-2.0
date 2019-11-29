@@ -1,6 +1,12 @@
 #include "SpellsOnMe.h"
 #include "Unit.h"
 
+SpellsOnMe::SpellsOnMe(Unit* unit)
+	: unit(unit)
+{
+
+}
+
 void SpellsOnMe::TakeOfExpired(int round)
 {
 	for (size_t i = 0; i < size(); i++)
@@ -40,11 +46,6 @@ void SpellsOnMe::Expire(size_t spell_index)
 	}
 }
 
-void SpellsOnMe::TakeUnitToControl(Unit* unit)
-{
-	this->unit = unit;
-}
-
 void SpellsOnMe::ExpireAllSpells()
 {
 	for (size_t i = 0; i < size(); i++)
@@ -52,4 +53,16 @@ void SpellsOnMe::ExpireAllSpells()
 		Expire(i);
 		i--;
 	}
+}
+
+void SpellsOnMe::ShowFullInfo()const
+{
+	for (size_t i = 0; i < size(); i++)
+		operator[](i)->ShowFullInfo();
+}
+
+void SpellsOnMe::ShowShortInfo()const
+{
+	for (size_t i = 0; i < size(); i++)
+		operator[](i)->ShowShortInfo();
 }

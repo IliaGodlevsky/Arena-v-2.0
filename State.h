@@ -3,8 +3,6 @@
 #ifndef STATE_H_
 #define STATE_H_
 
-#include <set>
-
 #include "Globals.h"
 
 
@@ -22,8 +20,8 @@ public:
 	virtual void SetStartTime(int round)final;
 	virtual bool IsExpired(int round)const final;
 public:
-	virtual bool operator <(const UnitState* state)const final;
-	virtual bool operator>(const UnitState* state)const final;
+	virtual bool operator <(const UnitState& state)const final;
+	virtual bool operator>(const UnitState& state)const final;
 protected:
 	Durationmeter durationmeter;
 	Decision* decision;
@@ -72,15 +70,17 @@ private:
 class StateHolder
 {
 public:
+	StateHolder();
 	void RecieveNewState(UnitState* state);
 	Unit* ChooseUnitToAttack(const Unit& deciding_unit)const;
 	MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const;
 	Unit* ChooseUnitToCast(const Unit& deciding_unit,
 		const MagicPtr& magic_to_spell)const;
-	void RecieveNewState(UnitState* state, Decision* decision);
 	void TakeOfExpired(int round);
+	void ExpireAllStates();
 	~StateHolder();
 private:
-	std::set<UnitState*> unit_states;
+	std::vector<UnitState*> unit_states;
+	ActiveState* active_state;
 };
 #endif

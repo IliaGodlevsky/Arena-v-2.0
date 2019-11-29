@@ -18,6 +18,7 @@ public:
 	void TakeOfLosers();
 	bool GameOver()const;
 	void GameCycle();
+	void ShowUnits()const;
 	~Arena();
 private:
 	int SetNumberOfUnits()const;

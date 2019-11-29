@@ -29,8 +29,7 @@ void Shield::ShowFullInfo()const
 
 bool Shield::Reflect()const
 {
-	const int MAX_PROPABILITY = 100;
-	return randomNumber(MAX_PROPABILITY) <= reflect_chance;
+	return PosibilityCounter(reflect_chance).IsChance();
 }
 
 

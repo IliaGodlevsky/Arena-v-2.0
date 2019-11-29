@@ -5,6 +5,7 @@
 
 #include "Armor.h"
 #include "Vitals.h"
+#include "PosibilityCounter.h"
 
 class Shield : public Armor
 {

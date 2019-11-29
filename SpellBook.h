@@ -8,7 +8,7 @@
 class SpellBook : public Spells
 {
 public:
-	SpellBook(Unit& unit);
+	SpellBook(Unit* unit);
 	bool CanCastAnySpell()const;
 	void ShowFullInfo()const;
 	void ShowShortInfo()const;

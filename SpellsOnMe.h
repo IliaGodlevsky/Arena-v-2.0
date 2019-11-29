@@ -8,11 +8,11 @@
 class SpellsOnMe : public Spells
 {
 public:
+	SpellsOnMe(Unit* unit);
 	void TakeOfExpired(int round);
 	size_t HaveSpell(const MagicPtr& spell)const;
 	void Expire(size_t spell_index);
 	void ExpireAllSpells();
-	void TakeUnitToControl(Unit* unit);
 	void TakeSpell(MagicPtr&& magic);
 	void ShowFullInfo()const;
 	void ShowShortInfo()const;

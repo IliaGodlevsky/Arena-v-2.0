@@ -5,9 +5,13 @@
 #include "Arena.h"
 
 Unit::Unit(std::string name, Decision* decision)
-	: damage(0), armor(0),
-	spell_book(*this), name(name),
-	level(*this)
+	: damage(0), 
+	armor(0),
+	spell_book(this), 
+	name(name),
+	level(this),
+	on_me(this), 
+	decision(decision)
 {
 
 }
@@ -29,7 +33,8 @@ bool Unit::IsAlive()const
 
 void Unit::RecieveNewState(UnitState* state)
 {
-	this->state.RecieveNewState(state, decision);
+	state->RecieveDecision(decision);
+	this->state.RecieveNewState(state);
 }
 
 void Unit::Scan()

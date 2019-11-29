@@ -2,6 +2,7 @@
 #define WEAPON_MAGIC_H_
 
 #include "Magic.h"
+#include "PosibilityCounter.h"
 
 class WeaponMagic : public Magic
 {
@@ -44,7 +45,9 @@ public:
 	virtual MagicPtr Clone()const override;
 	virtual bool IsBuff()const;
 	virtual bool Equal(const MagicPtr& magic)const;
+	virtual void ShowFullInfo()const;
 protected:
+	virtual void Data()const;
 	virtual void PutOn(Unit& unit)const;
 protected:
 	int damage;

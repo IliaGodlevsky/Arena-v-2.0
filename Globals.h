@@ -18,5 +18,4 @@ int input(const std::string& message, int upper, int lower);
 bool error(int choice, int upper, int lower);
 void eatline();
 
-int randomNumber(int maxRange, int minRange = 0);
 #endif

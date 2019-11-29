@@ -8,15 +8,14 @@
 class Level
 {
 public:
-	Level(Unit& unit);
+	Level(Unit* unit);
 	Level operator++(int i);
-	void ShowFullInfo()const;
-	void ShowShortInfo()const;
+	operator int()const;
 private:
 	enum { MAX_LVL = 5 };
 	enum
 	{
-		HP_PER_LEVEL = 15,
+		HP_PER_LVL = 15,
 		MP_PER_LVL = 10,
 		HP_REGEN_PER_LVL = 2,
 		MP_REGEN_PER_LVL = 2,

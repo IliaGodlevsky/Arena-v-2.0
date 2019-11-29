@@ -33,7 +33,6 @@ public:
 	Unit* ChooseUnitToCast(const Unit& deciding_unit, 
 		const MagicPtr& magic_to_spell)const;
 private:
-	void ShowUnits()const;
 	bool WrongSpellToCast(const Unit& caster, const Unit& aim,
 		const MagicPtr& spell)const;
 private:
