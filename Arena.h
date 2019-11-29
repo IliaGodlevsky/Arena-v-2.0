@@ -16,9 +16,14 @@ public:
 	Arena& operator=(const Arena&) = delete;
 	Arena& operator=(Arena&&) = delete;
 	void TakeOfLosers();
-	bool GameOver()const;
-	void GameCycle();
 	void ShowUnits()const;
+public:
+	bool GameOver()const;
+	void Scan();
+	void CastStep();
+	void AttackStep();
+	void RewardKiller();
+	void NextPlayer();
 	~Arena();
 private:
 	int SetNumberOfUnits()const;
@@ -37,6 +42,11 @@ private:
 	const int MIN_PLAYERS = 2;
 	const int MAX_PLAYERS = 5;
 	static int round;
+private:
+	Unit* unit_to_attack = nullptr;
+	Unit* unit_to_cast = nullptr;
+	MagicPtr magic_to_spell = nullptr;
+	size_t player_index_number = 0;
 };
 
 #endif

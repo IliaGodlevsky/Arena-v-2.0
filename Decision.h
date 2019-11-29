@@ -13,13 +13,13 @@ public:
 	virtual Unit* ChooseUnitToAttack(const Unit&)const = 0;
 	virtual MagicPtr ChooseMagicToCast(const Unit&)const = 0;
 	virtual Unit* ChooseUnitToCast(const Unit&, const MagicPtr&)const = 0;
+	virtual ~Decision() = default;
 protected:
 	virtual bool SameUnit(const Unit&, const Unit&)const final;
 	virtual bool CanCastBuff(const Unit& caster, const Unit& aim, 
 		const MagicPtr& spell)const;
 	virtual bool CanCastDebuff(const Unit& caster, const Unit& aim, 
 		const MagicPtr& spell)const;
-	virtual ~Decision() = default;
 protected:
 	const std::vector<Unit*> arena;
 };

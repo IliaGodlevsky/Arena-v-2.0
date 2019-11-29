@@ -111,3 +111,8 @@ void Unit::ShowFullInfo()const
 {
 
 }
+
+Unit::~Unit()
+{
+	delete decision;
+}

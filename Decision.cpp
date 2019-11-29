@@ -72,9 +72,11 @@ HumanDecision::HumanDecision(const std::vector<Unit*>& arena)
 Unit* HumanDecision::ChooseUnitToAttack(const Unit& deciding_unit)const
 {
 	int unit_number = input(UNIT_TO_ATTACK_CHOOSE, arena.size() - 1, 0);
-	ShowUnits();
 	while (SameUnit(*arena[unit_number], deciding_unit))
+	{
+		std::cout << "You can't attack yourselt\n";
 		unit_number = input(UNIT_TO_ATTACK_CHOOSE, arena.size() - 1, 0);
+	}
 	return arena[unit_number];
 }
 
@@ -91,7 +93,10 @@ Unit* HumanDecision::ChooseUnitToCast(const Unit& deciding_unit,
 {
 	int unit_to_cast = input(UNIT_TO_CAST_CHOOSE, arena.size() - 1, 0);
 	while (WrongSpellToCast(deciding_unit, *arena[unit_to_cast], magic_to_spell))
+	{
+		std::cout << "You can't use this spell on this unit\n";
 		unit_to_cast = input(UNIT_TO_CAST_CHOOSE, arena.size() - 1, 0);
+	}
 	return arena[unit_to_cast];
 }
 

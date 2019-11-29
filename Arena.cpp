@@ -20,7 +20,7 @@ void Arena::FillSpells()
 
 void Arena::FillArmory()
 {
-	armors.push_back(new WizardCloak(3, { 4,4,0 }));
+	
 }
 
 int Arena::CurrentRound()
@@ -51,31 +51,39 @@ bool Arena::GameOver()const
 	return arena.size() == 1;
 }
 
-void Arena::GameCycle()
+void Arena::CastStep()
 {
-	Unit* unit_to_attack = nullptr;
-	Unit* unit_to_cast = nullptr;
-	MagicPtr magic_to_spell = nullptr;
-	size_t player_index_number = 0;
-	while(!GameOver())
+	ShowUnits();
+	magic_to_spell = arena[player_index_number]->ChooseMagicToCast();
+	unit_to_cast = arena[player_index_number]->ChooseUnitToCast(magic_to_spell);
+	arena[player_index_number]->Spell(*unit_to_cast, magic_to_spell);
+}
+
+void Arena::AttackStep()
+{
+	ShowUnits();
+	unit_to_attack = arena[player_index_number]->ChooseUnitToAttack();
+	arena[player_index_number]->Injure(*unit_to_attack);
+}
+
+void Arena::RewardKiller()
+{
+	if (!unit_to_cast->IsAlive())
+		arena[player_index_number]->LevelUp();
+}
+
+void Arena::NextPlayer()
+{
+	player_index_number++;
+	if (player_index_number >= arena.size())
 	{
-		for (size_t i = 0; i < arena.size(); i++)
-			arena[i]->Scan();
-		arena[player_index_number]->ShowFullInfo();
-		magic_to_spell = arena[player_index_number]->ChooseMagicToCast();
-		unit_to_cast = arena[player_index_number]->ChooseUnitToCast(magic_to_spell);
-		arena[player_index_number]->Spell(*unit_to_cast, magic_to_spell);
-		if (!unit_to_cast->IsAlive())
-			arena[player_index_number]->LevelUp();
-		TakeOfLosers();
-		unit_to_attack = arena[player_index_number]->ChooseUnitToAttack();
-		arena[player_index_number]->Injure(*unit_to_attack);
-		if (!unit_to_cast->IsAlive())
-			arena[player_index_number]->LevelUp();
-		TakeOfLosers();
+		player_index_number = 0;
 		round++;
-		player_index_number++;
-		if (player_index_number >= arena.size())
-			player_index_number = 0;
 	}
+}
+
+void Arena::Scan()
+{
+	for (size_t i = 0; i < arena.size(); i++)
+		arena[i]->Scan();
 }

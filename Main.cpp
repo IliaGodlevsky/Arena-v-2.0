@@ -12,5 +12,15 @@
 int main()
 {
 	Arena& arena = Arena::GetInstance();
-	arena.GameCycle();
+	while (!arena.GameOver())
+	{
+		arena.Scan();
+		arena.CastStep();
+		arena.RewardKiller();
+		arena.TakeOfLosers();
+		arena.AttackStep();
+		arena.RewardKiller();
+		arena.TakeOfLosers();
+		arena.NextPlayer();
+	}
 }
