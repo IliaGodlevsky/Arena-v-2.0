@@ -18,4 +18,6 @@ int input(const std::string& message, int upper, int lower);
 bool error(int choice, int upper, int lower);
 void eatline();
 
+inline int randomIndex(int arraySize);
+
 #endif

@@ -8,7 +8,7 @@ PosibilityCounter::PosibilityCounter(int posibility)
 
 }
 
-bool PosibilityCounter::IsChance()const
+PosibilityCounter::operator bool()const
 {
 	std::random_device seed;
 	std::mt19937 generator(seed());

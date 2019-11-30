@@ -8,7 +8,7 @@
 class Armor
 {
 public:
-	explicit Armor(std::string name, int armor);
+	Armor(std::string name, int armor);
 	virtual void PutOn(Unit& unit)const;
 	virtual void PutOff(Unit& unit)const;
 	virtual ~Armor() = default;

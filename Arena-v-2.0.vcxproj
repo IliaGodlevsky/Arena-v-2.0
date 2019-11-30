@@ -27,6 +27,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Magic.h" />
+    <ClInclude Include="MagicFactory.h" />
     <ClInclude Include="PosibilityCounter.h" />
     <ClInclude Include="Sheild.h" />
     <ClInclude Include="SpellBook.h" />
@@ -45,6 +46,7 @@
     <ClCompile Include="Durationmeter.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Magic.cpp" />
+    <ClCompile Include="MagicFactory.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PosibilityCounter.cpp" />
     <ClCompile Include="Shield.cpp" />

@@ -12,6 +12,7 @@ public:
 	bool CanCastAnySpell()const;
 	void ShowFullInfo()const;
 	void ShowShortInfo()const;
+	void TakeMagic(const MagicPtr& magic);
 private:
 	Unit* unit;
 };

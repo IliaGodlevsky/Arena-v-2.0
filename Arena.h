@@ -4,49 +4,48 @@
 #define ARENA_H_
 
 #include "Unit.h"
+#include "MagicFactory.h"
 
 // Singleton
 class Arena
 {
 public:
-	static int CurrentRound();
-	static Arena& GetInstance();
+	static int currentRound();
+	static Arena& getInstance();
 	Arena(const Arena&) = delete;
 	Arena(Arena&&) = delete;
 	Arena& operator=(const Arena&) = delete;
 	Arena& operator=(Arena&&) = delete;
-	void TakeOfLosers();
-	void ShowUnits()const;
+	void takeOfLosers();
+	void showUnits()const;
 public:
-	bool GameOver()const;
-	void Scan();
-	void CastStep();
-	void AttackStep();
-	void RewardKiller();
-	void NextPlayer();
+	bool gameOver()const;
+	void scan();
+	void castStep();
+	void attackStep();
+	void rewardKiller();
+	void nextPlayer();
 	~Arena();
-private:
-	int SetNumberOfUnits()const;
-	void SetArenaConsistance();
-	void FillWeaponary();
-	void FillArmory();
-	void FillSpells();
+public:
+	int setNumberOfUnits()const;
 	Arena();
+private:
+	void giveOutSpells();
 private: // vectors
-	std::vector<Weapon*> weapons;
-	std::vector<Armor*> armors;
-	std::vector<Shield*> shields;
-	std::vector<MagicPtr> spells;
-	std::vector<Unit*> arena;
+	std::vector<Weapon*> weapons_;
+	std::vector<Armor*> armors_;
+	std::vector<Shield*> shields_;
+	std::vector<Unit*> arena_;
 private:
-	const int MIN_PLAYERS = 2;
-	const int MAX_PLAYERS = 5;
-	static int round;
+	const int MIN_PLAYERS_ = 2;
+	const int MAX_PLAYERS_ = 5;
+	static int round_;
 private:
-	Unit* unit_to_attack = nullptr;
-	Unit* unit_to_cast = nullptr;
-	MagicPtr magic_to_spell = nullptr;
-	size_t player_index_number = 0;
+	BuffFactory buffFactory;
+	Unit* unitToAttack_ = nullptr;
+	Unit* unitToCast_ = nullptr;
+	MagicPtr magicToSpell_ = nullptr;
+	size_t indexNumber_ = 0;
 };
 
 #endif

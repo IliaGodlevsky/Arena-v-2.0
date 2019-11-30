@@ -1,89 +1,99 @@
+#include <iostream>
+#include <ctime>
+
 #include "Arena.h"
 
-Arena::Arena()
+Arena::Arena() :
+	buffFactory({ new DamageBuffFactory(),new ArmorBuffFactory(),
+		new ArmorAndDamageBuffFactory(), new OffsetDamageBuffFactory() })
 {
-	arena.resize(SetNumberOfUnits());
-	SetArenaConsistance();
-	FillArmory();
-	FillSpells();
-	FillSpells();
-	// enter code with choosing magic and units
+	std::srand(std::time(nullptr));
+	arena_.resize(setNumberOfUnits());
 }
 
-void Arena::FillSpells()
+void Arena::giveOutSpells()
 {
-	spells.push_back(MagicPtr(new ArmorBuff		("Stone skin", 10, 2, 2)));
-	spells.push_back(MagicPtr(new DamageBuff	("Rage", 10, 2, 5)));
-	spells.push_back(MagicPtr(new ArmorDebuff	("Corruption", 12, 2, 2)));
-	spells.push_back(MagicPtr(new DamageDebuff	("Weakness", 12, 2, 5)));
+	for (size_t i = 0; i < arena_.size(); i++)
+		arena_[i]->spell_book.TakeMagic(buffFactory.createMagic());
 }
 
-void Arena::FillArmory()
+
+int Arena::setNumberOfUnits()const
 {
-	
+	return input("Set number of players: ",
+		MAX_PLAYERS_, MIN_PLAYERS_);
 }
 
-int Arena::CurrentRound()
+int Arena::currentRound()
 {
-	return round;
+	return round_;
 }
 
-Arena& Arena::GetInstance()
+Arena& Arena::getInstance()
 {
 	static Arena instance;
 	return instance;
 }
 
-void Arena::TakeOfLosers()
+void Arena::showUnits()const
 {
-	for (size_t i = 0; i < arena.size(); i++)
+	for (size_t i = 0; i < arena_.size(); i++)
 	{
-		if (!arena[i]->IsAlive())
+		std::cout << i + 1 << ". ";
+		arena_[i]->ShowFullInfo();
+	}
+}
+
+void Arena::takeOfLosers()
+{
+	for (size_t i = 0; i < arena_.size(); i++)
+	{
+		if (!arena_[i]->IsAlive())
 		{
-			arena.erase(arena.begin() + i);
+			arena_.erase(arena_.begin() + i);
 			i--;
 		}
 	}
 }
 
-bool Arena::GameOver()const
+bool Arena::gameOver()const
 {
-	return arena.size() == 1;
+	return arena_.size() == 1;
 }
 
-void Arena::CastStep()
+void Arena::castStep()
 {
-	ShowUnits();
-	magic_to_spell = arena[player_index_number]->ChooseMagicToCast();
-	unit_to_cast = arena[player_index_number]->ChooseUnitToCast(magic_to_spell);
-	arena[player_index_number]->Spell(*unit_to_cast, magic_to_spell);
+	showUnits();
+	magicToSpell_ = arena_[indexNumber_]->ChooseMagicToCast();
+	unitToCast_ = arena_[indexNumber_]->ChooseUnitToCast(magicToSpell_);
+	arena_[indexNumber_]->Spell(*unitToCast_, magicToSpell_);
 }
 
-void Arena::AttackStep()
+void Arena::attackStep()
 {
-	ShowUnits();
-	unit_to_attack = arena[player_index_number]->ChooseUnitToAttack();
-	arena[player_index_number]->Injure(*unit_to_attack);
+	showUnits();
+	unitToAttack_ = arena_[indexNumber_]->ChooseUnitToAttack();
+	arena_[indexNumber_]->Injure(*unitToAttack_);
 }
 
-void Arena::RewardKiller()
+void Arena::rewardKiller()
 {
-	if (!unit_to_cast->IsAlive())
-		arena[player_index_number]->LevelUp();
+	if (!unitToCast_->IsAlive())
+		arena_[indexNumber_]->LevelUp();
 }
 
-void Arena::NextPlayer()
+void Arena::nextPlayer()
 {
-	player_index_number++;
-	if (player_index_number >= arena.size())
+	indexNumber_++;
+	if (indexNumber_ >= arena_.size())
 	{
-		player_index_number = 0;
-		round++;
+		indexNumber_ = 0;
+		round_++;
 	}
 }
 
-void Arena::Scan()
+void Arena::scan()
 {
-	for (size_t i = 0; i < arena.size(); i++)
-		arena[i]->Scan();
+	for (size_t i = 0; i < arena_.size(); i++)
+		arena_[i]->Scan();
 }

@@ -9,18 +9,19 @@
 #include "Weapon.h"
 #include "WeaponMagic.h"
 
+// TODO: create namespace
 int main()
 {
-	Arena& arena = Arena::GetInstance();
-	while (!arena.GameOver())
+	Arena& arena = Arena::getInstance();
+	while (!arena.gameOver())
 	{
-		arena.Scan();
-		arena.CastStep();
-		arena.RewardKiller();
-		arena.TakeOfLosers();
-		arena.AttackStep();
-		arena.RewardKiller();
-		arena.TakeOfLosers();
-		arena.NextPlayer();
+		arena.scan();
+		arena.castStep();
+		arena.rewardKiller();
+		arena.takeOfLosers();
+		arena.attackStep();
+		arena.rewardKiller();
+		arena.takeOfLosers();
+		arena.nextPlayer();
 	}
 }

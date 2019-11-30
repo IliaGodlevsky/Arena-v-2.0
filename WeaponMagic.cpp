@@ -14,7 +14,7 @@ WeaponMagic::~WeaponMagic() {}
 
 bool WeaponMagic::IsCasted()const
 {
-	return PosibilityCounter(propability).IsChance();
+	return PosibilityCounter(propability);
 }
 
 void WeaponMagic::ShowFullInfo()const

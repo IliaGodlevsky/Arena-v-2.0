@@ -30,3 +30,9 @@ void SpellBook::ShowShortInfo()const
 	for (size_t i = 0; i < size(); i++)
 		operator[](i)->ShowShortInfo();
 }
+
+void SpellBook::TakeMagic(const MagicPtr& magic)
+{
+	if (nullptr != magic)
+		push_back(magic->Clone());
+}

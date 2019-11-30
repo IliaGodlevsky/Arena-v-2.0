@@ -7,7 +7,7 @@ class PosibilityCounter
 {
 public:
 	PosibilityCounter(int posibility);
-	bool IsChance()const;
+	operator bool()const;
 private:
 	static const int MAX_PROPABILITY = 100;
 	int posibility;

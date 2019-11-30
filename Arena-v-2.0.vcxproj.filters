@@ -60,6 +60,9 @@
     <Filter Include="PosibilityCounter">
       <UniqueIdentifier>{2941f3b6-2241-4985-9887-1ec54e3bb6fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{f9618809-bc21-49be-8d7f-4af83a13cc57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Magic.h">
@@ -110,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="PosibilityCounter.h">
       <Filter>PosibilityCounter</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicFactory.h">
+      <Filter>Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="PosibilityCounter.cpp">
       <Filter>PosibilityCounter</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicFactory.cpp">
+      <Filter>Factory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
