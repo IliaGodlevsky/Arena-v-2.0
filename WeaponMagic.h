@@ -53,4 +53,5 @@ protected:
 	int damage;
 };
 
+
 #endif

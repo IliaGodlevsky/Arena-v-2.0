@@ -5,7 +5,7 @@ class Vitals
 {
 public:
 	Vitals(int value, int max_value,
-		int value_regeneration);
+		int value_regeneration = 0);
 	Vitals() = default;
 	Vitals(const Vitals&) = default;
 	Vitals(Vitals&&) = default;

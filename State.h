@@ -4,7 +4,7 @@
 #define STATE_H_
 
 #include "Globals.h"
-
+#include "Durationmeter.h"
 
 class UnitState
 {
@@ -21,7 +21,7 @@ public:
 	virtual bool IsExpired(int round)const final;
 public:
 	virtual bool operator <(const UnitState& state)const final;
-	virtual bool operator>(const UnitState& state)const final;
+	virtual bool operator >(const UnitState& state)const final;
 protected:
 	Durationmeter durationmeter;
 	Decision* decision;
@@ -52,35 +52,20 @@ public:
 	Unit* ChooseUnitToCast(const Unit& deciding_unit,
 		const MagicPtr& magic_to_spell)const;
 private:
-	StateValue Value()const;
+	StateValue Value()const { return UnitState::MUTED_STATE; }
 };
 
 class StunState : public UnitState
 {
 public:
-	StunState(int duration);
+	StunState(int duration) : UnitState(duration) {}
 	Unit* ChooseUnitToAttack(const Unit& deciding_unit)const;
 	MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const;
 	Unit* ChooseUnitToCast(const Unit& deciding_unit,
 		const MagicPtr& magic_to_spell)const;
 private:
-	StateValue value()const;
+	StateValue value()const { return UnitState::STUNNED_STATE; }
 };
 
-class StateHolder
-{
-public:
-	StateHolder();
-	void RecieveNewState(UnitState* state);
-	Unit* ChooseUnitToAttack(const Unit& deciding_unit)const;
-	MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const;
-	Unit* ChooseUnitToCast(const Unit& deciding_unit,
-		const MagicPtr& magic_to_spell)const;
-	void TakeOfExpired(int round);
-	void ExpireAllStates();
-	~StateHolder();
-private:
-	std::vector<UnitState*> unit_states;
-	ActiveState* active_state;
-};
+
 #endif

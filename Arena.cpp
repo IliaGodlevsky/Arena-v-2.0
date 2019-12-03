@@ -2,19 +2,29 @@
 #include <ctime>
 
 #include "Arena.h"
+#include "MagicFactory.h"
+#include "WeaponFactory.h"
+#include "ArmorFactory.h"
+
+int Arena::round_ = 0;
 
 Arena::Arena() :
-	buffFactory({ new DamageBuffFactory(),new ArmorBuffFactory(),
-		new ArmorAndDamageBuffFactory(), new OffsetDamageBuffFactory() })
+	spellFactory({ new DamageBuffFactory(),new ArmorBuffFactory(),
+		new ArmorAndDamageBuffFactory(), new OffsetDamageBuffFactory() }),
+	weaponFactory({ new SwordFactory(),new AxeFactory() }),
+	armorFactory({ new ArmorFactory(),new MailFactory(),
+		new WizardCloakFactory(),new LegionerChainsFactory() })
 {
 	std::srand(std::time(nullptr));
 	arena_.resize(setNumberOfUnits());
+	// Give items to units
+	// Give units names
 }
 
 void Arena::giveOutSpells()
 {
 	for (size_t i = 0; i < arena_.size(); i++)
-		arena_[i]->spell_book.TakeMagic(buffFactory.createMagic());
+		arena_[i]->spell_book.TakeMagic(spellFactory.createItemFromFactory());
 }
 
 

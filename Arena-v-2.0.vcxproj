@@ -19,11 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AllSpellsFactory.h" />
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Armor.h" />
+    <ClInclude Include="ArmorFactory.h" />
     <ClInclude Include="Battles.h" />
     <ClInclude Include="Decision.h" />
     <ClInclude Include="Durationmeter.h" />
+    <ClInclude Include="Factory.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Magic.h" />
@@ -33,14 +36,17 @@
     <ClInclude Include="SpellBook.h" />
     <ClInclude Include="SpellsOnMe.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StateHolder.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Vitals.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WeaponFactory.h" />
     <ClInclude Include="WeaponMagic.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arena.cpp" />
     <ClCompile Include="Armor.cpp" />
+    <ClCompile Include="ArmorFactory.cpp" />
     <ClCompile Include="Battles.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="Durationmeter.cpp" />
@@ -53,9 +59,11 @@
     <ClCompile Include="SpellBook.cpp" />
     <ClCompile Include="SpellsOnMe.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateHolder.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Vitals.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WeaponFactory.cpp" />
     <ClCompile Include="WeaponMagic.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

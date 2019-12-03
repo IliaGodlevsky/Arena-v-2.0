@@ -69,8 +69,16 @@ HumanDecision::HumanDecision(const std::vector<Unit*>& arena)
 
 }
 
+void HumanDecision::showUnits()const
+{
+	for (size_t i = 0; i < arena.size(); i++)
+		arena[i]->ShowFullInfo();
+}
+
 Unit* HumanDecision::ChooseUnitToAttack(const Unit& deciding_unit)const
 {
+	std::cout << deciding_unit.Name() << " choose unit to attack\n";
+	showUnits();
 	int unit_number = input(UNIT_TO_ATTACK_CHOOSE, arena.size() - 1, 0);
 	while (SameUnit(*arena[unit_number], deciding_unit))
 	{
@@ -82,6 +90,9 @@ Unit* HumanDecision::ChooseUnitToAttack(const Unit& deciding_unit)const
 
 MagicPtr HumanDecision::ChooseMagicToCast(const Unit& deciding_unit)const
 {
+	std::cout << deciding_unit.Name() << " choose spell to cast\n";
+	showUnits();
+	deciding_unit.spell_book.ShowShortInfo();
 	int magic_to_spell = input(MAGIC_CHOOSE, 
 		deciding_unit.spell_book.size(), 0);
 	return MagicPtr(deciding_unit.
@@ -91,6 +102,8 @@ MagicPtr HumanDecision::ChooseMagicToCast(const Unit& deciding_unit)const
 Unit* HumanDecision::ChooseUnitToCast(const Unit& deciding_unit, 
 	const MagicPtr& magic_to_spell)const
 {
+	std::cout << deciding_unit.Name() << " choose unit to cast\n";
+	showUnits();
 	int unit_to_cast = input(UNIT_TO_CAST_CHOOSE, arena.size() - 1, 0);
 	while (WrongSpellToCast(deciding_unit, *arena[unit_to_cast], magic_to_spell))
 	{

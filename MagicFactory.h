@@ -4,23 +4,10 @@
 #define MAGIC_FACTORY
 
 #include <initializer_list>
-#include <valarray>
 
-#include "Globals.h"
+#include "Factory.h"
 
-class MagicFactory
-{
-public:
-	MagicFactory();
-	virtual MagicPtr createMagic()final;
-	virtual int chance()const = 0;
-	virtual ~MagicFactory() = default;
-protected:
-	std::vector<MagicPtr> spells;
-	int buffsGaved = 0;
-};
-
-class DamageBuffFactory : public MagicFactory
+class DamageBuffFactory : public Factory<MagicPtr>
 {
 public:
 	DamageBuffFactory();
@@ -35,7 +22,7 @@ private:
 	};
 };
 
-class ArmorBuffFactory : public MagicFactory
+class ArmorBuffFactory : public Factory<MagicPtr>
 {
 public:
 	ArmorBuffFactory();
@@ -50,7 +37,7 @@ private:
 	};
 };
 
-class ArmorAndDamageBuffFactory : public MagicFactory
+class ArmorAndDamageBuffFactory : public Factory<MagicPtr>
 {
 public:
 	ArmorAndDamageBuffFactory();
@@ -65,7 +52,7 @@ private:
 	};
 };
 
-class OffsetDamageBuffFactory : public MagicFactory
+class OffsetDamageBuffFactory : public Factory<MagicPtr>
 {
 public:
 	OffsetDamageBuffFactory();
@@ -78,21 +65,5 @@ private:
 		BERSERK_AMPLIFY_DAMAGE = 8, BERSERK_REDUCE_ARMOR = 2, BERSERK_MANA_COST = 15, BERSERK_DURATION = 2,
 		RAGE_AMPLIFY_DAMAGE = 11, RAGE_REDUCE_ARMOR = 4, RAGE_MANA_COST = 25, RAGE_DURATION = 2
 	};
-};
-
-class BuffFactory
-{
-public:
-	BuffFactory(std::initializer_list<MagicFactory*> factList);
-	MagicPtr createMagic();
-	~BuffFactory();
-private:
-	int transformChanceToIndex(int chance)const;
-	bool inBounds(int lower, int upper, int chance)const;
-	int chance(int lowerBound, int upperBound)const;
-private:
-	int totalChances_ = 0;
-	std::vector<int> chances_;
-	std::vector<MagicFactory*> factories_;
 };
 #endif

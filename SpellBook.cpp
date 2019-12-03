@@ -34,5 +34,5 @@ void SpellBook::ShowShortInfo()const
 void SpellBook::TakeMagic(const MagicPtr& magic)
 {
 	if (nullptr != magic)
-		push_back(magic->Clone());
+		push_back(MagicPtr(magic->Clone()));
 }

@@ -13,7 +13,7 @@ public:
 	size_t HaveSpell(const MagicPtr& spell)const;
 	void Expire(size_t spell_index);
 	void ExpireAllSpells();
-	void TakeSpell(MagicPtr&& magic);
+	void TakeSpell(const MagicPtr& magic);
 	void ShowFullInfo()const;
 	void ShowShortInfo()const;
 private:

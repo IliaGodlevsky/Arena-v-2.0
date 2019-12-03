@@ -29,7 +29,7 @@ void Shield::ShowFullInfo()const
 
 bool Shield::Reflect()const
 {
-	return PosibilityCounter(reflect_chance).IsChance();
+	return PosibilityCounter(reflect_chance);
 }
 
 

@@ -35,6 +35,7 @@ public:
 private:
 	bool WrongSpellToCast(const Unit& caster, const Unit& aim,
 		const MagicPtr& spell)const;
+	void showUnits()const;
 private:
 	const std::string UNIT_TO_ATTACK_CHOOSE = "Choose unit to attack: ";
 	const std::string MAGIC_CHOOSE = "Choose magic: ";

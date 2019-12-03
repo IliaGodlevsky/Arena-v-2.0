@@ -20,13 +20,13 @@ void SpellsOnMe::TakeOfExpired(int round)
 	}
 }
 
-void SpellsOnMe::TakeSpell(MagicPtr&& magic)
+void SpellsOnMe::TakeSpell(const MagicPtr& magic)
 {
 	// number of spell that must be deleted 
 	// from the spells that are on unit
 	size_t del = unit->on_me.HaveSpell(magic);
 	unit->on_me.Expire(del);
-	push_back(magic);
+	push_back(MagicPtr(magic->Clone()));
 }
 
 size_t SpellsOnMe::HaveSpell(const MagicPtr& spell)const

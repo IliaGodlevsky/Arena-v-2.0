@@ -20,7 +20,7 @@ Magic::~Magic() {}
 
 void Magic::Effect(Unit& unit)
 {
-	SetStartTime(Arena::CurrentRound());
+	SetStartTime(Arena::currentRound());
 	unit.on_me.TakeSpell(Clone());
 }
 
@@ -747,7 +747,7 @@ bool Dispel::IsBuff()const
 
 bool Dispel::Equal(const MagicPtr& magic)const
 {
-
+	return true;
 }
 
 void Dispel::ShowFullInfo()const

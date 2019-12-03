@@ -2,7 +2,7 @@
 #define WEAPON_H_
 
 #include "Globals.h"
-
+#include "WeaponMagic.h"
 #include "Battles.h"
 
 class Weapon
@@ -27,7 +27,7 @@ protected:
 class Sword : public Weapon
 {
 public:
-	Sword(std::string name, int damage);
+	Sword(std::string name, int damage, Degenerate* spell);
 	Sword(const Sword& sword);
 	Sword& operator=(const Sword& sword);
 	~Sword();
@@ -36,13 +36,13 @@ public:
 protected:
 	int Multiply(int dmg)const;
 private:
-	MagicPtr open_wounds;
+	MagicPtr spell;
 };
 
 class Axe : public Weapon
 {
 public:
-	Axe(std::string name, int damage);
+	Axe(std::string name, int damage, Crush* spell);
 	Axe(const Axe& axe);
 	Axe& operator=(const Axe& axe);
 	~Axe();
@@ -51,7 +51,7 @@ public:
 protected:
 	int Multiply(int dmg)const;
 private:
-	MagicPtr crush;
+	MagicPtr spell;
 };
 
 

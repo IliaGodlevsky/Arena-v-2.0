@@ -41,8 +41,8 @@ void Unit::Scan()
 {
 	health++;
 	mana++;
-	on_me.TakeOfExpired(Arena::CurrentRound());
-	state.TakeOfExpired(Arena::CurrentRound());
+	on_me.TakeOfExpired(Arena::currentRound());
+	state.TakeOfExpired(Arena::currentRound());
 }
 
 bool Unit::EnoughManaFor(const MagicPtr& magic)const
@@ -109,7 +109,7 @@ Unit* Unit::ChooseUnitToCast(const MagicPtr& magic_to_spell)const
 
 void Unit::ShowFullInfo()const
 {
-
+	// must be code here!!
 }
 
 Unit::~Unit()

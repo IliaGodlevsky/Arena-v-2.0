@@ -4,11 +4,14 @@
 #define ARENA_H_
 
 #include "Unit.h"
-#include "MagicFactory.h"
+#include "AllSpellsFactory.h"
 
 // Singleton
 class Arena
 {
+	typedef AllItemFactory<MagicPtr> SpellFactory;
+	typedef AllItemFactory<Weapon*> WeaponFactory;
+	typedef AllItemFactory<Armor*> DefenceFactory;
 public:
 	static int currentRound();
 	static Arena& getInstance();
@@ -41,7 +44,9 @@ private:
 	const int MAX_PLAYERS_ = 5;
 	static int round_;
 private:
-	BuffFactory buffFactory;
+	SpellFactory spellFactory;
+	WeaponFactory weaponFactory;
+	DefenceFactory armorFactory;
 	Unit* unitToAttack_ = nullptr;
 	Unit* unitToCast_ = nullptr;
 	MagicPtr magicToSpell_ = nullptr;

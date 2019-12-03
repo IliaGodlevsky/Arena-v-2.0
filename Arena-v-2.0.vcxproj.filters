@@ -63,6 +63,9 @@
     <Filter Include="Factory">
       <UniqueIdentifier>{f9618809-bc21-49be-8d7f-4af83a13cc57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StateHolder">
+      <UniqueIdentifier>{217fd42b-bbb1-40d3-98ce-1071d8f0ac87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Magic.h">
@@ -92,7 +95,6 @@
     <ClInclude Include="WeaponMagic.h">
       <Filter>Spells\WeaponMagic</Filter>
     </ClInclude>
-    <ClInclude Include="Globals.h" />
     <ClInclude Include="Sheild.h">
       <Filter>Equipment\Shield</Filter>
     </ClInclude>
@@ -116,6 +118,24 @@
     </ClInclude>
     <ClInclude Include="MagicFactory.h">
       <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="AllSpellsFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ArmorFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StateHolder.h">
+      <Filter>StateHolder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +192,15 @@
     </ClCompile>
     <ClCompile Include="MagicFactory.cpp">
       <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponFactory.cpp">
+      <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="ArmorFactory.cpp">
+      <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="StateHolder.cpp">
+      <Filter>StateHolder</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

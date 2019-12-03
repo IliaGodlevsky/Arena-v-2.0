@@ -10,8 +10,6 @@ Weapon::Weapon(std::string name, int damage)
 
 }
 
-Weapon::~Weapon() {}
-
 Weapon::Weapon(const Weapon& weapon)
 	: damage(weapon.damage)
 {
@@ -42,8 +40,8 @@ void Weapon::ShowShortInfo()const
 	std::cout << "<" << name << ">";
 }
 
-Sword::Sword(std::string name, int damage)
-	: Weapon(name,damage), open_wounds(new Degenerate("Open wounds", 2, 4))
+Sword::Sword(std::string name, int damage, Degenerate* spell)
+	: Weapon(name,damage), spell(spell)
 {
 	
 }
@@ -56,12 +54,12 @@ Sword::~Sword()
 void Sword::Injure(Unit& unit, int dmg)const
 {
 	if(unit.TakeDamage(Multiply(damage + dmg)))
-		open_wounds->Effect(unit);
+		spell->Effect(unit);
 }
 
 Sword::Sword(const Sword& sword)
 	: Weapon(sword), 
-	open_wounds(sword.open_wounds->Clone())
+	spell(sword.spell->Clone())
 {
 
 }
@@ -71,7 +69,7 @@ Sword& Sword::operator=(const Sword& sword)
 	if (this == &sword)
 		return *this;
 	Weapon::operator=(sword);
-	open_wounds = MagicPtr(open_wounds->Clone());
+	spell = MagicPtr(spell->Clone());
 	return *this;
 }
 
@@ -83,11 +81,11 @@ int Sword::Multiply(int dmg)const
 void Sword::ShowFullInfo()const
 {
 	Weapon::ShowFullInfo();
-	open_wounds->ShowFullInfo();
+	spell->ShowFullInfo();
 }
 
-Axe::Axe(std::string name, int damage)
-	: Weapon(name, damage), crush(new Crush("Crush", 10))
+Axe::Axe(std::string name, int damage, Crush* spell)
+	: Weapon(name, damage), spell(spell)
 {
 	
 }
@@ -100,11 +98,11 @@ Axe::~Axe()
 void Axe::Injure(Unit& unit, int dmg)const
 {
 	if (unit.TakeDamage(Multiply(damage + dmg)))
-		crush->Effect(unit);
+		spell->Effect(unit);
 }
 
 Axe::Axe(const Axe& axe)
-	: Weapon(axe), crush(axe.crush->Clone())
+	: Weapon(axe), spell(axe.spell->Clone())
 {
 
 }
@@ -114,7 +112,7 @@ Axe& Axe::operator=(const Axe& axe)
 	if (this == &axe)
 		return *this;
 	Weapon::operator=(axe);
-	crush = MagicPtr(axe.crush->Clone());
+	spell = MagicPtr(axe.spell->Clone());
 	return *this;
 }
 
@@ -126,5 +124,5 @@ int Axe::Multiply(int dmg)const
 void Axe::ShowFullInfo()const
 {
 	Weapon::ShowFullInfo();
-	crush->ShowFullInfo();
+	spell->ShowFullInfo();
 }
