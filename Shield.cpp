@@ -1,96 +1,82 @@
 #include <iostream>
 
-#include "Sheild.h"
+#include "Shield.h"
 #include "Unit.h"
 
 Shield::Shield(std::string name, int armor,
-	int reflect_chance)
+	int reflectChance)
 	: Armor(name, armor), 
-	reflect_chance(reflect_chance)
+	m_reflectChance(reflectChance)
 {
 
 }
 
-void Shield::PutOn(Unit& unit)const
+void Shield::showFullInfo()const
 {
-	Armor::PutOn(unit);
+	Armor::showFullInfo();
+	std::cout << "Reflect chance: " << m_reflectChance << std::endl;
 }
 
-void Shield::PutOff(Unit& unit)const
+bool Shield::isReflectChance()const
 {
-	Armor::PutOff(unit);
-}
-
-void Shield::ShowFullInfo()const
-{
-	Armor::ShowFullInfo();
-	std::cout << "Reflect chance: " << reflect_chance << std::endl;
-}
-
-bool Shield::Reflect()const
-{
-	return PosibilityCounter(reflect_chance);
+	return PosibilityCounter(m_reflectChance);
 }
 
 
 
 TowerShield::TowerShield(std::string name, int armor,
-	Vitals health, int reflect_chance)
-	: Shield(name, armor,reflect_chance), health(health)
+	Vitals health, int reflectChance)
+	: Shield(name, armor,reflectChance), m_health(health)
 {
 
 }
 
-void TowerShield::PutOn(Unit& unit)const
+void TowerShield::putOn(Unit& unit)const
 {
-	Shield::PutOn(unit);
-	unit.health = unit.health + health;
+	Armor::putOn(unit);
+	unit.m_health = unit.m_health + this->m_health;
 }
 
-void TowerShield::PutOff(Unit& unit)const
+void TowerShield::putOff(Unit& unit)const
 {
-	Shield::PutOff(unit);
-	unit.health = unit.health - health;
+	Armor::putOff(unit);
+	unit.m_health = unit.m_health - this->m_health;
 }
 
-void TowerShield::ShowFullInfo()const
+void TowerShield::showFullInfo()const
 {
-	Shield::ShowFullInfo();
-	std::cout << "Health add: " << health << std::endl;
+	Shield::showFullInfo();
+	std::cout << "Health add: " << this->m_health << std::endl;
 }
 
 
-LegionShield::LegionShield(
-	std::string name, 
-	int armor,
-	Vitals health,
-	Vitals mana, 
-	int reflcet_chance)
-	: Shield(name, armor, reflcet_chance), 
-	health(health),
-	mana(mana)
+LegionShield::LegionShield( std::string name, 
+	int armor, Vitals health,Vitals mana, int reflectChance)
+	: Shield(name, armor, reflectChance),
+	m_health(health),
+	m_mana(mana)
 {
 
 }
 
-void LegionShield::PutOn(Unit& unit)const
+void LegionShield::putOn(Unit& unit)const
 {
-	Shield::PutOn(unit);
-	unit.health = unit.health + health;
-	unit.mana = unit.mana + health;
+	Armor::putOn(unit);
+	unit.m_health = unit.m_health + this->m_health;
+	unit.m_mana = unit.m_mana + this->m_mana;
 }
 
-void LegionShield::PutOff(Unit& unit)const
+void LegionShield::putOff(Unit& unit)const
 {
-	Shield::PutOff(unit);
-	unit.health = unit.health - health;
-	unit.mana = unit.mana - health;
+	Armor::putOff(unit);
+	unit.m_health = unit.m_health - this->m_health;
+	unit.m_mana = unit.m_mana - this->m_mana;
 }
 
-void LegionShield::ShowFullInfo()const
+void LegionShield::showFullInfo()const
 {
-	Shield::ShowFullInfo();
-	std::cout << "Health add: " << health << std::endl;
-	std::cout << "Mana add: " << mana << std::endl;
+	Shield::showFullInfo();
+	std::cout << "Health add: " << this->m_health << std::endl;
+	std::cout << "Mana add: " << this->m_mana << std::endl;
 }
 

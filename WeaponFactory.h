@@ -6,13 +6,11 @@
 #include "Factory.h"
 #include "Weapon.h"
 
-class SwordFactory : public Factory<Weapon*>
+class SwordFactory : public Factory<Weapon>
 {
 public:
 	SwordFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 50;
+	int getChanceOfCreation()const;
 private:
 	enum SwordParametres
 	{
@@ -29,13 +27,11 @@ private:
 	};
 };
 
-class AxeFactory : public Factory<Weapon*>
+class AxeFactory : public Factory<Weapon>
 {
 public:
 	AxeFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 50;
+	int getChanceOfCreation()const;
 private:
 	enum AxeParametres
 	{

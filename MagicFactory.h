@@ -7,13 +7,11 @@
 
 #include "Factory.h"
 
-class DamageBuffFactory : public Factory<MagicPtr>
+class DamageBuffFactory : public Factory<Magic>
 {
 public:
 	DamageBuffFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 35;
+	int getChanceOfCreation()const;
 private:
 	enum DamageBuffs
 	{
@@ -22,13 +20,11 @@ private:
 	};
 };
 
-class ArmorBuffFactory : public Factory<MagicPtr>
+class ArmorBuffFactory : public Factory<Magic>
 {
 public:
 	ArmorBuffFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 35;
+	int getChanceOfCreation()const;
 private:
 	enum ArmorBuffs
 	{
@@ -37,13 +33,11 @@ private:
 	};
 };
 
-class ArmorAndDamageBuffFactory : public Factory<MagicPtr>
+class ArmorAndDamageBuffFactory : public Factory<Magic>
 {
 public:
 	ArmorAndDamageBuffFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 10;
+	int getChanceOfCreation()const;
 private:
 	enum DamageAndArmorBuffs
 	{
@@ -52,13 +46,11 @@ private:
 	};
 };
 
-class OffsetDamageBuffFactory : public Factory<MagicPtr>
+class OffsetDamageBuffFactory : public Factory<Magic>
 {
 public:
 	OffsetDamageBuffFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 20;
+	int getChanceOfCreation()const;
 private:
 	enum OffsetDamageBuffs
 	{

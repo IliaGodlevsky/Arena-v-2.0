@@ -5,9 +5,9 @@ class Battles
 {
 public:
 	explicit Battles(int value);
-	void ChangeValue(int value);
+	void changeValue(int value);
 	operator int()const;
 protected:
-	int value;
+	int m_value;
 };
 #endif

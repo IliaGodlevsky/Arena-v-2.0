@@ -4,59 +4,66 @@
 #include "Level.h"
 #include "Vitals.h"
 #include "Magic.h"
-#include "Sheild.h"
+#include "Shield.h"
 #include "Armor.h"
-#include "Sheild.h"
 #include "Weapon.h"
 #include "Decision.h"
 #include "SpellBook.h"
 #include "SpellsOnMe.h"
 #include "State.h"
+#include "StateHolder.h"
+#include "AllSpellsFactory.h"
 
 #include "Globals.h"
 
 class Unit
 {
-	friend bool Weapon::CanSmash(const Unit& unit)const;
+public:
+	friend bool Weapon::canSmashUnit(const Unit& unit)const;
 	friend class ComputerDecision;
 public:
-	Unit(std::string name, Decision* decision);
+	Unit(std::string name, std::shared_ptr<Decision> decision);
 	virtual ~Unit();
 public:
-	bool EnoughManaFor(const MagicPtr& magic)const;
-	bool TakeDamage(int damage);
-	bool Injure(Unit& unit);
-	bool Spell(Unit& unit, MagicPtr& magic);
-	bool IsAlive()const;
+	bool isEnoughManaFor(const MagicPtr& magic)const;
+	bool takeDamage(int damage);
+	bool injureUnit(Unit& unit);
+	bool castMagic(Unit& unit, MagicPtr& magic);
+	bool isAlive()const;
 public:
-	void PayMana(int mana_cost);
-	void ShowFullInfo()const;
-	void LevelUp();
-	void RecieveNewState(UnitState* state);
-	void Scan();
+	void takeMagic(const AllItemFactory<Magic>& magicFactory);
+	void takeWeapon(const AllItemFactory<Weapon>& weaponFactory);
+	void takeArmor(const AllItemFactory<Armor>& armorFactory);
+	void takeShield(const AllItemFactory<Shield>& sheildFactory);
 public:
-	const std::string& Name()const;
-	Unit* ChooseUnitToAttack()const;
-	MagicPtr ChooseMagicToCast()const;
-	Unit* ChooseUnitToCast(const MagicPtr& magic_to_spell)const;
+	void payMana(int manaCost);
+	void showFullInfo()const;
+	void levelUp();
+	void recieveNewState(std::shared_ptr<UnitState>& unitState);
+	void moveIntoNewRound();
 public:
-	Battles damage;
-	Battles armor;
-	Vitals health;
-	Vitals mana;
-	SpellsOnMe on_me;
-	SpellBook spell_book;
-	Level level;
-	StateHolder state;
+	const std::string& getName()const;
+	UnitPtr chooseUnitToAttack()const;
+	MagicPtr chooseMagicToCast()const;
+	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr)const;
+public:
+	Battles m_damage;
+	Battles m_armor;
+	Vitals m_health;
+	Vitals m_mana;
+	SpellsOnMe m_magicOnMe;
+	SpellBook m_magicBook;
+	Level m_level;
+	StateHolder m_stateHolder;
 private:
-	std::string name;
-	Decision* decision;
+	std::string m_name;
+	std::shared_ptr<Decision> m_decision;
 private:
-	std::unique_ptr<Weapon> weapon;
-	std::unique_ptr<Armor> mail;
-	std::unique_ptr<Shield> sheild;
+	WeaponPtr m_weapon;
+	ArmPtr m_mail;
+	ShieldPtr m_shield;
 private:
-	int AbsorbCalc(int damage)const;
+	int calculateDamageAbsorb(int damage)const;
 };
 
 #endif

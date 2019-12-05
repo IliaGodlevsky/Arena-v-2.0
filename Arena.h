@@ -9,48 +9,44 @@
 // Singleton
 class Arena
 {
-	typedef AllItemFactory<MagicPtr> SpellFactory;
-	typedef AllItemFactory<Weapon*> WeaponFactory;
-	typedef AllItemFactory<Armor*> DefenceFactory;
 public:
-	static int currentRound();
+	static int getCurrentRound();
 	static Arena& getInstance();
 	Arena(const Arena&) = delete;
 	Arena(Arena&&) = delete;
 	Arena& operator=(const Arena&) = delete;
 	Arena& operator=(Arena&&) = delete;
-	void takeOfLosers();
 	void showUnits()const;
 public:
 	bool gameOver()const;
-	void scan();
+	void newRound(); // TODO: think a new name for this method
 	void castStep();
 	void attackStep();
 	void rewardKiller();
 	void nextPlayer();
-	~Arena();
+	void takeOfLosers();
+public:
+	void prepareUnits();
+	void giveMagicToUnits(const AllItemFactory<Magic>& magicFactory);
+	void giveWeaponToUnits(const AllItemFactory<Weapon>& weaponFactory);
+	void giveArmorToUnits(const AllItemFactory<Armor>& armorFactory);
+	void giveShieldToUnits(const AllItemFactory<Shield>& sheildFactory);
+	~Arena() = default;
 public:
 	int setNumberOfUnits()const;
+private:
 	Arena();
 private:
-	void giveOutSpells();
-private: // vectors
-	std::vector<Weapon*> weapons_;
-	std::vector<Armor*> armors_;
-	std::vector<Shield*> shields_;
-	std::vector<Unit*> arena_;
+	std::vector<UnitPtr> m_units;
+	int getMaxNubmerOfPlayers()const;
+	int getMinNumberOfPlayers()const;
 private:
-	const int MIN_PLAYERS_ = 2;
-	const int MAX_PLAYERS_ = 5;
-	static int round_;
+	static int m_round;
 private:
-	SpellFactory spellFactory;
-	WeaponFactory weaponFactory;
-	DefenceFactory armorFactory;
-	Unit* unitToAttack_ = nullptr;
-	Unit* unitToCast_ = nullptr;
-	MagicPtr magicToSpell_ = nullptr;
-	size_t indexNumber_ = 0;
+	UnitPtr m_unitToAttack = nullptr;
+	UnitPtr m_unitToCast = nullptr;
+	MagicPtr m_magicToCast = nullptr;
+	size_t m_unitIndex = 0;
 };
 
 #endif

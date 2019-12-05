@@ -5,21 +5,23 @@
 
 #include "Globals.h"
 #include "State.h"
+
 class StateHolder
 {
 public:
-	StateHolder();
-	void RecieveNewState(UnitState* state);
-	Unit* ChooseUnitToAttack(const Unit& deciding_unit)const;
-	MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const;
-	Unit* ChooseUnitToCast(const Unit& deciding_unit,
-		const MagicPtr& magic_to_spell)const;
-	void TakeOfExpired(int round);
-	void ExpireAllStates();
+	StateHolder(std::shared_ptr<Decision> decision);
+	void recieveNewState(std::shared_ptr<UnitState>& unitState);
+	UnitPtr chooseUnitToAttack(const Unit& decidingUnit)const;
+	MagicPtr chooseMagicToCast(const Unit& decidingUnit)const;
+	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
+		const MagicPtr& magicToCast)const;
+	void takeOfExpiredStates(int round);
+	void expireAllStates();
 	~StateHolder();
 private:
-	std::vector<UnitState*> unit_states;
-	ActiveState* active_state;
+	std::shared_ptr<Decision> m_decision;
+	std::vector<std::shared_ptr<UnitState>> m_unitStates;
+	std::unique_ptr<ActiveState> m_activeState;
 };
 
 #endif

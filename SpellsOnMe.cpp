@@ -2,67 +2,67 @@
 #include "Unit.h"
 
 SpellsOnMe::SpellsOnMe(Unit* unit)
-	: unit(unit)
+	: m_unit(unit)
 {
 
 }
 
-void SpellsOnMe::TakeOfExpired(int round)
+void SpellsOnMe::takeOfExpiredMagic(int round)
 {
 	for (size_t i = 0; i < size(); i++)
 	{
-		if (operator[](i)->IsExpired(round))
+		if (operator[](i)->isExpired(round))
 		{
-			operator[](i)->Uneffect(*unit);
+			operator[](i)->uneffectUnit(*m_unit);
 			erase(begin() + i);
 			i--;
 		}
 	}
 }
 
-void SpellsOnMe::TakeSpell(const MagicPtr& magic)
+void SpellsOnMe::takeMagic(const MagicPtr& magic)
 {
 	// number of spell that must be deleted 
 	// from the spells that are on unit
-	size_t del = unit->on_me.HaveSpell(magic);
-	unit->on_me.Expire(del);
-	push_back(MagicPtr(magic->Clone()));
+	size_t magicIndex = 
+		m_unit->m_magicOnMe.getMagicIndex(magic);
+	if (magicIndex == size())
+		return;
+	m_unit->m_magicOnMe.expireMagic(magicIndex);
+	push_back(MagicPtr(magic->clone()));
 }
 
-size_t SpellsOnMe::HaveSpell(const MagicPtr& spell)const
+size_t SpellsOnMe::getMagicIndex(const MagicPtr& magic)const
 {
 	for (size_t i = 0; i < size(); i++)
-		if (operator[](i)->Equal(spell))
+		if (operator[](i)->isEqual(magic))
 			return i;
 	return size();
 }
 
-void SpellsOnMe::Expire(size_t spell_index)
+void SpellsOnMe::expireMagic(size_t magicIndex)
 {
-	if (spell_index < size())
-	{
-		operator[](spell_index)->Uneffect(*unit);
-		erase(begin() + spell_index);
-	}
+	operator[](magicIndex)->uneffectUnit(*m_unit);
+	erase(begin() + magicIndex);
 }
 
-void SpellsOnMe::ExpireAllSpells()
+void SpellsOnMe::expireAllSpells()
 {
 	for (size_t i = 0; i < size(); i++)
 	{
-		Expire(i);
+		expireMagic(i);
 		i--;
 	}
 }
 
-void SpellsOnMe::ShowFullInfo()const
+void SpellsOnMe::showFullInfo()const
 {
 	for (size_t i = 0; i < size(); i++)
-		operator[](i)->ShowFullInfo();
+		operator[](i)->showFullInfo();
 }
 
-void SpellsOnMe::ShowShortInfo()const
+void SpellsOnMe::showShortInfo()const
 {
 	for (size_t i = 0; i < size(); i++)
-		operator[](i)->ShowShortInfo();
+		operator[](i)->showShortInfo();
 }

@@ -9,7 +9,7 @@ public:
 	PosibilityCounter(int posibility);
 	operator bool()const;
 private:
-	static const int MAX_PROPABILITY = 100;
-	int posibility;
+	int getMaxPropability()const;
+	int m_posibility;
 };
 #endif

@@ -10,24 +10,25 @@ class UnitState
 {
 public:
 	UnitState(int duration);
-	virtual Unit* ChooseUnitToAttack(const Unit& deciding_unit)const = 0;
-	virtual MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const = 0;
-	virtual Unit* ChooseUnitToCast(const Unit& deciding_unit,
-		const MagicPtr& magic_to_spell)const = 0;
+	virtual UnitPtr chooseUnitToAttack(const Unit& decidingUnit)const = 0;
+	virtual MagicPtr chooseMagicToCast(const Unit& decidingUnit)const = 0;
+	virtual UnitPtr chooseUnitToCast(const Unit& decidingUnit,
+		const MagicPtr& magicToCast)const = 0;
 	virtual ~UnitState() = default;
 public:
-	virtual void RecieveDecision(Decision* decision) final;
-	virtual void SetStartTime(int round)final;
-	virtual bool IsExpired(int round)const final;
+	virtual void setDecision(std::shared_ptr<Decision> decision) final;
+	virtual void setStartTime(int round)final;
+	virtual bool isExpired(int round)const final;
 public:
-	virtual bool operator <(const UnitState& state)const final;
-	virtual bool operator >(const UnitState& state)const final;
+	virtual bool operator <(const UnitState& unitState)const final;
+	virtual bool operator >(const UnitState& unitState)const final;
 protected:
-	Durationmeter durationmeter;
-	Decision* decision;
+	Durationmeter m_durationmeter;
+	std::shared_ptr<Decision> m_decision_ptr;
 	enum StateValue { ALIVE_STATE, MUTED_STATE, STUNNED_STATE };
+	// static std::vector<UnitState*> m_attackStates;
 private:
-	virtual StateValue Value()const = 0;
+	virtual StateValue getValue()const = 0;
 
 };
 
@@ -35,36 +36,36 @@ class ActiveState : public UnitState
 {
 public:
 	ActiveState();
-	Unit* ChooseUnitToAttack(const Unit& deciding_unit)const;
-	MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const;
-	Unit* ChooseUnitToCast(const Unit& deciding_unit,
-		const MagicPtr& magic_to_spell)const;
+	UnitPtr chooseUnitToAttack(const Unit& decidingUnit)const override;
+	MagicPtr chooseMagicToCast(const Unit& decidingUnit)const override;
+	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
+		const MagicPtr& magicToCast)const override;
 private:
-	StateValue Value()const;
+	StateValue getValue()const override;
 };
 
 class MutedState : public UnitState
 {
 public:
 	MutedState(int duration);
-	Unit* ChooseUnitToAttack(const Unit& deciding_unit)const;
-	MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const;
-	Unit* ChooseUnitToCast(const Unit& deciding_unit,
-		const MagicPtr& magic_to_spell)const;
+	UnitPtr chooseUnitToAttack(const Unit& decidingUnit)const override;
+	MagicPtr chooseMagicToCast(const Unit& decidingUnit)const override;
+	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
+		const MagicPtr& magicToCast)const override;
 private:
-	StateValue Value()const { return UnitState::MUTED_STATE; }
+	StateValue getValue()const override;
 };
 
 class StunState : public UnitState
 {
 public:
-	StunState(int duration) : UnitState(duration) {}
-	Unit* ChooseUnitToAttack(const Unit& deciding_unit)const;
-	MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const;
-	Unit* ChooseUnitToCast(const Unit& deciding_unit,
-		const MagicPtr& magic_to_spell)const;
+	StunState(int duration);
+	UnitPtr chooseUnitToAttack(const Unit& decidingUnit)const;
+	MagicPtr chooseMagicToCast(const Unit& decidingUnit)const;
+	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
+		const MagicPtr& magicToCast)const;
 private:
-	StateValue value()const { return UnitState::STUNNED_STATE; }
+	StateValue getValue()const override;
 };
 
 

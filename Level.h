@@ -22,8 +22,8 @@ private:
 		DMG_PER_LVL = 2, 
 		ARM_PER_LVL = 1 
 	};
-	int level = 1;
-	Unit* unit;
+	int m_level = 1;
+	Unit* m_unit; // unit, that have this level class
 };
 
-#endif
+#endif // LEVEL_H_

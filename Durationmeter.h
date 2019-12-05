@@ -7,12 +7,12 @@ class Durationmeter
 {
 public:
 	Durationmeter(int duration);
-	void SetStartTime(int round);
-	bool IsExpired(int round)const;
-	bool operator==(const Durationmeter& d)const;
+	void setStartTime(int round);
+	bool isExpired(int round)const;
+	bool operator==(const Durationmeter& durationmeter)const;
 	operator int()const;
 protected:
-	int duration;
-	int start_time;
+	int m_duration;
+	int m_startTime;
 };
 #endif

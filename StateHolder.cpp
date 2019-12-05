@@ -2,66 +2,61 @@
 #include "Unit.h"
 #include "Arena.h"
 
-StateHolder::StateHolder()
+StateHolder::StateHolder(std::shared_ptr<Decision> decision)
+	: m_decision(decision), m_activeState(new ActiveState())
 {
-	active_state = new ActiveState();
+	m_activeState->setDecision(decision);
 }
 
-void StateHolder::RecieveNewState(UnitState* state)
+void StateHolder::recieveNewState(std::shared_ptr<UnitState>& unitState)
 {
-	unit_states.push_back(state);
-	std::sort(unit_states.begin(), unit_states.end(),
-		[&](const UnitState* st1, const UnitState* st2) {return *st1 > *st2; });
+	unitState->setDecision(m_decision);
+	m_unitStates.push_back(unitState);
+	std::sort(m_unitStates.begin(), m_unitStates.end(),
+		[&](const std::shared_ptr<UnitState>& st1, 
+			const std::shared_ptr<UnitState>& st2) {return *st1 < *st2; });
 }
 
-Unit* StateHolder::ChooseUnitToAttack(const Unit& deciding_unit)const
+UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit)const
 {
-	if (unit_states.empty())
-		return active_state->ChooseUnitToAttack(deciding_unit);
-	return unit_states[0]->ChooseUnitToAttack(deciding_unit);
+	if (m_unitStates.empty())
+		return m_activeState->chooseUnitToAttack(decidingUnit);
+	return m_unitStates[0]->chooseUnitToAttack(decidingUnit);
 }
 
-MagicPtr StateHolder::ChooseMagicToCast(const Unit& deciding_unit)const
+MagicPtr StateHolder::chooseMagicToCast(const Unit& decidingUnit)const
 {
-	if (unit_states.empty())
-		return active_state->ChooseMagicToCast(deciding_unit);
-	return unit_states[0]->ChooseMagicToCast(deciding_unit);
+	if (m_unitStates.empty())
+		return m_activeState->chooseMagicToCast(decidingUnit);
+	return m_unitStates[0]->chooseMagicToCast(decidingUnit);
 }
 
-Unit* StateHolder::ChooseUnitToCast(const Unit& deciding_unit,
-	const MagicPtr& magic_to_spell)const
+UnitPtr StateHolder::chooseUnitToCast(const Unit& decidingUnit,
+	const MagicPtr& magicToCast)const
 {
-	if (unit_states.empty())
-		return active_state->ChooseUnitToCast(deciding_unit, magic_to_spell);
-	return unit_states[0]->ChooseUnitToCast(deciding_unit, magic_to_spell);
+	if (m_unitStates.empty())
+		return m_activeState->chooseUnitToCast(decidingUnit, magicToCast);
+	return m_unitStates[0]->chooseUnitToCast(decidingUnit, magicToCast);
 }
 
-void StateHolder::TakeOfExpired(int round)
+void StateHolder::takeOfExpiredStates(int round)
 {
-	for (size_t i = 0; i < unit_states.size(); i++)
+	for (size_t i = 0; i < m_unitStates.size(); i++)
 	{
-		if (unit_states[i]->IsExpired(Arena::currentRound()))
+		if (m_unitStates[i]->isExpired(Arena::getCurrentRound()))
 		{
-			delete unit_states[i];
-			unit_states.erase(unit_states.begin() + i);
+			m_unitStates.erase(m_unitStates.begin() + i);
 			i--;
 		}
 	}
 }
 
-void StateHolder::ExpireAllStates()
+void StateHolder::expireAllStates()
 {
-	for (size_t i = 0; i < unit_states.size(); i++)
-		delete unit_states[i];
-	unit_states.clear();
+	m_unitStates.clear();
 }
 
 StateHolder::~StateHolder()
 {
-	delete active_state;
-	if (!unit_states.empty())
-	{
-		for (size_t i = 0; i < unit_states.size(); i++)
-			delete unit_states[i];
-	}
+
 }

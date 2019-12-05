@@ -2,68 +2,68 @@
 
 #include "Vitals.h"
 
-Vitals::Vitals(int value, int max_value,
-	int value_regeneration)
-	: value(value), max_value(max_value),
-	value_regeneration(value_regeneration)
+Vitals::Vitals(int value, int maxValue,
+	int valueRegeneration)
+	: m_value(value), m_maxValue(maxValue),
+	m_valueRegeneration(valueRegeneration)
 {
-	FixOverflow();
+	fixOverflow();
 }
 
 Vitals Vitals::operator++(int i)
 {
 	Vitals temp = *this;
-	value += value_regeneration;
-	FixOverflow();
+	m_value += m_valueRegeneration;
+	fixOverflow();
 	return temp;
 }
 
 Vitals Vitals::operator-(int value)const
 {
 	Vitals temp = *this;
-	fdim(temp.value, value);
+	fdim(temp.m_value, value);
 	return temp;
 }
 
 Vitals Vitals::operator+(const Vitals& vit)const
 {
-	int val = value + vit.value;
-	int max_val = max_value + vit.max_value;
-	int regen = value_regeneration + vit.value_regeneration;
+	int val = m_value + vit.m_value;
+	int max_val = m_maxValue + vit.m_maxValue;
+	int regen = m_valueRegeneration + vit.m_valueRegeneration;
 	Vitals temp(val, max_val, regen);
-	temp.FixOverflow();
+	temp.fixOverflow();
 	return temp;
 }
 
 Vitals Vitals::operator-(const Vitals& vit)const
 {
-	int val = static_cast<int>(fdim(value,vit.value));
-	int max_val = static_cast<int>(fdim(max_value, vit.max_value));
-	int regen = value_regeneration - vit.value_regeneration;
+	int val = static_cast<int>(fdim(m_value,vit.m_value));
+	int max_val = static_cast<int>(fdim(m_maxValue, vit.m_maxValue));
+	int regen = m_valueRegeneration - vit.m_valueRegeneration;
 	Vitals temp(val, max_val, regen);
-	temp.FixOverflow();
+	temp.fixOverflow();
 	return temp;
 }
 
-void Vitals::ChangeRegeneration(int regen)
+void Vitals::changeRegeneration(int regeneration)
 {
-	value_regeneration += regen;
+	m_valueRegeneration += regeneration;
 }
 
-bool Vitals::IsDead()const
+bool Vitals::isDead()const
 {
-	return value == DEAD_LINE;
+	return m_value == DEAD_LINE;
 }
 
-void Vitals::FixOverflow()
+void Vitals::fixOverflow()
 {
-	if (value > max_value)
-		value = max_value;
-	if (value < DEAD_LINE)
-		value = DEAD_LINE;
+	if (m_value > m_maxValue)
+		m_value = m_maxValue;
+	if (m_value < DEAD_LINE)
+		m_value = DEAD_LINE;
 }
 
 Vitals::operator int()const
 {
-	return value;
+	return m_value;
 }

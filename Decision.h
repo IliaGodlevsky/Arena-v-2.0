@@ -4,42 +4,43 @@
 #include "Globals.h"
 #include "State.h"
 
-size_t RandInd(size_t max_index);
-
 class Decision
 {
 public:
-	Decision(const std::vector<Unit*>&);
-	virtual Unit* ChooseUnitToAttack(const Unit&)const = 0;
-	virtual MagicPtr ChooseMagicToCast(const Unit&)const = 0;
-	virtual Unit* ChooseUnitToCast(const Unit&, const MagicPtr&)const = 0;
+	Decision(const std::vector<UnitPtr>&);
+	virtual UnitPtr chooseUnitToAttack(const Unit&)const = 0;
+	virtual MagicPtr chooseMagicToCast(const Unit&)const = 0;
+	virtual UnitPtr chooseUnitToCast(const Unit&, const MagicPtr&)const = 0;
 	virtual ~Decision() = default;
 protected:
-	virtual bool SameUnit(const Unit&, const Unit&)const final;
-	virtual bool CanCastBuff(const Unit& caster, const Unit& aim, 
-		const MagicPtr& spell)const;
-	virtual bool CanCastDebuff(const Unit& caster, const Unit& aim, 
-		const MagicPtr& spell)const;
+	virtual bool isSameUnit(const Unit&, const Unit&)const final;
+	virtual bool canCastBuffOnUnit(const Unit& caster, const Unit& aim, 
+		const MagicPtr& magic)const;
+	virtual bool canCastDebuffOnUnit(const Unit& caster, const Unit& aim, 
+		const MagicPtr& magic)const;
 protected:
-	const std::vector<Unit*> arena;
+	mutable bool m_wantToCastMagic = false;
+protected:
+	const std::vector<UnitPtr> m_units;
 };
 
 class HumanDecision : public Decision
 {
 public:
-	HumanDecision(const std::vector<Unit*>&);
-	Unit* ChooseUnitToAttack(const Unit& deciding_unit)const;
-	MagicPtr ChooseMagicToCast(const Unit& deciding_unit)const;
-	Unit* ChooseUnitToCast(const Unit& deciding_unit, 
-		const MagicPtr& magic_to_spell)const;
+	HumanDecision(const std::vector<UnitPtr>&);
+	UnitPtr chooseUnitToAttack(const Unit& decidingUnit)const;
+	MagicPtr chooseMagicToCast(const Unit& decidingUnit)const;
+	UnitPtr chooseUnitToCast(const Unit& decidingUnit, 
+		const MagicPtr& magicToCast)const;
 private:
-	bool WrongSpellToCast(const Unit& caster, const Unit& aim,
+	bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
 		const MagicPtr& spell)const;
 	void showUnits()const;
+	bool wantToCastMagic()const;
 private:
-	const std::string UNIT_TO_ATTACK_CHOOSE = "Choose unit to attack: ";
-	const std::string MAGIC_CHOOSE = "Choose magic: ";
-	const std::string UNIT_TO_CAST_CHOOSE = "Choose unit to charm: ";
+	const std::string UNIT_TO_ATTACK_CHOOSE_MESSAGE = "Choose unit to attack: ";
+	const std::string MAGIC_TO_CAST_CHOOSE_MESSAGE = "Choose magic: ";
+	const std::string UNIT_TO_CAST_CHOOSE_MESSAGE = "Choose unit to charm: ";
 };
 
 //class ComputerDecision : public Decision

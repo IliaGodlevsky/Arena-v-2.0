@@ -42,9 +42,6 @@
     <Filter Include="Equipment\Shield">
       <UniqueIdentifier>{a47d8470-c512-421b-a7be-f6487546c9dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Weapon">
-      <UniqueIdentifier>{3c02465e-a26d-4540-81a6-c18f9b01a3e8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Spells Containers">
       <UniqueIdentifier>{8f6a4fa8-d7b2-4c12-8c8f-f050ce203510}</UniqueIdentifier>
     </Filter>
@@ -66,13 +63,31 @@
     <Filter Include="StateHolder">
       <UniqueIdentifier>{217fd42b-bbb1-40d3-98ce-1071d8f0ac87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Equipment\Weapon">
+      <UniqueIdentifier>{3c02465e-a26d-4540-81a6-c18f9b01a3e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spells\Magic\BuffMagic">
+      <UniqueIdentifier>{d7e6a4b4-e69f-48a1-8dc8-305a10deeda2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spells\Magic\DebuffMagic">
+      <UniqueIdentifier>{4c8eb927-f99a-45f8-b15d-05d6d7b6a409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spells\Magic\AttackMagic">
+      <UniqueIdentifier>{8d12cf68-2808-4f77-826a-aad8e3876b24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spells\Magic\NeutralMagic">
+      <UniqueIdentifier>{c806c69d-4279-4d25-960e-ba861d2a58b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State\UnitState">
+      <UniqueIdentifier>{b01d40b8-146b-4669-b47c-12ba0a2812f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Magic.h">
       <Filter>Spells\Magic</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
-      <Filter>Weapon</Filter>
+      <Filter>Equipment\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Vitals.h">
       <Filter>Vitals</Filter>
@@ -95,9 +110,6 @@
     <ClInclude Include="WeaponMagic.h">
       <Filter>Spells\WeaponMagic</Filter>
     </ClInclude>
-    <ClInclude Include="Sheild.h">
-      <Filter>Equipment\Shield</Filter>
-    </ClInclude>
     <ClInclude Include="SpellsOnMe.h">
       <Filter>Spells Containers</Filter>
     </ClInclude>
@@ -106,9 +118,6 @@
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>State</Filter>
     </ClInclude>
     <ClInclude Include="Durationmeter.h">
       <Filter>Durationmeter</Filter>
@@ -137,13 +146,31 @@
     <ClInclude Include="StateHolder.h">
       <Filter>StateHolder</Filter>
     </ClInclude>
+    <ClInclude Include="Shield.h">
+      <Filter>Equipment\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffMagic.h">
+      <Filter>Spells\Magic\BuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="DebuffMagic.h">
+      <Filter>Spells\Magic\DebuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackMagic.h">
+      <Filter>Spells\Magic\AttackMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="NeutralMagic.h">
+      <Filter>Spells\Magic\NeutralMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>State\UnitState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Magic.cpp">
       <Filter>Spells\Magic</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-      <Filter>Weapon</Filter>
+      <Filter>Equipment\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="Vitals.cpp">
       <Filter>Vitals</Filter>
@@ -181,9 +208,6 @@
     <ClCompile Include="Level.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>State</Filter>
-    </ClCompile>
     <ClCompile Include="Durationmeter.cpp">
       <Filter>Durationmeter</Filter>
     </ClCompile>
@@ -201,6 +225,21 @@
     </ClCompile>
     <ClCompile Include="StateHolder.cpp">
       <Filter>StateHolder</Filter>
+    </ClCompile>
+    <ClCompile Include="BuffMagic.cpp">
+      <Filter>Spells\Magic\BuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="DebuffMagic.cpp">
+      <Filter>Spells\Magic\DebuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackMagic.cpp">
+      <Filter>Spells\Magic\AttackMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="NeutralMagic.cpp">
+      <Filter>Spells\Magic\NeutralMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>State\UnitState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,51 +9,32 @@
 // A class template
 // Each factory makes the same, so I decided to 
 // create a template abstract factory, that will
-// create any class, that will be as a paramtre
+// create any class, that will be as a parametre
 // of a template
 template <class T>
 class Factory
 {
+	using ItemPtr = std::unique_ptr<T>;
 public:
 	Factory();
-	virtual T createItem()const final;
-	virtual int chance()const = 0;
-	virtual ~Factory();
+	virtual ItemPtr createItem()const final;
+	virtual int getChanceOfCreation()const = 0;
+	virtual ~Factory() = default;
 protected:
-	std::vector<T> items;
+	std::vector<ItemPtr> m_items;
 };
 
 template<class T>
 Factory<T>::Factory()
-	: items(0)
+	: m_items(0)
 {
 
 }
 
 template <class T>
-T Factory<T>::createItem()const
+Factory<T>::ItemPtr Factory<T>::createItem()const
 {
-	int index = randomIndex(items.size());
-	return T(items[index]);
-}
-template <> inline // inline!!
-MagicPtr Factory<MagicPtr>::createItem()const
-{
-	int index = randomIndex(items.size());
-	return MagicPtr(items[index]->Clone());
-}
-
-template <class T>
-Factory<T>::~Factory()
-{
-	for (size_t i = 0; i < items.size(); i++)
-		delete items[i];
-}
-
-// unique_ptr doesn't need delete
-template <> inline
-Factory<MagicPtr>::~Factory()
-{
-
+	int itemIndex = randomIndex(m_items.size());
+	return ItemPtr(m_items[itemIndex]->clone());
 }
 #endif

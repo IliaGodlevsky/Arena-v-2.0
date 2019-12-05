@@ -4,66 +4,58 @@
 #include "Decision.h"
 #include "Unit.h"
 
-int input(const std::string& message,
+int inputNumber(const std::string& message,
 	int upper, int lower)
 {
 	int choice;
 	std::cout << message;
 	std::cin >> choice;
-	while (error(choice, upper, lower))
+	while (isError(choice, upper, lower))
 	{
-		eatline();
+		eatLine();
 		std::cout << message;
 		std::cin >> choice;
 	}
 	return choice;
 }
 
-bool error(int choice, int upper, int lower)
+bool isError(int choice, int upper, int lower)
 {
 	return !std::cin 
 		|| choice > upper 
 		|| choice < lower;
 }
 
-void eatline()
+void eatLine()
 {
 	std::cin.clear();
 	while (!iscntrl(std::cin.get()))
 		continue;
 }
 
-size_t RandInd(size_t max_index)
-{
-	std::random_device seed;
-	std::mt19937 generator(seed());
-	std::uniform_int_distribution<size_t> distributor(0, max_index);
-	return distributor(generator);
-}
-
-Decision::Decision(const std::vector<Unit*>& arena)
-	: arena(arena)
+Decision::Decision(const std::vector<UnitPtr>& units)
+	: m_units(units)
 {
 
 }
 
-bool Decision::SameUnit(const Unit& unit1, const Unit& unit2)const
+bool Decision::isSameUnit(const Unit& unit1, const Unit& unit2)const
 {
 	return &unit1 == &unit2;
 }
 
-bool Decision::CanCastBuff(const Unit& caster, const Unit& aim,
-	const MagicPtr& spell)const
+bool Decision::canCastBuffOnUnit(const Unit& caster, const Unit& aim,
+	const MagicPtr& magic)const
 {
-	return spell->IsBuff() && SameUnit(caster, aim);
+	return magic->isBuff() && isSameUnit(caster, aim);
 }
-bool Decision::CanCastDebuff(const Unit& caster, const Unit& aim,
-	const MagicPtr& spell)const
+bool Decision::canCastDebuffOnUnit(const Unit& caster, const Unit& aim,
+	const MagicPtr& magic)const
 {
-	return !spell->IsBuff() && !SameUnit(caster, aim);
+	return !magic->isBuff() && !isSameUnit(caster, aim);
 }
-
-HumanDecision::HumanDecision(const std::vector<Unit*>& arena)
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+HumanDecision::HumanDecision(const std::vector<UnitPtr>& arena)
 	: Decision(arena)
 {
 
@@ -71,52 +63,69 @@ HumanDecision::HumanDecision(const std::vector<Unit*>& arena)
 
 void HumanDecision::showUnits()const
 {
-	for (size_t i = 0; i < arena.size(); i++)
-		arena[i]->ShowFullInfo();
+	for (size_t i = 0; i < m_units.size(); i++)
+		m_units[i]->showFullInfo();
 }
 
-Unit* HumanDecision::ChooseUnitToAttack(const Unit& deciding_unit)const
+UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit)const
 {
-	std::cout << deciding_unit.Name() << " choose unit to attack\n";
+	std::cout << decidingUnit.getName() << " choose unit to attack\n";
 	showUnits();
-	int unit_number = input(UNIT_TO_ATTACK_CHOOSE, arena.size() - 1, 0);
-	while (SameUnit(*arena[unit_number], deciding_unit))
+	int unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE, 
+		m_units.size() - 1, 0);
+	while (isSameUnit(*m_units[unitIndex], decidingUnit))
 	{
 		std::cout << "You can't attack yourselt\n";
-		unit_number = input(UNIT_TO_ATTACK_CHOOSE, arena.size() - 1, 0);
+		unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE, 
+			m_units.size() - 1, 0);
 	}
-	return arena[unit_number];
+	return m_units[unitIndex];
 }
 
-MagicPtr HumanDecision::ChooseMagicToCast(const Unit& deciding_unit)const
+bool HumanDecision::wantToCastMagic()const
 {
-	std::cout << deciding_unit.Name() << " choose spell to cast\n";
-	showUnits();
-	deciding_unit.spell_book.ShowShortInfo();
-	int magic_to_spell = input(MAGIC_CHOOSE, 
-		deciding_unit.spell_book.size(), 0);
-	return MagicPtr(deciding_unit.
-		spell_book[magic_to_spell]->Clone());
+	enum { DONT_WANT, WANT };
+	m_wantToCastMagic = static_cast<bool>(inputNumber("do you want to cast a magic",
+		WANT, DONT_WANT));
+	return m_wantToCastMagic;
 }
 
-Unit* HumanDecision::ChooseUnitToCast(const Unit& deciding_unit, 
-	const MagicPtr& magic_to_spell)const
+MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit)const
 {
-	std::cout << deciding_unit.Name() << " choose unit to cast\n";
+	std::cout << decidingUnit.getName();
+	if (!m_wantToCastMagic)
+		return nullptr;
+	std::cout << decidingUnit.getName() << " choose spell to cast\n";
 	showUnits();
-	int unit_to_cast = input(UNIT_TO_CAST_CHOOSE, arena.size() - 1, 0);
-	while (WrongSpellToCast(deciding_unit, *arena[unit_to_cast], magic_to_spell))
+	decidingUnit.m_magicBook.ShowShortInfo();
+	int magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE, 
+		decidingUnit.m_magicBook.size() - 1, 0);
+	return MagicPtr(decidingUnit.m_magicBook
+		[magicToCastIndex]->clone());
+}
+
+UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit, 
+	const MagicPtr& magicToCast)const
+{
+	if (!m_wantToCastMagic)
+		return nullptr;
+	std::cout << decidingUnit.getName() << " choose unit to cast\n";
+	showUnits();
+	int unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE, 
+		m_units.size() - 1, 0);
+	while (isWrongSpellToCast(decidingUnit, *m_units[unitToCastIndex], magicToCast))
 	{
 		std::cout << "You can't use this spell on this unit\n";
-		unit_to_cast = input(UNIT_TO_CAST_CHOOSE, arena.size() - 1, 0);
+		unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE,
+			m_units.size() - 1, 0);
 	}
-	return arena[unit_to_cast];
+	return m_units[unitToCastIndex];
 }
 
-bool HumanDecision::WrongSpellToCast(const Unit& caster, const Unit& aim,
-	const MagicPtr& spell)const
+bool HumanDecision::isWrongSpellToCast(const Unit& caster, const Unit& aim,
+	const MagicPtr& magic)const
 {
-	return !CanCastBuff(caster, aim, spell) || !CanCastDebuff(caster, aim, spell);
+	return !canCastBuffOnUnit(caster, aim, magic) || !canCastDebuffOnUnit(caster, aim, magic);
 }
 
 

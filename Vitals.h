@@ -4,8 +4,8 @@
 class Vitals
 {
 public:
-	Vitals(int value, int max_value,
-		int value_regeneration = 0);
+	Vitals(int value, int maxValue,
+		int valueRegeneration = 0);
 	Vitals() = default;
 	Vitals(const Vitals&) = default;
 	Vitals(Vitals&&) = default;
@@ -16,17 +16,17 @@ public:
 	Vitals operator-(int value)const;
 	Vitals operator+(const Vitals& vit)const;
 	Vitals operator-(const Vitals& vit)const;
-	void ChangeRegeneration(int regen);
-	bool IsDead()const;
-	void ShowFullInfo()const;
-	void ShowShortInfo()const;
+	void changeRegeneration(int regeneration);
+	bool isDead()const;
+	void showFullInfo()const;
+	void showShortInfo()const;
 	operator int()const;
 private:
 	enum { DEAD_LINE };
-	int value = 0;
-	int max_value = 0;
-	int value_regeneration = 0;
+	int m_value = 0;
+	int m_maxValue = 0;
+	int m_valueRegeneration = 0;
 private:
-	void FixOverflow();
+	void fixOverflow();
 };
 #endif

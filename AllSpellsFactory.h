@@ -8,64 +8,61 @@
 
 #include "Factory.h"
 
- //A class, that contains templates of abstract class Factory
 template <class T>
 class AllItemFactory
 {
 public:
 	AllItemFactory(std::initializer_list<Factory<T>*> factList);
-	T createItemFromFactory()const;
-	~AllItemFactory();
+	std::unique_ptr<T> createItemFromFactory()const;
+	~AllItemFactory() = default;
 private:
-	int transformChanceToIndex(int chance)const;
-	bool inBounds(int lower, int upper, int chance)const;
-	int chance(int lowerBound, int upperBound)const;
+	size_t transformChanceToIndex(int chance)const;
+	bool isInBounds(int lower, int upper, int chance)const;
+	int countChance(int lowerBound, int upperBound)const;
 private:
-	static const int NO_MAGIC_LEFT = -1;
-	int totalChances_ = 0;
-	std::vector<int> chances_;
-	std::vector<Factory<T>*> factories_;
+	int m_totalChances = 0;
+	std::vector<int> m_chancesOfCreation;
+	std::vector<Factory<T>*> m_factories;
 };
 
 template <class T>
 AllItemFactory<T>::AllItemFactory(std::initializer_list<Factory<T>*> factList)
-	: factories_(factList), chances_(factList.size())
+	: m_factories(factList), m_chancesOfCreation(factList.size())
 {
 	for (size_t i = 0; i < factList.size(); i++)
 	{
-		chances_[i] = factories_[i]->chance();
-		totalChances_ += factories_[i]->chance();
+		m_chancesOfCreation[i] = m_factories[i]->getChanceOfCreation();
+		m_totalChances += m_factories[i]->getChanceOfCreation();
 	}
 }
 
 template <class T>
-T AllItemFactory<T>::createItemFromFactory()const
+std::unique_ptr<T> AllItemFactory<T>::createItemFromFactory()const
 {
-	int ch = chance(0, totalChances_);
-	int index = transformChanceToIndex(ch);
-	if (index == NO_MAGIC_LEFT)
+	int chance = countChance(0, m_totalChances);
+	int itemIndex = transformChanceToIndex(chance);
+	if (itemIndex == m_chancesOfCreation.size())
 		return nullptr;
-	Factory<T>* factory = factories_[index];
-	return factories_[index]->createItem();
+	return m_factories[itemIndex]->createItem();
 }
 
 template <class T>
-int AllItemFactory<T>::transformChanceToIndex(int chance)const
+size_t AllItemFactory<T>::transformChanceToIndex(int chance)const
 {
 	int lower = 0, upper = 0;
-	for (int i = 0; i < chances_.size(); i++)
+	for (size_t i = 0; i < m_chancesOfCreation.size(); i++)
 	{
-		upper += chances_[i];
-		if (inBounds(lower, upper, chance))
+		upper += m_chancesOfCreation[i];
+		if (isInBounds(lower, upper, chance))
 			return i;
 		else
-			lower += chances_[i];
+			lower += m_chancesOfCreation[i];
 	}
-	return NO_MAGIC_LEFT;
+	return m_chancesOfCreation.size();
 }
 
 template <class T>
-bool AllItemFactory<T>::inBounds(int lower, int upper, int chance)const
+bool AllItemFactory<T>::isInBounds(int lower, int upper, int chance)const
 {
 	if (chance >= lower && chance < upper)
 		return true;
@@ -74,20 +71,13 @@ bool AllItemFactory<T>::inBounds(int lower, int upper, int chance)const
 }
 
 template <class T>
-int AllItemFactory<T>::chance(int lowerBound, int upperBound)const
+int AllItemFactory<T>::countChance(int lowerBound, int upperBound)const
 {
 	std::random_device seed;
 	std::mt19937 generator(seed());
 	std::uniform_int_distribution<int>
 		distributor(lowerBound, upperBound);
 	return distributor(generator);
-}
-
-template <class T>
-AllItemFactory<T>::~AllItemFactory()
-{
-	for (size_t i = 0; i < factories_.size(); i++)
-		delete factories_[i];
 }
 
 #endif

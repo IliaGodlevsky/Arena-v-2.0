@@ -1,27 +1,27 @@
 #include "Durationmeter.h"
 
 Durationmeter::Durationmeter(int duration)
-	: duration(duration), start_time(0)
+	: m_duration(duration), m_startTime(0)
 {
 
 }
 
-void Durationmeter::SetStartTime(int round)
+void Durationmeter::setStartTime(int round)
 {
-	start_time = round;
+	m_startTime = round;
 }
 
-bool Durationmeter::IsExpired(int round)const
+bool Durationmeter::isExpired(int round)const
 {
-	return start_time - round == duration;
+	return m_startTime - round == m_duration;
 }
 
-bool Durationmeter::operator==(const Durationmeter& d)const
+bool Durationmeter::operator==(const Durationmeter& durationmeter)const
 {
-	return duration == d.duration;
+	return m_duration == durationmeter.m_duration;
 }
 
 Durationmeter::operator int()const
 {
-	return duration;
+	return m_duration;
 }

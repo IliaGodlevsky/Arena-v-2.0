@@ -3,36 +3,36 @@
 #include "Unit.h"
 
 SpellBook::SpellBook(Unit* unit)
-	: unit(unit)
+	: m_unit(unit)
 {
 
 }
 
-bool SpellBook::CanCastAnySpell()const
+bool SpellBook::canCastAnySpell()const
 {
 	bool can_cast = false;
 	for (size_t i = 0; i < size(); i++)
 	{
-		if(unit->EnoughManaFor(operator[](i)))
+		if(m_unit->isEnoughManaFor(operator[](i)))
 			can_cast = true;
 	}
 	return can_cast;
 }
 
-void SpellBook::ShowFullInfo()const
+void SpellBook::showFullInfo()const
 {
 	for (size_t i = 0; i < size(); i++)
-		operator[](i)->ShowFullInfo();
+		operator[](i)->showFullInfo();
 }
 
-void SpellBook::ShowShortInfo()const
+void SpellBook::showShortInfo()const
 {
 	for (size_t i = 0; i < size(); i++)
-		operator[](i)->ShowShortInfo();
+		operator[](i)->showShortInfo();
 }
 
-void SpellBook::TakeMagic(const MagicPtr& magic)
+void SpellBook::takeMagic(const MagicPtr& magic)
 {
 	if (nullptr != magic)
-		push_back(MagicPtr(magic->Clone()));
+		push_back(MagicPtr(magic->clone()));
 }

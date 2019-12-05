@@ -1,17 +1,17 @@
 #include "Battles.h"
 
 Battles::Battles(int value)
-	: value(value)
+	: m_value(value)
 {
 
 }
 
-void Battles::ChangeValue(int value)
+void Battles::changeValue(int value)
 {
-	this->value = value;
+	this->m_value = value;
 }
 
 Battles::operator int()const
 {
-	return value;
+	return m_value;
 }

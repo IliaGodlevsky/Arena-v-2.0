@@ -6,37 +6,36 @@
 #include "WeaponFactory.h"
 #include "ArmorFactory.h"
 
-int Arena::round_ = 0;
+int Arena::m_round = 0;
 
-Arena::Arena() :
-	spellFactory({ new DamageBuffFactory(),new ArmorBuffFactory(),
-		new ArmorAndDamageBuffFactory(), new OffsetDamageBuffFactory() }),
-	weaponFactory({ new SwordFactory(),new AxeFactory() }),
-	armorFactory({ new ArmorFactory(),new MailFactory(),
-		new WizardCloakFactory(),new LegionerChainsFactory() })
+int Arena::getMaxNubmerOfPlayers()const
 {
-	std::srand(std::time(nullptr));
-	arena_.resize(setNumberOfUnits());
-	// Give items to units
-	// Give units names
+	return 5;
 }
 
-void Arena::giveOutSpells()
+int Arena::getMinNumberOfPlayers()const
 {
-	for (size_t i = 0; i < arena_.size(); i++)
-		arena_[i]->spell_book.TakeMagic(spellFactory.createItemFromFactory());
+	return 2;
+}
+
+Arena::Arena()
+{
+	std::srand(std::time(nullptr));
+	m_units.resize(setNumberOfUnits());
+	// Give items to units
+	// Give units names
 }
 
 
 int Arena::setNumberOfUnits()const
 {
-	return input("Set number of players: ",
-		MAX_PLAYERS_, MIN_PLAYERS_);
+	return inputNumber("Set number of players: ",
+		getMaxNubmerOfPlayers(), getMinNumberOfPlayers());
 }
 
-int Arena::currentRound()
+int Arena::getCurrentRound()
 {
-	return round_;
+	return m_round;
 }
 
 Arena& Arena::getInstance()
@@ -47,20 +46,20 @@ Arena& Arena::getInstance()
 
 void Arena::showUnits()const
 {
-	for (size_t i = 0; i < arena_.size(); i++)
+	for (size_t i = 0; i < m_units.size(); i++)
 	{
 		std::cout << i + 1 << ". ";
-		arena_[i]->ShowFullInfo();
+		m_units[i]->showFullInfo();
 	}
 }
 
 void Arena::takeOfLosers()
 {
-	for (size_t i = 0; i < arena_.size(); i++)
+	for (size_t i = 0; i < m_units.size(); i++)
 	{
-		if (!arena_[i]->IsAlive())
+		if (!m_units[i]->isAlive())
 		{
-			arena_.erase(arena_.begin() + i);
+			m_units.erase(m_units.begin() + i);
 			i--;
 		}
 	}
@@ -68,42 +67,81 @@ void Arena::takeOfLosers()
 
 bool Arena::gameOver()const
 {
-	return arena_.size() == 1;
+	return m_units.size() == 1;
+}
+
+void Arena::prepareUnits()
+{
+	char ch = 'a';
+	std::vector<std::string> names(m_units.size());
+	for (size_t i = 0; i < names.size(); i++)
+		names[i] = ch++;
+	for (size_t i = 0; i < m_units.size(); i++)
+	{
+		m_units[i] = UnitPtr(new Unit(names[i], 
+			std::shared_ptr<Decision>(new HumanDecision(m_units))));
+	}
+}
+
+void Arena::giveMagicToUnits(const AllItemFactory<Magic>& magicFactory)
+{
+	for (size_t i = 0; i < m_units.size(); i++)
+		m_units[i]->takeMagic(magicFactory);
+}
+
+void Arena::giveWeaponToUnits(const AllItemFactory<Weapon>& weaponFactory)
+{
+	for (size_t i = 0; i < m_units.size(); i++)
+		m_units[i]->takeWeapon(weaponFactory);
+}
+
+void Arena::giveArmorToUnits(const AllItemFactory<Armor>& armorFactory)
+{
+	for (size_t i = 0; i < m_units.size(); i++)
+		m_units[i]->takeArmor(armorFactory);
+}
+
+void Arena::giveShieldToUnits(const AllItemFactory<Shield>& sheildFactory)
+{
+	for (size_t i = 0; i < m_units.size(); i++)
+		m_units[i]->takeShield(sheildFactory);
 }
 
 void Arena::castStep()
 {
 	showUnits();
-	magicToSpell_ = arena_[indexNumber_]->ChooseMagicToCast();
-	unitToCast_ = arena_[indexNumber_]->ChooseUnitToCast(magicToSpell_);
-	arena_[indexNumber_]->Spell(*unitToCast_, magicToSpell_);
+	m_magicToCast = m_units[m_unitIndex]->chooseMagicToCast();
+	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast);
+	if (nullptr != m_unitToCast && nullptr != m_magicToCast)
+		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
 }
 
 void Arena::attackStep()
 {
 	showUnits();
-	unitToAttack_ = arena_[indexNumber_]->ChooseUnitToAttack();
-	arena_[indexNumber_]->Injure(*unitToAttack_);
+	m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack();
+	if (nullptr != m_unitToAttack)
+		m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
 }
 
 void Arena::rewardKiller()
 {
-	if (!unitToCast_->IsAlive())
-		arena_[indexNumber_]->LevelUp();
+	if (!m_unitToCast->isAlive())
+		m_units[m_unitIndex]->levelUp();
 }
 
 void Arena::nextPlayer()
 {
-	indexNumber_++;
-	if (indexNumber_ >= arena_.size())
+	m_unitIndex++;
+	if (m_unitIndex >= m_units.size())
 	{
-		indexNumber_ = 0;
-		round_++;
+		m_unitIndex = 0;
+		m_round++;
 	}
 }
 
-void Arena::scan()
+void Arena::newRound()
 {
-	for (size_t i = 0; i < arena_.size(); i++)
-		arena_[i]->Scan();
+	for (size_t i = 0; i < m_units.size(); i++)
+		m_units[i]->moveIntoNewRound();
 }

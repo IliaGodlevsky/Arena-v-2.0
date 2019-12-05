@@ -13,45 +13,48 @@ public:
 	Weapon& operator=(const Weapon& weapon);
 	virtual ~Weapon() = default;
 public:
-	virtual void Injure(Unit& unit, int dmg )const = 0;
-	virtual void ShowFullInfo()const = 0;
-	virtual void ShowShortInfo()const final;
-	virtual bool CanSmash(const Unit& unit)const final;
+	virtual void injureUnit(Unit& unit, int damage)const = 0;
+	virtual void showFullInfo()const = 0;
+	virtual void showShortInfo()const final;
+	virtual WeaponPtr clone()const = 0;
+	virtual bool canSmashUnit(const Unit& unit)const final;
 protected:
-	virtual int Multiply(int dmg)const = 0;
+	virtual int multiplyDamage(int damage)const = 0;
 protected:
-	Battles damage;
-	std::string name;
+	Battles m_damage;
+	std::string m_name;
 };
 
 class Sword : public Weapon
 {
 public:
-	Sword(std::string name, int damage, Degenerate* spell);
+	Sword(std::string name, int damage, Degenerate* magic);
 	Sword(const Sword& sword);
 	Sword& operator=(const Sword& sword);
 	~Sword();
-	void Injure(Unit& unit, int dmg)const override;
-	void ShowFullInfo()const override;
+	void injureUnit(Unit& unit, int dmg)const override;
+	void showFullInfo()const override;
+	WeaponPtr clone()const override;
 protected:
-	int Multiply(int dmg)const;
+	int multiplyDamage(int damage)const override;
 private:
-	MagicPtr spell;
+	MagicPtr m_magic_ptr;
 };
 
 class Axe : public Weapon
 {
 public:
-	Axe(std::string name, int damage, Crush* spell);
+	Axe(std::string name, int damage, Crush* magic);
 	Axe(const Axe& axe);
 	Axe& operator=(const Axe& axe);
 	~Axe();
-	void Injure(Unit& unit, int dmg)const override;
-	void ShowFullInfo()const override;
+	void injureUnit(Unit& unit, int damage)const override;
+	void showFullInfo()const override;
+	WeaponPtr clone()const override;
 protected:
-	int Multiply(int dmg)const;
+	int multiplyDamage(int dmg)const override;
 private:
-	MagicPtr spell;
+	MagicPtr m_magic_ptr;
 };
 
 

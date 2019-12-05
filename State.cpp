@@ -5,51 +5,51 @@
 #include "Arena.h"
 
 UnitState::UnitState(int duration)
-	: durationmeter(duration)
+	: m_durationmeter(duration)
 {
 
 }
 
-Unit* UnitState::ChooseUnitToAttack(const Unit& deciding_unit)const
-{
-	return nullptr;
-}
-
-MagicPtr UnitState::ChooseMagicToCast(const Unit& deciding_unit)const
+UnitPtr UnitState::chooseUnitToAttack(const Unit& decidingUnit)const
 {
 	return nullptr;
 }
 
-Unit* UnitState::ChooseUnitToCast(const Unit& deciding_unit,
-	const MagicPtr& magic_to_spell)const
+MagicPtr UnitState::chooseMagicToCast(const Unit& decidingUnit)const
 {
 	return nullptr;
 }
 
-void UnitState::RecieveDecision(Decision* decision)
+UnitPtr UnitState::chooseUnitToCast(const Unit& decidingUnit,
+	const MagicPtr& magicToCast)const
+{
+	return nullptr;
+}
+
+void UnitState::setDecision(std::shared_ptr<Decision> decision)
 {
 	if (nullptr != decision)
-		this->decision = decision;
+		this->m_decision_ptr = decision;
 }
 
-void UnitState::SetStartTime(int round)
+void UnitState::setStartTime(int round)
 {
-	durationmeter.SetStartTime(round);
+	m_durationmeter.SetStartTime(round);
 }
 
-bool UnitState::IsExpired(int round)const
+bool UnitState::isExpired(int round)const
 {
-	return durationmeter.IsExpired(round);
+	return m_durationmeter.IsExpired(round);
 }
 
-bool UnitState::operator < (const UnitState& state)const
+bool UnitState::operator < (const UnitState& unitState)const
 {
-	return Value() < state.Value();
+	return getValue() < unitState.getValue();
 }
 
 bool UnitState::operator>(const UnitState& state)const
 {
-	return Value() > state.Value();
+	return getValue() > state.getValue();
 }
 
 
@@ -59,23 +59,23 @@ ActiveState::ActiveState()
 
 }
 
-Unit* ActiveState::ChooseUnitToAttack(const Unit& deciding_unit)const
+UnitPtr ActiveState::chooseUnitToAttack(const Unit& decidingUnit)const
 {
-	return decision->ChooseUnitToAttack(deciding_unit);
+	return m_decision_ptr->chooseUnitToAttack(decidingUnit);
 }
 
-MagicPtr ActiveState::ChooseMagicToCast(const Unit& deciding_unit)const
+MagicPtr ActiveState::chooseMagicToCast(const Unit& decidingUnit)const
 {
-	return decision->ChooseMagicToCast(deciding_unit);
+	return m_decision_ptr->chooseMagicToCast(decidingUnit);
 }
 
-Unit* ActiveState::ChooseUnitToCast(const Unit& deciding_unit,
-	const MagicPtr& magic_to_spell)const
+UnitPtr ActiveState::chooseUnitToCast(const Unit& decidingUnit,
+	const MagicPtr& magicToCast)const
 {
-	return decision->ChooseUnitToCast(deciding_unit, magic_to_spell);
+	return m_decision_ptr->chooseUnitToCast(decidingUnit, magicToCast);
 }
 
-UnitState::StateValue ActiveState::Value()const
+UnitState::StateValue ActiveState::getValue()const
 {
 	return UnitState::ALIVE_STATE;
 }
@@ -87,42 +87,51 @@ MutedState::MutedState(int duration)
 
 }
 
-Unit* MutedState::ChooseUnitToAttack(const Unit& deciding_unit)const
+UnitPtr MutedState::chooseUnitToAttack(const Unit& decidingUnit)const
 {
-	return decision->ChooseUnitToAttack(deciding_unit);
+	return m_decision_ptr->ChooseUnitToAttack(decidingUnit);
 }
 
-MagicPtr MutedState::ChooseMagicToCast(const Unit& deciding_unit)const
-{
-	return nullptr;
-}
-
-Unit* MutedState::ChooseUnitToCast(const Unit& deciding_unit,
-	const MagicPtr& magic_to_spell)const
+MagicPtr MutedState::chooseMagicToCast(const Unit& decidingUnit)const
 {
 	return nullptr;
 }
 
-
-Unit* StunState::ChooseUnitToAttack(const Unit& deciding_unit)const
+UnitPtr MutedState::chooseUnitToCast(const Unit& decidingUnit,
+	const MagicPtr& magicToCast)const
 {
-	return UnitState::ChooseUnitToAttack(deciding_unit);
+	return nullptr;
 }
 
-MagicPtr StunState::ChooseMagicToCast(const Unit& deciding_unit)const
+MutedState::StateValue MutedState::getValue()const
 {
-	return UnitState::ChooseMagicToCast(deciding_unit);
+	return UnitState::MUTED_STATE;
 }
 
-Unit* StunState::ChooseUnitToCast(const Unit& deciding_unit,
-	const MagicPtr& magic_to_spell)const
+StunState::StunState(int duration)
+	: UnitState(duration)
 {
-	return UnitState::ChooseUnitToCast(deciding_unit, magic_to_spell);
+
 }
 
 
+UnitPtr StunState::chooseUnitToAttack(const Unit& decidingUnit)const
+{
+	return UnitState::chooseUnitToAttack(decidingUnit);
+}
 
+MagicPtr StunState::chooseMagicToCast(const Unit& decidingUnit)const
+{
+	return UnitState::chooseMagicToCast(decidingUnit);
+}
 
+UnitPtr StunState::chooseUnitToCast(const Unit& decidingUnit,
+	const MagicPtr& magicToCast)const
+{
+	return UnitState::chooseUnitToCast(decidingUnit, magicToCast);
+}
 
-
-
+StunState::StateValue StunState::getValue()const
+{
+	return UnitState::STUNNED_STATE;
+}

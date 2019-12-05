@@ -4,115 +4,135 @@
 #include "Unit.h"
 #include "Arena.h"
 
-Unit::Unit(std::string name, Decision* decision)
-	: damage(0), 
-	armor(0),
-	spell_book(this), 
-	name(name),
-	level(this),
-	on_me(this), 
-	decision(decision)
+Unit::Unit(std::string name, std::shared_ptr<Decision> decision)
+	: m_damage(0), 
+	m_armor(0),
+	m_magicBook(this), 
+	m_name(name),
+	m_level(this),
+	m_magicOnMe(this), 
+	m_decision(decision),
+	m_stateHolder(decision)
 {
 
 }
 
-const std::string& Unit::Name()const
+const std::string& Unit::getName()const
 {
-	return name;
+	return m_name;
 }
 
-void Unit::LevelUp()
+void Unit::levelUp()
 {
-	level++;
+	m_level++;
 }
 
-bool Unit::IsAlive()const
+bool Unit::isAlive()const
 {
-	return health > 0;
+	return m_health > 0;
 }
 
-void Unit::RecieveNewState(UnitState* state)
+void Unit::recieveNewState(std::shared_ptr<UnitState>& Unitstate)
 {
-	state->RecieveDecision(decision);
-	this->state.RecieveNewState(state);
+	this->m_stateHolder.recieveNewState(Unitstate);
 }
 
-void Unit::Scan()
+void Unit::takeMagic(const AllItemFactory<Magic>& magicFactory)
 {
-	health++;
-	mana++;
-	on_me.TakeOfExpired(Arena::currentRound());
-	state.TakeOfExpired(Arena::currentRound());
+	m_magicBook.takeMagic(magicFactory.createItemFromFactory());
 }
 
-bool Unit::EnoughManaFor(const MagicPtr& magic)const
+void Unit::takeWeapon(const AllItemFactory<Weapon>& weaponFactory)
 {
-	return mana >= magic->Cost();
+	m_weapon = weaponFactory.createItemFromFactory();
 }
 
-void Unit::PayMana(int mana_cost)
+void Unit::takeArmor(const AllItemFactory<Armor>& armorFactory)
 {
-	mana = mana - mana_cost;
+	m_mail = armorFactory.createItemFromFactory();
+}
+
+void Unit::takeShield(const AllItemFactory<Shield>& sheildFactory)
+{
+	m_shield = sheildFactory.createItemFromFactory();
+}
+
+void Unit::moveIntoNewRound()
+{
+	m_health++;
+	m_mana++;
+	m_magicOnMe.takeOfExpiredMagic(Arena::getCurrentRound());
+	m_stateHolder.takeOfExpiredStates(Arena::getCurrentRound());
+}
+
+bool Unit::isEnoughManaFor(const MagicPtr& magic)const
+{
+	return m_mana >= magic->getCost();
+}
+
+void Unit::payMana(int manaCost)
+{
+	m_mana = m_mana - manaCost;
 }
 
 
-bool Unit::Injure(Unit& unit)
+bool Unit::injureUnit(Unit& unit)
 {
-	if (nullptr == weapon)
+	if (nullptr == m_weapon)
 		return false;
-	weapon->Injure(unit, damage);
+	m_weapon->injureUnit(unit, m_damage);
 	return true;
 }
 
-bool Unit::Spell(Unit& unit, MagicPtr& magic)
+bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 {
-	if (nullptr == magic || !EnoughManaFor(magic))
+	if (!isEnoughManaFor(magic))
 		return false;
-	magic->Effect(unit);
-	PayMana(magic->Cost());
+	magic->effectUnit(unit);
+	payMana(magic->getCost());
 	return true;
 }
 
-bool Unit::TakeDamage(int damage)
+bool Unit::takeDamage(int damage)
 {
-	if (!sheild->Reflect())
+	if (!m_shield->isReflectChance())
 	{
-		health = health - AbsorbCalc(damage);
+		m_health = m_health - calculateDamageAbsorb(damage);
 		return true;
 	}
 	return false;
 }
 
-int Unit::AbsorbCalc(int damage)const
+int Unit::calculateDamageAbsorb(int damage)const
 {
 	// The formula is taken from WarCraft 3
 	const double REDUCE_CONST = 0.06;
-	const double numerator = static_cast<double>(armor * REDUCE_CONST);
+	const double numerator = static_cast<double>(m_armor * REDUCE_CONST);
 	double percent_of_reduce = numerator / (1.0 + numerator);
 	return static_cast<int>(std::ceil(damage * (1.0 - percent_of_reduce)));
 }
 
-Unit* Unit::ChooseUnitToAttack()const
+UnitPtr Unit::chooseUnitToAttack()const
 {
-	return state.ChooseUnitToAttack(*this);
+	return m_stateHolder.chooseUnitToAttack(*this);
 }
 
-MagicPtr Unit::ChooseMagicToCast()const
+MagicPtr Unit::chooseMagicToCast()const
 {
-	return state.ChooseMagicToCast(*this);
+	return m_stateHolder.chooseMagicToCast(*this);
 }
 
-Unit* Unit::ChooseUnitToCast(const MagicPtr& magic_to_spell)const
+UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast)const
 {
-	return state.ChooseUnitToCast(*this, magic_to_spell);
+	return m_stateHolder.chooseUnitToCast(*this, magicToCast);
 }
 
-void Unit::ShowFullInfo()const
+void Unit::showFullInfo()const
 {
-	// must be code here!!
+	throw;
 }
 
 Unit::~Unit()
 {
-	delete decision;
+	
 }

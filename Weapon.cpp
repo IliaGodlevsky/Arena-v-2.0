@@ -5,13 +5,13 @@
 #include "Unit.h"
 
 Weapon::Weapon(std::string name, int damage)
-	: name(name),damage(damage)
+	: m_name(name),m_damage(damage)
 {
 
 }
 
 Weapon::Weapon(const Weapon& weapon)
-	: damage(weapon.damage)
+	: m_damage(weapon.m_damage)
 {
 
 }
@@ -20,28 +20,28 @@ Weapon& Weapon::operator=(const Weapon& weapon)
 {
 	if (this == &weapon)
 		return *this;
-	damage = weapon.damage;
+	m_damage = weapon.m_damage;
 	return *this;
 }
 
-bool Weapon::CanSmash(const Unit& unit)const
+bool Weapon::canSmashUnit(const Unit& unit)const
 {
-	return unit.health <= unit.AbsorbCalc(damage);
+	return unit.m_health <= unit.calculateDamageAbsorb(m_damage);
 }
 
-void Weapon::ShowFullInfo()const
+void Weapon::showFullInfo()const
 {
-	std::cout << "Name: " << name << std::endl;
-	std::cout << "Damage: " << damage << std::endl;
+	std::cout << "Name: " << m_name << std::endl;
+	std::cout << "Damage: " << m_damage << std::endl;
 }
 
-void Weapon::ShowShortInfo()const
+void Weapon::showShortInfo()const
 {
-	std::cout << "<" << name << ">";
+	std::cout << "<" << m_name << ">";
 }
 
-Sword::Sword(std::string name, int damage, Degenerate* spell)
-	: Weapon(name,damage), spell(spell)
+Sword::Sword(std::string name, int damage, Degenerate* magic) // 
+	: Weapon(name,damage), m_magic_ptr(magic)
 {
 	
 }
@@ -51,15 +51,15 @@ Sword::~Sword()
 	
 }
 
-void Sword::Injure(Unit& unit, int dmg)const
+void Sword::injureUnit(Unit& unit, int damage)const
 {
-	if(unit.TakeDamage(Multiply(damage + dmg)))
-		spell->Effect(unit);
+	if(unit.takeDamage(multiplyDamage(damage + m_damage)))
+		m_magic_ptr->Effect(unit);
 }
 
 Sword::Sword(const Sword& sword)
 	: Weapon(sword), 
-	spell(sword.spell->Clone())
+	m_magic_ptr(sword.m_magic_ptr->Clone())
 {
 
 }
@@ -69,23 +69,23 @@ Sword& Sword::operator=(const Sword& sword)
 	if (this == &sword)
 		return *this;
 	Weapon::operator=(sword);
-	spell = MagicPtr(spell->Clone());
+	m_magic_ptr = MagicPtr(m_magic_ptr->Clone());
 	return *this;
 }
 
-int Sword::Multiply(int dmg)const
+int Sword::multiplyDamage(int damage)const
 {
-	return dmg;
+	return damage;
 }
 
-void Sword::ShowFullInfo()const
+void Sword::showFullInfo()const
 {
-	Weapon::ShowFullInfo();
-	spell->ShowFullInfo();
+	Weapon::showFullInfo();
+	m_magic_ptr->ShowFullInfo();
 }
 
-Axe::Axe(std::string name, int damage, Crush* spell)
-	: Weapon(name, damage), spell(spell)
+Axe::Axe(std::string name, int damage, Crush* magic)
+	: Weapon(name, damage), m_magic_ptr(magic)
 {
 	
 }
@@ -95,14 +95,14 @@ Axe::~Axe()
 
 }
 
-void Axe::Injure(Unit& unit, int dmg)const
+void Axe::injureUnit(Unit& unit, int damage)const
 {
-	if (unit.TakeDamage(Multiply(damage + dmg)))
-		spell->Effect(unit);
+	if (unit.takeDamage(multiplyDamage(m_damage + damage)))
+		m_magic_ptr->Effect(unit);
 }
 
 Axe::Axe(const Axe& axe)
-	: Weapon(axe), spell(axe.spell->Clone())
+	: Weapon(axe), m_magic_ptr(axe.m_magic_ptr->Clone())
 {
 
 }
@@ -112,17 +112,17 @@ Axe& Axe::operator=(const Axe& axe)
 	if (this == &axe)
 		return *this;
 	Weapon::operator=(axe);
-	spell = MagicPtr(axe.spell->Clone());
+	m_magic_ptr = MagicPtr(axe.m_magic_ptr->Clone());
 	return *this;
 }
 
-int Axe::Multiply(int dmg)const
+int Axe::multiplyDamage(int dmg)const
 {
 	return dmg;
 }
 
-void Axe::ShowFullInfo()const
+void Axe::showFullInfo()const
 {
-	Weapon::ShowFullInfo();
-	spell->ShowFullInfo();
+	Weapon::showFullInfo();
+	m_magic_ptr->ShowFullInfo();
 }

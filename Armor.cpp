@@ -4,102 +4,104 @@
 #include "Unit.h"
 
 Armor::Armor(std::string name, int armor)
-	: armor(armor), name(name)
+	: m_armor(armor), m_name(name)
 {
 
 }
 
-void Armor::PutOn(Unit& unit)const
+void Armor::putOn(Unit& unit)const
 {
-	unit.armor.ChangeValue(armor);
+	unit.m_armor.ChangeValue(this->m_armor);
 }
 
-void Armor::PutOff(Unit& unit)const
+void Armor::putOff(Unit& unit)const
 {
-	unit.armor.ChangeValue(-armor);
+	unit.m_armor.ChangeValue(-this->m_armor);
 }
 
-void Armor::ShowShortInfo()const
+void Armor::showShortInfo()const
 {
-	std::cout << "<" << name << ">\n";
+	std::cout << "<" << this->m_name << ">\n";
 }
 
-void Armor::ShowFullInfo()const
+void Armor::showFullInfo()const
 {
-	std::cout << "Name: " << name << std::endl;
-	std::cout << "Armor: " << armor << std::endl;
+	std::cout << "Name: " << this->m_name << std::endl;
+	std::cout << "Armor: " << this->m_armor << std::endl;
 }
 
 Mail::Mail(std::string name, int armor, Vitals health)
-	: Armor(name, armor), health(health)
+	: Armor(name, armor), m_health(health)
 {
 
 }
 
-void Mail::PutOn(Unit& unit)const
+void Mail::putOn(Unit& unit)const
 {
-	Armor::PutOn(unit);
-	unit.health = unit.health + health;
+	Armor::putOn(unit);
+	unit.m_health = unit.m_health + this->m_health;
 }
 
-void Mail::PutOff(Unit& unit)const
+void Mail::putOff(Unit& unit)const
 {
-	Armor::PutOff(unit);
-	unit.health = unit.health - health;
+	Armor::putOff(unit);
+	unit.m_health = unit.m_health - this->m_health;
 }
 
-void Mail::ShowFullInfo()const
+void Mail::showFullInfo()const
 {
-	Armor::ShowFullInfo();
-	std::cout << "Health add: " << health << std::endl;
+	Armor::showFullInfo();
+	std::cout << "Health add: " << this->m_health << std::endl;
 }
 
 WizardCloak::WizardCloak(std::string name, int armor, Vitals mana)
-	: Armor(name, armor), mana(mana)
+	: Armor(name, armor), m_mana(mana)
 {
 
 }
 
-void WizardCloak::PutOn(Unit& unit)const
+void WizardCloak::putOn(Unit& unit)const
 {
-	unit.mana = unit.mana + mana;
+	Armor::putOn(unit);
+	unit.m_mana = unit.m_mana + this->m_mana;
 }
 
-void WizardCloak::PutOff(Unit& unit)const
+void WizardCloak::putOff(Unit& unit)const
 {
-	unit.mana = unit.mana - mana;
+	Armor::putOff(unit);
+	unit.m_mana = unit.m_mana - this->m_mana;
 }
 
-void WizardCloak::ShowFullInfo()const
+void WizardCloak::showFullInfo()const
 {
-	Armor::ShowFullInfo();
-	std::cout << "Mana add: " << mana << std::endl;
+	Armor::showFullInfo();
+	std::cout << "Mana add: " << this->m_mana << std::endl;
 }
 
 LegionerChains::LegionerChains(std::string name, int armor,
 	Vitals health, Vitals mana) : Armor(name, armor),
-	health(health), mana(mana)
+	m_health(health), m_mana(mana)
 {
 
 }
 
-void LegionerChains::PutOn(Unit& unit)const
+void LegionerChains::putOn(Unit& unit)const
 {
-	Armor::PutOn(unit);
-	unit.health = unit.health + health;
-	unit.mana = unit.mana + mana;
+	Armor::putOn(unit);
+	unit.m_health = unit.m_health + this->m_health;
+	unit.m_mana = unit.m_mana + this->m_mana;
 }
 
-void LegionerChains::PutOff(Unit& unit)const
+void LegionerChains::putOff(Unit& unit)const
 {
-	Armor::PutOff(unit);
-	unit.health = unit.health - health;
-	unit.mana = unit.mana - mana;
+	Armor::putOff(unit);
+	unit.m_health = unit.m_health - this->m_health;
+	unit.m_mana = unit.m_mana - this->m_mana;
 }
 
-void LegionerChains::ShowFullInfo()const
+void LegionerChains::showFullInfo()const
 {
-	Armor::ShowFullInfo();
-	std::cout << "Health add: " << health << std::endl;
-	std::cout << "Mana add: " << mana << std::endl;
+	Armor::showFullInfo();
+	std::cout << "Health add: " << this->m_health << std::endl;
+	std::cout << "Mana add: " << this->m_mana << std::endl;
 }

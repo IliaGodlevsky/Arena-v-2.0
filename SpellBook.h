@@ -9,11 +9,11 @@ class SpellBook : public Spells
 {
 public:
 	SpellBook(Unit* unit);
-	bool CanCastAnySpell()const;
-	void ShowFullInfo()const;
-	void ShowShortInfo()const;
-	void TakeMagic(const MagicPtr& magic);
+	bool canCastAnySpell()const;
+	void showFullInfo()const;
+	void showShortInfo()const;
+	void takeMagic(const MagicPtr& magic);
 private:
-	Unit* unit;
+	Unit* m_unit; // unit, that have this vector of magic
 };
-#endif
+#endif // SPELLBOOK_H_

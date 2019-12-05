@@ -9,14 +9,14 @@ class SpellsOnMe : public Spells
 {
 public:
 	SpellsOnMe(Unit* unit);
-	void TakeOfExpired(int round);
-	size_t HaveSpell(const MagicPtr& spell)const;
-	void Expire(size_t spell_index);
-	void ExpireAllSpells();
-	void TakeSpell(const MagicPtr& magic);
-	void ShowFullInfo()const;
-	void ShowShortInfo()const;
+	void takeOfExpiredMagic(int round);
+	size_t getMagicIndex(const MagicPtr& magic)const;
+	void expireMagic(size_t magicIndex);
+	void expireAllSpells();
+	void takeMagic(const MagicPtr& magic);
+	void showFullInfo()const;
+	void showShortInfo()const;
 private:
-	Unit* unit;
+	Unit* m_unit; // unit, that have this vector of spells
 };
-#endif
+#endif // SPELLS_ON_ME

@@ -1,32 +1,33 @@
 #include "WeaponFactory.h"
+#include "Weapon.h"
 
 SwordFactory::SwordFactory()
 {
-	items.push_back(new Sword("Gladius", GLADIUS_DAMAGE, 
+	m_items.push_back(WeaponPtr(new Sword("Gladius", GLADIUS_DAMAGE,
 		new Degenerate("Open wounds", OPEN_WOUNDS_DURATION, 
-			OPEN_WOUNDS_DMG_PER_ROUND, OPEN_WOUNDS_POSIBILITY)));
-	items.push_back(new Sword("Palache",PALACHE_DAMAGE, 
+			OPEN_WOUNDS_DMG_PER_ROUND, OPEN_WOUNDS_POSIBILITY))));
+	m_items.push_back(WeaponPtr(new Sword("Palache",PALACHE_DAMAGE,
 		new Degenerate("Poison", POISON_DURATION, 
-			POISON_DMP_PER_ROUND, POISON_POSIBILITY)));
-	items.push_back(new Sword("Knife", KNIFE_DAMAGE, 
+			POISON_DMP_PER_ROUND, POISON_POSIBILITY))));
+	m_items.push_back(WeaponPtr(new Sword("Knife", KNIFE_DAMAGE,
 		new Degenerate("Plague", PLAGUE_DURATION, 
-			PLAGUE_DMG_PER_ROUND, PLAGUE_POSIBILITY)));
+			PLAGUE_DMG_PER_ROUND, PLAGUE_POSIBILITY))));
 }
 
-int SwordFactory::chance()const
+int SwordFactory::getChanceOfCreation()const
 {
-	return CHANCE;
+	return 50;
 }
 
 AxeFactory::AxeFactory()
 {
-	items.push_back(new Axe("Hatchet", HATCHET_DAMAGE,
-		new Crush("Smash", SMASH_DAMAGE, SMASH_CHANCE)));
-	items.push_back(new Axe("Axe", AXE_DAMAGE, 
-		new Crush("Clap", CLAP_DAMAGE, CLAP_CHANCE)));
+	m_items.push_back(WeaponPtr(new Axe("Hatchet", HATCHET_DAMAGE,
+		new Crush("Smash", SMASH_DAMAGE, SMASH_CHANCE))));
+	m_items.push_back(WeaponPtr(new Axe("Axe", AXE_DAMAGE,
+		new Crush("Clap", CLAP_DAMAGE, CLAP_CHANCE))));
 }
 
-int AxeFactory::chance()const
+int AxeFactory::getChanceOfCreation()const
 {
-	return CHANCE;
+	return 50;
 }

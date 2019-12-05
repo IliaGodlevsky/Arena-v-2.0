@@ -6,13 +6,11 @@
 #include "Factory.h"
 #include "Armor.h"
 
-class ArmorFactory : public Factory<Armor*>
+class ArmorFactory : public Factory<Armor>
 {
 public:
 	ArmorFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 60;
+	int getChanceOfCreation()const;
 private:
 	enum ArmorParametres
 	{
@@ -21,13 +19,11 @@ private:
 	};
 };
 
-class MailFactory : public Factory<Armor*>
+class MailFactory : public Factory<Armor>
 {
 public:
 	MailFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 20;
+	int getChanceOfCreation()const;
 private:
 	enum MailParametres
 	{
@@ -42,13 +38,11 @@ private:
 	};
 };
 
-class WizardCloakFactory : public Factory<Armor*>
+class WizardCloakFactory : public Factory<Armor>
 {
 public:
 	WizardCloakFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 20;
+	int getChanceOfCreation()const;
 private:
 	enum WizardCloakParametres
 	{
@@ -63,13 +57,11 @@ private:
 	};
 };
 
-class LegionerChainsFactory : public Factory<Armor*>
+class LegionerChainsFactory : public Factory<Armor>
 {
 public:
 	LegionerChainsFactory();
-	int chance()const;
-private:
-	static const int CHANCE = 10;
+	int getChanceOfCreation()const;
 private:
 	enum LegionerChainsParametres
 	{

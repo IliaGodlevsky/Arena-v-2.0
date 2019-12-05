@@ -5,144 +5,150 @@
 #include "Arena.h"
 
 WeaponMagic::WeaponMagic(std::string name, int duration, int propability)
-	: Magic(name, 0, duration), propability(propability)
+	: Magic(name, ZERO_MANA_COST, duration), m_propability(propability)
 {
 
 }
 
 WeaponMagic::~WeaponMagic() {}
 
-bool WeaponMagic::IsCasted()const
+bool WeaponMagic::isCastChance()const
 {
-	return PosibilityCounter(propability);
+	return PosibilityCounter(m_propability);
 }
 
-void WeaponMagic::ShowFullInfo()const
+void WeaponMagic::showFullInfo()const
 {
-	Data();
+	showData();
 }
 
-void WeaponMagic::Data()const
+void WeaponMagic::showData()const
 {
-	std::cout << "Name: " << name << std::endl;
-	std::cout << "Duration: " << durationmeter << std::endl;
-	std::cout << "Posibility: " << propability << std::endl;
+	std::cout << "Name: " << m_name << std::endl;
+	std::cout << "Duration: " << m_durationmeter << std::endl;
+	std::cout << "Posibility: " << m_propability << std::endl;
 }
-
-
-
-
-
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 Degenerate::Degenerate(std::string name, int duration,
 	int degeneration, int propability)
 	: WeaponMagic(name, duration, propability),
-	degeneration(degeneration)
+	m_degeneration(degeneration)
 {
 
 }
 
-void Degenerate::Effect(Unit& unit)
+void Degenerate::effectUnit(Unit& unit)
 {
-	if (IsCasted())
+	if (isCastChance())
 	{
-		PutOn(unit);
-		Magic::Effect(unit);
+		putOn(unit);
+		Magic::effectUnit(unit);
 	}
 }
 
-void Degenerate::Uneffect(Unit& unit)const
+void Degenerate::uneffectUnit(Unit& unit)const
 {
-	unit.health.ChangeRegeneration(degeneration);
+	unit.m_health.ChangeRegeneration(m_degeneration);
 }
 
-MagicPtr Degenerate::Clone()const
+MagicPtr Degenerate::clone()const
 {
-	return MagicPtr(new Degenerate(name, durationmeter, degeneration, propability));
+	return MagicPtr(new Degenerate(m_name, m_durationmeter, m_degeneration, m_propability));
 }
 
-bool Degenerate::IsBuff()const
+bool Degenerate::isBuff()const
 {
 	return false;
 }
 
-void Degenerate::PutOn(Unit& unit)const
+void Degenerate::putOn(Unit& unit)const
 {
-	unit.health.ChangeRegeneration(-degeneration);
+	unit.m_health.ChangeRegeneration(-m_degeneration);
 }
 
-bool Degenerate::Equal(const MagicPtr& magic)const
+bool Degenerate::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (typeid(*magic) == typeid(*this))
-	{
-		Degenerate* temp = dynamic_cast<Degenerate*>(magic.get());
-		return Magic::Equal(magic) && degeneration == temp->degeneration;
-	}
-	return false;
+	if (nullptr == magic)
+		return false;
+	Degenerate* temp = DYNAMIC(Degenerate*, magic);
+	if (nullptr == temp)
+		return false;
+	return m_degeneration == temp->m_degeneration;
 }
 
-void Degenerate::ShowFullInfo()const
+bool Degenerate::isEqual(const MagicPtr& magic)const
 {
-	WeaponMagic::Data();
-	Data();
+	return Magic::isEqual(magic)
+		&& hasEqualParametres(magic);
 }
 
-void Degenerate::Data()const
+void Degenerate::showFullInfo()const
 {
-	std::cout << "Deals " << degeneration << " per round\n";
+	WeaponMagic::showData();
+	showData();
 }
 
-
-
+void Degenerate::showData()const
+{
+	std::cout << "Deals " << m_degeneration << " per round\n";
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 Crush::Crush(std::string name, int damage,
 	int propability)
-	: WeaponMagic(name, 0, propability), damage(damage)
+	: WeaponMagic(name, ZERO_DURATION, propability), m_damage(damage)
 {
 	
 }
 
-void Crush::Effect(Unit& unit)
+void Crush::effectUnit(Unit& unit)
 {
-	if (IsCasted())
-		PutOn(unit);
+	if (isCastChance())
+		putOn(unit);
 }
 
-void Crush::Uneffect(Unit& unit)const
+void Crush::uneffectUnit(Unit& unit)const
 {
 	return;
 }
 
-MagicPtr Crush::Clone()const
+MagicPtr Crush::clone()const
 {
-	return MagicPtr(new Crush(name, damage, propability));
+	return MagicPtr(new Crush(m_name, m_damage, m_propability));
 }
 
-bool Crush::IsBuff()const
+bool Crush::isBuff()const
 {
 	return false;
 }
 
-void Crush::PutOn(Unit& unit)const
+void Crush::putOn(Unit& unit)const
 {
-	unit.health = unit.health - damage;
+	unit.m_health = unit.m_health - m_damage;
 }
 
-bool Crush::Equal(const MagicPtr& magic)const
+bool Crush::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (typeid(*magic) == typeid(*this))
-	{
-		Crush* temp = dynamic_cast<Crush*>(magic.get());
-		return Magic::Equal(magic) && damage == temp->damage;
-	}
-	return false;
+	if (nullptr == magic)
+		return false;
+	Crush* temp = DYNAMIC(Crush*, magic);
+	if (nullptr == temp)
+		return false;
+	return m_damage == temp->m_damage;
 }
 
-void Crush::ShowFullInfo()const
+bool Crush::isEqual(const MagicPtr& magic)const
 {
-	WeaponMagic::Data();
-	Data();
+	return Magic::isEqual(magic)
+		&& hasEqualParametres(magic);
 }
 
-void Crush::Data()const
+void Crush::showFullInfo()const
 {
-	std::cout << "Damage: " << damage << std::endl;
+	WeaponMagic::showData();
+	showData();
+}
+
+void Crush::showData()const
+{
+	std::cout << "Damage: " << m_damage << std::endl;
 }
