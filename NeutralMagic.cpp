@@ -11,8 +11,8 @@ Dispel::Dispel(std::string name, int manaCost)
 
 void Dispel::effectUnit(Unit& unit)
 {
-	unit.m_magicOnMe.ExpireAllSpells();
-	unit.m_stateHolder.ExpireAllStates();
+	unit.m_magicOnMe.expireAllMagic();
+	unit.m_stateHolder.expireAllStates();
 }
 
 void Dispel::uneffectUnit(Unit& unit)const
@@ -54,7 +54,7 @@ void Dispel::showFullInfo()const
 
 void Dispel::showData()const
 {
-	std::cout << "Dispels all spells on unit\n";
+	std::cout << "Dispels all magic on unit\n";
 }
 
 void Dispel::putOn(Unit& unit)const

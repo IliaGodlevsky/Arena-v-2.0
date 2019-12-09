@@ -1,6 +1,8 @@
 #include "SpellsOnMe.h"
 #include "Unit.h"
 
+#include <iostream>
+
 SpellsOnMe::SpellsOnMe(Unit* unit)
 	: m_unit(unit)
 {
@@ -26,9 +28,8 @@ void SpellsOnMe::takeMagic(const MagicPtr& magic)
 	// from the spells that are on unit
 	size_t magicIndex = 
 		m_unit->m_magicOnMe.getMagicIndex(magic);
-	if (magicIndex == size())
-		return;
-	m_unit->m_magicOnMe.expireMagic(magicIndex);
+	if (magicIndex < size() && !empty())
+		m_unit->m_magicOnMe.expireMagic(magicIndex);
 	push_back(MagicPtr(magic->clone()));
 }
 
@@ -46,7 +47,7 @@ void SpellsOnMe::expireMagic(size_t magicIndex)
 	erase(begin() + magicIndex);
 }
 
-void SpellsOnMe::expireAllSpells()
+void SpellsOnMe::expireAllMagic()
 {
 	for (size_t i = 0; i < size(); i++)
 	{
@@ -63,6 +64,11 @@ void SpellsOnMe::showFullInfo()const
 
 void SpellsOnMe::showShortInfo()const
 {
+	std::cout << "Effect: ";
 	for (size_t i = 0; i < size(); i++)
-		operator[](i)->showShortInfo();
+	{
+		std::cout << "<";
+		std::cout << operator[](i)->getName();
+		std::cout << ">";
+	}
 }

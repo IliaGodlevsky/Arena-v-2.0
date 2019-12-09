@@ -39,7 +39,7 @@ Degenerate::Degenerate(std::string name, int duration,
 
 void Degenerate::effectUnit(Unit& unit)
 {
-	if (isCastChance())
+	if (true/*isCastChance()*/)
 	{
 		putOn(unit);
 		Magic::effectUnit(unit);
@@ -48,7 +48,7 @@ void Degenerate::effectUnit(Unit& unit)
 
 void Degenerate::uneffectUnit(Unit& unit)const
 {
-	unit.m_health.ChangeRegeneration(m_degeneration);
+	unit.m_health.changeRegeneration(m_degeneration);
 }
 
 MagicPtr Degenerate::clone()const
@@ -63,7 +63,7 @@ bool Degenerate::isBuff()const
 
 void Degenerate::putOn(Unit& unit)const
 {
-	unit.m_health.ChangeRegeneration(-m_degeneration);
+	unit.m_health.changeRegeneration(-m_degeneration);
 }
 
 bool Degenerate::hasEqualParametres(const MagicPtr& magic)const

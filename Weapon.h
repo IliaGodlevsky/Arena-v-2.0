@@ -5,6 +5,9 @@
 #include "WeaponMagic.h"
 #include "Battles.h"
 
+class Weapon;
+using WeaponPtr = std::unique_ptr<Weapon>;
+
 class Weapon
 {
 public:
@@ -25,10 +28,12 @@ protected:
 	std::string m_name;
 };
 
+
+
 class Sword : public Weapon
 {
 public:
-	Sword(std::string name, int damage, Degenerate* magic);
+	Sword(std::string name, int damage, MagicPtr magic);
 	Sword(const Sword& sword);
 	Sword& operator=(const Sword& sword);
 	~Sword();
@@ -38,13 +43,13 @@ public:
 protected:
 	int multiplyDamage(int damage)const override;
 private:
-	MagicPtr m_magic_ptr;
+	MagicPtr m_magic;
 };
 
 class Axe : public Weapon
 {
 public:
-	Axe(std::string name, int damage, Crush* magic);
+	Axe(std::string name, int damage, MagicPtr magic);
 	Axe(const Axe& axe);
 	Axe& operator=(const Axe& axe);
 	~Axe();
@@ -54,7 +59,7 @@ public:
 protected:
 	int multiplyDamage(int dmg)const override;
 private:
-	MagicPtr m_magic_ptr;
+	MagicPtr m_magic;
 };
 
 

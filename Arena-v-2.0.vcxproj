@@ -19,11 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AllSpellsFactory.h" />
+    <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Armor.h" />
     <ClInclude Include="ArmorFactory.h" />
     <ClInclude Include="AttackMagic.h" />
+    <ClInclude Include="BadWeaponMagicException.h" />
     <ClInclude Include="Battles.h" />
     <ClInclude Include="BuffMagic.h" />
     <ClInclude Include="DebuffMagic.h" />
@@ -37,6 +38,7 @@
     <ClInclude Include="NeutralMagic.h" />
     <ClInclude Include="PosibilityCounter.h" />
     <ClInclude Include="Shield.h" />
+    <ClInclude Include="ShieldFactory.h" />
     <ClInclude Include="SpellBook.h" />
     <ClInclude Include="SpellsOnMe.h" />
     <ClInclude Include="State.h" />
@@ -52,11 +54,13 @@
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="ArmorFactory.cpp" />
     <ClCompile Include="AttackMagic.cpp" />
+    <ClCompile Include="BadWeaponMagicException.cpp" />
     <ClCompile Include="Battles.cpp" />
     <ClCompile Include="BuffMagic.cpp" />
     <ClCompile Include="DebuffMagic.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="Durationmeter.cpp" />
+    <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Magic.cpp" />
     <ClCompile Include="MagicFactory.cpp" />
@@ -64,6 +68,7 @@
     <ClCompile Include="NeutralMagic.cpp" />
     <ClCompile Include="PosibilityCounter.cpp" />
     <ClCompile Include="Shield.cpp" />
+    <ClCompile Include="ShieldFactory.cpp" />
     <ClCompile Include="SpellBook.cpp" />
     <ClCompile Include="SpellsOnMe.cpp" />
     <ClCompile Include="State.cpp" />

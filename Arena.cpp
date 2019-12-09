@@ -20,10 +20,7 @@ int Arena::getMinNumberOfPlayers()const
 
 Arena::Arena()
 {
-	std::srand(std::time(nullptr));
 	m_units.resize(setNumberOfUnits());
-	// Give items to units
-	// Give units names
 }
 
 
@@ -79,47 +76,45 @@ void Arena::prepareUnits()
 	for (size_t i = 0; i < m_units.size(); i++)
 	{
 		m_units[i] = UnitPtr(new Unit(names[i], 
-			std::shared_ptr<Decision>(new HumanDecision(m_units))));
+			std::shared_ptr<Decision>(new HumanDecision())));
 	}
 }
 
-void Arena::giveMagicToUnits(const AllItemFactory<Magic>& magicFactory)
+void Arena::giveMagicToUnits(const ItemFactory<Magic>& magicFactory)
 {
 	for (size_t i = 0; i < m_units.size(); i++)
 		m_units[i]->takeMagic(magicFactory);
 }
 
-void Arena::giveWeaponToUnits(const AllItemFactory<Weapon>& weaponFactory)
+void Arena::giveWeaponToUnits(const ItemFactory<Weapon>& weaponFactory)
 {
 	for (size_t i = 0; i < m_units.size(); i++)
 		m_units[i]->takeWeapon(weaponFactory);
 }
 
-void Arena::giveArmorToUnits(const AllItemFactory<Armor>& armorFactory)
+void Arena::giveArmorToUnits(const ItemFactory<Armor>& armorFactory)
 {
 	for (size_t i = 0; i < m_units.size(); i++)
 		m_units[i]->takeArmor(armorFactory);
 }
 
-void Arena::giveShieldToUnits(const AllItemFactory<Shield>& sheildFactory)
+void Arena::giveShieldToUnits(const ItemFactory<Shield>& shieldFactory)
 {
 	for (size_t i = 0; i < m_units.size(); i++)
-		m_units[i]->takeShield(sheildFactory);
+		m_units[i]->takeShield(shieldFactory);
 }
 
 void Arena::castStep()
 {
-	showUnits();
-	m_magicToCast = m_units[m_unitIndex]->chooseMagicToCast();
-	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast);
+	m_magicToCast = m_units[m_unitIndex]->chooseMagicToCast(m_units);
+	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast, m_units);
 	if (nullptr != m_unitToCast && nullptr != m_magicToCast)
 		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
 }
 
 void Arena::attackStep()
 {
-	showUnits();
-	m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack();
+	m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
 	if (nullptr != m_unitToAttack)
 		m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
 }

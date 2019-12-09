@@ -19,7 +19,7 @@ void DamageDebuff::effectUnit(Unit& unit)
 
 void DamageDebuff::uneffectUnit(Unit& unit)const
 {
-	unit.m_damage.ChangeValue(m_damageReduce);
+	unit.m_damage.changeValue(m_damageReduce);
 }
 
 MagicPtr DamageDebuff::clone()const
@@ -50,7 +50,7 @@ bool DamageDebuff::isEqual(const MagicPtr& magic)const
 
 void DamageDebuff::putOn(Unit& unit)const
 {
-	unit.m_damage.ChangeValue(-m_damageReduce);
+	unit.m_damage.changeValue(-m_damageReduce);
 }
 
 void DamageDebuff::showFullInfo()const
@@ -80,7 +80,7 @@ void ArmorDebuff::effectUnit(Unit& unit)
 
 void ArmorDebuff::uneffectUnit(Unit& unit)const
 {
-	unit.m_armor.ChangeValue(m_armorReduce);
+	unit.m_armor.changeValue(m_armorReduce);
 }
 
 MagicPtr ArmorDebuff::clone()const
@@ -112,7 +112,7 @@ bool ArmorDebuff::isEqual(const MagicPtr& magic)const
 
 void ArmorDebuff::putOn(Unit& unit)const
 {
-	unit.m_armor.ChangeValue(-m_armorReduce);
+	unit.m_armor.changeValue(-m_armorReduce);
 }
 
 void ArmorDebuff::showFullInfo()const
@@ -194,47 +194,56 @@ Silence::Silence(std::string name, int mana_cost,
 
 }
 
-void Silence::Effect(Unit& unit)
+void Silence::effectUnit(Unit& unit)
 {
-	PutOn(unit);
-	Magic::Effect(unit);
-	unit.RecieveNewState(new MutedState(durationmeter));
+	putOn(unit);
+	Magic::effectUnit(unit);
+	unit.recieveNewState(std::shared_ptr<UnitState>(new MutedState(m_durationmeter)));
 }
 
-void Silence::Uneffect(Unit& unit)const
-{
-	return;
-}
-
-MagicPtr Silence::Clone()const
-{
-	return MagicPtr(new Silence(name, mana_cost, durationmeter));
-}
-
-bool Silence::IsBuff()const
-{
-	return false;
-}
-
-bool Silence::Equal(const MagicPtr& magic)const
-{
-	if (typeid(*magic) == typeid(*this))
-		return Magic::Equal(magic);
-	return false;
-}
-
-void Silence::PutOn(Unit& unit)const
+void Silence::uneffectUnit(Unit& unit)const
 {
 	return;
 }
 
-void Silence::ShowFullInfo()const
+MagicPtr Silence::clone()const
 {
-	Magic::Data();
-	Data();
+	return MagicPtr(new Silence(m_name, m_manaCost, m_durationmeter));
 }
 
-void Silence::Data()const
+bool Silence::isBuff()const
+{
+	return false;
+}
+
+bool Silence::hasEqualParametres(const MagicPtr& magic)const
+{
+	if (nullptr == magic)
+		return false;
+	Silence* temp = DYNAMIC(Silence*, magic);
+	if (nullptr == temp)
+		return false;
+	return Magic::isEqual(magic);
+}
+
+bool Silence::isEqual(const MagicPtr& magic)const
+{
+	return Magic::isEqual(magic) &&
+		hasEqualParametres(magic);
+}
+
+void Silence::putOn(Unit& unit)const
+{
+	return;
+}
+
+void Silence::showFullInfo()const
+{
+	Magic::showData();
+	showData();
+}
+
+void Silence::showData()const
 {
 	std::cout << "Enemy can't cast spells\n";
 }

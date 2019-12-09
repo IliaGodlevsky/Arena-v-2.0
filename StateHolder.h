@@ -11,12 +11,13 @@ class StateHolder
 public:
 	StateHolder(std::shared_ptr<Decision> decision);
 	void recieveNewState(std::shared_ptr<UnitState>& unitState);
-	UnitPtr chooseUnitToAttack(const Unit& decidingUnit)const;
-	MagicPtr chooseMagicToCast(const Unit& decidingUnit)const;
+	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const;
+	MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
-		const MagicPtr& magicToCast)const;
+		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void takeOfExpiredStates(int round);
 	void expireAllStates();
+	void showShortInfo()const;
 	~StateHolder();
 private:
 	std::shared_ptr<Decision> m_decision;

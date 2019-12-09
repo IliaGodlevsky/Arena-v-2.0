@@ -21,7 +21,7 @@ void DamageBuff::effectUnit(Unit& unit)
 
 void DamageBuff::uneffectUnit(Unit& unit)const
 {
-	unit.m_damage.ChangeValue(-m_damageAmplify);
+	unit.m_damage.changeValue(-m_damageAmplify);
 }
 
 MagicPtr DamageBuff::clone()const
@@ -31,7 +31,7 @@ MagicPtr DamageBuff::clone()const
 
 void DamageBuff::putOn(Unit& unit)const
 {
-	unit.m_damage.ChangeValue(m_damageAmplify);
+	unit.m_damage.changeValue(m_damageAmplify);
 }
 
 bool DamageBuff::hasEqualParametres(const MagicPtr& magic)const
@@ -82,7 +82,7 @@ void ArmorBuff::effectUnit(Unit& unit)
 
 void ArmorBuff::uneffectUnit(Unit& unit)const
 {
-	unit.m_armor.ChangeValue(-m_armorAmplify);
+	unit.m_armor.changeValue(-m_armorAmplify);
 }
 
 MagicPtr ArmorBuff::clone()const
@@ -92,7 +92,7 @@ MagicPtr ArmorBuff::clone()const
 
 void ArmorBuff::putOn(Unit& unit)const
 {
-	unit.m_armor.ChangeValue(m_armorAmplify);
+	unit.m_armor.changeValue(m_armorAmplify);
 }
 
 bool ArmorBuff::isBuff()const

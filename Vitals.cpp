@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iostream>
 
 #include "Vitals.h"
 
@@ -21,7 +22,7 @@ Vitals Vitals::operator++(int i)
 Vitals Vitals::operator-(int value)const
 {
 	Vitals temp = *this;
-	fdim(temp.m_value, value);
+	temp.m_value = static_cast<int>(fdim(temp.m_value, value));
 	return temp;
 }
 
@@ -37,7 +38,7 @@ Vitals Vitals::operator+(const Vitals& vit)const
 
 Vitals Vitals::operator-(const Vitals& vit)const
 {
-	int val = static_cast<int>(fdim(m_value,vit.m_value));
+	int val = static_cast<int>(fdim(m_value, vit.m_value));
 	int max_val = static_cast<int>(fdim(m_maxValue, vit.m_maxValue));
 	int regen = m_valueRegeneration - vit.m_valueRegeneration;
 	Vitals temp(val, max_val, regen);

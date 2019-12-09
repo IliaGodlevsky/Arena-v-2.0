@@ -8,6 +8,16 @@ SpellBook::SpellBook(Unit* unit)
 
 }
 
+void SpellBook::magicList()const
+{
+	for (size_t i = 0; i < size(); i++)
+	{
+		std::cout << i + 1 << ". ";
+		operator[](i)->showShortInfo();
+		std::cout << std::endl;
+	}
+}
+
 bool SpellBook::canCastAnySpell()const
 {
 	bool can_cast = false;
@@ -33,6 +43,8 @@ void SpellBook::showShortInfo()const
 
 void SpellBook::takeMagic(const MagicPtr& magic)
 {
+	printf("%s", "SpellBook takeMagic\n");
+	system("pause");
 	if (nullptr != magic)
 		push_back(MagicPtr(magic->clone()));
 }

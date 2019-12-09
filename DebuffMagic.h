@@ -75,6 +75,7 @@ public:
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
 protected:
+	bool hasEqualParametres(const MagicPtr& magic)const;
 	void showData()const override;
 	void putOn(Unit& unit)const override;
 };

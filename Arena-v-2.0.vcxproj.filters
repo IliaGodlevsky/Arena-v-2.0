@@ -81,6 +81,21 @@
     <Filter Include="State\UnitState">
       <UniqueIdentifier>{b01d40b8-146b-4669-b47c-12ba0a2812f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Exception">
+      <UniqueIdentifier>{6721b3bc-a34a-4da7-b36a-c25bc49b8ea5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory\MagicFactory">
+      <UniqueIdentifier>{987e1ad4-853b-43f6-88a7-956ec2cb4a5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory\ArmorFactory">
+      <UniqueIdentifier>{1ad54e31-63d1-4325-946e-7ce3362c6b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory\WeaponFactory">
+      <UniqueIdentifier>{1ad20d1f-4455-46b0-a3ad-65e6c1ae4481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory\ShieldFactory">
+      <UniqueIdentifier>{fb6552e1-6098-4f13-836a-0fb653bf4fa6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Magic.h">
@@ -125,19 +140,7 @@
     <ClInclude Include="PosibilityCounter.h">
       <Filter>PosibilityCounter</Filter>
     </ClInclude>
-    <ClInclude Include="MagicFactory.h">
-      <Filter>Factory</Filter>
-    </ClInclude>
     <ClInclude Include="Factory.h">
-      <Filter>Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="AllSpellsFactory.h">
-      <Filter>Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="WeaponFactory.h">
-      <Filter>Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="ArmorFactory.h">
       <Filter>Factory</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h">
@@ -163,6 +166,24 @@
     </ClInclude>
     <ClInclude Include="State.h">
       <Filter>State\UnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="BadWeaponMagicException.h">
+      <Filter>Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicFactory.h">
+      <Filter>Factory\MagicFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="ArmorFactory.h">
+      <Filter>Factory\ArmorFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponFactory.h">
+      <Filter>Factory\WeaponFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldFactory.h">
+      <Filter>Factory\ShieldFactory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,15 +235,6 @@
     <ClCompile Include="PosibilityCounter.cpp">
       <Filter>PosibilityCounter</Filter>
     </ClCompile>
-    <ClCompile Include="MagicFactory.cpp">
-      <Filter>Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="WeaponFactory.cpp">
-      <Filter>Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="ArmorFactory.cpp">
-      <Filter>Factory</Filter>
-    </ClCompile>
     <ClCompile Include="StateHolder.cpp">
       <Filter>StateHolder</Filter>
     </ClCompile>
@@ -240,6 +252,24 @@
     </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>State\UnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="BadWeaponMagicException.cpp">
+      <Filter>Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicFactory.cpp">
+      <Filter>Factory\MagicFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="ArmorFactory.cpp">
+      <Filter>Factory\ArmorFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponFactory.cpp">
+      <Filter>Factory\WeaponFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="ShieldFactory.cpp">
+      <Filter>Factory\ShieldFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

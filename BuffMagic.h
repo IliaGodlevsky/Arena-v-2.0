@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Magic.h"
+#include "DebuffMagic.h"
 
 #ifndef BUFF_H_
 #define BUFF_H_

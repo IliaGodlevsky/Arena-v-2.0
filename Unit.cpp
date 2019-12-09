@@ -5,8 +5,8 @@
 #include "Arena.h"
 
 Unit::Unit(std::string name, std::shared_ptr<Decision> decision)
-	: m_damage(0), 
-	m_armor(0),
+	: m_damage(2), 
+	m_armor(2),
 	m_magicBook(this), 
 	m_name(name),
 	m_level(this),
@@ -29,40 +29,44 @@ void Unit::levelUp()
 
 bool Unit::isAlive()const
 {
+	std::cout << "isAlive\n";
+	system("pause");
 	return m_health > 0;
 }
 
-void Unit::recieveNewState(std::shared_ptr<UnitState>& Unitstate)
+void Unit::recieveNewState(std::shared_ptr<UnitState> Unitstate)
 {
 	this->m_stateHolder.recieveNewState(Unitstate);
 }
 
-void Unit::takeMagic(const AllItemFactory<Magic>& magicFactory)
+void Unit::takeMagic(const ItemFactory<Magic>& magicFactory)
 {
 	m_magicBook.takeMagic(magicFactory.createItemFromFactory());
 }
 
-void Unit::takeWeapon(const AllItemFactory<Weapon>& weaponFactory)
+void Unit::takeWeapon(const ItemFactory<Weapon>& weaponFactory)
 {
 	m_weapon = weaponFactory.createItemFromFactory();
 }
 
-void Unit::takeArmor(const AllItemFactory<Armor>& armorFactory)
+void Unit::takeArmor(const ItemFactory<Armor>& armorFactory)
 {
 	m_mail = armorFactory.createItemFromFactory();
+	m_mail->putOn(*this);
 }
 
-void Unit::takeShield(const AllItemFactory<Shield>& sheildFactory)
+void Unit::takeShield(const ItemFactory<Shield>& sheildFactory)
 {
 	m_shield = sheildFactory.createItemFromFactory();
+	m_shield->putOn(*this);
 }
 
 void Unit::moveIntoNewRound()
 {
-	m_health++;
-	m_mana++;
 	m_magicOnMe.takeOfExpiredMagic(Arena::getCurrentRound());
 	m_stateHolder.takeOfExpiredStates(Arena::getCurrentRound());
+	m_health++;
+	m_mana++;
 }
 
 bool Unit::isEnoughManaFor(const MagicPtr& magic)const
@@ -112,24 +116,31 @@ int Unit::calculateDamageAbsorb(int damage)const
 	return static_cast<int>(std::ceil(damage * (1.0 - percent_of_reduce)));
 }
 
-UnitPtr Unit::chooseUnitToAttack()const
+UnitPtr Unit::chooseUnitToAttack(const Gladiators& units)const
 {
-	return m_stateHolder.chooseUnitToAttack(*this);
+	return m_stateHolder.chooseUnitToAttack(*this, units);
 }
 
-MagicPtr Unit::chooseMagicToCast()const
+MagicPtr Unit::chooseMagicToCast(const Gladiators& units)const
 {
-	return m_stateHolder.chooseMagicToCast(*this);
+	return m_stateHolder.chooseMagicToCast(*this, units);
 }
 
-UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast)const
+UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast, const Gladiators& units)const
 {
-	return m_stateHolder.chooseUnitToCast(*this, magicToCast);
+	return m_stateHolder.chooseUnitToCast(*this, magicToCast, units);
 }
 
 void Unit::showFullInfo()const
 {
-	throw;
+	std::cout << getName() << " Level: " << m_level << std::endl;
+	std::cout << "HP: " << m_health << " MP: " 
+		<< m_mana << " DMG: " << m_damage << " Arm: " << m_armor << std::endl;
+	m_magicBook.showShortInfo();
+	m_magicOnMe.showShortInfo();
+	m_weapon->showShortInfo();
+	m_mail->showShortInfo();
+	m_shield->showShortInfo();
 }
 
 Unit::~Unit()

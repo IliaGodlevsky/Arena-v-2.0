@@ -73,7 +73,7 @@ AttackAndStun::AttackAndStun(std::string name, int manaCost,
 void AttackAndStun::effectUnit(Unit& unit)
 {
 	putOn(unit);
-	unit.m_stateHolder.RecieveNewState(new StunState(m_durationmeter));
+	unit.recieveNewState(std::shared_ptr<UnitState>(new StunState(m_durationmeter)));
 	Attack::effectUnit(unit);
 }
 
@@ -141,7 +141,7 @@ void Poison::effectUnit(Unit& unit)
 
 void Poison::uneffectUnit(Unit& unit)const
 {
-	unit.m_health.ChangeRegeneration(m_regenReduce);
+	unit.m_health.changeRegeneration(m_regenReduce);
 }
 
 MagicPtr Poison::clone()const
@@ -172,7 +172,7 @@ bool Poison::isEqual(const MagicPtr& magic)const
 
 void Poison::putOn(Unit& unit)const
 {
-	unit.m_health.ChangeRegeneration(-m_regenReduce);
+	unit.m_health.changeRegeneration(-m_regenReduce);
 }
 
 void Poison::showFullInfo()const

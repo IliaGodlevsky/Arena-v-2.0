@@ -4,7 +4,7 @@
 #define ARENA_H_
 
 #include "Unit.h"
-#include "AllSpellsFactory.h"
+#include "ItemFactory.h"
 
 // Singleton
 class Arena
@@ -27,10 +27,10 @@ public:
 	void takeOfLosers();
 public:
 	void prepareUnits();
-	void giveMagicToUnits(const AllItemFactory<Magic>& magicFactory);
-	void giveWeaponToUnits(const AllItemFactory<Weapon>& weaponFactory);
-	void giveArmorToUnits(const AllItemFactory<Armor>& armorFactory);
-	void giveShieldToUnits(const AllItemFactory<Shield>& sheildFactory);
+	void giveMagicToUnits(const ItemFactory<Magic>& magicFactory);
+	void giveWeaponToUnits(const ItemFactory<Weapon>& weaponFactory);
+	void giveArmorToUnits(const ItemFactory<Armor>& armorFactory);
+	void giveShieldToUnits(const ItemFactory<Shield>& sheildFactory);
 	~Arena() = default;
 public:
 	int setNumberOfUnits()const;

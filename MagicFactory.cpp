@@ -2,8 +2,6 @@
 #include "Magic.h"
 #include "BuffMagic.h"
 
-int randomIndex(int arraySize) { return std::rand() % arraySize; }
-
 DamageBuffFactory::DamageBuffFactory()
 {
 	m_items.push_back(MagicPtr(new DamageBuff("Strength",

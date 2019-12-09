@@ -22,6 +22,7 @@ public:
 public:
 	virtual bool isExpired(int round)const final;
 	virtual void setStartTime(int round) final;
+	virtual const std::string& getName()const final;
 	virtual bool isEnoughMana(int currentMana)const final;
 	virtual int getCost()const final;
 	virtual bool isEqual(const MagicPtr& magic)const;

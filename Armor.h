@@ -5,6 +5,9 @@
 #include "Battles.h"
 #include "Vitals.h"
 
+class Armor;
+using ArmPtr = std::unique_ptr<Armor>;
+
 class Armor
 {
 public:
@@ -14,6 +17,7 @@ public:
 	virtual ~Armor() = default;
 	virtual void showFullInfo()const;
 	virtual void showShortInfo()const final;
+	virtual ArmPtr clone()const;
 protected:
 	std::string m_name;
 	Battles m_armor;
@@ -27,6 +31,7 @@ public:
 	void putOn(Unit& unit)const override;
 	void putOff(Unit& unit)const override;
 	void showFullInfo()const override;
+	ArmPtr clone()const;
 private:
 	Vitals m_health;
 };
@@ -39,6 +44,7 @@ public:
 	void putOn(Unit& unit)const override;
 	void putOff(Unit& unit)const override;
 	void showFullInfo()const override;
+	ArmPtr clone()const;
 private:
 	Vitals m_mana;
 };
@@ -51,6 +57,7 @@ public:
 	void putOn(Unit& unit)const override;
 	void putOff(Unit& unit)const override;
 	void showFullInfo()const override;
+	ArmPtr clone()const;
 private:
 	Vitals m_health;
 	Vitals m_mana;

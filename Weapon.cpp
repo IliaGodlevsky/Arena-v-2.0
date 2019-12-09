@@ -3,6 +3,7 @@
 #include "Weapon.h"
 #include "WeaponMagic.h"
 #include "Unit.h"
+#include "BadWeaponMagicException.h"
 
 Weapon::Weapon(std::string name, int damage)
 	: m_name(name),m_damage(damage)
@@ -40,10 +41,12 @@ void Weapon::showShortInfo()const
 	std::cout << "<" << m_name << ">";
 }
 
-Sword::Sword(std::string name, int damage, Degenerate* magic) // 
-	: Weapon(name,damage), m_magic_ptr(magic)
+Sword::Sword(std::string name, int damage, MagicPtr magic)
+	: Weapon(name,damage), m_magic(magic->clone())
 {
-	
+	Degenerate* temp = dynamic_cast<Degenerate*>(m_magic.get());
+	if (nullptr == temp)
+		throw BadWeaponMagicException("BadWeaponMagicException", magic);
 }
 
 Sword::~Sword()
@@ -54,12 +57,12 @@ Sword::~Sword()
 void Sword::injureUnit(Unit& unit, int damage)const
 {
 	if(unit.takeDamage(multiplyDamage(damage + m_damage)))
-		m_magic_ptr->Effect(unit);
+		m_magic->effectUnit(unit);
 }
 
 Sword::Sword(const Sword& sword)
 	: Weapon(sword), 
-	m_magic_ptr(sword.m_magic_ptr->Clone())
+	m_magic(sword.m_magic->clone())
 {
 
 }
@@ -69,7 +72,7 @@ Sword& Sword::operator=(const Sword& sword)
 	if (this == &sword)
 		return *this;
 	Weapon::operator=(sword);
-	m_magic_ptr = MagicPtr(m_magic_ptr->Clone());
+	m_magic = MagicPtr(m_magic->clone());
 	return *this;
 }
 
@@ -81,13 +84,20 @@ int Sword::multiplyDamage(int damage)const
 void Sword::showFullInfo()const
 {
 	Weapon::showFullInfo();
-	m_magic_ptr->ShowFullInfo();
+	m_magic->showFullInfo();
 }
 
-Axe::Axe(std::string name, int damage, Crush* magic)
-	: Weapon(name, damage), m_magic_ptr(magic)
+WeaponPtr Sword::clone()const
 {
-	
+	return WeaponPtr(new Sword(m_name, m_damage, m_magic->clone()));
+}
+
+Axe::Axe(std::string name, int damage, MagicPtr magic)
+	: Weapon(name, damage), m_magic(magic->clone())
+{
+	Crush* temp = dynamic_cast<Crush*>(m_magic.get());
+	if (nullptr == temp)
+		throw BadWeaponMagicException("BadWeaponMagicException", magic);
 }
 
 Axe::~Axe()
@@ -98,11 +108,11 @@ Axe::~Axe()
 void Axe::injureUnit(Unit& unit, int damage)const
 {
 	if (unit.takeDamage(multiplyDamage(m_damage + damage)))
-		m_magic_ptr->Effect(unit);
+		m_magic->effectUnit(unit);
 }
 
 Axe::Axe(const Axe& axe)
-	: Weapon(axe), m_magic_ptr(axe.m_magic_ptr->Clone())
+	: Weapon(axe), m_magic(axe.m_magic->clone())
 {
 
 }
@@ -112,7 +122,7 @@ Axe& Axe::operator=(const Axe& axe)
 	if (this == &axe)
 		return *this;
 	Weapon::operator=(axe);
-	m_magic_ptr = MagicPtr(axe.m_magic_ptr->Clone());
+	m_magic = MagicPtr(axe.m_magic->clone());
 	return *this;
 }
 
@@ -124,5 +134,10 @@ int Axe::multiplyDamage(int dmg)const
 void Axe::showFullInfo()const
 {
 	Weapon::showFullInfo();
-	m_magic_ptr->ShowFullInfo();
+	m_magic->showFullInfo();
+}
+
+WeaponPtr Axe::clone()const
+{
+	return WeaponPtr(new Axe(m_name, m_damage, m_magic->clone()));
 }

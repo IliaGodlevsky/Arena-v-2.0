@@ -5,16 +5,32 @@
 
 Shield::Shield(std::string name, int armor,
 	int reflectChance)
-	: Armor(name, armor), 
-	m_reflectChance(reflectChance)
+	: m_name(name), m_reflectChance(reflectChance), m_armor(armor)
 {
 
 }
 
+
+void Shield::putOn(Unit& unit)const
+{
+	unit.m_armor.changeValue(this->m_armor);
+}
+
+void Shield::putOff(Unit& unit)const
+{
+	unit.m_armor.changeValue(-this->m_armor);
+}
+
 void Shield::showFullInfo()const
 {
-	Armor::showFullInfo();
+	std::cout << "Name: " << m_name << std::endl;
+	std::cout << "Armor: " << m_armor << std::endl;
 	std::cout << "Reflect chance: " << m_reflectChance << std::endl;
+}
+
+void Shield::showShortInfo()
+{
+	std::cout << "<" << m_name << ">" << std::endl;
 }
 
 bool Shield::isReflectChance()const
@@ -22,61 +38,7 @@ bool Shield::isReflectChance()const
 	return PosibilityCounter(m_reflectChance);
 }
 
-
-
-TowerShield::TowerShield(std::string name, int armor,
-	Vitals health, int reflectChance)
-	: Shield(name, armor,reflectChance), m_health(health)
+ShieldPtr Shield::clone()const
 {
-
+	return ShieldPtr(new Shield(m_name, m_armor, m_reflectChance));
 }
-
-void TowerShield::putOn(Unit& unit)const
-{
-	Armor::putOn(unit);
-	unit.m_health = unit.m_health + this->m_health;
-}
-
-void TowerShield::putOff(Unit& unit)const
-{
-	Armor::putOff(unit);
-	unit.m_health = unit.m_health - this->m_health;
-}
-
-void TowerShield::showFullInfo()const
-{
-	Shield::showFullInfo();
-	std::cout << "Health add: " << this->m_health << std::endl;
-}
-
-
-LegionShield::LegionShield( std::string name, 
-	int armor, Vitals health,Vitals mana, int reflectChance)
-	: Shield(name, armor, reflectChance),
-	m_health(health),
-	m_mana(mana)
-{
-
-}
-
-void LegionShield::putOn(Unit& unit)const
-{
-	Armor::putOn(unit);
-	unit.m_health = unit.m_health + this->m_health;
-	unit.m_mana = unit.m_mana + this->m_mana;
-}
-
-void LegionShield::putOff(Unit& unit)const
-{
-	Armor::putOff(unit);
-	unit.m_health = unit.m_health - this->m_health;
-	unit.m_mana = unit.m_mana - this->m_mana;
-}
-
-void LegionShield::showFullInfo()const
-{
-	Shield::showFullInfo();
-	std::cout << "Health add: " << this->m_health << std::endl;
-	std::cout << "Mana add: " << this->m_mana << std::endl;
-}
-

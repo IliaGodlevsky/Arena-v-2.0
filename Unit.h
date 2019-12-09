@@ -12,7 +12,7 @@
 #include "SpellsOnMe.h"
 #include "State.h"
 #include "StateHolder.h"
-#include "AllSpellsFactory.h"
+#include "ItemFactory.h"
 
 #include "Globals.h"
 
@@ -31,26 +31,26 @@ public:
 	bool castMagic(Unit& unit, MagicPtr& magic);
 	bool isAlive()const;
 public:
-	void takeMagic(const AllItemFactory<Magic>& magicFactory);
-	void takeWeapon(const AllItemFactory<Weapon>& weaponFactory);
-	void takeArmor(const AllItemFactory<Armor>& armorFactory);
-	void takeShield(const AllItemFactory<Shield>& sheildFactory);
+	void takeMagic(const ItemFactory<Magic>& magicFactory);
+	void takeWeapon(const ItemFactory<Weapon>& weaponFactory);
+	void takeArmor(const ItemFactory<Armor>& armorFactory);
+	void takeShield(const ItemFactory<Shield>& sheildFactory);
 public:
 	void payMana(int manaCost);
 	void showFullInfo()const;
 	void levelUp();
-	void recieveNewState(std::shared_ptr<UnitState>& unitState);
+	void recieveNewState(std::shared_ptr<UnitState> unitState);
 	void moveIntoNewRound();
 public:
 	const std::string& getName()const;
-	UnitPtr chooseUnitToAttack()const;
-	MagicPtr chooseMagicToCast()const;
-	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr)const;
+	UnitPtr chooseUnitToAttack(const Gladiators& units)const;
+	MagicPtr chooseMagicToCast(const Gladiators& units)const;
+	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr, const Gladiators& units)const;
 public:
-	Battles m_damage;
-	Battles m_armor;
-	Vitals m_health;
-	Vitals m_mana;
+	Battles m_damage = Battles(4);
+	Battles m_armor = Battles(2);
+	Vitals m_health = { 100,100,2 };
+	Vitals m_mana = { 20,20,1 };
 	SpellsOnMe m_magicOnMe;
 	SpellBook m_magicBook;
 	Level m_level;

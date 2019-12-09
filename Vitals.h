@@ -18,8 +18,6 @@ public:
 	Vitals operator-(const Vitals& vit)const;
 	void changeRegeneration(int regeneration);
 	bool isDead()const;
-	void showFullInfo()const;
-	void showShortInfo()const;
 	operator int()const;
 private:
 	enum { DEAD_LINE };

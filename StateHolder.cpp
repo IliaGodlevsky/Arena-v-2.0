@@ -2,6 +2,8 @@
 #include "Unit.h"
 #include "Arena.h"
 
+#include <iostream>
+
 StateHolder::StateHolder(std::shared_ptr<Decision> decision)
 	: m_decision(decision), m_activeState(new ActiveState())
 {
@@ -17,26 +19,26 @@ void StateHolder::recieveNewState(std::shared_ptr<UnitState>& unitState)
 			const std::shared_ptr<UnitState>& st2) {return *st1 < *st2; });
 }
 
-UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit)const
+UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
 {
 	if (m_unitStates.empty())
-		return m_activeState->chooseUnitToAttack(decidingUnit);
-	return m_unitStates[0]->chooseUnitToAttack(decidingUnit);
+		return m_activeState->chooseUnitToAttack(decidingUnit, units);
+	return m_unitStates[0]->chooseUnitToAttack(decidingUnit, units);
 }
 
-MagicPtr StateHolder::chooseMagicToCast(const Unit& decidingUnit)const
+MagicPtr StateHolder::chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const
 {
 	if (m_unitStates.empty())
-		return m_activeState->chooseMagicToCast(decidingUnit);
-	return m_unitStates[0]->chooseMagicToCast(decidingUnit);
+		return m_activeState->chooseMagicToCast(decidingUnit, units);
+	return m_unitStates[0]->chooseMagicToCast(decidingUnit, units);
 }
 
 UnitPtr StateHolder::chooseUnitToCast(const Unit& decidingUnit,
-	const MagicPtr& magicToCast)const
+	const MagicPtr& magicToCast, const Gladiators& units)const
 {
 	if (m_unitStates.empty())
-		return m_activeState->chooseUnitToCast(decidingUnit, magicToCast);
-	return m_unitStates[0]->chooseUnitToCast(decidingUnit, magicToCast);
+		return m_activeState->chooseUnitToCast(decidingUnit, magicToCast, units);
+	return m_unitStates[0]->chooseUnitToCast(decidingUnit, magicToCast, units);
 }
 
 void StateHolder::takeOfExpiredStates(int round)
@@ -54,6 +56,17 @@ void StateHolder::takeOfExpiredStates(int round)
 void StateHolder::expireAllStates()
 {
 	m_unitStates.clear();
+}
+
+void StateHolder::showShortInfo()const
+{
+	std::cout << "States: ";
+	for (size_t i = 0; i < m_unitStates.size(); i++)
+	{
+		std::cout << "<";
+		m_unitStates[i]->showShortInfo();
+		std::cout << "> ";
+	}
 }
 
 StateHolder::~StateHolder()

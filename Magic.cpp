@@ -16,17 +16,17 @@ Magic::~Magic() {}
 void Magic::effectUnit(Unit& unit)
 {
 	setStartTime(Arena::getCurrentRound());
-	unit.m_magicOnMe.TakeSpell(clone());
+	unit.m_magicOnMe.takeMagic(clone());
 }
 
 bool Magic::isExpired(int round)const
 {
-	return m_durationmeter.IsExpired(round);
+	return m_durationmeter.isExpired(round);
 }
 
 void Magic::setStartTime(int round)
 {
-	m_durationmeter.SetStartTime(round);
+	m_durationmeter.setStartTime(round);
 }
 
 bool Magic::isEnoughMana(int currentUnitMana)const
@@ -68,4 +68,9 @@ void Magic::showFullInfo()const
 void Magic::showShortInfo()const
 {
 	std::cout << "<" << m_name << " : " << m_manaCost << ">";
+}
+
+const std::string& Magic::getName()const
+{
+	return m_name;
 }

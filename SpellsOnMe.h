@@ -12,7 +12,7 @@ public:
 	void takeOfExpiredMagic(int round);
 	size_t getMagicIndex(const MagicPtr& magic)const;
 	void expireMagic(size_t magicIndex);
-	void expireAllSpells();
+	void expireAllMagic();
 	void takeMagic(const MagicPtr& magic);
 	void showFullInfo()const;
 	void showShortInfo()const;
