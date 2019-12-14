@@ -1,10 +1,9 @@
 #include <cmath>
-#include <iostream>
 
 #include "Unit.h"
 #include "Arena.h"
 
-Unit::Unit(std::string name, std::shared_ptr<Decision> decision)
+Unit::Unit(std::string name, DecisionPtr decision)
 	: m_damage(2), 
 	m_armor(2),
 	m_magicBook(this), 
@@ -29,12 +28,10 @@ void Unit::levelUp()
 
 bool Unit::isAlive()const
 {
-	std::cout << "isAlive\n";
-	system("pause");
 	return m_health > 0;
 }
 
-void Unit::recieveNewState(std::shared_ptr<UnitState> Unitstate)
+void Unit::recieveNewState(StatePtr Unitstate)
 {
 	this->m_stateHolder.recieveNewState(Unitstate);
 }
@@ -133,13 +130,20 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast, const Gladiators& un
 
 void Unit::showFullInfo()const
 {
-	std::cout << getName() << " Level: " << m_level << std::endl;
+	std::cout << getName() << " Level: " 
+		<< m_level << std::endl;
 	std::cout << "HP: " << m_health << " MP: " 
-		<< m_mana << " DMG: " << m_damage << " Arm: " << m_armor << std::endl;
+		<< m_mana << " DMG: " << m_damage
+		<< " Arm: " << m_armor << std::endl;
 	m_magicBook.showShortInfo();
 	m_magicOnMe.showShortInfo();
+	std::cout << std::endl;
+	std::cout << "Waepon: ";
 	m_weapon->showShortInfo();
+	std::cout << std::endl;
+	std::cout << "Armor: ";
 	m_mail->showShortInfo();
+	std::cout << "Shield: ";
 	m_shield->showShortInfo();
 }
 

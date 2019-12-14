@@ -1,8 +1,6 @@
 #include "SpellsOnMe.h"
 #include "Unit.h"
 
-#include <iostream>
-
 SpellsOnMe::SpellsOnMe(Unit* unit)
 	: m_unit(unit)
 {

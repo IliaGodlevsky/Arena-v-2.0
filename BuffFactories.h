@@ -1,9 +1,7 @@
 #pragma once
 
-#ifndef MAGIC_FACTORY
-#define MAGIC_FACTORY
-
-#include <initializer_list>
+#ifndef BUFF_FACTORIES_H
+#define BUFF_FACTORIES_H_
 
 #include "Factory.h"
 
@@ -58,4 +56,5 @@ private:
 		RAGE_AMPLIFY_DAMAGE = 11, RAGE_REDUCE_ARMOR = 4, RAGE_MANA_COST = 25, RAGE_DURATION = 2
 	};
 };
+
 #endif

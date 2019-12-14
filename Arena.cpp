@@ -2,9 +2,6 @@
 #include <ctime>
 
 #include "Arena.h"
-#include "MagicFactory.h"
-#include "WeaponFactory.h"
-#include "ArmorFactory.h"
 
 int Arena::m_round = 0;
 
@@ -48,6 +45,7 @@ void Arena::showUnits()const
 		std::cout << i + 1 << ". ";
 		m_units[i]->showFullInfo();
 	}
+	std::cout << std::endl;
 }
 
 void Arena::takeOfLosers()
@@ -62,7 +60,7 @@ void Arena::takeOfLosers()
 	}
 }
 
-bool Arena::gameOver()const
+bool Arena::isGameOver()const
 {
 	return m_units.size() == 1;
 }
@@ -104,7 +102,7 @@ void Arena::giveShieldToUnits(const ItemFactory<Shield>& shieldFactory)
 		m_units[i]->takeShield(shieldFactory);
 }
 
-void Arena::castStep()
+void Arena::playCastStep()
 {
 	m_magicToCast = m_units[m_unitIndex]->chooseMagicToCast(m_units);
 	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast, m_units);
@@ -112,7 +110,7 @@ void Arena::castStep()
 		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
 }
 
-void Arena::attackStep()
+void Arena::playAttackStep()
 {
 	m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
 	if (nullptr != m_unitToAttack)
@@ -125,17 +123,18 @@ void Arena::rewardKiller()
 		m_units[m_unitIndex]->levelUp();
 }
 
-void Arena::nextPlayer()
+void Arena::goNextUnit()
 {
 	m_unitIndex++;
 	if (m_unitIndex >= m_units.size())
 	{
 		m_unitIndex = 0;
 		m_round++;
+		goNewRound();
 	}
 }
 
-void Arena::newRound()
+void Arena::goNewRound()
 {
 	for (size_t i = 0; i < m_units.size(); i++)
 		m_units[i]->moveIntoNewRound();

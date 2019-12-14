@@ -1,35 +1,33 @@
 #include "WeaponFactory.h"
-#include "Weapon.h"
 
-SwordFactory::SwordFactory()
+WeaponFactory::WeaponFactory()
 {
-	m_items.push_back(WeaponPtr(new Sword("Gladius", GLADIUS_DAMAGE,
-		MagicPtr(new Degenerate("Open wounds", OPEN_WOUNDS_DURATION, 
-			OPEN_WOUNDS_DMG_PER_ROUND, OPEN_WOUNDS_POSIBILITY)))));
-	m_items.push_back(WeaponPtr(new Sword("Palache",PALACHE_DAMAGE,
-		MagicPtr(new Degenerate("Poison", POISON_DURATION, 
-			POISON_DMP_PER_ROUND, POISON_POSIBILITY)))));
-	m_items.push_back(WeaponPtr(new Sword("Knife", KNIFE_DAMAGE,
-		MagicPtr(new Degenerate("Plague", PLAGUE_DURATION, 
-			PLAGUE_DMG_PER_ROUND, PLAGUE_POSIBILITY)))));
+	m_items.push_back(WeaponPtr(new Weapon("Club", 
+		CLUB_DAMAGE, CLUB_CRITICAL_PROPABILY)));
+	m_items.push_back(WeaponPtr(new Weapon("Axe", 
+		AXE_DAMAGE, AXE_CRITICAL_PROPABILITY)));
+	m_items.push_back(WeaponPtr(new Weapon("Sword", 
+		SWORD_DAMAGE, SWORD_CRITICAL_PROPABILITY)));
+	m_items.push_back(WeaponPtr(new Weapon("Spear", 
+		SPEAR_DAMAGE, SPEAR_CRITICAL_PROPABILITY)));
 }
 
-int SwordFactory::getChanceOfCreation()const
+int WeaponFactory::getChanceOfCreation()const
 {
-	return 50;
+	return 72;
 }
 
-AxeFactory::AxeFactory()
+MagicSwordFactory::MagicSwordFactory()
 {
-	m_items.push_back(WeaponPtr(new Axe("Hatchet", HATCHET_DAMAGE,
-		MagicPtr(new Crush("Smash", SMASH_DAMAGE, SMASH_CHANCE)))));
-	m_items.push_back(WeaponPtr(new Axe("Axe", AXE_DAMAGE,
-		MagicPtr(new Crush("Clap", CLAP_DAMAGE, CLAP_CHANCE)))));
-	printf("%s", "AxeFactory\n");
-	system("pause");
+	m_items.push_back(WeaponPtr(new MagicSword("Hell sword",HELL_SWORD_DAMAGE,
+		MagicPtr(new Degenerate("Soul burn", 
+			SOUL_BURN_DURATION, SOUL_BURN_DEGENERATE, SOUL_BURN_PROPABILITY)))));
+	m_items.push_back(WeaponPtr(new MagicSword("Gladiators sword", GLADIATOR_SWORD_DAMAGE, 
+		MagicPtr(new Degenerate("Open wounds", 
+			OPEN_WOUNDS_DURATION, OPEN_WOUNDS_DEGENERATE, OPEN_WOUNDS_PROPABILITY)))));
 }
 
-int AxeFactory::getChanceOfCreation()const
+int MagicSwordFactory::getChanceOfCreation()const
 {
-	return 50;
+	return 10;
 }

@@ -9,8 +9,8 @@
 class StateHolder
 {
 public:
-	StateHolder(std::shared_ptr<Decision> decision);
-	void recieveNewState(std::shared_ptr<UnitState>& unitState);
+	StateHolder(DecisionPtr decision);
+	void recieveNewState(StatePtr unitState);
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
@@ -20,8 +20,8 @@ public:
 	void showShortInfo()const;
 	~StateHolder();
 private:
-	std::shared_ptr<Decision> m_decision;
-	std::vector<std::shared_ptr<UnitState>> m_unitStates;
+	DecisionPtr m_decision;
+	std::vector<StatePtr> m_unitStates;
 	std::unique_ptr<ActiveState> m_activeState;
 };
 

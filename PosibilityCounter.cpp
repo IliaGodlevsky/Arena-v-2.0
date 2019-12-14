@@ -14,5 +14,5 @@ int PosibilityCounter::getMaxPropability()const
 
 PosibilityCounter::operator bool()const
 {
-	return randomNumber(getMaxPropability() - 1) <= m_posibility;
+	return randomNumber(getMaxPropability() - 1) < m_posibility;
 }

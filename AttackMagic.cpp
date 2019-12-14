@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "AttackMagic.h"
 #include "Unit.h"
 #include "State.h"

@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "NeutralMagic.h"
 #include "Unit.h"
 

@@ -1,5 +1,3 @@
-#include <algorithm>
-
 #include "State.h"
 #include "Unit.h"
 #include "Arena.h"
@@ -26,7 +24,7 @@ UnitPtr UnitState::chooseUnitToCast(const Unit& decidingUnit,
 	return nullptr;
 }
 
-void UnitState::setDecision(std::shared_ptr<Decision> decision)
+void UnitState::setDecision(DecisionPtr decision)
 {
 	if (nullptr != decision)
 		this->m_decision = decision;

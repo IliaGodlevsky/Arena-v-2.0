@@ -1,5 +1,4 @@
 #include "ArmorFactory.h"
-#include "Armor.h"
 
 ArmorFactory::ArmorFactory()
 {

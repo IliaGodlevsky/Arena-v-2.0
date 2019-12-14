@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "Shield.h"
 #include "Unit.h"
 

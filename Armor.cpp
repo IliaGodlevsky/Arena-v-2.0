@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "Armor.h"
 #include "Unit.h"
 

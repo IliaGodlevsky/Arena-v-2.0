@@ -1,12 +1,9 @@
-#include <iostream>
-
 #include "Weapon.h"
-#include "WeaponMagic.h"
 #include "Unit.h"
 #include "BadWeaponMagicException.h"
 
-Weapon::Weapon(std::string name, int damage)
-	: m_name(name),m_damage(damage)
+Weapon::Weapon(std::string name, int damage, int criticalStrikePropability)
+	: m_name(name),m_damage(damage),m_CriticalStrikePropability(criticalStrikePropability)
 {
 
 }
@@ -38,106 +35,165 @@ void Weapon::showFullInfo()const
 
 void Weapon::showShortInfo()const
 {
-	std::cout << "<" << m_name << ">";
+	std::cout << "<" << m_name << ": " << m_damage << ">";
 }
 
-Sword::Sword(std::string name, int damage, MagicPtr magic)
-	: Weapon(name,damage), m_magic(magic->clone())
+void Weapon::injureUnit(Unit& unit, int damage)const
 {
-	Degenerate* temp = dynamic_cast<Degenerate*>(m_magic.get());
-	if (nullptr == temp)
-		throw BadWeaponMagicException("BadWeaponMagicException", magic);
+	unit.takeDamage(multiplyDamage(m_damage + damage));
 }
 
-Sword::~Sword()
+WeaponPtr Weapon::clone()const
+{
+	return WeaponPtr(new Weapon(m_name, m_damage,m_CriticalStrikePropability));
+}
+
+int Weapon::multiplyDamage(int damage)const
+{
+	const double DAMAGE_MULTIPLY = 1.5;
+	if (PosibilityCounter(m_CriticalStrikePropability))
+		return static_cast<int>(std::round(damage * DAMAGE_MULTIPLY));
+	else
+		return damage;
+}
+/////////////////////////////////////////////////////
+MagicWeapon::MagicWeapon(std::string name, int damage, MagicPtr magic)
+	: Weapon(name, damage, ZERO_CRITIAL_PROBABILITY), m_magic(magic->clone())
 {
 	
 }
 
-void Sword::injureUnit(Unit& unit, int damage)const
-{
-	if(unit.takeDamage(multiplyDamage(damage + m_damage)))
-		m_magic->effectUnit(unit);
-}
-
-Sword::Sword(const Sword& sword)
-	: Weapon(sword), 
-	m_magic(sword.m_magic->clone())
+MagicWeapon::MagicWeapon(const MagicWeapon& weapon)
+	: Weapon(weapon), m_magic(weapon.m_magic->clone())
 {
 
 }
 
-Sword& Sword::operator=(const Sword& sword)
+MagicWeapon& MagicWeapon::operator=(const MagicWeapon& weapon)
 {
-	if (this == &sword)
+	if (this == &weapon)
 		return *this;
-	Weapon::operator=(sword);
-	m_magic = MagicPtr(m_magic->clone());
+	Weapon::operator=(weapon);
+	m_magic = weapon.m_magic->clone();
 	return *this;
 }
 
-int Sword::multiplyDamage(int damage)const
+void MagicWeapon::injureUnit(Unit& unit, int dmg)const
 {
-	return damage;
+	if (unit.takeDamage(multiplyDamage(m_damage + dmg)))
+		m_magic->effectUnit(unit);
 }
 
-void Sword::showFullInfo()const
+void MagicWeapon::showFullInfo()const
 {
 	Weapon::showFullInfo();
 	m_magic->showFullInfo();
 }
-
-WeaponPtr Sword::clone()const
+////////////////////////////////////////////////////
+MagicSword::MagicSword(std::string name, int damage, MagicPtr magic)
+	: MagicWeapon(name, damage, magic->clone())
 {
-	return WeaponPtr(new Sword(m_name, m_damage, m_magic->clone()));
-}
-
-Axe::Axe(std::string name, int damage, MagicPtr magic)
-	: Weapon(name, damage), m_magic(magic->clone())
-{
-	Crush* temp = dynamic_cast<Crush*>(m_magic.get());
+	Degenerate* temp = DYNAMIC(Degenerate*, magic);
 	if (nullptr == temp)
 		throw BadWeaponMagicException("BadWeaponMagicException", magic);
 }
 
-Axe::~Axe()
+MagicSword::MagicSword(const MagicSword& sword)
+	: MagicWeapon(sword)
 {
 
 }
 
-void Axe::injureUnit(Unit& unit, int damage)const
+MagicSword& MagicSword::operator=(const MagicSword& sword)
 {
-	if (unit.takeDamage(multiplyDamage(m_damage + damage)))
-		m_magic->effectUnit(unit);
-}
-
-Axe::Axe(const Axe& axe)
-	: Weapon(axe), m_magic(axe.m_magic->clone())
-{
-
-}
-
-Axe& Axe::operator=(const Axe& axe)
-{
-	if (this == &axe)
+	if (this == &sword)
 		return *this;
-	Weapon::operator=(axe);
-	m_magic = MagicPtr(axe.m_magic->clone());
+	MagicWeapon::operator=(sword);
 	return *this;
 }
 
-int Axe::multiplyDamage(int dmg)const
+WeaponPtr MagicSword::clone()const
 {
-	return dmg;
+	return WeaponPtr(new MagicSword(m_name, m_damage, m_magic->clone()));
+}
+////////////////////////////////////////////////////////
+MagicAxe::MagicAxe(std::string name, int damage, MagicPtr magic)
+	:MagicWeapon(name, damage, magic->clone())
+{
+	Crush* temp = DYNAMIC(Crush*, magic);
+	if (nullptr == temp)
+		throw BadWeaponMagicException("BadWeaponMagicException", magic);
 }
 
-void Axe::showFullInfo()const
+MagicAxe::MagicAxe(const MagicAxe& axe)
+	: MagicWeapon(axe)
 {
-	Weapon::showFullInfo();
-	m_magic->showFullInfo();
+
 }
 
-WeaponPtr Axe::clone()const
+MagicAxe& MagicAxe::operator=(const MagicAxe& axe)
 {
-	return WeaponPtr(new Axe(m_name, m_damage, m_magic->clone()));
+	if (this == &axe)
+		return *this;
+	MagicWeapon::operator=(axe);
+	return *this;
+}
+
+WeaponPtr MagicAxe::clone()const
+{
+	return WeaponPtr(new MagicAxe(m_name, m_damage, m_magic->clone()));
+}
+//////////////////////////////////////////////////
+MagicSpear::MagicSpear(std::string name, int damage, MagicPtr magic)
+	: MagicWeapon(name, damage, magic->clone())
+{
+	Corruption* temp = DYNAMIC(Corruption*, magic);
+	if (nullptr == temp)
+		throw BadWeaponMagicException("BadWeaponMagicException", magic);
+}
+
+MagicSpear::MagicSpear(const MagicSpear& spear)
+	: MagicWeapon(spear)
+{
+
+}
+
+MagicSpear& MagicSpear::operator=(const MagicSpear& spear)
+{
+	if (this == &spear)
+		return *this;
+	MagicWeapon::operator=(spear);
+	return *this;
+}
+
+WeaponPtr MagicSpear::clone()const
+{
+	return WeaponPtr(new MagicSpear(m_name, m_damage, m_magic->clone()));
+}
+////////////////////////////////////////////////////
+MagicClub::MagicClub(std::string name, int damage, MagicPtr magic)
+	: MagicWeapon(name, damage, magic->clone())
+{
+	Stun* temp = DYNAMIC(Stun*, magic);
+	if (nullptr == temp)
+		throw BadWeaponMagicException("BadWeaponMagicException", magic);
+}
+
+MagicClub::MagicClub(const MagicClub& club)
+	: MagicWeapon(club)
+{
+
+}
+
+MagicClub& MagicClub::operator=(const MagicClub& club)
+{
+	if (this == &club)
+		return *this;
+	MagicWeapon::operator=(club);
+	return *this;
+}
+
+WeaponPtr MagicClub::clone()const
+{
+	return WeaponPtr(new MagicClub(m_name, m_damage, m_magic->clone()));
 }

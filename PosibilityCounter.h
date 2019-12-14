@@ -12,4 +12,5 @@ private:
 	int getMaxPropability()const;
 	int m_posibility;
 };
+
 #endif

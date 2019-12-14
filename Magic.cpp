@@ -1,9 +1,5 @@
-#include <iostream>
-#include <typeinfo>
-
 #include "Magic.h"
 #include "Arena.h"
-#include "State.h"
 
 Magic::Magic(std::string name, int manaCost, int duration)
 	: m_name(name), m_manaCost(manaCost), m_durationmeter(duration)

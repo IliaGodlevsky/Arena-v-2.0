@@ -1,8 +1,6 @@
-#include <random>
-#include <iostream>
-
 #include "WeaponMagic.h"
-#include "Arena.h"
+#include "Unit.h"
+#include "State.h"
 
 WeaponMagic::WeaponMagic(std::string name, int duration, int propability)
 	: Magic(name, ZERO_MANA_COST, duration), m_propability(propability)
@@ -28,6 +26,20 @@ void WeaponMagic::showData()const
 	std::cout << "Duration: " << m_durationmeter << std::endl;
 	std::cout << "Posibility: " << m_propability << std::endl;
 }
+
+bool WeaponMagic::hasEqualParametres(const MagicPtr& magic)const
+{
+	WeaponMagic* temp = DYNAMIC(WeaponMagic*, magic);
+	if (nullptr == temp)
+		return false;
+	return m_propability == temp->m_propability;
+}
+
+bool WeaponMagic::isEqual(const MagicPtr& magic)const
+{
+	return Magic::isEqual(magic)
+		&& hasEqualParametres(magic);
+}
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 Degenerate::Degenerate(std::string name, int duration,
 	int degeneration, int propability)
@@ -39,7 +51,7 @@ Degenerate::Degenerate(std::string name, int duration,
 
 void Degenerate::effectUnit(Unit& unit)
 {
-	if (true/*isCastChance()*/)
+	if (isCastChance())
 	{
 		putOn(unit);
 		Magic::effectUnit(unit);
@@ -78,7 +90,7 @@ bool Degenerate::hasEqualParametres(const MagicPtr& magic)const
 
 bool Degenerate::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
+	return WeaponMagic::isEqual(magic)
 		&& hasEqualParametres(magic);
 }
 
@@ -138,7 +150,7 @@ bool Crush::hasEqualParametres(const MagicPtr& magic)const
 
 bool Crush::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
+	return WeaponMagic::isEqual(magic)
 		&& hasEqualParametres(magic);
 }
 
@@ -151,4 +163,127 @@ void Crush::showFullInfo()const
 void Crush::showData()const
 {
 	std::cout << "Damage: " << m_damage << std::endl;
+}
+////////////////////////////////////////////
+Corruption::Corruption(std::string name, int duration,
+	int armorReduce, int propability)
+	: WeaponMagic(name, duration, propability),
+	m_armorReduce(armorReduce)
+{
+
+}
+
+void Corruption::effectUnit(Unit& unit)
+{
+	if (isCastChance())
+	{
+		putOn(unit);
+		Magic::effectUnit(unit);
+	}
+}
+
+void Corruption::uneffectUnit(Unit& unit)const
+{
+	unit.m_armor.changeValue(m_armorReduce);
+}
+
+MagicPtr Corruption::clone()const
+{
+	return MagicPtr(new Corruption(m_name, m_durationmeter, 
+		m_armorReduce, m_propability));
+}
+
+bool Corruption::isBuff()const
+{
+	return false;
+}
+
+bool Corruption::isEqual(const MagicPtr& magic)const
+{
+	return WeaponMagic::isEqual(magic)
+		&& hasEqualParametres(magic);
+}
+
+void Corruption::showFullInfo()const
+{
+	WeaponMagic::showData();
+	showData();
+}
+
+bool Corruption::hasEqualParametres(const MagicPtr& magic)const
+{
+	if (nullptr == magic)
+		return false;
+	Corruption* temp = DYNAMIC(Corruption*, magic);
+	if (nullptr == temp)
+		return false;
+	return m_armorReduce == temp->m_armorReduce;
+}
+
+void Corruption::showData()const
+{
+	std::cout << "Armor reduce: " << m_armorReduce << std::endl;
+}
+
+void Corruption::putOn(Unit& unit)const
+{
+	unit.m_armor.changeValue(-m_armorReduce);
+}
+
+Stun::Stun(std::string name, int duration, int propability)
+	: WeaponMagic(name, duration, propability)
+{
+
+}
+
+void Stun::effectUnit(Unit& unit)
+{
+	if (isCastChance())
+	{
+		putOn(unit);
+		Magic::effectUnit(unit);
+	}
+}
+
+void Stun::uneffectUnit(Unit& unit)const
+{
+	return;
+}
+
+MagicPtr Stun::clone()const
+{
+	return MagicPtr(new Stun(m_name, 
+		m_durationmeter, m_propability));
+}
+
+bool Stun::isBuff()const
+{
+	return false;
+}
+
+bool Stun::isEqual(const MagicPtr& magic)const
+{
+	return WeaponMagic::isEqual(magic)
+		&& hasEqualParametres(magic);
+}
+
+void Stun::showFullInfo()const
+{
+	WeaponMagic::showData();
+	showData();
+}
+
+bool Stun::hasEqualParametres(const MagicPtr& magic)const
+{
+	return WeaponMagic::hasEqualParametres(magic);
+}
+
+void Stun::showData()const
+{
+	std::cout << "Stuns unit\n";
+}
+
+void Stun::putOn(Unit& unit)const
+{
+	unit.recieveNewState(StatePtr(new StunState(m_durationmeter)));
 }

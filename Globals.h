@@ -20,8 +20,11 @@ class Magic;
 using MagicPtr = std::unique_ptr<Magic>;
 using Spells = std::vector<MagicPtr>;
 
+typedef unsigned index;
+
 constexpr int ZERO_DURATION = 0;
 constexpr int ZERO_MANA_COST = 0;
+constexpr int ZERO_CRITIAL_PROBABILITY = 0;
 
 int inputNumber(const std::string& message, int upper, int lower);
 bool isError(int choice, int upper, int lower);

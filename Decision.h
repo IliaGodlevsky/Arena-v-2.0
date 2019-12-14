@@ -2,7 +2,9 @@
 #define DECISION_H_
 
 #include "Globals.h"
-#include "State.h"
+
+class Decision;
+using DecisionPtr = std::shared_ptr<Decision>;
 
 class Decision
 {
@@ -36,6 +38,7 @@ private:
 	void showUnits(const Gladiators& units)const;
 	bool wantToCastMagic()const;
 private:
+	const std::string WANT_TO_CAST_QUESTION = "do you want to cast a magic <1 - yes/0 - no>: ";
 	const std::string UNIT_TO_ATTACK_CHOOSE_MESSAGE = "Choose unit to attack: ";
 	const std::string MAGIC_TO_CAST_CHOOSE_MESSAGE = "Choose magic: ";
 	const std::string UNIT_TO_CAST_CHOOSE_MESSAGE = "Choose unit to charm: ";

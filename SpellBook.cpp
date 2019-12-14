@@ -1,4 +1,3 @@
-
 #include "SpellBook.h"
 #include "Unit.h"
 
@@ -37,14 +36,17 @@ void SpellBook::showFullInfo()const
 
 void SpellBook::showShortInfo()const
 {
+	std::cout << "MagicBook:\n";
 	for (size_t i = 0; i < size(); i++)
+	{
+		std::cout << i + 1 << ". ";
 		operator[](i)->showShortInfo();
+		std::cout << std::endl;
+	}
 }
 
 void SpellBook::takeMagic(const MagicPtr& magic)
 {
-	printf("%s", "SpellBook takeMagic\n");
-	system("pause");
 	if (nullptr != magic)
 		push_back(MagicPtr(magic->clone()));
 }

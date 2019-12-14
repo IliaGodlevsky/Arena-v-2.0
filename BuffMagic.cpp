@@ -1,8 +1,4 @@
-#include <iostream>
-#include <typeinfo>
-
 #include "BuffMagic.h"
-#include "DebuffMagic.h"
 #include "Unit.h"
 
 DamageBuff::DamageBuff(std::string name, int manaCost,

@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttackMagicFactory.h" />
+    <ClInclude Include="BuffFactories.h" />
+    <ClInclude Include="DebuffMagicFactory.h" />
     <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Armor.h" />
@@ -34,7 +37,6 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Magic.h" />
-    <ClInclude Include="MagicFactory.h" />
     <ClInclude Include="NeutralMagic.h" />
     <ClInclude Include="PosibilityCounter.h" />
     <ClInclude Include="Shield.h" />
@@ -56,14 +58,15 @@
     <ClCompile Include="AttackMagic.cpp" />
     <ClCompile Include="BadWeaponMagicException.cpp" />
     <ClCompile Include="Battles.cpp" />
+    <ClCompile Include="BuffFactories.cpp" />
     <ClCompile Include="BuffMagic.cpp" />
     <ClCompile Include="DebuffMagic.cpp" />
+    <ClCompile Include="DebuffMagicFactory.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="Durationmeter.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Magic.cpp" />
-    <ClCompile Include="MagicFactory.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NeutralMagic.cpp" />
     <ClCompile Include="PosibilityCounter.cpp" />

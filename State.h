@@ -6,6 +6,9 @@
 #include "Globals.h"
 #include "Durationmeter.h"
 
+class UnitState;
+using StatePtr = std::shared_ptr<UnitState>;
+
 class UnitState
 {
 public:
@@ -16,16 +19,16 @@ public:
 		const MagicPtr& magicToCast, const Gladiators& units)const = 0;
 	virtual ~UnitState() = default;
 public:
-	virtual void setDecision(std::shared_ptr<Decision> decision) final;
+	virtual void setDecision(DecisionPtr decision) final;
 	virtual void setStartTime(int round)final;
-	virtual bool isExpired(int round)const final;
+	virtual bool isExpired(int round)const;
 	virtual void showShortInfo()const final;
 public:
 	virtual bool operator <(const UnitState& unitState)const final;
 	virtual bool operator >(const UnitState& unitState)const final;
 protected:
 	Durationmeter m_durationmeter;
-	std::shared_ptr<Decision> m_decision;
+	DecisionPtr m_decision;
 	enum StateValue { ALIVE_STATE, MUTED_STATE, STUNNED_STATE };
 	// static std::vector<UnitState*> m_attackStates;
 private:
@@ -68,6 +71,5 @@ public:
 private:
 	StateValue getValue()const override;
 };
-
 
 #endif

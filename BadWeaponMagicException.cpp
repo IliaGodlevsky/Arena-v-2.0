@@ -1,5 +1,4 @@
 #include <typeinfo>
-#include <iostream>
 
 #include "Magic.h"
 #include "BadWeaponMagicException.h"

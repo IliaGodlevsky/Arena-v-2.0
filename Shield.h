@@ -3,8 +3,6 @@
 #ifndef SHEILD_H_
 #define SHIELD_H_
 
-#include "Armor.h"
-#include "Vitals.h"
 #include "PosibilityCounter.h"
 
 class Shield;

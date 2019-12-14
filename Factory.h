@@ -3,7 +3,7 @@
 #ifndef FACTORY_H_
 #define FACTORY_H_
 
-#include "Magic.h"
+#include "Globals.h"
 
 template <class T>
 class Factory

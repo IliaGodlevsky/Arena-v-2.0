@@ -22,7 +22,7 @@ public:
 	friend bool Weapon::canSmashUnit(const Unit& unit)const;
 	friend class ComputerDecision;
 public:
-	Unit(std::string name, std::shared_ptr<Decision> decision);
+	Unit(std::string name, DecisionPtr decision);
 	virtual ~Unit();
 public:
 	bool isEnoughManaFor(const MagicPtr& magic)const;
@@ -39,7 +39,7 @@ public:
 	void payMana(int manaCost);
 	void showFullInfo()const;
 	void levelUp();
-	void recieveNewState(std::shared_ptr<UnitState> unitState);
+	void recieveNewState(StatePtr unitState);
 	void moveIntoNewRound();
 public:
 	const std::string& getName()const;
@@ -50,14 +50,14 @@ public:
 	Battles m_damage = Battles(4);
 	Battles m_armor = Battles(2);
 	Vitals m_health = { 100,100,2 };
-	Vitals m_mana = { 20,20,1 };
+	Vitals m_mana = { 40,40,1 };
 	SpellsOnMe m_magicOnMe;
 	SpellBook m_magicBook;
 	Level m_level;
 	StateHolder m_stateHolder;
 private:
 	std::string m_name;
-	std::shared_ptr<Decision> m_decision;
+	DecisionPtr m_decision;
 private:
 	WeaponPtr m_weapon;
 	ArmPtr m_mail;

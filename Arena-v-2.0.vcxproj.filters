@@ -173,9 +173,6 @@
     <ClInclude Include="ItemFactory.h">
       <Filter>Factory</Filter>
     </ClInclude>
-    <ClInclude Include="MagicFactory.h">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClInclude>
     <ClInclude Include="ArmorFactory.h">
       <Filter>Factory\ArmorFactory</Filter>
     </ClInclude>
@@ -184,6 +181,15 @@
     </ClInclude>
     <ClInclude Include="ShieldFactory.h">
       <Filter>Factory\ShieldFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffFactories.h">
+      <Filter>Factory\MagicFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="DebuffMagicFactory.h">
+      <Filter>Factory\MagicFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackMagicFactory.h">
+      <Filter>Factory\MagicFactory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -256,9 +262,6 @@
     <ClCompile Include="BadWeaponMagicException.cpp">
       <Filter>Exception</Filter>
     </ClCompile>
-    <ClCompile Include="MagicFactory.cpp">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClCompile>
     <ClCompile Include="ArmorFactory.cpp">
       <Filter>Factory\ArmorFactory</Filter>
     </ClCompile>
@@ -270,6 +273,12 @@
     </ClCompile>
     <ClCompile Include="Globals.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BuffFactories.cpp">
+      <Filter>Factory\MagicFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="DebuffMagicFactory.cpp">
+      <Filter>Factory\MagicFactory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

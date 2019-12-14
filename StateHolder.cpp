@@ -2,15 +2,13 @@
 #include "Unit.h"
 #include "Arena.h"
 
-#include <iostream>
-
-StateHolder::StateHolder(std::shared_ptr<Decision> decision)
+StateHolder::StateHolder(DecisionPtr decision)
 	: m_decision(decision), m_activeState(new ActiveState())
 {
 	m_activeState->setDecision(decision);
 }
 
-void StateHolder::recieveNewState(std::shared_ptr<UnitState>& unitState)
+void StateHolder::recieveNewState(StatePtr unitState)
 {
 	unitState->setDecision(m_decision);
 	m_unitStates.push_back(unitState);

@@ -1,5 +1,4 @@
-#include "MagicFactory.h"
-#include "Magic.h"
+#include "BuffFactories.h"
 #include "BuffMagic.h"
 
 DamageBuffFactory::DamageBuffFactory()

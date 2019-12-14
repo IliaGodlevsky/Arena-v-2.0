@@ -18,12 +18,12 @@ public:
 	Arena& operator=(Arena&&) = delete;
 	void showUnits()const;
 public:
-	bool gameOver()const;
-	void newRound(); // TODO: think a new name for this method
-	void castStep();
-	void attackStep();
+	bool isGameOver()const;
+	void goNewRound();
+	void playCastStep();
+	void playAttackStep();
 	void rewardKiller();
-	void nextPlayer();
+	void goNextUnit();
 	void takeOfLosers();
 public:
 	void prepareUnits();
@@ -37,7 +37,7 @@ public:
 private:
 	Arena();
 private:
-	std::vector<UnitPtr> m_units;
+	Gladiators m_units;
 	int getMaxNubmerOfPlayers()const;
 	int getMinNumberOfPlayers()const;
 private:
@@ -46,7 +46,7 @@ private:
 	UnitPtr m_unitToAttack = nullptr;
 	UnitPtr m_unitToCast = nullptr;
 	MagicPtr m_magicToCast = nullptr;
-	size_t m_unitIndex = 0;
+	index m_unitIndex = 0;
 };
 
 #endif
