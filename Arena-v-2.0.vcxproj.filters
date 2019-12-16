@@ -9,282 +9,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Vitals">
-      <UniqueIdentifier>{da5ace1c-cb13-4ede-8676-d44a6e3de7b6}</UniqueIdentifier>
+    <Filter Include="Source Files\Arena">
+      <UniqueIdentifier>{b14e3af7-43cc-44e6-816b-7f506c0525cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Unit">
-      <UniqueIdentifier>{82c88f3e-660f-4481-99c3-ee955da0b1a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Arena">
-      <UniqueIdentifier>{5ffb4915-996e-4cf8-b7fa-fc333358b207}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Battles">
-      <UniqueIdentifier>{8ab6fd48-d66a-4a43-8ad7-42ebb2b22323}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Decision">
-      <UniqueIdentifier>{a1d1c777-62cb-48c5-8ec7-e17cce3d47cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Spells">
-      <UniqueIdentifier>{9cd2bedf-1b75-4ee5-baf4-fc69ac1f751b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Spells\Magic">
-      <UniqueIdentifier>{4298ff39-e3b4-44dc-97ac-d3bb8d58a938}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Spells\WeaponMagic">
-      <UniqueIdentifier>{672c7dea-f0c6-4268-b8f7-1e1b6997dc26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equipment">
-      <UniqueIdentifier>{46b0ef98-518e-4573-bf1a-b024929ce722}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equipment\Armor">
-      <UniqueIdentifier>{70a3b256-c8cf-4710-9a41-589145f16224}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equipment\Shield">
-      <UniqueIdentifier>{a47d8470-c512-421b-a7be-f6487546c9dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Spells Containers">
-      <UniqueIdentifier>{8f6a4fa8-d7b2-4c12-8c8f-f050ce203510}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level">
-      <UniqueIdentifier>{20ecee96-c689-4094-96d1-0cac89ec7e34}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="State">
-      <UniqueIdentifier>{eb4d710a-8c0c-497e-bd47-e27109314028}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Durationmeter">
-      <UniqueIdentifier>{9a36a787-f594-462a-850d-27202fe3f24e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PosibilityCounter">
-      <UniqueIdentifier>{2941f3b6-2241-4985-9887-1ec54e3bb6fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Factory">
-      <UniqueIdentifier>{f9618809-bc21-49be-8d7f-4af83a13cc57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StateHolder">
-      <UniqueIdentifier>{217fd42b-bbb1-40d3-98ce-1071d8f0ac87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equipment\Weapon">
-      <UniqueIdentifier>{3c02465e-a26d-4540-81a6-c18f9b01a3e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Spells\Magic\BuffMagic">
-      <UniqueIdentifier>{d7e6a4b4-e69f-48a1-8dc8-305a10deeda2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Spells\Magic\DebuffMagic">
-      <UniqueIdentifier>{4c8eb927-f99a-45f8-b15d-05d6d7b6a409}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Spells\Magic\AttackMagic">
-      <UniqueIdentifier>{8d12cf68-2808-4f77-826a-aad8e3876b24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Spells\Magic\NeutralMagic">
-      <UniqueIdentifier>{c806c69d-4279-4d25-960e-ba861d2a58b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="State\UnitState">
-      <UniqueIdentifier>{b01d40b8-146b-4669-b47c-12ba0a2812f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Exception">
-      <UniqueIdentifier>{6721b3bc-a34a-4da7-b36a-c25bc49b8ea5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Factory\MagicFactory">
-      <UniqueIdentifier>{987e1ad4-853b-43f6-88a7-956ec2cb4a5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Factory\ArmorFactory">
-      <UniqueIdentifier>{1ad54e31-63d1-4325-946e-7ce3362c6b51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Factory\WeaponFactory">
-      <UniqueIdentifier>{1ad20d1f-4455-46b0-a3ad-65e6c1ae4481}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Factory\ShieldFactory">
-      <UniqueIdentifier>{fb6552e1-6098-4f13-836a-0fb653bf4fa6}</UniqueIdentifier>
+    <Filter Include="Source Files\Unit">
+      <UniqueIdentifier>{cee3b7da-6a0a-4808-8a73-12ecab8d9a9e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Magic.h">
-      <Filter>Spells\Magic</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Equipment\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="Vitals.h">
-      <Filter>Vitals</Filter>
-    </ClInclude>
-    <ClInclude Include="Armor.h">
-      <Filter>Equipment\Armor</Filter>
-    </ClInclude>
-    <ClInclude Include="Unit.h">
-      <Filter>Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Arena.h">
-      <Filter>Arena</Filter>
-    </ClInclude>
-    <ClInclude Include="Battles.h">
-      <Filter>Battles</Filter>
-    </ClInclude>
-    <ClInclude Include="Decision.h">
-      <Filter>Decision</Filter>
-    </ClInclude>
-    <ClInclude Include="WeaponMagic.h">
-      <Filter>Spells\WeaponMagic</Filter>
-    </ClInclude>
-    <ClInclude Include="SpellsOnMe.h">
-      <Filter>Spells Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="SpellBook.h">
-      <Filter>Spells Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Durationmeter.h">
-      <Filter>Durationmeter</Filter>
-    </ClInclude>
-    <ClInclude Include="PosibilityCounter.h">
-      <Filter>PosibilityCounter</Filter>
-    </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StateHolder.h">
-      <Filter>StateHolder</Filter>
-    </ClInclude>
-    <ClInclude Include="Shield.h">
-      <Filter>Equipment\Shield</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffMagic.h">
-      <Filter>Spells\Magic\BuffMagic</Filter>
-    </ClInclude>
-    <ClInclude Include="DebuffMagic.h">
-      <Filter>Spells\Magic\DebuffMagic</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMagic.h">
-      <Filter>Spells\Magic\AttackMagic</Filter>
-    </ClInclude>
-    <ClInclude Include="NeutralMagic.h">
-      <Filter>Spells\Magic\NeutralMagic</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>State\UnitState</Filter>
-    </ClInclude>
-    <ClInclude Include="BadWeaponMagicException.h">
-      <Filter>Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemFactory.h">
-      <Filter>Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="ArmorFactory.h">
-      <Filter>Factory\ArmorFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="WeaponFactory.h">
-      <Filter>Factory\WeaponFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="ShieldFactory.h">
-      <Filter>Factory\ShieldFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffFactories.h">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="DebuffMagicFactory.h">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMagicFactory.h">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="NeutralMagicFactory.h">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Magic.cpp">
-      <Filter>Spells\Magic</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Equipment\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="Vitals.cpp">
-      <Filter>Vitals</Filter>
-    </ClCompile>
-    <ClCompile Include="Unit.cpp">
-      <Filter>Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Arena.cpp">
-      <Filter>Arena</Filter>
-    </ClCompile>
-    <ClCompile Include="WeaponMagic.cpp">
-      <Filter>Spells\WeaponMagic</Filter>
-    </ClCompile>
-    <ClCompile Include="Armor.cpp">
-      <Filter>Equipment\Armor</Filter>
-    </ClCompile>
-    <ClCompile Include="Battles.cpp">
-      <Filter>Battles</Filter>
-    </ClCompile>
-    <ClCompile Include="Decision.cpp">
-      <Filter>Decision</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shield.cpp">
-      <Filter>Equipment\Shield</Filter>
+    <ClCompile Include="Arena\Arena.cpp">
+      <Filter>Source Files\Arena</Filter>
     </ClCompile>
-    <ClCompile Include="SpellsOnMe.cpp">
-      <Filter>Spells Containers</Filter>
+    <ClCompile Include="Unit\Unit.cpp">
+      <Filter>Source Files\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="SpellBook.cpp">
-      <Filter>Spells Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Durationmeter.cpp">
-      <Filter>Durationmeter</Filter>
-    </ClCompile>
-    <ClCompile Include="PosibilityCounter.cpp">
-      <Filter>PosibilityCounter</Filter>
-    </ClCompile>
-    <ClCompile Include="StateHolder.cpp">
-      <Filter>StateHolder</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffMagic.cpp">
-      <Filter>Spells\Magic\BuffMagic</Filter>
-    </ClCompile>
-    <ClCompile Include="DebuffMagic.cpp">
-      <Filter>Spells\Magic\DebuffMagic</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackMagic.cpp">
-      <Filter>Spells\Magic\AttackMagic</Filter>
-    </ClCompile>
-    <ClCompile Include="NeutralMagic.cpp">
-      <Filter>Spells\Magic\NeutralMagic</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>State\UnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="BadWeaponMagicException.cpp">
-      <Filter>Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="ArmorFactory.cpp">
-      <Filter>Factory\ArmorFactory</Filter>
-    </ClCompile>
-    <ClCompile Include="WeaponFactory.cpp">
-      <Filter>Factory\WeaponFactory</Filter>
-    </ClCompile>
-    <ClCompile Include="ShieldFactory.cpp">
-      <Filter>Factory\ShieldFactory</Filter>
-    </ClCompile>
-    <ClCompile Include="Globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffFactories.cpp">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClCompile>
-    <ClCompile Include="DebuffMagicFactory.cpp">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClCompile>
-    <ClCompile Include="NeutralMagicFactory.cpp">
-      <Filter>Factory\MagicFactory</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Arena\Arena.h">
+      <Filter>Source Files\Arena</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit\Unit.h">
+      <Filter>Source Files\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
