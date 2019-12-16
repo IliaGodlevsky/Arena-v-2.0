@@ -15,6 +15,5 @@ public:
 	const char* what()const override;
 private:
 	std::string m_message;
-	const MagicPtr& m_magic;
 };
 #endif

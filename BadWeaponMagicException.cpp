@@ -5,14 +5,13 @@
 
 BadWeaponMagicException::BadWeaponMagicException(const std::string& message,
 	const MagicPtr& magic)
-	: m_message(message), m_magic(magic)
+	: m_message(message)
 {
-
+	m_message += (std::string(" was accured. Base type of "
+		"magic must be WeaponMagic. Current magic type is ") + typeid(magic.get()).name());
 }
 
 const char* BadWeaponMagicException::what()const
 {
-	std::string message = message + " was accured. Base type of "
-		"magic must be WeaponMagic. Current magic type is " + typeid(m_magic.get()).name();
-	return message.c_str();
+	return m_message.c_str();
 }

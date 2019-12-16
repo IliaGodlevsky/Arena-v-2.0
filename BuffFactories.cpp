@@ -53,3 +53,4 @@ int OffsetDamageBuffFactory::getChanceOfCreation()const
 {
 	return 20;
 }
+

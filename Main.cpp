@@ -10,6 +10,7 @@
 #include "BuffFactories.h"
 #include "DebuffMagicFactory.h"
 #include "AttackMagicFactory.h"
+#include "NeutralMagicFactory.h"
 #include "WeaponFactory.h"
 #include "ArmorFactory.h"
 #include "ShieldFactory.h"
@@ -41,9 +42,6 @@ int main()
 		}
 	);
 	arena.giveMagicToUnits(magicFactory);
-	
-
-
 
 	try
 	{
@@ -65,8 +63,6 @@ int main()
 		return 1;
 	}
 
-
-
 	ItemFactory<Armor> armorFactory
 	(
 		{
@@ -78,8 +74,6 @@ int main()
 	);
 	arena.giveArmorToUnits(armorFactory);
 
-
-
 	ItemFactory<Shield> shieldFactory
 	(
 		{ 
@@ -88,7 +82,6 @@ int main()
 	);
 	arena.giveShieldToUnits(shieldFactory);
 	
-
 	while (!arena.isGameOver())
 	{
 		arena.showUnits();

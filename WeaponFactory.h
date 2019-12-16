@@ -21,10 +21,10 @@ private:
 	};
 	enum Propabilities
 	{
-		CLUB_CRITICAL_PROPABILY = 23,
-		AXE_CRITICAL_PROPABILITY = 19,
-		SWORD_CRITICAL_PROPABILITY = 16,
-		SPEAR_CRITICAL_PROPABILITY = 13
+		CLUB_CRITICAL_PROPABILY = 15,
+		AXE_CRITICAL_PROPABILITY = 14,
+		SWORD_CRITICAL_PROPABILITY = 12,
+		SPEAR_CRITICAL_PROPABILITY = 10
 	};
 };
 
@@ -52,9 +52,15 @@ public:
 	MagicAxeFactory();
 	int getChanceOfCreation()const;
 private:
-	enum
+	enum Weapons
 	{
-
+		BUTCHER_AXE_DAMAGE = 6,
+		CHOPPER_AXE_DAMAGE = 4
+	};
+	enum Magics
+	{
+		HEAD_STRIKE_DAMAGE = 7, HEAD_STRIKE_PROPABILITY = 20,
+		KNOCK_DAMAGE = 9, KNOCK_PROPABILITY = 15
 	};
 };
 

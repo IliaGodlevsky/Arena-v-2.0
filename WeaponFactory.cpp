@@ -31,3 +31,15 @@ int MagicSwordFactory::getChanceOfCreation()const
 {
 	return 10;
 }
+
+MagicAxeFactory::MagicAxeFactory()
+{
+	m_items.push_back(WeaponPtr(new MagicAxe("Butcher axe", BUTCHER_AXE_DAMAGE, 
+		MagicPtr(new Crush("Head strike", HEAD_STRIKE_DAMAGE, HEAD_STRIKE_PROPABILITY)))));
+
+}
+
+int MagicAxeFactory::getChanceOfCreation()const
+{
+	return 10;
+}

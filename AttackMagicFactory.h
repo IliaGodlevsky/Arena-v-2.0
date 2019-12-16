@@ -15,7 +15,6 @@ private:
 	{
 		MAGIC_ARROW_MANA_COST = 10, MAGIC_ARROW_DAMAGE = 15,
 		ICE_BOLT_MANA_COST = 22, ICE_BOLT_DAMAGE = 20, 
-		
 	};
 };
 
@@ -55,4 +54,5 @@ private:
 
 	};
 };
+
 #endif

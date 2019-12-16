@@ -191,6 +191,9 @@
     <ClInclude Include="AttackMagicFactory.h">
       <Filter>Factory\MagicFactory</Filter>
     </ClInclude>
+    <ClInclude Include="NeutralMagicFactory.h">
+      <Filter>Factory\MagicFactory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Magic.cpp">
@@ -278,6 +281,9 @@
       <Filter>Factory\MagicFactory</Filter>
     </ClCompile>
     <ClCompile Include="DebuffMagicFactory.cpp">
+      <Filter>Factory\MagicFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="NeutralMagicFactory.cpp">
       <Filter>Factory\MagicFactory</Filter>
     </ClCompile>
   </ItemGroup>
