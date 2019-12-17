@@ -1,20 +1,12 @@
 #ifndef UNIT_H_
 #define UNIT_H_
 
-#include "Level.h"
-#include "Vitals.h"
-#include "Magic.h"
-#include "Shield.h"
-#include "Armor.h"
-#include "Weapon.h"
-#include "Decision.h"
-#include "SpellBook.h"
-#include "SpellsOnMe.h"
-#include "State.h"
-#include "StateHolder.h"
-#include "ItemFactory.h"
-
-#include "Globals.h"
+#include "../Weapon/Weapon.h"
+#include "../Decision/Decision.h"
+#include "../UnitState/UnitState.h"
+#include "../Battles/Battles.h"
+#include "../Vitals/Vitals.h"
+#include "../MagicBook/MagicBook.h"
 
 class Unit
 {
@@ -30,11 +22,6 @@ public:
 	bool injureUnit(Unit& unit);
 	bool castMagic(Unit& unit, MagicPtr& magic);
 	bool isAlive()const;
-public:
-	void takeMagic(const ItemFactory<Magic>& magicFactory);
-	void takeWeapon(const ItemFactory<Weapon>& weaponFactory);
-	void takeArmor(const ItemFactory<Armor>& armorFactory);
-	void takeShield(const ItemFactory<Shield>& sheildFactory);
 public:
 	void payMana(int manaCost);
 	void showFullInfo()const;
@@ -52,7 +39,7 @@ public:
 	Vitals m_health = { 100,100,2 };
 	Vitals m_mana = { 40,40,1 };
 	SpellsOnMe m_magicOnMe;
-	SpellBook m_magicBook;
+	MagicBook m_magicBook;
 	Level m_level;
 	StateHolder m_stateHolder;
 private:

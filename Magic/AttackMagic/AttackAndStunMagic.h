@@ -3,7 +3,8 @@
 #ifndef ATTACK_AND_STUN_MAGIC_H_
 #define ATTACK_AND_STUN_MAGIC_H_
 
-#include "AttackMa.h"
+#include "AttackMagic.h"
+
 class AttackAndStunMagic : public AttackMagic
 {
 public:

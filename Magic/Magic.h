@@ -1,8 +1,8 @@
 #ifndef MAGIC_H_
 #define MAGIC_H_
 
-#include "Globals.h"
-#include "Durationmeter.h"
+#include "../Globals/Globals.h"
+#include "../Timer/Timer.h"
 
 #define DYNAMIC(type, magic) (dynamic_cast<type>(magic.get()))
 
@@ -33,7 +33,7 @@ protected:
 protected:
 	std::string m_name;
 	int m_manaCost;
-	Durationmeter m_durationmeter;
+	Timer m_timer;
 };
 
 #endif

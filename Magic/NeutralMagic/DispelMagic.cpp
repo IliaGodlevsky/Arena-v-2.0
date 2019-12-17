@@ -1,5 +1,5 @@
 #include "DispelMagic.h"
-#include "Unit.h"
+#include "../../Unit/Unit.h"
 
 DispelMagic::DispelMagic(std::string name, int manaCost)
 	: Magic(name, manaCost, ZERO_DURATION)

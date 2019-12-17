@@ -1,28 +1,24 @@
 #pragma once
 
-#ifndef DAMAGE_BUFF_H_
-#define DAMAGE_BUFF_H_
+#ifndef STUN_MAGIC_H_
+#define STUN_MAGIC_H_
 
-#include "Magic.h"
+#include "WeaponMagic.h"
 
-class DamageBuff : virtual public Magic
+class StunMagic : public WeaponMagic
 {
 public:
-	DamageBuff(std::string name, int manaCost,
-		int duration, int damageAmplify);
+	StunMagic(std::string name, int duration, int propability);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;
-	virtual bool isEqual(const MagicPtr& magic)const override;
 	virtual bool isBuff()const override;
+	virtual bool isEqual(const MagicPtr& magic)const override;
 	virtual void showFullInfo()const override;
-	virtual ~DamageBuff() = default;
-protected:
-	int m_damageAmplify;
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
-	virtual void putOn(Unit& unit)const override;
 	virtual void showData()const override;
+	virtual void putOn(Unit& unit)const override;
 };
 
 #endif

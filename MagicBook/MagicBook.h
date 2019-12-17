@@ -1,14 +1,14 @@
 #pragma once
 
-#ifndef SPELLBOOK_H_
-#define SPELLBOOK_H_
+#ifndef MAGICBOOK_H_
+#define MAGICBOOK_H_
 
-#include "Globals.h"
+#include "../Globals/Globals.h"
 
-class SpellBook : public Spells
+class MagicBook : public Spells
 {
 public:
-	SpellBook(Unit* unit);
+	MagicBook(Unit* unit);
 	bool canCastAnySpell()const;
 	void showFullInfo()const;
 	void showShortInfo()const;
@@ -17,4 +17,4 @@ public:
 private:
 	Unit* m_unit; // unit, that have this vector of magic
 };
-#endif // SPELLBOOK_H_
+#endif

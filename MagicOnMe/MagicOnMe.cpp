@@ -1,13 +1,14 @@
-#include "SpellsOnMe.h"
-#include "Unit.h"
+#include "MagicOnMe.h"
+#include "../Unit/Unit.h"
+#include "../Magic/Magic.h"
 
-SpellsOnMe::SpellsOnMe(Unit* unit)
+MagicOnMe::MagicOnMe(Unit* unit)
 	: m_unit(unit)
 {
 
 }
 
-void SpellsOnMe::takeOfExpiredMagic(int round)
+void MagicOnMe::takeOfExpiredMagic(int round)
 {
 	for (size_t i = 0; i < size(); i++)
 	{
@@ -20,7 +21,7 @@ void SpellsOnMe::takeOfExpiredMagic(int round)
 	}
 }
 
-void SpellsOnMe::takeMagic(const MagicPtr& magic)
+void MagicOnMe::takeMagic(const MagicPtr& magic)
 {
 	// number of spell that must be deleted 
 	// from the spells that are on unit
@@ -31,7 +32,7 @@ void SpellsOnMe::takeMagic(const MagicPtr& magic)
 	push_back(MagicPtr(magic->clone()));
 }
 
-size_t SpellsOnMe::getMagicIndex(const MagicPtr& magic)const
+size_t MagicOnMe::getMagicIndex(const MagicPtr& magic)const
 {
 	for (size_t i = 0; i < size(); i++)
 		if (operator[](i)->isEqual(magic))
@@ -39,13 +40,13 @@ size_t SpellsOnMe::getMagicIndex(const MagicPtr& magic)const
 	return size();
 }
 
-void SpellsOnMe::expireMagic(size_t magicIndex)
+void MagicOnMe::expireMagic(size_t magicIndex)
 {
 	operator[](magicIndex)->uneffectUnit(*m_unit);
 	erase(begin() + magicIndex);
 }
 
-void SpellsOnMe::expireAllMagic()
+void MagicOnMe::expireAllMagic()
 {
 	for (size_t i = 0; i < size(); i++)
 	{
@@ -54,13 +55,13 @@ void SpellsOnMe::expireAllMagic()
 	}
 }
 
-void SpellsOnMe::showFullInfo()const
+void MagicOnMe::showFullInfo()const
 {
 	for (size_t i = 0; i < size(); i++)
 		operator[](i)->showFullInfo();
 }
 
-void SpellsOnMe::showShortInfo()const
+void MagicOnMe::showShortInfo()const
 {
 	std::cout << "Effect: ";
 	for (size_t i = 0; i < size(); i++)

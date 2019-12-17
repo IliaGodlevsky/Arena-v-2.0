@@ -1,5 +1,5 @@
 #include "Armor.h"
-#include "Unit.h"
+#include "../Unit/Unit.h"
 
 Armor::Armor(std::string name, int armor)
 	: m_armor(armor), m_name(name)

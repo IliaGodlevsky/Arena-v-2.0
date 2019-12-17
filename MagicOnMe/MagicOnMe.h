@@ -1,14 +1,14 @@
 #pragma once
 
-#ifndef SPELLS_ON_ME
-#define SPELLS_ON_ME
+#ifndef MAGIC_ON_ME
+#define MAGIC_ON_ME
 
-#include "Globals.h"
+#include "../Globals/Globals.h"
 
-class SpellsOnMe : public Spells
+class MagicOnMe : public Spells
 {
 public:
-	SpellsOnMe(Unit* unit);
+	MagicOnMe(Unit* unit);
 	void takeOfExpiredMagic(int round);
 	size_t getMagicIndex(const MagicPtr& magic)const;
 	void expireMagic(size_t magicIndex);
@@ -19,4 +19,4 @@ public:
 private:
 	Unit* m_unit; // unit, that have this vector of spells
 };
-#endif // SPELLS_ON_ME
+#endif

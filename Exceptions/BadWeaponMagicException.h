@@ -5,7 +5,7 @@
 
 #include <exception>
 
-#include "Globals.h"
+#include "../Globals/Globals.h"
 
 class BadWeaponMagicException : public std::exception
 {

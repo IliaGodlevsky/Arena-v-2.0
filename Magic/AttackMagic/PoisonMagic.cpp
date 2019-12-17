@@ -1,5 +1,5 @@
 #include "PoisonMagic.h"
-#include "Unit.h"
+#include "../../Unit/Unit.h"
 
 PoisonMagic::PoisonMagic(std::string name, int manaCost, int duration,
 	int regenReduce)
@@ -21,7 +21,7 @@ void PoisonMagic::uneffectUnit(Unit& unit)const
 
 MagicPtr PoisonMagic::clone()const
 {
-	return MagicPtr(new PoisonMagic(m_name, m_manaCost, m_durationmeter, m_regenReduce));
+	return MagicPtr(new PoisonMagic(m_name, m_manaCost, m_timer, m_regenReduce));
 }
 
 bool PoisonMagic::isBuff()const

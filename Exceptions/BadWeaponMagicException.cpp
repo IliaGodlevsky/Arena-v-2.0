@@ -1,6 +1,6 @@
 #include <typeinfo>
 
-#include "Magic.h"
+#include "../Magic/Magic.h"
 #include "BadWeaponMagicException.h"
 
 BadWeaponMagicException::BadWeaponMagicException(const std::string& message,

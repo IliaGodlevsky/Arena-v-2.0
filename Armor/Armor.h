@@ -1,9 +1,9 @@
 #ifndef ARMOR_H_
 #define ARMOR_H_
 
-#include "Globals.h"
-#include "Battles.h"
-#include "Vitals.h"
+#include "../Globals/Globals.h"
+#include "../Battles/Battles.h"
+#include "../Vitals/Vitals.h"
 
 class Armor;
 using ArmPtr = std::unique_ptr<Armor>;

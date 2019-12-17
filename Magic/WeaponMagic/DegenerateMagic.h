@@ -1,28 +1,27 @@
 #pragma once
 
-#ifndef ARMOR_DEBUFF_H_
-#define ARMOR_DEBUFF_H_
+#ifndef DEGENERATE_MAGIC_H_
+#define DEGENERATE_MAGIC_H_
 
-#include "Magic.h"
+#include "WeaponMagic.h"
 
-class ArmorDebuff : virtual public Magic
+class DegenerateMagic : virtual public WeaponMagic
 {
 public:
-	ArmorDebuff(std::string name, int manaCost, int duration,
-		int armorReduce);
+	DegenerateMagic(std::string name, int duration,
+		int degeneration, int propability);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;
 	virtual bool isBuff()const override;
 	virtual bool isEqual(const MagicPtr& magic)const override;
 	virtual void showFullInfo()const override;
-	virtual ~ArmorDebuff() = default;
 protected:
-	int m_armorReduce;
-protected:
-	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
+	virtual bool hasEqualParametres(const MagicPtr& magic)const;
 	virtual void showData()const override;
 	virtual void putOn(Unit& unit)const override;
+protected:
+	int m_degeneration;
 };
 
 #endif

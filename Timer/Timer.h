@@ -3,13 +3,13 @@
 #ifndef DURATION_H_
 #define DURATION_H_
 
-class Durationmeter
+class Timer
 {
 public:
-	Durationmeter(int duration);
+	Timer(int duration);
 	void setStartTime(int round);
 	bool isExpired(int round)const;
-	bool operator==(const Durationmeter& durationmeter)const;
+	bool operator==(const Timer& durationmeter)const;
 	operator int()const;
 protected:
 	int m_duration;

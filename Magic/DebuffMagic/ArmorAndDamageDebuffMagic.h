@@ -1,17 +1,17 @@
 #pragma once
 
-#ifndef OFFSET_DAMAGE_BUFF_H_
-#define OFFSET_DAMAGE_BUFF_H_
+#ifndef ARMOR_AND_DAMAGE_DEBUFF_H_
+#define ARMOR_AND_DAMAGE_DEBUFF_H_
 
-#include "DamageBuff.h"
-#include "ArmorDebuff.h"
+#include "ArmorDebuffMagic.h"
+#include "DamageDebuffMagic.h"
 
-class OffsetDamageBuff
-	: public DamageBuff, public ArmorDebuff
+class ArmorAndDamageDebuffMagic
+	: public DamageDebuffMagic, public ArmorDebuffMagic
 {
 public:
-	OffsetDamageBuff(std::string name, int manaCost,
-		int duration, int armorReduce, int damageAmplify);
+	ArmorAndDamageDebuffMagic(std::string name, int manaCost,
+		int duration, int armorReduce, int damageReduce);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit)const override;
 	MagicPtr clone()const override;

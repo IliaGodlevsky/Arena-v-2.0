@@ -1,13 +1,14 @@
-#include "SpellBook.h"
-#include "Unit.h"
+#include "MagicBook.h"
+#include "../Unit/Unit.h"
+#include "../Magic/Magic.h"
 
-SpellBook::SpellBook(Unit* unit)
+MagicBook::MagicBook(Unit* unit)
 	: m_unit(unit)
 {
 
 }
 
-void SpellBook::magicList()const
+void MagicBook::magicList()const
 {
 	for (size_t i = 0; i < size(); i++)
 	{
@@ -17,7 +18,7 @@ void SpellBook::magicList()const
 	}
 }
 
-bool SpellBook::canCastAnySpell()const
+bool MagicBook::canCastAnySpell()const
 {
 	bool can_cast = false;
 	for (size_t i = 0; i < size(); i++)
@@ -28,13 +29,13 @@ bool SpellBook::canCastAnySpell()const
 	return can_cast;
 }
 
-void SpellBook::showFullInfo()const
+void MagicBook::showFullInfo()const
 {
 	for (size_t i = 0; i < size(); i++)
 		operator[](i)->showFullInfo();
 }
 
-void SpellBook::showShortInfo()const
+void MagicBook::showShortInfo()const
 {
 	std::cout << "MagicBook:\n";
 	for (size_t i = 0; i < size(); i++)
@@ -45,7 +46,7 @@ void SpellBook::showShortInfo()const
 	}
 }
 
-void SpellBook::takeMagic(const MagicPtr& magic)
+void MagicBook::takeMagic(const MagicPtr& magic)
 {
 	if (nullptr != magic)
 		push_back(MagicPtr(magic->clone()));

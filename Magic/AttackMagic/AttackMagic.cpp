@@ -1,5 +1,5 @@
-#include "AttackMa.h"
-#include "Unit.h"
+#include "AttackMagic.h"
+#include "..//../Unit/Unit.h"
 
 AttackMagic::AttackMagic(std::string name, int manaCost, int damage)
 	: Magic(name, manaCost, 0), m_damage(damage)

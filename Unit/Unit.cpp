@@ -1,7 +1,7 @@
 #include <cmath>
 
 #include "Unit.h"
-#include "Arena.h"
+#include "../Arena/Arena.h"
 
 Unit::Unit(std::string name, DecisionPtr decision)
 	: m_damage(2), 

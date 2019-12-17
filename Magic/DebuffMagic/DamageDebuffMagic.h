@@ -1,28 +1,29 @@
 #pragma once
 
-#ifndef ARMOR_BUFF_H_
-#define ARMOR_BUFF_H_
+#ifndef DAMAGE_DEBUFF_H_
+#define DAMAGE_DEBUFF_H_
 
-#include "Magic.h"
+#include "../Magic.h"
+#include "../../Globals/Globals.h"
 
-class ArmorBuff : virtual public Magic
+class DamageDebuffMagic : virtual public Magic
 {
 public:
-	ArmorBuff(std::string name, int manaCost,
-		int duration, int armorAmplify);
+	DamageDebuffMagic(std::string name, int manaCost, int duration,
+		int damageReduce);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;
 	virtual bool isBuff()const override;
 	virtual bool isEqual(const MagicPtr& magic)const override;
 	virtual void showFullInfo()const override;
-	virtual ~ArmorBuff() = default;
+	virtual ~DamageDebuffMagic() = default;
 protected:
-	int m_armorAmplify;
+	int m_damageReduce;
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
-	virtual void showData()const;
-	virtual void putOn(Unit& unit)const;
+	virtual void showData()const override;
+	virtual void putOn(Unit& unit)const override;
 };
 
 #endif

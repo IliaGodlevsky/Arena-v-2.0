@@ -1,5 +1,6 @@
 #include "AttackAndStunMagic.h"
-#include "Unit.h"
+#include "..//../Unit/Unit.h"
+#include "../../UnitState/UnitState.h"
 
 AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
 	int duration, int damage)
@@ -12,7 +13,7 @@ AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
 void AttackAndStunMagic::effectUnit(Unit& unit)
 {
 	putOn(unit);
-	unit.recieveNewState(std::shared_ptr<UnitState>(new StunState(m_durationmeter)));
+	unit.recieveNewState(std::shared_ptr<UnitState>(new StunState(m_timer)));
 	AttackMagic::effectUnit(unit);
 }
 
@@ -23,7 +24,7 @@ void AttackAndStunMagic::uneffectUnit(Unit& unit)const
 
 MagicPtr AttackAndStunMagic::clone()const
 {
-	return MagicPtr(new AttackAndStunMagic(m_name, m_manaCost, m_durationmeter, m_damage));
+	return MagicPtr(new AttackAndStunMagic(m_name, m_manaCost, m_timer, m_damage));
 }
 
 bool AttackAndStunMagic::isBuff()const

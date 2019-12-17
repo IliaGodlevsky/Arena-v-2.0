@@ -1,38 +1,314 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Arena">
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\Arena">
       <UniqueIdentifier>{b14e3af7-43cc-44e6-816b-7f506c0525cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Unit">
+    <Filter Include="Source\Unit">
       <UniqueIdentifier>{cee3b7da-6a0a-4808-8a73-12ecab8d9a9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Magic">
+      <UniqueIdentifier>{b49214c5-f771-4bf8-8ce2-a2c9d183b926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Magic\WeaponMagic">
+      <UniqueIdentifier>{f6b5b321-8ee8-4913-9435-4691ec02325c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Magic\BuffMagic">
+      <UniqueIdentifier>{0296aa87-9a8a-4ada-8926-017375d1caea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Magic\AttackMagic">
+      <UniqueIdentifier>{09958d84-3e79-4490-8872-0db2b8aff58a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Magic\DebuffMagic">
+      <UniqueIdentifier>{461ae8d5-516e-42fd-a166-2f556be6ef4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Magic\NeutralMagic">
+      <UniqueIdentifier>{d87154ec-a728-4e07-9d1d-baf7445be8d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Timer">
+      <UniqueIdentifier>{ea1494a5-b50d-4dd4-82bc-712bb9df956f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Battles">
+      <UniqueIdentifier>{309e8fc5-6aa3-4c6f-aeb3-c39e0db0aa5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Decision">
+      <UniqueIdentifier>{f0080a41-8210-4b82-b102-783fa92ba3b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Exceptions">
+      <UniqueIdentifier>{3824148a-8c56-47e4-8184-1f5be7ec6fea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Globals">
+      <UniqueIdentifier>{2e7f6533-5a14-4678-94a9-b081401c606f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Level">
+      <UniqueIdentifier>{bf3748f2-953e-4daf-a449-b6ae584bddd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\MagicBook">
+      <UniqueIdentifier>{bc381ba1-a697-435b-9f9c-18c096fdc7c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\MagicOnMe">
+      <UniqueIdentifier>{3702ad55-f0eb-47d0-aebe-e70ff3786b5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\PosibilityCounter">
+      <UniqueIdentifier>{a4335ed8-2880-49c1-8dc4-cabfc7e980e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Equipment">
+      <UniqueIdentifier>{59a73daa-3695-43d2-8b52-68229ae8083b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Equipment\Armor">
+      <UniqueIdentifier>{cdd11952-3eac-4fed-b66d-367a1e56281e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Equipment\Shield">
+      <UniqueIdentifier>{59bfe83b-ffd8-4dd0-b7e6-16fb6ffd8dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\StateHolder">
+      <UniqueIdentifier>{8ace1f41-dd44-4657-b663-b860aa83b5e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\UnitState">
+      <UniqueIdentifier>{d4045b1d-42a7-44af-baef-91c092a94911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Vitals">
+      <UniqueIdentifier>{7494ec6b-72ce-4687-ae80-1c44f80581c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Equipment\Weapon">
+      <UniqueIdentifier>{102dba6b-ef69-48a0-92c7-faa3b1e954ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Arena\Arena.cpp">
-      <Filter>Source Files\Arena</Filter>
+      <Filter>Source\Arena</Filter>
     </ClCompile>
     <ClCompile Include="Unit\Unit.cpp">
-      <Filter>Source Files\Unit</Filter>
+      <Filter>Source\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\WeaponMagic\CorruptionMagic.cpp">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\WeaponMagic\CrushMagic.cpp">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\WeaponMagic\DegenerateMagic.cpp">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\WeaponMagic\StunMagic.cpp">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\WeaponMagic\WeaponMagic.cpp">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\AttackMagic\AttackAndStunMagic.cpp">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\AttackMagic\AttackMagic.cpp">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\AttackMagic\PoisonAndAttackMagic.cpp">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\AttackMagic\PoisonMagic.cpp">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\NeutralMagic\DispelMagic.cpp">
+      <Filter>Source\Magic\NeutralMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Magic.cpp">
+      <Filter>Source\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer\Timer.cpp">
+      <Filter>Source\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor\Armor.cpp">
+      <Filter>Source\Equipment\Armor</Filter>
+    </ClCompile>
+    <ClCompile Include="Battles\Battles.cpp">
+      <Filter>Source\Battles</Filter>
+    </ClCompile>
+    <ClCompile Include="Decision\Decision.cpp">
+      <Filter>Source\Decision</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\BadWeaponMagicException.cpp">
+      <Filter>Source\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals\Globals.cpp">
+      <Filter>Source\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="Level\Level.cpp">
+      <Filter>Source\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicBook\MagicBook.cpp">
+      <Filter>Source\MagicBook</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicOnMe\MagicOnMe.cpp">
+      <Filter>Source\MagicOnMe</Filter>
+    </ClCompile>
+    <ClCompile Include="PossibilityCounter\PosibilityCounter.cpp">
+      <Filter>Source\PosibilityCounter</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield\Shield.cpp">
+      <Filter>Source\Equipment\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="StateHolder\StateHolder.cpp">
+      <Filter>Source\StateHolder</Filter>
+    </ClCompile>
+    <ClCompile Include="Vitals\Vitals.cpp">
+      <Filter>Source\Vitals</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\Weapon.cpp">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\BuffMagic\DamageBuffMagic.cpp">
+      <Filter>Source\Magic\BuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\BuffMagic\ArmorBuffMagic.cpp">
+      <Filter>Source\Magic\BuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\BuffMagic\ArmorAndDamageBuffMagic.cpp">
+      <Filter>Source\Magic\BuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\BuffMagic\OffsetDamageBuffMagic.cpp">
+      <Filter>Source\Magic\BuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\DebuffMagic\ArmorAndDamageDebuffMagic.cpp">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\DebuffMagic\ArmorDebuffMagic.cpp">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\DebuffMagic\DamageDebuffMagic.cpp">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\DebuffMagic\SilenceMagic.cpp">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\UnitState.cpp">
+      <Filter>Source\UnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="Decision\HumanDecision.cpp">
+      <Filter>Source\Decision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
-      <Filter>Source Files\Arena</Filter>
+      <Filter>Source\Arena</Filter>
     </ClInclude>
     <ClInclude Include="Unit\Unit.h">
-      <Filter>Source Files\Unit</Filter>
+      <Filter>Source\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\WeaponMagic\CorruptionMagic.h">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\WeaponMagic\CrushMagic.h">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\WeaponMagic\DegenerateMagic.h">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\WeaponMagic\StunMagic.h">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\WeaponMagic\WeaponMagic.h">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\AttackMagic\AttackAndStunMagic.h">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\AttackMagic\AttackMagic.h">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\AttackMagic\PoisonAndAttackMagic.h">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\AttackMagic\PoisonMagic.h">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\NeutralMagic\DispelMagic.h">
+      <Filter>Source\Magic\NeutralMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Magic.h">
+      <Filter>Source\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer\Timer.h">
+      <Filter>Source\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor\Armor.h">
+      <Filter>Source\Equipment\Armor</Filter>
+    </ClInclude>
+    <ClInclude Include="Battles\Battles.h">
+      <Filter>Source\Battles</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision\Decision.h">
+      <Filter>Source\Decision</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\BadWeaponMagicException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals\Globals.h">
+      <Filter>Source\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="Level\Level.h">
+      <Filter>Source\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicBook\MagicBook.h">
+      <Filter>Source\MagicBook</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicOnMe\MagicOnMe.h">
+      <Filter>Source\MagicOnMe</Filter>
+    </ClInclude>
+    <ClInclude Include="PossibilityCounter\PosibilityCounter.h">
+      <Filter>Source\PosibilityCounter</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield\Shield.h">
+      <Filter>Source\Equipment\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="StateHolder\StateHolder.h">
+      <Filter>Source\StateHolder</Filter>
+    </ClInclude>
+    <ClInclude Include="Vitals\Vitals.h">
+      <Filter>Source\Vitals</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\Weapon.h">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\BuffMagic\ArmorBuffMagic.h">
+      <Filter>Source\Magic\BuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\BuffMagic\ArmorAndDamageBuffMagic.h">
+      <Filter>Source\Magic\BuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\BuffMagic\DamageBuffMagic.h">
+      <Filter>Source\Magic\BuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\BuffMagic\OffsetDamageBuffMagic.h">
+      <Filter>Source\Magic\BuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\DebuffMagic\ArmorAndDamageDebuffMagic.h">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\DebuffMagic\ArmorDebuffMagic.h">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\DebuffMagic\DamageDebuffMagic.h">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\DebuffMagic\SilenceMagic.h">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\UnitState.h">
+      <Filter>Source\UnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision\HumanDecision.h">
+      <Filter>Source\Decision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

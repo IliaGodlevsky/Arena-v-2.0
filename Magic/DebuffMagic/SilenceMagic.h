@@ -1,17 +1,16 @@
 #pragma once
 
-#ifndef ARMOR_AND_DAMAGE_BUFF_H_
-#define ARMOR_AND_DAMAGE_BUFF_H_
+#ifndef SILENCE_H_
+#define SILENCE_H_
 
-#include "ArmorBuff.h"
-#include "DamageBuff.h"
+#include "../Magic.h"
+#include "../../Globals/Globals.h"
 
-class ArmorAndDamageBuff
-	: public ArmorBuff, public DamageBuff
+class SilenceMagic : public Magic
 {
 public:
-	ArmorAndDamageBuff(std::string name, int manaCost,
-		int duration, int armorAmplify, int damageAmplify);
+	SilenceMagic(std::string name, int manaCost,
+		int duration);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit)const override;
 	MagicPtr clone()const override;
@@ -19,7 +18,7 @@ public:
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
 protected:
-	bool hasEqualParametres(const MagicPtr& magic)const override;
+	bool hasEqualParametres(const MagicPtr& magic)const;
 	void showData()const override;
 	void putOn(Unit& unit)const override;
 };

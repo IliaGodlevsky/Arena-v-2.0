@@ -24,7 +24,7 @@ void PoisonAndAttackMagic::uneffectUnit(Unit& unit)const
 MagicPtr PoisonAndAttackMagic::clone()const
 {
 	return MagicPtr(new PoisonAndAttackMagic(m_name, m_manaCost,
-		m_durationmeter, m_damage, m_regenReduce));
+		m_timer, m_damage, m_regenReduce));
 }
 
 bool PoisonAndAttackMagic::isBuff()const
