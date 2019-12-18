@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef MAGIC_CLUB_H_
 #define MAGIC_CLUB_H_
 

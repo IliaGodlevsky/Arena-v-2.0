@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef WIZARD_CLOAK_H_
 #define WIZARD_CLOAK_H_
 

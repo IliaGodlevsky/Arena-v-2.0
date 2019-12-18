@@ -7,6 +7,11 @@
 #include "../Battles/Battles.h"
 #include "../Vitals/Vitals.h"
 #include "../MagicBook/MagicBook.h"
+#include "../StateHolder/StateHolder.h"
+#include "../Level/Level.h"
+#include "../MagicOnMe/MagicOnMe.h"
+#include "../Armor/Armor.h"
+#include "../Shield/Shield.h"
 
 class Unit
 {
@@ -28,17 +33,18 @@ public:
 	void levelUp();
 	void recieveNewState(StatePtr unitState);
 	void moveIntoNewRound();
-public:
 	const std::string& getName()const;
+public:
 	UnitPtr chooseUnitToAttack(const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Gladiators& units)const;
-	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr, const Gladiators& units)const;
+	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr, 
+		const Gladiators& units)const;
 public:
 	Battles m_damage = Battles(4);
 	Battles m_armor = Battles(2);
 	Vitals m_health = { 100,100,2 };
 	Vitals m_mana = { 40,40,1 };
-	SpellsOnMe m_magicOnMe;
+	MagicOnMe m_magicOnMe;
 	MagicBook m_magicBook;
 	Level m_level;
 	StateHolder m_stateHolder;

@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef STUN_UNIT_STATE_H_
 #define STUN_UNIT_STATE_H_
 

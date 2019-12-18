@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef LEGIONER_CHAINS_H_
 #define LEGIONER_CHAINS_H_
 

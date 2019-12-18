@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef MAGIC_SPEAR_H_
 #define MAGIC_SPEAR_H_
 

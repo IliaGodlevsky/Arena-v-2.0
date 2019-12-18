@@ -1,4 +1,5 @@
 #include "Weapon.h"
+
 #include "../Unit/Unit.h"
 #include "../PossibilityCounter/PosibilityCounter.h"
 

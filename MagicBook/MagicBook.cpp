@@ -1,6 +1,8 @@
-#include "MagicBook.h"
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
+
+#include "MagicBook.h"
+
 
 MagicBook::MagicBook(Unit* unit)
 	: m_unit(unit)

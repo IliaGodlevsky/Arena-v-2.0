@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef MAIL_H_
 #define MAIL_H_
 

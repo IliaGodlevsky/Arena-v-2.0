@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef SHEILD_H_
 #define SHIELD_H_
 

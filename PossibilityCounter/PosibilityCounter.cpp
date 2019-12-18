@@ -1,5 +1,6 @@
+#include "../Globals/Globals.h"
+
 #include "PosibilityCounter.h"
-#include "Globals.h"
 
 PosibilityCounter::PosibilityCounter(int posibility)
 	: m_posibility(posibility)

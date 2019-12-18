@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef DURATION_H_
 #define DURATION_H_
 

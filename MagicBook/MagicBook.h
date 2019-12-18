@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef MAGICBOOK_H_
 #define MAGICBOOK_H_
 

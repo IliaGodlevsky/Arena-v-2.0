@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef MAGIC_WEAPON_H_
 #define MAGIC_WEAPON_H_
 

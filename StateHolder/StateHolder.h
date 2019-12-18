@@ -1,10 +1,10 @@
-#pragma once
-
 #ifndef STATE_HOLDER_H_
 #define STATE_HOLDER_H_
 
-#include "Globals.h"
-#include "State.h"
+#include "../Globals/Globals.h"
+#include "../UnitState/UnitState.h"
+#include "../Decision/Decision.h"
+#include "../UnitState/ActiveUnitState.h"
 
 class StateHolder
 {
@@ -22,7 +22,7 @@ public:
 private:
 	DecisionPtr m_decision;
 	std::vector<StatePtr> m_unitStates;
-	std::unique_ptr<ActiveState> m_activeState;
+	std::unique_ptr<ActiveUnitState> m_activeState;
 };
 
 #endif

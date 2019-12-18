@@ -1,6 +1,7 @@
-#include "MagicOnMe.h"
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
+
+#include "MagicOnMe.h"
 
 MagicOnMe::MagicOnMe(Unit* unit)
 	: m_unit(unit)

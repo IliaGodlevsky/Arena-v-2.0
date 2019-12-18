@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef MAGIC_ON_ME
 #define MAGIC_ON_ME
 

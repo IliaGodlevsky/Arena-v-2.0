@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef ACTIVE_UNIT_STATE_H_
 #define ACTIVE_UNIT_STATE_H_
 

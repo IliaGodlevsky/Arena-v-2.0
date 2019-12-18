@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef MAGIC_AXE_H_
 #define MAGIC_AXE_H_
 
