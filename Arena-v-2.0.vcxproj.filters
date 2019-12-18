@@ -81,6 +81,9 @@
     <Filter Include="Source\Equipment\Weapon">
       <UniqueIdentifier>{102dba6b-ef69-48a0-92c7-faa3b1e954ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Factories">
+      <UniqueIdentifier>{62ab6150-cea1-4503-b674-3e60f6b75171}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -375,6 +378,9 @@
     </ClInclude>
     <ClInclude Include="UnitState\StunUnitState.h">
       <Filter>Source\UnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\Factory.h">
+      <Filter>Source\Factories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

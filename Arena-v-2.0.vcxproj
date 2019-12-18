@@ -80,6 +80,7 @@
     <ClInclude Include="Decision\Decision.h" />
     <ClInclude Include="Decision\HumanDecision.h" />
     <ClInclude Include="Exceptions\BadWeaponMagicException.h" />
+    <ClInclude Include="Factories\Factory.h" />
     <ClInclude Include="Globals\Globals.h" />
     <ClInclude Include="Level\Level.h" />
     <ClInclude Include="MagicBook\MagicBook.h" />
