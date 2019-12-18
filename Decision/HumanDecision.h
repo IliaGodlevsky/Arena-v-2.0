@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef HUMAN_DECISION_H_
 #define HUMAN_DECISION_H_
 

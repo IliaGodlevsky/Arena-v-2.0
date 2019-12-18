@@ -1,6 +1,8 @@
-#include "StunMagic.h"
 #include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
+#include "../../UnitState/StunUnitState.h"
+
+#include "StunMagic.h"
 
 StunMagic::StunMagic(std::string name, int duration, int propability)
 	: WeaponMagic(name, duration, propability)
@@ -57,5 +59,5 @@ void StunMagic::showData()const
 
 void StunMagic::putOn(Unit& unit)const
 {
-	unit.recieveNewState(StatePtr(new StunState(m_timer)));
+	unit.recieveNewState(StatePtr(new StunUnitState(m_timer)));
 }

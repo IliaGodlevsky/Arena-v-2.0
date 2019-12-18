@@ -1,10 +1,9 @@
-#pragma once
-
 #ifndef POISON_H_
 #define POISON_H_
 
-#include "../Magic.h"
 #include "../../Globals/Globals.h"
+
+#include "../Magic.h"
 
 class PoisonMagic : virtual public Magic
 {

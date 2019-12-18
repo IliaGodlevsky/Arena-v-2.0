@@ -1,5 +1,6 @@
-#include "CorruptionMagic.h"
 #include "../../Unit/Unit.h"
+
+#include "CorruptionMagic.h"
 
 CorruptionMagic::CorruptionMagic(std::string name, int duration,
 	int armorReduce, int propability)

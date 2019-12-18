@@ -1,10 +1,9 @@
-#pragma once
-
 #ifndef DISPEL_H_
 #define DISPEL_H_
 
-#include "../Magic.h"
 #include "../../Globals/Globals.h"
+
+#include "../Magic.h"
 
 class DispelMagic : public Magic
 {

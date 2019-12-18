@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef ARMOR_AND_DAMAGE_DEBUFF_H_
 #define ARMOR_AND_DAMAGE_DEBUFF_H_
 

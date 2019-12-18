@@ -1,5 +1,6 @@
-#include "DegenerateMagic.h"
 #include "../../Unit/Unit.h"
+
+#include "DegenerateMagic.h"
 
 DegenerateMagic::DegenerateMagic(std::string name, int duration,
 	int degeneration, int propability)

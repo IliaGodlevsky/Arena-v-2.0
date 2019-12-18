@@ -197,6 +197,42 @@
     <ClCompile Include="Decision\HumanDecision.cpp">
       <Filter>Source\Decision</Filter>
     </ClCompile>
+    <ClCompile Include="Armor\Mail.cpp">
+      <Filter>Source\Equipment\Armor</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor\WizardCloak.cpp">
+      <Filter>Source\Equipment\Armor</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor\LegionerChains.cpp">
+      <Filter>Source\Equipment\Armor</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\MagicWeapon.cpp">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\MagicSword.cpp">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\MagicAxe.cpp">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\MagicSpear.cpp">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\MagicClub.cpp">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\ActiveUnitState.cpp">
+      <Filter>Source\UnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\MutedUnitState.h">
+      <Filter>Source\UnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\MutedUnitState.cpp">
+      <Filter>Source\UnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\StunUnitState.cpp">
+      <Filter>Source\UnitState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -309,6 +345,36 @@
     </ClInclude>
     <ClInclude Include="Decision\HumanDecision.h">
       <Filter>Source\Decision</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor\Mail.h">
+      <Filter>Source\Equipment\Armor</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor\WizardCloak.h">
+      <Filter>Source\Equipment\Armor</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor\LegionerChains.h">
+      <Filter>Source\Equipment\Armor</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\MagicWeapon.h">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\MagicSword.h">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\MagicAxe.h">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\MagicSpear.h">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\MagicClub.h">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\ActiveUnitState.h">
+      <Filter>Source\UnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\StunUnitState.h">
+      <Filter>Source\UnitState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

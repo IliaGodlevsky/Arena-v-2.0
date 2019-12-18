@@ -1,5 +1,7 @@
-#include "PoisonMagic.h"
 #include "../../Unit/Unit.h"
+
+#include "PoisonMagic.h"
+
 
 PoisonMagic::PoisonMagic(std::string name, int manaCost, int duration,
 	int regenReduce)

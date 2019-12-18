@@ -1,5 +1,6 @@
-#include "DamageBuffMagic.h"
 #include "../../Unit/Unit.h"
+
+#include "DamageBuffMagic.h"
 
 DamageBuffMagic::DamageBuffMagic(std::string name, int manaCost,
 	int duration, int damageAmplify)

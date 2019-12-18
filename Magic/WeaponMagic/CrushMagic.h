@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef CRUSH_MAGIC_H_
 #define CRUSH_MAGIC_H_
 

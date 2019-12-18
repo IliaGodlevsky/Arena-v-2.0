@@ -1,5 +1,7 @@
-#include "ArmorDebuffMagic.h"
 #include "../../Unit/Unit.h"
+
+#include "ArmorDebuffMagic.h"
+
 
 ArmorDebuffMagic::ArmorDebuffMagic(std::string name, int manaCost,
 	int duration, int armorReduce)

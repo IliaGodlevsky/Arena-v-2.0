@@ -1,6 +1,9 @@
-#include "AttackAndStunMagic.h"
-#include "..//../Unit/Unit.h"
+#include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
+#include "../../UnitState/StunUnitState.h"
+
+#include "AttackAndStunMagic.h"
+
 
 AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
 	int duration, int damage)
@@ -13,7 +16,7 @@ AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
 void AttackAndStunMagic::effectUnit(Unit& unit)
 {
 	putOn(unit);
-	unit.recieveNewState(std::shared_ptr<UnitState>(new StunState(m_timer)));
+	unit.recieveNewState(StatePtr(new StunUnitState(m_timer)));
 	AttackMagic::effectUnit(unit);
 }
 
@@ -57,7 +60,7 @@ void AttackAndStunMagic::showFullInfo()const
 void AttackAndStunMagic::showData()const
 {
 	AttackMagic::showData();
-	std::cout << "Stuns unit for " << m_durationmeter << " rounds\n";
+	std::cout << "Stuns unit for " << m_timer << " rounds\n";
 }
 
 void AttackAndStunMagic::putOn(Unit& unit)const

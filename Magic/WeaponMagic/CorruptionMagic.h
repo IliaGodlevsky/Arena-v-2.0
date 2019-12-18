@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef CORRUPTION_MAGIC_H_
 #define CORRUPTION_MAGIC_H_
 

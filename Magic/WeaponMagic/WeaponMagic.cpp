@@ -1,6 +1,7 @@
-#include "WeaponMagic.h"
 #include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
+
+#include "WeaponMagic.h"
 
 WeaponMagic::WeaponMagic(std::string name, int duration, int propability)
 	: Magic(name, ZERO_MANA_COST, duration), m_propability(propability)

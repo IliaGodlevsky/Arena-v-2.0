@@ -1,10 +1,9 @@
-#pragma once
-
 #ifndef OFFSET_DAMAGE_BUFF_H_
 #define OFFSET_DAMAGE_BUFF_H_
 
-#include "DamageBuffMagic.h"
 #include "../DebuffMagic/ArmorDebuffMagic.h"
+
+#include "DamageBuffMagic.h"
 
 class OffsetDamageBuffMagic
 	: public DamageBuffMagic, public ArmorDebuffMagic

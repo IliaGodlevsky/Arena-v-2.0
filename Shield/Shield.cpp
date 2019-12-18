@@ -1,5 +1,5 @@
 #include "Shield.h"
-#include "Unit.h"
+#include "../Unit/Unit.h"
 
 Shield::Shield(std::string name, int armor,
 	int reflectChance)

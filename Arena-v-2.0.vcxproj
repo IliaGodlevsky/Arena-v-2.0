@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="Arena\Arena.cpp" />
     <ClCompile Include="Armor\Armor.cpp" />
+    <ClCompile Include="Armor\LegionerChains.cpp" />
+    <ClCompile Include="Armor\Mail.cpp" />
+    <ClCompile Include="Armor\WizardCloak.cpp" />
     <ClCompile Include="Battles\Battles.cpp" />
     <ClCompile Include="Decision\Decision.cpp" />
     <ClCompile Include="Decision\HumanDecision.cpp" />
@@ -53,14 +56,26 @@
     <ClCompile Include="Shield\Shield.cpp" />
     <ClCompile Include="StateHolder\StateHolder.cpp" />
     <ClCompile Include="Timer\Timer.cpp" />
+    <ClCompile Include="UnitState\ActiveUnitState.cpp" />
+    <ClCompile Include="UnitState\MutedUnitState.cpp" />
+    <ClCompile Include="UnitState\MutedUnitState.h" />
+    <ClCompile Include="UnitState\StunUnitState.cpp" />
     <ClCompile Include="UnitState\UnitState.cpp" />
     <ClCompile Include="Unit\Unit.cpp" />
     <ClCompile Include="Vitals\Vitals.cpp" />
+    <ClCompile Include="Weapon\MagicAxe.cpp" />
+    <ClCompile Include="Weapon\MagicClub.cpp" />
+    <ClCompile Include="Weapon\MagicSpear.cpp" />
+    <ClCompile Include="Weapon\MagicSword.cpp" />
+    <ClCompile Include="Weapon\MagicWeapon.cpp" />
     <ClCompile Include="Weapon\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h" />
     <ClInclude Include="Armor\Armor.h" />
+    <ClInclude Include="Armor\LegionerChains.h" />
+    <ClInclude Include="Armor\Mail.h" />
+    <ClInclude Include="Armor\WizardCloak.h" />
     <ClInclude Include="Battles\Battles.h" />
     <ClInclude Include="Decision\Decision.h" />
     <ClInclude Include="Decision\HumanDecision.h" />
@@ -92,9 +107,16 @@
     <ClInclude Include="Shield\Shield.h" />
     <ClInclude Include="StateHolder\StateHolder.h" />
     <ClInclude Include="Timer\Timer.h" />
+    <ClInclude Include="UnitState\ActiveUnitState.h" />
+    <ClInclude Include="UnitState\StunUnitState.h" />
     <ClInclude Include="UnitState\UnitState.h" />
     <ClInclude Include="Unit\Unit.h" />
     <ClInclude Include="Vitals\Vitals.h" />
+    <ClInclude Include="Weapon\MagicAxe.h" />
+    <ClInclude Include="Weapon\MagicClub.h" />
+    <ClInclude Include="Weapon\MagicSpear.h" />
+    <ClInclude Include="Weapon\MagicSword.h" />
+    <ClInclude Include="Weapon\MagicWeapon.h" />
     <ClInclude Include="Weapon\Weapon.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

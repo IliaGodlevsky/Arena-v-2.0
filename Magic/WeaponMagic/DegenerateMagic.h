@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef DEGENERATE_MAGIC_H_
 #define DEGENERATE_MAGIC_H_
 

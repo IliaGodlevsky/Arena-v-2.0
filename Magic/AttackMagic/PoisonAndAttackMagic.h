@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef POISON_AND_ATTACK_DAMAGE_H_
 #define POISON_AND_ATTACK_DAMAGE_H_
 

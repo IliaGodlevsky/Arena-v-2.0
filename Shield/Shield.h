@@ -3,7 +3,8 @@
 #ifndef SHEILD_H_
 #define SHIELD_H_
 
-#include "PosibilityCounter.h"
+#include "../Globals/Globals.h"
+#include "../PossibilityCounter/PosibilityCounter.h"
 
 class Shield;
 using ShieldPtr = std::unique_ptr<Shield>;

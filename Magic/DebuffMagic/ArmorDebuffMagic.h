@@ -1,10 +1,9 @@
-#pragma once
-
 #ifndef ARMOR_DEBUFF_H_
 #define ARMOR_DEBUFF_H_
 
-#include "../Magic.h"
 #include "../../Globals/Globals.h"
+
+#include "../Magic.h"
 
 class ArmorDebuffMagic : virtual public Magic
 {

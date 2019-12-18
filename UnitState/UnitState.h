@@ -3,8 +3,9 @@
 #ifndef STATE_H_
 #define STATE_H_
 
-#include "Globals.h"
-#include "Durationmeter.h"
+#include "../Globals/Globals.h"
+#include "../Timer/Timer.h"
+#include "../Decision/Decision.h"
 
 class UnitState;
 using StatePtr = std::shared_ptr<UnitState>;
@@ -27,7 +28,7 @@ public:
 	virtual bool operator <(const UnitState& unitState)const final;
 	virtual bool operator >(const UnitState& unitState)const final;
 protected:
-	Durationmeter m_durationmeter;
+	Timer m_timer;
 	DecisionPtr m_decision;
 	enum StateValue { ALIVE_STATE, MUTED_STATE, STUNNED_STATE };
 	// static std::vector<UnitState*> m_attackStates;
@@ -35,41 +36,4 @@ private:
 	virtual StateValue getValue()const = 0;
 
 };
-
-class ActiveState : public UnitState
-{
-public:
-	ActiveState();
-	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const override;
-	MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const override;
-	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const override;
-private:
-	StateValue getValue()const override;
-};
-
-class MutedState : public UnitState
-{
-public:
-	MutedState(int duration);
-	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const override;
-	MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const override;
-	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const override;
-private:
-	StateValue getValue()const override;
-};
-
-class StunState : public UnitState
-{
-public:
-	StunState(int duration);
-	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const;
-	MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const;
-	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const;
-private:
-	StateValue getValue()const override;
-};
-
 #endif

@@ -1,10 +1,9 @@
-#pragma once
-
 #ifndef ATTACK_MAGIC_H_
 #define ATTACK_MAGIC_H_
 
-#include "../Magic.h"
 #include "../../Globals/Globals.h"
+
+#include "../Magic.h"
 
 class AttackMagic : virtual public Magic
 {

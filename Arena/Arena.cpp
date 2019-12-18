@@ -3,6 +3,7 @@
 
 #include "../Unit/Unit.h"
 #include "../Decision/Decision.h"
+#include "../Decision/HumanDecision.h"
 
 #include "Arena.h"
 

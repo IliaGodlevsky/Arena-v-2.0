@@ -1,6 +1,8 @@
-#include "SilenceMagic.h"
 #include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
+#include "../../UnitState/MutedUnitState.h"
+
+#include "SilenceMagic.h"
 
 SilenceMagic::SilenceMagic(std::string name, int mana_cost,
 	int duration)
@@ -13,7 +15,7 @@ void SilenceMagic::effectUnit(Unit& unit)
 {
 	putOn(unit);
 	Magic::effectUnit(unit);
-	unit.recieveNewState(std::shared_ptr<UnitState>(new MutedState(m_timer)));
+	unit.recieveNewState(StatePtr(new MutedUnitState(m_timer)));
 }
 
 void SilenceMagic::uneffectUnit(Unit& unit)const

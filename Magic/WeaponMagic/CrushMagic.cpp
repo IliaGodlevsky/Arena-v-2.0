@@ -1,5 +1,7 @@
-#include "CrushMagic.h"
 #include "../../Unit/Unit.h"
+
+#include "CrushMagic.h"
+
 
 CrushMagic::CrushMagic(std::string name, int damage,
 	int propability)

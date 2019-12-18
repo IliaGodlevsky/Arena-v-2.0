@@ -1,5 +1,7 @@
 #include "ArmorBuffMagic.h"
+
 #include "../../Unit/Unit.h"
+
 
 ArmorBuffMagic::ArmorBuffMagic(std::string name, int manaCost,
 	int duration, int armorAmplify)

@@ -36,28 +36,6 @@ void Unit::recieveNewState(StatePtr Unitstate)
 	this->m_stateHolder.recieveNewState(Unitstate);
 }
 
-void Unit::takeMagic(const ItemFactory<Magic>& magicFactory)
-{
-	m_magicBook.takeMagic(magicFactory.createItemFromFactory());
-}
-
-void Unit::takeWeapon(const ItemFactory<Weapon>& weaponFactory)
-{
-	m_weapon = weaponFactory.createItemFromFactory();
-}
-
-void Unit::takeArmor(const ItemFactory<Armor>& armorFactory)
-{
-	m_mail = armorFactory.createItemFromFactory();
-	m_mail->putOn(*this);
-}
-
-void Unit::takeShield(const ItemFactory<Shield>& sheildFactory)
-{
-	m_shield = sheildFactory.createItemFromFactory();
-	m_shield->putOn(*this);
-}
-
 void Unit::moveIntoNewRound()
 {
 	m_magicOnMe.takeOfExpiredMagic(Arena::getCurrentRound());

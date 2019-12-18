@@ -1,5 +1,7 @@
-#include "DamageDebuffMagic.h"
 #include "../../Unit/Unit.h"
+
+#include "DamageDebuffMagic.h"
+
 
 DamageDebuffMagic::DamageDebuffMagic(std::string name,
 	int manaCost, int duration, int damageReduce)

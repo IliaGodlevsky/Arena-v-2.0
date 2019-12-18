@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef STUN_MAGIC_H_
 #define STUN_MAGIC_H_
 

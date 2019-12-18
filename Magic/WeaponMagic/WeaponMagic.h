@@ -1,10 +1,9 @@
-#pragma once
-
 #ifndef WEAPON_MAGIC_H_
 #define WEAPON_MAGIC_H_
 
-#include "../Magic.h"
 #include "../../PossibilityCounter/PosibilityCounter.h"
+
+#include "../Magic.h"
 
 class WeaponMagic : public Magic
 {
