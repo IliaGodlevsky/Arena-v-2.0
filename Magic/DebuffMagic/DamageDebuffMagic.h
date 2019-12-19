@@ -1,8 +1,6 @@
 #ifndef DAMAGE_DEBUFF_H_
 #define DAMAGE_DEBUFF_H_
 
-#include "../../Globals/Globals.h"
-
 #include "../Magic.h"
 
 class DamageDebuffMagic : virtual public Magic

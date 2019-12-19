@@ -1,8 +1,6 @@
 #ifndef SILENCE_H_
 #define SILENCE_H_
 
-#include "../../Globals/Globals.h"
-
 #include "../Magic.h"
 
 class SilenceMagic : public Magic

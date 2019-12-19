@@ -1,3 +1,5 @@
+#include "../Magic/Magic.h"
+
 #include "StunUnitState.h"
 
 StunUnitState::StunUnitState(int duration)

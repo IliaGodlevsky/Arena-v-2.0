@@ -1,9 +1,10 @@
 #include "StateHolder.h"
-#include "Unit.h"
-#include "Arena.h"
+#include "../Unit/Unit.h"
+#include "../Arena/Arena.h"
+#include "../UnitState/ActiveUnitState.h"
 
 StateHolder::StateHolder(DecisionPtr decision)
-	: m_decision(decision), m_activeState(new ActiveState())
+	: m_decision(decision), m_activeState(new ActiveUnitState())
 {
 	m_activeState->setDecision(decision);
 }

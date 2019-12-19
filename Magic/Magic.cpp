@@ -1,4 +1,5 @@
 #include "Magic.h"
+
 #include "../Arena/Arena.h"
 #include "../Unit/Unit.h"
 

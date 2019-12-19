@@ -1,8 +1,6 @@
 #ifndef DISPEL_H_
 #define DISPEL_H_
 
-#include "../../Globals/Globals.h"
-
 #include "../Magic.h"
 
 class DispelMagic : public Magic

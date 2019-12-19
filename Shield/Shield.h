@@ -1,8 +1,8 @@
 #ifndef SHEILD_H_
 #define SHIELD_H_
 
-#include "../Globals/Globals.h"
 #include "../PossibilityCounter/PosibilityCounter.h"
+#include "../Globals/Globals.h"
 
 class Shield;
 using ShieldPtr = std::unique_ptr<Shield>;

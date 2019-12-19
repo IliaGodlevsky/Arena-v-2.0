@@ -1,6 +1,7 @@
 #include "UnitState.h"
 
 #include "../Unit/Unit.h"
+#include "../Magic/Magic.h"
 #include "../Arena/Arena.h"
 
 UnitState::UnitState(int duration)

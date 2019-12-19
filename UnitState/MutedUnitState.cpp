@@ -1,5 +1,7 @@
 #include "MutedUnitState.h"
 
+#include "../Magic/Magic.h"
+
 MutedUnitState::MutedUnitState(int duration)
 	: UnitState(duration)
 {

@@ -1,8 +1,6 @@
 #ifndef ARMOR_DEBUFF_H_
 #define ARMOR_DEBUFF_H_
 
-#include "../../Globals/Globals.h"
-
 #include "../Magic.h"
 
 class ArmorDebuffMagic : virtual public Magic

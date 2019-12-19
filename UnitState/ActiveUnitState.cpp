@@ -1,5 +1,7 @@
 #include "ActiveUnitState.h"
 
+#include "../Magic/Magic.h"
+
 ActiveUnitState::ActiveUnitState()
 	: UnitState(INT_MAX)
 {
