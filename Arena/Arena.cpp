@@ -2,6 +2,7 @@
 #include <ctime>
 
 #include "../Unit/Unit.h"
+#include "../Magic/Magic.h"
 #include "../Decision/Decision.h"
 #include "../Decision/HumanDecision.h"
 

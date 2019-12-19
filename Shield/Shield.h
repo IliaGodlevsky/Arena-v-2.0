@@ -1,4 +1,4 @@
-#ifndef SHEILD_H_
+#ifndef SHIELD_H_
 #define SHIELD_H_
 
 #include "../PossibilityCounter/PosibilityCounter.h"

@@ -1,7 +1,9 @@
 #include "StateHolder.h"
+
 #include "../Unit/Unit.h"
 #include "../Arena/Arena.h"
 #include "../UnitState/ActiveUnitState.h"
+#include "../Magic/Magic.h"
 
 StateHolder::StateHolder(DecisionPtr decision)
 	: m_decision(decision), m_activeState(new ActiveUnitState())
