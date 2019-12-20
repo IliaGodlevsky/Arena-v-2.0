@@ -15,6 +15,7 @@ void MagicOnMe::takeOfExpiredMagic(int round)
 	{
 		if (operator[](i)->isExpired(round))
 		{
+			std::cout << "Expired\n";
 			operator[](i)->uneffectUnit(*m_unit);
 			erase(begin() + i);
 			i--;

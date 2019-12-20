@@ -6,8 +6,8 @@
 #include "Unit.h"
 
 
-Unit::Unit(std::string name, DecisionPtr decision)
-	: m_damage(2), 
+Unit::Unit(std::string name, DecisionPtr decision, ItemFactory* factory)
+	: m_damage(4), 
 	m_armor(2),
 	m_magicBook(this), 
 	m_name(name),
@@ -16,7 +16,10 @@ Unit::Unit(std::string name, DecisionPtr decision)
 	m_decision(decision),
 	m_stateHolder(decision)
 {
-
+	m_magicBook.takeMagic(factory->createMagic());
+	m_weapon = factory->createWeapon();
+	m_mail = factory->createArmor();
+	m_shield = factory->createShield();
 }
 
 const std::string& Unit::getName()const

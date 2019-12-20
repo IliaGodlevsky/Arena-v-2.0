@@ -12,6 +12,7 @@
 #include "../MagicOnMe/MagicOnMe.h"
 #include "../Armor/Armor.h"
 #include "../Shield/Shield.h"
+#include "../Factories/ItemFactory/ItemFactory.h"
 
 class Unit
 {
@@ -19,7 +20,7 @@ public:
 	friend bool Weapon::canSmashUnit(const Unit& unit)const;
 	friend class ComputerDecision;
 public:
-	Unit(std::string name, DecisionPtr decision);
+	Unit(std::string name, DecisionPtr decision, ItemFactory* factory);
 	virtual ~Unit();
 public:
 	bool isEnoughManaFor(const MagicPtr& magic)const;

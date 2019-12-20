@@ -1,5 +1,6 @@
 #include "Arena/Arena.h"
 #include "Unit/Unit.h"
+#include "Factories/Factory.h"
 
 int main()
 {
@@ -9,10 +10,13 @@ int main()
 
 	while (!arena.isGameOver())
 	{
+		system("cls");
+		std::cout << "Round: " << arena.getCurrentRound() << std::endl;
 		arena.showUnits();
 		arena.playCastStep();
 		arena.rewardKiller();
 		arena.takeOfLosers();
+		system("cls");
 		arena.showUnits();
 		arena.playAttackStep();
 		arena.rewardKiller();

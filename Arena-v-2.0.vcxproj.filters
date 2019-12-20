@@ -84,6 +84,33 @@
     <Filter Include="Source\Factories">
       <UniqueIdentifier>{62ab6150-cea1-4503-b674-3e60f6b75171}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Factories\MagicFactories">
+      <UniqueIdentifier>{736bbc01-46e5-473f-b809-2c190e91cb3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Factories\MagicFactories\BuffFactories">
+      <UniqueIdentifier>{fc2dab31-a347-4c35-8621-44dec228128a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Factories\MagicFactories\DebuffFactories">
+      <UniqueIdentifier>{28fabe1f-df1b-4e99-a7fe-34d21ff41f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Factories\MagicFactories\AttackFactories">
+      <UniqueIdentifier>{f850c34f-a980-4cc2-b479-2b8b0b2b3c64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Factories\UnitFactory">
+      <UniqueIdentifier>{0b4ee636-5587-41ee-8b45-37580f1a1290}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Factories\ItemFactory">
+      <UniqueIdentifier>{3db26cb1-b42e-47e8-ada2-7f29809fe814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Factories\ArmorFactories">
+      <UniqueIdentifier>{08eec98f-927b-44e0-8ba0-9a2c778e0ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Factories\WeaponFactories">
+      <UniqueIdentifier>{b798439d-50c6-4840-868e-390c1c541681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Factories\ShieldFactories">
+      <UniqueIdentifier>{f78414e6-4443-430f-a9a9-957c49f1feac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -236,6 +263,84 @@
     <ClCompile Include="UnitState\StunUnitState.cpp">
       <Filter>Source\UnitState</Filter>
     </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\BuffFactories\ArmorBuffFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\BuffFactories\DamageBuffFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\BuffFactories\OffsetDamageBuffFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\BuffFactories\ArmorAndDamageBuffFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\DebuffFactories\ArmorDebuffFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\DebuffFactories\DamageDebuffFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\DebuffFactories\ArmorAndDamageDebuffFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\DebuffFactories\SilenceFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ItemFactory\ItemFactory.cpp">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ItemFactory\OffenceItemFactory.cpp">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\UnitFactory\UnitFactory.cpp">
+      <Filter>Source\Factories\UnitFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\UnitFactory\OffenceUnitFactory.cpp">
+      <Filter>Source\Factories\UnitFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\AttackFactories\AttackMagicFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\AttackFactories\AttackAndStunMagicFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\AttackFactories\PoisonMagicFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\AttackFactories\PoisonAndAttackMagicFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ArmorFactories\ArmorFactory.cpp">
+      <Filter>Source\Factories\ArmorFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ArmorFactories\MailFactory.cpp">
+      <Filter>Source\Factories\ArmorFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ArmorFactories\WizardCloakFactory.cpp">
+      <Filter>Source\Factories\ArmorFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ArmorFactories\LegionerChainsFactory.cpp">
+      <Filter>Source\Factories\ArmorFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\WeaponFactories\MagicSwordFactory.cpp">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\WeaponFactories\MagicAxeFactory.cpp">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\WeaponFactories\WeaponFactory.cpp">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ShieldFactories\ShieldFactory.cpp">
+      <Filter>Source\Factories\ShieldFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ItemFactory\DefenceItemFactory.cpp">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\UnitFactory\DefenceUnitFactory.cpp">
+      <Filter>Source\Factories\UnitFactory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -381,6 +486,84 @@
     </ClInclude>
     <ClInclude Include="Factories\Factory.h">
       <Filter>Source\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\BuffFactories\ArmorBuffFactory.h">
+      <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\BuffFactories\DamageBuffFactory.h">
+      <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\BuffFactories\OffsetDamageBuffFactory.h">
+      <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\BuffFactories\ArmorAndDamageBuffFactory.h">
+      <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\DebuffFactories\ArmorDebuffFactory.h">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\DebuffFactories\DamageDebuffFactory.h">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\DebuffFactories\ArmorAndDamageDebuffFactory.h">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\DebuffFactories\SilenceFactory.h">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\UnitFactory\UnitFactory.h">
+      <Filter>Source\Factories\UnitFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\UnitFactory\OffenceUnitFactory.h">
+      <Filter>Source\Factories\UnitFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ItemFactory\ItemFactory.h">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ItemFactory\OffenceItemFactory.h">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\AttackFactories\AttackMagicFactory.h">
+      <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\AttackFactories\AttackAndStunMagicFactory.h">
+      <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\AttackFactories\PoisonMagicFactory.h">
+      <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\AttackFactories\PoisonAndAttackMagicFactory.h">
+      <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ArmorFactories\ArmorFactory.h">
+      <Filter>Source\Factories\ArmorFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ArmorFactories\MailFactory.h">
+      <Filter>Source\Factories\ArmorFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ArmorFactories\WizardCloakFactory.h">
+      <Filter>Source\Factories\ArmorFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ArmorFactories\LegionerChainsFactory.h">
+      <Filter>Source\Factories\ArmorFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\WeaponFactories\WeaponFactory.h">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\WeaponFactories\MagicSwordFactory.h">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\WeaponFactories\MagicAxeFactory.h">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ShieldFactories\ShieldFactory.h">
+      <Filter>Source\Factories\ShieldFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ItemFactory\DefenceItemFactory.h">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\UnitFactory\DefenceUnitFactory.h">
+      <Filter>Source\Factories\UnitFactory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

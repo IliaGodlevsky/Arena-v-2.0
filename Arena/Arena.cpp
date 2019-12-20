@@ -5,6 +5,8 @@
 #include "../Magic/Magic.h"
 #include "../Decision/Decision.h"
 #include "../Decision/HumanDecision.h"
+#include "../Factories/UnitFactory/OffenceUnitFactory.h"
+
 
 #include "Arena.h"
 
@@ -73,15 +75,10 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	char ch = 'a';
-	std::vector<std::string> names(m_units.size());
-	for (size_t i = 0; i < names.size(); i++)
-		names[i] = ch++;
+	UnitFactory* factory = new OffenceUnitFactory();
 	for (size_t i = 0; i < m_units.size(); i++)
-	{
-		m_units[i] = UnitPtr(new Unit(names[i], 
-			std::shared_ptr<Decision>(new HumanDecision())));
-	}
+		m_units[i] = factory->createUnit();
+	delete factory;
 }
 
 void Arena::playCastStep()
@@ -101,8 +98,11 @@ void Arena::playAttackStep()
 
 void Arena::rewardKiller()
 {
-	if (!m_unitToCast->isAlive())
-		m_units[m_unitIndex]->levelUp();
+	if (nullptr != m_unitToCast)
+	{
+		if (!m_unitToCast->isAlive())
+			m_units[m_unitIndex]->levelUp();
+	}
 }
 
 void Arena::goNextUnit()

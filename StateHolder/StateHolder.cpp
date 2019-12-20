@@ -16,8 +16,7 @@ void StateHolder::recieveNewState(StatePtr unitState)
 	unitState->setDecision(m_decision);
 	m_unitStates.push_back(unitState);
 	std::sort(m_unitStates.begin(), m_unitStates.end(),
-		[&](const std::shared_ptr<UnitState>& st1, 
-			const std::shared_ptr<UnitState>& st2) {return *st1 < *st2; });
+		[](const StatePtr& st1, const StatePtr& st2) {return *st1 < *st2; });
 }
 
 UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
