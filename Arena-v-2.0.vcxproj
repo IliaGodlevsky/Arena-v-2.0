@@ -48,8 +48,6 @@
     <ClCompile Include="Factories\MagicFactories\DebuffFactories\DamageDebuffFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\DebuffFactories\SilenceFactory.cpp" />
     <ClCompile Include="Factories\ShieldFactories\ShieldFactory.cpp" />
-    <ClCompile Include="Factories\UnitFactory\DefenceUnitFactory.cpp" />
-    <ClCompile Include="Factories\UnitFactory\OffenceUnitFactory.cpp" />
     <ClCompile Include="Factories\UnitFactory\UnitFactory.cpp" />
     <ClCompile Include="Factories\WeaponFactories\MagicAxeFactory.cpp" />
     <ClCompile Include="Factories\WeaponFactories\MagicSwordFactory.cpp" />
@@ -127,8 +125,6 @@
     <ClInclude Include="Factories\MagicFactories\DebuffFactories\DamageDebuffFactory.h" />
     <ClInclude Include="Factories\MagicFactories\DebuffFactories\SilenceFactory.h" />
     <ClInclude Include="Factories\ShieldFactories\ShieldFactory.h" />
-    <ClInclude Include="Factories\UnitFactory\DefenceUnitFactory.h" />
-    <ClInclude Include="Factories\UnitFactory\OffenceUnitFactory.h" />
     <ClInclude Include="Factories\UnitFactory\UnitFactory.h" />
     <ClInclude Include="Factories\WeaponFactories\MagicAxeFactory.h" />
     <ClInclude Include="Factories\WeaponFactories\MagicSwordFactory.h" />
