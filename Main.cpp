@@ -12,13 +12,10 @@ int main()
 
 	while (!arena.isGameOver())
 	{
-		system("cls");
-		round();
 		arena.showUnits();
 		arena.playCastStep();
 		arena.rewardKiller();
 		arena.takeOfLosers();
-		system("cls");
 		arena.showUnits();
 		arena.playAttackStep();
 		arena.rewardKiller();
@@ -31,6 +28,5 @@ int main()
 
 void round()
 {
-	std::cout << "Round: "
-		<< Arena::getCurrentRound() + 1 << std::endl;
+	
 }
