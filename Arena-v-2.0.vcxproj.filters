@@ -111,6 +111,9 @@
     <Filter Include="Source\Factories\ShieldFactories">
       <UniqueIdentifier>{f78414e6-4443-430f-a9a9-957c49f1feac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Messager">
+      <UniqueIdentifier>{c1818706-51f0-463f-b98a-8716578d3c3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -335,6 +338,9 @@
     <ClCompile Include="Factories\ItemFactory\DefenceItemFactory.cpp">
       <Filter>Source\Factories\ItemFactory</Filter>
     </ClCompile>
+    <ClCompile Include="Messager\Messager.cpp">
+      <Filter>Source\Messager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -552,6 +558,9 @@
     </ClInclude>
     <ClInclude Include="Factories\ItemFactory\DefenceItemFactory.h">
       <Filter>Source\Factories\ItemFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Messager\Messager.h">
+      <Filter>Source\Messager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
