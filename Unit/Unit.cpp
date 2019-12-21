@@ -119,6 +119,7 @@ void Unit::showFullInfo()const
 	std::cout << "HP: " << m_health << " MP: " 
 		<< m_mana << " DMG: " << m_damage
 		<< " Arm: " << m_armor << std::endl;
+	m_stateHolder.showShortInfo();
 	m_magicBook.showShortInfo();
 	m_magicOnMe.showShortInfo();
 	std::cout << std::endl;
