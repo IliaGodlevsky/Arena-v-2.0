@@ -2,6 +2,8 @@
 #include "Unit/Unit.h"
 #include "Factories/Factory.h"
 
+void round();
+
 int main()
 {
 	Arena& arena = Arena::getInstance();
@@ -11,7 +13,7 @@ int main()
 	while (!arena.isGameOver())
 	{
 		system("cls");
-		std::cout << "Round: " << arena.getCurrentRound() << std::endl;
+		round();
 		arena.showUnits();
 		arena.playCastStep();
 		arena.rewardKiller();
@@ -25,4 +27,10 @@ int main()
 	}
 
 	system("pause");
+}
+
+void round()
+{
+	std::cout << "Round: "
+		<< Arena::getCurrentRound() + 1 << std::endl;
 }
