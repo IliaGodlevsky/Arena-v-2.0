@@ -5,7 +5,7 @@
 #include "../Magic/Magic.h"
 #include "../Decision/Decision.h"
 #include "../Decision/HumanDecision.h"
-#include "../Factories/UnitFactory/OffenceUnitFactory.h"
+#include "../Factories/UnitFactory/DefenceUnitFactory.h"
 
 
 #include "Arena.h"
@@ -13,12 +13,12 @@
 
 int Arena::m_round = 0;
 
-int Arena::getMaxNubmerOfPlayers()const
+constexpr int Arena::getMaxNubmerOfPlayers()const
 {
 	return 5;
 }
 
-int Arena::getMinNumberOfPlayers()const
+constexpr int Arena::getMinNumberOfPlayers()const
 {
 	return 2;
 }
@@ -75,7 +75,7 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	UnitFactory* factory = new OffenceUnitFactory();
+	UnitFactory* factory = new DefenceUnitFactory();
 	for (size_t i = 0; i < m_units.size(); i++)
 		m_units[i] = factory->createUnit();
 	delete factory;

@@ -33,8 +33,8 @@ private:
 	Arena();
 private:
 	Gladiators m_units;
-	int getMaxNubmerOfPlayers()const;
-	int getMinNumberOfPlayers()const;
+	constexpr int getMaxNubmerOfPlayers()const;
+	constexpr int getMinNumberOfPlayers()const;
 private:
 	static int m_round;
 private:
