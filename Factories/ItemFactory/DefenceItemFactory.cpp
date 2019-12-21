@@ -13,8 +13,8 @@
 
 DefenceItemFactory::DefenceItemFactory()
 {
-	//m_magicFactories.push_back(new DamageDebuffFactory());
-	//m_magicFactories.push_back(new SilenceFactory());
+	m_magicFactories.push_back(new DamageDebuffFactory());
+	m_magicFactories.push_back(new SilenceFactory());
 	m_magicFactories.push_back(new AttackAndStunMagicFactory());
 	m_magicFactories.push_back(new AttackMagicFactory());
 	m_shieldFactories.push_back(new ShieldFactory());
