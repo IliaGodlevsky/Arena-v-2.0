@@ -1,6 +1,12 @@
 #include "UnitFactory.h"
 #include "../../Decision/HumanDecision.h"
 
+UnitFactory::UnitFactory()
+	: UnitFactory(nullptr)
+{
+
+}
+
 UnitFactory::UnitFactory(ItemFactory* factory)
 	: m_decisions(0)
 {
@@ -14,6 +20,7 @@ UnitFactory::UnitFactory(ItemFactory* factory)
 
 UnitPtr UnitFactory::createUnit()const
 {
+	
 	std::string randomName = m_unitsNames[randomNumber(m_unitsNames.size() - 1)];
 	index decisionIndex = inputNumber("Choose decision: ", m_decisions.size(), 1);
 	return UnitPtr(new Unit(randomName, m_decisions[decisionIndex - 1], m_factory));
