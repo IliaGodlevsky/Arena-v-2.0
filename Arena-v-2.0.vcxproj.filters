@@ -296,9 +296,6 @@
     <ClCompile Include="Factories\UnitFactory\UnitFactory.cpp">
       <Filter>Source\Factories\UnitFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Factories\UnitFactory\OffenceUnitFactory.cpp">
-      <Filter>Source\Factories\UnitFactory</Filter>
-    </ClCompile>
     <ClCompile Include="Factories\MagicFactories\AttackFactories\AttackMagicFactory.cpp">
       <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
     </ClCompile>
@@ -337,9 +334,6 @@
     </ClCompile>
     <ClCompile Include="Factories\ItemFactory\DefenceItemFactory.cpp">
       <Filter>Source\Factories\ItemFactory</Filter>
-    </ClCompile>
-    <ClCompile Include="Factories\UnitFactory\DefenceUnitFactory.cpp">
-      <Filter>Source\Factories\UnitFactory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -514,9 +508,6 @@
     <ClInclude Include="Factories\UnitFactory\UnitFactory.h">
       <Filter>Source\Factories\UnitFactory</Filter>
     </ClInclude>
-    <ClInclude Include="Factories\UnitFactory\OffenceUnitFactory.h">
-      <Filter>Source\Factories\UnitFactory</Filter>
-    </ClInclude>
     <ClInclude Include="Factories\ItemFactory\ItemFactory.h">
       <Filter>Source\Factories\ItemFactory</Filter>
     </ClInclude>
@@ -561,9 +552,6 @@
     </ClInclude>
     <ClInclude Include="Factories\ItemFactory\DefenceItemFactory.h">
       <Filter>Source\Factories\ItemFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="Factories\UnitFactory\DefenceUnitFactory.h">
-      <Filter>Source\Factories\UnitFactory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
