@@ -94,7 +94,7 @@ int Unit::calculateDamageAbsorb(int damage)const
 	const double REDUCE_CONST = 0.06;
 	const double numerator = static_cast<double>(m_armor * REDUCE_CONST);
 	double percent_of_reduce = numerator / (1.0 + numerator);
-	return static_cast<int>(std::ceil(damage * (1.0 - percent_of_reduce)));
+	return static_cast<int>(std::floor(damage * (1.0 - percent_of_reduce)));
 }
 
 UnitPtr Unit::chooseUnitToAttack(const Gladiators& units)const
