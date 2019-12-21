@@ -5,14 +5,17 @@
 #include "../Magic/Magic.h"
 #include "../Decision/Decision.h"
 #include "../Decision/HumanDecision.h"
-#include "../Factories/UnitFactory/DefenceUnitFactory.h"
-
+#include "../Factories/UnitFactory/UnitFactory.h"
+#include "../Factories/ItemFactory/DefenceItemFactory.h"
+#include "../Factories/ItemFactory/OffenceItemFactory.h"
 
 #include "Arena.h"
 
 
 int Arena::m_round = 0;
 
+// Return the maximum number of players
+// that can take part in the game
 constexpr int Arena::getMaxNubmerOfPlayers()const
 {
 	return 5;
@@ -28,7 +31,7 @@ Arena::Arena()
 	m_units.resize(setNumberOfUnits());
 }
 
-
+// Sets number of players, that will play the game
 int Arena::setNumberOfUnits()const
 {
 	return inputNumber("Set number of players: ",
@@ -40,6 +43,7 @@ int Arena::getCurrentRound()
 	return m_round;
 }
 
+// Returns the object of a class
 Arena& Arena::getInstance()
 {
 	static Arena instance;
@@ -48,6 +52,9 @@ Arena& Arena::getInstance()
 
 void Arena::showUnits()const
 {
+	system("cls");
+	std::cout << "Round: "<< getCurrentRound() + 1 
+		<< std::endl;
 	for (size_t i = 0; i < m_units.size(); i++)
 	{
 		std::cout << i + 1 << ". ";
@@ -56,6 +63,8 @@ void Arena::showUnits()const
 	std::cout << std::endl;
 }
 
+// If some unit is dead, it will be
+// removed from the game
 void Arena::takeOfLosers()
 {
 	for (size_t i = 0; i < m_units.size(); i++)
@@ -75,10 +84,21 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	UnitFactory* factory = new DefenceUnitFactory();
+	ItemFactory* defenceItemFactory = new DefenceItemFactory();
+	ItemFactory* offenceItemFactory = new OffenceItemFactory();
+	UnitFactory* unitFactory = new UnitFactory(defenceItemFactory);
 	for (size_t i = 0; i < m_units.size(); i++)
-		m_units[i] = factory->createUnit();
-	delete factory;
+	{
+		// gives to unit armor, weapon, magic, shield, and sets decision
+		if (i % 2 == 0)
+			unitFactory->setFactory(defenceItemFactory);
+		else
+			unitFactory->setFactory(offenceItemFactory);
+		m_units[i] = unitFactory->createUnit();
+	}
+	delete defenceItemFactory;
+	delete offenceItemFactory;
+	delete unitFactory;
 }
 
 void Arena::playCastStep()

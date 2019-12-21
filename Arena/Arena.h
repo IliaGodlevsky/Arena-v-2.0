@@ -5,7 +5,8 @@
 
 #include "../Globals/Globals.h"
 
-// Singleton
+// A class, where the game cycles. Has methods and members
+// that runs the game cycle
 class Arena
 {
 public:
