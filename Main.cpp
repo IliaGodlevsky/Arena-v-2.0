@@ -2,11 +2,9 @@
 #include "Unit/Unit.h"
 #include "Factories/Factory.h"
 
-void round();
-
 int main()
 {
-	Arena& arena = Arena::getInstance();
+	auto& arena = Arena::getInstance();
 
 	arena.prepareUnits();
 
@@ -24,9 +22,5 @@ int main()
 	}
 
 	system("pause");
-}
-
-void round()
-{
-	
+	return 0;
 }
