@@ -40,7 +40,7 @@ MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit, const Gladia
 	wantToCastMagic();
 	if (!m_wantToCastMagic || !decidingUnit.m_magicBook.canCastAnySpell())
 		return nullptr;
-	std::cout << "Choose spell to cast\n";
+	std::cout << decidingUnit.getName() << " choose spell to cast\n";
 	decidingUnit.m_magicBook.showShortInfo();
 	index magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
 		decidingUnit.m_magicBook.size(), 1);
