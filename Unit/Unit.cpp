@@ -7,7 +7,7 @@
 
 
 Unit::Unit(std::string name, DecisionPtr decision, ItemFactory* factory)
-	: m_damage(4), 
+	: m_damage(7), 
 	m_armor(2),
 	m_magicBook(this), 
 	m_name(name),
