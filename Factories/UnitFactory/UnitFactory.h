@@ -8,12 +8,13 @@
 class UnitFactory
 {
 public:
+	UnitFactory();
 	UnitFactory(ItemFactory* factory);
 	UnitPtr createUnit()const;
 	void setFactory(ItemFactory* factory);
 protected:
 	mutable std::vector<DecisionPtr> m_decisions;
-	ItemFactory* m_factory;
+	ItemFactory* m_factory = nullptr;
 	std::vector<std::string> m_unitsNames;
 };
 
