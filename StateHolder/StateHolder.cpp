@@ -67,6 +67,7 @@ void StateHolder::showShortInfo()const
 		m_unitStates[i]->showShortInfo();
 		std::cout << "> ";
 	}
+	std::cout << std::endl;
 }
 
 StateHolder::~StateHolder()
