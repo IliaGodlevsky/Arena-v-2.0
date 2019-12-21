@@ -1,7 +1,7 @@
 #include "UnitFactory.h"
 #include "../../Decision/HumanDecision.h"
 
-UnitFactory::UnitFactory()
+UnitFactory::UnitFactory(ItemFactory* factory)
 	: m_decisions(0)
 {
 	m_decisions.push_back(DecisionPtr(new HumanDecision()));
@@ -9,6 +9,7 @@ UnitFactory::UnitFactory()
 	m_unitsNames.push_back("Amy");
 	m_unitsNames.push_back("Sally");
 	m_unitsNames.push_back("Cranny");
+	m_factory = factory;
 }
 
 UnitPtr UnitFactory::createUnit()const
@@ -18,7 +19,7 @@ UnitPtr UnitFactory::createUnit()const
 	return UnitPtr(new Unit(randomName, m_decisions[decisionIndex - 1], m_factory));
 }
 
-UnitFactory::~UnitFactory()
+void UnitFactory::setFactory(ItemFactory* factory)
 {
-	
+	m_factory = factory;
 }
