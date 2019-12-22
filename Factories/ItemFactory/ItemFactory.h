@@ -3,6 +3,9 @@
 
 #include "../Factory.h"
 
+class ItemFactory;
+using ItemFactoryPtr = std::shared_ptr<ItemFactory>;
+
 class ItemFactory
 {
 public:
