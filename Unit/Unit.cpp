@@ -80,11 +80,13 @@ bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 
 bool Unit::takeDamage(int damage)
 {
+	auto& messager = Messager::getIncstance();
 	if (!m_shield->isReflectChance())
 	{
 		m_health = m_health - calculateDamageAbsorb(damage);
 		return true;
 	}
+	messager.writeMessage(calculateDamageAbsorb(damage), " was reflected\n");
 	return false;
 }
 
