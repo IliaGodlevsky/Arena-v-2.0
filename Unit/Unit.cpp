@@ -6,7 +6,7 @@
 #include "Unit.h"
 
 
-Unit::Unit(std::string name, DecisionPtr decision, ItemFactory* factory)
+Unit::Unit(std::string name, DecisionPtr decision, ItemFactoryPtr factory)
 	: m_damage(7), 
 	m_armor(2),
 	m_magicBook(this), 

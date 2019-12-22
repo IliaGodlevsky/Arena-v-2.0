@@ -20,7 +20,7 @@ public:
 	friend bool Weapon::canSmashUnit(const Unit& unit)const;
 	friend class ComputerDecision;
 public:
-	Unit(std::string name, DecisionPtr decision, ItemFactory* factory);
+	Unit(std::string name, DecisionPtr decision, ItemFactoryPtr factory);
 	virtual ~Unit();
 public:
 	bool isEnoughManaFor(const MagicPtr& magic)const;
