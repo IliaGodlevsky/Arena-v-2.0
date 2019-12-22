@@ -85,20 +85,9 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	using ItemFactoryPtr = std::unique_ptr<ItemFactory>;
-	using UnitFactoryPtr = std::shared_ptr<UnitFactory>;
-	std::vector<ItemFactoryPtr> itemFactories;
-	itemFactories.push_back(ItemFactoryPtr(new DefenceItemFactory()));
-	itemFactories.push_back(ItemFactoryPtr(new OffenceItemFactory()));
-	UnitFactoryPtr unitFactory = UnitFactoryPtr(new UnitFactory());
+	UnitFactoryPtr m_unitFactory = UnitFactoryPtr(new UnitFactory());
 	for (size_t i = 0; i < m_units.size(); i++)
-	{
-		// gives to unit armor, weapon, magic, shield, and sets decision
-		index factoryNumber = inputNumber("Choose item factory\n1. Defence 2. Offence\n",
-			itemFactories.size(), 1);
-		unitFactory->setFactory(itemFactories[factoryNumber - 1].get());
-		m_units[i] = unitFactory->createUnit();
-	}
+		m_units[i] = m_unitFactory->createUnit();
 }
 
 void Arena::playCastStep()
