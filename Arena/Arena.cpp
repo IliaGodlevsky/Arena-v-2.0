@@ -1,5 +1,4 @@
 #include <iostream>
-#include <ctime>
 
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
