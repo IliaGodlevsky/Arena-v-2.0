@@ -83,7 +83,6 @@
     <ClCompile Include="Timer\Timer.cpp" />
     <ClCompile Include="UnitState\ActiveUnitState.cpp" />
     <ClCompile Include="UnitState\MutedUnitState.cpp" />
-    <ClCompile Include="UnitState\MutedUnitState.h" />
     <ClCompile Include="UnitState\StunUnitState.cpp" />
     <ClCompile Include="UnitState\UnitState.cpp" />
     <ClCompile Include="Unit\Unit.cpp" />
@@ -159,6 +158,7 @@
     <ClInclude Include="StateHolder\StateHolder.h" />
     <ClInclude Include="Timer\Timer.h" />
     <ClInclude Include="UnitState\ActiveUnitState.h" />
+    <ClInclude Include="UnitState\MutedUnitState.h" />
     <ClInclude Include="UnitState\StunUnitState.h" />
     <ClInclude Include="UnitState\UnitState.h" />
     <ClInclude Include="Unit\Unit.h" />
