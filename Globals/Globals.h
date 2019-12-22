@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <random>
 
+#include "../Messager/Messager.h"
+
 class Unit;
 using UnitPtr = std::shared_ptr<Unit>;
 using Gladiators = std::vector<UnitPtr>;
