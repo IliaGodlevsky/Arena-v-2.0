@@ -257,9 +257,6 @@
     <ClCompile Include="UnitState\ActiveUnitState.cpp">
       <Filter>Source\UnitState</Filter>
     </ClCompile>
-    <ClCompile Include="UnitState\MutedUnitState.h">
-      <Filter>Source\UnitState</Filter>
-    </ClCompile>
     <ClCompile Include="UnitState\MutedUnitState.cpp">
       <Filter>Source\UnitState</Filter>
     </ClCompile>
@@ -561,6 +558,9 @@
     </ClInclude>
     <ClInclude Include="Messager\Messager.h">
       <Filter>Source\Messager</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\MutedUnitState.h">
+      <Filter>Source\UnitState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
