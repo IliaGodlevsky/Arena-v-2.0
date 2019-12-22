@@ -15,7 +15,6 @@ void MagicOnMe::takeOfExpiredMagic(int round)
 	{
 		if (operator[](i)->isExpired(round))
 		{
-			std::cout << "Expired\n";
 			operator[](i)->uneffectUnit(*m_unit);
 			erase(begin() + i);
 			i--;
@@ -27,7 +26,7 @@ void MagicOnMe::takeMagic(const MagicPtr& magic)
 {
 	// number of spell that must be deleted 
 	// from the spells that are on unit
-	size_t magicIndex = 
+	index magicIndex = 
 		m_unit->m_magicOnMe.getMagicIndex(magic);
 	if (magicIndex < size() && !empty())
 		m_unit->m_magicOnMe.expireMagic(magicIndex);
