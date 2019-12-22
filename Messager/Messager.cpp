@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Messager.h"
 
 Messager::Messager():
@@ -22,8 +24,7 @@ Messager& Messager::getIncstance()
 	return instance;
 }
 
-void Messager::writeMessage(MessageList messageList)const
+void Messager::writeMessage()const
 {
-	for (auto message : messageList)
-		(*fout) << message;
+	(*fout) << std::endl;
 }
