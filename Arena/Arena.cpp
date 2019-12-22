@@ -52,6 +52,7 @@ Arena& Arena::getInstance()
 
 void Arena::showUnits()const
 {
+	system("pause");
 	system("cls");
 	std::cout << "Round: "<< getCurrentRound() + 1 
 		<< std::endl;
@@ -105,14 +106,25 @@ void Arena::playCastStep()
 	m_magicToCast = m_units[m_unitIndex]->chooseMagicToCast(m_units);
 	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast, m_units);
 	if (nullptr != m_unitToCast && nullptr != m_magicToCast)
+	{
+		auto& messager = Messager::getIncstance();
+		messager.writeMessage(m_units[m_unitIndex]->getName(),
+			" charmed ", m_unitToCast->getName(),
+			" with ", m_magicToCast->getName() + "\n");
 		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
+	}
 }
 
 void Arena::playAttackStep()
 {
 	m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
 	if (nullptr != m_unitToAttack)
+	{
+		auto& messager = Messager::getIncstance();
+		messager.writeMessage(m_units[m_unitIndex]->getName(),
+			" attacked ", m_unitToAttack->getName() + "\n");
 		m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
+	}
 }
 
 void Arena::rewardKiller()
