@@ -5,17 +5,18 @@
 #include "../Factory.h"
 #include "../ItemFactory/ItemFactory.h"
 
+class UnitFactory;
+using UnitFactoryPtr = std::shared_ptr<UnitFactory>;
+
 class UnitFactory
 {
 public:
 	UnitFactory();
-	UnitFactory(ItemFactory* factory);
 	UnitPtr createUnit()const;
-	void setFactory(ItemFactory* factory);
-protected:
-	mutable std::vector<DecisionPtr> m_decisions;
-	ItemFactory* m_factory = nullptr;
+private:
 	std::vector<std::string> m_unitsNames;
+	std::vector<ItemFactoryPtr> m_itemFactories;
+	std::vector<DecisionPtr> m_decisions;
 };
 
 #endif
