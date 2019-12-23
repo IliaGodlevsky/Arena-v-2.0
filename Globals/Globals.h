@@ -31,5 +31,6 @@ bool isError(int choice, int upper, int lower);
 void eatLine();
 
 int randomNumber(int max, int min = 0);
+std::vector<std::string> loadFromFile(const std::string& fileName);
 
 #endif

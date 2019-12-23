@@ -1,3 +1,5 @@
+#include <fstream>
+
 #include "Globals.h"
 
 int inputNumber(const std::string& message,
@@ -36,4 +38,23 @@ int randomNumber(int max, int min)
 	std::uniform_int_distribution<int> 
 		distributor(min, max);
 	return distributor(generator);
+}
+
+std::vector<std::string> loadFromFile(const std::string& fileName)
+{
+	std::vector<std::string> lines;
+	std::string line;
+	std::ifstream fin(fileName);
+	if (fin.fail())
+	{
+		std::cout << "\aCouldn't open file\n";
+		return lines;
+	}
+	while (!fin.eof())
+	{
+		fin >> line;
+		lines.push_back(line);
+	}
+	fin.close();
+	return lines;
 }
