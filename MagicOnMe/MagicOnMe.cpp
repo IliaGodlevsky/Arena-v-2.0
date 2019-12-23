@@ -69,6 +69,6 @@ void MagicOnMe::showShortInfo()const
 	{
 		std::cout << "<";
 		std::cout << operator[](i)->getName();
-		std::cout << ">";
+		std::cout << "> ";
 	}
 }
