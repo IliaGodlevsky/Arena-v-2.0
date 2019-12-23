@@ -19,7 +19,7 @@ void Armor::putOff(Unit& unit)const
 
 void Armor::showShortInfo()const
 {
-	std::cout << "<" << this->m_name << ">\n";
+	std::cout << "<" << this->m_name << ": " << m_armor << ">\n";
 }
 
 void Armor::showFullInfo()const
