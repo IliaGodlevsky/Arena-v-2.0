@@ -53,12 +53,13 @@ void Arena::showUnits()const
 {
 	system("pause");
 	system("cls");
-	std::cout << "Round: "<< getCurrentRound() + 1 
-		<< std::endl;
+	std::cout << "Round: " 
+		<< getCurrentRound() + 1 << std::endl;
 	for (size_t i = 0; i < m_units.size(); i++)
 	{
 		std::cout << i + 1 << ". ";
 		m_units[i]->showFullInfo();
+		std::cout << std::endl;
 	}
 	std::cout << std::endl;
 }
