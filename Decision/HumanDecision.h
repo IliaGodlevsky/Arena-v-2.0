@@ -14,12 +14,12 @@ public:
 private:
 	bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
 		const MagicPtr& spell)const;
-	bool wantToCastMagic()const;
+	bool wantToCastMagic(const Unit& decidingUnit)const;
 private:
 	const std::string WANT_TO_CAST_QUESTION = "do you want to cast a magic <1 - yes/0 - no>: ";
 	const std::string UNIT_TO_ATTACK_CHOOSE_MESSAGE = "Choose unit to attack: ";
 	const std::string MAGIC_TO_CAST_CHOOSE_MESSAGE = "Choose magic: ";
-	const std::string UNIT_TO_CAST_CHOOSE_MESSAGE = "Choose unit to charm: ";
+	const std::string UNIT_TO_CAST_CHOOSE_MESSAGE = "choose unit to charm: ";
 };
 
 #endif
