@@ -14,7 +14,7 @@ public:
 	UnitFactory();
 	UnitPtr createUnit()const;
 private:
-	std::vector<std::string> m_unitsNames;
+	mutable std::vector<std::string> m_unitsNames;
 	std::vector<ItemFactoryPtr> m_itemFactories;
 	std::vector<DecisionPtr> m_decisions;
 };
