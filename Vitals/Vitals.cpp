@@ -16,6 +16,8 @@ Vitals Vitals::operator++(int i)
 	Vitals temp = *this;
 	m_value += m_valueRegeneration;
 	fixOverflow();
+	if (DEAD_LINE == m_value)
+		m_value = 1;
 	return temp;
 }
 
