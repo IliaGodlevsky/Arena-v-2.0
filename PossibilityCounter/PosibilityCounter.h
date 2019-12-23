@@ -4,10 +4,10 @@
 class PosibilityCounter
 {
 public:
-	PosibilityCounter(int posibility);
+	explicit PosibilityCounter(int posibility);
 	operator bool()const;
 private:
-	int getMaxPropability()const;
+	constexpr int getMaxPropability()const;
 	int m_posibility;
 };
 

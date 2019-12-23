@@ -8,7 +8,7 @@ PosibilityCounter::PosibilityCounter(int posibility)
 
 }
 
-int PosibilityCounter::getMaxPropability()const
+constexpr int PosibilityCounter::getMaxPropability()const
 {
 	return 100;
 }
