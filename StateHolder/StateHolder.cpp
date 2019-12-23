@@ -13,6 +13,9 @@ StateHolder::StateHolder(DecisionPtr decision)
 
 void StateHolder::recieveNewState(StatePtr unitState)
 {
+	index stateIndex = getStateIndex(unitState);
+	if (stateIndex < m_unitStates.size() && !m_unitStates.empty())
+		m_unitStates.erase(m_unitStates.begin() + stateIndex);
 	unitState->setDecision(m_decision);
 	m_unitStates.push_back(unitState);
 	std::sort(m_unitStates.begin(), m_unitStates.end(),
@@ -21,7 +24,10 @@ void StateHolder::recieveNewState(StatePtr unitState)
 
 size_t StateHolder::getStateIndex(const StatePtr& state)const
 {
-
+	for (size_t i = 0; i < m_unitStates.size(); i++)
+		if (typeid(*m_unitStates[i]) == typeid(*state))
+			return i;
+	return m_unitStates.size();
 }
 
 UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
