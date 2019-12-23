@@ -51,8 +51,7 @@ Arena& Arena::getInstance()
 
 void Arena::showUnits()const
 {
-	system("pause");
-	system("cls");
+	system("pause"); system("cls");
 	std::cout << "Round: " 
 		<< getCurrentRound() + 1 << std::endl;
 	for (size_t i = 0; i < m_units.size(); i++)
@@ -61,7 +60,6 @@ void Arena::showUnits()const
 		m_units[i]->showFullInfo();
 		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 }
 
 // If some unit is dead, it will be
@@ -85,9 +83,9 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	UnitFactoryPtr m_unitFactory = UnitFactoryPtr(new UnitFactory());
+	UnitFactoryPtr unitFactory = UnitFactoryPtr(new UnitFactory());
 	for (size_t i = 0; i < m_units.size(); i++)
-		m_units[i] = m_unitFactory->createUnit();
+		m_units[i] = unitFactory->createUnit();
 }
 
 void Arena::playCastStep()
