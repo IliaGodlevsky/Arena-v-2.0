@@ -29,7 +29,8 @@ void Shield::showFullInfo()const
 
 void Shield::showShortInfo()
 {
-	std::cout << "<" << m_name << ">" << std::endl;
+	std::cout << "<" << m_name << ": " << m_armor
+		<< "\\" << m_reflectChance << ">\n";
 }
 
 bool Shield::isReflectChance()const
