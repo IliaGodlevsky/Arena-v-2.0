@@ -6,7 +6,7 @@
 class PoisonMagic : virtual public Magic
 {
 public:
-	PoisonMagic(std::string name, int manaCost, int duration,
+	PoisonMagic(std::string name, int manaCost, const Timer& timer,
 		int regenReduce);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;

@@ -6,8 +6,8 @@
 
 
 AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
-	int duration, int damage)
-	: Magic(name, manaCost, duration),
+	const Timer& timer, int damage)
+	: Magic(name, manaCost, timer),
 	AttackMagic(name, manaCost, damage)
 {
 
@@ -60,7 +60,7 @@ void AttackAndStunMagic::showFullInfo()const
 void AttackAndStunMagic::showData()const
 {
 	AttackMagic::showData();
-	std::cout << "Stuns unit for " << m_timer << " rounds\n";
+	std::cout << "Stuns unit for " << m_timer.getDuration() << " rounds\n";
 }
 
 void AttackAndStunMagic::putOn(Unit& unit)const

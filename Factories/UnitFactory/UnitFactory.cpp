@@ -19,9 +19,9 @@ UnitFactory::UnitFactory():
 UnitPtr UnitFactory::createUnit()const
 {
 	index factoryNumber, decisionNumber;
-	factoryNumber = inputNumber("Choose item factory\n1. Defence 2. Offence\n",
+	factoryNumber = inputNumber("1. Defence 2. Offence\nChoose item factory: ",
 		m_itemFactories.size(), 1);
-	decisionNumber = inputNumber("Choose decision\n1. Human 2. Computer", 
+	decisionNumber = inputNumber("1. Human 2. Computer\n Choose decision: ", 
 		m_decisions.size(), 1);
 	std::string randomName = m_unitsNames[randomNumber(m_unitsNames.size() - 1)];
 	return UnitPtr(new Unit(randomName, m_decisions[decisionNumber - 1], 

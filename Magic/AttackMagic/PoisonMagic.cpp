@@ -3,9 +3,9 @@
 #include "PoisonMagic.h"
 
 
-PoisonMagic::PoisonMagic(std::string name, int manaCost, int duration,
+PoisonMagic::PoisonMagic(std::string name, int manaCost, const Timer& timer,
 	int regenReduce)
-	: Magic(name, manaCost, duration), m_regenReduce(regenReduce)
+	: Magic(name, manaCost, timer), m_regenReduce(regenReduce)
 {
 
 }

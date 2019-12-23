@@ -16,6 +16,7 @@ public:
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void takeOfExpiredStates(int round);
+	size_t getStateIndex(const StatePtr& state)const;
 	void expireAllStates();
 	void showShortInfo()const;
 	~StateHolder();

@@ -5,8 +5,8 @@
 #include "SilenceMagic.h"
 
 SilenceMagic::SilenceMagic(std::string name, int mana_cost,
-	int duration)
-	: Magic(name, mana_cost, duration)
+	const Timer& timer)
+	: Magic(name, mana_cost, timer)
 {
 
 }

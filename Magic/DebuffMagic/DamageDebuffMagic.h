@@ -6,8 +6,8 @@
 class DamageDebuffMagic : virtual public Magic
 {
 public:
-	DamageDebuffMagic(std::string name, int manaCost, int duration,
-		int damageReduce);
+	DamageDebuffMagic(std::string name, int manaCost, 
+		const Timer& timer, int damageReduce);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;

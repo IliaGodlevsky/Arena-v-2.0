@@ -1,10 +1,10 @@
 #include "ArmorAndDamageBuffMagic.h"
 
 ArmorAndDamageBuffMagic::ArmorAndDamageBuffMagic(std::string name,
-	int manaCost, int duration, int armorAmplify, int damageAmplify)
-	: Magic(name, manaCost, duration),
-	ArmorBuffMagic(name, manaCost, duration, armorAmplify),
-	DamageBuffMagic(name, manaCost, duration, damageAmplify)
+	int manaCost, const Timer& timer, int armorAmplify, int damageAmplify)
+	: Magic(name, manaCost, timer),
+	ArmorBuffMagic(name, manaCost, timer, armorAmplify),
+	DamageBuffMagic(name, manaCost, timer, damageAmplify)
 {
 
 }

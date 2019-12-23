@@ -2,9 +2,9 @@
 
 #include "DegenerateMagic.h"
 
-DegenerateMagic::DegenerateMagic(std::string name, int duration,
+DegenerateMagic::DegenerateMagic(std::string name, const Timer& timer,
 	int degeneration, int propability)
-	: WeaponMagic(name, duration, propability),
+	: WeaponMagic(name, timer, propability),
 	m_degeneration(degeneration)
 {
 

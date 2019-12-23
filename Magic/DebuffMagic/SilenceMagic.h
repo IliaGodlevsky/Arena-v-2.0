@@ -7,7 +7,7 @@ class SilenceMagic : public Magic
 {
 public:
 	SilenceMagic(std::string name, int manaCost,
-		int duration);
+		const Timer& timer);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit)const override;
 	MagicPtr clone()const override;

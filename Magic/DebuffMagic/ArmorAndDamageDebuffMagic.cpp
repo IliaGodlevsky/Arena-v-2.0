@@ -1,10 +1,10 @@
 #include "ArmorAndDamageDebuffMagic.h"
 
 ArmorAndDamageDebuffMagic::ArmorAndDamageDebuffMagic(std::string name,
-	int manaCost, int duration, int armorReduce, int damageReduce)
-	: Magic(name, manaCost, duration),
-	ArmorDebuffMagic(name, manaCost, duration, armorReduce),
-	DamageDebuffMagic(name, manaCost, duration, damageReduce)
+	int manaCost, const Timer& timer, int armorReduce, int damageReduce)
+	: Magic(name, manaCost, timer),
+	ArmorDebuffMagic(name, manaCost, timer, armorReduce),
+	DamageDebuffMagic(name, manaCost, timer, damageReduce)
 {
 
 }

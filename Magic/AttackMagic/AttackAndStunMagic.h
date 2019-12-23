@@ -7,7 +7,7 @@ class AttackAndStunMagic : public AttackMagic
 {
 public:
 	AttackAndStunMagic(std::string name, int manaCost,
-		int duration, int damage);
+		const Timer& timer, int damage);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit)const override;
 	MagicPtr clone()const override;

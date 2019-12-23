@@ -19,6 +19,7 @@ Unit::Unit(std::string name, DecisionPtr decision, ItemFactoryPtr factory)
 	m_magicBook.takeMagic(factory->createMagic());
 	m_weapon = factory->createWeapon();
 	m_mail = factory->createArmor();
+	m_mail->putOn(*this);
 	m_shield = factory->createShield();
 }
 

@@ -2,8 +2,8 @@
 
 #include "../Magic/Magic.h"
 
-MutedUnitState::MutedUnitState(int duration)
-	: UnitState(duration)
+MutedUnitState::MutedUnitState(const Timer& timer)
+	: UnitState(timer)
 {
 
 }

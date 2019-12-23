@@ -6,7 +6,7 @@
 class StunMagic : public WeaponMagic
 {
 public:
-	StunMagic(std::string name, int duration, int propability);
+	StunMagic(std::string name, const Timer& timer, int propability);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;

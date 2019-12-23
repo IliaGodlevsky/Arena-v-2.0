@@ -21,7 +21,7 @@ bool Timer::operator==(const Timer& durationmeter)const
 	return m_duration == durationmeter.m_duration;
 }
 
-Timer::operator int()const
+int Timer::getDuration()const
 {
 	return m_duration;
 }

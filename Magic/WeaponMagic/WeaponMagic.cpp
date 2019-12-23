@@ -3,8 +3,8 @@
 
 #include "WeaponMagic.h"
 
-WeaponMagic::WeaponMagic(std::string name, int duration, int propability)
-	: Magic(name, ZERO_MANA_COST, duration), m_propability(propability)
+WeaponMagic::WeaponMagic(std::string name, const Timer& timer, int propability)
+	: Magic(name, ZERO_MANA_COST, timer), m_propability(propability)
 {
 
 }
@@ -24,7 +24,7 @@ void WeaponMagic::showFullInfo()const
 void WeaponMagic::showData()const
 {
 	std::cout << "Name: " << m_name << std::endl;
-	std::cout << "Duration: " << m_timer << std::endl;
+	std::cout << "Duration: " << m_timer.getDuration() << std::endl;
 	std::cout << "Posibility: " << m_propability << std::endl;
 }
 

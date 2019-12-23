@@ -4,7 +4,7 @@
 
 
 DispelMagic::DispelMagic(std::string name, int manaCost)
-	: Magic(name, manaCost, ZERO_DURATION)
+	: Magic(name, manaCost, Timer(ZERO_DURATION))
 {
 
 }

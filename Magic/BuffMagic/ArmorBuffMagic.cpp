@@ -4,8 +4,8 @@
 
 
 ArmorBuffMagic::ArmorBuffMagic(std::string name, int manaCost,
-	int duration, int armorAmplify)
-	: Magic(name, manaCost, duration),
+	const Timer& timer, int armorAmplify)
+	: Magic(name, manaCost, timer),
 	m_armorAmplify(armorAmplify)
 {
 

@@ -1,9 +1,9 @@
 #include "PoisonAndAttackMagic.h"
 
 PoisonAndAttackMagic::PoisonAndAttackMagic(std::string name, int manaCost,
-	int duration, int damage, int regenReduce)
-	: Magic(name, manaCost, duration),
-	PoisonMagic(name, manaCost, duration, regenReduce),
+	const Timer& timer, int damage, int regenReduce)
+	: Magic(name, manaCost, timer),
+	PoisonMagic(name, manaCost, timer, regenReduce),
 	AttackMagic(name, manaCost, damage)
 {
 

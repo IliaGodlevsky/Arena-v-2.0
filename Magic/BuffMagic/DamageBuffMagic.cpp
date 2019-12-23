@@ -3,8 +3,8 @@
 #include "DamageBuffMagic.h"
 
 DamageBuffMagic::DamageBuffMagic(std::string name, int manaCost,
-	int duration, int damageAmplify)
-	: Magic(name, manaCost, duration),
+	const Timer& timer, int damageAmplify)
+	: Magic(name, manaCost, timer),
 	m_damageAmplify(damageAmplify)
 {
 

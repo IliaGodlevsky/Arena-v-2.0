@@ -4,8 +4,8 @@
 
 #include "StunMagic.h"
 
-StunMagic::StunMagic(std::string name, int duration, int propability)
-	: WeaponMagic(name, duration, propability)
+StunMagic::StunMagic(std::string name, const Timer& timer, int propability)
+	: WeaponMagic(name, timer, propability)
 {
 
 }

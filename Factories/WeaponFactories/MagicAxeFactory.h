@@ -7,7 +7,6 @@ class MagicAxeFactory : public Factory<Weapon>
 {
 public:
 	MagicAxeFactory();
-	int getChanceOfCreation()const;
 private:
 	enum Weapons
 	{

@@ -7,7 +7,7 @@ class ArmorBuffMagic : virtual public Magic
 {
 public:
 	ArmorBuffMagic(std::string name, int manaCost,
-		int duration, int armorAmplify);
+		const Timer& timer, int armorAmplify);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;

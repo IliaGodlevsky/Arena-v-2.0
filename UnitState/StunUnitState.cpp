@@ -2,8 +2,8 @@
 
 #include "StunUnitState.h"
 
-StunUnitState::StunUnitState(int duration)
-	: UnitState(duration)
+StunUnitState::StunUnitState(const Timer& timer)
+	: UnitState(timer)
 {
 
 }

@@ -19,6 +19,11 @@ void StateHolder::recieveNewState(StatePtr unitState)
 		[](const StatePtr& st1, const StatePtr& st2) {return *st1 < *st2; });
 }
 
+size_t StateHolder::getStateIndex(const StatePtr& state)const
+{
+
+}
+
 UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
 {
 	if (m_unitStates.empty())

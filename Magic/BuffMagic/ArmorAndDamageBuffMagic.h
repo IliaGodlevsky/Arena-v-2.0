@@ -9,7 +9,7 @@ class ArmorAndDamageBuffMagic
 {
 public:
 	ArmorAndDamageBuffMagic(std::string name, int manaCost,
-		int duration, int armorAmplify, int damageAmplify);
+		const Timer& timer, int armorAmplify, int damageAmplify);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit)const override;
 	MagicPtr clone()const override;

@@ -9,7 +9,7 @@ class PoisonAndAttackMagic
 {
 public:
 	PoisonAndAttackMagic(std::string name,
-		int manaCost, int duration,
+		int manaCost, const Timer& timer,
 		int damage, int regenReduce);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit)const override;

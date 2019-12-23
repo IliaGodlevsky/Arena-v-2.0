@@ -9,7 +9,7 @@ class ArmorAndDamageDebuffMagic
 {
 public:
 	ArmorAndDamageDebuffMagic(std::string name, int manaCost,
-		int duration, int armorReduce, int damageReduce);
+		const Timer& timer, int armorReduce, int damageReduce);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit)const override;
 	MagicPtr clone()const override;

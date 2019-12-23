@@ -2,9 +2,9 @@
 
 #include "CorruptionMagic.h"
 
-CorruptionMagic::CorruptionMagic(std::string name, int duration,
+CorruptionMagic::CorruptionMagic(std::string name, const Timer& timer,
 	int armorReduce, int propability)
-	: WeaponMagic(name, duration, propability),
+	: WeaponMagic(name, timer, propability),
 	m_armorReduce(armorReduce)
 {
 

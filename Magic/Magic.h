@@ -10,7 +10,7 @@ class Magic
 {
 public:
 	Magic(std::string name,
-		int manaCost, int duration);
+		int manaCost, const Timer& timer);
 	virtual ~Magic();
 public:
 	virtual void effectUnit(Unit& unit) = 0;

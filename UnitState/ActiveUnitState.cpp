@@ -3,7 +3,7 @@
 #include "../Magic/Magic.h"
 
 ActiveUnitState::ActiveUnitState()
-	: UnitState(INT_MAX)
+	: UnitState(Timer(INT_MAX))
 {
 
 }

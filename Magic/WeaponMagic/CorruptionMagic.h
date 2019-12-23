@@ -6,7 +6,7 @@
 class CorruptionMagic : public WeaponMagic
 {
 public:
-	CorruptionMagic(std::string name, int duration,
+	CorruptionMagic(std::string name, const Timer& timer,
 		int armorReduce, int propability);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;

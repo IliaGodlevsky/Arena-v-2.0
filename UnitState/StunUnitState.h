@@ -6,7 +6,7 @@
 class StunUnitState : public UnitState
 {
 public:
-	StunUnitState(int duration);
+	StunUnitState(const Timer& timer);
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,

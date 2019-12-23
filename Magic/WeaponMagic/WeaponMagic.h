@@ -8,7 +8,7 @@
 class WeaponMagic : public Magic
 {
 public:
-	WeaponMagic(std::string name, int duration, 
+	WeaponMagic(std::string name, const Timer& timer, 
 		int propability);
 	virtual void showFullInfo()const = 0;
 	virtual ~WeaponMagic();

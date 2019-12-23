@@ -7,7 +7,7 @@ class DamageBuffMagic : virtual public Magic
 {
 public:
 	DamageBuffMagic(std::string name, int manaCost,
-		int duration, int damageAmplify);
+		const Timer& timer, int damageAmplify);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;

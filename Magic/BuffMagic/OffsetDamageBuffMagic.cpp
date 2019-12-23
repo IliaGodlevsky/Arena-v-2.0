@@ -1,10 +1,10 @@
 #include "OffsetDamageBuffMagic.h"
 
 OffsetDamageBuffMagic::OffsetDamageBuffMagic(std::string name, int manaCost,
-	int duration, int armorReduce, int damageAmplify)
-	: Magic(name, manaCost, duration),
-	DamageBuffMagic(name, manaCost, duration, damageAmplify),
-	ArmorDebuffMagic(name, manaCost, duration, armorReduce)
+	const Timer& timer, int armorReduce, int damageAmplify)
+	: Magic(name, manaCost, timer),
+	DamageBuffMagic(name, manaCost, timer, damageAmplify),
+	ArmorDebuffMagic(name, manaCost, timer, armorReduce)
 {
 
 }

@@ -4,8 +4,8 @@
 
 
 DamageDebuffMagic::DamageDebuffMagic(std::string name,
-	int manaCost, int duration, int damageReduce)
-	: Magic(name, manaCost, duration),
+	int manaCost, const Timer& timer, int damageReduce)
+	: Magic(name, manaCost, timer),
 	m_damageReduce(damageReduce)
 {
 

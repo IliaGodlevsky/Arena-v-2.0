@@ -3,8 +3,8 @@
 #include "../Arena/Arena.h"
 #include "../Unit/Unit.h"
 
-Magic::Magic(std::string name, int manaCost, int duration)
-	: m_name(name), m_manaCost(manaCost), m_timer(duration)
+Magic::Magic(std::string name, int manaCost, const Timer& timer)
+	: m_name(name), m_manaCost(manaCost), m_timer(timer)
 {
 
 }
@@ -55,7 +55,7 @@ void Magic::showData()const
 {
 	std::cout << "Name: " << m_name << std::endl;
 	std::cout << "Mana cost: " << m_manaCost << std::endl;
-	std::cout << "Duration: " << m_timer << std::endl;
+	std::cout << "Duration: " << m_timer.getDuration() << std::endl;
 }
 
 void Magic::showFullInfo()const

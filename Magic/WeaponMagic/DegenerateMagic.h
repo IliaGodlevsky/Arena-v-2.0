@@ -6,7 +6,7 @@
 class DegenerateMagic : virtual public WeaponMagic
 {
 public:
-	DegenerateMagic(std::string name, int duration,
+	DegenerateMagic(std::string name, const Timer& timer,
 		int degeneration, int propability);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;

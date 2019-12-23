@@ -4,8 +4,8 @@
 
 
 ArmorDebuffMagic::ArmorDebuffMagic(std::string name, int manaCost,
-	int duration, int armorReduce)
-	: Magic(name, manaCost, duration),
+	const Timer& timer, int armorReduce)
+	: Magic(name, manaCost, timer), 
 	m_armorReduce(armorReduce)
 {
 

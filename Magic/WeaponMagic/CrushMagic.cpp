@@ -5,7 +5,7 @@
 
 CrushMagic::CrushMagic(std::string name, int damage,
 	int propability)
-	: WeaponMagic(name, ZERO_DURATION, propability), m_damage(damage)
+	: WeaponMagic(name, Timer(ZERO_DURATION), propability), m_damage(damage)
 {
 
 }

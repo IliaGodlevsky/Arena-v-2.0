@@ -11,7 +11,7 @@ using StatePtr = std::shared_ptr<UnitState>;
 class UnitState
 {
 public:
-	UnitState(int duration);
+	explicit UnitState(const Timer& timer);
 	virtual UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const = 0;
 	virtual MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const = 0;
 	virtual UnitPtr chooseUnitToCast(const Unit& decidingUnit,

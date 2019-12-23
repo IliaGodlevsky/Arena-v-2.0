@@ -4,8 +4,8 @@
 #include "../Magic/Magic.h"
 #include "../Arena/Arena.h"
 
-UnitState::UnitState(int duration)
-	: m_timer(duration)
+UnitState::UnitState(const Timer& timer)
+	: m_timer(timer)
 {
 
 }
