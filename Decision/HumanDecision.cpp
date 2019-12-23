@@ -1,19 +1,15 @@
 #include "HumanDecision.h"
 #include "../Magic/Magic.h"
 #include "../Unit/Unit.h"
+#include "../Arena/Arena.h"
 
 HumanDecision::HumanDecision()
 {
 
 }
 
-void HumanDecision::showUnits(const Gladiators& units)const
-{
-	for (size_t i = 0; i < units.size(); i++)
-		units[i]->showFullInfo();
-}
-
-UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
+UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	std::cout << decidingUnit.getName() << " choose unit to attack\n";
 	index unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
@@ -35,7 +31,8 @@ bool HumanDecision::wantToCastMagic()const
 	return m_wantToCastMagic;
 }
 
-MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const
+MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	wantToCastMagic();
 	if (!m_wantToCastMagic || !decidingUnit.m_magicBook.canCastAnySpell())
@@ -54,8 +51,9 @@ UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 	if (!m_wantToCastMagic || !decidingUnit.m_magicBook.canCastAnySpell())
 		return nullptr;
 	std::cout << decidingUnit.getName() << " choose unit to cast\n";
-	showUnits(units);
-	int unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE,
+	auto& arena = Arena::getInstance();
+	arena.showUnits();
+	index unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE,
 		units.size(), 1);
 	while (isWrongSpellToCast(decidingUnit, *units[unitToCastIndex - 1], magicToCast))
 	{

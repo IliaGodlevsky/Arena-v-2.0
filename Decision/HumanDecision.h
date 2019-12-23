@@ -14,7 +14,6 @@ public:
 private:
 	bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
 		const MagicPtr& spell)const;
-	void showUnits(const Gladiators& units)const;
 	bool wantToCastMagic()const;
 private:
 	const std::string WANT_TO_CAST_QUESTION = "do you want to cast a magic <1 - yes/0 - no>: ";
