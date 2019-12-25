@@ -7,10 +7,12 @@ class HumanDecision : public Decision
 {
 public:
 	HumanDecision();
-	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const;
-	MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const;
+	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
+		const Gladiators& units)const override;
+	MagicPtr chooseMagicToCast(const Unit& decidingUnit, 
+		const Gladiators& units)const override;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const;
+		const MagicPtr& magicToCast, const Gladiators& units)const override;
 private:
 	bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
 		const MagicPtr& spell)const;
