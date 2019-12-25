@@ -30,14 +30,16 @@ size_t StateHolder::getStateIndex(const StatePtr& state)const
 	return m_unitStates.size();
 }
 
-UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
+UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	if (m_unitStates.empty())
 		return m_activeState->chooseUnitToAttack(decidingUnit, units);
 	return m_unitStates[0]->chooseUnitToAttack(decidingUnit, units);
 }
 
-MagicPtr StateHolder::chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const
+MagicPtr StateHolder::chooseMagicToCast(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	if (m_unitStates.empty())
 		return m_activeState->chooseMagicToCast(decidingUnit, units);
