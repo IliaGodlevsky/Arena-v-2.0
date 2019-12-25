@@ -8,12 +8,14 @@ MutedUnitState::MutedUnitState(const Timer& timer)
 
 }
 
-UnitPtr MutedUnitState::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
+UnitPtr MutedUnitState::chooseUnitToAttack(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	return m_decision->chooseUnitToAttack(decidingUnit, units);
 }
 
-MagicPtr MutedUnitState::chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const
+MagicPtr MutedUnitState::chooseMagicToCast(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	return nullptr;
 }
