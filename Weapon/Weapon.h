@@ -19,6 +19,7 @@ public:
 	virtual void showFullInfo()const;
 	virtual void showShortInfo()const final;
 	virtual WeaponPtr clone()const;
+	virtual WeaponPtr getPureWeapon()const final;
 	virtual bool canSmashUnit(const Unit& unit)const final;
 	virtual int getDamage()const final;
 protected:

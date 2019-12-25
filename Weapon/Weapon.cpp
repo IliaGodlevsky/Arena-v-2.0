@@ -62,3 +62,8 @@ int Weapon::getDamage()const
 {
 	return m_damage;
 }
+
+WeaponPtr Weapon::getPureWeapon()const
+{
+	return WeaponPtr(new Weapon(m_name, m_damage, ZERO_CRITIAL_PROBABILITY));
+}
