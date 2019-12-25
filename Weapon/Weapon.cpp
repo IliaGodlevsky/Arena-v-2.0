@@ -57,3 +57,8 @@ int Weapon::multiplyDamage(int damage)const
 	else
 		return damage;
 }
+
+int Weapon::getDamage()const
+{
+	return m_damage;
+}

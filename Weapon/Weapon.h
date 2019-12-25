@@ -20,6 +20,7 @@ public:
 	virtual void showShortInfo()const final;
 	virtual WeaponPtr clone()const;
 	virtual bool canSmashUnit(const Unit& unit)const final;
+	virtual int getDamage()const final;
 protected:
 	virtual int multiplyDamage(int damage)const;
 protected:
