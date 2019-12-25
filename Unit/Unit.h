@@ -20,7 +20,8 @@ public:
 	friend bool Weapon::canSmashUnit(const Unit& unit)const;
 	friend class ComputerDecision;
 public:
-	Unit(std::string name, DecisionPtr decision, ItemFactoryPtr factory);
+	Unit(std::string name, DecisionPtr decision, 
+		ItemFactoryPtr factory);
 	virtual ~Unit();
 public:
 	bool isEnoughManaFor(const MagicPtr& magic)const;
@@ -41,10 +42,10 @@ public:
 	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr, 
 		const Gladiators& units)const;
 public:
-	Battles m_damage = Battles(4);
-	Battles m_armor = Battles(2);
-	Vitals m_health = { 1000,1000,2 };
-	Vitals m_mana = { 400,400,1 };
+	Battles m_damage = Battles(7);
+	Battles m_armor = Battles(1);
+	Vitals m_health = { 175,175,3 };
+	Vitals m_mana = { 100,100,3 };
 	MagicOnMe m_magicOnMe;
 	MagicBook m_magicBook;
 	Level m_level;
