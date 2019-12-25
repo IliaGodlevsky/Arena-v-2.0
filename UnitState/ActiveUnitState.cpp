@@ -8,12 +8,14 @@ ActiveUnitState::ActiveUnitState()
 
 }
 
-UnitPtr ActiveUnitState::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
+UnitPtr ActiveUnitState::chooseUnitToAttack(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	return m_decision->chooseUnitToAttack(decidingUnit, units);
 }
 
-MagicPtr ActiveUnitState::chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const
+MagicPtr ActiveUnitState::chooseMagicToCast(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	return m_decision->chooseMagicToCast(decidingUnit, units);
 }
