@@ -9,12 +9,14 @@ StunUnitState::StunUnitState(const Timer& timer)
 }
 
 
-UnitPtr StunUnitState::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
+UnitPtr StunUnitState::chooseUnitToAttack(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	return UnitState::chooseUnitToAttack(decidingUnit, units);
 }
 
-MagicPtr StunUnitState::chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const
+MagicPtr StunUnitState::chooseMagicToCast(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	return UnitState::chooseMagicToCast(decidingUnit, units);
 }
