@@ -110,7 +110,8 @@ MagicPtr Unit::chooseMagicToCast(const Gladiators& units)const
 	return m_stateHolder.chooseMagicToCast(*this, units);
 }
 
-UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast, const Gladiators& units)const
+UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast, 
+	const Gladiators& units)const
 {
 	return m_stateHolder.chooseUnitToCast(*this, magicToCast, units);
 }
@@ -119,14 +120,15 @@ void Unit::showFullInfo()const
 {
 	std::cout << getName() << " Level: " 
 		<< m_level << std::endl;
-	std::cout << "HP: " << m_health << " MP: " 
-		<< m_mana << " DMG: " << m_damage
+	std::cout << "HP: " << m_health << " MP: "
+		<< m_mana << " DMG: " 
+		<< m_damage + m_weapon->getDamage()
 		<< " Arm: " << m_armor << std::endl;
 	m_stateHolder.showShortInfo();
 	m_magicBook.showShortInfo();
 	m_magicOnMe.showShortInfo();
 	std::cout << std::endl;
-	std::cout << "Waepon: ";
+	std::cout << "Weapon: ";
 	m_weapon->showShortInfo();
 	std::cout << std::endl;
 	std::cout << "Armor: ";
