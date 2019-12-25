@@ -11,8 +11,10 @@ class StateHolder
 public:
 	StateHolder(DecisionPtr decision);
 	void recieveNewState(StatePtr unitState);
-	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const;
-	MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const;
+	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
+		const Gladiators& units)const;
+	MagicPtr chooseMagicToCast(const Unit& decidingUnit, 
+		const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void takeOfExpiredStates(int round);
