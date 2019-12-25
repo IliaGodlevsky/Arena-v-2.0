@@ -12,8 +12,10 @@ class UnitState
 {
 public:
 	explicit UnitState(const Timer& timer);
-	virtual UnitPtr chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const = 0;
-	virtual MagicPtr chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const = 0;
+	virtual UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
+		const Gladiators& units)const = 0;
+	virtual MagicPtr chooseMagicToCast(const Unit& decidingUnit, 
+		const Gladiators& units)const = 0;
 	virtual UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const = 0;
 	virtual ~UnitState() = default;
