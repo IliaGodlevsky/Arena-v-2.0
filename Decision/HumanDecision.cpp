@@ -25,6 +25,11 @@ UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit,
 
 bool HumanDecision::wantToCastMagic(const Unit& decidingUnit)const
 {
+	if (!decidingUnit.m_magicBook.canCastAnySpell())
+	{
+		m_wantToCastMagic = false;
+		return m_wantToCastMagic;
+	}
 	enum { DONT_WANT, WANT };
 	std::cout << decidingUnit.getName() << ", ";
 	m_wantToCastMagic = static_cast<bool>(inputNumber(
@@ -39,7 +44,7 @@ MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit,
 	if (!m_wantToCastMagic || !decidingUnit.m_magicBook.canCastAnySpell())
 		return nullptr;
 	std::cout << "Choose spell to cast\n";
-	decidingUnit.m_magicBook.showShortInfo();
+	decidingUnit.m_magicBook.magicList();
 	index magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
 		decidingUnit.m_magicBook.size(), 1);
 	return MagicPtr(decidingUnit.m_magicBook
