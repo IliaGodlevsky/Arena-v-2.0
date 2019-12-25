@@ -10,12 +10,14 @@ UnitState::UnitState(const Timer& timer)
 
 }
 
-UnitPtr UnitState::chooseUnitToAttack(const Unit& decidingUnit, const Gladiators& units)const
+UnitPtr UnitState::chooseUnitToAttack(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	return nullptr;
 }
 
-MagicPtr UnitState::chooseMagicToCast(const Unit& decidingUnit, const Gladiators& units)const
+MagicPtr UnitState::chooseMagicToCast(const Unit& decidingUnit, 
+	const Gladiators& units)const
 {
 	return nullptr;
 }
