@@ -23,6 +23,27 @@ Unit::Unit(std::string name, DecisionPtr decision, ItemFactoryPtr factory)
 	m_shield = factory->createShield();
 }
 
+Unit::Unit(const Unit& unit)
+	: m_damage(unit.m_damage),
+	m_armor(unit.m_armor),
+	m_magicBook(this),
+	m_name(unit.m_name),
+	m_level(this),
+	m_magicOnMe(this),
+	m_decision(unit.m_decision),
+	m_stateHolder(m_decision)
+{
+	for (size_t i = 0; i < unit.m_magicBook.size(); i++)
+		m_magicBook.takeMagic(unit.m_magicBook[i]);
+	for (size_t i = 0; i < unit.m_magicOnMe.size(); i++)
+		m_magicOnMe.push_back(unit.m_magicOnMe[i]->clone());
+	// copy stateHolder
+	m_weapon = unit.m_weapon->clone();
+	m_mail = unit.m_mail->clone();
+	m_shield = unit.m_shield->clone();
+	m_mail->putOn(*this);
+}
+
 const std::string& Unit::getName()const
 {
 	return m_name;
@@ -135,6 +156,11 @@ void Unit::showFullInfo()const
 	m_mail->showShortInfo();
 	std::cout << "Shield: ";
 	m_shield->showShortInfo();
+}
+
+UnitPtr Unit::clone()const
+{
+	return UnitPtr(new Unit(*this));
 }
 
 Unit::~Unit()

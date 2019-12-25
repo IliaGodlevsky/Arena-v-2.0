@@ -22,6 +22,8 @@ public:
 public:
 	Unit(std::string name, DecisionPtr decision, 
 		ItemFactoryPtr factory);
+	Unit(const Unit& unit);
+	Unit();
 	virtual ~Unit();
 public:
 	bool isEnoughManaFor(const MagicPtr& magic)const;
@@ -41,6 +43,7 @@ public:
 	MagicPtr chooseMagicToCast(const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr, 
 		const Gladiators& units)const;
+	UnitPtr clone()const;
 public:
 	Battles m_damage = Battles(7);
 	Battles m_armor = Battles(1);
