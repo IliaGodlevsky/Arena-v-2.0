@@ -16,7 +16,7 @@ public:
 	UnitFactory();
 	UnitPtr createUnit()const;
 private:
-	// a new thread for downloading names from file
+	// a new thread for loading names from file
 	mutable std::unique_ptr<std::thread> m_thread;
 	std::vector<std::string> m_unitsNames;
 	std::vector<ItemFactoryPtr> m_itemFactories;
