@@ -338,6 +338,9 @@
     <ClCompile Include="Messager\Messager.cpp">
       <Filter>Source\Messager</Filter>
     </ClCompile>
+    <ClCompile Include="Decision\ComputerDecision.cpp">
+      <Filter>Source\Decision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -561,6 +564,9 @@
     </ClInclude>
     <ClInclude Include="UnitState\MutedUnitState.h">
       <Filter>Source\UnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision\ComputerDecision.h">
+      <Filter>Source\Decision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
