@@ -22,13 +22,10 @@ void MagicBook::magicList()const
 
 bool MagicBook::canCastAnySpell()const
 {
-	bool can_cast = false;
 	for (size_t i = 0; i < size(); i++)
-	{
-		if(m_unit->isEnoughManaFor(operator[](i)))
-			can_cast = true;
-	}
-	return can_cast;
+		if (m_unit->isEnoughManaFor(operator[](i)))
+			return true;
+	return false;
 }
 
 void MagicBook::showFullInfo()const
@@ -39,13 +36,10 @@ void MagicBook::showFullInfo()const
 
 void MagicBook::showShortInfo()const
 {
-	std::cout << "MagicBook:\n";
+	std::cout << "MagicBook: ";
 	for (size_t i = 0; i < size(); i++)
-	{
-		std::cout << i + 1 << ". ";
 		operator[](i)->showShortInfo();
-		std::cout << std::endl;
-	}
+	std::cout << std::endl;
 }
 
 void MagicBook::takeMagic(const MagicPtr& magic)
