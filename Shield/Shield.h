@@ -18,6 +18,7 @@ public:
 	void putOn(Unit& unit)const;
 	void putOff(Unit& unit)const;
 	ShieldPtr clone()const;
+	ShieldPtr getPureShield()const final;
 	~Shield() = default;
 protected:
 	std::string m_name;

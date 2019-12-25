@@ -42,3 +42,8 @@ ShieldPtr Shield::clone()const
 {
 	return ShieldPtr(new Shield(m_name, m_armor, m_reflectChance));
 }
+
+ShieldPtr Shield::getPureShield()const
+{
+	return ShieldPtr(new Shield(m_name, m_armor, 0));
+}
