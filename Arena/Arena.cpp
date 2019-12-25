@@ -27,7 +27,25 @@ constexpr int Arena::getMinNumberOfPlayers()const
 
 Arena::Arena()
 {
+	showMiniature();
 	m_units.resize(setNumberOfUnits());
+}
+
+void Arena::showMiniature()const
+{
+	std::cout << R"(
+        ___           ___           ___           ___           ___     
+       /\  \         /\  \         /\  \         /\__\         /\  \    
+      /::\  \       /::\  \       /::\  \       /::|  |       /::\  \   
+     /:/\:\  \     /:/\:\  \     /:/\:\  \     /:|:|  |      /:/\:\  \  
+    /::\~\:\  \   /::\~\:\  \   /::\~\:\  \   /:/|:|  |__   /::\~\:\  \ 
+   /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/ |:| /\__\ /:/\:\ \:\__\
+   \/__\:\/:/  / \/_|::\/:/  / \:\~\:\ \/__/ \/__|:|/:/  / \/__\:\/:/  /
+        \::/  /     |:|::/  /   \:\ \:\__\       |:/:/  /       \::/  / 
+        /:/  /      |:|\/__/     \:\ \/__/       |::/  /        /:/  /  
+       /:/  /       |:|  |        \:\__\         /:/  /        /:/  /   
+       \/__/         \|__|         \/__/         \/__/         \/__/    
+)";
 }
 
 // Sets number of players, that will play the game
@@ -83,7 +101,8 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	UnitFactoryPtr unitFactory = UnitFactoryPtr(new UnitFactory());
+	UnitFactoryPtr unitFactory 
+		= UnitFactoryPtr(new UnitFactory());
 	for (size_t i = 0; i < m_units.size(); i++)
 		m_units[i] = unitFactory->createUnit();
 }

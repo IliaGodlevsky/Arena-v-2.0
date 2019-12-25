@@ -32,6 +32,7 @@ public:
 public:
 	int setNumberOfUnits()const;
 private:
+	void showMiniature()const;
 	Arena();
 private:
 	Gladiators m_units;
