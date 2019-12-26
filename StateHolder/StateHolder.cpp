@@ -19,7 +19,7 @@ void StateHolder::recieveNewState(StatePtr unitState)
 	unitState->setDecision(m_decision);
 	m_unitStates.push_back(unitState);
 	std::sort(m_unitStates.begin(), m_unitStates.end(),
-		[](const StatePtr& st1, const StatePtr& st2) {return *st1 < *st2; });
+		[](const StatePtr& st1, const StatePtr& st2) {return *st1 > *st2; });
 }
 
 size_t StateHolder::getStateIndex(const StatePtr& state)const
