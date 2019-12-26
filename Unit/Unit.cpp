@@ -2,6 +2,7 @@
 
 #include "../Arena/Arena.h"
 #include "../Magic/Magic.h"
+#include "../UnitState/NotEnoughManaUnitState.h"
 
 #include "Unit.h"
 
@@ -21,6 +22,7 @@ Unit::Unit(std::string name, DecisionPtr decision, ItemFactoryPtr factory)
 	m_mail = factory->createArmor();
 	m_mail->putOn(*this);
 	m_shield = factory->createShield();
+	m_shield->putOn(*this);
 }
 
 Unit::Unit(const Unit& unit)
@@ -70,6 +72,8 @@ void Unit::moveIntoNewRound()
 	m_stateHolder.takeOfExpiredStates(Arena::getCurrentRound());
 	m_health++;
 	m_mana++;
+	if (!m_magicBook.canCastAnySpell())
+		m_stateHolder.recieveNewState(StatePtr(new NotEnoughManaUnitState(this)));
 }
 
 bool Unit::isEnoughManaFor(const MagicPtr& magic)const

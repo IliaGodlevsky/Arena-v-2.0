@@ -48,7 +48,7 @@ public:
 	Battles m_damage = Battles(7);
 	Battles m_armor = Battles(1);
 	Vitals m_health = { 175,175,3 };
-	Vitals m_mana = { 100,100,3 };
+	Vitals m_mana = { 35,35,3 };
 	MagicOnMe m_magicOnMe;
 	MagicBook m_magicBook;
 	Level m_level;
