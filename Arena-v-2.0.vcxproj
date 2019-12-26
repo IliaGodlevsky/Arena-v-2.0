@@ -25,9 +25,10 @@
     <ClCompile Include="Armor\Mail.cpp" />
     <ClCompile Include="Armor\WizardCloak.cpp" />
     <ClCompile Include="Battles\Battles.cpp" />
-    <ClCompile Include="Decision\ComputerDecision.cpp" />
+    <ClCompile Include="Decision\RandomComputerDecision.cpp" />
     <ClCompile Include="Decision\Decision.cpp" />
     <ClCompile Include="Decision\HumanDecision.cpp" />
+    <ClCompile Include="Decision\SimpleComputerDecision.cpp" />
     <ClCompile Include="Exceptions\BadWeaponMagicException.cpp" />
     <ClCompile Include="Factories\ArmorFactories\ArmorFactory.cpp" />
     <ClCompile Include="Factories\ArmorFactories\LegionerChainsFactory.cpp" />
@@ -84,6 +85,7 @@
     <ClCompile Include="Timer\Timer.cpp" />
     <ClCompile Include="UnitState\ActiveUnitState.cpp" />
     <ClCompile Include="UnitState\MutedUnitState.cpp" />
+    <ClCompile Include="UnitState\NotEnoughManaUnitState.cpp" />
     <ClCompile Include="UnitState\StunUnitState.cpp" />
     <ClCompile Include="UnitState\UnitState.cpp" />
     <ClCompile Include="Unit\Unit.cpp" />
@@ -102,9 +104,10 @@
     <ClInclude Include="Armor\Mail.h" />
     <ClInclude Include="Armor\WizardCloak.h" />
     <ClInclude Include="Battles\Battles.h" />
-    <ClInclude Include="Decision\ComputerDecision.h" />
+    <ClInclude Include="Decision\RandomComputerDecision.h" />
     <ClInclude Include="Decision\Decision.h" />
     <ClInclude Include="Decision\HumanDecision.h" />
+    <ClInclude Include="Decision\SimpleComputerDecision.h" />
     <ClInclude Include="Exceptions\BadWeaponMagicException.h" />
     <ClInclude Include="Factories\ArmorFactories\ArmorFactory.h" />
     <ClInclude Include="Factories\ArmorFactories\LegionerChainsFactory.h" />
@@ -161,6 +164,7 @@
     <ClInclude Include="Timer\Timer.h" />
     <ClInclude Include="UnitState\ActiveUnitState.h" />
     <ClInclude Include="UnitState\MutedUnitState.h" />
+    <ClInclude Include="UnitState\NotEnoughManaUnitState.h" />
     <ClInclude Include="UnitState\StunUnitState.h" />
     <ClInclude Include="UnitState\UnitState.h" />
     <ClInclude Include="Unit\Unit.h" />
