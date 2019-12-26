@@ -25,11 +25,6 @@ UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit,
 
 bool HumanDecision::wantToCastMagic(const Unit& decidingUnit)const
 {
-	if (!decidingUnit.m_magicBook.canCastAnySpell())
-	{
-		m_wantToCastMagic = false;
-		return m_wantToCastMagic;
-	}
 	enum { DONT_WANT, WANT };
 	std::cout << decidingUnit.getName() << ", ";
 	m_wantToCastMagic = static_cast<bool>(inputNumber(
@@ -40,8 +35,7 @@ bool HumanDecision::wantToCastMagic(const Unit& decidingUnit)const
 MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
-	wantToCastMagic(decidingUnit);
-	if (!m_wantToCastMagic || !decidingUnit.m_magicBook.canCastAnySpell())
+	if (!wantToCastMagic(decidingUnit))
 		return nullptr;
 	std::cout << "Choose spell to cast\n";
 	decidingUnit.m_magicBook.magicList();
@@ -54,7 +48,7 @@ MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit,
 UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& units)const
 {
-	if (!m_wantToCastMagic || !decidingUnit.m_magicBook.canCastAnySpell())
+	if (!m_wantToCastMagic)
 		return nullptr;
 	auto& arena = Arena::getInstance();
 	arena.showUnits();
@@ -68,11 +62,4 @@ UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 			units.size(), 1);
 	}
 	return units[unitToCastIndex - 1];
-}
-
-bool HumanDecision::isWrongSpellToCast(const Unit& caster, const Unit& aim,
-	const MagicPtr& magic)const
-{
-	return !canCastBuffOnUnit(caster, aim, magic) &&
-		!canCastDebuffOnUnit(caster, aim, magic);
 }

@@ -14,8 +14,6 @@ public:
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const override;
 private:
-	bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
-		const MagicPtr& spell)const;
 	bool wantToCastMagic(const Unit& decidingUnit)const;
 private:
 	const std::string WANT_TO_CAST_QUESTION = "do you want to cast a magic <1 - yes/0 - no>: ";
