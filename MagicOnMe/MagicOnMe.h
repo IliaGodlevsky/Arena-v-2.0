@@ -9,6 +9,7 @@ public:
 	MagicOnMe(Unit* unit);
 	void takeOfExpiredMagic(int round);
 	size_t getMagicIndex(const MagicPtr& magic)const;
+	bool hasMagic(const MagicPtr& magic)const;
 	void expireMagic(size_t magicIndex);
 	void expireAllMagic();
 	void takeMagic(const MagicPtr& magic);

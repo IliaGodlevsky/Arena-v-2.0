@@ -41,6 +41,12 @@ size_t MagicOnMe::getMagicIndex(const MagicPtr& magic)const
 	return size();
 }
 
+bool MagicOnMe::hasMagic(const MagicPtr& magic)const
+{
+	index magicIndex = m_unit->m_magicOnMe.getMagicIndex(magic);
+	return (magicIndex < size() && !empty());
+}
+
 void MagicOnMe::expireMagic(size_t magicIndex)
 {
 	operator[](magicIndex)->uneffectUnit(*m_unit);
