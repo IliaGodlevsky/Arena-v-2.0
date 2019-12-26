@@ -30,7 +30,7 @@ public:
 protected:
 	Timer m_timer;
 	DecisionPtr m_decision;
-	enum StateValue { ALIVE_STATE, MUTED_STATE, STUNNED_STATE };
+	enum StateValue { ALIVE_STATE, NOT_ENOGHT_MANA_STATE, MUTED_STATE, STUNNED_STATE };
 	// static std::vector<UnitState*> m_attackStates;
 private:
 	virtual StateValue getValue()const = 0;
