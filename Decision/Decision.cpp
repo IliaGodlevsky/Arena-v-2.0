@@ -22,3 +22,10 @@ bool Decision::canCastDebuffOnUnit(const Unit& caster, const Unit& aim,
 {
 	return !magic->isBuff() && !isSameUnit(caster, aim);
 }
+
+bool Decision::isWrongSpellToCast(const Unit& caster, const Unit& aim,
+	const MagicPtr& magic)const
+{
+	return !canCastBuffOnUnit(caster, aim, magic) &&
+		!canCastDebuffOnUnit(caster, aim, magic);
+}

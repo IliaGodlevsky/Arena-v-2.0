@@ -20,6 +20,8 @@ protected:
 		const MagicPtr& magic)const;
 	virtual bool canCastDebuffOnUnit(const Unit& caster, const Unit& aim, 
 		const MagicPtr& magic)const;
+	virtual bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
+		const MagicPtr& spell)const;
 protected:
 	mutable bool m_wantToCastMagic = false;
 };
