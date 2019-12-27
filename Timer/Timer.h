@@ -5,6 +5,7 @@ class Timer
 {
 public:
 	explicit Timer(int duration);
+	Timer(int duration, int startTime);
 	Timer(const Timer&) = default;
 	Timer(Timer&&) = default;
 	Timer& operator= (const Timer&) = default;

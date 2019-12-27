@@ -1,6 +1,7 @@
 #include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
 #include "../../UnitState/StunUnitState.h"
+#include "../../Arena/Arena.h"
 
 #include "StunMagic.h"
 
@@ -59,5 +60,6 @@ void StunMagic::showData()const
 
 void StunMagic::putOn(Unit& unit)const
 {
-	unit.recieveNewState(StatePtr(new StunUnitState(m_timer)));
+	unit.recieveNewState(StatePtr(new StunUnitState(
+		Timer(m_timer.getDuration(), Arena::getCurrentRound()))));
 }

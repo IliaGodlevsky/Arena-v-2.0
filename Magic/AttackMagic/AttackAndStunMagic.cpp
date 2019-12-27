@@ -1,6 +1,7 @@
 #include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
 #include "../../UnitState/StunUnitState.h"
+#include "../../Arena/Arena.h"
 
 #include "AttackAndStunMagic.h"
 
@@ -16,7 +17,8 @@ AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
 void AttackAndStunMagic::effectUnit(Unit& unit)
 {
 	putOn(unit);
-	unit.recieveNewState(StatePtr(new StunUnitState(m_timer)));
+	unit.recieveNewState(StatePtr(new StunUnitState(
+		Timer(m_timer.getDuration(), Arena::getCurrentRound()))));
 	AttackMagic::effectUnit(unit);
 }
 

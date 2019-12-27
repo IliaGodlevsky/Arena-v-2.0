@@ -14,6 +14,7 @@ Unit::Unit(std::string name,
 	m_decision(decision),
 	m_stateHolder(decision)
 {
+	m_mana = Vitals(150, 150, 10);
 	m_magicBook.takeMagic(factory->createMagic());
 	m_weapon = factory->createWeapon();
 	m_mail = factory->createArmor();
