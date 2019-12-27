@@ -1,6 +1,7 @@
 #include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
 #include "../../UnitState/MutedUnitState.h"
+#include "../../Arena/Arena.h"
 
 #include "SilenceMagic.h"
 
@@ -15,7 +16,8 @@ void SilenceMagic::effectUnit(Unit& unit)
 {
 	putOn(unit);
 	Magic::effectUnit(unit);
-	unit.recieveNewState(StatePtr(new MutedUnitState(m_timer)));
+	unit.recieveNewState(StatePtr(new MutedUnitState(
+		Timer(m_timer.getDuration(), Arena::getCurrentRound()))));
 }
 
 void SilenceMagic::uneffectUnit(Unit& unit)const
