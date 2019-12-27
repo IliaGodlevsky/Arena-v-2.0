@@ -7,6 +7,8 @@
 #include "../Factories/UnitFactory/UnitFactory.h"
 #include "../Factories/ItemFactory/DefenceItemFactory.h"
 #include "../Factories/ItemFactory/OffenceItemFactory.h"
+#include "../Factories/UnitFactory/WarriorFactory.h"
+#include "../Factories/UnitFactory/WizardFactory.h"
 
 #include "Arena.h"
 
@@ -101,10 +103,17 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	UnitFactoryPtr unitFactory 
-		= UnitFactoryPtr(new UnitFactory());
+	UnitFactoryPtr warriorFactory 
+		= UnitFactoryPtr(new WarriorFactory());
+	UnitFactoryPtr wizardFactory
+		= UnitFactoryPtr(new WizardFactory);
 	for (size_t i = 0; i < m_units.size(); i++)
-		m_units[i] = unitFactory->createUnit();
+	{
+		if (i % 2 == 0)
+			m_units[i] = warriorFactory->createUnit();
+		else
+			m_units[i] = wizardFactory->createUnit();
+	}
 }
 
 void Arena::playCastStep()

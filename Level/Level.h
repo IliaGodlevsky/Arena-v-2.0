@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef LEVEL_H_
 #define LEVEL_H_
 
@@ -9,21 +7,15 @@ class Level
 {
 public:
 	Level(Unit* unit);
-	Level operator++(int i);
+	Level(const Level&) = default;
+	virtual Level& operator++() = 0;
+	virtual void setOwner(Unit* unit)final;
+	virtual ~Level() = default;
 	operator int()const;
-private:
-	enum { MAX_LVL = 5 };
-	enum
-	{
-		HP_PER_LVL = 15,
-		MP_PER_LVL = 10,
-		HP_REGEN_PER_LVL = 2,
-		MP_REGEN_PER_LVL = 2,
-		DMG_PER_LVL = 2, 
-		ARM_PER_LVL = 1 
-	};
+protected:
+	enum { MAX_LVL = 6 };
 	int m_level = 1;
 	Unit* m_unit; // unit, that have this level class
 };
 
-#endif // LEVEL_H_
+#endif

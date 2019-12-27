@@ -23,11 +23,6 @@ Weapon& Weapon::operator=(const Weapon& weapon)
 	return *this;
 }
 
-bool Weapon::canSmashUnit(const Unit& unit)const
-{
-	return unit.m_health <= unit.calculateDamageAbsorb(m_damage);
-}
-
 void Weapon::showFullInfo()const
 {
 	std::cout << "Name: " << m_name << std::endl;

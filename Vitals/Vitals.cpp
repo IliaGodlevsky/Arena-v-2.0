@@ -53,6 +53,13 @@ void Vitals::changeRegeneration(int regeneration)
 	m_valueRegeneration += regeneration;
 }
 
+void Vitals::restore(int percent)
+{
+	m_value += static_cast<int>(m_maxValue * 
+		static_cast<double>(percent / 100.00));
+	fixOverflow();
+}
+
 bool Vitals::isDead()const
 {
 	return m_value == DEAD_LINE;

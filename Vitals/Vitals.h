@@ -17,6 +17,7 @@ public:
 	Vitals operator+(const Vitals& vit)const;
 	Vitals operator-(const Vitals& vit)const;
 	void changeRegeneration(int regeneration);
+	void restore(int percent);
 	bool isDead()const;
 	operator int()const;
 private:

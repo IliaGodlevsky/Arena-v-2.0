@@ -6,14 +6,11 @@
 
 #include "Unit.h"
 
-
-Unit::Unit(std::string name, DecisionPtr decision, ItemFactoryPtr factory)
-	: m_damage(7), 
-	m_armor(2),
-	m_magicBook(this), 
+Unit::Unit(std::string name, 
+	DecisionPtr decision, ItemFactoryPtr factory) :
+	m_magicBook(this),
 	m_name(name),
-	m_level(this),
-	m_magicOnMe(this), 
+	m_magicOnMe(this),
 	m_decision(decision),
 	m_stateHolder(decision)
 {
@@ -30,10 +27,11 @@ Unit::Unit(const Unit& unit)
 	m_armor(unit.m_armor),
 	m_magicBook(this),
 	m_name(unit.m_name),
-	m_level(this),
 	m_magicOnMe(this),
 	m_decision(unit.m_decision),
-	m_stateHolder(m_decision)
+	m_stateHolder(m_decision),
+	m_health(unit.m_health),
+	m_mana(unit.m_mana)
 {
 	for (size_t i = 0; i < unit.m_magicBook.size(); i++)
 		m_magicBook.takeMagic(unit.m_magicBook[i]);
@@ -53,7 +51,7 @@ const std::string& Unit::getName()const
 
 void Unit::levelUp()
 {
-	m_level++;
+	m_level->operator++();
 }
 
 bool Unit::isAlive()const
@@ -144,7 +142,7 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 void Unit::showFullInfo()const
 {
 	std::cout << getName() << " Level: " 
-		<< m_level << std::endl;
+		<< *m_level << std::endl;
 	std::cout << "HP: " << m_health << " MP: "
 		<< m_mana << " DMG: " 
 		<< m_damage + m_weapon->getDamage()

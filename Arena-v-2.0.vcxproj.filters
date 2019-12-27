@@ -347,6 +347,24 @@
     <ClCompile Include="Decision\SimpleComputerDecision.cpp">
       <Filter>Source\Decision</Filter>
     </ClCompile>
+    <ClCompile Include="Level\WizardLevel.cpp">
+      <Filter>Source\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Level\WarriorLevel.cpp">
+      <Filter>Source\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit\Warrior.cpp">
+      <Filter>Source\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit\Wizard.cpp">
+      <Filter>Source\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\UnitFactory\WizardFactory.cpp">
+      <Filter>Source\Factories\UnitFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\UnitFactory\WarriorFactory.cpp">
+      <Filter>Source\Factories\UnitFactory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -579,6 +597,24 @@
     </ClInclude>
     <ClInclude Include="Decision\SimpleComputerDecision.h">
       <Filter>Source\Decision</Filter>
+    </ClInclude>
+    <ClInclude Include="Level\WizardLevel.h">
+      <Filter>Source\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level\WarriorLevel.h">
+      <Filter>Source\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit\Warrior.h">
+      <Filter>Source\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit\Wizard.h">
+      <Filter>Source\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\UnitFactory\WizardFactory.h">
+      <Filter>Source\Factories\UnitFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\UnitFactory\WarriorFactory.h">
+      <Filter>Source\Factories\UnitFactory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

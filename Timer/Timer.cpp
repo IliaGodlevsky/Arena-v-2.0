@@ -1,5 +1,7 @@
 #include "Timer.h"
 
+#include <iostream>
+
 Timer::Timer(int duration)
 	: m_duration(duration), m_startTime(0)
 {
@@ -13,6 +15,9 @@ void Timer::setStartTime(int round)
 
 bool Timer::isExpired(int round)const
 {
+	std::cout << "Round: " << round << std::endl;
+	std::cout << "Start time: " << m_startTime << std::endl;
+	std::cout << "Duration: " << m_duration << std::endl;
 	return round - m_startTime > m_duration;
 }
 

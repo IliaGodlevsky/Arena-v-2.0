@@ -5,6 +5,7 @@ class Battles
 {
 public:
 	explicit Battles(int value);
+	Battles() = default;
 	void changeValue(int value);
 	operator int()const;
 protected:

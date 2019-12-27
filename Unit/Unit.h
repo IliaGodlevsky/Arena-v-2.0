@@ -17,13 +17,11 @@
 class Unit
 {
 public:
-	friend bool Weapon::canSmashUnit(const Unit& unit)const;
 	friend class ComputerDecision;
 public:
 	Unit(std::string name, DecisionPtr decision, 
 		ItemFactoryPtr factory);
 	Unit(const Unit& unit);
-	Unit();
 	virtual ~Unit();
 public:
 	bool isEnoughManaFor(const MagicPtr& magic)const;
@@ -32,7 +30,7 @@ public:
 	bool castMagic(Unit& unit, MagicPtr& magic);
 	bool isAlive()const;
 public:
-	void payMana(int manaCost);
+	virtual void payMana(int manaCost);
 	void showFullInfo()const;
 	void levelUp();
 	void recieveNewState(StatePtr unitState);
@@ -45,14 +43,15 @@ public:
 		const Gladiators& units)const;
 	UnitPtr clone()const;
 public:
-	Battles m_damage = Battles(7);
-	Battles m_armor = Battles(1);
-	Vitals m_health = { 175,175,3 };
-	Vitals m_mana = { 35,35,3 };
+	Battles m_damage;
+	Battles m_armor;
+	Vitals m_health;
+	Vitals m_mana;
 	MagicOnMe m_magicOnMe;
 	MagicBook m_magicBook;
-	Level m_level;
 	StateHolder m_stateHolder;
+protected:
+	std::unique_ptr<Level> m_level;
 private:
 	std::string m_name;
 	DecisionPtr m_decision;
