@@ -8,6 +8,9 @@ class WizardFactory : public UnitFactory
 public:
 	WizardFactory();
 	UnitPtr createUnit()const;
+	~WizardFactory();
+private:
+	std::vector <Factory<Magic>*> m_secondMagics;
 };
 
 #endif

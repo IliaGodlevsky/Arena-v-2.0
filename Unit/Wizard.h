@@ -9,7 +9,7 @@ class Wizard : public Unit
 {
 public:
 	Wizard(std::string name, DecisionPtr decision,
-		ItemFactoryPtr factory);
+		ItemFactoryPtr factory, Factory<Magic>* secondFactory);
 	Wizard(const Wizard& unit);
 	void payMana(int manaCost)override;
 };

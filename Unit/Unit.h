@@ -51,11 +51,11 @@ public:
 	MagicBook m_magicBook;
 	StateHolder m_stateHolder;
 protected:
-	std::unique_ptr<Level> m_level;
+	std::unique_ptr<Level> m_level = nullptr;
 private:
 	std::string m_name;
 	DecisionPtr m_decision;
-private:
+protected:
 	WeaponPtr m_weapon;
 	ArmPtr m_mail;
 	ShieldPtr m_shield;

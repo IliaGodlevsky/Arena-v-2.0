@@ -31,3 +31,8 @@ UnitPtr UnitFactory::createUnit()const
 	return UnitPtr(new Unit(randomName, m_decisions[decisionNumber - 1], 
 		m_itemFactories[factoryNumber - 1]));
 }
+
+UnitFactory::~UnitFactory()
+{
+
+}

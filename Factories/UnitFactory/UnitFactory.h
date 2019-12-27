@@ -15,6 +15,7 @@ class UnitFactory
 public:
 	UnitFactory();
 	virtual UnitPtr createUnit()const;
+	virtual ~UnitFactory();
 protected:
 	// a new thread for loading names from file
 	mutable std::unique_ptr<std::thread> m_thread;
