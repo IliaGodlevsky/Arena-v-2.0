@@ -19,7 +19,7 @@ int Arena::m_round = 0;
 // that can take part in the game
 constexpr int Arena::getMaxNubmerOfPlayers()const
 {
-	return 100;
+	return 6;
 }
 
 constexpr int Arena::getMinNumberOfPlayers()const
@@ -103,13 +103,15 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	UnitFactoryPtr warriorFactory 
-		= UnitFactoryPtr(new WarriorFactory());
-	UnitFactoryPtr wizardFactory
-		= UnitFactoryPtr(new WizardFactory);
+	enum { WARRIOR = 1, WIZARD };
+	UnitFactoryPtr warriorFactory(new WarriorFactory());
+	UnitFactoryPtr wizardFactory(new WizardFactory());
+	index factoryNumber;
 	for (size_t i = 0; i < m_units.size(); i++)
 	{
-		if (i % 2 == 0)
+		factoryNumber = inputNumber("1. Warrior"
+			" 2. Wizard\nChoose unit type: ", WIZARD, WARRIOR);
+		if (WARRIOR == factoryNumber)
 			m_units[i] = warriorFactory->createUnit();
 		else
 			m_units[i] = wizardFactory->createUnit();
