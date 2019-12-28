@@ -26,8 +26,8 @@ public:
 public:
 	bool isEnoughManaFor(const MagicPtr& magic)const;
 	bool takeDamage(int damage);
-	bool injureUnit(Unit& unit);
-	bool castMagic(Unit& unit, MagicPtr& magic);
+	virtual bool injureUnit(Unit& unit);
+	virtual bool castMagic(Unit& unit, MagicPtr& magic);
 	bool isAlive()const;
 public:
 	virtual void payMana(int manaCost);
