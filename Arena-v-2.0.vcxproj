@@ -37,6 +37,8 @@
     <ClCompile Include="Factories\ItemFactory\DefenceItemFactory.cpp" />
     <ClCompile Include="Factories\ItemFactory\ItemFactory.cpp" />
     <ClCompile Include="Factories\ItemFactory\OffenceItemFactory.cpp" />
+    <ClCompile Include="Factories\ItemFactory\WarriorItemFactory.cpp" />
+    <ClCompile Include="Factories\ItemFactory\WizardItemFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\AttackFactories\AttackAndStunMagicFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\AttackFactories\AttackMagicFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\AttackFactories\PoisonAndAttackMagicFactory.cpp" />
@@ -54,6 +56,7 @@
     <ClCompile Include="Factories\UnitFactory\WarriorFactory.cpp" />
     <ClCompile Include="Factories\UnitFactory\WizardFactory.cpp" />
     <ClCompile Include="Factories\WeaponFactories\MagicAxeFactory.cpp" />
+    <ClCompile Include="Factories\WeaponFactories\MagicStaffFactory.cpp" />
     <ClCompile Include="Factories\WeaponFactories\MagicSwordFactory.cpp" />
     <ClCompile Include="Factories\WeaponFactories\WeaponFactory.cpp" />
     <ClCompile Include="Globals\Globals.cpp" />
@@ -99,8 +102,10 @@
     <ClCompile Include="Weapon\MagicAxe.cpp" />
     <ClCompile Include="Weapon\MagicClub.cpp" />
     <ClCompile Include="Weapon\MagicSpear.cpp" />
+    <ClCompile Include="Weapon\MagicStaff.cpp" />
     <ClCompile Include="Weapon\MagicSword.cpp" />
     <ClCompile Include="Weapon\MagicWeapon.cpp" />
+    <ClCompile Include="Weapon\Staff.cpp" />
     <ClCompile Include="Weapon\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +128,8 @@
     <ClInclude Include="Factories\ItemFactory\DefenceItemFactory.h" />
     <ClInclude Include="Factories\ItemFactory\ItemFactory.h" />
     <ClInclude Include="Factories\ItemFactory\OffenceItemFactory.h" />
+    <ClInclude Include="Factories\ItemFactory\WarriorItemFactory.h" />
+    <ClInclude Include="Factories\ItemFactory\WizardItemFactory.h" />
     <ClInclude Include="Factories\MagicFactories\AttackFactories\AttackAndStunMagicFactory.h" />
     <ClInclude Include="Factories\MagicFactories\AttackFactories\AttackMagicFactory.h" />
     <ClInclude Include="Factories\MagicFactories\AttackFactories\PoisonAndAttackMagicFactory.h" />
@@ -139,6 +146,7 @@
     <ClInclude Include="Factories\UnitFactory\UnitFactory.h" />
     <ClInclude Include="Factories\UnitFactory\WarriorFactory.h" />
     <ClInclude Include="Factories\UnitFactory\WizardFactory.h" />
+    <ClInclude Include="Factories\WeaponFactories\MagicStaffFactory.h" />
     <ClInclude Include="Factories\WeaponFactories\MagicAxeFactory.h" />
     <ClInclude Include="Factories\WeaponFactories\MagicSwordFactory.h" />
     <ClInclude Include="Factories\WeaponFactories\WeaponFactory.h" />
@@ -184,8 +192,10 @@
     <ClInclude Include="Weapon\MagicAxe.h" />
     <ClInclude Include="Weapon\MagicClub.h" />
     <ClInclude Include="Weapon\MagicSpear.h" />
+    <ClInclude Include="Weapon\MagicStaff.h" />
     <ClInclude Include="Weapon\MagicSword.h" />
     <ClInclude Include="Weapon\MagicWeapon.h" />
+    <ClInclude Include="Weapon\Staff.h" />
     <ClInclude Include="Weapon\Weapon.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

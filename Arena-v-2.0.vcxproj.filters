@@ -114,6 +114,9 @@
     <Filter Include="Source\Messager">
       <UniqueIdentifier>{c1818706-51f0-463f-b98a-8716578d3c3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Factories\MagicFactories\NeutralFactories">
+      <UniqueIdentifier>{a4dc70cd-7b1e-400a-989e-e027414b59dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -365,6 +368,21 @@
     <ClCompile Include="Factories\UnitFactory\WarriorFactory.cpp">
       <Filter>Source\Factories\UnitFactory</Filter>
     </ClCompile>
+    <ClCompile Include="Factories\ItemFactory\WizardItemFactory.cpp">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\Staff.cpp">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\MagicStaff.cpp">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\WeaponFactories\MagicStaffFactory.cpp">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ItemFactory\WarriorItemFactory.cpp">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -615,6 +633,21 @@
     </ClInclude>
     <ClInclude Include="Factories\UnitFactory\WarriorFactory.h">
       <Filter>Source\Factories\UnitFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ItemFactory\WizardItemFactory.h">
+      <Filter>Source\Factories\ItemFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\Staff.h">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\MagicStaff.h">
+      <Filter>Source\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\WeaponFactories\MagicStaffFactory.h">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ItemFactory\WarriorItemFactory.h">
+      <Filter>Source\Factories\ItemFactory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
