@@ -14,14 +14,17 @@ class UnitFactory
 {
 public:
 	UnitFactory();
-	virtual UnitPtr createUnit()const;
+	virtual UnitPtr createUnit()const = 0;
 	virtual ~UnitFactory();
 protected:
 	// a new thread for loading names from file
 	mutable std::unique_ptr<std::thread> m_thread;
 	std::vector<std::string> m_unitsNames;
-	std::vector<ItemFactoryPtr> m_itemFactories;
+	ItemFactoryPtr m_itemFactory;
 	std::vector<DecisionPtr> m_decisions;
+protected:
+	virtual index chooseDecsion()const final;
+	virtual void checkThread()const final;
 };
 
 #endif
