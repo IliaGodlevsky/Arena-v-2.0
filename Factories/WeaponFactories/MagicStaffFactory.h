@@ -1,0 +1,25 @@
+#ifndef MAGIC_STAFF_FACTORY_H_
+#define MAGIC_STAFF_FACTORY_H_
+
+#include "../Factory.h"
+
+class MagicStaffFactory : public Factory<Weapon>
+{
+public:
+	MagicStaffFactory();
+private:
+	enum
+	{
+		WIZARD_STAFF_DAMAGE = 7,
+		ARCHMAGE_STAFF_DAMAGE = 5,
+		ANCIENT_STAFF_DAMAGE = 3
+	};
+	enum
+	{
+		INNER_FIRE_DAMAGE_PER_ROUND = 2, INNER_FIRE_DURATION = 3, INNER_FIRE_POSSIBILITY = 50,
+		LIFE_TRAP_DAMAGE_PER_ROUND = 3, LIFE_TRAP_DURATION = 3, LIFE_TRAP_POSSIBILITY = 75,
+		ANCIENT_COURSE_DAMAGE_ROUND = 4, ANCIENT_DAMAGE_DURATION = 3, ANCIENT_COURSE_POSIBILITY = 75
+	};
+};
+
+#endif
