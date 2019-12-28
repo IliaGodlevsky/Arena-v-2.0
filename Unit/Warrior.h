@@ -9,6 +9,7 @@ public:
 	Warrior(std::string name, DecisionPtr decision,
 		ItemFactoryPtr factory);
 	Warrior(const Warrior& unit);
+	bool injureUnit(Unit& unit);
 };
 
 #endif
