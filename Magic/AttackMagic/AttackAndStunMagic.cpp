@@ -69,3 +69,10 @@ void AttackAndStunMagic::putOn(Unit& unit)const
 {
 	AttackMagic::putOn(unit);
 }
+
+void AttackAndStunMagic::setStartTime(int round)
+{
+	if (round < Arena::getCurrentRound())
+		round = Arena::getCurrentRound();
+	m_timer.setStartTime(round);
+}

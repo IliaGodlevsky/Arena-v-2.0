@@ -14,6 +14,7 @@ public:
 	bool isBuff()const override;
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
+	void setStartTime(int round);
 protected:
 	bool hasEqualParametres(const MagicPtr& magic)const override;
 	void showData()const override;
