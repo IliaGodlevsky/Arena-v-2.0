@@ -65,7 +65,7 @@ void Magic::showFullInfo()const
 
 void Magic::showShortInfo()const
 {
-	std::cout << "<" << m_name << " : " << m_manaCost << ">";
+	std::cout << "<" << m_name << ": " << m_manaCost << "> ";
 }
 
 const std::string& Magic::getName()const

@@ -21,7 +21,7 @@ public:
 	virtual void showShortInfo()const final;
 public:
 	virtual bool isExpired(int round)const final;
-	virtual void setStartTime(int round) final;
+	virtual void setStartTime(int round);
 	virtual const std::string& getName()const final;
 	virtual bool isEnoughMana(int currentMana)const final;
 	virtual int getCost()const final;
