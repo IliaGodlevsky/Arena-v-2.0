@@ -12,6 +12,7 @@ public:
 		ItemFactoryPtr factory, Factory<Magic>* secondFactory);
 	Wizard(const Wizard& unit);
 	void payMana(int manaCost)override;
+	bool castMagic(Unit& unit, MagicPtr& magic);
 };
 
 #endif
