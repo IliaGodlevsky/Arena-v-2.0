@@ -41,7 +41,7 @@ void Weapon::injureUnit(Unit& unit, int damage)const
 
 WeaponPtr Weapon::clone()const
 {
-	return WeaponPtr(new Weapon(m_name, m_damage,m_CriticalStrikePropability));
+	return WeaponPtr(new Weapon(m_name, m_damage, m_CriticalStrikePropability));
 }
 
 int Weapon::multiplyDamage(int damage)const
