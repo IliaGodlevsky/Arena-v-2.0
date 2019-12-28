@@ -38,3 +38,8 @@ int Timer::getDuration()const
 {
 	return m_duration;
 }
+
+int Timer::getStartTime()const
+{
+	return m_startTime;
+}

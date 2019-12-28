@@ -14,6 +14,7 @@ public:
 	bool isExpired(int round)const;
 	bool operator==(const Timer& durationmeter)const;
 	int getDuration()const;
+	int getStartTime()const;
 protected:
 	int m_duration;
 	int m_startTime;
