@@ -17,7 +17,7 @@ void SilenceMagic::effectUnit(Unit& unit)
 	putOn(unit);
 	Magic::effectUnit(unit);
 	unit.recieveNewState(StatePtr(new MutedUnitState(
-		Timer(m_timer.getDuration(), Arena::getCurrentRound()))));
+		Timer(m_timer.getDuration(), m_timer.getStartTime()))));
 }
 
 void SilenceMagic::uneffectUnit(Unit& unit)const
