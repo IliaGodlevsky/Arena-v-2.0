@@ -21,12 +21,7 @@ void Timer::setStartTime(int round)
 
 bool Timer::isExpired(int round)const
 {
-	if (round - m_startTime > m_duration)
-	{
-		std::cout << "Start time: " << m_startTime << std::endl;
-		return true;
-	}
-	return false;
+	return round - m_startTime > m_duration;
 }
 
 bool Timer::operator==(const Timer& durationmeter)const
