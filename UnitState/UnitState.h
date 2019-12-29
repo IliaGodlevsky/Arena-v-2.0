@@ -22,6 +22,7 @@ public:
 public:
 	virtual void setDecision(DecisionPtr decision) final;
 	virtual void setStartTime(int round)final;
+	virtual int getDuration()const final;
 	virtual bool isExpired(int round)const;
 	virtual void showShortInfo()const final;
 public:
