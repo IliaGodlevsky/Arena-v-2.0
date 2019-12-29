@@ -34,8 +34,8 @@ public:
 	void recieveNewState(StatePtr unitState);
 	void moveIntoNewRound();
 	const std::string& getName()const;
-	bool takeDamage(int damage);
 	bool isAlive()const;
+	bool takeDamage(int damage);
 public:
 	UnitPtr chooseUnitToAttack(const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Gladiators& units)const;
@@ -59,7 +59,7 @@ protected:
 private:
 	std::string m_name;
 	DecisionPtr m_decision;
-private:
+protected:
 	int calculateDamageAbsorb(int damage)const;
 };
 

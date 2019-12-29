@@ -67,10 +67,10 @@ void Unit::recieveNewState(StatePtr Unitstate)
 
 void Unit::moveIntoNewRound()
 {
-	m_magicOnMe.takeOfExpiredMagic(Arena::getCurrentRound());
-	m_stateHolder.takeOfExpiredStates(Arena::getCurrentRound());
 	m_health++;
 	m_mana++;
+	m_magicOnMe.takeOfExpiredMagic(Arena::getCurrentRound());
+	m_stateHolder.takeOfExpiredStates(Arena::getCurrentRound());
 	if (!m_magicBook.canCastAnySpell())
 		m_stateHolder.recieveNewState(StatePtr(new NotEnoughManaUnitState(this)));
 }
