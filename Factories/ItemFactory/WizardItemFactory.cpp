@@ -7,6 +7,7 @@
 #include "../ShieldFactories/ShieldFactory.h"
 #include "../MagicFactories/DebuffFactories/ArmorDebuffFactory.h"
 #include "../MagicFactories/DebuffFactories/DamageDebuffFactory.h"
+#include "../MagicFactories/NeutralFactories/NeutralFactory.h"
 
 
 WizardItemFactory::WizardItemFactory()
@@ -17,5 +18,6 @@ WizardItemFactory::WizardItemFactory()
 	m_magicFactories.push_back(new ArmorAndDamageDebuffFactory());
 	m_magicFactories.push_back(new ArmorDebuffFactory());
 	m_magicFactories.push_back(new DamageDebuffFactory());
+	m_magicFactories.push_back(new NeutralMagicFactory());
 	m_shieldFactories.push_back(new ShieldFactory());
 }
