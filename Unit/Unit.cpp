@@ -6,10 +6,8 @@
 
 #include "Unit.h"
 
-Unit::Unit(std::string name, 
-	DecisionPtr decision, ItemFactoryPtr factory) :
+Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	m_magicBook(this),
-	m_name(name),
 	m_magicOnMe(this),
 	m_decision(decision),
 	m_stateHolder(decision)
@@ -45,6 +43,11 @@ Unit::Unit(const Unit& unit)
 const std::string& Unit::getName()const
 {
 	return m_name;
+}
+
+void Unit::setName(std::string name)
+{
+	m_name = m_decision->setName(name);
 }
 
 void Unit::levelUp()
@@ -140,7 +143,8 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 void Unit::showFullInfo()const
 {
 	std::cout << getName() << " Level: " 
-		<< *m_level << std::endl;
+		<< *m_level << ", " << m_decision->
+		getDecisionType() << std::endl;
 	std::cout << "HP: " << m_health << " MP: "
 		<< m_mana << " DMG: " 
 		<< m_damage + m_weapon->getDamage()
@@ -158,12 +162,7 @@ void Unit::showFullInfo()const
 	m_shield->showShortInfo();
 }
 
-UnitPtr Unit::clone()const
-{
-	return UnitPtr(new Unit(*this));
-}
-
 Unit::~Unit()
 {
-	
+
 }
