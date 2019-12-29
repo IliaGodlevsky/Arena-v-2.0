@@ -1,10 +1,9 @@
 #include "Weapon.h"
 
 #include "../Unit/Unit.h"
-#include "../PossibilityCounter/PosibilityCounter.h"
 
-Weapon::Weapon(std::string name, int damage, int criticalStrikePropability)
-	: m_name(name),m_damage(damage),m_CriticalStrikePropability(criticalStrikePropability)
+Weapon::Weapon(std::string name, int damage)
+	: m_name(name),m_damage(damage)
 {
 
 }
@@ -36,21 +35,12 @@ void Weapon::showShortInfo()const
 
 void Weapon::injureUnit(Unit& unit, int damage)const
 {
-	unit.takeDamage(multiplyDamage(m_damage + damage));
+	unit.takeDamage(m_damage + damage);
 }
 
 WeaponPtr Weapon::clone()const
 {
-	return WeaponPtr(new Weapon(m_name, m_damage, m_CriticalStrikePropability));
-}
-
-int Weapon::multiplyDamage(int damage)const
-{
-	const double DAMAGE_MULTIPLY = 1.5;
-	if (PosibilityCounter(m_CriticalStrikePropability))
-		return static_cast<int>(std::round(damage * DAMAGE_MULTIPLY));
-	else
-		return damage;
+	return WeaponPtr(new Weapon(m_name, m_damage));
 }
 
 int Weapon::getDamage()const
@@ -60,5 +50,5 @@ int Weapon::getDamage()const
 
 WeaponPtr Weapon::getPureWeapon()const
 {
-	return WeaponPtr(new Weapon(m_name, m_damage, ZERO_CRITIAL_PROBABILITY));
+	return WeaponPtr(new Weapon(m_name, m_damage));
 }

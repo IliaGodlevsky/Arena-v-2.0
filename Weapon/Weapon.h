@@ -10,7 +10,7 @@ using WeaponPtr = std::unique_ptr<Weapon>;
 class Weapon
 {
 public:
-	Weapon(std::string name, int damage, int criticalStrikeProbability);
+	Weapon(std::string name, int damage);
 	Weapon(const Weapon& weapon);
 	Weapon& operator=(const Weapon& weapon);
 	virtual ~Weapon() = default;
@@ -22,9 +22,6 @@ public:
 	virtual WeaponPtr getPureWeapon()const final;
 	virtual int getDamage()const final;
 protected:
-	virtual int multiplyDamage(int damage)const;
-protected:
-	int m_CriticalStrikePropability;
 	Battles m_damage;
 	std::string m_name;
 };
