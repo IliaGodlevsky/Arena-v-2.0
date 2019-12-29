@@ -131,9 +131,6 @@
     <ClCompile Include="Magic\WeaponMagic\CorruptionMagic.cpp">
       <Filter>Source\Magic\WeaponMagic</Filter>
     </ClCompile>
-    <ClCompile Include="Magic\WeaponMagic\CrushMagic.cpp">
-      <Filter>Source\Magic\WeaponMagic</Filter>
-    </ClCompile>
     <ClCompile Include="Magic\WeaponMagic\DegenerateMagic.cpp">
       <Filter>Source\Magic\WeaponMagic</Filter>
     </ClCompile>
@@ -248,9 +245,6 @@
     <ClCompile Include="Weapon\MagicSword.cpp">
       <Filter>Source\Equipment\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon\MagicAxe.cpp">
-      <Filter>Source\Equipment\Weapon</Filter>
-    </ClCompile>
     <ClCompile Include="Weapon\MagicSpear.cpp">
       <Filter>Source\Equipment\Weapon</Filter>
     </ClCompile>
@@ -293,9 +287,6 @@
     <ClCompile Include="Factories\ItemFactory\ItemFactory.cpp">
       <Filter>Source\Factories\ItemFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Factories\ItemFactory\OffenceItemFactory.cpp">
-      <Filter>Source\Factories\ItemFactory</Filter>
-    </ClCompile>
     <ClCompile Include="Factories\UnitFactory\UnitFactory.cpp">
       <Filter>Source\Factories\UnitFactory</Filter>
     </ClCompile>
@@ -326,17 +317,8 @@
     <ClCompile Include="Factories\WeaponFactories\MagicSwordFactory.cpp">
       <Filter>Source\Factories\WeaponFactories</Filter>
     </ClCompile>
-    <ClCompile Include="Factories\WeaponFactories\MagicAxeFactory.cpp">
-      <Filter>Source\Factories\WeaponFactories</Filter>
-    </ClCompile>
-    <ClCompile Include="Factories\WeaponFactories\WeaponFactory.cpp">
-      <Filter>Source\Factories\WeaponFactories</Filter>
-    </ClCompile>
     <ClCompile Include="Factories\ShieldFactories\ShieldFactory.cpp">
       <Filter>Source\Factories\ShieldFactories</Filter>
-    </ClCompile>
-    <ClCompile Include="Factories\ItemFactory\DefenceItemFactory.cpp">
-      <Filter>Source\Factories\ItemFactory</Filter>
     </ClCompile>
     <ClCompile Include="Messager\Messager.cpp">
       <Filter>Source\Messager</Filter>
@@ -383,6 +365,12 @@
     <ClCompile Include="Factories\ItemFactory\WarriorItemFactory.cpp">
       <Filter>Source\Factories\ItemFactory</Filter>
     </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\NeutralFactories\NeutralMagicFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\NeutralFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\WeaponFactories\MagicSpearFactory.cpp">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -392,9 +380,6 @@
       <Filter>Source\Unit</Filter>
     </ClInclude>
     <ClInclude Include="Magic\WeaponMagic\CorruptionMagic.h">
-      <Filter>Source\Magic\WeaponMagic</Filter>
-    </ClInclude>
-    <ClInclude Include="Magic\WeaponMagic\CrushMagic.h">
       <Filter>Source\Magic\WeaponMagic</Filter>
     </ClInclude>
     <ClInclude Include="Magic\WeaponMagic\DegenerateMagic.h">
@@ -511,9 +496,6 @@
     <ClInclude Include="Weapon\MagicSword.h">
       <Filter>Source\Equipment\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon\MagicAxe.h">
-      <Filter>Source\Equipment\Weapon</Filter>
-    </ClInclude>
     <ClInclude Include="Weapon\MagicSpear.h">
       <Filter>Source\Equipment\Weapon</Filter>
     </ClInclude>
@@ -559,9 +541,6 @@
     <ClInclude Include="Factories\ItemFactory\ItemFactory.h">
       <Filter>Source\Factories\ItemFactory</Filter>
     </ClInclude>
-    <ClInclude Include="Factories\ItemFactory\OffenceItemFactory.h">
-      <Filter>Source\Factories\ItemFactory</Filter>
-    </ClInclude>
     <ClInclude Include="Factories\MagicFactories\AttackFactories\AttackMagicFactory.h">
       <Filter>Source\Factories\MagicFactories\AttackFactories</Filter>
     </ClInclude>
@@ -586,20 +565,11 @@
     <ClInclude Include="Factories\ArmorFactories\LegionerChainsFactory.h">
       <Filter>Source\Factories\ArmorFactories</Filter>
     </ClInclude>
-    <ClInclude Include="Factories\WeaponFactories\WeaponFactory.h">
-      <Filter>Source\Factories\WeaponFactories</Filter>
-    </ClInclude>
     <ClInclude Include="Factories\WeaponFactories\MagicSwordFactory.h">
-      <Filter>Source\Factories\WeaponFactories</Filter>
-    </ClInclude>
-    <ClInclude Include="Factories\WeaponFactories\MagicAxeFactory.h">
       <Filter>Source\Factories\WeaponFactories</Filter>
     </ClInclude>
     <ClInclude Include="Factories\ShieldFactories\ShieldFactory.h">
       <Filter>Source\Factories\ShieldFactories</Filter>
-    </ClInclude>
-    <ClInclude Include="Factories\ItemFactory\DefenceItemFactory.h">
-      <Filter>Source\Factories\ItemFactory</Filter>
     </ClInclude>
     <ClInclude Include="Messager\Messager.h">
       <Filter>Source\Messager</Filter>
@@ -648,6 +618,15 @@
     </ClInclude>
     <ClInclude Include="Factories\ItemFactory\WarriorItemFactory.h">
       <Filter>Source\Factories\ItemFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\NeutralFactories\NeutralFactory.h">
+      <Filter>Source\Factories\MagicFactories\NeutralFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\WeaponFactories\MagicSpearFactory.h">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\WeaponFactories\MagicClubFactory.h">
+      <Filter>Source\Factories\WeaponFactories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
