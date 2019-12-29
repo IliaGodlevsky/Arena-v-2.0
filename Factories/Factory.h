@@ -31,7 +31,7 @@ Factory<T>::Factory()
 		|| std::is_base_of<Weapon, T>::value
 		|| std::is_base_of<Magic, T>::value
 		|| std::is_base_of<Shield, T>::value, 
-		"Bad template argument: Armor, Weapon, Magic are allowed only\n");
+		"Bad template argument: Armor, Weapon, Magic or Shield are allowed only\n");
 }
 
 template <class T>
