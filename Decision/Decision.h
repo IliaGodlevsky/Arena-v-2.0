@@ -13,6 +13,8 @@ public:
 	virtual UnitPtr chooseUnitToAttack(const Unit&, const Gladiators&)const = 0;
 	virtual MagicPtr chooseMagicToCast(const Unit&, const Gladiators&)const = 0;
 	virtual UnitPtr chooseUnitToCast(const Unit&, const MagicPtr&, const Gladiators&)const = 0;
+	virtual std::string setName(std::string name)const = 0;
+	virtual std::string getDecisionType()const = 0;
 	virtual ~Decision() = default;
 protected:
 	virtual bool isSameUnit(const Unit&, const Unit&)const final;
