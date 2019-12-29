@@ -13,6 +13,8 @@ public:
 		const Gladiators& units)const override;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const override;
+	virtual std::string setName(std::string name)const override;
+	std::string getDecisionType()const override;
 private:
 	bool wantToCastMagic(const Unit& decidingUnit)const;
 private:

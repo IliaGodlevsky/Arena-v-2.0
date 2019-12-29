@@ -63,3 +63,17 @@ UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 	}
 	return units[unitToCastIndex - 1];
 }
+
+std::string HumanDecision::setName(std::string name)const
+{
+	std::cout << "Enter your name: ";
+	while (!iscntrl(std::cin.get()))
+		continue;
+	std::getline(std::cin, name);
+	return name;
+}
+
+std::string HumanDecision::getDecisionType()const
+{
+	return "Human";
+}
