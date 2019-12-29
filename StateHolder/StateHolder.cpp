@@ -68,7 +68,10 @@ void StateHolder::takeOfExpiredStates(int round)
 
 void StateHolder::expireAllStates()
 {
-	m_unitStates.clear();
+	for (size_t i = 0; i < m_unitStates.size(); i++)
+		m_unitStates[i]->setStartTime(Arena::getCurrentRound() -
+			m_unitStates[i]->getDuration() - 1);
+	takeOfExpiredStates(Arena::getCurrentRound());
 }
 
 void StateHolder::showShortInfo()const
