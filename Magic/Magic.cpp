@@ -43,7 +43,7 @@ bool Magic::hasEqualParametres(const MagicPtr& magic)const
 
 bool Magic::isEqual(const MagicPtr& magic)const
 {
-	return hasEqualParametres(magic);
+	return Magic::hasEqualParametres(magic); //!!!! without "Magic::" is stack overflow!!!!!!!! Fuck!!!!!! 2 hours!!!!!!
 }
 
 int Magic::getCost()const
