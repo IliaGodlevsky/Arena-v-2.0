@@ -10,8 +10,8 @@ public:
 private:
 	enum
 	{
-		WIZARD_STAFF_DAMAGE = 7,
-		ARCHMAGE_STAFF_DAMAGE = 5,
+		WIZARD_STAFF_DAMAGE = 5,
+		ARCHMAGE_STAFF_DAMAGE = 4,
 		ANCIENT_STAFF_DAMAGE = 3
 	};
 	enum
