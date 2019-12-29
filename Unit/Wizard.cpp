@@ -4,8 +4,8 @@
 #include "../Arena/Arena.h"
 #include "../Level/WizardLevel.h"
 
-Wizard::Wizard(std::string name, DecisionPtr decision,
-	ItemFactoryPtr factory, Factory<Magic>* secondFactory) : Unit(name, decision, factory)
+Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory, 
+	Factory<Magic>* secondFactory) : Unit(decision, factory)
 {
 	enum {
 		START_DAMAGE = 2, START_ARMOR = 1, START_HEALTH = 175,
@@ -31,9 +31,7 @@ Wizard::Wizard(const Wizard& unit)
 
 void Wizard::payMana(int manaCost)
 {
-	const double MANA_COST_REDUCE = 0.25;
-	manaCost = static_cast<int>(manaCost * (1 - MANA_COST_REDUCE));
-	Unit::payMana(manaCost);
+	Unit::payMana(countManaCost(manaCost));
 }
 
 bool Wizard::castMagic(Unit& unit, MagicPtr& magic)
@@ -41,4 +39,15 @@ bool Wizard::castMagic(Unit& unit, MagicPtr& magic)
 	const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / 3.0));
 	magic->setStartTime(Arena::getCurrentRound() - DURATION_ENHANCE);
 	return Unit::castMagic(unit, magic);
+}
+
+int Wizard::countManaCost(int manaCost)const
+{
+	const double MANA_COST_REDUCE = 0.05;
+	return static_cast<int>(manaCost * (1 - MANA_COST_REDUCE * (*m_level)));
+}
+
+bool Wizard::isEnoughManaFor(const MagicPtr& magic)const
+{
+	return m_mana >= countManaCost(magic->getCost());
 }

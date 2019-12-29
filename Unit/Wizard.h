@@ -8,11 +8,15 @@
 class Wizard : public Unit
 {
 public:
-	Wizard(std::string name, DecisionPtr decision,
-		ItemFactoryPtr factory, Factory<Magic>* secondFactory);
+	Wizard(DecisionPtr decision, ItemFactoryPtr factory, 
+		Factory<Magic>* secondFactory);
 	Wizard(const Wizard& unit);
 	void payMana(int manaCost)override;
 	bool castMagic(Unit& unit, MagicPtr& magic);
+	bool isEnoughManaFor(const MagicPtr& magic)const;
+	~Wizard() = default;
+private:
+	int countManaCost(int manaCost)const;
 };
 
 #endif

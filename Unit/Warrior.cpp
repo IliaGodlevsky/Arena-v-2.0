@@ -3,11 +3,13 @@
 #include "../Level/WarriorLevel.h"
 #include "../Level/Level.h"
 
-Warrior::Warrior(std::string name, DecisionPtr decision,
-	ItemFactoryPtr factory) : Unit(name, decision, factory)
+Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
+	: Unit(decision, factory)
 {
-	enum { START_DAMAGE = 8, START_ARMOR = 3, START_HEALTH = 250, 
-		START_HP_REGEN = 4, START_MANA = 60, START_MP_REGEN = 1 };
+	enum { 
+		START_DAMAGE = 10, START_ARMOR = 3, START_HEALTH = 250, 
+		START_HP_REGEN = 5, START_MANA = 60, START_MP_REGEN = 1
+	};
 	m_damage = Battles(START_DAMAGE);
 	m_armor = Battles(START_ARMOR);
 	m_health = Vitals(START_HEALTH, START_HEALTH, START_HP_REGEN);
@@ -29,9 +31,10 @@ bool Warrior::injureUnit(Unit& unit)
 {
 	if (nullptr == m_weapon)
 		return false;
-	const double DAMAGE_ENHANCE = 0.03;
+	const double DAMAGE_ENHANCE = 0.04;
 	int newDamage = static_cast<int>(std::ceil((m_damage + m_weapon->getDamage()) *
 		(1 + DAMAGE_ENHANCE * (*m_level - 1))));
 	m_weapon->injureUnit(unit, newDamage);
 	return true;
 }
+

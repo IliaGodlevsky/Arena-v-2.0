@@ -6,10 +6,10 @@
 class Warrior : public Unit
 {
 public:
-	Warrior(std::string name, DecisionPtr decision,
-		ItemFactoryPtr factory);
+	Warrior(DecisionPtr decision, ItemFactoryPtr factory);
 	Warrior(const Warrior& unit);
 	bool injureUnit(Unit& unit);
+	~Warrior() = default;
 };
 
 #endif
