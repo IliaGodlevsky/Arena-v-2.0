@@ -15,10 +15,8 @@ WizardFactory::WizardFactory()
 
 UnitPtr WizardFactory::createUnit()const
 {
-	checkThread();
 	index magicFactoryNumber = randomNumber(m_secondMagics.size() - 1);
-	std::string randomName = m_unitsNames[randomNumber(m_unitsNames.size() - 1)];
-	return UnitPtr(new Wizard(randomName, m_decisions[chooseDecsion() - 1],
+	return UnitPtr(new Wizard(m_decisions[chooseDecsion() - 1],
 		m_itemFactory, m_secondMagics[magicFactoryNumber]));
 }
 

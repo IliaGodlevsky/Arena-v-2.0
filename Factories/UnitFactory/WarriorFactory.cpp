@@ -10,7 +10,6 @@ WarriorFactory::WarriorFactory()
 
 UnitPtr WarriorFactory::createUnit()const
 {
-	checkThread();
-	std::string randomName = m_unitsNames[randomNumber(m_unitsNames.size() - 1)];
-	return UnitPtr(new Warrior(randomName, m_decisions[chooseDecsion() - 1], m_itemFactory));
+	return UnitPtr(new Warrior(m_decisions[chooseDecsion() - 1], m_itemFactory));
+
 }
