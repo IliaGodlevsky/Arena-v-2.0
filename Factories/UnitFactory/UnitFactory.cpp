@@ -2,8 +2,6 @@
 #include "../../Decision/HumanDecision.h"
 #include "../../Decision/RandomComputerDecision.h"
 #include "../../Decision/SimpleComputerDecision.h"
-#include "../ItemFactory/DefenceItemFactory.h"
-#include "../ItemFactory/OffenceItemFactory.h"
 
 UnitFactory::UnitFactory():
 	m_decisions(0)
