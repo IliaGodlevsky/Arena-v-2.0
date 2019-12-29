@@ -32,3 +32,13 @@ UnitPtr RandomComputerDecision::chooseUnitToCast(const Unit& decidingUnit,
 		unitToCast = randomNumber(arena.size() - 1);
 	return arena[unitToCast];
 }
+
+std::string RandomComputerDecision::setName(std::string name)const
+{
+	return name;
+}
+
+std::string RandomComputerDecision::getDecisionType()const
+{
+	return "Computer";
+}

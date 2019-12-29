@@ -7,12 +7,15 @@ class RandomComputerDecision : public Decision
 {
 public:
 	RandomComputerDecision();
-	UnitPtr chooseUnitToAttack(const Unit&, 
+	virtual UnitPtr chooseUnitToAttack(const Unit&, 
 		const Gladiators&)const override;
-	MagicPtr chooseMagicToCast(const Unit&, 
+	virtual MagicPtr chooseMagicToCast(const Unit&, 
 		const Gladiators&)const override;
-	UnitPtr chooseUnitToCast(const Unit&, const MagicPtr&, 
+	virtual UnitPtr chooseUnitToCast(const Unit&, const MagicPtr&, 
 		const Gladiators&)const override;
+	virtual std::string setName(std::string name)const final;
+	virtual std::string getDecisionType()const override final;
+	virtual ~RandomComputerDecision() = default;
 };
 
 #endif
