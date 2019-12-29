@@ -47,8 +47,7 @@ bool SilenceMagic::hasEqualParametres(const MagicPtr& magic)const
 
 bool SilenceMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic) &&
-		hasEqualParametres(magic);
+	return hasEqualParametres(magic);
 }
 
 void SilenceMagic::putOn(Unit& unit)const
