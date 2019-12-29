@@ -4,7 +4,7 @@
 #include "MagicWeapon.h"
 
 MagicWeapon::MagicWeapon(std::string name, int damage, MagicPtr magic)
-	: Weapon(name, damage, ZERO_CRITIAL_PROBABILITY), m_magic(magic->clone())
+	: Weapon(name, damage), m_magic(magic->clone())
 {
 
 }
@@ -26,7 +26,7 @@ MagicWeapon& MagicWeapon::operator=(const MagicWeapon& weapon)
 
 void MagicWeapon::injureUnit(Unit& unit, int dmg)const
 {
-	if (unit.takeDamage(multiplyDamage(m_damage + dmg)))
+	if (unit.takeDamage(m_damage + dmg))
 		m_magic->effectUnit(unit);
 }
 
