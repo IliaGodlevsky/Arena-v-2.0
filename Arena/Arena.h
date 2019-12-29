@@ -3,6 +3,8 @@
 #ifndef ARENA_H_
 #define ARENA_H_
 
+#include <thread>
+
 #include "../Globals/Globals.h"
 #include "../Factories/UnitFactory/UnitFactory.h"
 
@@ -23,9 +25,10 @@ public:
 	void goNewRound();
 	void playCastStep();
 	void playAttackStep();
-	void rewardKiller();
+	void rewardKiller(UnitPtr victim);
 	void goNextUnit();
 	void takeOfLosers();
+	void setUnitNames();
 public:
 	void prepareUnits();
 	~Arena() = default;

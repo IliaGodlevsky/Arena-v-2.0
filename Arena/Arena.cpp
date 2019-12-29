@@ -1,12 +1,11 @@
 #include <iostream>
+#include <thread>
 
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
 #include "../Decision/Decision.h"
 #include "../Decision/HumanDecision.h"
 #include "../Factories/UnitFactory/UnitFactory.h"
-#include "../Factories/ItemFactory/DefenceItemFactory.h"
-#include "../Factories/ItemFactory/OffenceItemFactory.h"
 #include "../Factories/UnitFactory/WarriorFactory.h"
 #include "../Factories/UnitFactory/WizardFactory.h"
 
@@ -92,8 +91,14 @@ void Arena::takeOfLosers()
 		{
 			m_units.erase(m_units.begin() + i);
 			i--;
+
 		}
 	}
+}
+
+void Arena::setUnitNames()
+{
+	
 }
 
 bool Arena::isGameOver()const
@@ -103,18 +108,19 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
+	std::vector<std::string> unitsNames;
+	std::thread thread([&]() { unitsNames = loadFromFile("Names.txt"); });
 	enum { WARRIOR = 1, WIZARD };
-	UnitFactoryPtr warriorFactory(new WarriorFactory());
-	UnitFactoryPtr wizardFactory(new WizardFactory());
+	std::vector<UnitFactoryPtr> unitFactories({ UnitFactoryPtr(new WarriorFactory()),
+		UnitFactoryPtr(new WizardFactory()) });
 	index factoryNumber;
 	for (size_t i = 0; i < m_units.size(); i++)
 	{
-		factoryNumber = inputNumber("1. Warrior"
-			" 2. Wizard\nChoose unit type: ", WIZARD, WARRIOR);
-		if (WARRIOR == factoryNumber)
-			m_units[i] = warriorFactory->createUnit();
-		else
-			m_units[i] = wizardFactory->createUnit();
+		factoryNumber = inputNumber("1. Warrior 2. Wizard\nChoose unit type: ", WIZARD, WARRIOR);
+		m_units[i] = unitFactories[factoryNumber-1]->createUnit();
+		if (thread.joinable())
+			thread.join();
+		m_units[i]->setName(unitsNames[randomNumber(unitsNames.size() - 1)]);
 	}
 }
 
@@ -130,10 +136,13 @@ void Arena::playCastStep()
 			" with ", m_magicToCast->getName() + "\n");
 		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
 	}
+	rewardKiller(m_unitToCast);
 }
 
 void Arena::playAttackStep()
 {
+	if (isGameOver())
+		return;
 	m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
 	if (nullptr != m_unitToAttack)
 	{
@@ -142,13 +151,14 @@ void Arena::playAttackStep()
 			" attacked ", m_unitToAttack->getName() + "\n");
 		m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
 	}
+	rewardKiller(m_unitToAttack);
 }
 
-void Arena::rewardKiller()
+void Arena::rewardKiller(UnitPtr victim)
 {
-	if (nullptr != m_unitToCast)
+	if (nullptr != victim)
 	{
-		if (!m_unitToCast->isAlive())
+		if (!victim->isAlive())
 			m_units[m_unitIndex]->levelUp();
 	}
 }
