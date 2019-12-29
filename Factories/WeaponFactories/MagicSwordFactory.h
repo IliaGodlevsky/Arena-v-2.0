@@ -10,8 +10,8 @@ public:
 private:
 	enum Weapons
 	{
-		HELL_SWORD_DAMAGE = 4,
-		GLADIATOR_SWORD_DAMAGE = 6
+		HELL_SWORD_DAMAGE = 7,
+		GLADIATOR_SWORD_DAMAGE = 9
 	};
 	enum Magics
 	{
