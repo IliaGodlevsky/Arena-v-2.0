@@ -29,7 +29,7 @@ Warrior::Warrior(const Warrior& unit)
 
 bool Warrior::injureUnit(Unit& unit)
 {
-	if (nullptr == m_weapon)
+	if (nullptr == (m_weapon))
 		return false;
 	const double DAMAGE_ENHANCE = 0.04;
 	int newDamage = static_cast<int>(std::ceil((m_damage + m_weapon->getDamage()) *
@@ -37,4 +37,3 @@ bool Warrior::injureUnit(Unit& unit)
 	m_weapon->injureUnit(unit, newDamage);
 	return true;
 }
-
