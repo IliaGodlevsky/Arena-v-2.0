@@ -3,7 +3,7 @@
 #include "../Unit/Unit.h"
 
 Staff::Staff(std::string name, int damage)
-	: Weapon(name, damage, ZERO_CRITIAL_PROBABILITY)
+	: Weapon(name, damage)
 {
 
 }
