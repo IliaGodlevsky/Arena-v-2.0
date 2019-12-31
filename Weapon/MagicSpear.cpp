@@ -8,8 +8,7 @@
 MagicSpear::MagicSpear(std::string name, int damage, MagicPtr magic)
 	: MagicWeapon(name, damage, magic->clone())
 {
-	CorruptionMagic* temp = DYNAMIC(CorruptionMagic*, magic);
-	if (nullptr == temp)
+	if (!canCast<CorruptionMagic*>(magic))
 		throw BadWeaponMagicException("BadWeaponMagicException", magic);
 }
 

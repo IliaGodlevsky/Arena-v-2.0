@@ -8,8 +8,7 @@
 MagicClub::MagicClub(std::string name, int damage, MagicPtr magic)
 	: MagicWeapon(name, damage, magic->clone())
 {
-	StunMagic* temp = DYNAMIC(StunMagic*, magic);
-	if (nullptr == temp)
+	if (!canCast<StunMagic*>(magic))
 		throw BadWeaponMagicException("BadWeaponMagicException", magic);
 }
 
