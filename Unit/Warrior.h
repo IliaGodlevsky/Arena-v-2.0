@@ -10,6 +10,9 @@ public:
 	Warrior(const Warrior& unit);
 	bool injureUnit(Unit& unit);
 	~Warrior() = default;
+private:
+	int damageMultiply(int damage)const;
+	bool secondHit(Unit& unit);
 };
 
 #endif

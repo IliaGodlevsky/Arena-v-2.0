@@ -2,6 +2,7 @@
 
 #include "../Level/WarriorLevel.h"
 #include "../Level/Level.h"
+#include "../Messager/Messager.h"
 
 Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
 	: Unit(decision, factory)
@@ -31,9 +32,30 @@ bool Warrior::injureUnit(Unit& unit)
 {
 	if (nullptr == (m_weapon))
 		return false;
-	const double DAMAGE_ENHANCE = 0.04;
-	int newDamage = static_cast<int>(std::ceil((m_damage + m_weapon->getDamage()) *
-		(1 + DAMAGE_ENHANCE * (*m_level - 1))));
-	m_weapon->injureUnit(unit, newDamage);
+	const int multiDamage = damageMultiply(m_damage
+		+ m_weapon->getDamage());
+	m_weapon->injureUnit(unit, multiDamage);
+	if (secondHit(unit))
+		std::cout << getName() << " hitted "
+		<< unit.getName() << " twice\n";
 	return true;
+}
+
+int Warrior::damageMultiply(int damage)const
+{
+	const double DAMAGE_ENHANCE = 0.04;
+	return static_cast<int>(std::ceil(damage  *
+		(1 + DAMAGE_ENHANCE * (*m_level - 1))));
+}
+
+bool Warrior::secondHit(Unit& unit)
+{
+	const int secondHitPossibility = 7;
+	if (PosibilityCounter(secondHitPossibility * (*m_level)))
+	{
+		m_weapon->injureUnit(unit, damageMultiply(m_damage
+			+ m_weapon->getDamage() / 2));
+		return true;
+	}
+	return false;
 }
