@@ -111,6 +111,8 @@
     <ClInclude Include="Armor\Mail.h" />
     <ClInclude Include="Armor\WizardCloak.h" />
     <ClInclude Include="Battles\Battles.h" />
+    <ClInclude Include="Containers\ExpireableContainer.h" />
+    <ClInclude Include="Containers\TemplateContainer.h" />
     <ClInclude Include="Decision\RandomComputerDecision.h" />
     <ClInclude Include="Decision\Decision.h" />
     <ClInclude Include="Decision\HumanDecision.h" />
@@ -146,8 +148,6 @@
     <ClInclude Include="Factories\WeaponFactories\MagicStaffFactory.h" />
     <ClInclude Include="Factories\WeaponFactories\MagicSwordFactory.h" />
     <ClInclude Include="Globals\Globals.h" />
-    <ClInclude Include="ICompareable\ExpireableContainer.h" />
-    <ClInclude Include="ICompareable\TemplateContainer.h" />
     <ClInclude Include="Level\Level.h" />
     <ClInclude Include="Level\WarriorLevel.h" />
     <ClInclude Include="Level\WizardLevel.h" />
