@@ -65,6 +65,11 @@ void Unit::recieveNewState(StatePtr Unitstate)
 	this->m_stateHolder.recieveNewState(Unitstate);
 }
 
+void Unit::takeKilledUnitMagic(const Unit& victim)
+{
+	m_decision->takeMagic(*this, victim);
+}
+
 void Unit::moveIntoNewRound()
 {
 	m_health++;

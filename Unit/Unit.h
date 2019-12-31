@@ -29,6 +29,7 @@ public:
 	virtual bool isEnoughManaFor(const MagicPtr& magic)const;
 	virtual ~Unit() = 0;
 public:
+	void takeKilledUnitMagic(const Unit& victim);
 	void showFullInfo()const;
 	void levelUp();
 	void recieveNewState(StatePtr unitState);
