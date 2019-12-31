@@ -3,28 +3,25 @@
 
 #include "../Globals/Globals.h"
 #include "../UnitState/UnitState.h"
-#include "../Decision/Decision.h"
 #include "../UnitState/ActiveUnitState.h"
+#include "../ICompareable/ExpireableContainer.h"
 
-class StateHolder
+class StateHolder : public ExpireableContainer<StatePtr>
 {
 public:
 	StateHolder(DecisionPtr decision);
-	void recieveNewState(StatePtr unitState);
+	void takeNew(const StatePtr& unitState) override;
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
 		const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit, 
 		const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const;
-	void takeOfExpiredStates(int round);
-	size_t getStateIndex(const StatePtr& state)const;
-	void expireAllStates();
-	void showShortInfo()const;
+	void takeOffExpired(int round) override;
+	void showShortInfo()const override;
 	~StateHolder();
 private:
 	DecisionPtr m_decision;
-	std::vector<StatePtr> m_unitStates;
 	std::unique_ptr<ActiveUnitState> m_activeState;
 };
 

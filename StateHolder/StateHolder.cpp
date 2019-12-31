@@ -4,6 +4,7 @@
 #include "../Arena/Arena.h"
 #include "../UnitState/ActiveUnitState.h"
 #include "../Magic/Magic.h"
+#include "../Decision/Decision.h"
 
 StateHolder::StateHolder(DecisionPtr decision)
 	: m_decision(decision), m_activeState(new ActiveUnitState())
@@ -11,79 +12,57 @@ StateHolder::StateHolder(DecisionPtr decision)
 	m_activeState->setDecision(decision);
 }
 
-void StateHolder::recieveNewState(StatePtr unitState)
+void StateHolder::takeNew(const StatePtr& unitState)
 {
-	index stateIndex = getStateIndex(unitState);
-	if (stateIndex < m_unitStates.size() && !m_unitStates.empty())
-		m_unitStates.erase(m_unitStates.begin() + stateIndex);
+	index stateIndex = TemplateContainer<StatePtr>::getItemIndex(unitState);
+	if (TemplateContainer<StatePtr>::hasItem(unitState))
+		TemplateContainer<StatePtr>::m_items.erase(m_items.begin() + stateIndex);
 	unitState->setDecision(m_decision);
-	m_unitStates.push_back(unitState);
-	std::sort(m_unitStates.begin(), m_unitStates.end(),
+	TemplateContainer<StatePtr>::m_items.push_back(unitState);
+	std::sort(TemplateContainer<StatePtr>::m_items.begin(), TemplateContainer<StatePtr>::m_items.end(),
 		[](const StatePtr& st1, const StatePtr& st2) {return *st1 > *st2; });
-}
-
-size_t StateHolder::getStateIndex(const StatePtr& state)const
-{
-	for (size_t i = 0; i < m_unitStates.size(); i++)
-		if (typeid(*m_unitStates[i]) == typeid(*state))
-			return i;
-	return m_unitStates.size();
 }
 
 UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
-	if (m_unitStates.empty())
+	if (TemplateContainer<StatePtr>::m_items.empty())
 		return m_activeState->chooseUnitToAttack(decidingUnit, units);
-	return m_unitStates[0]->chooseUnitToAttack(decidingUnit, units);
+	return TemplateContainer<StatePtr>::m_items[0]->chooseUnitToAttack(decidingUnit, units);
 }
 
 MagicPtr StateHolder::chooseMagicToCast(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
-	if (m_unitStates.empty())
+	if (TemplateContainer<StatePtr>::m_items.empty())
 		return m_activeState->chooseMagicToCast(decidingUnit, units);
-	return m_unitStates[0]->chooseMagicToCast(decidingUnit, units);
+	return TemplateContainer<StatePtr>::m_items[0]->chooseMagicToCast(decidingUnit, units);
 }
 
 UnitPtr StateHolder::chooseUnitToCast(const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& units)const
 {
-	if (m_unitStates.empty())
+	if (TemplateContainer<StatePtr>::m_items.empty())
 		return m_activeState->chooseUnitToCast(decidingUnit, magicToCast, units);
-	return m_unitStates[0]->chooseUnitToCast(decidingUnit, magicToCast, units);
+	return TemplateContainer<StatePtr>::m_items[0]->chooseUnitToCast(decidingUnit, magicToCast, units);
 }
 
-void StateHolder::takeOfExpiredStates(int round)
+void StateHolder::takeOffExpired(int round)
 {
-	for (size_t i = 0; i < m_unitStates.size(); i++)
+	for (size_t i = 0; i < TemplateContainer<StatePtr>::m_items.size(); i++)
 	{
-		if (m_unitStates[i]->isExpired(Arena::getCurrentRound()))
+		if (TemplateContainer<StatePtr>::m_items[i]->isExpired(Arena::getCurrentRound()))
 		{
-			m_unitStates.erase(m_unitStates.begin() + i);
+			TemplateContainer<StatePtr>::m_items.erase(TemplateContainer<StatePtr>::m_items.begin() + i);
 			i--;
 		}
 	}
 }
 
-void StateHolder::expireAllStates()
-{
-	for (size_t i = 0; i < m_unitStates.size(); i++)
-		m_unitStates[i]->setStartTime(Arena::getCurrentRound() -
-			m_unitStates[i]->getDuration() - 1);
-	takeOfExpiredStates(Arena::getCurrentRound());
-}
-
 void StateHolder::showShortInfo()const
 {
 	std::cout << "States: ";
-	for (size_t i = 0; i < m_unitStates.size(); i++)
-	{
-		std::cout << "<";
-		m_unitStates[i]->showShortInfo();
-		std::cout << "> ";
-	}
-	std::cout << std::endl;
+	TemplateContainer<StatePtr>::showShortInfo();
 }
 
 StateHolder::~StateHolder()
