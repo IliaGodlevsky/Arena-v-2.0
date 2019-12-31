@@ -28,6 +28,7 @@ public:
 public:
 	virtual bool operator <(const UnitState& unitState)const final;
 	virtual bool operator >(const UnitState& unitState)const final;
+	virtual bool isEqual(const StatePtr& unitState)const final;
 protected:
 	Timer m_timer;
 	DecisionPtr m_decision;

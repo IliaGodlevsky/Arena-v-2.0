@@ -146,6 +146,8 @@
     <ClInclude Include="Factories\WeaponFactories\MagicStaffFactory.h" />
     <ClInclude Include="Factories\WeaponFactories\MagicSwordFactory.h" />
     <ClInclude Include="Globals\Globals.h" />
+    <ClInclude Include="ICompareable\ExpireableContainer.h" />
+    <ClInclude Include="ICompareable\TemplateContainer.h" />
     <ClInclude Include="Level\Level.h" />
     <ClInclude Include="Level\WarriorLevel.h" />
     <ClInclude Include="Level\WizardLevel.h" />

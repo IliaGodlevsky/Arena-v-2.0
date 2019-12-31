@@ -56,7 +56,7 @@ bool UnitState::operator>(const UnitState& state)const
 
 void UnitState::showShortInfo()const
 {
-	std::cout << typeid(*this).name() + 6;
+	std::cout << "<" << typeid(*this).name() + 6 << "> ";
 }
 
 int UnitState::getDuration()const 
@@ -64,3 +64,7 @@ int UnitState::getDuration()const
 	return m_timer.getDuration();
 }
 
+bool UnitState::isEqual(const StatePtr& unitState)const
+{
+	return getValue() == unitState->getValue();
+}

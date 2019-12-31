@@ -67,3 +67,8 @@ const std::string& Magic::getName()const
 {
 	return m_name;
 }
+
+int Magic::getDuration()const
+{
+	return m_timer.getDuration();
+}

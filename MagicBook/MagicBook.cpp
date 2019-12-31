@@ -30,7 +30,7 @@ bool MagicBook::canCastAnySpell()const
 
 bool MagicBook::hasMagic(const MagicPtr& magic)const
 {
-	index magicIndex = m_unit->m_magicBook.getMagicIndex(magic);
+	index magicIndex = getMagicIndex(magic);
 	return (magicIndex < size() && !empty());
 }
 

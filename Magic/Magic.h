@@ -37,6 +37,7 @@ public:
 	virtual const std::string& getName()const final;
 	virtual bool isEnoughMana(int currentMana)const final;
 	virtual int getCost()const final;
+	virtual int getDuration()const final;
 	virtual bool isEqual(const MagicPtr& magic)const;
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const = 0;
