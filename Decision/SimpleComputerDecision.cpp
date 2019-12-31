@@ -33,7 +33,7 @@ UnitPtr SimpleComputerDecision::findUnitWithOutChosenMagic(const Unit& decidingU
 	while (count < arena.size())
 	{
 		if (!isWrongSpellToCast(decidingUnit, *arena[i], magicToCast)
-			&& !arena[i]->m_magicOnMe.hasMagic(magicToCast))
+			&& !arena[i]->m_magicOnMe.hasItem(magicToCast))
 			return arena[i];
 		i++;
 		count++;
