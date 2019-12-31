@@ -16,6 +16,6 @@ int main()
 		arena.takeOfLosers();
 		arena.goNextUnit();
 	}
-
+    
 	system("pause");
 }
