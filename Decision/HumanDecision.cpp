@@ -86,11 +86,11 @@ void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 	victim.m_magicBook.magicList();
 	index magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
 	bool wantToTakeMagic;
-	while (decidingUnit.m_magicBook.hasMagic(victim.m_magicBook[magicToTake - 1]))
+	while (decidingUnit.m_magicBook.hasItem(victim.m_magicBook[magicToTake - 1]))
 	{
 		wantToTakeMagic = static_cast<bool>(inputNumber(YOU_HAVE_MAGIC_MSG, YES, NO));
 		if (NO == wantToTakeMagic)
 			magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
 	}
-	decidingUnit.m_magicBook.takeMagic(victim.m_magicBook[magicToTake - 1]);
+	decidingUnit.m_magicBook.takeNew(victim.m_magicBook[magicToTake - 1]);
 }
