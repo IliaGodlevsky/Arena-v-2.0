@@ -28,6 +28,20 @@ bool MagicBook::canCastAnySpell()const
 	return false;
 }
 
+bool MagicBook::hasMagic(const MagicPtr& magic)const
+{
+	index magicIndex = m_unit->m_magicBook.getMagicIndex(magic);
+	return (magicIndex < size() && !empty());
+}
+
+size_t MagicBook::getMagicIndex(const MagicPtr& magic)const
+{
+	for (size_t i = 0; i < size(); i++)
+		if (operator[](i)->isEqual(magic))
+			return i;
+	return size();
+}
+
 void MagicBook::showFullInfo()const
 {
 	for (size_t i = 0; i < size(); i++)

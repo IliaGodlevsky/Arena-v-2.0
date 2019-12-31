@@ -8,6 +8,8 @@ class MagicBook : public Spells
 public:
 	MagicBook(Unit* unit);
 	bool canCastAnySpell()const;
+	size_t getMagicIndex(const MagicPtr& magic)const;
+	bool hasMagic(const MagicPtr& magic)const;
 	void showFullInfo()const;
 	void showShortInfo()const;
 	void magicList()const;
