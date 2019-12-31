@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "Battles.h"
 
 Battles::Battles(int value)
@@ -8,7 +10,7 @@ Battles::Battles(int value)
 
 void Battles::changeValue(int value)
 {
-	this->m_value += value;
+	m_value += value;
 }
 
 Battles::operator int()const
