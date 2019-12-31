@@ -159,7 +159,12 @@ void Arena::rewardKiller(UnitPtr victim)
 	if (nullptr != victim)
 	{
 		if (!victim->isAlive())
+		{
+			std::cout << m_units[m_unitIndex]->getName() << " slashed " <<
+				victim->getName() << std::endl;
 			m_units[m_unitIndex]->levelUp();
+			m_units[m_unitIndex]->takeKilledUnitMagic(*victim);
+		}
 	}
 }
 
