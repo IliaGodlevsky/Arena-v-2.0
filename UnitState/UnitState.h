@@ -24,7 +24,7 @@ public:
 	virtual void setStartTime(int round)final;
 	virtual int getDuration()const final;
 	virtual bool isExpired(int round)const;
-	virtual void showShortInfo()const final;
+	virtual void showShortInfo()const;
 public:
 	virtual bool operator <(const UnitState& unitState)const final;
 	virtual bool operator >(const UnitState& unitState)const final;
