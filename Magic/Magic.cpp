@@ -14,7 +14,7 @@ Magic::~Magic() {}
 void Magic::effectUnit(Unit& unit)
 {
 	setStartTime(Arena::getCurrentRound());
-	unit.m_magicOnMe.takeMagic(clone());
+	unit.m_magicOnMe.takeNew(clone());
 }
 
 bool Magic::isExpired(int round)const
