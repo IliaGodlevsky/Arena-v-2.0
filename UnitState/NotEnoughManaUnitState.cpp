@@ -35,3 +35,8 @@ UnitState::StateValue NotEnoughManaUnitState::getValue()const
 {
 	return UnitState::NOT_ENOGHT_MANA_STATE;
 }
+
+void NotEnoughManaUnitState::showShortInfo()const
+{
+	std::cout << "";
+}

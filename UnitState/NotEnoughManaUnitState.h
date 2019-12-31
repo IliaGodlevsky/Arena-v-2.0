@@ -15,6 +15,7 @@ public:
 		const MagicPtr& magicToCast, 
 		const Gladiators& units)const;
 	bool isExpired(int round)const override;
+	void showShortInfo()const override;
 private:
 	StateValue getValue()const override;
 	Unit* m_unit;
