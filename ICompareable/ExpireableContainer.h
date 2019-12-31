@@ -3,31 +3,39 @@
 
 #include <vector>
 
-#include "../Timer/Timer.h"
 #include "TemplateContainer.h"
 #include "../Arena/Arena.h"
 
 template<class T>
-class ExpireableContainer : TemplateContainer<T>
+class ExpireableContainer : public TemplateContainer<T>
 {
 public:
 	virtual void takeOffExpired(int round) = 0;
 	virtual void expire(size_t itemIndex);
 	virtual void expireAll();
+	virtual void makeExpire(size_t itemIndex)final;
+	virtual ~ExpireableContainer() = default;
 };
 
 template <class T>
-void ExpireableContainer<T>::expire(size_t index)
+void ExpireableContainer<T>::makeExpire(size_t itemIndex)
 {
-	m_items[index]->setStartTime(Arena::getCurrentRound() -
-		m_items[index]->getDuration() - 1);
+	TemplateContainer<T>::m_items[itemIndex]->setStartTime(Arena::getCurrentRound() -
+		TemplateContainer<T>::m_items[itemIndex]->getDuration() - 1);
+}
+
+template <class T>
+void ExpireableContainer<T>::expire(size_t itemIndex)
+{
+	makeExpire(itemIndex);
 	takeOffExpired(Arena::getCurrentRound());
 }
 
 template <class T>
 void ExpireableContainer<T>::expireAll()
 {
-	for (size_t i = 0; i < m_units.size(); i++)
-		expire(i);
+	for (size_t i = 0; i < TemplateContainer<T>::m_items.size(); i++)
+		makeExpire(i);
+	takeOffExpired(Arena::getCurrentRound());
 }
 #endif
