@@ -14,6 +14,7 @@ public:
 	virtual const T& operator[](size_t t)const final;
 	virtual void showShortInfo()const;
 	virtual size_t size()const final;
+	virtual ~TemplateContainer() = default;
 protected:
 	std::vector<T> m_items;
 };
@@ -24,7 +25,7 @@ size_t TemplateContainer<T>::getItemIndex(const T& item)const
 	for (size_t i = 0; i < m_items.size(); i++)
 		if (m_items[i]->isEqual(item))
 			return i;
-	return m_items.size();
+	return size();
 }
 
 template <class T>
@@ -47,6 +48,7 @@ size_t TemplateContainer<T>::size()const
 {
 	return m_items.size();
 }
+
 template <class T>
 const T& TemplateContainer<T>::operator[](size_t t)const
 {
