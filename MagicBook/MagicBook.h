@@ -2,18 +2,16 @@
 #define MAGICBOOK_H_
 
 #include "../Globals/Globals.h"
+#include "../ICompareable/TemplateContainer.h"
 
-class MagicBook : public Spells
+class MagicBook : public TemplateContainer<MagicPtr>
 {
 public:
 	MagicBook(Unit* unit);
 	bool canCastAnySpell()const;
-	size_t getMagicIndex(const MagicPtr& magic)const;
-	bool hasMagic(const MagicPtr& magic)const;
-	void showFullInfo()const;
-	void showShortInfo()const;
+	void showShortInfo()const override;
 	void magicList()const;
-	void takeMagic(const MagicPtr& magic);
+	void takeNew(const MagicPtr& magic) override;
 private:
 	Unit* m_unit; // unit, that have this vector of magic
 };

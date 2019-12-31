@@ -28,36 +28,14 @@ bool MagicBook::canCastAnySpell()const
 	return false;
 }
 
-bool MagicBook::hasMagic(const MagicPtr& magic)const
-{
-	index magicIndex = getMagicIndex(magic);
-	return (magicIndex < size() && !empty());
-}
-
-size_t MagicBook::getMagicIndex(const MagicPtr& magic)const
-{
-	for (size_t i = 0; i < size(); i++)
-		if (operator[](i)->isEqual(magic))
-			return i;
-	return size();
-}
-
-void MagicBook::showFullInfo()const
-{
-	for (size_t i = 0; i < size(); i++)
-		operator[](i)->showFullInfo();
-}
-
 void MagicBook::showShortInfo()const
 {
 	std::cout << "MagicBook: ";
-	for (size_t i = 0; i < size(); i++)
-		operator[](i)->showShortInfo();
-	std::cout << std::endl;
+	TemplateContainer<MagicPtr>::showShortInfo();
 }
 
-void MagicBook::takeMagic(const MagicPtr& magic)
+void MagicBook::takeNew(const MagicPtr& magic)
 {
 	if (nullptr != magic)
-		push_back(MagicPtr(magic->clone()));
+		TemplateContainer<MagicPtr>::m_items.push_back(MagicPtr(magic->clone()));
 }
