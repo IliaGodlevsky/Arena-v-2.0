@@ -18,7 +18,7 @@ Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory,
 	m_level = std::unique_ptr<Level>(new WizardLevel(this));
 	m_mail->putOn(*this);
 	m_shield->putOn(*this);
-	m_magicBook.takeMagic(secondFactory->createItem());
+	m_magicBook.takeNew(secondFactory->createItem());
 }
 
 Wizard::Wizard(const Wizard& unit)
