@@ -9,72 +9,31 @@ MagicOnMe::MagicOnMe(Unit* unit)
 
 }
 
-void MagicOnMe::takeOfExpiredMagic(int round)
+void MagicOnMe::takeOffExpired(int round)
 {
-	for (size_t i = 0; i < size(); i++)
+	for (size_t i = 0; i < TemplateContainer<MagicPtr>::m_items.size(); i++)
 	{
-		if (operator[](i)->isExpired(round))
+		if (TemplateContainer<MagicPtr>::m_items[i]->isExpired(round))
 		{
-			operator[](i)->uneffectUnit(*m_unit);
-			erase(begin() + i);
+			TemplateContainer<MagicPtr>::m_items[i]->uneffectUnit(*m_unit);
+			TemplateContainer<MagicPtr>::m_items.erase
+			(TemplateContainer<MagicPtr>::m_items.begin() + i);
 			i--;
 		}
 	}
 }
 
-void MagicOnMe::takeMagic(const MagicPtr& magic)
+void MagicOnMe::takeNew(const MagicPtr& magic)
 {
-	// number of spell that must be deleted 
-	// from the spells that are on unit
-	index magicIndex = 
-		m_unit->m_magicOnMe.getMagicIndex(magic);
-	if (magicIndex < size() && !empty())
-		m_unit->m_magicOnMe.expireMagic(magicIndex);
-	push_back(MagicPtr(magic->clone()));
+	index magicIndex = TemplateContainer<MagicPtr>::getItemIndex(magic);
+	if (TemplateContainer<MagicPtr>::hasItem(magic))
+		expire(magicIndex);
+	TemplateContainer<MagicPtr>::m_items.push_back(MagicPtr(magic->clone()));
 }
 
-size_t MagicOnMe::getMagicIndex(const MagicPtr& magic)const
-{
-	for (size_t i = 0; i < size(); i++)
-		if (operator[](i)->isEqual(magic))
-			return i;
-	return size();
-}
-
-bool MagicOnMe::hasMagic(const MagicPtr& magic)const
-{
-	index magicIndex = m_unit->m_magicOnMe.getMagicIndex(magic);
-	return (magicIndex < size() && !empty());
-}
-
-void MagicOnMe::expireMagic(size_t magicIndex)
-{
-	operator[](magicIndex)->uneffectUnit(*m_unit);
-	erase(begin() + magicIndex);
-}
-
-void MagicOnMe::expireAllMagic()
-{
-	for (size_t i = 0; i < size(); i++)
-	{
-		expireMagic(i);
-		i--;
-	}
-}
-
-void MagicOnMe::showFullInfo()const
-{
-	for (size_t i = 0; i < size(); i++)
-		operator[](i)->showFullInfo();
-}
 
 void MagicOnMe::showShortInfo()const
 {
 	std::cout << "Effect: ";
-	for (size_t i = 0; i < size(); i++)
-	{
-		std::cout << "<";
-		std::cout << operator[](i)->getName();
-		std::cout << "> ";
-	}
+	TemplateContainer<MagicPtr>::showShortInfo();
 }

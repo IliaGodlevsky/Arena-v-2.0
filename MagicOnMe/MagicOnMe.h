@@ -2,19 +2,15 @@
 #define MAGIC_ON_ME
 
 #include "../Globals/Globals.h"
+#include "../ICompareable/ExpireableContainer.h"
 
-class MagicOnMe : public Spells
+class MagicOnMe : public ExpireableContainer<MagicPtr>
 {
 public:
 	MagicOnMe(Unit* unit);
-	void takeOfExpiredMagic(int round);
-	size_t getMagicIndex(const MagicPtr& magic)const;
-	bool hasMagic(const MagicPtr& magic)const;
-	void expireMagic(size_t magicIndex);
-	void expireAllMagic();
-	void takeMagic(const MagicPtr& magic);
-	void showFullInfo()const;
-	void showShortInfo()const;
+	void takeOffExpired(int round) override;
+	void takeNew(const MagicPtr& magic) override;
+	void showShortInfo()const override;
 private:
 	Unit* m_unit; // unit, that have this vector of spells
 };
