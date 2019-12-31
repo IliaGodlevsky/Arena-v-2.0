@@ -117,8 +117,8 @@
     <Filter Include="Source\Factories\MagicFactories\NeutralFactories">
       <UniqueIdentifier>{a4dc70cd-7b1e-400a-989e-e027414b59dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\ExpireableContainer">
-      <UniqueIdentifier>{5f215024-1604-4ab9-bbbd-e0f83ec55ccc}</UniqueIdentifier>
+    <Filter Include="Source\Containers">
+      <UniqueIdentifier>{958ff028-d1e8-44b3-98de-f0e2cf2fac0d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -631,11 +631,11 @@
     <ClInclude Include="Factories\WeaponFactories\MagicClubFactory.h">
       <Filter>Source\Factories\WeaponFactories</Filter>
     </ClInclude>
-    <ClInclude Include="ICompareable\ExpireableContainer.h">
-      <Filter>Source\ExpireableContainer</Filter>
+    <ClInclude Include="Containers\ExpireableContainer.h">
+      <Filter>Source\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="ICompareable\TemplateContainer.h">
-      <Filter>Source</Filter>
+    <ClInclude Include="Containers\TemplateContainer.h">
+      <Filter>Source\Containers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
