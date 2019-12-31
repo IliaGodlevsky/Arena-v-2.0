@@ -2,7 +2,7 @@
 #define MAGICBOOK_H_
 
 #include "../Globals/Globals.h"
-#include "../ICompareable/TemplateContainer.h"
+#include "../Containers/TemplateContainer.h"
 
 class MagicBook : public TemplateContainer<MagicPtr>
 {

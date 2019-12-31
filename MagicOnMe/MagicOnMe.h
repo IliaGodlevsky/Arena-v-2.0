@@ -2,7 +2,7 @@
 #define MAGIC_ON_ME
 
 #include "../Globals/Globals.h"
-#include "../ICompareable/ExpireableContainer.h"
+#include "../Containers/ExpireableContainer.h"
 
 class MagicOnMe : public ExpireableContainer<MagicPtr>
 {

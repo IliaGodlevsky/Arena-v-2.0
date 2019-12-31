@@ -4,7 +4,7 @@
 #include "../Globals/Globals.h"
 #include "../UnitState/UnitState.h"
 #include "../UnitState/ActiveUnitState.h"
-#include "../ICompareable/ExpireableContainer.h"
+#include "../Containers/ExpireableContainer.h"
 
 class StateHolder : public ExpireableContainer<StatePtr>
 {
