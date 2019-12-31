@@ -35,11 +35,9 @@ bool ArmorDebuffMagic::isBuff()const
 
 bool ArmorDebuffMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
+	if (!canCast<ArmorDebuffMagic*>(magic))
+		return NO;
 	ArmorDebuffMagic* temp = DYNAMIC(ArmorDebuffMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return m_armorReduce == temp->m_armorReduce;
 }
 

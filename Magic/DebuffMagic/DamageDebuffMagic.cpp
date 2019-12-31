@@ -34,11 +34,9 @@ bool DamageDebuffMagic::isBuff()const
 
 bool DamageDebuffMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
+	if (!canCast<DamageDebuffMagic*>(magic))
 		return false;
 	DamageDebuffMagic* temp = DYNAMIC(DamageDebuffMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return m_damageReduce == temp->m_damageReduce;
 }
 

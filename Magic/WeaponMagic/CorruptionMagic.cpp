@@ -49,11 +49,9 @@ void CorruptionMagic::showFullInfo()const
 
 bool CorruptionMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
+	if (!canCast<CorruptionMagic*>(magic))
+		return NO;
 	CorruptionMagic* temp = DYNAMIC(CorruptionMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return m_armorReduce == temp->m_armorReduce;
 }
 

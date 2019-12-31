@@ -30,11 +30,9 @@ bool AttackMagic::isBuff()const
 
 bool AttackMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
+	if (!canCast<AttackMagic*>(magic))
 		return false;
 	AttackMagic* temp = DYNAMIC(AttackMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return m_damage == temp->m_damage;
 }
 

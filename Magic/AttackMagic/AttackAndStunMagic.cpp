@@ -39,10 +39,7 @@ bool AttackAndStunMagic::isBuff()const
 
 bool AttackAndStunMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
-	AttackAndStunMagic* temp = DYNAMIC(AttackAndStunMagic*, magic);
-	if (nullptr == temp)
+	if (!canCast<AttackAndStunMagic*>(magic))
 		return false;
 	return AttackMagic::hasEqualParametres(magic);
 }

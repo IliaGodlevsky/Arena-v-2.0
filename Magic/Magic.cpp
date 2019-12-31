@@ -32,18 +32,13 @@ bool Magic::isEnoughMana(int currentUnitMana)const
 	return currentUnitMana >= m_manaCost;
 }
 
-bool Magic::hasEqualParametres(const MagicPtr& magic)const
+bool Magic::isEqual(const MagicPtr& magic)const
 {
 	if (nullptr == magic)
 		return false;
 	return m_name == magic->m_name
 		&& m_manaCost == magic->m_manaCost
 		&& m_timer == magic->m_timer;
-}
-
-bool Magic::isEqual(const MagicPtr& magic)const
-{
-	return Magic::hasEqualParametres(magic); //!!!! without "Magic::" is stack overflow!!!!!!!! Fuck!!!!!! 2 hours!!!!!!
 }
 
 int Magic::getCost()const

@@ -32,11 +32,9 @@ bool DispelMagic::isBuff()const
 
 bool DispelMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
+	if (!canCast<DispelMagic*>(magic))
+		return NO;
 	DispelMagic* temp = DYNAMIC(DispelMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return Magic::isEqual(magic);
 }
 

@@ -33,11 +33,9 @@ bool PoisonMagic::isBuff()const
 
 bool PoisonMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
+	if (!canCast<PoisonMagic*>(magic))
 		return false;
 	PoisonMagic* temp = DYNAMIC(PoisonMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return m_regenReduce == temp->m_regenReduce;
 }
 

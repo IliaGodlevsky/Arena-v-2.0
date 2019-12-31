@@ -39,11 +39,9 @@ bool ArmorBuffMagic::isBuff()const
 
 bool ArmorBuffMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
+	if (!canCast<ArmorBuffMagic*>(magic))
+		return NO;
 	ArmorBuffMagic* temp = DYNAMIC(ArmorBuffMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return m_armorAmplify == temp->m_armorAmplify;
 }
 

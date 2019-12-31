@@ -37,11 +37,9 @@ bool SilenceMagic::isBuff()const
 
 bool SilenceMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
+	if (!canCast<SilenceMagic*>(magic))
+		return NO;
 	SilenceMagic* temp = DYNAMIC(SilenceMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return Magic::isEqual(magic);
 }
 

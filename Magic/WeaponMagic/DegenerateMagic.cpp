@@ -41,11 +41,9 @@ void DegenerateMagic::putOn(Unit& unit)const
 
 bool DegenerateMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
+	if (!canCast<DegenerateMagic*>(magic))
+		return NO;
 	DegenerateMagic* temp = DYNAMIC(DegenerateMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return m_degeneration == temp->m_degeneration;
 }
 

@@ -33,11 +33,10 @@ void DamageBuffMagic::putOn(Unit& unit)const
 
 bool DamageBuffMagic::hasEqualParametres(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
+	if (!canCast<DamageBuffMagic*>(magic))
+		return NO;
 	DamageBuffMagic* temp = DYNAMIC(DamageBuffMagic*, magic);
-	if (nullptr == temp)
-		return false;
+
 	return m_damageAmplify == temp->m_damageAmplify;
 }
 

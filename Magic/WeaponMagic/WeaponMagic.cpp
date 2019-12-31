@@ -30,9 +30,9 @@ void WeaponMagic::showData()const
 
 bool WeaponMagic::hasEqualParametres(const MagicPtr& magic)const
 {
+	if (!canCast<WeaponMagic*>(magic))
+		return NO;
 	WeaponMagic* temp = DYNAMIC(WeaponMagic*, magic);
-	if (nullptr == temp)
-		return false;
 	return m_propability == temp->m_propability;
 }
 
