@@ -3,9 +3,6 @@
 
 #include "../Globals/Globals.h"
 
-class Decision;
-using DecisionPtr = std::shared_ptr<Decision>;
-
 class Decision
 {
 public:
