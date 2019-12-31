@@ -12,7 +12,7 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	m_decision(decision),
 	m_stateHolder(decision)
 {
-	m_magicBook.takeMagic(factory->createMagic());
+	m_magicBook.takeNew(factory->createMagic());
 	m_weapon = factory->createWeapon();
 	m_mail = factory->createArmor();
 	m_shield = factory->createShield();
@@ -30,9 +30,9 @@ Unit::Unit(const Unit& unit)
 	m_mana(unit.m_mana)
 {
 	for (size_t i = 0; i < unit.m_magicBook.size(); i++)
-		m_magicBook.takeMagic(unit.m_magicBook[i]);
+		m_magicBook.takeNew(unit.m_magicBook[i]);
 	for (size_t i = 0; i < unit.m_magicOnMe.size(); i++)
-		m_magicOnMe.push_back(unit.m_magicOnMe[i]->clone());
+		m_magicOnMe.takeNew(unit.m_magicOnMe[i]->clone());
 	// copy stateHolder
 	m_weapon = unit.m_weapon->clone();
 	m_mail = unit.m_mail->clone();
@@ -62,7 +62,7 @@ bool Unit::isAlive()const
 
 void Unit::recieveNewState(StatePtr Unitstate)
 {
-	this->m_stateHolder.recieveNewState(Unitstate);
+	this->m_stateHolder.takeNew(Unitstate);
 }
 
 void Unit::takeKilledUnitMagic(const Unit& victim)
@@ -74,10 +74,10 @@ void Unit::moveIntoNewRound()
 {
 	m_health++;
 	m_mana++;
-	m_magicOnMe.takeOfExpiredMagic(Arena::getCurrentRound());
-	m_stateHolder.takeOfExpiredStates(Arena::getCurrentRound());
+	m_magicOnMe.takeOffExpired(Arena::getCurrentRound());
+	m_stateHolder.takeOffExpired(Arena::getCurrentRound());
 	if (!m_magicBook.canCastAnySpell())
-		m_stateHolder.recieveNewState(StatePtr(new NotEnoughManaUnitState(this)));
+		m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
 }
 
 bool Unit::isEnoughManaFor(const MagicPtr& magic)const
@@ -157,7 +157,6 @@ void Unit::showFullInfo()const
 	m_stateHolder.showShortInfo();
 	m_magicBook.showShortInfo();
 	m_magicOnMe.showShortInfo();
-	std::cout << std::endl;
 	std::cout << "Weapon: ";
 	m_weapon->showShortInfo();
 	std::cout << std::endl;
