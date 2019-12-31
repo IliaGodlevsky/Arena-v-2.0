@@ -42,3 +42,8 @@ std::string RandomComputerDecision::getDecisionType()const
 {
 	return "Computer";
 }
+
+void RandomComputerDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
+{
+	// coming soon
+}

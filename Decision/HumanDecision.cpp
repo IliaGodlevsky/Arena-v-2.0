@@ -25,10 +25,9 @@ UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit,
 
 bool HumanDecision::wantToCastMagic(const Unit& decidingUnit)const
 {
-	enum { DONT_WANT, WANT };
 	std::cout << decidingUnit.getName() << ", ";
 	m_wantToCastMagic = static_cast<bool>(inputNumber(
-		WANT_TO_CAST_QUESTION, WANT, DONT_WANT));
+		WANT_TO_CAST_QUESTION, YES, NO));
 	return m_wantToCastMagic;
 }
 
@@ -76,4 +75,22 @@ std::string HumanDecision::setName(std::string name)const
 std::string HumanDecision::getDecisionType()const
 {
 	return "Human";
+}
+
+void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
+{
+	const std::string CHOOSE_MAGIC_TO_TAKE_MSG = decidingUnit.getName() + 
+		", choose units spell you want to take: ";
+	const std::string YOU_HAVE_MAGIC_MSG = "You have such a magic. "
+		"Do you really want to take it?: ";
+	victim.m_magicBook.magicList();
+	index magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
+	bool wantToTakeMagic;
+	while (decidingUnit.m_magicBook.hasMagic(victim.m_magicBook[magicToTake - 1]))
+	{
+		wantToTakeMagic = static_cast<bool>(inputNumber(YOU_HAVE_MAGIC_MSG, YES, NO));
+		if (NO == wantToTakeMagic)
+			magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
+	}
+	decidingUnit.m_magicBook.takeMagic(victim.m_magicBook[magicToTake - 1]);
 }

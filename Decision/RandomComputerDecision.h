@@ -16,6 +16,7 @@ public:
 	virtual std::string setName(std::string name)const final;
 	virtual std::string getDecisionType()const override final;
 	virtual ~RandomComputerDecision() = default;
+	virtual void takeMagic(Unit& decidingUnit, const Unit& victim) override final;
 };
 
 #endif
