@@ -11,8 +11,8 @@ DispelMagic::DispelMagic(std::string name, int manaCost)
 
 void DispelMagic::effectUnit(Unit& unit)
 {
-	unit.m_magicOnMe.expireAllMagic();
-	unit.m_stateHolder.expireAllStates();
+	unit.m_magicOnMe.expireAll();
+	unit.m_stateHolder.expireAll();
 }
 
 void DispelMagic::uneffectUnit(Unit& unit)const
