@@ -10,6 +10,11 @@
 
 #include "../Messager/Messager.h"
 
+#define YES true
+#define NO !YES
+#define NULLPTR nullptr
+
+
 class Unit;
 using UnitPtr = std::shared_ptr<Unit>;
 using Gladiators = std::vector<UnitPtr>;
