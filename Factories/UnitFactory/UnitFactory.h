@@ -1,7 +1,7 @@
 #ifndef UNIT_FACTORY_H_
 #define UNIT_FACTORY_H_
 
-#include "../../Unit/Unit.h"
+#include "../../Globals/Globals.h"
 #include "../Factory.h"
 #include "../ItemFactory/ItemFactory.h"
 
