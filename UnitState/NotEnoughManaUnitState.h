@@ -7,6 +7,7 @@ class NotEnoughManaUnitState : public MutedUnitState
 {
 public:
 	NotEnoughManaUnitState(Unit* unit);
+	NotEnoughManaUnitState() = default;
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit,
 		const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit,
@@ -16,9 +17,10 @@ public:
 		const Gladiators& units)const;
 	bool isExpired(int round)const override;
 	void showShortInfo()const override;
+	void getOwner(Unit* unit);
 private:
 	StateValue getValue()const override;
-	Unit* m_unit;
+	Unit* m_unit = nullptr;
 };
 
 #endif

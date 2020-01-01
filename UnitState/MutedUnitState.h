@@ -7,6 +7,7 @@ class MutedUnitState : public UnitState
 {
 public:
 	MutedUnitState(const Timer& timer);
+	MutedUnitState() = default;
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
 		const Gladiators& units)const override;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit, 

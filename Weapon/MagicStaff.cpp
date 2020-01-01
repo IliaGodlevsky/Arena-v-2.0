@@ -8,8 +8,7 @@
 MagicStaff::MagicStaff(std::string name, int damage, MagicPtr magic)
 	: Staff(name, damage), m_magic(magic->clone())
 {
-	DegenerateMagic* temp = DYNAMIC(DegenerateMagic*, magic);
-	if (nullptr == temp)
+	if (!canCast<DegenerateMagic*>(magic))
 		throw BadWeaponMagicException("BadWeaponMagicException", magic);
 }
 
@@ -37,4 +36,9 @@ void MagicStaff::injureUnit(Unit& unit, int damage)const
 WeaponPtr MagicStaff::clone()const
 {
 	return WeaponPtr(new MagicStaff(m_name, m_damage, m_magic->clone()));
+}
+
+WeaponPtr MagicStaff::getPureWeapon()const
+{
+	return clone();
 }

@@ -12,6 +12,7 @@ public:
 public:
 	void injureUnit(Unit& unit, int damage)const;
 	WeaponPtr clone()const;
+	WeaponPtr getPureWeapon()const;
 private:
 	MagicPtr m_magic;
 };

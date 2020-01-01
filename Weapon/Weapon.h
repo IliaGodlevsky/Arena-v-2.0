@@ -19,7 +19,7 @@ public:
 	virtual void showFullInfo()const;
 	virtual void showShortInfo()const final;
 	virtual WeaponPtr clone()const;
-	virtual WeaponPtr getPureWeapon()const final;
+	virtual WeaponPtr getPureWeapon()const;
 	virtual int getDamage()const final;
 protected:
 	Battles m_damage;

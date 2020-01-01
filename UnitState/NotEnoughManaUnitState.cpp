@@ -38,5 +38,10 @@ UnitState::StateValue NotEnoughManaUnitState::getValue()const
 
 void NotEnoughManaUnitState::showShortInfo()const
 {
-	std::cout << "";
+	std::cout << "<Can't cast> ";
+}
+
+void NotEnoughManaUnitState::getOwner(Unit* unit)
+{
+	m_unit = unit;
 }

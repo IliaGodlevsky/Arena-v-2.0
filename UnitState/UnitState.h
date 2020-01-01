@@ -12,6 +12,7 @@ class UnitState
 {
 public:
 	explicit UnitState(const Timer& timer);
+	UnitState() = default;
 	virtual UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
 		const Gladiators& units)const = 0;
 	virtual MagicPtr chooseMagicToCast(const Unit& decidingUnit, 
@@ -31,7 +32,7 @@ public:
 	virtual bool isEqual(const StatePtr& unitState)const final;
 protected:
 	Timer m_timer;
-	DecisionPtr m_decision;
+	DecisionPtr m_decision = nullptr;
 	enum StateValue { ALIVE_STATE, NOT_ENOGHT_MANA_STATE, MUTED_STATE, STUNNED_STATE };
 	// static std::vector<UnitState*> m_attackStates;
 private:
