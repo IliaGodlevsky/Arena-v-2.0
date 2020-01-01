@@ -17,7 +17,7 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	m_weapon = factory->createWeapon();
 	m_mail = factory->createArmor();
 	m_shield = factory->createShield();
-	m_level = std::unique_ptr<Level>(new WizardLevel(this));
+	m_level = std::unique_ptr<Level>(new Level(this));
 }
 
 Unit::Unit(const Unit& unit)
