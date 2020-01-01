@@ -8,6 +8,7 @@ class MagicOnMe : public ExpireableContainer<MagicPtr>
 {
 public:
 	MagicOnMe(Unit* unit);
+	MagicOnMe(Unit* unit, const MagicOnMe& magicOnMe);
 	void takeOffExpired(int round) override;
 	void takeNew(const MagicPtr& magic) override;
 	void showShortInfo()const override;

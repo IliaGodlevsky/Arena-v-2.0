@@ -9,6 +9,13 @@ MagicOnMe::MagicOnMe(Unit* unit)
 
 }
 
+MagicOnMe::MagicOnMe(Unit* unit, const MagicOnMe& magicOnMe)
+	: MagicOnMe(unit)
+{
+	for (size_t i = 0; i < magicOnMe.size(); i++)
+		takeNew(magicOnMe[i]);
+}
+
 void MagicOnMe::takeOffExpired(int round)
 {
 	for (size_t i = 0; i < TemplateContainer<MagicPtr>::m_items.size(); i++)
