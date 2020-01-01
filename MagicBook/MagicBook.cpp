@@ -10,6 +10,13 @@ MagicBook::MagicBook(Unit* unit)
 
 }
 
+MagicBook::MagicBook(Unit* unit, const MagicBook& book)
+	: MagicBook(unit)
+{
+	for (size_t i = 0; i < book.size(); i++)
+		takeNew(book[i]);
+}
+
 void MagicBook::magicList()const
 {
 	for (size_t i = 0; i < size(); i++)
@@ -25,7 +32,7 @@ bool MagicBook::canCastAnySpell()const
 	for (size_t i = 0; i < size(); i++)
 		if (m_unit->isEnoughManaFor(operator[](i)))
 			return true;
-	return false;
+	return false && !TemplateContainer::m_items.empty();
 }
 
 void MagicBook::showShortInfo()const

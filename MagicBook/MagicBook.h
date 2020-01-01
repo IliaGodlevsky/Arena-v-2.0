@@ -8,6 +8,7 @@ class MagicBook : public TemplateContainer<MagicPtr>
 {
 public:
 	MagicBook(Unit* unit);
+	MagicBook(Unit* unit, const MagicBook& book);
 	bool canCastAnySpell()const;
 	void showShortInfo()const override;
 	void magicList()const;
