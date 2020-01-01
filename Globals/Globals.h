@@ -24,7 +24,6 @@ using DecisionPtr = std::shared_ptr<Decision>;
 
 class Magic;
 using MagicPtr = std::unique_ptr<Magic>;
-using Spells = std::vector<MagicPtr>;
 
 typedef unsigned index;
 
