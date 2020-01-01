@@ -3,6 +3,7 @@
 #include "../Arena/Arena.h"
 #include "../Magic/Magic.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
+#include "../Level/WizardLevel.h"
 
 #include "Unit.h"
 
@@ -16,30 +17,24 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	m_weapon = factory->createWeapon();
 	m_mail = factory->createArmor();
 	m_shield = factory->createShield();
+	m_level = std::unique_ptr<Level>(new WizardLevel(this));
 }
 
 Unit::Unit(const Unit& unit)
 	: m_damage(unit.m_damage),
 	m_armor(unit.m_armor),
-	m_magicBook(this),
+	m_magicBook(this, unit.m_magicBook),
 	m_name(unit.m_name),
-	m_magicOnMe(this),
+	m_magicOnMe(this, unit.m_magicOnMe),
 	m_decision(unit.m_decision),
-	m_stateHolder(m_decision),
+	m_stateHolder(unit.m_decision, unit.m_stateHolder),
 	m_health(unit.m_health),
-	m_mana(unit.m_mana)
+	m_mana(unit.m_mana),
+	m_weapon(unit.m_weapon->clone()),
+	m_mail(unit.m_mail->clone()),
+	m_shield(unit.m_shield->clone())
 {
-	for (size_t i = 0; i < unit.m_magicBook.size(); i++)
-		m_magicBook.takeNew(unit.m_magicBook[i]);
-	for (size_t i = 0; i < unit.m_magicOnMe.size(); i++)
-		m_magicOnMe.takeNew(unit.m_magicOnMe[i]);
-	for (size_t i = 0; i < unit.m_stateHolder.size(); i++)
-		m_stateHolder.takeNew(unit.m_stateHolder[i]);
-	m_weapon = unit.m_weapon->clone();
-	m_mail = unit.m_mail->clone();
-	m_shield = unit.m_shield->clone();
-	m_mail->putOn(*this);
-	m_shield->putOn(*this);
+	m_level = std::unique_ptr<Level>(new WizardLevel(this));
 }
 
 const std::string& Unit::getName()const
@@ -173,5 +168,7 @@ UnitPtr Unit::getPureClone()const
 	UnitPtr clone = UnitPtr(new Unit(*this));
 	clone->m_weapon = clone->m_weapon->getPureWeapon();
 	clone->m_shield = clone->m_shield->getPureShield();
+	if (!clone->m_magicBook.canCastAnySpell())
+		clone->m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(clone.get())));
 	return clone;
 }
