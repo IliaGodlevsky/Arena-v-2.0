@@ -44,9 +44,9 @@ void ExpireableContainer<T>::expireAll()
 template <class T>
 void ExpireableContainer<T>::expireIfFound(const T& item)
 {
-	if (TemplateContainer<MagicPtr>::hasItem(magic))
+	if (TemplateContainer<T>::hasItem(item))
 	{
-		index itemIndex = TemplateContainer<MagicPtr>::getItemIndex(magic);
+		index itemIndex = TemplateContainer<T>::getItemIndex(item);
 		expire(itemIndex);
 	}
 }
