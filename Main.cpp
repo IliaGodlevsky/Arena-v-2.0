@@ -1,4 +1,9 @@
 #include "Arena/Arena.h"
+#include "Unit/Unit.h"
+#include "Unit/Wizard.h"
+#include "Factories/UnitFactory/WizardFactory.h"
+#include "Magic/AttackMagic/AttackAndStunMagic.h"
+#include "Magic/DebuffMagic/ArmorDebuffMagic.h"
 
 int main()
 {
