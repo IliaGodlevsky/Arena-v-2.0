@@ -8,7 +8,7 @@ class Level
 public:
 	Level(Unit* unit);
 	Level(const Level&) = default;
-	virtual Level& operator++() = 0;
+	virtual Level& operator++();
 	virtual void setOwner(Unit* unit)final;
 	virtual ~Level() = default;
 	operator int()const;

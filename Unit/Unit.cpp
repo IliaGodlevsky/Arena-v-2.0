@@ -3,7 +3,7 @@
 #include "../Arena/Arena.h"
 #include "../Magic/Magic.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
-#include "../Level/WizardLevel.h"
+#include "../Level/Level.h"
 
 #include "Unit.h"
 
@@ -34,7 +34,7 @@ Unit::Unit(const Unit& unit)
 	m_mail(unit.m_mail->clone()),
 	m_shield(unit.m_shield->clone())
 {
-	m_level = std::unique_ptr<Level>(new WizardLevel(this));
+	m_level = std::unique_ptr<Level>(new Level(this));
 }
 
 const std::string& Unit::getName()const

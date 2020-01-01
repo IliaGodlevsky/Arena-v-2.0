@@ -9,6 +9,11 @@ Level::Level(Unit* unit)
 
 }
 
+Level& Level::operator++()
+{
+	return *this;
+}
+
 Level::operator int()const
 {
 	return m_level;
