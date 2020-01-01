@@ -14,9 +14,7 @@ StateHolder::StateHolder(DecisionPtr decision)
 
 void StateHolder::takeNew(const StatePtr& unitState)
 {
-	index stateIndex = TemplateContainer<StatePtr>::getItemIndex(unitState);
-	if (TemplateContainer<StatePtr>::hasItem(unitState))
-		TemplateContainer<StatePtr>::m_items.erase(m_items.begin() + stateIndex);
+	expireIfFound(unitState);
 	unitState->setDecision(m_decision);
 	TemplateContainer<StatePtr>::m_items.push_back(unitState);
 	std::sort(TemplateContainer<StatePtr>::m_items.begin(), TemplateContainer<StatePtr>::m_items.end(),

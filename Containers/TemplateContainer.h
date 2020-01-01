@@ -31,8 +31,8 @@ size_t TemplateContainer<T>::getItemIndex(const T& item)const
 template <class T>
 bool TemplateContainer<T>::hasItem(const T& item)const
 {
-	size_t magicIndex = getItemIndex(item);
-	return (magicIndex < m_items.size() && !m_items.empty());
+	size_t itemIndex = getItemIndex(item);
+	return (itemIndex < m_items.size() && !m_items.empty());
 }
 
 template <class T>

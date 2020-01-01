@@ -15,6 +15,8 @@ public:
 	virtual void expireAll();
 	virtual void makeExpire(size_t itemIndex)final;
 	virtual ~ExpireableContainer() = default;
+protected:
+	virtual void expireIfFound(const T& item);
 };
 
 template <class T>
@@ -37,5 +39,15 @@ void ExpireableContainer<T>::expireAll()
 	for (size_t i = 0; i < TemplateContainer<T>::m_items.size(); i++)
 		makeExpire(i);
 	takeOffExpired(Arena::getCurrentRound());
+}
+
+template <class T>
+void ExpireableContainer<T>::expireIfFound(const T& item)
+{
+	if (TemplateContainer<MagicPtr>::hasItem(magic))
+	{
+		index itemIndex = TemplateContainer<MagicPtr>::getItemIndex(magic);
+		expire(itemIndex);
+	}
 }
 #endif

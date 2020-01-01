@@ -25,9 +25,7 @@ void MagicOnMe::takeOffExpired(int round)
 
 void MagicOnMe::takeNew(const MagicPtr& magic)
 {
-	index magicIndex = TemplateContainer<MagicPtr>::getItemIndex(magic);
-	if (TemplateContainer<MagicPtr>::hasItem(magic))
-		expire(magicIndex);
+	expireIfFound(magic);
 	TemplateContainer<MagicPtr>::m_items.push_back(MagicPtr(magic->clone()));
 }
 
