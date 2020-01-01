@@ -10,7 +10,9 @@ class StateHolder : public ExpireableContainer<StatePtr>
 {
 public:
 	StateHolder(DecisionPtr decision);
+	StateHolder(DecisionPtr decision, const StateHolder& stateHolder);
 	void takeNew(const StatePtr& unitState) override;
+	void expireIfFound(const StatePtr& unitState) override;
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
 		const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit, 

@@ -5,6 +5,7 @@
 #include "../UnitState/ActiveUnitState.h"
 #include "../Magic/Magic.h"
 #include "../Decision/Decision.h"
+#include "../UnitState/NotEnoughManaUnitState.h"
 
 StateHolder::StateHolder(DecisionPtr decision)
 	: m_decision(decision), m_activeState(new ActiveUnitState())
@@ -12,12 +13,37 @@ StateHolder::StateHolder(DecisionPtr decision)
 	m_activeState->setDecision(decision);
 }
 
+void StateHolder::expireIfFound(const StatePtr& unitState)
+{
+	if (TemplateContainer<StatePtr>::hasItem(unitState))
+	{
+		index stateIndex = getItemIndex(unitState);
+		TemplateContainer<StatePtr>::m_items.erase(
+			TemplateContainer<StatePtr>::m_items.begin() + stateIndex);
+	}
+}
+
+StateHolder::StateHolder(DecisionPtr decision, const StateHolder& stateHolder)
+	: StateHolder(decision)
+{
+	// WARNING:
+	// want to make them clonable, but there is a problem with NotEnoughManaState
+	// (unit will be the same, but must be another, if I create clone method, there
+	// will be stack overflow in copy ctor of Unit
+	for (size_t i = 0; i < stateHolder.size(); i++)
+	{
+		if (!stateHolder[i]->isEqual(StatePtr(new NotEnoughManaUnitState())))
+			takeNew(stateHolder[i]);
+	}
+}
+
 void StateHolder::takeNew(const StatePtr& unitState)
 {
 	expireIfFound(unitState);
 	unitState->setDecision(m_decision);
 	TemplateContainer<StatePtr>::m_items.push_back(unitState);
-	std::sort(TemplateContainer<StatePtr>::m_items.begin(), TemplateContainer<StatePtr>::m_items.end(),
+	std::sort(TemplateContainer<StatePtr>::m_items.begin(), 
+		TemplateContainer<StatePtr>::m_items.end(),
 		[](const StatePtr& st1, const StatePtr& st2) {return *st1 > *st2; });
 }
 
