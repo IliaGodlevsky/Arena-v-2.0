@@ -27,7 +27,7 @@ public:
 	virtual void setName(std::string name)final;
 	virtual void payMana(int manaCost);
 	virtual bool isEnoughManaFor(const MagicPtr& magic)const;
-	virtual ~Unit() = 0;
+	virtual ~Unit() = default;
 public:
 	void takeKilledUnitMagic(const Unit& victim);
 	void showFullInfo()const;
@@ -42,7 +42,7 @@ public:
 	MagicPtr chooseMagicToCast(const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr, 
 		const Gladiators& units)const;
-	//virtual UnitPtr clone()const;
+	virtual UnitPtr getPureClone()const final;
 public:
 	Battles m_damage;
 	Battles m_armor;

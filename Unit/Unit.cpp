@@ -32,12 +32,14 @@ Unit::Unit(const Unit& unit)
 	for (size_t i = 0; i < unit.m_magicBook.size(); i++)
 		m_magicBook.takeNew(unit.m_magicBook[i]);
 	for (size_t i = 0; i < unit.m_magicOnMe.size(); i++)
-		m_magicOnMe.takeNew(unit.m_magicOnMe[i]->clone());
-	// copy stateHolder
+		m_magicOnMe.takeNew(unit.m_magicOnMe[i]);
+	for (size_t i = 0; i < unit.m_stateHolder.size(); i++)
+		m_stateHolder.takeNew(unit.m_stateHolder[i]);
 	m_weapon = unit.m_weapon->clone();
 	m_mail = unit.m_mail->clone();
 	m_shield = unit.m_shield->clone();
 	m_mail->putOn(*this);
+	m_shield->putOn(*this);
 }
 
 const std::string& Unit::getName()const
@@ -166,7 +168,10 @@ void Unit::showFullInfo()const
 	m_shield->showShortInfo();
 }
 
-Unit::~Unit()
+UnitPtr Unit::getPureClone()const
 {
-
+	UnitPtr clone = UnitPtr(new Unit(*this));
+	clone->m_weapon = clone->m_weapon->getPureWeapon();
+	clone->m_shield = clone->m_shield->getPureShield();
+	return clone;
 }
