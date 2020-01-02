@@ -8,6 +8,12 @@ template <class T>
 class TemplateContainer
 {
 public:
+	TemplateContainer() = default;
+	TemplateContainer(const TemplateContainer&) = delete;
+	TemplateContainer(TemplateContainer&&) = default;
+	TemplateContainer& operator=(const TemplateContainer&) = delete;
+	TemplateContainer& operator=(TemplateContainer&&) = default;
+public:
 	virtual void takeNew(const T& item) = 0;
 	size_t getItemIndex(const T& item)const;
 	bool hasItem(const T& item)const;
