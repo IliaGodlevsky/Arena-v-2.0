@@ -7,6 +7,13 @@
 
 int main()
 {
+	//WizardFactory wf;
+	//UnitPtr unit = wf.createUnit();
+	//UnitPtr unit2 = unit->getPureClone();
+	//unit->showFullInfo();
+	//std::cout << std::endl;
+	//unit2->showFullInfo();
+	//system("pause");
 	auto& arena = Arena::getInstance();
 
 	arena.prepareUnits();
