@@ -7,6 +7,11 @@ class RandomComputerDecision : public Decision
 {
 public:
 	RandomComputerDecision();
+	RandomComputerDecision(const RandomComputerDecision&) = default;
+	RandomComputerDecision(RandomComputerDecision&& decision) = default;
+	RandomComputerDecision& operator=(const RandomComputerDecision&) = default;
+	RandomComputerDecision& operator=(RandomComputerDecision&&) = default;
+public:
 	virtual UnitPtr chooseUnitToAttack(const Unit&, 
 		const Gladiators&)const override;
 	virtual MagicPtr chooseMagicToCast(const Unit&, 

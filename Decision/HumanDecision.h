@@ -7,6 +7,11 @@ class HumanDecision : public Decision
 {
 public:
 	HumanDecision();
+	HumanDecision(const HumanDecision&) = default;
+	HumanDecision(HumanDecision&& decision) = default;
+	HumanDecision& operator=(const HumanDecision&) = default;
+	HumanDecision& operator=(HumanDecision&&) = default;
+public:
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
 		const Gladiators& units)const override;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit, 

@@ -7,6 +7,11 @@ class SimpleComputerDecision : public RandomComputerDecision
 {
 public:
 	SimpleComputerDecision();
+	SimpleComputerDecision(const SimpleComputerDecision&) = default;
+	SimpleComputerDecision(SimpleComputerDecision&& decision) = default;
+	SimpleComputerDecision& operator=(const SimpleComputerDecision&) = default;
+	SimpleComputerDecision& operator=(SimpleComputerDecision&&) = default;
+public:
 	UnitPtr chooseUnitToAttack(const Unit&,
 		const Gladiators&)const override;
 	MagicPtr chooseMagicToCast(const Unit&,
