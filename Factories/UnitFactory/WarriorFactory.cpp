@@ -13,3 +13,8 @@ UnitPtr WarriorFactory::createUnit()const
 	return UnitPtr(new Warrior(m_decisions[chooseDecsion() - 1], m_itemFactory));
 
 }
+
+UnitPtr WarriorFactory::operator()()
+{
+	return createUnit();
+}

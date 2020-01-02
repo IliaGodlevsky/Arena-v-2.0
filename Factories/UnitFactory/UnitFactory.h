@@ -13,6 +13,7 @@ class UnitFactory
 public:
 	UnitFactory();
 	virtual UnitPtr createUnit()const = 0;
+	virtual UnitPtr operator()() = 0;
 	virtual ~UnitFactory() = default;
 protected:
 	ItemFactoryPtr m_itemFactory;

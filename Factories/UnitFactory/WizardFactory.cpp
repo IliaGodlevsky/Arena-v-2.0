@@ -20,6 +20,11 @@ UnitPtr WizardFactory::createUnit()const
 		m_itemFactory, m_secondMagics[magicFactoryNumber]));
 }
 
+UnitPtr WizardFactory::operator()()
+{
+	return createUnit();
+}
+
 WizardFactory::~WizardFactory()
 {
 	for (size_t i = 0; i < m_secondMagics.size(); i++)
