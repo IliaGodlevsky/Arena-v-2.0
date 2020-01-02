@@ -96,11 +96,6 @@ void Arena::takeOfLosers()
 	}
 }
 
-void Arena::setUnitNames()
-{
-	
-}
-
 bool Arena::isGameOver()const
 {
 	return m_units.size() == 1;
@@ -110,18 +105,20 @@ void Arena::prepareUnits()
 {
 	std::vector<std::string> unitsNames;
 	std::thread thread([&]() { unitsNames = loadFromFile("Names.txt"); });
-	enum { WARRIOR = 1, WIZARD };
-	std::vector<UnitFactoryPtr> unitFactories({ UnitFactoryPtr(new WarriorFactory()),
-		UnitFactoryPtr(new WizardFactory()) });
-	index factoryNumber;
-	for (size_t i = 0; i < m_units.size(); i++)
-	{
-		factoryNumber = inputNumber("1. Warrior 2. Wizard\nChoose unit type: ", WIZARD, WARRIOR);
-		m_units[i] = unitFactories[factoryNumber-1]->createUnit();
+	auto unitGenerator = [&unitsNames, &thread]()
+	{	
+		enum { WARRIOR = 1, WIZARD };
+		std::vector<UnitFactoryPtr> unitFactories({ 
+			UnitFactoryPtr(new WarriorFactory()),
+			UnitFactoryPtr(new WizardFactory()) });
+		index factoryNumber = inputNumber("1. Warrior 2. Wizard\nChoose unit type: ", WIZARD, WARRIOR);
+		UnitPtr unit = unitFactories[factoryNumber - 1]->createUnit();
 		if (thread.joinable())
 			thread.join();
-		m_units[i]->setName(unitsNames[randomNumber(unitsNames.size() - 1)]);
-	}
+		unit->setName(unitsNames[randomNumber(unitsNames.size() - 1)]);
+		return unit;
+	};
+	std::generate(m_units.begin(), m_units.end(), unitGenerator);
 }
 
 void Arena::playCastStep()
@@ -141,17 +138,18 @@ void Arena::playCastStep()
 
 void Arena::playAttackStep()
 {
-	if (isGameOver())
-		return;
-	m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
-	if (nullptr != m_unitToAttack)
+	if (!isGameOver())
 	{
-		auto& messager = Messager::getIncstance();
-		messager.writeMessage(m_units[m_unitIndex]->getName(),
-			" attacked ", m_unitToAttack->getName() + "\n");
-		m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
+		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
+		if (nullptr != m_unitToAttack)
+		{
+			auto& messager = Messager::getIncstance();
+			messager.writeMessage(m_units[m_unitIndex]->getName(),
+				" attacked ", m_unitToAttack->getName() + "\n");
+			m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
+		}
+		rewardKiller(m_unitToAttack);
 	}
-	rewardKiller(m_unitToAttack);
 }
 
 void Arena::rewardKiller(UnitPtr victim)

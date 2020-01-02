@@ -28,7 +28,6 @@ public:
 	void rewardKiller(UnitPtr victim);
 	void goNextUnit();
 	void takeOfLosers();
-	void setUnitNames();
 public:
 	void prepareUnits();
 	~Arena() = default;
