@@ -32,3 +32,8 @@ ArmPtr Armor::clone()const
 {
 	return ArmPtr(new Armor(m_name, m_armor));
 }
+
+int Armor::getArmor()const
+{
+	return m_armor;
+}

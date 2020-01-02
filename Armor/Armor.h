@@ -16,6 +16,7 @@ public:
 	virtual ~Armor() = default;
 	virtual void showFullInfo()const;
 	virtual void showShortInfo()const final;
+	virtual int getArmor()const final;
 	virtual ArmPtr clone()const;
 protected:
 	std::string m_name;
