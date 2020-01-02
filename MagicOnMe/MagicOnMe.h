@@ -9,6 +9,11 @@ class MagicOnMe : public ExpireableContainer<MagicPtr>
 public:
 	MagicOnMe(Unit* unit);
 	MagicOnMe(Unit* unit, const MagicOnMe& magicOnMe);
+	MagicOnMe(const MagicOnMe&) = delete;
+	MagicOnMe(MagicOnMe&&) = delete;
+	MagicOnMe& operator=(const MagicOnMe&) = delete;
+	MagicOnMe& operator=(MagicOnMe&&) = delete;
+public:
 	void takeOffExpired(int round) override;
 	void takeNew(const MagicPtr& magic) override;
 	void showShortInfo()const override;

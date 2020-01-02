@@ -11,6 +11,11 @@ class StateHolder : public ExpireableContainer<StatePtr>
 public:
 	StateHolder(DecisionPtr decision);
 	StateHolder(DecisionPtr decision, const StateHolder& stateHolder);
+	StateHolder(const StateHolder& stateHolder) = delete;
+	StateHolder(StateHolder&& stateHolder) = delete;
+	StateHolder& operator=(const StateHolder& stateHolder) = delete;
+	StateHolder& operator=(StateHolder&& stateHolder) = delete;
+public:
 	void takeNew(const StatePtr& unitState) override;
 	void expireIfFound(const StatePtr& unitState) override;
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 

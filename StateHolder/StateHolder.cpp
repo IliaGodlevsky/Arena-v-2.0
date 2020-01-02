@@ -24,7 +24,7 @@ void StateHolder::expireIfFound(const StatePtr& unitState)
 }
 
 StateHolder::StateHolder(DecisionPtr decision, const StateHolder& stateHolder)
-	: StateHolder(decision)
+	: StateHolder(m_decision)
 {
 	// WARNING:
 	// want to make them clonable, but there is a problem with NotEnoughManaState
