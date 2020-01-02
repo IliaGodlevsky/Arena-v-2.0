@@ -3,6 +3,7 @@
 
 #include "../PossibilityCounter/PosibilityCounter.h"
 #include "../Globals/Globals.h"
+#include "../Armor/Armor.h"
 
 class Shield;
 using ShieldPtr = std::unique_ptr<Shield>;
@@ -21,8 +22,8 @@ public:
 	virtual ShieldPtr getPureShield()const final;
 	~Shield() = default;
 protected:
+	Armor m_armor;
 	std::string m_name;
-	int m_armor;
 	int m_reflectChance;
 };
 
