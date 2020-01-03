@@ -4,6 +4,7 @@
 #include "../Level/Level.h"
 #include "../Messager/Messager.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
+#include "../PossibilityCounter/PosibilityCounter.h"
 
 Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
 	: Unit(decision, factory)

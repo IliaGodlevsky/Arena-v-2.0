@@ -8,12 +8,6 @@
 #include "../Factories/UnitFactory/UnitFactory.h"
 #include "../Factories/UnitFactory/WarriorFactory.h"
 #include "../Factories/UnitFactory/WizardFactory.h"
-#include "../Factories/ItemFactory/WarriorItemFactory.h"
-#include "../Factories/ItemFactory/WizardItemFactory.h"
-#include "../Factories/MagicFactories/AttackFactories/AttackAndStunMagicFactory.h"
-#include "../Factories/MagicFactories/AttackFactories/AttackMagicFactory.h"
-#include "../Unit/Wizard.h"
-#include "../Unit/Warrior.h"
 
 #include "Arena.h"
 
@@ -39,19 +33,7 @@ Arena::Arena()
 
 void Arena::showMiniature()const
 {
-	std::cout << R"(
-        ___           ___           ___           ___           ___     
-       /\  \         /\  \         /\  \         /\__\         /\  \    
-      /::\  \       /::\  \       /::\  \       /::|  |       /::\  \   
-     /:/\:\  \     /:/\:\  \     /:/\:\  \     /:|:|  |      /:/\:\  \  
-    /::\~\:\  \   /::\~\:\  \   /::\~\:\  \   /:/|:|  |__   /::\~\:\  \ 
-   /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/ |:| /\__\ /:/\:\ \:\__\
-   \/__\:\/:/  / \/_|::\/:/  / \:\~\:\ \/__/ \/__|:|/:/  / \/__\:\/:/  /
-        \::/  /     |:|::/  /   \:\ \:\__\       |:/:/  /       \::/  / 
-        /:/  /      |:|\/__/     \:\ \/__/       |::/  /        /:/  /  
-       /:/  /       |:|  |        \:\__\         /:/  /        /:/  /   
-       \/__/         \|__|         \/__/         \/__/         \/__/    
-)";
+	std::cout << "Welcome to Arena\n";
 }
 
 // Sets number of players, that will play the game
