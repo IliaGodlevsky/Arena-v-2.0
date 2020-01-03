@@ -29,7 +29,7 @@ MagicStaff& MagicStaff::operator=(const MagicStaff& weapon)
 
 void MagicStaff::injureUnit(Unit& unit, int damage)const
 {
-	Staff::injureUnit(unit, m_damage + damage);
+	Staff::injureUnit(unit, damage);
 	m_magic->effectUnit(unit);
 }
 
