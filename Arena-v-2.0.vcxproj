@@ -25,6 +25,8 @@
     <ClCompile Include="Armor\Mail.cpp" />
     <ClCompile Include="Armor\WizardCloak.cpp" />
     <ClCompile Include="Battles\Battles.cpp" />
+    <ClCompile Include="Decision\Alliance.cpp" />
+    <ClCompile Include="Decision\ComputerDecision.cpp" />
     <ClCompile Include="Decision\RandomComputerDecision.cpp" />
     <ClCompile Include="Decision\Decision.cpp" />
     <ClCompile Include="Decision\HumanDecision.cpp" />
@@ -113,6 +115,8 @@
     <ClInclude Include="Battles\Battles.h" />
     <ClInclude Include="Containers\ExpireableContainer.h" />
     <ClInclude Include="Containers\TemplateContainer.h" />
+    <ClInclude Include="Decision\Alliance.h" />
+    <ClInclude Include="Decision\ComputerDecision.h" />
     <ClInclude Include="Decision\RandomComputerDecision.h" />
     <ClInclude Include="Decision\Decision.h" />
     <ClInclude Include="Decision\HumanDecision.h" />
