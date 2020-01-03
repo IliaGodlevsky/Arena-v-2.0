@@ -30,11 +30,15 @@ public:
 	void takeOfLosers();
 public:
 	void prepareUnits();
+	void proposeToPlayTeams();
 	~Arena() = default;
 public:
 	int setNumberOfUnits()const;
 private:
 	void showMiniature()const;
+	std::vector<Gladiators> breakIntoTeams(size_t teamsNumber);
+	void setAllies(std::vector<Gladiators>& teams)const;
+	void pushAlliesToArena(const std::vector<Gladiators>& teams);
 	Arena();
 private:
 	Gladiators m_units;
