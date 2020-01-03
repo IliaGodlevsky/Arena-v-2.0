@@ -117,6 +117,8 @@ void Arena::prepareUnits()
 	std::vector<std::string> unitsNames;
 	std::thread thread([&unitsNames]() { unitsNames 
 		= loadFromFile("Names.txt"); });
+	if (unitsNames.empty())
+		unitsNames = m_reserveNames;
 	auto unitGenerator = [&unitsNames, &thread]()
 	{	
 		enum { WARRIOR = 1, WIZARD };
