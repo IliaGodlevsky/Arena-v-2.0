@@ -377,9 +377,6 @@
     <ClCompile Include="Decision\Alliance.cpp">
       <Filter>Source\Decision</Filter>
     </ClCompile>
-    <ClCompile Include="Decision\ComputerDecision.cpp">
-      <Filter>Source\Decision</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -644,9 +641,6 @@
       <Filter>Source\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Decision\Alliance.h">
-      <Filter>Source\Decision</Filter>
-    </ClInclude>
-    <ClInclude Include="Decision\ComputerDecision.h">
       <Filter>Source\Decision</Filter>
     </ClInclude>
   </ItemGroup>
