@@ -1,6 +1,7 @@
 #include "Shield.h"
 
 #include "../Unit/Unit.h"
+#include "../PossibilityCounter/PosibilityCounter.h"
 
 Shield::Shield(std::string name, int armor,
 	int reflectChance)
