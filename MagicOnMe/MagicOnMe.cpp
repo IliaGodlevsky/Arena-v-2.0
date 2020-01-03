@@ -40,5 +40,11 @@ void MagicOnMe::takeNew(const MagicPtr& magic)
 void MagicOnMe::showShortInfo()const
 {
 	std::cout << "Effect: ";
-	TemplateContainer<MagicPtr>::showShortInfo();
+	for (size_t i = 0; i < size(); i++)
+	{
+		std::cout << "<";
+		std::cout << operator[](i)->getName();
+		std::cout << "> ";
+	}
+	std::cout << std::endl;
 }
