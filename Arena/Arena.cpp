@@ -11,7 +11,6 @@
 
 #include "Arena.h"
 
-
 int Arena::m_round = 0;
 
 // Return the maximum number of players
@@ -90,28 +89,36 @@ void Arena::takeOfLosers()
 		if (!m_units[i]->isAlive())
 		{
 			m_units.erase(m_units.begin() + i);
+			if (m_unitIndex > i)
+				--m_unitIndex;
 			i--;
-
 		}
 	}
 }
 
 bool Arena::isGameOver()const
 {
-	return m_units.size() == 1;
+	size_t alliesCount = 0;
+	for (size_t i = 0; i < m_units.size(); i++)
+		if(m_units[0]->isAlly(m_units[i]))
+			alliesCount++;
+	return alliesCount == m_units.size()
+		|| m_units.size() == 1;
 }
 
 void Arena::prepareUnits()
 {
 	std::vector<std::string> unitsNames;
-	std::thread thread([&]() { unitsNames = loadFromFile("Names.txt"); });
+	std::thread thread([&unitsNames]() { unitsNames 
+		= loadFromFile("Names.txt"); });
 	auto unitGenerator = [&unitsNames, &thread]()
 	{	
 		enum { WARRIOR = 1, WIZARD };
 		std::vector<UnitFactoryPtr> unitFactories({ 
 			UnitFactoryPtr(new WarriorFactory()),
 			UnitFactoryPtr(new WizardFactory()) });
-		index factoryNumber = inputNumber("1. Warrior 2. Wizard\nChoose unit type: ", WIZARD, WARRIOR);
+		index factoryNumber = inputNumber("1. Warrior 2. "
+			"Wizard\nChoose unit type: ", WIZARD, WARRIOR);
 		UnitPtr unit = unitFactories[factoryNumber - 1]->createUnit();
 		if (thread.joinable())
 			thread.join();
@@ -119,6 +126,65 @@ void Arena::prepareUnits()
 		return unit;
 	};
 	std::generate(m_units.begin(), m_units.end(), unitGenerator);
+}
+
+void Arena::proposeToPlayTeams()
+{
+	if (m_units.size() > 2)
+	{
+		const bool answer = static_cast<bool>(inputNumber("Do you want play "
+			"with teams? <1 - yes, 0 - no>: ", YES, NO));
+		if (YES == answer)
+		{
+			size_t teamsNumber = inputNumber("Enter teams"
+				" number: ", m_units.size(), 2);
+			std::vector<Gladiators> teams = breakIntoTeams(teamsNumber);
+			setAllies(teams);
+			pushAlliesToArena(teams);
+		}
+	}
+}
+
+std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
+{
+	
+	index unitIndex;
+	const size_t QUIT = 0;
+	const size_t LIMIT = m_units.size();
+	std::vector<Gladiators> teams;
+	for (size_t i = 0; i < teamsNumber; i++)
+	{
+		teams.resize(i + 1);
+		for (size_t j = 0; j < LIMIT; j++)
+		{
+			showUnits();
+			unitIndex = inputNumber("Choose unit for " + std::to_string(i + 1)
+				+ " team" + " (0 to stop): ", m_units.size(), QUIT);
+			if (QUIT == unitIndex || m_units.empty())
+				break;
+			teams[i].push_back(m_units[unitIndex - 1]);
+			m_units.erase(m_units.begin() + (unitIndex - 1));
+			if (m_units.size() == (teamsNumber - i - 1))
+				break;
+			system("cls");
+		}
+	}
+	return teams;
+}
+
+void Arena::setAllies(std::vector<Gladiators>& teams)const
+{
+	for (size_t i = 0; i < teams.size(); i++)
+		for (size_t j = 0; j < teams[i].size(); j++)
+			for (size_t l = 0; l < teams[i].size(); l++)
+				teams[i][l]->takeAlly(teams[i][j]);
+}
+
+void Arena::pushAlliesToArena(const std::vector<Gladiators>& teams)
+{
+	for (size_t i = 0; i < teams.size(); i++)
+		for (size_t j = 0; j < teams[i].size(); j++)
+			m_units.push_back(teams[i][j]);
 }
 
 void Arena::playCastStep()
@@ -140,7 +206,9 @@ void Arena::playAttackStep()
 {
 	if (!isGameOver())
 	{
-		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
+		std::cout << m_unitIndex << std::endl;
+		system("pause");
+		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units); // ������� �� ������� �������!!
 		if (nullptr != m_unitToAttack)
 		{
 			auto& messager = Messager::getIncstance();
