@@ -212,9 +212,7 @@ void Arena::playAttackStep()
 {
 	if (!isGameOver())
 	{
-		std::cout << m_unitIndex << std::endl;
-		system("pause");
-		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units); // выходит за пределы вектора!!
+		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
 		if (nullptr != m_unitToAttack)
 		{
 			auto& messager = Messager::getIncstance();
