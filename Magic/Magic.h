@@ -12,10 +12,10 @@
 template <typename T, typename D>
 inline bool canCast(const std::unique_ptr<D>& item)
 {
-	if (NULLPTR == item)
-		return NO;
+	if (nullptr == item)
+		return false;
 	T temp = DYNAMIC(T, item);
-	return NULLPTR != temp;
+	return nullptr != temp;
 }
 
 class Magic
