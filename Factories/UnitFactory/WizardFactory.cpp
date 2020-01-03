@@ -16,7 +16,7 @@ WizardFactory::WizardFactory()
 UnitPtr WizardFactory::createUnit()const
 {
 	index magicFactoryNumber = randomNumber(m_secondMagics.size() - 1);
-	return UnitPtr(new Wizard(m_decisions[chooseDecsion() - 1],
+	return UnitPtr(new Wizard(m_decisions[chooseDecsion() - 1]->clone(),
 		m_itemFactory, m_secondMagics[magicFactoryNumber]));
 }
 
