@@ -4,7 +4,7 @@ int main()
 {
 	auto& arena = Arena::getInstance();
 	arena.prepareUnits();
-	/*arena.proposeToPlayTeams();*/
+	arena.proposeToPlayTeams();
 	while (!arena.isGameOver())
 	{
 		arena.showUnits();
