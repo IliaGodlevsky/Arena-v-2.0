@@ -3,13 +3,14 @@
 #include "../Level/Level.h"
 #include "../Arena/Arena.h"
 #include "../Level/WizardLevel.h"
+#include "../UnitState/NotEnoughManaUnitState.h"
 
 Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory, 
 	Factory<Magic>* secondFactory) : Unit(decision, factory)
 {
 	enum {
-		START_DAMAGE = 4, START_ARMOR = 2, START_HEALTH = 180,
-		START_HP_REGEN = 2, START_MANA = 100, START_MP_REGEN = 5
+		START_DAMAGE = 4, START_ARMOR = 2, START_HEALTH = 3,
+		START_HP_REGEN = 2, START_MANA = 50, START_MP_REGEN = 5
 	};
 	m_damage = Battles(START_DAMAGE);
 	m_armor = Battles(START_ARMOR);
@@ -19,6 +20,8 @@ Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory,
 	m_mail->putOn(*this);
 	m_shield->putOn(*this);
 	m_magicBook.takeNew(secondFactory->createItem());
+	if (!m_magicBook.canCastAnySpell())
+		m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
 }
 
 Wizard::Wizard(const Wizard& unit)
@@ -50,4 +53,14 @@ int Wizard::countManaCost(int manaCost)const
 bool Wizard::isEnoughManaFor(const MagicPtr& magic)const
 {
 	return m_mana >= countManaCost(magic->getCost());
+}
+
+UnitPtr Wizard::getPureClone()const
+{
+	Wizard* clone = new Wizard(*this);
+	clone->m_weapon = clone->m_weapon->getPureWeapon();
+	clone->m_shield = clone->m_shield->getPureShield();
+	if (!clone->m_magicBook.canCastAnySpell())
+		clone->m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(clone)));
+	return UnitPtr(clone);
 }

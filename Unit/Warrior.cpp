@@ -3,6 +3,7 @@
 #include "../Level/WarriorLevel.h"
 #include "../Level/Level.h"
 #include "../Messager/Messager.h"
+#include "../UnitState/NotEnoughManaUnitState.h"
 
 Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
 	: Unit(decision, factory)
@@ -18,6 +19,8 @@ Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
 	m_mail->putOn(*this);
 	m_shield->putOn(*this);
 	m_level = std::unique_ptr<Level>(new WarriorLevel(this));
+	if (!m_magicBook.canCastAnySpell())
+		m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
 }
 
 Warrior::Warrior(const Warrior& unit)
