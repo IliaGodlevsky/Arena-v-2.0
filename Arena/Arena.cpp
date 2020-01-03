@@ -8,6 +8,12 @@
 #include "../Factories/UnitFactory/UnitFactory.h"
 #include "../Factories/UnitFactory/WarriorFactory.h"
 #include "../Factories/UnitFactory/WizardFactory.h"
+#include "../Factories/ItemFactory/WarriorItemFactory.h"
+#include "../Factories/ItemFactory/WizardItemFactory.h"
+#include "../Factories/MagicFactories/AttackFactories/AttackAndStunMagicFactory.h"
+#include "../Factories/MagicFactories/AttackFactories/AttackMagicFactory.h"
+#include "../Unit/Wizard.h"
+#include "../Unit/Warrior.h"
 
 #include "Arena.h"
 
@@ -208,7 +214,7 @@ void Arena::playAttackStep()
 	{
 		std::cout << m_unitIndex << std::endl;
 		system("pause");
-		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!!
+		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units); // выходит за пределы вектора!!
 		if (nullptr != m_unitToAttack)
 		{
 			auto& messager = Messager::getIncstance();
