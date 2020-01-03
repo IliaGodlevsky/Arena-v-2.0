@@ -1,5 +1,5 @@
-#ifndef COMPUTER_DECISION_H_
-#define COMPUTER_DECISION_H_
+#ifndef RANDOM_COMPUTER_DECISION_H_
+#define RANDOM_COMPUTER_DECISION_H_
 
 #include "Decision.h"
 
@@ -21,7 +21,8 @@ public:
 	virtual std::string setName(std::string name)const final;
 	virtual std::string getDecisionType()const override final;
 	virtual ~RandomComputerDecision() = default;
-	virtual void takeMagic(Unit& decidingUnit, const Unit& victim) override final;
+	virtual void takeMagic(Unit& decidingUnit, const Unit& victim) override;
+	DecisionPtr clone()const;
 };
 
 #endif

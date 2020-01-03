@@ -21,8 +21,10 @@ public:
 	virtual std::string setName(std::string name)const override;
 	std::string getDecisionType()const override;
 	void takeMagic(Unit& decidingUnit, const Unit& victim) override;
+	DecisionPtr clone()const;
 private:
 	bool wantToCastMagic(const Unit& decidingUnit)const;
+	mutable bool m_wantToCastMagic = false;
 private:
 	const std::string WANT_TO_CAST_QUESTION = "do you want to cast a magic <1 - yes/0 - no>: ";
 	const std::string UNIT_TO_ATTACK_CHOOSE_MESSAGE = "Choose unit to attack: ";

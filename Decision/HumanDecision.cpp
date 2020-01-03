@@ -16,7 +16,7 @@ UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit,
 		units.size(), 1);
 	while (isSameUnit(*units[unitIndex - 1], decidingUnit))
 	{
-		std::cout << "You can't attack yourselt\n";
+		std::cout << "You can't attack this unit\n";
 		unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
 			units.size(), 1);
 	}
@@ -40,8 +40,13 @@ MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit,
 	decidingUnit.m_magicBook.magicList();
 	index magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
 		decidingUnit.m_magicBook.size(), 1);
-	return MagicPtr(decidingUnit.m_magicBook
-		[magicToCastIndex - 1]->clone());
+	while (!decidingUnit.isEnoughManaFor(decidingUnit.m_magicBook[magicToCastIndex - 1]))
+	{
+		std::cout << "Not enough mana for this spell\n";
+		magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
+			decidingUnit.m_magicBook.size(), 1);
+	}
+	return MagicPtr(decidingUnit.m_magicBook[magicToCastIndex - 1]->clone());
 }
 
 UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
@@ -65,10 +70,12 @@ UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 
 std::string HumanDecision::setName(std::string name)const
 {
+	const int NAME_SIZE = 70;
+	char unitName[NAME_SIZE];
+	eatLine();
 	std::cout << "Enter your name: ";
-	while (!iscntrl(std::cin.get()))
-		continue;
-	std::getline(std::cin, name);
+	std::cin.get(unitName, NAME_SIZE);
+	name = unitName;
 	return name;
 }
 
@@ -91,6 +98,13 @@ void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 		wantToTakeMagic = static_cast<bool>(inputNumber(YOU_HAVE_MAGIC_MSG, YES, NO));
 		if (NO == wantToTakeMagic)
 			magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
+		else
+			break;
 	}
 	decidingUnit.m_magicBook.takeNew(victim.m_magicBook[magicToTake - 1]);
+}
+
+DecisionPtr HumanDecision::clone()const
+{
+	return DecisionPtr(new HumanDecision());
 }

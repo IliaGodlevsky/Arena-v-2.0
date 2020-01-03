@@ -18,6 +18,7 @@ public:
 		const Gladiators&)const override;
 	UnitPtr chooseUnitToCast(const Unit&, const MagicPtr&,
 		const Gladiators&)const override;
+	DecisionPtr clone()const;
 private:
 	UnitPtr findUnitWithOutChosenMagic(const Unit&, const MagicPtr&,
 		const Gladiators&)const;

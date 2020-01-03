@@ -20,8 +20,10 @@ UnitPtr RandomComputerDecision::chooseUnitToAttack(const Unit& decidingUnit,
 MagicPtr RandomComputerDecision::chooseMagicToCast(const Unit& decidingUnit,
 	const Gladiators& arena)const
 {
-	return decidingUnit.m_magicBook[randomNumber
-	(decidingUnit.m_magicBook.size() - 1)]->clone();
+	index magicToCastIndex = randomNumber(decidingUnit.m_magicBook.size() - 1);
+	while(!decidingUnit.isEnoughManaFor(decidingUnit.m_magicBook[magicToCastIndex]))
+		magicToCastIndex = randomNumber(decidingUnit.m_magicBook.size() - 1);
+	return decidingUnit.m_magicBook[magicToCastIndex]->clone();
 }
 
 UnitPtr RandomComputerDecision::chooseUnitToCast(const Unit& decidingUnit, 
@@ -46,4 +48,9 @@ std::string RandomComputerDecision::getDecisionType()const
 void RandomComputerDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 {
 	// coming soon
+}
+
+DecisionPtr RandomComputerDecision::clone()const
+{
+	return DecisionPtr(new RandomComputerDecision());
 }
