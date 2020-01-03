@@ -57,6 +57,11 @@ bool Unit::isAlive()const
 	return m_health > 0;
 }
 
+void Unit::takeAlly(const UnitPtr& unit)
+{
+	m_decision->takeAlly(unit);
+}
+
 void Unit::recieveNewState(StatePtr Unitstate)
 {
 	this->m_stateHolder.takeNew(Unitstate);
@@ -80,6 +85,11 @@ void Unit::moveIntoNewRound()
 bool Unit::isEnoughManaFor(const MagicPtr& magic)const
 {
 	return m_mana >= magic->getCost();
+}
+
+bool Unit::isAlly(const UnitPtr& unit)const
+{
+	return m_decision->isAlly(unit);
 }
 
 void Unit::payMana(int manaCost)
