@@ -26,10 +26,6 @@ void StateHolder::expireIfFound(const StatePtr& unitState)
 StateHolder::StateHolder(DecisionPtr decision, const StateHolder& stateHolder)
 	: StateHolder(m_decision)
 {
-	// WARNING:
-	// want to make them clonable, but there is a problem with NotEnoughManaState
-	// (unit will be the same, but must be another, if I create clone method, there
-	// will be stack overflow in copy ctor of Unit)
 	for (size_t i = 0; i < stateHolder.size(); i++)
 	{
 		if (!stateHolder[i]->isEqual(StatePtr(new NotEnoughManaUnitState())))
