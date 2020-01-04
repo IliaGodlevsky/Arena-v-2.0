@@ -15,14 +15,14 @@ inline bool canBeKilled(UnitPtr unit1, UnitPtr unit2)
 	return canKill(unit2, unit1);
 }
 
-bool isDeadAfterBuff(UnitPtr unit1, 
+inline bool isDeadAfterBuff(UnitPtr unit1, 
 	UnitPtr unit2, MagicPtr& magic)
 {
 	unit1->castMagic(*unit1, magic);
 	return canKill(unit1, unit2);
 }
 
-bool isDeadAfterDebuff(UnitPtr unit1,
+inline bool isDeadAfterDebuff(UnitPtr unit1,
 	UnitPtr unit2, MagicPtr& magic)
 {
 	unit1->castMagic(*unit2, magic);
@@ -30,6 +30,15 @@ bool isDeadAfterDebuff(UnitPtr unit1,
 }
 
 SimpleComputerDecision::SimpleComputerDecision()
+{
+
+}
+
+SimpleComputerDecision::SimpleComputerDecision(const SimpleComputerDecision& decision)
+	:RandomComputerDecision(decision),
+	m_magicToCast(decision.m_magicToCast->clone()),
+	m_unitToAttack(decision.m_unitToAttack),
+	m_unitToCast(decision.m_unitToCast)
 {
 
 }
@@ -58,7 +67,7 @@ MagicPtr SimpleComputerDecision::chooseMagicToCast(const Unit& decideingUnit,
 {
 	m_unitToCast = m_unitToAttack = nullptr;
 	m_magicToCast = nullptr;
-	std::pair<UnitPtr, MagicPtr> cast;
+	MagicAim cast;
 	UnitPtr unitToCast = findUnitCanBeKilled(decideingUnit, arena, canBeKilled);
 	if (nullptr != unitToCast)
 	{
@@ -143,8 +152,8 @@ bool SimpleComputerDecision::isDeadAfterCast(const Unit& unit1,
 	return false;
 }
 
-std::pair<UnitPtr, MagicPtr> SimpleComputerDecision::makePair(
-	std::vector<std::pair<UnitPtr, MagicPtr>>& pair)const
+MagicAim SimpleComputerDecision::makePair(
+	std::vector<MagicAim>& pair)const
 {
 	if (pair.empty())
 		return std::make_pair(nullptr, nullptr);
@@ -156,10 +165,10 @@ std::pair<UnitPtr, MagicPtr> SimpleComputerDecision::makePair(
 	}
 }
 
-std::pair<UnitPtr, MagicPtr> SimpleComputerDecision::fingUnitToKillWithWeaponAndMagic(const Unit& decidingUnit,
+MagicAim SimpleComputerDecision::fingUnitToKillWithWeaponAndMagic(const Unit& decidingUnit,
 	const Gladiators& units)const
 {
-	std::vector<std::pair<UnitPtr, MagicPtr>> victims;
+	std::vector<MagicAim> victims;
 	MagicPtr magic = nullptr;
 	if (nullptr != std::get<MAGIC_TO_CAST>(findMagicToKillUnit(decidingUnit, units))
 		|| nullptr != findUnitCanBeKilled(decidingUnit, units, canKill))
@@ -180,10 +189,10 @@ std::pair<UnitPtr, MagicPtr> SimpleComputerDecision::fingUnitToKillWithWeaponAnd
 	return makePair(victims);
 }
 
-std::pair<UnitPtr, MagicPtr> SimpleComputerDecision::findMagicToKillUnit(
+MagicAim SimpleComputerDecision::findMagicToKillUnit(
 	const Unit& decidingUnit, const Gladiators& units)const
 {
-	std::vector<std::pair<UnitPtr, MagicPtr>> magics;
+	std::vector<MagicAim> magics;
 	UnitPtr enemy = nullptr;
 	UnitPtr me = nullptr;
 	MagicPtr magic = nullptr;
@@ -207,10 +216,10 @@ std::pair<UnitPtr, MagicPtr> SimpleComputerDecision::findMagicToKillUnit(
 	return makePair(magics);
 }
 
-std::pair<UnitPtr,MagicPtr> SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy, 
+MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 	const UnitPtr& decidingUnit)const
 { 
-	std::vector<std::pair<UnitPtr,MagicPtr>> magics;
+	std::vector<MagicAim> magics;
 	UnitPtr me = nullptr;
 	UnitPtr aim = nullptr;
 	MagicPtr magic = nullptr;
@@ -248,5 +257,5 @@ std::string SimpleComputerDecision::getDecisionType()const
 
 DecisionPtr SimpleComputerDecision::clone()const
 {
-	return DecisionPtr(new SimpleComputerDecision());
+	return DecisionPtr(new SimpleComputerDecision(*this));
 }
