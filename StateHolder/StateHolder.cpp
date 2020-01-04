@@ -3,6 +3,8 @@
 #include "../Unit/Unit.h"
 #include "../Arena/Arena.h"
 #include "../UnitState/ActiveUnitState.h"
+#include "../UnitState/StunUnitState.h"
+#include "../UnitState/MutedUnitState.h"
 #include "../Magic/Magic.h"
 #include "../Decision/Decision.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
@@ -77,6 +79,16 @@ void StateHolder::takeOffExpired(int round)
 			i--;
 		}
 	}
+}
+
+bool StateHolder::isStunned()const
+{
+	return hasItem(StatePtr(new StunUnitState(Timer(0))));
+}
+
+bool StateHolder::isMuted()const
+{
+	return hasItem(StatePtr(new MutedUnitState(Timer(0))));
 }
 
 void StateHolder::showShortInfo()const

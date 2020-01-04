@@ -26,6 +26,8 @@ public:
 		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void takeOffExpired(int round) override;
 	void showShortInfo()const override;
+	bool isStunned()const;
+	bool isMuted()const;
 	~StateHolder();
 private:
 	DecisionPtr m_decision;
