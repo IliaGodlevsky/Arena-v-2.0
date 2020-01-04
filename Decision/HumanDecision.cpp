@@ -76,7 +76,7 @@ std::string HumanDecision::setName(std::string name)const
 	std::cout << "Enter your name: ";
 	std::cin.get(unitName, NAME_SIZE);
 	name = unitName;
-	while (name == "\n" || name.empty())
+	while ("\n" == name || name.empty())
 	{
 		eatLine();
 		std::cout << "Enter your name: ";
@@ -113,5 +113,5 @@ void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 
 DecisionPtr HumanDecision::clone()const
 {
-	return DecisionPtr(new HumanDecision());
+	return DecisionPtr(new HumanDecision(*this));
 }
