@@ -36,11 +36,11 @@ SimpleComputerDecision::SimpleComputerDecision()
 
 SimpleComputerDecision::SimpleComputerDecision(const SimpleComputerDecision& decision)
 	:RandomComputerDecision(decision),
-	m_magicToCast(decision.m_magicToCast->clone()),
 	m_unitToAttack(decision.m_unitToAttack),
 	m_unitToCast(decision.m_unitToCast)
 {
-
+	if (nullptr != m_magicToCast)
+		m_magicToCast = decision.m_magicToCast->clone();
 }
 
 UnitPtr SimpleComputerDecision::chooseUnitToAttack(const Unit& decidingUnit,
