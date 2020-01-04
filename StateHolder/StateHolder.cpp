@@ -37,6 +37,8 @@ StateHolder::StateHolder(DecisionPtr decision, const StateHolder& stateHolder)
 
 void StateHolder::takeNew(const StatePtr& unitState)
 {
+	if (nullptr == unitState)
+		return;
 	expireIfFound(unitState);
 	unitState->setDecision(m_decision);
 	TemplateContainer<StatePtr>::m_items.push_back(unitState);
@@ -83,12 +85,13 @@ void StateHolder::takeOffExpired(int round)
 
 bool StateHolder::isStunned()const
 {
-	return hasItem(StatePtr(new StunUnitState(Timer(0))));
+	return hasItem(StatePtr(new StunUnitState(Timer(ZERO_DURATION))));
 }
 
 bool StateHolder::isMuted()const
 {
-	return hasItem(StatePtr(new MutedUnitState(Timer(0))));
+	return hasItem(StatePtr(new MutedUnitState(Timer(ZERO_DURATION))))
+		|| hasItem(StatePtr(new NotEnoughManaUnitState()));
 }
 
 void StateHolder::showShortInfo()const
