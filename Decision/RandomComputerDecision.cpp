@@ -61,5 +61,5 @@ void RandomComputerDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 
 DecisionPtr RandomComputerDecision::clone()const
 {
-	return DecisionPtr(new RandomComputerDecision());
+	return DecisionPtr(new RandomComputerDecision(*this));
 }
