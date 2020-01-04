@@ -4,6 +4,7 @@
 #include "../Magic/Magic.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
 #include "../Level/Level.h"
+#include "../Decision/RandomComputerDecision.h"
 
 #include "Unit.h"
 
@@ -117,13 +118,12 @@ bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 
 bool Unit::takeDamage(int damage)
 {
-	auto& messager = Messager::getIncstance();
 	if (!m_shield->isReflectChance())
 	{
 		m_health = m_health - calculateDamageAbsorb(damage);
 		return true;
 	}
-	messager.writeMessage(calculateDamageAbsorb(damage), " was reflected\n");
+	std::cout << "But attack was reflected\n";
 	return false;
 }
 

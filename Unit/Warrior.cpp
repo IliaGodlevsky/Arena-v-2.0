@@ -10,8 +10,8 @@ Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
 	: Unit(decision, factory)
 {
 	enum { 
-		START_DAMAGE = 10, START_ARMOR = 3, START_HEALTH = 250, 
-		START_HP_REGEN = 5, START_MANA = 60, START_MP_REGEN = 1
+		START_DAMAGE = 14, START_ARMOR = 3, START_HEALTH = 250, 
+		START_HP_REGEN = 6, START_MANA = 60, START_MP_REGEN = 2
 	};
 	m_damage = Battles(START_DAMAGE);
 	m_armor = Battles(START_ARMOR);
@@ -37,17 +37,15 @@ bool Warrior::injureUnit(Unit& unit)
 	if (nullptr == (m_weapon))
 		return false;
 	const int multiDamage = damageMultiply(m_damage
-		+ m_weapon->getDamage());
+		+ m_weapon->getDamage()) - m_weapon->getDamage();
 	m_weapon->injureUnit(unit, multiDamage);
-	if (secondHit(unit))
-		std::cout << getName() << " hitted "
-		<< unit.getName() << " twice\n";
+	secondHit(unit);
 	return true;
 }
 
 int Warrior::damageMultiply(int damage)const
 {
-	const double DAMAGE_ENHANCE = 0.04;
+	const double DAMAGE_ENHANCE = 0.05;
 	return static_cast<int>(std::ceil(damage  *
 		(1 + DAMAGE_ENHANCE * (*m_level - 1))));
 }
@@ -57,8 +55,11 @@ bool Warrior::secondHit(Unit& unit)
 	const int secondHitPossibility = 7;
 	if (PosibilityCounter(secondHitPossibility * (*m_level)))
 	{
-		m_weapon->injureUnit(unit, damageMultiply(m_damage
-			+ m_weapon->getDamage() / 2));
+		std::cout << getName() << " hitted "
+			<< unit.getName() << " twice\n";
+		const int multiDamage = damageMultiply(m_damage + m_weapon->getDamage()) / 2 
+			- m_weapon->getDamage();
+		m_weapon->injureUnit(unit, multiDamage);
 		return true;
 	}
 	return false;
