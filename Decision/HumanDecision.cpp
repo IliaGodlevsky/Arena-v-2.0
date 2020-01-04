@@ -11,7 +11,7 @@ HumanDecision::HumanDecision()
 UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
-	std::cout << decidingUnit.getName() << " choose unit to attack\n";
+	std::cout << decidingUnit.getName() << ", ";
 	index unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
 		units.size(), 1);
 	while (isSameUnit(*units[unitIndex - 1], decidingUnit))
@@ -76,6 +76,13 @@ std::string HumanDecision::setName(std::string name)const
 	std::cout << "Enter your name: ";
 	std::cin.get(unitName, NAME_SIZE);
 	name = unitName;
+	while (name == "\n" || name.empty())
+	{
+		eatLine();
+		std::cout << "Enter your name: ";
+		std::cin.get(unitName, NAME_SIZE);
+		name = unitName;
+	}
 	return name;
 }
 
