@@ -112,6 +112,7 @@ void Arena::prepareUnits()
 		if (thread.joinable())
 			thread.join();
 		unit->setName(unitsNames[randomNumber(unitsNames.size() - 1)]);
+		system("cls");
 		return unit;
 	};
 	std::generate(m_units.begin(), m_units.end(), unitGenerator);
