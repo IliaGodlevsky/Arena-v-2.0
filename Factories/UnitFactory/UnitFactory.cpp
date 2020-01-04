@@ -13,6 +13,6 @@ UnitFactory::UnitFactory():
 
 index UnitFactory::chooseDecsion()const
 {
-	return inputNumber("1. Human \t2. RandomComputer\n"
-		"3. SimpleComputer\nChoose decision: ", m_decisions.size(), 1);
+	return inputNumber("1. Human\n2. \"Dump\"comp\n"
+		"3. \"Clever\" comp\nChoose decision: ", m_decisions.size(), 1);
 }
