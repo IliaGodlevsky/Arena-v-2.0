@@ -21,8 +21,12 @@ MagicPtr RandomComputerDecision::chooseMagicToCast(const Unit& decidingUnit,
 	const Gladiators& arena)const
 {
 	index magicToCastIndex = randomNumber(decidingUnit.m_magicBook.size() - 1);
-	while(!decidingUnit.isEnoughManaFor(decidingUnit.m_magicBook[magicToCastIndex]))
+	while (!decidingUnit.isEnoughManaFor(decidingUnit.m_magicBook[magicToCastIndex]))
+	{
+		if (1 == decidingUnit.m_magicBook.size())
+			return nullptr;
 		magicToCastIndex = randomNumber(decidingUnit.m_magicBook.size() - 1);
+	}
 	return decidingUnit.m_magicBook[magicToCastIndex]->clone();
 }
 
@@ -42,12 +46,17 @@ std::string RandomComputerDecision::setName(std::string name)const
 
 std::string RandomComputerDecision::getDecisionType()const
 {
-	return "Computer";
+	return "Random computer";
 }
 
 void RandomComputerDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 {
-	// coming soon
+	size_t i = 0;
+	size_t limit = victim.m_magicBook.size();
+	while (i < limit && decidingUnit.m_magicBook.hasItem(victim.m_magicBook[i]))
+		i++;
+	if (i < limit)
+		decidingUnit.m_magicBook.takeNew(victim.m_magicBook[i]);
 }
 
 DecisionPtr RandomComputerDecision::clone()const

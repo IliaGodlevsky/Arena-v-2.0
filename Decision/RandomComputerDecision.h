@@ -19,7 +19,7 @@ public:
 	virtual UnitPtr chooseUnitToCast(const Unit&, const MagicPtr&, 
 		const Gladiators&)const override;
 	virtual std::string setName(std::string name)const final;
-	virtual std::string getDecisionType()const override final;
+	virtual std::string getDecisionType()const override;
 	virtual ~RandomComputerDecision() = default;
 	virtual void takeMagic(Unit& decidingUnit, const Unit& victim) override;
 	DecisionPtr clone()const;
