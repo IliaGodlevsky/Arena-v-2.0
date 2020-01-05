@@ -32,7 +32,7 @@ bool MagicBook::canCastAnySpell()const
 	for (size_t i = 0; i < size(); i++)
 		if (m_unit->isEnoughManaFor(operator[](i)))
 			return true;
-	return false && !TemplateContainer::m_items.empty();
+	return false && !m_items.empty();
 }
 
 void MagicBook::showShortInfo()const
@@ -44,5 +44,5 @@ void MagicBook::showShortInfo()const
 void MagicBook::takeNew(const MagicPtr& magic)
 {
 	if (nullptr != magic)
-		TemplateContainer<MagicPtr>::m_items.push_back(MagicPtr(magic->clone()));
+		m_items.push_back(MagicPtr(magic->clone()));
 }
