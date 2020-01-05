@@ -41,6 +41,8 @@ SimpleComputerDecision::SimpleComputerDecision(const SimpleComputerDecision& dec
 {
 	if (nullptr != m_magicToCast)
 		m_magicToCast = decision.m_magicToCast->clone();
+	else
+		m_magicToCast = nullptr;
 }
 
 UnitPtr SimpleComputerDecision::chooseUnitToAttack(const Unit& decidingUnit,
