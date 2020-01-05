@@ -40,7 +40,7 @@ private:
 		const Gladiators&)const;
 	UnitPtr findUnitCanBeKilled(const Unit&, const Gladiators&, Predicate)const;
 	MagicAim findMagicToKillUnit(const Unit&, const Gladiators&)const;
-	MagicAim fingUnitToKillWithWeaponAndMagic(const Unit&, const Gladiators&)const;
+	MagicAim findUnitToKillWithWeaponAndMagic(const Unit&, const Gladiators&)const;
 	MagicAim findMagicToPreventKill(const UnitPtr&enemy, const UnitPtr& deciding)const;
 	bool isDeadAfterCast(const Unit& unit1, const UnitPtr& unit2, 
 		MagicPtr& magic,CastPredicate castPredicate, DecisionPredicate predicate)const;
