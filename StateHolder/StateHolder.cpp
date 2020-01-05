@@ -17,11 +17,10 @@ StateHolder::StateHolder(DecisionPtr decision)
 
 void StateHolder::expireIfFound(const StatePtr& unitState)
 {
-	if (TemplateContainer<StatePtr>::hasItem(unitState))
+	if (hasItem(unitState))
 	{
 		index stateIndex = getItemIndex(unitState);
-		TemplateContainer<StatePtr>::m_items.erase(
-			TemplateContainer<StatePtr>::m_items.begin() + stateIndex);
+		m_items.erase(m_items.begin() + stateIndex);
 	}
 }
 
@@ -41,43 +40,42 @@ void StateHolder::takeNew(const StatePtr& unitState)
 		return;
 	expireIfFound(unitState);
 	unitState->setDecision(m_decision);
-	TemplateContainer<StatePtr>::m_items.push_back(unitState);
-	std::sort(TemplateContainer<StatePtr>::m_items.begin(), 
-		TemplateContainer<StatePtr>::m_items.end(),
+	m_items.push_back(unitState);
+	std::sort(m_items.begin(), m_items.end(),
 		[](const StatePtr& st1, const StatePtr& st2) {return *st1 > *st2; });
 }
 
 UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
-	if (TemplateContainer<StatePtr>::m_items.empty())
+	if (m_items.empty())
 		return m_activeState->chooseUnitToAttack(decidingUnit, units);
-	return TemplateContainer<StatePtr>::m_items[0]->chooseUnitToAttack(decidingUnit, units);
+	return m_items[0]->chooseUnitToAttack(decidingUnit, units);
 }
 
 MagicPtr StateHolder::chooseMagicToCast(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
-	if (TemplateContainer<StatePtr>::m_items.empty())
+	if (m_items.empty())
 		return m_activeState->chooseMagicToCast(decidingUnit, units);
-	return TemplateContainer<StatePtr>::m_items[0]->chooseMagicToCast(decidingUnit, units);
+	return m_items[0]->chooseMagicToCast(decidingUnit, units);
 }
 
 UnitPtr StateHolder::chooseUnitToCast(const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& units)const
 {
-	if (TemplateContainer<StatePtr>::m_items.empty())
+	if (m_items.empty())
 		return m_activeState->chooseUnitToCast(decidingUnit, magicToCast, units);
-	return TemplateContainer<StatePtr>::m_items[0]->chooseUnitToCast(decidingUnit, magicToCast, units);
+	return m_items[0]->chooseUnitToCast(decidingUnit, magicToCast, units);
 }
 
 void StateHolder::takeOffExpired(int round)
 {
-	for (size_t i = 0; i < TemplateContainer<StatePtr>::m_items.size(); i++)
+	for (size_t i = 0; i < m_items.size(); i++)
 	{
-		if (TemplateContainer<StatePtr>::m_items[i]->isExpired(Arena::getCurrentRound()))
+		if (m_items[i]->isExpired(Arena::getCurrentRound()))
 		{
-			TemplateContainer<StatePtr>::m_items.erase(TemplateContainer<StatePtr>::m_items.begin() + i);
+			m_items.erase(m_items.begin() + i);
 			i--;
 		}
 	}
