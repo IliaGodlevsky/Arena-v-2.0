@@ -4,6 +4,7 @@
 #include "../ArmorFactories/ArmorFactory.h"
 #include "../WeaponFactories/MagicSwordFactory.h"
 #include "../WeaponFactories/MagicSpearFactory.h"
+#include "../WeaponFactories/MagicClubFactory.h"
 #include "../MagicFactories/BuffFactories/DamageBuffFactory.h"
 #include "../MagicFactories/BuffFactories/ArmorAndDamageBuffFactory.h"
 #include "../MagicFactories/BuffFactories/OffsetDamageBuffFactory.h"
@@ -18,6 +19,7 @@ WarriorItemFactory::WarriorItemFactory()
 	m_armorFactories.push_back(new ArmorFactory());
 	m_weaponFactories.push_back(new MagicSwordFactory());
 	m_weaponFactories.push_back(new MagicSpearFactory());
+	m_weaponFactories.push_back(new MagicClubFactory());
 	m_magicFactories.push_back(new OffsetDamageBuffFactory());
 	m_magicFactories.push_back(new ArmorAndDamageBuffFactory());
 	m_magicFactories.push_back(new ArmorBuffFactory());

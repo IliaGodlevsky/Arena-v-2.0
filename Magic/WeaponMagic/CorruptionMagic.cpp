@@ -3,31 +3,29 @@
 #include "CorruptionMagic.h"
 
 CorruptionMagic::CorruptionMagic(std::string name, const Timer& timer,
-	int armorReduce, int propability)
-	: WeaponMagic(name, timer, propability),
-	m_armorReduce(armorReduce)
+	int armorReduce, PosibilityCounter propability)
+	: Magic(name, ZERO_MANA_COST, timer),
+	ArmorDebuffMagic(name, ZERO_MANA_COST, timer, armorReduce), 
+	m_posibility(propability)
 {
 
 }
 
 void CorruptionMagic::effectUnit(Unit& unit)
 {
-	if (isCastChance())
-	{
-		putOn(unit);
-		Magic::effectUnit(unit);
-	}
+	if (m_posibility)
+		ArmorDebuffMagic::effectUnit(unit);
 }
 
 void CorruptionMagic::uneffectUnit(Unit& unit)const
 {
-	unit.m_armor.changeValue(m_armorReduce);
+	ArmorDebuffMagic::uneffectUnit(unit);
 }
 
 MagicPtr CorruptionMagic::clone()const
 {
 	return MagicPtr(new CorruptionMagic(m_name, m_timer,
-		m_armorReduce, m_propability));
+		m_armorReduce, m_posibility));
 }
 
 bool CorruptionMagic::isBuff()const
@@ -37,13 +35,13 @@ bool CorruptionMagic::isBuff()const
 
 bool CorruptionMagic::isEqual(const MagicPtr& magic)const
 {
-	return WeaponMagic::isEqual(magic)
+	return ArmorDebuffMagic::isEqual(magic)
 		&& hasEqualParametres(magic);
 }
 
 void CorruptionMagic::showFullInfo()const
 {
-	WeaponMagic::showData();
+	ArmorDebuffMagic::showData();
 	showData();
 }
 
@@ -52,15 +50,11 @@ bool CorruptionMagic::hasEqualParametres(const MagicPtr& magic)const
 	if (!canCast<CorruptionMagic*>(magic))
 		return NO;
 	CorruptionMagic* temp = DYNAMIC(CorruptionMagic*, magic);
-	return m_armorReduce == temp->m_armorReduce;
+	return m_posibility == temp->m_posibility;
 }
 
 void CorruptionMagic::showData()const
 {
-	std::cout << "Armor reduce: " << m_armorReduce << std::endl;
-}
-
-void CorruptionMagic::putOn(Unit& unit)const
-{
-	unit.m_armor.changeValue(-m_armorReduce);
+	std::cout << "Posibility: " << 
+		m_posibility.getPosibility() << std::endl;
 }

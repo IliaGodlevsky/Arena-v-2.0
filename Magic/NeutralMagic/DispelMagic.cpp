@@ -34,7 +34,6 @@ bool DispelMagic::hasEqualParametres(const MagicPtr& magic)const
 {
 	if (!canCast<DispelMagic*>(magic))
 		return NO;
-	DispelMagic* temp = DYNAMIC(DispelMagic*, magic);
 	return Magic::isEqual(magic);
 }
 

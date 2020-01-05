@@ -1,13 +1,14 @@
 #ifndef DEGENERATE_MAGIC_H_
 #define DEGENERATE_MAGIC_H_
 
-#include "WeaponMagic.h"
+#include "../AttackMagic/PoisonMagic.h"
+#include "../../PossibilityCounter/PosibilityCounter.h"
 
-class DegenerateMagic : virtual public WeaponMagic
+class DegenerateMagic : public PoisonMagic
 {
 public:
 	DegenerateMagic(std::string name, const Timer& timer,
-		int degeneration, int propability);
+		int degeneration, PosibilityCounter posibility);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;
@@ -17,9 +18,8 @@ public:
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const;
 	virtual void showData()const override;
-	virtual void putOn(Unit& unit)const override;
 protected:
-	int m_degeneration;
+	PosibilityCounter m_posibility;
 };
 
 #endif

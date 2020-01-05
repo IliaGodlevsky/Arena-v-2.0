@@ -5,6 +5,14 @@ class PosibilityCounter
 {
 public:
 	explicit PosibilityCounter(int posibility);
+	PosibilityCounter() = default;
+	PosibilityCounter(const PosibilityCounter&) = default;
+	PosibilityCounter(PosibilityCounter&&) = default;
+	PosibilityCounter& operator=(const PosibilityCounter&) = default;
+	PosibilityCounter& operator=(PosibilityCounter&&) = default;
+public:
+	bool operator==(const PosibilityCounter& counter)const;
+	int getPosibility()const;
 	operator bool()const;
 private:
 	constexpr int getMaxPropability()const;

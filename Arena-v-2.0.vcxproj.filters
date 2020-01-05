@@ -140,9 +140,6 @@
     <ClCompile Include="Magic\WeaponMagic\StunMagic.cpp">
       <Filter>Source\Magic\WeaponMagic</Filter>
     </ClCompile>
-    <ClCompile Include="Magic\WeaponMagic\WeaponMagic.cpp">
-      <Filter>Source\Magic\WeaponMagic</Filter>
-    </ClCompile>
     <ClCompile Include="Magic\AttackMagic\AttackAndStunMagic.cpp">
       <Filter>Source\Magic\AttackMagic</Filter>
     </ClCompile>
@@ -377,6 +374,9 @@
     <ClCompile Include="Decision\Alliance.cpp">
       <Filter>Source\Decision</Filter>
     </ClCompile>
+    <ClCompile Include="Factories\WeaponFactories\MagicClubFactory.cpp">
+      <Filter>Source\Factories\WeaponFactories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -392,9 +392,6 @@
       <Filter>Source\Magic\WeaponMagic</Filter>
     </ClInclude>
     <ClInclude Include="Magic\WeaponMagic\StunMagic.h">
-      <Filter>Source\Magic\WeaponMagic</Filter>
-    </ClInclude>
-    <ClInclude Include="Magic\WeaponMagic\WeaponMagic.h">
       <Filter>Source\Magic\WeaponMagic</Filter>
     </ClInclude>
     <ClInclude Include="Magic\AttackMagic\AttackAndStunMagic.h">

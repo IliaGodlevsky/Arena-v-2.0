@@ -1,13 +1,14 @@
 #ifndef CORRUPTION_MAGIC_H_
 #define CORRUPTION_MAGIC_H_
 
-#include "WeaponMagic.h"
+#include "../../Magic/DebuffMagic/ArmorDebuffMagic.h"
+#include "../../PossibilityCounter/PosibilityCounter.h"
 
-class CorruptionMagic : public WeaponMagic
+class CorruptionMagic : public ArmorDebuffMagic
 {
 public:
 	CorruptionMagic(std::string name, const Timer& timer,
-		int armorReduce, int propability);
+		int armorReduce, PosibilityCounter propability);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;
@@ -17,9 +18,8 @@ public:
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
 	virtual void showData()const override;
-	virtual void putOn(Unit& unit)const override;
 protected:
-	int m_armorReduce;
+	PosibilityCounter m_posibility;
 };
 
 #endif

@@ -1,12 +1,14 @@
 #ifndef STUN_MAGIC_H_
 #define STUN_MAGIC_H_
 
-#include "WeaponMagic.h"
+#include "../Magic.h"
+#include "../../PossibilityCounter/PosibilityCounter.h"
 
-class StunMagic : public WeaponMagic
+class StunMagic : virtual public Magic
 {
 public:
-	StunMagic(std::string name, const Timer& timer, int propability);
+	StunMagic(std::string name, const Timer& timer, 
+		PosibilityCounter propability);
 	virtual void effectUnit(Unit& unit) override;
 	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;
@@ -17,6 +19,8 @@ protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
 	virtual void showData()const override;
 	virtual void putOn(Unit& unit)const override;
+private:
+	PosibilityCounter m_posibility;
 };
 
 #endif

@@ -2,8 +2,9 @@
 #define ATTACK_AND_STUN_MAGIC_H_
 
 #include "AttackMagic.h"
+#include "../WeaponMagic/StunMagic.h"
 
-class AttackAndStunMagic : public AttackMagic
+class AttackAndStunMagic : public AttackMagic, public StunMagic
 {
 public:
 	AttackAndStunMagic(std::string name, int manaCost,

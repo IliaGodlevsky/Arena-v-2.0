@@ -1,5 +1,4 @@
 #include "../Unit/Unit.h"
-#include "../Magic/WeaponMagic/WeaponMagic.h"
 #include "../Magic/WeaponMagic/StunMagic.h"
 #include "../Exceptions/BadWeaponMagicException.h"
 
