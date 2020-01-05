@@ -1,17 +1,12 @@
 #ifndef BAD_WEAPON_MAGIC_H_
 #define BAD_WEAPON_MAGIC_H_
 
-#include <exception>
+#include "ArenaException.h"
 
-#include "../Globals/Globals.h"
-
-class BadWeaponMagicException : public std::exception
+class BadWeaponMagicException : public ArenaException
 {
 public:
-	BadWeaponMagicException(const std::string& message,
-		const MagicPtr& magic);
-	const char* what()const override;
-private:
-	std::string m_message;
+	BadWeaponMagicException(const std::string& message);
+	~BadWeaponMagicException() = default;
 };
 #endif

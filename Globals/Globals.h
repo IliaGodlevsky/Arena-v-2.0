@@ -9,6 +9,9 @@
 #include <random>
 
 #include "../Messager/Messager.h"
+#include "../Exceptions/EmptyContainerException.h"
+#include "../Exceptions/BadWeaponMagicException.h"
+#include "../Exceptions/BadEquipmentException.h"
 
 #define YES true
 #define NO !YES
@@ -37,5 +40,7 @@ void eatLine();
 
 int randomNumber(int max, int min = 0);
 std::vector<std::string> loadFromFile(const std::string& fileName);
+
+void exceptionMessage(std::exception& ex);
 
 #endif

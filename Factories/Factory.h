@@ -2,11 +2,13 @@
 #define FACTORY_H_
 
 #include <type_traits>
+#include <typeinfo>
 
 #include "../Magic/Magic.h"
 #include "../Armor/Armor.h"
 #include "../Weapon/Weapon.h"
 #include "../Shield/Shield.h"
+#include "../Exceptions/EmptyContainerException.h"
 
 template <class T>
 using Items = std::vector<std::unique_ptr<T>>;
@@ -37,6 +39,12 @@ Factory<T>::Factory()
 template <class T>
 std::unique_ptr<T> Factory<T>::createItem()const
 {
+	try {
+		if (m_items.empty())
+			throw EmptyContainerException("\nTry to fill the container. "
+				"Bad container is " + std::string(typeid(*this).name()));
+	}
+	catch (EmptyContainerException& ex) { exceptionMessage(ex); }
 	index itemIndex = randomNumber(m_items.size() - 1);
 	return std::unique_ptr<T>(m_items[itemIndex]->clone());
 }

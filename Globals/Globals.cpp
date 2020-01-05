@@ -58,3 +58,10 @@ std::vector<std::string> loadFromFile(const std::string& fileName)
 	fin.close();
 	return lines;
 }
+
+void exceptionMessage(std::exception& ex)
+{
+	std::cerr << ex.what() << std::endl;
+	system("pause");
+	exit(EXIT_FAILURE);
+}

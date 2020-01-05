@@ -1,15 +1,17 @@
 #include "../Unit/Unit.h"
 #include "../Magic/WeaponMagic/DegenerateMagic.h"
-#include "../Exceptions/BadWeaponMagicException.h"
 
 #include "MagicSword.h"
 
 MagicSword::MagicSword(std::string name, int damage, MagicPtr magic)
 	: MagicWeapon(name, damage, magic->clone())
 {
-	DegenerateMagic* temp = DYNAMIC(DegenerateMagic*, magic);
-	if (nullptr == temp)
-		throw BadWeaponMagicException("BadWeaponMagicException", magic);
+	try {
+		if (!canCast<DegenerateMagic*>(magic))
+			throw BadWeaponMagicException("Bad class is " + std::string(typeid(*this).name())
+				+ "\n Try to use other weapon magic");
+	}
+	catch (BadWeaponMagicException& ex) { exceptionMessage(ex); }
 }
 
 MagicSword::MagicSword(const MagicSword& sword)

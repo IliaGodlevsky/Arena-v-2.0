@@ -3,13 +3,16 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
 #include "../Magic/WeaponMagic/DegenerateMagic.h"
-#include "../Exceptions/BadWeaponMagicException.h"
 
 MagicStaff::MagicStaff(std::string name, int damage, MagicPtr magic)
 	: Staff(name, damage), m_magic(magic->clone())
 {
-	if (!canCast<DegenerateMagic*>(magic))
-		throw BadWeaponMagicException("BadWeaponMagicException", magic);
+	try {
+		if (!canCast<DegenerateMagic*>(magic))
+			throw BadWeaponMagicException("Bad class is " + std::string(typeid(*this).name())
+				+ "\n Try to use other weapon magic");
+	}
+	catch (BadWeaponMagicException& ex) { exceptionMessage(ex); }
 }
 
 MagicStaff::MagicStaff(const MagicStaff& weapon)

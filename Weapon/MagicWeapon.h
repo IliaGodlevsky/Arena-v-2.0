@@ -15,7 +15,7 @@ public:
 	virtual void showFullInfo()const override final;
 	virtual WeaponPtr clone()const = 0;
 protected:
-	MagicPtr m_magic;
+	MagicPtr m_magic = nullptr;
 };
 
 #endif

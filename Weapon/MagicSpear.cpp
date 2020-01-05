@@ -1,14 +1,17 @@
 #include "../Unit/Unit.h"
 #include "../Magic/WeaponMagic/CorruptionMagic.h"
-#include "../Exceptions/BadWeaponMagicException.h"
 
 #include "MagicSpear.h"
 
 MagicSpear::MagicSpear(std::string name, int damage, MagicPtr magic)
 	: MagicWeapon(name, damage, magic->clone())
 {
-	if (!canCast<CorruptionMagic*>(magic))
-		throw BadWeaponMagicException("BadWeaponMagicException", magic);
+	try {
+		if (!canCast<CorruptionMagic*>(magic))
+			throw BadWeaponMagicException("Bad class is " + std::string(typeid(*this).name())
+				+ "\n Try to use other weapon magic");
+	}
+	catch (BadWeaponMagicException& ex) { exceptionMessage(ex); }
 }
 
 MagicSpear::MagicSpear(const MagicSpear& spear)

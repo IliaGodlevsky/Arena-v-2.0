@@ -3,8 +3,10 @@
 int main()
 {
 	auto& arena = Arena::getInstance();
+
 	arena.prepareUnits();
 	arena.proposeToPlayTeams();
+
 	while (!arena.isGameOver())
 	{
 		arena.showUnits();
@@ -15,5 +17,6 @@ int main()
 		arena.takeOfLosers();
 		arena.goNextUnit();
 	}
+
 	system("pause");
 }
