@@ -19,7 +19,7 @@ protected:
 	virtual void showData()const override;
 	virtual void putOn(Unit& unit)const override;
 protected:
-	int m_damage;
+	int m_damage = 0;
 };
 
 #endif

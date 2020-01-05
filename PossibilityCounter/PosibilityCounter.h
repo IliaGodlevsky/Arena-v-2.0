@@ -16,7 +16,7 @@ public:
 	operator bool()const;
 private:
 	constexpr int getMaxPropability()const;
-	int m_posibility;
+	int m_posibility = 0;
 };
 
 #endif

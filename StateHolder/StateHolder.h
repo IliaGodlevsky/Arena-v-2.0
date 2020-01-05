@@ -30,8 +30,8 @@ public:
 	bool isMuted()const;
 	~StateHolder();
 private:
-	DecisionPtr m_decision;
-	std::unique_ptr<ActiveUnitState> m_activeState;
+	DecisionPtr m_decision = nullptr;
+	std::unique_ptr<ActiveUnitState> m_activeState = nullptr;
 };
 
 #endif

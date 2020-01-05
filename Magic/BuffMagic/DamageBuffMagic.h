@@ -16,7 +16,7 @@ public:
 	virtual void showFullInfo()const override;
 	virtual ~DamageBuffMagic() = default;
 protected:
-	int m_damageAmplify;
+	int m_damageAmplify = 0;
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
 	virtual void putOn(Unit& unit)const override;

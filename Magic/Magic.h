@@ -45,7 +45,7 @@ protected:
 	virtual void putOn(Unit& unit)const = 0;
 protected:
 	std::string m_name;
-	int m_manaCost;
+	int m_manaCost = 0;
 	Timer m_timer;
 };
 

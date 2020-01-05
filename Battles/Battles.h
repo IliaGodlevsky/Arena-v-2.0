@@ -16,6 +16,6 @@ public:
 	void changeValue(int value);
 	operator int()const;
 protected:
-	int m_value;
+	int m_value = 0;
 };
 #endif

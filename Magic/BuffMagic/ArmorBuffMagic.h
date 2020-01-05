@@ -16,7 +16,7 @@ public:
 	virtual void showFullInfo()const override;
 	virtual ~ArmorBuffMagic() = default;
 protected:
-	int m_armorAmplify;
+	int m_armorAmplify = 0;
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
 	virtual void showData()const;

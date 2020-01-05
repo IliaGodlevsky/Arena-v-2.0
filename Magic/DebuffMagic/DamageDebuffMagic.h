@@ -16,7 +16,7 @@ public:
 	virtual void showFullInfo()const override;
 	virtual ~DamageDebuffMagic() = default;
 protected:
-	int m_damageReduce;
+	int m_damageReduce = 0;
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
 	virtual void showData()const override;

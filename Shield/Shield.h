@@ -23,7 +23,7 @@ public:
 protected:
 	Armor m_armor;
 	std::string m_name;
-	int m_reflectChance;
+	int m_reflectChance = 0;
 };
 
 #endif

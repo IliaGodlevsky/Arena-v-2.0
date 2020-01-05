@@ -1,6 +1,5 @@
 #include "../Unit/Unit.h"
 
-
 #include "Level.h"
 
 Level::Level(Unit* unit)

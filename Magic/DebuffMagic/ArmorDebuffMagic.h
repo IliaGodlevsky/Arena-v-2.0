@@ -16,7 +16,7 @@ public:
 	virtual void showFullInfo()const override;
 	virtual ~ArmorDebuffMagic() = default;
 protected:
-	int m_armorReduce;
+	int m_armorReduce = 0;
 protected:
 	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
 	virtual void showData()const override;

@@ -56,12 +56,12 @@ public:
 protected:
 	std::unique_ptr<Level> m_level = nullptr;
 protected:
-	WeaponPtr m_weapon;
-	ArmPtr m_mail;
-	ShieldPtr m_shield;
+	WeaponPtr m_weapon = nullptr;
+	ArmPtr m_mail = nullptr;
+	ShieldPtr m_shield = nullptr;
 private:
 	std::string m_name;
-	DecisionPtr m_decision;
+	DecisionPtr m_decision = nullptr;
 protected:
 	int calculateDamageAbsorb(int damage)const;
 };

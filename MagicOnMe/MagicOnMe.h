@@ -18,6 +18,6 @@ public:
 	void takeNew(const MagicPtr& magic) override;
 	void showShortInfo()const override;
 private:
-	Unit* m_unit; // unit, that have this vector of spells
+	Unit* m_unit = nullptr; // unit, that have this vector of spells
 };
 #endif

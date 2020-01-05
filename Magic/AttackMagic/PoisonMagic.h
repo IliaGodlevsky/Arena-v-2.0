@@ -20,6 +20,6 @@ protected:
 	virtual void showData()const override;
 	virtual void putOn(Unit& unit)const override;
 protected:
-	int m_regenReduce;
+	int m_regenReduce = 0;
 };
 #endif

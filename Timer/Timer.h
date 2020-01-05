@@ -17,7 +17,7 @@ public:
 	int getDuration()const;
 	int getStartTime()const;
 protected:
-	int m_duration;
-	int m_startTime;
+	int m_duration = 0;
+	int m_startTime = 0;
 };
 #endif

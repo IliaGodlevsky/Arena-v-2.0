@@ -19,6 +19,6 @@ public:
 	void magicList()const;
 	void takeNew(const MagicPtr& magic) override;
 private:
-	Unit* m_unit; // unit, that have this vector of magic
+	Unit* m_unit = nullptr; // unit, that have this vector of magic
 };
 #endif
