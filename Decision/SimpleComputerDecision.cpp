@@ -255,7 +255,7 @@ MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 
 std::string SimpleComputerDecision::getDecisionType()const
 {
-	return "Clever computer";
+	return "Computer++";
 }
 
 DecisionPtr SimpleComputerDecision::clone()const
