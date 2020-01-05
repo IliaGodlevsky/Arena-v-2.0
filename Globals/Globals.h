@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <random>
 
+#include "../Messager/Messager.h"
+
 #define YES true
 #define NO !YES
 #define NULLPTR nullptr
