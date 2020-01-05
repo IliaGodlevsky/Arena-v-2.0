@@ -77,3 +77,10 @@ Vitals::operator int()const
 {
 	return m_value;
 }
+
+void Vitals::showFullInfo(const char* vitalsType)const
+{
+	std::cout << vitalsType << ": " << m_value << "\\"
+		<< m_maxValue << " " << vitalsType << " regen: "
+		<< m_valueRegeneration << std::endl;
+}

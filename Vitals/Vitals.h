@@ -20,6 +20,7 @@ public:
 	void restore(int percent);
 	bool isDead()const;
 	operator int()const;
+	void showFullInfo(const char* vitalsType)const;
 private:
 	enum { DEAD_LINE };
 	int m_value = 0;
