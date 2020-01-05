@@ -17,7 +17,7 @@ int Arena::m_round = 0;
 // that can take part in the game
 constexpr int Arena::getMaxNubmerOfPlayers()const
 {
-	return 6;
+	return 7;
 }
 
 constexpr int Arena::getMinNumberOfPlayers()const
@@ -188,8 +188,8 @@ void Arena::playCastStep()
 			" charmed ", m_unitToCast->getName(),
 			" with ", m_magicToCast->getName() + "\n");
 		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
+		rewardKiller(m_unitToCast);
 	}
-	rewardKiller(m_unitToCast);
 }
 
 void Arena::playAttackStep()
@@ -203,22 +203,19 @@ void Arena::playAttackStep()
 			messager.writeMessage(m_units[m_unitIndex]->getName(),
 				" attacked ", m_unitToAttack->getName() + "\n");
 			m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
+			rewardKiller(m_unitToAttack);
 		}
-		rewardKiller(m_unitToAttack);
 	}
 }
 
 void Arena::rewardKiller(UnitPtr victim)
 {
-	if (nullptr != victim)
+	if (!victim->isAlive())
 	{
-		if (!victim->isAlive())
-		{
-			std::cout << m_units[m_unitIndex]->getName() << " slashed " <<
-				victim->getName() << std::endl;
-			m_units[m_unitIndex]->levelUp();
-			m_units[m_unitIndex]->takeKilledUnitMagic(*victim);
-		}
+		std::cout << m_units[m_unitIndex]->getName() << " slashed " << 
+			victim->getName() << std::endl;
+		m_units[m_unitIndex]->levelUp();
+		m_units[m_unitIndex]->takeKilledUnitMagic(*victim);
 	}
 }
 
@@ -235,6 +232,6 @@ void Arena::goNextUnit()
 
 void Arena::goNewRound()
 {
-	for (size_t i = 0; i < m_units.size(); i++)
-		m_units[i]->moveIntoNewRound();
+	for (auto unit : m_units)
+		unit->moveIntoNewRound();
 }
