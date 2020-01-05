@@ -377,6 +377,15 @@
     <ClCompile Include="Factories\WeaponFactories\MagicClubFactory.cpp">
       <Filter>Source\Factories\WeaponFactories</Filter>
     </ClCompile>
+    <ClCompile Include="Exceptions\EmptyContainerException.cpp">
+      <Filter>Source\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\BadEquipmentException.cpp">
+      <Filter>Source\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\ArenaException.cpp">
+      <Filter>Source\Exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -639,6 +648,15 @@
     </ClInclude>
     <ClInclude Include="Decision\Alliance.h">
       <Filter>Source\Decision</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\EmptyContainerException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\BadEquipmentException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\ArenaException.h">
+      <Filter>Source\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
