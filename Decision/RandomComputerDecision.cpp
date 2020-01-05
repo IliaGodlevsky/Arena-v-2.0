@@ -46,7 +46,7 @@ std::string RandomComputerDecision::setName(std::string name)const
 
 std::string RandomComputerDecision::getDecisionType()const
 {
-	return "Random computer";
+	return "Computer";
 }
 
 void RandomComputerDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
