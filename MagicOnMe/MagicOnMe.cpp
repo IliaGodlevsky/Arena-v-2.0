@@ -18,13 +18,12 @@ MagicOnMe::MagicOnMe(Unit* unit, const MagicOnMe& magicOnMe)
 
 void MagicOnMe::takeOffExpired(int round)
 {
-	for (size_t i = 0; i < TemplateContainer<MagicPtr>::m_items.size(); i++)
+	for (size_t i = 0; i < m_items.size(); i++)
 	{
-		if (TemplateContainer<MagicPtr>::m_items[i]->isExpired(round))
+		if (m_items[i]->isExpired(round))
 		{
-			TemplateContainer<MagicPtr>::m_items[i]->uneffectUnit(*m_unit);
-			TemplateContainer<MagicPtr>::m_items.erase
-			(TemplateContainer<MagicPtr>::m_items.begin() + i);
+			m_items[i]->uneffectUnit(*m_unit);
+			m_items.erase(m_items.begin() + i);
 			i--;
 		}
 	}
@@ -33,7 +32,7 @@ void MagicOnMe::takeOffExpired(int round)
 void MagicOnMe::takeNew(const MagicPtr& magic)
 {
 	expireIfFound(magic);
-	TemplateContainer<MagicPtr>::m_items.push_back(MagicPtr(magic->clone()));
+	m_items.push_back(MagicPtr(magic->clone()));
 }
 
 
