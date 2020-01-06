@@ -10,7 +10,7 @@ Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
 	: Unit(decision, factory)
 {
 	enum { 
-		START_DAMAGE = 14, START_ARMOR = 3, START_HEALTH = 250, 
+		START_DAMAGE = 12, START_ARMOR = 3, START_HEALTH = 250, 
 		START_HP_REGEN = 6, START_MANA = 60, START_MP_REGEN = 2
 	};
 	m_damage = Battles(START_DAMAGE);
@@ -32,13 +32,20 @@ Warrior::Warrior(const Warrior& unit)
 	m_level->setOwner(this);
 }
 
+Warrior::Warrior(Warrior&& unit)
+	: Unit(unit)
+{
+	m_level = std::unique_ptr<Level>(new WarriorLevel(this));
+	*m_level = *unit.m_level;
+	m_level->setOwner(this);
+}
+
 bool Warrior::injureUnit(Unit& unit)
 {
-	if (nullptr == (m_weapon))
-		return false;
+
 	const int multiDamage = damageMultiply(m_damage
 		+ m_weapon->getDamage()) - m_weapon->getDamage();
-	m_weapon->injureUnit(unit, multiDamage);
+	m_stateHolder.injureUnit(m_weapon, unit, multiDamage);
 	secondHit(unit);
 	return true;
 }
@@ -59,8 +66,7 @@ bool Warrior::secondHit(Unit& unit)
 			<< unit.getName() << " twice\n";
 		const int multiDamage = damageMultiply(m_damage + m_weapon->getDamage()) / 2 
 			- m_weapon->getDamage();
-		m_weapon->injureUnit(unit, multiDamage);
-		return true;
+		return m_stateHolder.injureUnit(m_weapon, unit, multiDamage);
 	}
 	return false;
 }
