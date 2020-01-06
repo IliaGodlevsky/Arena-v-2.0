@@ -4,8 +4,6 @@
 
 inline bool canKill(UnitPtr unit1, UnitPtr unit2)
 {
-	if (unit1->m_stateHolder.isStunned())
-		return false;
 	unit1->injureUnit(*unit2);
 	return !unit2->isAlive();
 }
