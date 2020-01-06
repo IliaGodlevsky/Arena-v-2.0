@@ -30,6 +30,7 @@ public:
 	virtual void setName(std::string name)final;
 	virtual void payMana(int manaCost);
 	virtual bool isEnoughManaFor(const MagicPtr& magic)const;
+	virtual bool takeMagicEffect(Unit& caster, MagicPtr& magic);
 public:
 	void takeKilledUnitMagic(const Unit& victim);
 	void showFullInfo()const;
@@ -39,7 +40,6 @@ public:
 	const std::string& getName()const;
 	bool isAlive()const;
 	bool takeDamage(int damage);
-	bool takeMagicEffect(Unit& caster, MagicPtr& magic);
 	void takeAlly(const UnitPtr& unit);
 	bool isAlly(const UnitPtr& unit)const;
 public:
@@ -62,7 +62,7 @@ protected:
 	WeaponPtr m_weapon = nullptr;
 	ArmPtr m_mail = nullptr;
 	ShieldPtr m_shield = nullptr;
-private:
+protected:
 	std::string m_name;
 	DecisionPtr m_decision = nullptr;
 protected:

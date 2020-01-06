@@ -155,6 +155,11 @@ bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 		std::cout << "But magic was reflected back to "
 			<< caster.getName() << std::endl;
 		magic->effectUnit(caster);
+		if (!caster.isAlive())
+		{
+			const int HP_RESTORE_IF_DEAD = 1; //%
+			caster.m_health.restore(HP_RESTORE_IF_DEAD);
+		}
 		return false;
 	}
 	magic->effectUnit(*this);
