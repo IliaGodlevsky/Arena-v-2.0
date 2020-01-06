@@ -125,7 +125,6 @@ void Unit::payMana(int manaCost)
 	m_mana = m_mana - manaCost;
 }
 
-
 bool Unit::injureUnit(Unit& unit)
 {
 	return m_stateHolder.injureUnit(m_weapon, unit, m_damage);
@@ -166,6 +165,11 @@ bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 	return true;
 }
 
+void Unit::setTeam(int teamNumber)
+{
+	m_teamNumber = teamNumber;
+}
+
 int Unit::calculateDamageAbsorb(int damage)const
 {
 	// The formula is taken from WarCraft 3
@@ -193,13 +197,15 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 
 void Unit::showFullInfo()const
 {
-	std::cout << getName() << " Level: " 
-		<< *m_level << ", " << m_decision->
-		getDecisionType() << std::endl;
+	std::cout << getName() << ", Level: " 
+		<< *m_level << ", " << "Team: " 
+		<< m_teamNumber << std::endl;
 	m_health.showFullInfo("HP");
 	m_mana.showFullInfo("MP");
-	std::cout << "DMG: " << m_damage + m_weapon->getDamage();
-	std::cout << " Arm: " << m_armor << std::endl;
+	std::cout << "DMG: " << m_damage 
+		+ m_weapon->getDamage();
+	std::cout << " Arm: " << m_armor 
+		<< std::endl;
 	m_stateHolder.showShortInfo();
 	m_magicBook.showShortInfo();
 	m_magicOnMe.showShortInfo();

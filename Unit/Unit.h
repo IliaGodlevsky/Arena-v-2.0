@@ -35,6 +35,7 @@ public:
 	void takeKilledUnitMagic(const Unit& victim);
 	void showFullInfo()const;
 	void levelUp();
+	void setTeam(int teamNumber);
 	void recieveNewState(StatePtr unitState);
 	void moveIntoNewRound();
 	const std::string& getName()const;
@@ -67,6 +68,8 @@ protected:
 	DecisionPtr m_decision = nullptr;
 protected:
 	int calculateDamageAbsorb(int damage)const;
+private:
+	int m_teamNumber = 0;
 };
 
 #endif

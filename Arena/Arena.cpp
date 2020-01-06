@@ -23,7 +23,7 @@ constexpr int Arena::getMaxNubmerOfPlayers()const
 
 constexpr int Arena::getMinNumberOfPlayers()const
 {
-	return 2;
+	return 3;
 }
 
 Arena::Arena()
@@ -102,7 +102,8 @@ void Arena::prepareUnits()
 	if (unitsNames.empty())
 		unitsNames = m_reserveNames;
 	ThreadGuard guard(thread);
-	auto unitGenerator = [&unitsNames, &thread]()
+	int teamNumber = 1;
+	auto unitGenerator = [&unitsNames, &thread, &teamNumber]()
 	{	
 		enum { WARRIOR = 1, WIZARD };
 		std::vector<UnitFactoryPtr> unitFactories({ 
@@ -114,7 +115,9 @@ void Arena::prepareUnits()
 		if (thread.joinable())
 			thread.join();
 		unit->setName(unitsNames[randomNumber(unitsNames.size() - 1)]);
+		unit->setTeam(teamNumber);
 		system("cls");
+		teamNumber++;
 		return unit;
 	};
 	std::generate(m_units.begin(), m_units.end(), unitGenerator);
@@ -139,7 +142,6 @@ void Arena::proposeToPlayTeams()
 
 std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 {
-	
 	index unitIndex;
 	const size_t QUIT = 0;
 	const size_t LIMIT = m_units.size();
@@ -155,6 +157,7 @@ std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 			if (QUIT == unitIndex || m_units.empty())
 				break;
 			teams[i].push_back(m_units[unitIndex - 1]);
+			m_units[unitIndex - 1]->setTeam(i + 1);
 			m_units.erase(m_units.begin() + (unitIndex - 1));
 			if (m_units.size() == (teamsNumber - i - 1))
 				break;
