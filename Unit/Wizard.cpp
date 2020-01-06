@@ -9,7 +9,7 @@ Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory,
 	Factory<Magic>* secondFactory) : Unit(decision, factory)
 {
 	enum {
-		START_DAMAGE = 5, START_ARMOR = 1, START_HEALTH = 180,
+		START_DAMAGE = 6, START_ARMOR = 2, START_HEALTH = 180,
 		START_HP_REGEN = 2, START_MANA = 110, START_MP_REGEN = 6
 	};
 	m_damage = Battles(START_DAMAGE);
@@ -25,6 +25,14 @@ Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory,
 }
 
 Wizard::Wizard(const Wizard& unit)
+	: Unit(unit)
+{
+	m_level = std::unique_ptr<Level>(new WizardLevel(this));
+	*m_level = *unit.m_level;
+	m_level->setOwner(this);
+}
+
+Wizard::Wizard(Wizard&& unit)
 	: Unit(unit)
 {
 	m_level = std::unique_ptr<Level>(new WizardLevel(this));

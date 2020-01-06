@@ -6,10 +6,16 @@
 class Warrior : public Unit
 {
 public:
+	Warrior() = delete;
 	Warrior(DecisionPtr decision, ItemFactoryPtr factory);
 	Warrior(const Warrior& unit);
-	bool injureUnit(Unit& unit);
+	Warrior(Warrior&& unit);
+	Warrior& operator=(const Warrior&) = delete;
+	Warrior& operator=(Warrior&&) = delete;
 	~Warrior() = default;
+public:
+	bool injureUnit(Unit& unit);
+	
 private:
 	int damageMultiply(int damage)const;
 	bool secondHit(Unit& unit);
