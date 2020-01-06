@@ -23,8 +23,8 @@ public:
 	virtual bool isAlly(const UnitPtr& unit)const final;
 	virtual DecisionPtr clone()const = 0;
 	virtual ~Decision() = default;
-protected:
 	virtual bool isSameUnit(const Unit&, const Unit&)const;
+protected:
 	virtual bool canCastBuffOnUnit(const Unit& caster, const Unit& aim, 
 		const MagicPtr& magic)const;
 	virtual bool canCastDebuffOnUnit(const Unit& caster, const Unit& aim, 
