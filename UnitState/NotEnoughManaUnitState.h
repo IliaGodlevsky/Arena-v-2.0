@@ -8,6 +8,8 @@ class NotEnoughManaUnitState : public MutedUnitState
 public:
 	NotEnoughManaUnitState(Unit* unit);
 	NotEnoughManaUnitState() = default;
+	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
+	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit,
 		const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit,

@@ -8,6 +8,16 @@ MutedUnitState::MutedUnitState(const Timer& timer)
 
 }
 
+bool MutedUnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+{
+	return false;
+}
+
+bool MutedUnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
+{
+	return UnitState::injureUnit(weapon, unit, damage);
+}
+
 UnitPtr MutedUnitState::chooseUnitToAttack(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
@@ -29,4 +39,9 @@ UnitPtr MutedUnitState::chooseUnitToCast(const Unit& decidingUnit,
 MutedUnitState::StateValue MutedUnitState::getValue()const
 {
 	return UnitState::MUTED_STATE;
+}
+
+void MutedUnitState::showShortInfo()const
+{
+	std::cout << "<Muted> ";
 }

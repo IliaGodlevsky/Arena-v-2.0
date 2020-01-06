@@ -16,6 +16,8 @@ public:
 	StateHolder& operator=(const StateHolder& stateHolder) = delete;
 	StateHolder& operator=(StateHolder&& stateHolder) = delete;
 public:
+	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
+	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
 	void takeNew(const StatePtr& unitState) override;
 	void expireIfFound(const StatePtr& unitState) override;
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
@@ -26,8 +28,6 @@ public:
 		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void takeOffExpired(int round) override;
 	void showShortInfo()const override;
-	bool isStunned()const;
-	bool isMuted()const;
 	~StateHolder();
 private:
 	DecisionPtr m_decision = nullptr;

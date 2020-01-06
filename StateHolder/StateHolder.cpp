@@ -45,6 +45,20 @@ void StateHolder::takeNew(const StatePtr& unitState)
 		[](const StatePtr& st1, const StatePtr& st2) {return *st1 > *st2; });
 }
 
+bool StateHolder::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+{
+	if (m_items.empty())
+		return m_activeState->castMagic(caster, unit, magic);
+	return m_items[0]->castMagic(caster, unit, magic);
+}
+
+bool StateHolder::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
+{
+	if (m_items.empty())
+		return m_activeState->injureUnit(weapon, unit, damage);
+	return m_items[0]->injureUnit(weapon, unit, damage);
+}
+
 UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
@@ -79,17 +93,6 @@ void StateHolder::takeOffExpired(int round)
 			i--;
 		}
 	}
-}
-
-bool StateHolder::isStunned()const
-{
-	return hasItem(StatePtr(new StunUnitState(Timer(ZERO_DURATION))));
-}
-
-bool StateHolder::isMuted()const
-{
-	return hasItem(StatePtr(new MutedUnitState(Timer(ZERO_DURATION))))
-		|| hasItem(StatePtr(new NotEnoughManaUnitState()));
 }
 
 void StateHolder::showShortInfo()const

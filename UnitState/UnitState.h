@@ -4,6 +4,7 @@
 #include "../Globals/Globals.h"
 #include "../Timer/Timer.h"
 #include "../Decision/Decision.h"
+#include "../Weapon/Weapon.h"
 
 class UnitState;
 using StatePtr = std::shared_ptr<UnitState>;
@@ -13,6 +14,8 @@ class UnitState
 public:
 	explicit UnitState(const Timer& timer);
 	UnitState() = default;
+	virtual bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
+	virtual bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
 	virtual UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
 		const Gladiators& units)const = 0;
 	virtual MagicPtr chooseMagicToCast(const Unit& decidingUnit, 

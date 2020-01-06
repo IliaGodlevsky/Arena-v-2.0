@@ -8,6 +8,16 @@ NotEnoughManaUnitState::NotEnoughManaUnitState(Unit* unit)
 
 }
 
+bool NotEnoughManaUnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+{
+	return MutedUnitState::castMagic(caster, unit, magic);
+}
+
+bool NotEnoughManaUnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
+{
+	return MutedUnitState::injureUnit(weapon, unit, damage);
+}
+
 UnitPtr NotEnoughManaUnitState::chooseUnitToAttack(const Unit& decidingUnit,
 	const Gladiators& units)const
 {

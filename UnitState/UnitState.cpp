@@ -10,6 +10,24 @@ UnitState::UnitState(const Timer& timer)
 
 }
 
+bool UnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+{
+	if (!caster.isEnoughManaFor(magic)
+		|| nullptr == magic)
+		return false;
+	unit.takeMagicEffect(caster, magic);
+	caster.payMana(magic->getCost());
+	return true;
+}
+
+bool UnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
+{
+	if (nullptr == weapon)
+		return false;
+	weapon->injureUnit(unit, damage);
+	return true;
+}
+
 UnitPtr UnitState::chooseUnitToAttack(const Unit& decidingUnit, 
 	const Gladiators& units)const
 {
@@ -56,7 +74,7 @@ bool UnitState::operator>(const UnitState& state)const
 
 void UnitState::showShortInfo()const
 {
-	std::cout << "<" << typeid(*this).name() + 6 << "> ";
+	return;
 }
 
 int UnitState::getDuration()const 

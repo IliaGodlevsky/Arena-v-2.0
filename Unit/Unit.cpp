@@ -18,6 +18,13 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	m_weapon = factory->createWeapon();
 	m_mail = factory->createArmor();
 	m_shield = factory->createShield();
+	if (m_magicBook.size() == 0)
+		throw EmptyContainerException("\nTry to fill the container. Bad container is\n"
+			+ std::string(typeid(m_magicBook).name()) + " in " + std::string(typeid(*this).name()));
+	if (nullptr == m_shield || nullptr == m_mail
+		|| nullptr == m_weapon || nullptr == m_decision)
+		throw BadEquipmentException("Unit doesn't have enough equipment to fight. Bad class is "
+			+ std::string(typeid(*this).name()));
 	m_level = std::unique_ptr<Level>(new Level(this));
 }
 
@@ -36,6 +43,26 @@ Unit::Unit(const Unit& unit)
 	m_shield(unit.m_shield->clone())
 {
 	m_level = std::unique_ptr<Level>(new Level(this));
+	*m_level = *unit.m_level;
+	m_level->setOwner(this);
+}
+
+Unit::Unit(Unit&& unit)
+	: m_damage(unit.m_damage),
+	m_armor(unit.m_armor),
+	m_magicBook(this, unit.m_magicBook),
+	m_name(unit.m_name),
+	m_magicOnMe(this, unit.m_magicOnMe),
+	m_decision(unit.m_decision),
+	m_stateHolder(unit.m_decision, unit.m_stateHolder),
+	m_health(unit.m_health),
+	m_mana(unit.m_mana),
+	m_weapon(std::move(unit.m_weapon)),
+	m_mail(std::move(unit.m_mail)),
+	m_shield(std::move(unit.m_shield))
+{
+	m_level = std::move(unit.m_level);
+	m_level->setOwner(this);
 }
 
 const std::string& Unit::getName()const
@@ -101,19 +128,12 @@ void Unit::payMana(int manaCost)
 
 bool Unit::injureUnit(Unit& unit)
 {
-	if (nullptr == m_weapon)
-		return false;
-	m_weapon->injureUnit(unit, m_damage);
-	return true;
+	return m_stateHolder.injureUnit(m_weapon, unit, m_damage);
 }
 
 bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 {
-	if (!isEnoughManaFor(magic))
-		return false;
-	magic->effectUnit(unit);
-	payMana(magic->getCost());
-	return true;
+	return m_stateHolder.castMagic(*this, unit, magic);
 }
 
 bool Unit::takeDamage(int damage)
@@ -125,6 +145,20 @@ bool Unit::takeDamage(int damage)
 	}
 	std::cout << "But attack was reflected\n";
 	return false;
+}
+
+bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
+{
+	if (m_shield->isReflectChance() &&
+		!m_decision->isSameUnit(caster, *this))
+	{
+		std::cout << "But magic was reflected back to "
+			<< caster.getName() << std::endl;
+		magic->effectUnit(caster);
+		return false;
+	}
+	magic->effectUnit(*this);
+	return true;
 }
 
 int Unit::calculateDamageAbsorb(int damage)const
@@ -143,9 +177,6 @@ UnitPtr Unit::chooseUnitToAttack(const Gladiators& units)const
 
 MagicPtr Unit::chooseMagicToCast(const Gladiators& units)const
 {
-	if (m_magicBook.size() == 0)
-		throw EmptyContainerException("\nTry to fill the container. Bad container is\n"
-			+ std::string(typeid(m_magicBook).name()) + " in " + std::string(typeid(*this).name()));
 	return m_stateHolder.chooseMagicToCast(*this, units);
 }
 
@@ -157,17 +188,12 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 
 void Unit::showFullInfo()const
 {
-	if (nullptr == m_shield || nullptr == m_mail
-		|| nullptr == m_weapon || nullptr == m_decision)
-		throw BadEquipmentException("Unit doesn't have enough equipment to fight. Bad class is "
-			+ std::string(typeid(*this).name()));
 	std::cout << getName() << " Level: " 
 		<< *m_level << ", " << m_decision->
 		getDecisionType() << std::endl;
 	m_health.showFullInfo("HP");
 	m_mana.showFullInfo("MP");
-	std::cout << "DMG: "
-		<< m_damage + m_weapon->getDamage();
+	std::cout << "DMG: " << m_damage + m_weapon->getDamage();
 	std::cout << " Arm: " << m_armor << std::endl;
 	m_stateHolder.showShortInfo();
 	m_magicBook.showShortInfo();
