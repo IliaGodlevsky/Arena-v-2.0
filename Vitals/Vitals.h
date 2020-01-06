@@ -17,7 +17,7 @@ public:
 	Vitals operator+(const Vitals& vit)const;
 	Vitals operator-(const Vitals& vit)const;
 	void changeRegeneration(int regeneration);
-	void restore(int percent);
+	void restore(int percent = 100);
 	bool isDead()const;
 	operator int()const;
 	void showFullInfo(const char* vitalsType)const;
