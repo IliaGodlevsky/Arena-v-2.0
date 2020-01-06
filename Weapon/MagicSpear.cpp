@@ -6,12 +6,9 @@
 MagicSpear::MagicSpear(std::string name, int damage, MagicPtr magic)
 	: MagicWeapon(name, damage, magic->clone())
 {
-	try {
 		if (!canCast<CorruptionMagic*>(magic))
 			throw BadWeaponMagicException("Bad class is " + std::string(typeid(*this).name())
-				+ "\n Try to use other weapon magic");
-	}
-	catch (BadWeaponMagicException& ex) { exceptionMessage(ex); }
+				+ "\nTry to use other weapon magic");
 }
 
 MagicSpear::MagicSpear(const MagicSpear& spear)

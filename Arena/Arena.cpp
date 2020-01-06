@@ -3,6 +3,7 @@
 
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
+#include "../ThreadGuard/ThreadGurad.h"
 #include "../Decision/Decision.h"
 #include "../Decision/HumanDecision.h"
 #include "../Factories/UnitFactory/UnitFactory.h"
@@ -100,6 +101,7 @@ void Arena::prepareUnits()
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
 	if (unitsNames.empty())
 		unitsNames = m_reserveNames;
+	ThreadGuard guard(thread);
 	auto unitGenerator = [&unitsNames, &thread]()
 	{	
 		enum { WARRIOR = 1, WIZARD };

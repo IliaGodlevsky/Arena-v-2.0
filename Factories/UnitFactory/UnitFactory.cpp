@@ -13,15 +13,12 @@ UnitFactory::UnitFactory():
 
 index UnitFactory::chooseDecsion()const
 {
-	try {
-		if (m_decisions.empty())
-			throw BadEquipmentException("No actual desicions for gamers. Bad class is "
-				+ std::string(typeid(*this).name()));
-		if(nullptr == m_itemFactory)
-			throw BadEquipmentException("No actual item factory for units. Bad class is "
-				+ std::string(typeid(*this).name()));
-	}
-	catch (BadEquipmentException& ex) { exceptionMessage(ex); }
+	if (m_decisions.empty())
+		throw BadEquipmentException("No actual desicions for gamers. Bad class is "
+			+ std::string(typeid(*this).name()));
+	if (nullptr == m_itemFactory)
+		throw BadEquipmentException("No actual item factory for units. Bad class is "
+			+ std::string(typeid(*this).name()));
 	return inputNumber("1. Human\n2. \"Dump\"comp\n"
 		"3. \"Clever\" comp\nChoose decision: ", m_decisions.size(), 1);
 }

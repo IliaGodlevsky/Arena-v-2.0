@@ -39,12 +39,9 @@ Factory<T>::Factory()
 template <class T>
 std::unique_ptr<T> Factory<T>::createItem()const
 {
-	try {
-		if (m_items.empty())
-			throw EmptyContainerException("\nTry to fill the container. "
-				"Bad container is " + std::string(typeid(*this).name()));
-	}
-	catch (EmptyContainerException& ex) { exceptionMessage(ex); }
+	if (m_items.empty())
+		throw EmptyContainerException("\nTry to fill the container. "
+			"Bad container is " + std::string(typeid(*this).name()));
 	index itemIndex = randomNumber(m_items.size() - 1);
 	return std::unique_ptr<T>(m_items[itemIndex]->clone());
 }

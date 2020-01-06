@@ -7,12 +7,9 @@
 MagicStaff::MagicStaff(std::string name, int damage, MagicPtr magic)
 	: Staff(name, damage), m_magic(magic->clone())
 {
-	try {
 		if (!canCast<DegenerateMagic*>(magic))
 			throw BadWeaponMagicException("Bad class is " + std::string(typeid(*this).name())
-				+ "\n Try to use other weapon magic");
-	}
-	catch (BadWeaponMagicException& ex) { exceptionMessage(ex); }
+				+ "\nTry to use other weapon magic");
 }
 
 MagicStaff::MagicStaff(const MagicStaff& weapon)

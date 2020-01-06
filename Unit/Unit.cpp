@@ -19,17 +19,6 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	m_mail = factory->createArmor();
 	m_shield = factory->createShield();
 	m_level = std::unique_ptr<Level>(new Level(this));
-	try
-	{
-		if (m_magicBook.size() == 0)
-			throw EmptyContainerException("\nTry to fill the container. Bad container is\n"
-				+ std::string(typeid(m_magicBook).name()) + " in " + std::string(typeid(*this).name()));
-		if (nullptr == m_shield || nullptr == m_mail 
-			|| nullptr == m_weapon || nullptr == m_decision)
-			throw BadEquipmentException("Unit doesn't have enough equipment to fight. Bad class is "
-				+ std::string(typeid(*this).name()));
-	}
-	catch (ArenaException& ex) { exceptionMessage(ex); }
 }
 
 Unit::Unit(const Unit& unit)
@@ -46,17 +35,6 @@ Unit::Unit(const Unit& unit)
 	m_mail(unit.m_mail->clone()),
 	m_shield(unit.m_shield->clone())
 {
-	try
-	{
-		if (m_magicBook.size() == 0)
-			throw EmptyContainerException("\nTry to fill the container. Bad container is\n"
-				+ std::string(typeid(m_magicBook).name()) + " in " + std::string(typeid(*this).name()));
-		if (nullptr == m_shield || nullptr == m_mail
-			|| nullptr == m_weapon || nullptr == m_decision)
-			throw BadEquipmentException("Unit doesn't have enough equipment to fight. Bad class is "
-				+ std::string(typeid(*this).name()));
-	}
-	catch (ArenaException& ex) { exceptionMessage(ex); }
 	m_level = std::unique_ptr<Level>(new Level(this));
 }
 
@@ -165,6 +143,9 @@ UnitPtr Unit::chooseUnitToAttack(const Gladiators& units)const
 
 MagicPtr Unit::chooseMagicToCast(const Gladiators& units)const
 {
+	if (m_magicBook.size() == 0)
+		throw EmptyContainerException("\nTry to fill the container. Bad container is\n"
+			+ std::string(typeid(m_magicBook).name()) + " in " + std::string(typeid(*this).name()));
 	return m_stateHolder.chooseMagicToCast(*this, units);
 }
 
@@ -176,6 +157,10 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 
 void Unit::showFullInfo()const
 {
+	if (nullptr == m_shield || nullptr == m_mail
+		|| nullptr == m_weapon || nullptr == m_decision)
+		throw BadEquipmentException("Unit doesn't have enough equipment to fight. Bad class is "
+			+ std::string(typeid(*this).name()));
 	std::cout << getName() << " Level: " 
 		<< *m_level << ", " << m_decision->
 		getDecisionType() << std::endl;

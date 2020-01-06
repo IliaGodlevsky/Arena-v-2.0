@@ -1,6 +1,7 @@
 #include "MagicClubFactory.h"
 
 #include "../../Weapon/MagicClub.h"
+#include "../../Magic/DebuffMagic/SilenceMagic.h"
 #include  "../../Magic/WeaponMagic/StunMagic.h"
 
 MagicClubFactory::MagicClubFactory()

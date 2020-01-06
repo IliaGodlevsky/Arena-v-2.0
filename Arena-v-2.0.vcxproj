@@ -90,6 +90,7 @@
     <ClCompile Include="PossibilityCounter\PosibilityCounter.cpp" />
     <ClCompile Include="Shield\Shield.cpp" />
     <ClCompile Include="StateHolder\StateHolder.cpp" />
+    <ClCompile Include="ThreadGuard\ThreadGuard.cpp" />
     <ClCompile Include="Timer\Timer.cpp" />
     <ClCompile Include="UnitState\ActiveUnitState.cpp" />
     <ClCompile Include="UnitState\MutedUnitState.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="PossibilityCounter\PosibilityCounter.h" />
     <ClInclude Include="Shield\Shield.h" />
     <ClInclude Include="StateHolder\StateHolder.h" />
+    <ClInclude Include="ThreadGuard\ThreadGurad.h" />
     <ClInclude Include="Timer\Timer.h" />
     <ClInclude Include="UnitState\ActiveUnitState.h" />
     <ClInclude Include="UnitState\MutedUnitState.h" />

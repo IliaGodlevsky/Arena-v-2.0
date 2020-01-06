@@ -120,6 +120,9 @@
     <Filter Include="Source\Containers">
       <UniqueIdentifier>{958ff028-d1e8-44b3-98de-f0e2cf2fac0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\ThreadGuard">
+      <UniqueIdentifier>{1024fea2-c5c7-43ed-bc1f-39cee68c281b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -385,6 +388,9 @@
     </ClCompile>
     <ClCompile Include="Exceptions\ArenaException.cpp">
       <Filter>Source\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadGuard\ThreadGuard.cpp">
+      <Filter>Source\ThreadGuard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -657,6 +663,9 @@
     </ClInclude>
     <ClInclude Include="Exceptions\ArenaException.h">
       <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadGuard\ThreadGurad.h">
+      <Filter>Source\ThreadGuard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
