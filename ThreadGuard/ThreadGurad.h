@@ -1,4 +1,5 @@
-#pragma once
+#ifndef THREAD_GUARD_H_
+#define THREAD_GUARD_H_
 
 #include <thread>
 
@@ -10,3 +11,5 @@ public:
 private:
 	std::thread& m_thread;
 };
+
+#endif
