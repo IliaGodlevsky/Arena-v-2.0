@@ -31,7 +31,6 @@ public:
 	virtual void payMana(int manaCost);
 	virtual bool isEnoughManaFor(const MagicPtr& magic)const;
 	virtual bool takeMagicEffect(Unit& caster, MagicPtr& magic);
-public:
 	void takeKilledUnitMagic(const Unit& victim);
 	void showFullInfo()const;
 	void levelUp();
@@ -43,10 +42,9 @@ public:
 	bool takeDamage(int damage);
 	void takeAlly(const UnitPtr& unit);
 	bool isAlly(const UnitPtr& unit)const;
-public:
 	UnitPtr chooseUnitToAttack(const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Gladiators& units)const;
-	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast_ptr, 
+	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast, 
 		const Gladiators& units)const;
 	virtual UnitPtr getPureClone()const;
 public:
@@ -59,11 +57,9 @@ public:
 	StateHolder m_stateHolder;
 protected:
 	std::unique_ptr<Level> m_level = nullptr;
-protected:
 	WeaponPtr m_weapon = nullptr;
 	ArmPtr m_mail = nullptr;
 	ShieldPtr m_shield = nullptr;
-protected:
 	std::string m_name;
 	DecisionPtr m_decision = nullptr;
 protected:
