@@ -13,6 +13,7 @@ void PoisonAndAttackMagic::effectUnit(Unit& unit)
 {
 	putOn(unit);
 	Magic::effectUnit(unit);
+	AttackMagic::effectUnit(unit);
 }
 
 void PoisonAndAttackMagic::uneffectUnit(Unit& unit)const
