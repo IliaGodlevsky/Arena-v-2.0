@@ -125,14 +125,16 @@ void Arena::prepareUnits()
 
 void Arena::proposeToPlayTeams()
 {
-	if (m_units.size() > 2)
+	const int MIN_PLAYERS_TO_PLAY_TEAMS = 2;
+	const int MIN_TEAMS_NUMBER = 2;
+	if (m_units.size() > MIN_PLAYERS_TO_PLAY_TEAMS)
 	{
 		const bool answer = static_cast<bool>(inputNumber("Do you want play "
 			"with teams? <1 - yes, 0 - no>: ", YES, NO));
 		if (YES == answer)
 		{
 			size_t teamsNumber = inputNumber("Enter teams"
-				" number: ", m_units.size(), 2);
+				" number: ", m_units.size(), MIN_TEAMS_NUMBER);
 			std::vector<Gladiators> teams = breakIntoTeams(teamsNumber);
 			setAllies(teams);
 			pushAlliesToArena(teams);
