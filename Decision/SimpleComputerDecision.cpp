@@ -226,9 +226,9 @@ MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 	for (size_t i = 0; i < decidingUnit->m_magicBook.size(); i++)
 	{
 		magic = decidingUnit->m_magicBook[i]->clone();
-		if (decidingUnit->isEnoughManaFor(magic) && !enemy->m_magicOnMe.hasItem(magic))
+		if (decidingUnit->isEnoughManaFor(magic))
 		{
-			if (!magic->isBuff())
+			if (!magic->isBuff() && !enemy->m_magicOnMe.hasItem(magic))
 			{
 				me = decidingUnit->getPureClone();
 				aim = enemy->getPureClone();
@@ -238,7 +238,7 @@ MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 				else if (!canBeKilled(me, aim))
 					magics.push_back(std::make_pair(enemy, magic->clone()));
 			}
-			else if (magic->isBuff())
+			else if (magic->isBuff() && !decidingUnit->m_magicOnMe.hasItem(magic))
 			{
 				me = decidingUnit->getPureClone();
 				me->castMagic(*me, magic);
