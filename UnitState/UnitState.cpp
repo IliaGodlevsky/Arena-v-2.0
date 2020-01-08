@@ -4,8 +4,8 @@
 #include "../Magic/Magic.h"
 #include "../Arena/Arena.h"
 
-UnitState::UnitState(const Timer& timer)
-	: m_timer(timer)
+UnitState::UnitState(DecisionPtr decision)
+	:m_decision(decision)
 {
 
 }
@@ -52,16 +52,6 @@ void UnitState::setDecision(DecisionPtr decision)
 		this->m_decision = decision;
 }
 
-void UnitState::setStartTime(int round)
-{
-	m_timer.setStartTime(round);
-}
-
-bool UnitState::isExpired(int round)const
-{
-	return m_timer.isExpired(round);
-}
-
 bool UnitState::operator < (const UnitState& unitState)const
 {
 	return getValue() < unitState.getValue();
@@ -75,11 +65,6 @@ bool UnitState::operator>(const UnitState& state)const
 void UnitState::showShortInfo()const
 {
 	return;
-}
-
-int UnitState::getDuration()const 
-{
-	return m_timer.getDuration();
 }
 
 bool UnitState::isEqual(const StatePtr& unitState)const

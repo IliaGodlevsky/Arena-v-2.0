@@ -123,6 +123,12 @@
     <Filter Include="Source\ThreadGuard">
       <UniqueIdentifier>{1024fea2-c5c7-43ed-bc1f-39cee68c281b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\UnitState\OuterUnitState">
+      <UniqueIdentifier>{5b476599-b14a-48ab-900b-e4e6bf2a9540}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\UnitState\InnerUnitState">
+      <UniqueIdentifier>{ac3df53e-1968-4bca-904c-349c2faa6aa4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -257,12 +263,6 @@
     <ClCompile Include="UnitState\ActiveUnitState.cpp">
       <Filter>Source\UnitState</Filter>
     </ClCompile>
-    <ClCompile Include="UnitState\MutedUnitState.cpp">
-      <Filter>Source\UnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\StunUnitState.cpp">
-      <Filter>Source\UnitState</Filter>
-    </ClCompile>
     <ClCompile Include="Factories\MagicFactories\BuffFactories\ArmorBuffFactory.cpp">
       <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
     </ClCompile>
@@ -326,9 +326,6 @@
     <ClCompile Include="Messager\Messager.cpp">
       <Filter>Source\Messager</Filter>
     </ClCompile>
-    <ClCompile Include="UnitState\NotEnoughManaUnitState.cpp">
-      <Filter>Source\UnitState</Filter>
-    </ClCompile>
     <ClCompile Include="Decision\RandomComputerDecision.cpp">
       <Filter>Source\Decision</Filter>
     </ClCompile>
@@ -391,6 +388,30 @@
     </ClCompile>
     <ClCompile Include="ThreadGuard\ThreadGuard.cpp">
       <Filter>Source\ThreadGuard</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\MutedUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\StunUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\NotEnoughManaUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\OuterUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\NotEnoughDamageUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\DisableUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -523,9 +544,6 @@
     <ClInclude Include="UnitState\ActiveUnitState.h">
       <Filter>Source\UnitState</Filter>
     </ClInclude>
-    <ClInclude Include="UnitState\StunUnitState.h">
-      <Filter>Source\UnitState</Filter>
-    </ClInclude>
     <ClInclude Include="Factories\Factory.h">
       <Filter>Source\Factories</Filter>
     </ClInclude>
@@ -591,12 +609,6 @@
     </ClInclude>
     <ClInclude Include="Messager\Messager.h">
       <Filter>Source\Messager</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\MutedUnitState.h">
-      <Filter>Source\UnitState</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\NotEnoughManaUnitState.h">
-      <Filter>Source\UnitState</Filter>
     </ClInclude>
     <ClInclude Include="Decision\RandomComputerDecision.h">
       <Filter>Source\Decision</Filter>
@@ -666,6 +678,24 @@
     </ClInclude>
     <ClInclude Include="ThreadGuard\ThreadGurad.h">
       <Filter>Source\ThreadGuard</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\MutedUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\StunUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\NotEnoughManaUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\OuterUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\NotEnoughDamageUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\DisableUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

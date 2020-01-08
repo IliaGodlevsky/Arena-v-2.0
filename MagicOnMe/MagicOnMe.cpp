@@ -16,6 +16,12 @@ MagicOnMe::MagicOnMe(Unit* unit, const MagicOnMe& magicOnMe)
 		takeNew(magicOnMe[i]);
 }
 
+void MagicOnMe::makeExpire(size_t magicIndex)
+{
+	m_items[magicIndex]->setStartTime(Arena::getCurrentRound() - 
+		m_items[magicIndex]->getDuration() - 1);
+}
+
 void MagicOnMe::takeOffExpired(int round)
 {
 	for (size_t i = 0; i < m_items.size(); i++)

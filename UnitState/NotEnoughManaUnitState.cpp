@@ -3,55 +3,50 @@
 #include "NotEnoughManaUnitState.h"
 
 NotEnoughManaUnitState::NotEnoughManaUnitState(Unit* unit)
-	:m_unit(unit), MutedUnitState(Timer(0))
+	: InnerUnitState(unit)
 {
 
 }
 
 bool NotEnoughManaUnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
 {
-	return MutedUnitState::castMagic(caster, unit, magic);
+	return false;
 }
 
 bool NotEnoughManaUnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
 {
-	return MutedUnitState::injureUnit(weapon, unit, damage);
+	return UnitState::injureUnit(weapon, unit, damage);
 }
 
 UnitPtr NotEnoughManaUnitState::chooseUnitToAttack(const Unit& decidingUnit,
 	const Gladiators& units)const
 {
-	return MutedUnitState::chooseUnitToAttack(decidingUnit, units);
+	return UnitState::chooseUnitToAttack(decidingUnit, units);
 }
 
 MagicPtr NotEnoughManaUnitState::chooseMagicToCast(const Unit& decidingUnit,
 	const Gladiators& units)const
 {
-	return MutedUnitState::chooseMagicToCast(decidingUnit, units);
+	return nullptr;
 }
 
 UnitPtr NotEnoughManaUnitState::chooseUnitToCast(const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& units)const
 {
-	return MutedUnitState::chooseUnitToCast(decidingUnit, magicToCast, units);
+	return nullptr;
 }
 
-bool NotEnoughManaUnitState::isExpired(int round)const
+bool NotEnoughManaUnitState::isExpired()const
 {
 	return m_unit->m_magicBook.canCastAnySpell();
 }
 
-UnitState::StateValue NotEnoughManaUnitState::getValue()const
+int NotEnoughManaUnitState::getValue()const
 {
-	return UnitState::NOT_ENOGHT_MANA_STATE;
+	return NOT_ENOUGH_MANA_STATE;
 }
 
 void NotEnoughManaUnitState::showShortInfo()const
 {
 	std::cout << "<Can't cast> ";
-}
-
-void NotEnoughManaUnitState::getOwner(Unit* unit)
-{
-	m_unit = unit;
 }

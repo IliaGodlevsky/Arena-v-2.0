@@ -3,7 +3,7 @@
 #include "../Magic/Magic.h"
 
 MutedUnitState::MutedUnitState(const Timer& timer)
-	: UnitState(timer)
+	: OuterUnitState(timer)
 {
 
 }
@@ -36,9 +36,9 @@ UnitPtr MutedUnitState::chooseUnitToCast(const Unit& decidingUnit,
 	return nullptr;
 }
 
-MutedUnitState::StateValue MutedUnitState::getValue()const
+int MutedUnitState::getValue()const
 {
-	return UnitState::MUTED_STATE;
+	return MUTED_UNIT_STATE;
 }
 
 void MutedUnitState::showShortInfo()const

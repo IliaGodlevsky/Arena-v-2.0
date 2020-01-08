@@ -3,7 +3,7 @@
 #include "StunUnitState.h"
 
 StunUnitState::StunUnitState(const Timer& timer)
-	: UnitState(timer)
+	: OuterUnitState(timer)
 {
 
 }
@@ -36,9 +36,9 @@ UnitPtr StunUnitState::chooseUnitToCast(const Unit& decidingUnit,
 	return UnitState::chooseUnitToCast(decidingUnit, magicToCast, units);
 }
 
-UnitState::StateValue StunUnitState::getValue()const
+int StunUnitState::getValue()const
 {
-	return UnitState::STUNNED_STATE;
+	return STUN_UNIT_STATE;
 }
 
 void StunUnitState::showShortInfo()const

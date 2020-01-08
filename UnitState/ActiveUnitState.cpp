@@ -3,7 +3,7 @@
 #include "../Magic/Magic.h"
 
 ActiveUnitState::ActiveUnitState()
-	: UnitState(Timer(INT_MAX))
+	: UnitState()
 {
 
 }
@@ -26,7 +26,7 @@ UnitPtr ActiveUnitState::chooseUnitToCast(const Unit& decidingUnit,
 	return m_decision->chooseUnitToCast(decidingUnit, magicToCast, units);
 }
 
-UnitState::StateValue ActiveUnitState::getValue()const
+int ActiveUnitState::getValue()const
 {
-	return UnitState::ALIVE_STATE;
+	return ACTIVE_STATE;
 }

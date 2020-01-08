@@ -6,16 +6,19 @@
 #include "../UnitState/ActiveUnitState.h"
 #include "../Containers/ExpireableContainer.h"
 
+bool isMoreImportantState(const StatePtr& st1, const StatePtr& st2);
+
 class StateHolder : public ExpireableContainer<StatePtr>
 {
 public:
 	StateHolder(DecisionPtr decision);
-	StateHolder(DecisionPtr decision, const StateHolder& stateHolder);
+	StateHolder(Unit* unit, DecisionPtr decision, const StateHolder& stateHolder);
 	StateHolder(const StateHolder& stateHolder) = delete;
 	StateHolder(StateHolder&& stateHolder) = delete;
 	StateHolder& operator=(const StateHolder& stateHolder) = delete;
 	StateHolder& operator=(StateHolder&& stateHolder) = delete;
 public:
+	void makeExpire(size_t stateIndex)override;
 	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
 	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
 	void takeNew(const StatePtr& unitState) override;
@@ -31,7 +34,7 @@ public:
 	~StateHolder();
 private:
 	DecisionPtr m_decision = nullptr;
-	std::unique_ptr<ActiveUnitState> m_activeState = nullptr;
+	Unit* m_unit = nullptr;
 };
 
 #endif

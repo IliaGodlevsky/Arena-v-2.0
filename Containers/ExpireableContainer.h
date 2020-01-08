@@ -13,18 +13,11 @@ public:
 	virtual void takeOffExpired(int round) = 0;
 	virtual void expire(size_t itemIndex);
 	virtual void expireAll();
-	virtual void makeExpire(size_t itemIndex)final;
+	virtual void makeExpire(size_t itemIndex) = 0;
 	virtual ~ExpireableContainer() = default;
 protected:
 	virtual void expireIfFound(const T& item);
 };
-
-template <class T>
-void ExpireableContainer<T>::makeExpire(size_t itemIndex)
-{
-	TemplateContainer<T>::m_items[itemIndex]->setStartTime(Arena::getCurrentRound() -
-		TemplateContainer<T>::m_items[itemIndex]->getDuration() - 1);
-}
 
 template <class T>
 void ExpireableContainer<T>::expire(size_t itemIndex)

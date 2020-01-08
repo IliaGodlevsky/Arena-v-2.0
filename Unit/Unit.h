@@ -16,6 +16,7 @@
 
 class Unit
 {
+	friend class NotEnoughDamageUnitState;
 public:
 	Unit() = delete;
 	Unit(DecisionPtr decision, ItemFactoryPtr factory);

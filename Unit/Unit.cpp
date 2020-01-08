@@ -3,8 +3,8 @@
 #include "../Arena/Arena.h"
 #include "../Magic/Magic.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
+#include "../UnitState/NotEnoughDamageUnitState.h"
 #include "../Level/Level.h"
-#include "../Decision/RandomComputerDecision.h"
 
 #include "Unit.h"
 
@@ -35,7 +35,7 @@ Unit::Unit(const Unit& unit)
 	m_name(unit.m_name),
 	m_magicOnMe(this, unit.m_magicOnMe),
 	m_decision(unit.m_decision),
-	m_stateHolder(unit.m_decision, unit.m_stateHolder),
+	m_stateHolder(this,unit.m_decision, unit.m_stateHolder),
 	m_health(unit.m_health),
 	m_mana(unit.m_mana),
 	m_weapon(unit.m_weapon->clone()),
@@ -54,7 +54,7 @@ Unit::Unit(Unit&& unit)
 	m_name(unit.m_name),
 	m_magicOnMe(this, unit.m_magicOnMe),
 	m_decision(unit.m_decision),
-	m_stateHolder(unit.m_decision, unit.m_stateHolder),
+	m_stateHolder(this, unit.m_decision, unit.m_stateHolder), 
 	m_health(unit.m_health),
 	m_mana(unit.m_mana),
 	m_weapon(std::move(unit.m_weapon)),
@@ -108,6 +108,8 @@ void Unit::moveIntoNewRound()
 	m_stateHolder.takeOffExpired(Arena::getCurrentRound());
 	if (!m_magicBook.canCastAnySpell())
 		m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
+	if (m_damage + m_weapon->getDamage() <= 0)
+		m_stateHolder.takeNew(StatePtr(new NotEnoughDamageUnitState(this)));
 }
 
 bool Unit::isEnoughManaFor(const MagicPtr& magic)const

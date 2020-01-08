@@ -93,8 +93,13 @@
     <ClCompile Include="ThreadGuard\ThreadGuard.cpp" />
     <ClCompile Include="Timer\Timer.cpp" />
     <ClCompile Include="UnitState\ActiveUnitState.cpp" />
+    <ClCompile Include="UnitState\DisableUnitState.cpp" />
+    <ClCompile Include="UnitState\InnerUnitState.cpp" />
     <ClCompile Include="UnitState\MutedUnitState.cpp" />
+    <ClCompile Include="UnitState\NotEnoughDamageUnitState.cpp" />
     <ClCompile Include="UnitState\NotEnoughManaUnitState.cpp" />
+    <ClCompile Include="UnitState\InnerUnitState.h" />
+    <ClCompile Include="UnitState\OuterUnitState.cpp" />
     <ClCompile Include="UnitState\StunUnitState.cpp" />
     <ClCompile Include="UnitState\UnitState.cpp" />
     <ClCompile Include="Unit\Unit.cpp" />
@@ -186,8 +191,11 @@
     <ClInclude Include="ThreadGuard\ThreadGurad.h" />
     <ClInclude Include="Timer\Timer.h" />
     <ClInclude Include="UnitState\ActiveUnitState.h" />
+    <ClInclude Include="UnitState\DisableUnitState.h" />
     <ClInclude Include="UnitState\MutedUnitState.h" />
+    <ClInclude Include="UnitState\NotEnoughDamageUnitState.h" />
     <ClInclude Include="UnitState\NotEnoughManaUnitState.h" />
+    <ClInclude Include="UnitState\OuterUnitState.h" />
     <ClInclude Include="UnitState\StunUnitState.h" />
     <ClInclude Include="UnitState\UnitState.h" />
     <ClInclude Include="Unit\Unit.h" />

@@ -14,7 +14,8 @@ public:
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const override;
 private:
-	StateValue getValue()const override;
+	enum { ACTIVE_STATE = 0 };
+	int getValue()const override;
 };
 
 #endif
