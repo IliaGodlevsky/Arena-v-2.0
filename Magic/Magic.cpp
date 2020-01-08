@@ -58,6 +58,11 @@ void Magic::showFullInfo()const
 	showData();
 }
 
+int Magic::getStartTime()const
+{
+	return m_timer.getStartTime();
+}
+
 void Magic::showShortInfo()const
 {
 	std::cout << "<" << m_name << ": " << m_manaCost << "> ";

@@ -41,8 +41,9 @@ void MagicOnMe::showShortInfo()const
 	std::cout << "Effect: ";
 	for (size_t i = 0; i < size(); i++)
 	{
-		std::cout << "<";
-		std::cout << operator[](i)->getName();
+		std::cout << "<" << (*this)[i]->getName() << ": ";
+		std::cout << (*this)[i]->getStartTime() 
+			+ (*this)[i]->getDuration() - Arena::getCurrentRound();
 		std::cout << "> ";
 	}
 	std::cout << std::endl;
