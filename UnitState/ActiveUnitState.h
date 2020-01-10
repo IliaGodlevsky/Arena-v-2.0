@@ -13,6 +13,7 @@ public:
 		const Gladiators& units)const override;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const override;
+	bool isExpired()const;
 private:
 	enum { ACTIVE_STATE = 0 };
 	int getValue()const override;

@@ -23,7 +23,7 @@ constexpr int Arena::getMaxNubmerOfPlayers()const
 
 constexpr int Arena::getMinNumberOfPlayers()const
 {
-	return 3;
+	return 2;
 }
 
 Arena::Arena()

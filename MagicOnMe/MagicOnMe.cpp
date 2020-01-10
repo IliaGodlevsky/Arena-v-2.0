@@ -22,11 +22,11 @@ void MagicOnMe::makeExpire(size_t magicIndex)
 		m_items[magicIndex]->getDuration() - 1);
 }
 
-void MagicOnMe::takeOffExpired(int round)
+void MagicOnMe::takeOffExpired()
 {
 	for (size_t i = 0; i < m_items.size(); i++)
 	{
-		if (m_items[i]->isExpired(round))
+		if (m_items[i]->isExpired(Arena::getCurrentRound()))
 		{
 			m_items[i]->uneffectUnit(*m_unit);
 			m_items.erase(m_items.begin() + i);

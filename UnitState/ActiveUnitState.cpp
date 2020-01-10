@@ -1,6 +1,8 @@
 #include "ActiveUnitState.h"
 
 #include "../Magic/Magic.h"
+#include "../Decision/Decision.h"
+#include "../Unit/Unit.h"
 
 ActiveUnitState::ActiveUnitState()
 	: UnitState()
@@ -24,6 +26,11 @@ UnitPtr ActiveUnitState::chooseUnitToCast(const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& units)const
 {
 	return m_decision->chooseUnitToCast(decidingUnit, magicToCast, units);
+}
+
+bool ActiveUnitState::isExpired()const
+{
+	return false;
 }
 
 int ActiveUnitState::getValue()const

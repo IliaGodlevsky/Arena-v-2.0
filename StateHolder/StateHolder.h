@@ -12,7 +12,7 @@ class StateHolder : public ExpireableContainer<StatePtr>
 {
 public:
 	StateHolder(DecisionPtr decision);
-	StateHolder(Unit* unit, DecisionPtr decision, const StateHolder& stateHolder);
+	StateHolder(DecisionPtr decision, const StateHolder& stateHolder);
 	StateHolder(const StateHolder& stateHolder) = delete;
 	StateHolder(StateHolder&& stateHolder) = delete;
 	StateHolder& operator=(const StateHolder& stateHolder) = delete;
@@ -29,12 +29,12 @@ public:
 		const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const;
-	void takeOffExpired(int round) override;
+	void takeOffExpired() override;
 	void showShortInfo()const override;
 	~StateHolder();
 private:
 	DecisionPtr m_decision = nullptr;
-	Unit* m_unit = nullptr;
+	std::unique_ptr<UnitState> m_activeState = nullptr;
 };
 
 #endif

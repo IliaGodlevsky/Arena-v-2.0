@@ -3,7 +3,7 @@
 
 #include "InnerUnitState.h"
 
-class NotEnoughManaUnitState : virtual public InnerUnitState
+class NotEnoughManaUnitState : public InnerUnitState
 {
 public:
 	NotEnoughManaUnitState(Unit* unit);

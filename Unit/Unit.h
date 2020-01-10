@@ -3,7 +3,6 @@
 
 #include "../Weapon/Weapon.h"
 #include "../Decision/Decision.h"
-#include "../UnitState/UnitState.h"
 #include "../Battles/Battles.h"
 #include "../Vitals/Vitals.h"
 #include "../MagicBook/MagicBook.h"
@@ -16,7 +15,6 @@
 
 class Unit
 {
-	friend class NotEnoughDamageUnitState;
 public:
 	Unit() = delete;
 	Unit(DecisionPtr decision, ItemFactoryPtr factory);

@@ -10,7 +10,7 @@ template<class T>
 class ExpireableContainer : public TemplateContainer<T>
 {
 public:
-	virtual void takeOffExpired(int round) = 0;
+	virtual void takeOffExpired() = 0;
 	virtual void expire(size_t itemIndex);
 	virtual void expireAll();
 	virtual void makeExpire(size_t itemIndex) = 0;
@@ -23,7 +23,7 @@ template <class T>
 void ExpireableContainer<T>::expire(size_t itemIndex)
 {
 	makeExpire(itemIndex);
-	takeOffExpired(Arena::getCurrentRound());
+	takeOffExpired();
 }
 
 template <class T>
@@ -31,7 +31,7 @@ void ExpireableContainer<T>::expireAll()
 {
 	for (size_t i = 0; i < TemplateContainer<T>::m_items.size(); i++)
 		makeExpire(i);
-	takeOffExpired(Arena::getCurrentRound());
+	takeOffExpired();
 }
 
 template <class T>

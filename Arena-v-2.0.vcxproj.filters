@@ -407,12 +407,6 @@
     <ClCompile Include="UnitState\InnerUnitState.cpp">
       <Filter>Source\UnitState\InnerUnitState</Filter>
     </ClCompile>
-    <ClCompile Include="UnitState\NotEnoughDamageUnitState.cpp">
-      <Filter>Source\UnitState\InnerUnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\DisableUnitState.cpp">
-      <Filter>Source\UnitState\InnerUnitState</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -690,12 +684,6 @@
     </ClInclude>
     <ClInclude Include="UnitState\OuterUnitState.h">
       <Filter>Source\UnitState\OuterUnitState</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\NotEnoughDamageUnitState.h">
-      <Filter>Source\UnitState\InnerUnitState</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\DisableUnitState.h">
-      <Filter>Source\UnitState\InnerUnitState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

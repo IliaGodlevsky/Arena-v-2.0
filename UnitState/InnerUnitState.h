@@ -3,7 +3,7 @@
 
 #include "UnitState.h"
 
-class InnerUnitState : virtual public UnitState
+class InnerUnitState : public UnitState
 {
 public:
 	InnerUnitState(Unit* unit);

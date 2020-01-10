@@ -3,7 +3,6 @@
 
 #include "../Globals/Globals.h"
 #include "../Timer/Timer.h"
-#include "../Decision/Decision.h"
 #include "../Weapon/Weapon.h"
 
 class UnitState;
@@ -30,6 +29,7 @@ public:
 	virtual bool operator <(const UnitState& unitState)const final;
 	virtual bool operator >(const UnitState& unitState)const final;
 	virtual bool isEqual(const StatePtr& unitState)const final;
+	virtual bool isExpired()const = 0;
 protected:
 	DecisionPtr m_decision = nullptr;
 private:

@@ -1,4 +1,5 @@
 #include "../Unit/Unit.h"
+#include "../Magic/Magic.h"
 
 #include "NotEnoughManaUnitState.h"
 
@@ -21,7 +22,7 @@ bool NotEnoughManaUnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damag
 UnitPtr NotEnoughManaUnitState::chooseUnitToAttack(const Unit& decidingUnit,
 	const Gladiators& units)const
 {
-	return UnitState::chooseUnitToAttack(decidingUnit, units);
+	return m_decision->chooseUnitToAttack(decidingUnit, units);
 }
 
 MagicPtr NotEnoughManaUnitState::chooseMagicToCast(const Unit& decidingUnit,
@@ -48,5 +49,5 @@ int NotEnoughManaUnitState::getValue()const
 
 void NotEnoughManaUnitState::showShortInfo()const
 {
-	std::cout << "<Can't cast> ";
+	std::cout << "<Mana lack> ";
 }

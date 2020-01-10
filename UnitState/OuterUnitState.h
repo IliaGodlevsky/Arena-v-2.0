@@ -10,7 +10,7 @@ public:
 	OuterUnitState(const Timer& timer);
 	virtual void setStartTime(int round)final;
 	virtual int getDuration()const final;
-	virtual bool isExpired(int round)const;
+	virtual bool isExpired()const;
 	virtual ~OuterUnitState() = default;
 protected:
 	Timer m_timer;

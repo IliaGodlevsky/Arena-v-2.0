@@ -1,6 +1,8 @@
 #include "MutedUnitState.h"
 
 #include "../Magic/Magic.h"
+#include "../Decision/Decision.h"
+#include "../Unit/Unit.h"
 
 MutedUnitState::MutedUnitState(const Timer& timer)
 	: OuterUnitState(timer)
