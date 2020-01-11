@@ -4,23 +4,19 @@
 #include "../Magic.h"
 #include "../../PossibilityCounter/PosibilityCounter.h"
 
-class StunMagic : virtual public Magic
+class StunMagic : public Magic
 {
 public:
-	StunMagic(std::string name, const Timer& timer, 
+	StunMagic(std::string name, Timer timer, 
 		PosibilityCounter propability);
-	virtual void effectUnit(Unit& unit) override;
-	virtual void uneffectUnit(Unit& unit)const override;
-	virtual MagicPtr clone()const override;
-	virtual bool isBuff()const override;
-	virtual bool isEqual(const MagicPtr& magic)const override;
-	virtual void showFullInfo()const override;
-protected:
-	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
-	virtual void showData()const override;
-	virtual void putOn(Unit& unit)const override;
+	void effectUnit(Unit& unit) override;
+	MagicPtr clone()const override;
+	bool isEqual(const MagicPtr& magic)const override;
+	void showFullInfo()const override;
+	void showShortInfo()const override;
 private:
 	PosibilityCounter m_posibility;
+	Timer m_timer;
 };
 
 #endif

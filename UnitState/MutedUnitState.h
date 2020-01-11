@@ -1,9 +1,9 @@
 #ifndef MUTED_UNIT_STATE_H_
 #define MUTED_UNIT_STATE_H_
 
-#include "UnitState.h"
+#include "OuterUnitState.h"
 
-class MutedUnitState : public UnitState
+class MutedUnitState : public OuterUnitState
 {
 public:
 	MutedUnitState(const Timer& timer);
@@ -18,7 +18,8 @@ public:
 		const MagicPtr& magicToCast, const Gladiators& units)const override;
 	void showShortInfo()const;
 private:
-	StateValue getValue()const override;
+	enum { MUTED_UNIT_STATE = 1 };
+	int getValue()const override;
 };
 
 #endif

@@ -3,59 +3,22 @@
 #include "../Arena/Arena.h"
 #include "../Unit/Unit.h"
 
-Magic::Magic(std::string name, int manaCost, const Timer& timer)
-	: m_name(name), m_manaCost(manaCost), m_timer(timer)
+Magic::Magic(std::string name)
+	: m_name(name)
 {
 
-}
-
-Magic::~Magic() {}
-
-void Magic::effectUnit(Unit& unit)
-{
-	setStartTime(Arena::getCurrentRound());
-	unit.m_magicOnMe.takeNew(clone());
-}
-
-bool Magic::isExpired(int round)const
-{
-	return m_timer.isExpired(round);
-}
-
-void Magic::setStartTime(int round)
-{
-	m_timer.setStartTime(round);
-}
-
-bool Magic::isEnoughMana(int currentUnitMana)const
-{
-	return currentUnitMana >= m_manaCost;
 }
 
 bool Magic::isEqual(const MagicPtr& magic)const
 {
 	if (nullptr == magic)
 		return false;
-	return m_name == magic->m_name
-		&& m_manaCost == magic->m_manaCost
-		&& m_timer == magic->m_timer;
-}
-
-int Magic::getCost()const
-{
-	return m_manaCost;
-}
-
-void Magic::showData()const
-{
-	std::cout << "Name: " << m_name << std::endl;
-	std::cout << "Mana cost: " << m_manaCost << std::endl;
-	std::cout << "Duration: " << m_timer.getDuration() << std::endl;
+	return m_name == magic->m_name;
 }
 
 void Magic::showFullInfo()const
 {
-	showData();
+	std::cout << "Name: " << m_name << std::endl;
 }
 
 int Magic::getStartTime()const
@@ -65,15 +28,10 @@ int Magic::getStartTime()const
 
 void Magic::showShortInfo()const
 {
-	std::cout << "<" << m_name << ": " << m_manaCost << "> ";
+	std::cout << m_name;
 }
 
 const std::string& Magic::getName()const
 {
 	return m_name;
-}
-
-int Magic::getDuration()const
-{
-	return m_timer.getDuration();
 }

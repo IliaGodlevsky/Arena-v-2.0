@@ -4,8 +4,8 @@
 
 
 ArmorBuffMagic::ArmorBuffMagic(std::string name, int manaCost,
-	const Timer& timer, int armorAmplify)
-	: Magic(name, manaCost, timer),
+	Timer timer, ArmorAmplifyElem armorAmplify)
+	: ParamChangeMagic(name, manaCost, timer), 
 	m_armorAmplify(armorAmplify)
 {
 
@@ -13,13 +13,13 @@ ArmorBuffMagic::ArmorBuffMagic(std::string name, int manaCost,
 
 void ArmorBuffMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
+	ParamChangeMagic::effectUnit(unit);
+	m_armorAmplify.effectUnit(unit);
 }
 
-void ArmorBuffMagic::uneffectUnit(Unit& unit)const
+void ArmorBuffMagic::uneffectUnit(Unit& unit)
 {
-	unit.m_armor.changeValue(-m_armorAmplify);
+	m_armorAmplify.uneffectUnit(unit);
 }
 
 MagicPtr ArmorBuffMagic::clone()const
@@ -27,37 +27,26 @@ MagicPtr ArmorBuffMagic::clone()const
 	return MagicPtr(new ArmorBuffMagic(m_name, m_manaCost, m_timer, m_armorAmplify));
 }
 
-void ArmorBuffMagic::putOn(Unit& unit)const
-{
-	unit.m_armor.changeValue(m_armorAmplify);
-}
-
 bool ArmorBuffMagic::isBuff()const
 {
 	return true;
 }
 
-bool ArmorBuffMagic::hasEqualParametres(const MagicPtr& magic)const
+bool ArmorBuffMagic::isDispelable()const
 {
-	if (!canCast<ArmorBuffMagic*>(magic))
-		return NO;
-	ArmorBuffMagic* temp = DYNAMIC(ArmorBuffMagic*, magic);
-	return m_armorAmplify == temp->m_armorAmplify;
+	return true;
 }
 
 bool ArmorBuffMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
-}
-
-void ArmorBuffMagic::showData()const
-{
-	std::cout << "Armor add: " << m_armorAmplify << std::endl;
+	if (!canCast<ArmorBuffMagic*>(magic))
+		return false;
+	ArmorBuffMagic* temp = DYNAMIC(ArmorBuffMagic*, magic);
+	return ParamChangeMagic::isEqual(magic)
+		&& m_armorAmplify == temp->m_armorAmplify;
 }
 
 void ArmorBuffMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
+
 }

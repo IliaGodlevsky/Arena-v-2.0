@@ -10,8 +10,8 @@ public:
 private:
 	enum
 	{
-		OGRE_MAUL_DAMAGE = 10,
-		CAVEMANA_CLUB_DAMAGE = 8
+		OGRE_MAUL_DAMAGE = 8,
+		CAVEMANA_CLUB_DAMAGE = 7
 	};
 
 	enum

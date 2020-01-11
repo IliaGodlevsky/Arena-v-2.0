@@ -2,25 +2,21 @@
 #define POISON_AND_ATTACK_DAMAGE_H_
 
 #include "PoisonMagic.h"
-#include "AttackMagic.h"
+#include "../Elements/HpReduceElem.h"
 
 class PoisonAndAttackMagic
-	: public PoisonMagic, public AttackMagic
+	: public PoisonMagic
 {
 public:
 	PoisonAndAttackMagic(std::string name,
-		int manaCost, const Timer& timer,
-		int damage, int regenReduce);
+		int manaCost, Timer timer,
+		HpReduceElem damage, HpRegenReduceElem regenReduce);
 	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit)const override;
 	MagicPtr clone()const override;
-	bool isBuff()const override;
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
-protected:
-	bool hasEqualParametres(const MagicPtr& magic)const override;
-	void showData()const override;
-	void putOn(Unit& unit)const override;
+private:
+	HpReduceElem m_damage;
 };
 
 #endif

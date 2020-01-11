@@ -1,26 +1,28 @@
 #ifndef OFFSET_DAMAGE_BUFF_H_
 #define OFFSET_DAMAGE_BUFF_H_
 
-#include "../DebuffMagic/ArmorDebuffMagic.h"
-
-#include "DamageBuffMagic.h"
+#include "../ParamChangeMagic.h"
+#include "../Elements/DamageAmplifyElem.h"
+#include "../Elements/ArmorReduceElem.h"
 
 class OffsetDamageBuffMagic
-	: public DamageBuffMagic, public ArmorDebuffMagic
+	: public ParamChangeMagic
 {
 public:
 	OffsetDamageBuffMagic(std::string name, int manaCost,
-		const Timer& timer, int armorReduce, int damageAmplify);
+		Timer timer, ArmorReduceElem armorReduce, 
+		DamageAmplifyElem damageAmplify);
 	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit)const override;
+	void uneffectUnit(Unit& unit) override;
 	MagicPtr clone()const override;
 	bool isBuff()const override;
+	bool isDispelable()const override;
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
-protected:
-	bool hasEqualParametres(const MagicPtr& magic)const override;
-	void showData()const override;
-	void putOn(Unit& unit)const override;
+	~OffsetDamageBuffMagic() = default;
+private:
+	DamageAmplifyElem m_damageAmplify;
+	ArmorReduceElem m_armorReduce;
 };
 
 #endif

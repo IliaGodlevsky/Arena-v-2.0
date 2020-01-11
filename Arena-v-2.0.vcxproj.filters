@@ -123,6 +123,18 @@
     <Filter Include="Source\ThreadGuard">
       <UniqueIdentifier>{1024fea2-c5c7-43ed-bc1f-39cee68c281b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\UnitState\OuterUnitState">
+      <UniqueIdentifier>{5b476599-b14a-48ab-900b-e4e6bf2a9540}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\UnitState\InnerUnitState">
+      <UniqueIdentifier>{ac3df53e-1968-4bca-904c-349c2faa6aa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Interface">
+      <UniqueIdentifier>{e0a1f2f1-d46b-421c-a51d-acc1c0f207fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Magic\Elements">
+      <UniqueIdentifier>{b828aef9-f2ca-44a7-b2db-cac6c94fed1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -257,12 +269,6 @@
     <ClCompile Include="UnitState\ActiveUnitState.cpp">
       <Filter>Source\UnitState</Filter>
     </ClCompile>
-    <ClCompile Include="UnitState\MutedUnitState.cpp">
-      <Filter>Source\UnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\StunUnitState.cpp">
-      <Filter>Source\UnitState</Filter>
-    </ClCompile>
     <ClCompile Include="Factories\MagicFactories\BuffFactories\ArmorBuffFactory.cpp">
       <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
     </ClCompile>
@@ -326,9 +332,6 @@
     <ClCompile Include="Messager\Messager.cpp">
       <Filter>Source\Messager</Filter>
     </ClCompile>
-    <ClCompile Include="UnitState\NotEnoughManaUnitState.cpp">
-      <Filter>Source\UnitState</Filter>
-    </ClCompile>
     <ClCompile Include="Decision\RandomComputerDecision.cpp">
       <Filter>Source\Decision</Filter>
     </ClCompile>
@@ -391,6 +394,54 @@
     </ClCompile>
     <ClCompile Include="ThreadGuard\ThreadGuard.cpp">
       <Filter>Source\ThreadGuard</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\MutedUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\StunUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\NotEnoughManaUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\OuterUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\ParamChangeElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\HpRegenReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\ArmorReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\ArmorAmplifyElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\DamageReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\DamageAmplifyElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\HpReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\ParamChangeMagic.cpp">
+      <Filter>Source\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\FreeParamChangeMagic.cpp">
+      <Filter>Source\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\BadincomingMagicException.cpp">
+      <Filter>Source\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -523,9 +574,6 @@
     <ClInclude Include="UnitState\ActiveUnitState.h">
       <Filter>Source\UnitState</Filter>
     </ClInclude>
-    <ClInclude Include="UnitState\StunUnitState.h">
-      <Filter>Source\UnitState</Filter>
-    </ClInclude>
     <ClInclude Include="Factories\Factory.h">
       <Filter>Source\Factories</Filter>
     </ClInclude>
@@ -591,12 +639,6 @@
     </ClInclude>
     <ClInclude Include="Messager\Messager.h">
       <Filter>Source\Messager</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\MutedUnitState.h">
-      <Filter>Source\UnitState</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\NotEnoughManaUnitState.h">
-      <Filter>Source\UnitState</Filter>
     </ClInclude>
     <ClInclude Include="Decision\RandomComputerDecision.h">
       <Filter>Source\Decision</Filter>
@@ -666,6 +708,51 @@
     </ClInclude>
     <ClInclude Include="ThreadGuard\ThreadGurad.h">
       <Filter>Source\ThreadGuard</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\MutedUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\StunUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\NotEnoughManaUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\OuterUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Interface.h">
+      <Filter>Source\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\ParamChangeElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\HpRegenReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\ArmorReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\ArmorAmplifyElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\DamageReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\DamageAmplifyElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\HpReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\ParamChangeMagic.h">
+      <Filter>Source\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\FreeParamChangeMagic.h">
+      <Filter>Source\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\BadincomingMagicException.h">
+      <Filter>Source\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

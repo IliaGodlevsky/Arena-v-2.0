@@ -3,8 +3,8 @@
 #include "DamageBuffMagic.h"
 
 DamageBuffMagic::DamageBuffMagic(std::string name, int manaCost,
-	const Timer& timer, int damageAmplify)
-	: Magic(name, manaCost, timer),
+	Timer timer, DamageAmplifyElem damageAmplify)
+	: ParamChangeMagic(name, manaCost, timer), 
 	m_damageAmplify(damageAmplify)
 {
 
@@ -12,13 +12,13 @@ DamageBuffMagic::DamageBuffMagic(std::string name, int manaCost,
 
 void DamageBuffMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
+	ParamChangeMagic::effectUnit(unit);
+	m_damageAmplify.effectUnit(unit);
 }
 
-void DamageBuffMagic::uneffectUnit(Unit& unit)const
+void DamageBuffMagic::uneffectUnit(Unit& unit)
 {
-	unit.m_damage.changeValue(-m_damageAmplify);
+	m_damageAmplify.uneffectUnit(unit);
 }
 
 MagicPtr DamageBuffMagic::clone()const
@@ -26,24 +26,13 @@ MagicPtr DamageBuffMagic::clone()const
 	return MagicPtr(new DamageBuffMagic(m_name, m_manaCost, m_timer, m_damageAmplify));
 }
 
-void DamageBuffMagic::putOn(Unit& unit)const
-{
-	unit.m_damage.changeValue(m_damageAmplify);
-}
-
-bool DamageBuffMagic::hasEqualParametres(const MagicPtr& magic)const
-{
-	if (!canCast<DamageBuffMagic*>(magic))
-		return NO;
-	DamageBuffMagic* temp = DYNAMIC(DamageBuffMagic*, magic);
-
-	return m_damageAmplify == temp->m_damageAmplify;
-}
-
 bool DamageBuffMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
+	if (!canCast<DamageBuffMagic*>(magic))
+		return false;
+	DamageBuffMagic* temp = DYNAMIC(DamageBuffMagic*, magic);
+	return ParamChangeMagic::isEqual(magic)&&
+		m_damageAmplify == temp->m_damageAmplify;
 }
 
 bool DamageBuffMagic::isBuff()const
@@ -51,13 +40,12 @@ bool DamageBuffMagic::isBuff()const
 	return true;
 }
 
-void DamageBuffMagic::showData()const
+bool DamageBuffMagic::isDispelable()const
 {
-	std::cout << "Damage add: " << m_damageAmplify << std::endl;
+	return true;
 }
 
 void DamageBuffMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
+	ParamChangeMagic::showFullInfo();
 }

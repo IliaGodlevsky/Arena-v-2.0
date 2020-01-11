@@ -1,62 +1,54 @@
 #include "ArmorAndDamageDebuffMagic.h"
 
-ArmorAndDamageDebuffMagic::ArmorAndDamageDebuffMagic(std::string name,
-	int manaCost, const Timer& timer, int armorReduce, int damageReduce)
-	: Magic(name, manaCost, timer),
-	ArmorDebuffMagic(name, manaCost, timer, armorReduce),
-	DamageDebuffMagic(name, manaCost, timer, damageReduce)
+ArmorAndDamageDebuffMagic::ArmorAndDamageDebuffMagic(std::string name, int manaCost,
+	Timer timer, ArmorReduceElem armorReduce, DamageReduceElem damageReduce)
+	: ParamChangeMagic(name, manaCost, timer),
+	m_armorReduce(armorReduce),
+	m_damageReduce(damageReduce)
 {
 
 }
 
 void ArmorAndDamageDebuffMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
+	ParamChangeMagic::effectUnit(unit);
+	m_armorReduce.effectUnit(unit);
+	m_damageReduce.effectUnit(unit);
 }
 
-void ArmorAndDamageDebuffMagic::uneffectUnit(Unit& unit)const
+void ArmorAndDamageDebuffMagic::uneffectUnit(Unit& unit)
 {
-	DamageDebuffMagic::uneffectUnit(unit);
-	ArmorDebuffMagic::uneffectUnit(unit);
+	m_armorReduce.uneffectUnit(unit);
+	m_damageReduce.uneffectUnit(unit);
 }
 
 MagicPtr ArmorAndDamageDebuffMagic::clone()const
 {
-	return MagicPtr(new ArmorAndDamageDebuffMagic(m_name, m_manaCost,
-		m_timer, m_armorReduce, m_damageReduce));
+	return MagicPtr(new ArmorAndDamageDebuffMagic(m_name, m_manaCost, m_timer,
+		m_armorReduce, m_damageReduce));
 }
+
 bool ArmorAndDamageDebuffMagic::isBuff()const
 {
 	return false;
 }
 
-bool ArmorAndDamageDebuffMagic::hasEqualParametres(const MagicPtr& magic)const
+bool ArmorAndDamageDebuffMagic::isDispelable()const
 {
-	return ArmorDebuffMagic::hasEqualParametres(magic)
-		&& DamageDebuffMagic::hasEqualParametres(magic);
+	return true;
 }
 
 bool ArmorAndDamageDebuffMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
-}
-
-void ArmorAndDamageDebuffMagic::putOn(Unit& unit)const
-{
-	DamageDebuffMagic::putOn(unit);
-	ArmorDebuffMagic::putOn(unit);
+	if (!canCast<ArmorAndDamageDebuffMagic*>(magic))
+		return false;
+	ArmorAndDamageDebuffMagic* temp = DYNAMIC(ArmorAndDamageDebuffMagic*, magic);
+	return ParamChangeMagic::isEqual(magic)
+		&& m_armorReduce == temp->m_armorReduce
+		&& m_damageReduce == temp->m_damageReduce;
 }
 
 void ArmorAndDamageDebuffMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
-}
-
-void ArmorAndDamageDebuffMagic::showData()const
-{
-	ArmorDebuffMagic::showData();
-	DamageDebuffMagic::showData();
+	ParamChangeMagic::showFullInfo();
 }

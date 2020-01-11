@@ -1,25 +1,28 @@
 #ifndef ARMOR_AND_DAMAGE_BUFF_H_
 #define ARMOR_AND_DAMAGE_BUFF_H_
 
-#include "ArmorBuffMagic.h"
-#include "DamageBuffMagic.h"
+#include "../ParamChangeMagic.h"
+#include "../Elements/ArmorAmplifyElem.h"
+#include "../Elements/DamageAmplifyElem.h"
 
 class ArmorAndDamageBuffMagic
-	: public ArmorBuffMagic, public DamageBuffMagic
+	: public ParamChangeMagic
 {
 public:
 	ArmorAndDamageBuffMagic(std::string name, int manaCost,
-		const Timer& timer, int armorAmplify, int damageAmplify);
+		Timer timer, ArmorAmplifyElem armorAmplify, 
+		DamageAmplifyElem damageAmplify);
 	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit)const override;
+	void uneffectUnit(Unit& unit) override;
 	MagicPtr clone()const override;
 	bool isBuff()const override;
+	bool isDispelable()const override;
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
-protected:
-	bool hasEqualParametres(const MagicPtr& magic)const override;
-	void showData()const override;
-	void putOn(Unit& unit)const override;
+	~ArmorAndDamageBuffMagic() = default;
+private:
+	ArmorAmplifyElem m_armorAmplify;
+	DamageAmplifyElem m_damageAmplify;
 };
 
 #endif

@@ -14,9 +14,11 @@ public:
 	MagicOnMe& operator=(const MagicOnMe&) = delete;
 	MagicOnMe& operator=(MagicOnMe&&) = delete;
 public:
-	void takeOffExpired(int round) override;
+	bool itemHasPassedControl(const MagicPtr& magic)const override;
+	void takeOffExpired() override;
 	void takeNew(const MagicPtr& magic) override;
 	void showShortInfo()const override;
+	void makeExpire(size_t magicIndex)override;
 private:
 	Unit* m_unit = nullptr; // unit, that have this vector of spells
 };

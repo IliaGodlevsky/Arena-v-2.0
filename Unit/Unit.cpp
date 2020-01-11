@@ -4,7 +4,7 @@
 #include "../Magic/Magic.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
 #include "../Level/Level.h"
-#include "../Decision/RandomComputerDecision.h"
+#include "../Interface/Interface.h"
 
 #include "Unit.h"
 
@@ -35,7 +35,7 @@ Unit::Unit(const Unit& unit)
 	m_name(unit.m_name),
 	m_magicOnMe(this, unit.m_magicOnMe),
 	m_decision(unit.m_decision),
-	m_stateHolder(unit.m_decision, unit.m_stateHolder),
+	m_stateHolder(unit.m_decision, unit.m_stateHolder), 
 	m_health(unit.m_health),
 	m_mana(unit.m_mana),
 	m_weapon(unit.m_weapon->clone()),
@@ -104,15 +104,16 @@ void Unit::moveIntoNewRound()
 {
 	m_health++;
 	m_mana++;
-	m_magicOnMe.takeOffExpired(Arena::getCurrentRound());
-	m_stateHolder.takeOffExpired(Arena::getCurrentRound());
+	m_magicOnMe.takeOffExpired();
+	m_stateHolder.takeOffExpired();
 	if (!m_magicBook.canCastAnySpell())
 		m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
 }
 
 bool Unit::isEnoughManaFor(const MagicPtr& magic)const
 {
-	return m_mana >= magic->getCost();
+	IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
+	return m_mana >= manaCost->getCost();
 }
 
 bool Unit::isAlly(const UnitPtr& unit)const
@@ -222,7 +223,7 @@ UnitPtr Unit::getPureClone()const
 	UnitPtr clone = UnitPtr(new Unit(*this));
 	clone->m_weapon = clone->m_weapon->getPureWeapon();
 	clone->m_shield = clone->m_shield->getPureShield();
-	if (!clone->m_magicBook.canCastAnySpell())
+	if (!m_magicBook.canCastAnySpell())
 		clone->m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(clone.get())));
 	return clone;
 }

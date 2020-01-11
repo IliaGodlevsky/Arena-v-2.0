@@ -1,24 +1,26 @@
 #include "ArmorAndDamageBuffMagic.h"
 
-ArmorAndDamageBuffMagic::ArmorAndDamageBuffMagic(std::string name,
-	int manaCost, const Timer& timer, int armorAmplify, int damageAmplify)
-	: Magic(name, manaCost, timer),
-	ArmorBuffMagic(name, manaCost, timer, armorAmplify),
-	DamageBuffMagic(name, manaCost, timer, damageAmplify)
+ArmorAndDamageBuffMagic::ArmorAndDamageBuffMagic(std::string name, int manaCost,
+	Timer timer, ArmorAmplifyElem armorAmplify,
+	DamageAmplifyElem damageAmplify)
+	: ParamChangeMagic(name, manaCost, timer),
+	m_armorAmplify(armorAmplify),
+	m_damageAmplify(damageAmplify)
 {
 
 }
 
 void ArmorAndDamageBuffMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
+	ParamChangeMagic::effectUnit(unit);
+	m_armorAmplify.effectUnit(unit);
+	m_damageAmplify.effectUnit(unit);
 }
 
-void ArmorAndDamageBuffMagic::uneffectUnit(Unit& unit)const
+void ArmorAndDamageBuffMagic::uneffectUnit(Unit& unit)
 {
-	DamageBuffMagic::uneffectUnit(unit);
-	ArmorBuffMagic::uneffectUnit(unit);
+	m_armorAmplify.uneffectUnit(unit);
+	m_damageAmplify.uneffectUnit(unit);
 }
 
 MagicPtr ArmorAndDamageBuffMagic::clone()const
@@ -32,32 +34,22 @@ bool ArmorAndDamageBuffMagic::isBuff()const
 	return true;
 }
 
-bool ArmorAndDamageBuffMagic::hasEqualParametres(const MagicPtr& magic)const
+bool ArmorAndDamageBuffMagic::isDispelable()const
 {
-	return ArmorBuffMagic::hasEqualParametres(magic)
-		&& DamageBuffMagic::hasEqualParametres(magic);
+	return true;
 }
 
 bool ArmorAndDamageBuffMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
-}
-
-void ArmorAndDamageBuffMagic::putOn(Unit& unit)const
-{
-	DamageBuffMagic::putOn(unit);
-	ArmorBuffMagic::putOn(unit);
+	if (!canCast<ArmorAndDamageBuffMagic*>(magic))
+		return false;
+	ArmorAndDamageBuffMagic* temp = DYNAMIC(ArmorAndDamageBuffMagic*, magic);
+	return ParamChangeMagic::isEqual(magic)
+		&& m_armorAmplify == temp->m_armorAmplify
+		&& m_damageAmplify == temp->m_damageAmplify;
 }
 
 void ArmorAndDamageBuffMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
-}
-
-void ArmorAndDamageBuffMagic::showData()const
-{
-	ArmorBuffMagic::showData();
-	DamageBuffMagic::showData();
+	ParamChangeMagic::showFullInfo();
 }

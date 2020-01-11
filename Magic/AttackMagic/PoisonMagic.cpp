@@ -2,23 +2,27 @@
 
 #include "PoisonMagic.h"
 
-
-PoisonMagic::PoisonMagic(std::string name, int manaCost, const Timer& timer,
-	int regenReduce)
-	: Magic(name, manaCost, timer), m_regenReduce(regenReduce)
+PoisonMagic::PoisonMagic(std::string name, int manaCost, Timer timer,
+	HpRegenReduceElem regenReduce)
+	: ParamChangeMagic(name, manaCost, timer), m_regenReduce(regenReduce)
 {
 
+}
+
+bool PoisonMagic::isDispelable()const
+{
+	return false;
 }
 
 void PoisonMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
+	ParamChangeMagic::effectUnit(unit);
+	m_regenReduce.effectUnit(unit);
 }
 
-void PoisonMagic::uneffectUnit(Unit& unit)const
+void PoisonMagic::uneffectUnit(Unit& unit)
 {
-	unit.m_health.changeRegeneration(m_regenReduce);
+	m_regenReduce.uneffectUnit(unit);
 }
 
 MagicPtr PoisonMagic::clone()const
@@ -31,32 +35,18 @@ bool PoisonMagic::isBuff()const
 	return false;
 }
 
-bool PoisonMagic::hasEqualParametres(const MagicPtr& magic)const
+bool PoisonMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<PoisonMagic*>(magic))
 		return false;
 	PoisonMagic* temp = DYNAMIC(PoisonMagic*, magic);
-	return m_regenReduce == temp->m_regenReduce;
-}
-
-bool PoisonMagic::isEqual(const MagicPtr& magic)const
-{
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
-}
-
-void PoisonMagic::putOn(Unit& unit)const
-{
-	unit.m_health.changeRegeneration(-m_regenReduce);
+	return ParamChangeMagic::isEqual(magic)
+		&& temp->m_regenReduce == m_regenReduce;
 }
 
 void PoisonMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
-}
-
-void PoisonMagic::showData()const
-{
-	std::cout << "Deals " << m_regenReduce << " per round\n";
+	Magic::showFullInfo();
+	std::cout << "Reduces regen by " << m_regenReduce 
+		<< " for " << m_timer.getDuration();
 }

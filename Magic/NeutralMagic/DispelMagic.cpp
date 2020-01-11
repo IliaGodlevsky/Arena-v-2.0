@@ -4,7 +4,7 @@
 
 
 DispelMagic::DispelMagic(std::string name, int manaCost)
-	: Magic(name, manaCost, Timer(ZERO_DURATION))
+	: Magic(name), m_manaCost(manaCost)
 {
 
 }
@@ -15,9 +15,9 @@ void DispelMagic::effectUnit(Unit& unit)
 	unit.m_stateHolder.expireAll();
 }
 
-void DispelMagic::uneffectUnit(Unit& unit)const
+int DispelMagic::getCost()const
 {
-	return;
+	return m_manaCost;
 }
 
 MagicPtr DispelMagic::clone()const
@@ -27,34 +27,26 @@ MagicPtr DispelMagic::clone()const
 
 bool DispelMagic::isBuff()const
 {
-	return false;
-}
-
-bool DispelMagic::hasEqualParametres(const MagicPtr& magic)const
-{
-	if (!canCast<DispelMagic*>(magic))
-		return NO;
-	return Magic::isEqual(magic);
+	return true;
 }
 
 bool DispelMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
+	if (!canCast<DispelMagic*>(magic))
+		return false;
+	return Magic::isEqual(magic);
 }
 
 void DispelMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
-}
+	Magic::showFullInfo();
 
-void DispelMagic::showData()const
-{
 	std::cout << "Dispels all magic on unit\n";
 }
 
-void DispelMagic::putOn(Unit& unit)const
+void  DispelMagic::showShortInfo()const
 {
-	return;
+	std::cout << "<";
+	Magic::showShortInfo();
+	std::cout << ": " << m_manaCost << "> ";
 }

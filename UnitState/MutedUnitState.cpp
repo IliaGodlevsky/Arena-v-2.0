@@ -1,9 +1,11 @@
 #include "MutedUnitState.h"
 
 #include "../Magic/Magic.h"
+#include "../Decision/Decision.h"
+#include "../Unit/Unit.h"
 
 MutedUnitState::MutedUnitState(const Timer& timer)
-	: UnitState(timer)
+	: OuterUnitState(timer)
 {
 
 }
@@ -36,12 +38,13 @@ UnitPtr MutedUnitState::chooseUnitToCast(const Unit& decidingUnit,
 	return nullptr;
 }
 
-MutedUnitState::StateValue MutedUnitState::getValue()const
+int MutedUnitState::getValue()const
 {
-	return UnitState::MUTED_STATE;
+	return MUTED_UNIT_STATE;
 }
 
 void MutedUnitState::showShortInfo()const
 {
-	std::cout << "<Muted> ";
+	std::cout << "<Muted: " << m_timer.getStartTime()
+		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
 }

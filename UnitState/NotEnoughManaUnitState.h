@@ -1,9 +1,9 @@
 #ifndef NOT_ENOUGH_MANA_H_
 #define NOT_ENOUGH_NAMA_H_
 
-#include "MutedUnitState.h"
+#include "InnerUnitState.h"
 
-class NotEnoughManaUnitState : public MutedUnitState
+class NotEnoughManaUnitState : public InnerUnitState
 {
 public:
 	NotEnoughManaUnitState(Unit* unit);
@@ -17,12 +17,11 @@ public:
 	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
 		const MagicPtr& magicToCast, 
 		const Gladiators& units)const;
-	bool isExpired(int round)const override;
+	bool isExpired()const override;
 	void showShortInfo()const override;
-	void getOwner(Unit* unit);
 private:
-	StateValue getValue()const override;
-	Unit* m_unit = nullptr;
+	enum { NOT_ENOUGH_MANA_STATE = 2 };
+	int getValue()const override;
 };
 
 #endif

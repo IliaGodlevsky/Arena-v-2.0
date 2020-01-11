@@ -7,23 +7,17 @@
 
 
 AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
-	const Timer& timer, int damage)
-	: Magic(name, manaCost, timer),
-	AttackMagic(name, manaCost, damage),
-	StunMagic(name, timer, PosibilityCounter(0))
+	Timer timer, int damage)
+	: AttackMagic(name, manaCost, damage), m_timer(timer)
 {
 
 }
 
 void AttackAndStunMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
 	AttackMagic::effectUnit(unit);
-}
-
-void AttackAndStunMagic::uneffectUnit(Unit& unit)const
-{
-	AttackMagic::uneffectUnit(unit);
+	unit.m_stateHolder.takeNew(StatePtr(new StunUnitState(Timer(m_timer.getDuration(), 
+		Arena::getCurrentRound()))));
 }
 
 MagicPtr AttackAndStunMagic::clone()const
@@ -36,41 +30,18 @@ bool AttackAndStunMagic::isBuff()const
 	return false;
 }
 
-bool AttackAndStunMagic::hasEqualParametres(const MagicPtr& magic)const
-{
-	if (!canCast<AttackAndStunMagic*>(magic))
-		return false;
-	return AttackMagic::hasEqualParametres(magic) &&
-		StunMagic::hasEqualParametres(magic);
-}
-
 bool AttackAndStunMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
+	return AttackMagic::isEqual(magic) && canCast<AttackAndStunMagic*>(magic);
 }
 
 void AttackAndStunMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
+	AttackMagic::showFullInfo();
+	std::cout << "Stuns unit for " << m_timer.getDuration();
 }
 
-void AttackAndStunMagic::showData()const
+void AttackAndStunMagic::showShortInfo()const
 {
-	AttackMagic::showData();
-	StunMagic::showData();
-}
-
-void AttackAndStunMagic::putOn(Unit& unit)const
-{
-	AttackMagic::putOn(unit);
-	StunMagic::putOn(unit);
-}
-
-void AttackAndStunMagic::setStartTime(int round)
-{
-	if (round < Arena::getCurrentRound())
-		round = Arena::getCurrentRound();
-	m_timer.setStartTime(round);
+	AttackMagic::showShortInfo();
 }

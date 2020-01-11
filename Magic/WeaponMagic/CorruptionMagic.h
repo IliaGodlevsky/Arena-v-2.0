@@ -1,24 +1,25 @@
 #ifndef CORRUPTION_MAGIC_H_
 #define CORRUPTION_MAGIC_H_
 
-#include "../../Magic/DebuffMagic/ArmorDebuffMagic.h"
+#include "../FreeParamChangeMagic.h"
 #include "../../PossibilityCounter/PosibilityCounter.h"
+#include "../Elements/ArmorReduceElem.h"
 
-class CorruptionMagic : public ArmorDebuffMagic
+class CorruptionMagic : public FreeParamChangeMagic
 {
 public:
-	CorruptionMagic(std::string name, const Timer& timer,
-		int armorReduce, PosibilityCounter propability);
-	virtual void effectUnit(Unit& unit) override;
-	virtual void uneffectUnit(Unit& unit)const override;
-	virtual MagicPtr clone()const override;
-	virtual bool isBuff()const override;
-	virtual bool isEqual(const MagicPtr& magic)const override;
-	virtual void showFullInfo()const override;
-protected:
-	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
-	virtual void showData()const override;
-protected:
+	CorruptionMagic(std::string name, Timer timer,
+		ArmorReduceElem armorReduce, 
+		PosibilityCounter propability);
+	void effectUnit(Unit& unit) override;
+	void uneffectUnit(Unit& unit)override;
+	MagicPtr clone()const override;
+	bool isEqual(const MagicPtr& magic)const override;
+	void showFullInfo()const override;
+	bool isDispelable()const override;
+	~CorruptionMagic() = default;
+private:
+	ArmorReduceElem m_armorReduce;
 	PosibilityCounter m_posibility;
 };
 

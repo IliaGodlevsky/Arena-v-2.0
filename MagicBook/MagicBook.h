@@ -14,6 +14,7 @@ public:
 	MagicBook& operator=(MagicBook&& book) = delete;
 	MagicBook(Unit* unit, const MagicBook& book);
 public:
+	bool itemHasPassedControl(const MagicPtr& magic)const override;
 	bool canCastAnySpell()const;
 	void showShortInfo()const override;
 	void magicList()const;

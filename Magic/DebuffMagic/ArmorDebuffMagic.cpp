@@ -1,11 +1,11 @@
-#include "../../Unit/Unit.h"
-
 #include "ArmorDebuffMagic.h"
+
+#include "../../Unit/Unit.h"
 
 
 ArmorDebuffMagic::ArmorDebuffMagic(std::string name, int manaCost,
-	const Timer& timer, int armorReduce)
-	: Magic(name, manaCost, timer), 
+	Timer timer, ArmorReduceElem armorReduce)
+	: ParamChangeMagic(name, manaCost, timer),
 	m_armorReduce(armorReduce)
 {
 
@@ -13,19 +13,18 @@ ArmorDebuffMagic::ArmorDebuffMagic(std::string name, int manaCost,
 
 void ArmorDebuffMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
+	ParamChangeMagic::effectUnit(unit);
+	m_armorReduce.effectUnit(unit);
 }
 
-void ArmorDebuffMagic::uneffectUnit(Unit& unit)const
+void ArmorDebuffMagic::uneffectUnit(Unit& unit)
 {
-	unit.m_armor.changeValue(m_armorReduce);
+	m_armorReduce.uneffectUnit(unit);
 }
 
 MagicPtr ArmorDebuffMagic::clone()const
 {
-	return MagicPtr(new ArmorDebuffMagic(m_name, m_manaCost,
-		m_timer, m_armorReduce));
+	return MagicPtr(new ArmorDebuffMagic(m_name, m_manaCost, m_timer, m_armorReduce));
 }
 
 bool ArmorDebuffMagic::isBuff()const
@@ -33,32 +32,21 @@ bool ArmorDebuffMagic::isBuff()const
 	return false;
 }
 
-bool ArmorDebuffMagic::hasEqualParametres(const MagicPtr& magic)const
+bool ArmorDebuffMagic::isDispelable()const
 {
-	if (!canCast<ArmorDebuffMagic*>(magic))
-		return NO;
-	ArmorDebuffMagic* temp = DYNAMIC(ArmorDebuffMagic*, magic);
-	return m_armorReduce == temp->m_armorReduce;
+	return true;
 }
 
 bool ArmorDebuffMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
-}
-
-void ArmorDebuffMagic::putOn(Unit& unit)const
-{
-	unit.m_armor.changeValue(-m_armorReduce);
+	if (!canCast<ArmorDebuffMagic*>(magic))
+		return false;
+	ArmorDebuffMagic* temp = DYNAMIC(ArmorDebuffMagic*, magic);
+	return ParamChangeMagic::isEqual(magic)
+		&& m_armorReduce == temp->m_armorReduce;
 }
 
 void ArmorDebuffMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
-}
 
-void ArmorDebuffMagic::showData()const
-{
-	std::cout << "Armor reduce: " << m_armorReduce << std::endl;
 }

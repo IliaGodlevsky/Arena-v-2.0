@@ -3,7 +3,6 @@
 
 #include "../Weapon/Weapon.h"
 #include "../Decision/Decision.h"
-#include "../UnitState/UnitState.h"
 #include "../Battles/Battles.h"
 #include "../Vitals/Vitals.h"
 #include "../MagicBook/MagicBook.h"

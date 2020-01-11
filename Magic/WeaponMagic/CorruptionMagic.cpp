@@ -2,11 +2,10 @@
 
 #include "CorruptionMagic.h"
 
-CorruptionMagic::CorruptionMagic(std::string name, const Timer& timer,
-	int armorReduce, PosibilityCounter propability)
-	: Magic(name, ZERO_MANA_COST, timer),
-	ArmorDebuffMagic(name, ZERO_MANA_COST, timer, armorReduce), 
-	m_posibility(propability)
+CorruptionMagic::CorruptionMagic(std::string name, Timer timer,
+	ArmorReduceElem armorReduce, PosibilityCounter propability)
+	: FreeParamChangeMagic(name, timer),
+	m_armorReduce(armorReduce), m_posibility(propability)
 {
 
 }
@@ -14,12 +13,15 @@ CorruptionMagic::CorruptionMagic(std::string name, const Timer& timer,
 void CorruptionMagic::effectUnit(Unit& unit)
 {
 	if (m_posibility)
-		ArmorDebuffMagic::effectUnit(unit);
+	{
+		FreeParamChangeMagic::effectUnit(unit);
+		m_armorReduce.effectUnit(unit);
+	}
 }
 
-void CorruptionMagic::uneffectUnit(Unit& unit)const
+void CorruptionMagic::uneffectUnit(Unit& unit)
 {
-	ArmorDebuffMagic::uneffectUnit(unit);
+	m_armorReduce.effectUnit(unit);
 }
 
 MagicPtr CorruptionMagic::clone()const
@@ -28,33 +30,22 @@ MagicPtr CorruptionMagic::clone()const
 		m_armorReduce, m_posibility));
 }
 
-bool CorruptionMagic::isBuff()const
+bool CorruptionMagic::isDispelable()const
 {
-	return false;
+	return true;
 }
 
 bool CorruptionMagic::isEqual(const MagicPtr& magic)const
 {
-	return ArmorDebuffMagic::isEqual(magic)
-		&& hasEqualParametres(magic);
+	if (!canCast<CorruptionMagic*>(magic))
+		return false;
+	CorruptionMagic* temp = DYNAMIC(CorruptionMagic*, magic);
+	return FreeParamChangeMagic::isEqual(magic)
+		&& m_posibility == temp->m_posibility
+		&& m_armorReduce == temp->m_armorReduce;
 }
 
 void CorruptionMagic::showFullInfo()const
 {
-	ArmorDebuffMagic::showData();
-	showData();
-}
-
-bool CorruptionMagic::hasEqualParametres(const MagicPtr& magic)const
-{
-	if (!canCast<CorruptionMagic*>(magic))
-		return NO;
-	CorruptionMagic* temp = DYNAMIC(CorruptionMagic*, magic);
-	return m_posibility == temp->m_posibility;
-}
-
-void CorruptionMagic::showData()const
-{
-	std::cout << "Posibility: " << 
-		m_posibility.getPosibility() << std::endl;
+	FreeParamChangeMagic::showFullInfo();
 }

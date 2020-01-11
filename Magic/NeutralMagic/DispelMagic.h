@@ -2,21 +2,21 @@
 #define DISPEL_H_
 
 #include "../Magic.h"
+#include "../../Interface/Interface.h"
 
-class DispelMagic : public Magic
+class DispelMagic : public Magic, public IBuff, public IManaCost
 {
 public:
 	DispelMagic(std::string name, int manaCost);
 	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit)const override;
 	MagicPtr clone()const override;
 	bool isBuff()const override;
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
-protected:
-	bool hasEqualParametres(const MagicPtr& magic)const;
-	void showData()const override;
-	void putOn(Unit& unit)const override;
+	void showShortInfo()const override;
+	int getCost()const override;
+private:
+	int m_manaCost = 0;
 };
 
 #endif

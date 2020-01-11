@@ -2,10 +2,10 @@
 
 #include "DegenerateMagic.h"
 
-DegenerateMagic::DegenerateMagic(std::string name, const Timer& timer,
-	int degeneration, PosibilityCounter posibility)
-	: Magic(name, ZERO_MANA_COST, timer),
-	PoisonMagic(name, ZERO_MANA_COST, timer, degeneration),
+DegenerateMagic::DegenerateMagic(std::string name, Timer timer,
+	HpRegenReduceElem degeneration, PosibilityCounter posibility)
+	: FreeParamChangeMagic(name, timer),
+	m_regenReduce(degeneration),
 	m_posibility(posibility)
 {
 
@@ -14,12 +14,20 @@ DegenerateMagic::DegenerateMagic(std::string name, const Timer& timer,
 void DegenerateMagic::effectUnit(Unit& unit)
 {
 	if (m_posibility)
-		PoisonMagic::effectUnit(unit);
+	{
+		FreeParamChangeMagic::effectUnit(unit);
+		m_regenReduce.effectUnit(unit);
+	}
 }
 
-void DegenerateMagic::uneffectUnit(Unit& unit)const
+bool DegenerateMagic::isDispelable()const
 {
-	PoisonMagic::uneffectUnit(unit);
+	return true;
+}
+
+void DegenerateMagic::uneffectUnit(Unit& unit)
+{
+	m_regenReduce.uneffectUnit(unit);
 }
 
 MagicPtr DegenerateMagic::clone()const
@@ -27,33 +35,17 @@ MagicPtr DegenerateMagic::clone()const
 	return MagicPtr(new DegenerateMagic(m_name, m_timer, m_regenReduce, m_posibility));
 }
 
-bool DegenerateMagic::isBuff()const
-{
-	return false;
-}
-
-bool DegenerateMagic::hasEqualParametres(const MagicPtr& magic)const
-{
-	if (!canCast<DegenerateMagic*>(magic))
-		return NO;
-	DegenerateMagic* temp = DYNAMIC(DegenerateMagic*, magic);
-	return m_posibility == temp->m_posibility;
-}
-
 bool DegenerateMagic::isEqual(const MagicPtr& magic)const
 {
-	return PoisonMagic::isEqual(magic)
-		&& hasEqualParametres(magic);
+	if (!canCast<DegenerateMagic*>(magic))
+		return false;
+	DegenerateMagic* temp = DYNAMIC(DegenerateMagic*, magic);
+	return FreeParamChangeMagic::isEqual(magic) &&
+		m_posibility == temp->m_posibility
+		&& m_regenReduce == temp->m_regenReduce;
 }
 
 void DegenerateMagic::showFullInfo()const
 {
-	PoisonMagic::showData();
-	showData();
-}
-
-void DegenerateMagic::showData()const
-{
-	std::cout << "Posibility: " <<
-		m_posibility.getPosibility() << std::endl;
+	FreeParamChangeMagic::showFullInfo();
 }

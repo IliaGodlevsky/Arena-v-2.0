@@ -1,9 +1,9 @@
 #ifndef STUN_UNIT_STATE_H_
 #define STUN_UNIT_STATE_H_
 
-#include "UnitState.h"
+#include "OuterUnitState.h"
 
-class StunUnitState : public UnitState
+class StunUnitState : public OuterUnitState
 {
 public:
 	StunUnitState(const Timer& timer);
@@ -17,7 +17,8 @@ public:
 		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void showShortInfo()const;
 private:
-	StateValue getValue()const override;
+	enum { STUN_UNIT_STATE  = 3};
+	int getValue()const override;
 };
 
 #endif

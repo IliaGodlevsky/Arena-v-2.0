@@ -3,7 +3,6 @@
 
 #include "../Globals/Globals.h"
 #include "../Timer/Timer.h"
-#include "../Decision/Decision.h"
 #include "../Weapon/Weapon.h"
 
 class UnitState;
@@ -12,8 +11,8 @@ using StatePtr = std::shared_ptr<UnitState>;
 class UnitState
 {
 public:
-	explicit UnitState(const Timer& timer);
 	UnitState() = default;
+	UnitState(DecisionPtr decision);
 	virtual bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
 	virtual bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
 	virtual UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
@@ -25,21 +24,16 @@ public:
 	virtual ~UnitState() = default;
 public:
 	virtual void setDecision(DecisionPtr decision) final;
-	virtual void setStartTime(int round)final;
-	virtual int getDuration()const final;
-	virtual bool isExpired(int round)const;
 	virtual void showShortInfo()const;
 public:
 	virtual bool operator <(const UnitState& unitState)const final;
 	virtual bool operator >(const UnitState& unitState)const final;
 	virtual bool isEqual(const StatePtr& unitState)const final;
+	virtual bool isExpired()const = 0;
 protected:
-	Timer m_timer;
 	DecisionPtr m_decision = nullptr;
-	enum StateValue { ALIVE_STATE, NOT_ENOGHT_MANA_STATE, MUTED_STATE, STUNNED_STATE };
-	// static std::vector<UnitState*> m_attackStates;
 private:
-	virtual StateValue getValue()const = 0;
+	virtual int getValue()const = 0;
 
 };
 #endif
