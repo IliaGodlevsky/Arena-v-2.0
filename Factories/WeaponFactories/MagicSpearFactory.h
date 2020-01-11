@@ -10,8 +10,8 @@ public:
 private:
 	enum
 	{
-		AMAZONE_SPEAR_DAMAGE = 8,
-		GLADIATORS_SPEAR_DAMAGE = 10
+		AMAZONE_SPEAR_DAMAGE = 7,
+		GLADIATORS_SPEAR_DAMAGE = 9
 	};
 
 	enum
