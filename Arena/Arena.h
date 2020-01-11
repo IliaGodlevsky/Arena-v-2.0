@@ -51,15 +51,6 @@ private:
 	UnitPtr m_unitToCast = nullptr;
 	MagicPtr m_magicToCast = nullptr;
 	index m_unitIndex = 0;
-private:
-	std::vector<std::string> m_reserveNames =
-	{
-		"Bill","Glen","Mark","Gven","Sally","Opera",
-		"Dgill","Sam","Oliver","Gvinett","Tony","Moody",
-		"Sigma","Anna","Vector","Trench","Rex","Paul",
-		"Bruno","Silvia","John","Tirion","Mortal","Wolf",
-		"Elizabeth","Unberto","Izabell","Oxford","Mark"
-	};
 };
 
 #endif

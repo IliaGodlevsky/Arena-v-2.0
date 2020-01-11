@@ -1,5 +1,4 @@
 #include <iostream>
-#include <thread>
 
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
@@ -11,6 +10,15 @@
 #include "../Factories/UnitFactory/WizardFactory.h"
 
 #include "Arena.h"
+
+const std::vector<std::string> m_reserveNames =
+{
+	"Bill","Glen","Mark","Gven","Sally","Opera",
+	"Dgill","Sam","Oliver","Gvinett","Tony","Moody",
+	"Sigma","Anna","Vector","Trench","Rex","Paul",
+	"Bruno","Silvia","John","Tirion","Mortal","Wolf",
+	"Elizabeth","Unberto","Izabell","Oxford","Mark"
+};
 
 int Arena::m_round = 0;
 
@@ -129,8 +137,8 @@ void Arena::proposeToPlayTeams()
 	const int MIN_TEAMS_NUMBER = 2;
 	if (m_units.size() > MIN_PLAYERS_TO_PLAY_TEAMS)
 	{
-		const bool answer = static_cast<bool>(inputNumber("Do you want play "
-			"with teams? <1 - yes, 0 - no>: ", YES, NO));
+		const bool answer = static_cast<bool>(inputNumber("Do you want to play "
+			"in teams? <1 - yes, 0 - no>: ", YES, NO));
 		if (YES == answer)
 		{
 			size_t teamsNumber = inputNumber("Enter teams"
