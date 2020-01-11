@@ -7,7 +7,6 @@ UnitFactory::UnitFactory():
 	m_decisions(0)
 {
 	m_decisions.push_back(DecisionPtr(new HumanDecision()));
-	m_decisions.push_back(DecisionPtr(new RandomComputerDecision()));
 	m_decisions.push_back(DecisionPtr(new SimpleComputerDecision())); 
 }
 
@@ -19,6 +18,5 @@ index UnitFactory::chooseDecsion()const
 	if (nullptr == m_itemFactory)
 		throw BadEquipmentException("No actual item factory for units. Bad class is "
 			+ std::string(typeid(*this).name()));
-	return inputNumber("1. Human\n2. \"Dump\"comp\n"
-		"3. \"Clever\" comp\nChoose decision: ", m_decisions.size(), 1);
+	return inputNumber("1. Human\n2. Computer\nChoose decision: ", m_decisions.size(), 1);
 }
