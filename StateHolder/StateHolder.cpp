@@ -42,14 +42,23 @@ StateHolder::StateHolder(DecisionPtr decision, const StateHolder& stateHolder)
 	std::sort(m_items.begin(), m_items.end(), isMoreImportantState);
 }
 
-void StateHolder::takeNew(const StatePtr& unitState)
+bool StateHolder::itemHasPassedControl(const StatePtr& unitState)const
 {
 	if (nullptr == unitState)
-		return;
-	expireIfFound(unitState);
-	unitState->setDecision(m_decision);
-	m_items.push_back(unitState);
-	std::sort(m_items.begin(), m_items.end(), isMoreImportantState);
+		return false;
+	else
+		return true;
+}
+
+void StateHolder::takeNew(const StatePtr& unitState)
+{
+	if (itemHasPassedControl(unitState))
+	{
+		expireIfFound(unitState);
+		unitState->setDecision(m_decision);
+		m_items.push_back(unitState);
+		std::sort(m_items.begin(), m_items.end(), isMoreImportantState);
+	}
 }
 
 bool StateHolder::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)

@@ -2,20 +2,15 @@
 
 #include "AttackMagic.h"
 
-AttackMagic::AttackMagic(std::string name, int manaCost, int damage)
-	: Magic(name, manaCost, Timer(0)), m_damage(damage)
+AttackMagic::AttackMagic(std::string name, int manaCost, HpReduceElem damage)
+	: Magic(name), m_damage(damage)
 {
 
 }
 
 void AttackMagic::effectUnit(Unit& unit)
 {
-	unit.m_health = unit.m_health - m_damage;
-}
-
-void AttackMagic::uneffectUnit(Unit& unit)const
-{
-	return;
+	m_damage.effectUnit(unit);
 }
 
 MagicPtr AttackMagic::clone()const
@@ -28,32 +23,30 @@ bool AttackMagic::isBuff()const
 	return false;
 }
 
-bool AttackMagic::hasEqualParametres(const MagicPtr& magic)const
+bool AttackMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<AttackMagic*>(magic))
 		return false;
 	AttackMagic* temp = DYNAMIC(AttackMagic*, magic);
-	return m_damage == temp->m_damage;
+	return Magic::isEqual(magic) &&
+		temp->m_damage == m_damage && 
+		m_manaCost == temp->m_manaCost;
 }
 
-bool AttackMagic::isEqual(const MagicPtr& magic)const
+int AttackMagic::getCost()const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
-}
-
-void AttackMagic::putOn(Unit& unit)const
-{
-	return;
+	return m_manaCost;
 }
 
 void AttackMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
+	Magic::showFullInfo();
+	m_damage.showFullInfo();
 }
 
-void AttackMagic::showData()const
+void AttackMagic::showShortInfo()const
 {
-	std::cout << "Deals " << m_damage << std::endl;
+	std::cout << "<";
+	Magic::showShortInfo();
+	std::cout << ": " << m_manaCost << "> ";
 }

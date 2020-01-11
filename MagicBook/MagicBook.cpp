@@ -1,8 +1,8 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
+#include "../Interface/Interface.h"
 
 #include "MagicBook.h"
-
 
 MagicBook::MagicBook(Unit* unit)
 	: m_unit(unit)
@@ -15,6 +15,14 @@ MagicBook::MagicBook(Unit* unit, const MagicBook& book)
 {
 	for (size_t i = 0; i < book.size(); i++)
 		takeNew(book[i]);
+}
+
+bool MagicBook::itemHasPassedControl(const MagicPtr& magic)const
+{
+	if (!canCast<IManaCost*>(magic) || !canCast<IBuff*>(magic))
+		throw ("Magic book exception");
+	else
+		return true;
 }
 
 void MagicBook::magicList()const
@@ -43,6 +51,6 @@ void MagicBook::showShortInfo()const
 
 void MagicBook::takeNew(const MagicPtr& magic)
 {
-	if (nullptr != magic)
+	if (itemHasPassedControl(magic))
 		m_items.push_back(MagicPtr(magic->clone()));
 }

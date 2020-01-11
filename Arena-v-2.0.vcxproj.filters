@@ -129,6 +129,12 @@
     <Filter Include="Source\UnitState\InnerUnitState">
       <UniqueIdentifier>{ac3df53e-1968-4bca-904c-349c2faa6aa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Interface">
+      <UniqueIdentifier>{e0a1f2f1-d46b-421c-a51d-acc1c0f207fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Magic\Elements">
+      <UniqueIdentifier>{b828aef9-f2ca-44a7-b2db-cac6c94fed1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -407,6 +413,33 @@
     <ClCompile Include="UnitState\InnerUnitState.cpp">
       <Filter>Source\UnitState\InnerUnitState</Filter>
     </ClCompile>
+    <ClCompile Include="Magic\Elements\ParamChangeElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\HpRegenReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\ArmorReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\ArmorAmplifyElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\DamageReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\DamageAmplifyElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\Elements\HpReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\ParamChangeMagic.cpp">
+      <Filter>Source\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\FreeParamChangeMagic.cpp">
+      <Filter>Source\Magic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -684,6 +717,36 @@
     </ClInclude>
     <ClInclude Include="UnitState\OuterUnitState.h">
       <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Interface.h">
+      <Filter>Source\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\ParamChangeElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\HpRegenReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\ArmorReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\ArmorAmplifyElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\DamageReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\DamageAmplifyElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\HpReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\ParamChangeMagic.h">
+      <Filter>Source\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\FreeParamChangeMagic.h">
+      <Filter>Source\Magic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

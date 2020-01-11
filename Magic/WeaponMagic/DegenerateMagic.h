@@ -1,24 +1,25 @@
 #ifndef DEGENERATE_MAGIC_H_
 #define DEGENERATE_MAGIC_H_
 
-#include "../AttackMagic/PoisonMagic.h"
 #include "../../PossibilityCounter/PosibilityCounter.h"
+#include "../Elements/HpRegenReduceElem.h"
+#include "../FreeParamChangeMagic.h"
 
-class DegenerateMagic : public PoisonMagic
+class DegenerateMagic : public FreeParamChangeMagic
 {
 public:
-	DegenerateMagic(std::string name, const Timer& timer,
-		int degeneration, PosibilityCounter posibility);
-	virtual void effectUnit(Unit& unit) override;
-	virtual void uneffectUnit(Unit& unit)const override;
-	virtual MagicPtr clone()const override;
-	virtual bool isBuff()const override;
-	virtual bool isEqual(const MagicPtr& magic)const override;
-	virtual void showFullInfo()const override;
-protected:
-	virtual bool hasEqualParametres(const MagicPtr& magic)const;
-	virtual void showData()const override;
-protected:
+	DegenerateMagic(std::string name, Timer timer,
+		HpRegenReduceElem armorReduce,
+		PosibilityCounter propability);
+	void effectUnit(Unit& unit) override;
+	void uneffectUnit(Unit& unit)override;
+	MagicPtr clone()const override;
+	bool isEqual(const MagicPtr& magic)const override;
+	void showFullInfo()const override;
+	bool isDispelable()const override;
+	~DegenerateMagic() = default;
+private:
+	HpRegenReduceElem m_regenReduce;
 	PosibilityCounter m_posibility;
 };
 

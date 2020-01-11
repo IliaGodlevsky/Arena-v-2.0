@@ -14,6 +14,7 @@ public:
 	MagicOnMe& operator=(const MagicOnMe&) = delete;
 	MagicOnMe& operator=(MagicOnMe&&) = delete;
 public:
+	bool itemHasPassedControl(const MagicPtr& magic)const override;
 	void takeOffExpired() override;
 	void takeNew(const MagicPtr& magic) override;
 	void showShortInfo()const override;

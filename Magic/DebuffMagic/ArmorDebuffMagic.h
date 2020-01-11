@@ -1,26 +1,24 @@
 #ifndef ARMOR_DEBUFF_H_
 #define ARMOR_DEBUFF_H_
 
-#include "../Magic.h"
+#include "../ParamChangeMagic.h"
+#include "../Elements/ArmorReduceElem.h"
 
-class ArmorDebuffMagic : virtual public Magic
+class ArmorDebuffMagic : public ParamChangeMagic
 {
 public:
-	ArmorDebuffMagic(std::string name, int manaCost, 
-		const Timer& timer, int armorReduce);
-	virtual void effectUnit(Unit& unit) override;
-	virtual void uneffectUnit(Unit& unit)const override;
-	virtual MagicPtr clone()const override;
-	virtual bool isBuff()const override;
-	virtual bool isEqual(const MagicPtr& magic)const override;
-	virtual void showFullInfo()const override;
-	virtual ~ArmorDebuffMagic() = default;
-protected:
-	int m_armorReduce = 0;
-protected:
-	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
-	virtual void showData()const override;
-	virtual void putOn(Unit& unit)const override;
+	ArmorDebuffMagic(std::string name, int manaCost,
+		Timer timer, ArmorReduceElem armorReduce);
+	void effectUnit(Unit& unit) override;
+	void uneffectUnit(Unit& unit) override;
+	MagicPtr clone()const override;
+	bool isBuff()const override;
+	bool isDispelable()const override;
+	bool isEqual(const MagicPtr& magic)const override;
+	void showFullInfo()const override;
+	~ArmorDebuffMagic() = default;
+private:
+	ArmorReduceElem m_armorReduce;
 };
 
 #endif

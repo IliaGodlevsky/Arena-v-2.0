@@ -3,6 +3,7 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
 #include "../Arena/Arena.h"
+#include "../Interface/Interface.h"
 
 UnitState::UnitState(DecisionPtr decision)
 	:m_decision(decision)
@@ -12,11 +13,12 @@ UnitState::UnitState(DecisionPtr decision)
 
 bool UnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
 {
+	IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
 	if (!caster.isEnoughManaFor(magic)
 		|| nullptr == magic)
 		return false;
 	unit.takeMagicEffect(caster, magic);
-	caster.payMana(magic->getCost());
+	caster.payMana(manaCost->getCost());
 	return true;
 }
 

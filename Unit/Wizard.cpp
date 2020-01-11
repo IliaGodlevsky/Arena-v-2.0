@@ -4,6 +4,7 @@
 #include "../Arena/Arena.h"
 #include "../Level/WizardLevel.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
+#include "../Interface/Interface.h"
 
 Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory, 
 	Factory<Magic>* secondFactory) : Unit(decision, factory)
@@ -47,8 +48,12 @@ void Wizard::payMana(int manaCost)
 
 bool Wizard::castMagic(Unit& unit, MagicPtr& magic)
 {
-	const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / 3.0));
-	magic->setStartTime(Arena::getCurrentRound() - DURATION_ENHANCE);
+	IDuration* duration = DYNAMIC(IDuration*, magic);
+	if (nullptr != duration)
+	{
+		const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / 3.0));
+		duration->setStartTime(Arena::getCurrentRound() - DURATION_ENHANCE);
+	}
 	return Unit::castMagic(unit, magic);
 }
 
@@ -60,7 +65,8 @@ int Wizard::countManaCost(int manaCost)const
 
 bool Wizard::isEnoughManaFor(const MagicPtr& magic)const
 {
-	return m_mana >= countManaCost(magic->getCost());
+	IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
+	return m_mana >= countManaCost(manaCost->getCost());
 }
 
 UnitPtr Wizard::getPureClone()const

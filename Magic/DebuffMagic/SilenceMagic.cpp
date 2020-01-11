@@ -5,24 +5,21 @@
 
 #include "SilenceMagic.h"
 
-SilenceMagic::SilenceMagic(std::string name, int mana_cost,
-	const Timer& timer)
-	: Magic(name, mana_cost, timer)
+SilenceMagic::SilenceMagic(std::string name, int manaCost, Timer timer)
+	: Magic(name), m_manaCost(manaCost), m_timer(timer)
 {
 
+}
+
+int SilenceMagic::getCost()const
+{
+	return m_manaCost;
 }
 
 void SilenceMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
 	unit.recieveNewState(StatePtr(new MutedUnitState(
 		Timer(m_timer.getDuration(), m_timer.getStartTime()))));
-}
-
-void SilenceMagic::uneffectUnit(Unit& unit)const
-{
-	return;
 }
 
 MagicPtr SilenceMagic::clone()const
@@ -35,31 +32,25 @@ bool SilenceMagic::isBuff()const
 	return false;
 }
 
-bool SilenceMagic::hasEqualParametres(const MagicPtr& magic)const
+bool SilenceMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<SilenceMagic*>(magic))
 		return NO;
 	SilenceMagic* temp = DYNAMIC(SilenceMagic*, magic);
-	return Magic::isEqual(magic);
-}
-
-bool SilenceMagic::isEqual(const MagicPtr& magic)const
-{
-	return hasEqualParametres(magic);
-}
-
-void SilenceMagic::putOn(Unit& unit)const
-{
-	return;
+	return Magic::isEqual(magic) &&
+		m_manaCost == temp->m_manaCost
+		&& m_timer == temp->m_timer;
 }
 
 void SilenceMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
+	Magic::showFullInfo();
+	std::cout << "Enemy can't cast magic\n";
 }
 
-void SilenceMagic::showData()const
+void SilenceMagic::showShortInfo()const
 {
-	std::cout << "Enemy can't cast spells\n";
+	std::cout << "<";
+	Magic::showShortInfo();
+	std::cout << ": " << m_manaCost << "> ";
 }

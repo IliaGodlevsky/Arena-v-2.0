@@ -1,6 +1,7 @@
 #include "../Unit/Unit.h"
 
 #include "SimpleComputerDecision.h"
+#include "../Interface/Interface.h"
 
 inline bool canKill(UnitPtr unit1, UnitPtr unit2)
 {
@@ -223,12 +224,14 @@ MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 	UnitPtr me = nullptr;
 	UnitPtr aim = nullptr;
 	MagicPtr magic = nullptr;
+	IBuff* buff = nullptr;
 	for (size_t i = 0; i < decidingUnit->m_magicBook.size(); i++)
 	{
 		magic = decidingUnit->m_magicBook[i]->clone();
+		buff = DYNAMIC(IBuff*, magic);
 		if (decidingUnit->isEnoughManaFor(magic))
 		{
-			if (!magic->isBuff() && !enemy->m_magicOnMe.hasItem(magic))
+			if (!buff->isBuff() && !enemy->m_magicOnMe.hasItem(magic))
 			{
 				me = decidingUnit->getPureClone();
 				aim = enemy->getPureClone();
@@ -238,7 +241,7 @@ MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 				else if (!canBeKilled(me, aim))
 					magics.push_back(std::make_pair(enemy, magic->clone()));
 			}
-			else if (magic->isBuff() && !decidingUnit->m_magicOnMe.hasItem(magic))
+			else if (buff->isBuff() && !decidingUnit->m_magicOnMe.hasItem(magic))
 			{
 				me = decidingUnit->getPureClone();
 				me->castMagic(*me, magic);

@@ -2,10 +2,9 @@
 
 #include "DamageDebuffMagic.h"
 
-
-DamageDebuffMagic::DamageDebuffMagic(std::string name,
-	int manaCost, const Timer& timer, int damageReduce)
-	: Magic(name, manaCost, timer),
+DamageDebuffMagic::DamageDebuffMagic(std::string name, int manaCost,
+	Timer timer, DamageReduceElem damageReduce)
+	: ParamChangeMagic(name, manaCost, timer),
 	m_damageReduce(damageReduce)
 {
 
@@ -13,13 +12,13 @@ DamageDebuffMagic::DamageDebuffMagic(std::string name,
 
 void DamageDebuffMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
+	ParamChangeMagic::effectUnit(unit);
+	m_damageReduce.effectUnit(unit);
 }
 
-void DamageDebuffMagic::uneffectUnit(Unit& unit)const
+void DamageDebuffMagic::uneffectUnit(Unit& unit)
 {
-	unit.m_damage.changeValue(m_damageReduce);
+	m_damageReduce.uneffectUnit(unit);
 }
 
 MagicPtr DamageDebuffMagic::clone()const
@@ -27,37 +26,26 @@ MagicPtr DamageDebuffMagic::clone()const
 	return MagicPtr(new DamageDebuffMagic(m_name, m_manaCost, m_timer, m_damageReduce));
 }
 
-bool DamageDebuffMagic::isBuff()const
-{
-	return false;
-}
-
-bool DamageDebuffMagic::hasEqualParametres(const MagicPtr& magic)const
+bool DamageDebuffMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<DamageDebuffMagic*>(magic))
 		return false;
 	DamageDebuffMagic* temp = DYNAMIC(DamageDebuffMagic*, magic);
-	return m_damageReduce == temp->m_damageReduce;
+	return ParamChangeMagic::isEqual(magic) &&
+		m_damageReduce == temp->m_damageReduce;
 }
 
-bool DamageDebuffMagic::isEqual(const MagicPtr& magic)const
+bool DamageDebuffMagic::isBuff()const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
+	return true;
 }
 
-void DamageDebuffMagic::putOn(Unit& unit)const
+bool DamageDebuffMagic::isDispelable()const
 {
-	unit.m_damage.changeValue(-m_damageReduce);
+	return true;
 }
 
 void DamageDebuffMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
-}
-
-void DamageDebuffMagic::showData()const
-{
-	std::cout << "Damage reduce: " << m_damageReduce << std::endl;
+	ParamChangeMagic::showFullInfo();
 }

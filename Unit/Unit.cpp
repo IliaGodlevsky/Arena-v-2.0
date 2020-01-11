@@ -4,6 +4,7 @@
 #include "../Magic/Magic.h"
 #include "../UnitState/NotEnoughManaUnitState.h"
 #include "../Level/Level.h"
+#include "../Interface/Interface.h"
 
 #include "Unit.h"
 
@@ -111,7 +112,8 @@ void Unit::moveIntoNewRound()
 
 bool Unit::isEnoughManaFor(const MagicPtr& magic)const
 {
-	return m_mana >= magic->getCost();
+	IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
+	return m_mana >= manaCost->getCost();
 }
 
 bool Unit::isAlly(const UnitPtr& unit)const

@@ -2,24 +2,24 @@
 #define ATTACK_MAGIC_H_
 
 #include "../Magic.h"
+#include "../../Interface/Interface.h"
+#include "../Elements/HpReduceElem.h"
 
-class AttackMagic : virtual public Magic
+class AttackMagic : public Magic, public IBuff, public IManaCost
 {
 public:
-	AttackMagic(std::string name, int manaCost, int damage);
+	AttackMagic(std::string name, int manaCost, HpReduceElem damage);
 	virtual void effectUnit(Unit& unit) override;
-	virtual void uneffectUnit(Unit& unit)const override;
 	virtual MagicPtr clone()const override;
 	virtual bool isBuff()const override;
+	virtual int getCost()const override;
 	virtual bool isEqual(const MagicPtr& magic)const override;
 	virtual void showFullInfo()const override;
+	virtual void showShortInfo()const override;
 	virtual ~AttackMagic() = default;
 protected:
-	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
-	virtual void showData()const override;
-	virtual void putOn(Unit& unit)const override;
-protected:
-	int m_damage = 0;
+	int m_manaCost = 0;
+	HpReduceElem m_damage;
 };
 
 #endif

@@ -1,24 +1,26 @@
 #include "OffsetDamageBuffMagic.h"
 
 OffsetDamageBuffMagic::OffsetDamageBuffMagic(std::string name, int manaCost,
-	const Timer& timer, int armorReduce, int damageAmplify)
-	: Magic(name, manaCost, timer),
-	DamageBuffMagic(name, manaCost, timer, damageAmplify),
-	ArmorDebuffMagic(name, manaCost, timer, armorReduce)
+	Timer timer, ArmorReduceElem armorReduce,
+	DamageAmplifyElem damageAmplify)
+	: ParamChangeMagic(name, manaCost, timer),
+	m_damageAmplify(damageAmplify),
+	m_armorReduce(armorReduce)
 {
 
 }
 
 void OffsetDamageBuffMagic::effectUnit(Unit& unit)
 {
-	putOn(unit);
-	Magic::effectUnit(unit);
+	ParamChangeMagic::effectUnit(unit);
+	m_damageAmplify.effectUnit(unit);
+	m_armorReduce.effectUnit(unit);
 }
 
-void OffsetDamageBuffMagic::uneffectUnit(Unit& unit)const
+void OffsetDamageBuffMagic::uneffectUnit(Unit& unit)
 {
-	DamageBuffMagic::uneffectUnit(unit);
-	ArmorDebuffMagic::uneffectUnit(unit);
+	m_damageAmplify.uneffectUnit(unit);
+	m_armorReduce.uneffectUnit(unit);
 }
 
 MagicPtr OffsetDamageBuffMagic::clone()const
@@ -32,33 +34,22 @@ bool OffsetDamageBuffMagic::isBuff()const
 	return true;
 }
 
-bool OffsetDamageBuffMagic::hasEqualParametres(const MagicPtr& magic)const
+bool OffsetDamageBuffMagic::isDispelable()const
 {
-	return ArmorDebuffMagic::hasEqualParametres(magic)
-		&& DamageBuffMagic::hasEqualParametres(magic);
+	return true;
 }
 
 bool OffsetDamageBuffMagic::isEqual(const MagicPtr& magic)const
 {
-	return Magic::isEqual(magic)
-		&& hasEqualParametres(magic);
-}
-
-void OffsetDamageBuffMagic::putOn(Unit& unit)const
-{
-	DamageBuffMagic::putOn(unit);
-	ArmorDebuffMagic::putOn(unit);
+	if (!canCast<OffsetDamageBuffMagic*>(magic))
+		return false;
+	OffsetDamageBuffMagic* temp = DYNAMIC(OffsetDamageBuffMagic*, magic);
+	return ParamChangeMagic::isEqual(magic)
+		&& m_armorReduce == temp->m_armorReduce
+		&& m_damageAmplify == temp->m_damageAmplify;
 }
 
 void OffsetDamageBuffMagic::showFullInfo()const
 {
-	Magic::showData();
-	showData();
-}
-
-
-void OffsetDamageBuffMagic::showData()const
-{
-	DamageBuffMagic::showData();
-	ArmorDebuffMagic::showData();
+	ParamChangeMagic::showFullInfo();
 }

@@ -1,25 +1,26 @@
 #ifndef POISON_H_
 #define POISON_H_
 
-#include "../Magic.h"
+#include "../ParamChangeMagic.h"
 
-class PoisonMagic : virtual public Magic
+#include "../Elements/HpRegenReduceElem.h"
+#include "../../Interface/Interface.h"
+
+
+class PoisonMagic : public ParamChangeMagic
 {
 public:
-	PoisonMagic(std::string name, int manaCost, const Timer& timer,
-		int regenReduce);
-	virtual void effectUnit(Unit& unit) override;
-	virtual void uneffectUnit(Unit& unit)const override;
-	virtual MagicPtr clone()const override;
-	virtual bool isBuff()const override;
-	virtual bool isEqual(const MagicPtr& magic)const override;
-	virtual void showFullInfo()const override;
-	virtual ~PoisonMagic() = default;
+	PoisonMagic(std::string name, int manaCost,
+		Timer timer, HpRegenReduceElem m_regenReduce);
+	void effectUnit(Unit& unit) override;
+	void uneffectUnit(Unit& unit) override;
+	MagicPtr clone()const override;
+	bool isBuff()const override;
+	bool isDispelable()const override;
+	bool isEqual(const MagicPtr& magic)const override;
+	void showFullInfo()const override;
+	~PoisonMagic() = default;
 protected:
-	virtual bool hasEqualParametres(const MagicPtr& magic)const override;
-	virtual void showData()const override;
-	virtual void putOn(Unit& unit)const override;
-protected:
-	int m_regenReduce = 0;
+	HpRegenReduceElem m_regenReduce;
 };
 #endif
