@@ -1,6 +1,7 @@
 #include "../Magic/Magic.h"
 
 #include "StunUnitState.h"
+#include "../Arena/Arena.h"
 
 StunUnitState::StunUnitState(const Timer& timer)
 	: OuterUnitState(timer)
@@ -43,5 +44,6 @@ int StunUnitState::getValue()const
 
 void StunUnitState::showShortInfo()const
 {
-	std::cout << "<Stun> ";
+	std::cout << "<Stun: " << m_timer.getStartTime()
+		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
 }
