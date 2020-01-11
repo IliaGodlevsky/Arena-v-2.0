@@ -45,11 +45,6 @@ bool MagicBook::canCastAnySpell()const
 	return false;
 }
 
-void MagicBook::setOwner(Unit* unit)
-{
-	m_unit = unit;
-}
-
 void MagicBook::showShortInfo()const
 {
 	std::cout << "MagicBook: ";
