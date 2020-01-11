@@ -30,7 +30,7 @@ MagicPtr ArmorAndDamageDebuffMagic::clone()const
 
 bool ArmorAndDamageDebuffMagic::isBuff()const
 {
-	return true;
+	return false;
 }
 
 bool ArmorAndDamageDebuffMagic::isDispelable()const

@@ -8,7 +8,7 @@
 
 AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
 	Timer timer, int damage)
-	: AttackMagic(name, manaCost, damage)
+	: AttackMagic(name, manaCost, damage), m_timer(timer)
 {
 
 }

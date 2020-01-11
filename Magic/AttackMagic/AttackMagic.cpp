@@ -3,7 +3,7 @@
 #include "AttackMagic.h"
 
 AttackMagic::AttackMagic(std::string name, int manaCost, HpReduceElem damage)
-	: Magic(name), m_damage(damage)
+	: Magic(name), m_damage(damage), m_manaCost(manaCost)
 {
 
 }

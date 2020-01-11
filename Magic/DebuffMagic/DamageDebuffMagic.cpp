@@ -37,7 +37,7 @@ bool DamageDebuffMagic::isEqual(const MagicPtr& magic)const
 
 bool DamageDebuffMagic::isBuff()const
 {
-	return true;
+	return false;
 }
 
 bool DamageDebuffMagic::isDispelable()const
