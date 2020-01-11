@@ -19,7 +19,7 @@ int SilenceMagic::getCost()const
 void SilenceMagic::effectUnit(Unit& unit)
 {
 	unit.recieveNewState(StatePtr(new MutedUnitState(
-		Timer(m_timer.getDuration(), m_timer.getStartTime()))));
+		Timer(m_timer.getDuration(), Arena::getCurrentRound()))));
 }
 
 MagicPtr SilenceMagic::clone()const
