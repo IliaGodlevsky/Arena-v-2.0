@@ -2,7 +2,6 @@
 
 #include "PoisonMagic.h"
 
-
 PoisonMagic::PoisonMagic(std::string name, int manaCost, Timer timer,
 	HpRegenReduceElem regenReduce)
 	: ParamChangeMagic(name, manaCost, timer), m_regenReduce(regenReduce)
