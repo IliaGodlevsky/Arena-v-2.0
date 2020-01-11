@@ -1,5 +1,6 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
+#include "../Exceptions/BadincomingMagicException.h"
 
 #include "MagicOnMe.h"
 #include "../Interface/Interface.h"
@@ -21,7 +22,8 @@ bool MagicOnMe::itemHasPassedControl(const MagicPtr& magic)const
 {
 	if (!canCast<IDispelable*>(magic) || !canCast<IDuration*>(magic)
 		|| !canCast<IUneffect*>(magic))
-		throw ("MagicOnMe exception");
+		throw BadIncomingMagicException("Incoming magic doesn't"
+			" have needed interface. Bad class is MagicOnMe");
 	else
 		return true;
 }

@@ -1,6 +1,7 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
 #include "../Interface/Interface.h"
+#include "../Exceptions/BadincomingMagicException.h"
 
 #include "MagicBook.h"
 
@@ -20,7 +21,8 @@ MagicBook::MagicBook(Unit* unit, const MagicBook& book)
 bool MagicBook::itemHasPassedControl(const MagicPtr& magic)const
 {
 	if (!canCast<IManaCost*>(magic) || !canCast<IBuff*>(magic))
-		throw ("Magic book exception");
+		throw BadIncomingMagicException("Incoming magic doesn't"
+			" have needed interface. Bad class is MagicBook");
 	else
 		return true;
 }
@@ -40,7 +42,12 @@ bool MagicBook::canCastAnySpell()const
 	for (size_t i = 0; i < size(); i++)
 		if (m_unit->isEnoughManaFor(operator[](i)))
 			return true;
-	return false && !m_items.empty();
+	return false;
+}
+
+void MagicBook::setOwner(Unit* unit)
+{
+	m_unit = unit;
 }
 
 void MagicBook::showShortInfo()const
