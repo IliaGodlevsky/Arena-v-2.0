@@ -20,7 +20,7 @@ public:
 	bool isExpired()const override;
 	void showShortInfo()const override;
 private:
-	enum { NOT_ENOUGH_MANA_STATE = 4 };
+	enum { NOT_ENOUGH_MANA_STATE = 2 };
 	int getValue()const override;
 };
 

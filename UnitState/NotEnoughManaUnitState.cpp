@@ -1,5 +1,4 @@
 #include "../Unit/Unit.h"
-#include "../Magic/Magic.h"
 
 #include "NotEnoughManaUnitState.h"
 
