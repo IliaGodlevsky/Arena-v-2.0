@@ -17,6 +17,9 @@ int main()
 			arena.takeOfLosers();
 			arena.goNextUnit();
 		}
+
+		arena.showUnits();
+		std::cout << "Became the winner\n";
 	}
 	catch (BadWeaponMagicException& ex) { exceptionMessage(ex); }
 	catch (BadEquipmentException& ex) { exceptionMessage(ex); }
