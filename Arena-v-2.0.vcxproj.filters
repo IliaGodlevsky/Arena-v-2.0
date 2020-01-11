@@ -440,6 +440,9 @@
     <ClCompile Include="Magic\FreeParamChangeMagic.cpp">
       <Filter>Source\Magic</Filter>
     </ClCompile>
+    <ClCompile Include="Exceptions\BadincomingMagicException.cpp">
+      <Filter>Source\Exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -747,6 +750,9 @@
     </ClInclude>
     <ClInclude Include="Magic\FreeParamChangeMagic.h">
       <Filter>Source\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\BadincomingMagicException.h">
+      <Filter>Source\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -32,6 +32,7 @@
     <ClCompile Include="Decision\SimpleComputerDecision.cpp" />
     <ClCompile Include="Exceptions\ArenaException.cpp" />
     <ClCompile Include="Exceptions\BadEquipmentException.cpp" />
+    <ClCompile Include="Exceptions\BadincomingMagicException.cpp" />
     <ClCompile Include="Exceptions\BadWeaponMagicException.cpp" />
     <ClCompile Include="Exceptions\EmptyContainerException.cpp" />
     <ClCompile Include="Factories\ArmorFactories\ArmorFactory.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="Decision\SimpleComputerDecision.h" />
     <ClInclude Include="Exceptions\ArenaException.h" />
     <ClInclude Include="Exceptions\BadEquipmentException.h" />
+    <ClInclude Include="Exceptions\BadincomingMagicException.h" />
     <ClInclude Include="Exceptions\BadWeaponMagicException.h" />
     <ClInclude Include="Exceptions\EmptyContainerException.h" />
     <ClInclude Include="Factories\ArmorFactories\ArmorFactory.h" />
