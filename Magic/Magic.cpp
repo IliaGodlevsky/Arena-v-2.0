@@ -21,11 +21,6 @@ void Magic::showFullInfo()const
 	std::cout << "Name: " << m_name << std::endl;
 }
 
-int Magic::getStartTime()const
-{
-	return m_timer.getStartTime();
-}
-
 void Magic::showShortInfo()const
 {
 	std::cout << m_name;
