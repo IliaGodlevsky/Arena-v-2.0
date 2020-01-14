@@ -95,12 +95,8 @@ void Arena::takeOfLosers()
 
 bool Arena::isGameOver()const
 {
-	size_t alliesCount = 0;
-	for (size_t i = 0; i < m_units.size(); i++)
-		if(m_units[0]->isAlly(m_units[i]))
-			alliesCount++;
-	return alliesCount == m_units.size()
-		|| m_units.size() == 1;
+	return std::count_if(m_units.begin(), m_units.end(), [&](const UnitPtr& unit) 
+	{ return unit->isAlly(*m_units[0]); }) == m_units.size();
 }
 
 void Arena::prepareUnits()
@@ -144,7 +140,6 @@ void Arena::proposeToPlayTeams()
 			size_t teamsNumber = inputNumber("Enter teams"
 				" number: ", m_units.size(), MIN_TEAMS_NUMBER);
 			std::vector<Gladiators> teams = breakIntoTeams(teamsNumber);
-			setAllies(teams);
 			pushAlliesToArena(teams);
 		}
 	}
@@ -177,19 +172,13 @@ std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 	return teams;
 }
 
-void Arena::setAllies(std::vector<Gladiators>& teams)const
-{
-	for (size_t i = 0; i < teams.size(); i++)
-		for (size_t j = 0; j < teams[i].size(); j++)
-			for (size_t l = 0; l < teams[i].size(); l++)
-				teams[i][l]->takeAlly(teams[i][j]);
-}
-
 void Arena::pushAlliesToArena(const std::vector<Gladiators>& teams)
 {
 	for (size_t i = 0; i < teams.size(); i++)
-		for (size_t j = 0; j < teams[i].size(); j++)
-			m_units.push_back(teams[i][j]);
+	{
+		std::copy(teams[i].begin(), teams[i].end(), 
+			std::back_insert_iterator<Gladiators>(m_units));
+	}
 }
 
 void Arena::playCastStep()

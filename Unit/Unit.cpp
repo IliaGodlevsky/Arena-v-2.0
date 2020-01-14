@@ -116,9 +116,9 @@ bool Unit::isEnoughManaFor(const MagicPtr& magic)const
 	return m_mana >= manaCost->getCost();
 }
 
-bool Unit::isAlly(const UnitPtr& unit)const
+bool Unit::isAlly(const Unit& unit)const
 {
-	return m_decision->isAlly(unit);
+	return unit.m_teamNumber == m_teamNumber;
 }
 
 void Unit::payMana(int manaCost)
@@ -152,14 +152,7 @@ bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 	if (m_shield->isReflectChance() &&
 		!m_decision->isSameUnit(caster, *this))
 	{
-		std::cout << "But magic was reflected back to "
-			<< caster.getName() << std::endl;
-		magic->effectUnit(caster);
-		if (!caster.isAlive())
-		{
-			const int HP_RESTORE_IF_DEAD = 1; //%
-			caster.m_health.restore(HP_RESTORE_IF_DEAD);
-		}
+		std::cout << "But magic was reflected\n";
 		return false;
 	}
 	magic->effectUnit(*this);

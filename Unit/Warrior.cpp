@@ -40,18 +40,6 @@ Warrior::Warrior(Warrior&& unit)
 	m_level->setOwner(this);
 }
 
-bool Warrior::takeMagicEffect(Unit& caster, MagicPtr& magic)
-{
-	if (m_shield->isReflectChance() &&
-		!m_decision->isSameUnit(caster, *this))
-	{
-		std::cout << "But magic was reflected\n";
-		return false;
-	}
-	magic->effectUnit(*this);
-	return true;
-}
-
 bool Warrior::injureUnit(Unit& unit)
 {
 	const int multiDamage = damageMultiply(m_damage

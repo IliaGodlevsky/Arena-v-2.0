@@ -15,7 +15,6 @@ public:
 	~Warrior() = default;
 public:
 	bool injureUnit(Unit& unit);
-	bool takeMagicEffect(Unit& caster, MagicPtr& magic);
 private:
 	int damageMultiply(int damage)const;
 	bool secondHit(Unit& unit);

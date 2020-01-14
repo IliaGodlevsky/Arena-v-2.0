@@ -2,7 +2,6 @@
 #define DECISION_H_
 
 #include "../Globals/Globals.h"
-#include "Alliance.h"
 
 class Decision
 {
@@ -19,8 +18,6 @@ public:
 	virtual std::string setName(std::string name)const = 0;
 	virtual std::string getDecisionType()const = 0;
 	virtual void takeMagic(Unit& decidingUnit, const Unit& victim) = 0;
-	virtual void takeAlly(const UnitPtr& ally) final;
-	virtual bool isAlly(const UnitPtr& unit)const final;
 	virtual DecisionPtr clone()const = 0;
 	virtual ~Decision() = default;
 	virtual bool isSameUnit(const Unit&, const Unit&)const;
@@ -31,8 +28,6 @@ protected:
 		const MagicPtr& magic)const;
 	virtual bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
 		const MagicPtr& spell)const;
-protected:
-	Alliance m_allies;
 };
 
 #endif

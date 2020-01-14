@@ -40,7 +40,7 @@ public:
 	bool isAlive()const;
 	bool takeDamage(int damage);
 	void takeAlly(const UnitPtr& unit);
-	bool isAlly(const UnitPtr& unit)const;
+	bool isAlly(const Unit& unit)const;
 	UnitPtr chooseUnitToAttack(const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast, 

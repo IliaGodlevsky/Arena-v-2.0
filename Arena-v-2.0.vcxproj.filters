@@ -377,9 +377,6 @@
     <ClCompile Include="Factories\WeaponFactories\MagicSpearFactory.cpp">
       <Filter>Source\Factories\WeaponFactories</Filter>
     </ClCompile>
-    <ClCompile Include="Decision\Alliance.cpp">
-      <Filter>Source\Decision</Filter>
-    </ClCompile>
     <ClCompile Include="Factories\WeaponFactories\MagicClubFactory.cpp">
       <Filter>Source\Factories\WeaponFactories</Filter>
     </ClCompile>
@@ -693,9 +690,6 @@
     </ClInclude>
     <ClInclude Include="Containers\TemplateContainer.h">
       <Filter>Source\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="Decision\Alliance.h">
-      <Filter>Source\Decision</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\EmptyContainerException.h">
       <Filter>Source\Exceptions</Filter>
