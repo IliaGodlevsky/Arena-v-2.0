@@ -1,6 +1,7 @@
 #include "Weapon.h"
 
 #include "../Unit/Unit.h"
+#include "../UnitState/InnerUnitState/DeadUnitState.h"
 
 Weapon::Weapon(std::string name, int damage)
 	: m_name(name),m_damage(damage)
