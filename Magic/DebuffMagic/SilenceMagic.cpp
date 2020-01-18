@@ -1,6 +1,6 @@
 #include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
-#include "../../UnitState/MutedUnitState.h"
+#include "../../UnitState/OuterUnitState/MutedUnitState.h"
 #include "../../Arena/Arena.h"
 
 #include "SilenceMagic.h"
