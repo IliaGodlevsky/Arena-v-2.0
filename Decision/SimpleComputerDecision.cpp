@@ -133,7 +133,7 @@ UnitPtr SimpleComputerDecision::findUnitCanBeKilled(const Unit& decidingUnit,
 	{
 		me = decidingUnit.getPureClone();
 		enemy = units[i]->getPureClone();
-		if (!isSameUnit(decidingUnit, *units[i]))
+		if (!decidingUnit.isAlly(*units[i]) && units[i]->isAlive())
 			if (predicate(me, enemy))
 				victims.push_back(units[i]);
 	}
@@ -204,9 +204,10 @@ MagicAim SimpleComputerDecision::findMagicToKillUnit(
 		{
 			me = decidingUnit.getPureClone();
 			enemy = units[j]->getPureClone();
-			if (!isSameUnit(decidingUnit, *units[j]) &&
+			if (!decidingUnit.isAlly(*units[j]) &&
 				!isWrongSpellToCast(decidingUnit, *units[j], magic) &&
-				decidingUnit.isEnoughManaFor(magic))
+				decidingUnit.isEnoughManaFor(magic)
+				&& units[j]->isAlive())
 			{
 				me->castMagic(*enemy, magic);
 				if (!enemy->isAlive())
@@ -256,7 +257,7 @@ MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 
 std::string SimpleComputerDecision::getDecisionType()const
 {
-	return "Computer++";
+	return "Computer";
 }
 
 DecisionPtr SimpleComputerDecision::clone()const

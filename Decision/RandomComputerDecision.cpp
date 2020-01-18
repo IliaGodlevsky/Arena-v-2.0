@@ -12,7 +12,8 @@ UnitPtr RandomComputerDecision::chooseUnitToAttack(const Unit& decidingUnit,
 	const Gladiators& arena)const
 {
 	index unitToAttack = randomNumber(arena.size() - 1);
-	while (isSameUnit(decidingUnit, *arena[unitToAttack]))
+	while (arena[unitToAttack]->isAlly(decidingUnit) ||
+		!arena[unitToAttack]->isAlive())
 		unitToAttack = randomNumber(arena.size() - 1);
 	return arena[unitToAttack];
 }

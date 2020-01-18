@@ -14,7 +14,8 @@ UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit,
 	std::cout << decidingUnit.getName() << ", ";
 	index unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
 		units.size(), 1);
-	while (isSameUnit(*units[unitIndex - 1], decidingUnit))
+	while (units[unitIndex - 1]->isAlly(decidingUnit) ||
+		!units[unitIndex - 1]->isAlive())
 	{
 		std::cout << "You can't attack this unit\n";
 		unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,

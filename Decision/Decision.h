@@ -20,7 +20,6 @@ public:
 	virtual void takeMagic(Unit& decidingUnit, const Unit& victim) = 0;
 	virtual DecisionPtr clone()const = 0;
 	virtual ~Decision() = default;
-	virtual bool isSameUnit(const Unit&, const Unit&)const;
 protected:
 	virtual bool canCastBuffOnUnit(const Unit& caster, const Unit& aim, 
 		const MagicPtr& magic)const;
