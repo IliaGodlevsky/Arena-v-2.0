@@ -7,6 +7,7 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+#include <windows.h>
 
 #include "../Messager/Messager.h"
 #include "../Exceptions/EmptyContainerException.h"
@@ -17,6 +18,28 @@
 #define YES true
 #define NO !YES
 #define NULLPTR nullptr
+
+enum TextColor
+{
+	BLACK = 0,
+	BLUE = 1,
+	GREEN = 2,
+	CYAN = 3,
+	RED = 4,
+	MAGNETA = 5,
+	BROWN = 6,
+	LIGHT_GREY = 7,
+	DARK_GREY = 8,
+	LIGHT_BLUE = 9,
+	LIGHT_GREEN = 10,
+	LIGHT_CYAN = 11,
+	LIGHT_RED = 12,
+	LIGHT_MAGNETA = 13,
+	YELLOW = 14,
+	WHITE = 15
+};
+
+void setColor(TextColor text = WHITE, TextColor background = BLACK);
 
 class Unit;
 using UnitPtr = std::shared_ptr<Unit>;
@@ -30,10 +53,6 @@ using MagicPtr = std::unique_ptr<Magic>;
 
 typedef unsigned index;
 
-constexpr int ZERO_DURATION = 0;
-constexpr int ZERO_MANA_COST = 0;
-constexpr int ZERO_CRITIAL_PROBABILITY = 0;
-
 int inputNumber(const std::string& message, int upper, int lower);
 bool isError(int choice, int upper, int lower);
 void eatLine();
@@ -42,5 +61,8 @@ int randomNumber(int max, int min = 0);
 std::vector<std::string> loadFromFile(const std::string& fileName);
 
 void exceptionMessage(std::exception& ex);
+
+const char* const teamPlayQuest = "Do you want to play "
+"in teams? <1 - yes, 0 - no>: ";
 
 #endif

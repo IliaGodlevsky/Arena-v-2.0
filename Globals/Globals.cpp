@@ -63,5 +63,10 @@ void exceptionMessage(std::exception& ex)
 {
 	std::cerr << ex.what() << std::endl;
 	system("pause");
-	exit(EXIT_FAILURE);
+}
+
+void setColor(TextColor text, TextColor background)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 
+		(WORD)((background << 4) | text));
 }

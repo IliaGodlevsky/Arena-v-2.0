@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
@@ -27,7 +28,7 @@ int Arena::m_round = 0;
 // that can take part in the game
 constexpr int Arena::getMaxNubmerOfPlayers()const
 {
-	return 5;
+	return 8;
 }
 
 constexpr int Arena::getMinNumberOfPlayers()const
@@ -37,6 +38,7 @@ constexpr int Arena::getMinNumberOfPlayers()const
 
 Arena::Arena()
 {
+	std::srand(static_cast<unsigned>(std::time(nullptr)));
 	showMiniature();
 	m_units.resize(setNumberOfUnits());
 }
@@ -74,6 +76,7 @@ void Arena::showUnits()const
 	{
 		std::cout << i + 1 << ". ";
 		m_units[i]->showFullInfo();
+		setColor();
 		std::cout << std::endl;
 	}
 }
@@ -134,8 +137,7 @@ void Arena::proposeToPlayTeams()
 	const int MIN_TEAMS_NUMBER = 2;
 	if (m_units.size() > MIN_PLAYERS_TO_PLAY_TEAMS)
 	{
-		const bool answer = static_cast<bool>(inputNumber("Do you want to play "
-			"in teams? <1 - yes, 0 - no>: ", YES, NO));
+		const bool answer = static_cast<bool>(inputNumber(teamPlayQuest, YES, NO));
 		if (YES == answer)
 		{
 			size_t teamsNumber = inputNumber("Enter teams"
@@ -144,6 +146,8 @@ void Arena::proposeToPlayTeams()
 			pushAlliesToArena(teams);
 		}
 	}
+	std::shuffle(m_units.begin(), m_units.end(), 
+		std::mt19937(std::random_device()()));
 }
 
 std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
