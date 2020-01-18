@@ -1,5 +1,6 @@
 #include "../../Unit/Unit.h"
 #include "HpReduceElem.h"
+#include "../../UnitState/InnerUnitState/DeadUnitState.h"
 
 HpReduceElem::HpReduceElem(int hpReduce)
 	:m_hpReduce(hpReduce)
@@ -10,6 +11,8 @@ HpReduceElem::HpReduceElem(int hpReduce)
 void HpReduceElem::effectUnit(Unit& unit)
 {
 	unit.m_health = unit.m_health - m_hpReduce;
+	if (!unit.isAlive())
+		unit.m_stateHolder.takeNew(StatePtr(new DeadUnitState(&unit)));
 }
 
 void HpReduceElem::showFullInfo()const
