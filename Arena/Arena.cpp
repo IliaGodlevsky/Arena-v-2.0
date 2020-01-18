@@ -8,6 +8,7 @@
 #include "../Factories/UnitFactory/UnitFactory.h"
 #include "../Factories/UnitFactory/WarriorFactory.h"
 #include "../Factories/UnitFactory/WizardFactory.h"
+#include "../UnitState/InnerUnitState/DeadUnitState.h"
 
 #include "Arena.h"
 
@@ -174,11 +175,9 @@ std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 
 void Arena::pushAlliesToArena(const std::vector<Gladiators>& teams)
 {
-	for (size_t i = 0; i < teams.size(); i++)
-	{
-		std::copy(teams[i].begin(), teams[i].end(), 
-			std::back_insert_iterator<Gladiators>(m_units));
-	}
+	std::back_insert_iterator<Gladiators> iter(m_units);
+	for (auto& team : teams)
+		std::copy(team.begin(), team.end(), iter);
 }
 
 void Arena::playCastStep()
