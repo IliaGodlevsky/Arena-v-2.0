@@ -12,11 +12,11 @@
 #include "../Exceptions/EmptyContainerException.h"
 #include "../Exceptions/BadWeaponMagicException.h"
 #include "../Exceptions/BadEquipmentException.h"
+#include "../Exceptions/BadincomingMagicException.h"
 
 #define YES true
 #define NO !YES
 #define NULLPTR nullptr
-
 
 class Unit;
 using UnitPtr = std::shared_ptr<Unit>;
