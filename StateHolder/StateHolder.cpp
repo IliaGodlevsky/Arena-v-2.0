@@ -2,12 +2,13 @@
 
 #include "../Unit/Unit.h"
 #include "../Arena/Arena.h"
-#include "../UnitState/ActiveUnitState.h"
-#include "../UnitState/StunUnitState.h"
-#include "../UnitState/MutedUnitState.h"
+#include "../UnitState/OuterUnitState/StunUnitState.h"
+#include "../UnitState/OuterUnitState/MutedUnitState.h"
 #include "../Magic/Magic.h"
 #include "../Decision/Decision.h"
-#include "../UnitState/InnerUnitState.h"
+#include "../UnitState/InnerUnitState/ActiveUnitState.h"
+
+enum { CURRENT_STATE };
 
 inline bool isMoreImportantState(const StatePtr& st1, 
 	const StatePtr& st2)
@@ -15,10 +16,10 @@ inline bool isMoreImportantState(const StatePtr& st1,
 	return *st1 > *st2;
 }
 
-StateHolder::StateHolder(DecisionPtr decision)
-	: m_decision(decision), m_activeState(new ActiveUnitState())
+StateHolder::StateHolder(Unit* unit)
+	: m_holder(unit)
 {
-	m_activeState->setDecision(m_decision);
+	takeNew(StatePtr(new ActiveUnitState(m_holder)));
 }
 
 void StateHolder::expireIfFound(const StatePtr& unitState)
@@ -30,16 +31,11 @@ void StateHolder::expireIfFound(const StatePtr& unitState)
 	}
 }
 
-StateHolder::StateHolder(DecisionPtr decision, const StateHolder& stateHolder)
-	: StateHolder(m_decision)
+StateHolder::StateHolder(Unit* unit, const StateHolder& stateHolder)
+	: StateHolder(unit)
 {
-	InnerUnitState* innerState = nullptr;
 	for (size_t i = 0; i < stateHolder.size(); i++)
-	{
-		if (!(innerState = DYNAMIC(InnerUnitState*, stateHolder[i])))
-			takeNew(stateHolder[i]);
-	}
-	std::sort(m_items.begin(), m_items.end(), isMoreImportantState);
+		takeNew(stateHolder[i]);
 }
 
 bool StateHolder::itemHasPassedControl(const StatePtr& unitState)const
@@ -55,48 +51,41 @@ void StateHolder::takeNew(const StatePtr& unitState)
 	if (itemHasPassedControl(unitState))
 	{
 		expireIfFound(unitState);
-		unitState->setDecision(m_decision);
-		m_items.push_back(unitState);
+		StatePtr temp = unitState->clone();
+		InnerUnitState* innerState = nullptr;
+		if (innerState = DYNAMIC(InnerUnitState*, temp))
+			innerState->setOwner(m_holder);
+		m_items.push_back(temp);
 		std::sort(m_items.begin(), m_items.end(), isMoreImportantState);
 	}
 }
 
 bool StateHolder::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
 {
-	if (m_items.empty())
-		return m_activeState->castMagic(caster, unit, magic);
-	return m_items[0]->castMagic(caster, unit, magic);
+	return m_items[CURRENT_STATE]->castMagic(caster, unit, magic);
 }
 
 bool StateHolder::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
 {
-	if (m_items.empty())
-		return m_activeState->injureUnit(weapon, unit, damage);
-	return m_items[0]->injureUnit(weapon, unit, damage);
+	return m_items[CURRENT_STATE]->injureUnit(weapon, unit, damage);
 }
 
-UnitPtr StateHolder::chooseUnitToAttack(const Unit& decidingUnit, 
+UnitPtr StateHolder::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
 	const Gladiators& units)const
 {
-	if (m_items.empty())
-		return m_activeState->chooseUnitToAttack(decidingUnit, units);
-	return m_items[0]->chooseUnitToAttack(decidingUnit, units);
+	return m_items[CURRENT_STATE]->chooseUnitToAttack(decision,decidingUnit, units);
 }
 
-MagicPtr StateHolder::chooseMagicToCast(const Unit& decidingUnit, 
+MagicPtr StateHolder::chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
 	const Gladiators& units)const
 {
-	if (m_items.empty())
-		return m_activeState->chooseMagicToCast(decidingUnit, units);
-	return m_items[0]->chooseMagicToCast(decidingUnit, units);
+	return m_items[CURRENT_STATE]->chooseMagicToCast(decision, decidingUnit, units);
 }
 
-UnitPtr StateHolder::chooseUnitToCast(const Unit& decidingUnit,
+UnitPtr StateHolder::chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& units)const
 {
-	if (m_items.empty())
-		return m_activeState->chooseUnitToCast(decidingUnit, magicToCast, units);
-	return m_items[0]->chooseUnitToCast(decidingUnit, magicToCast, units);
+	return m_items[CURRENT_STATE]->chooseUnitToCast(decision, decidingUnit, magicToCast, units);
 }
 
 void StateHolder::makeExpire(size_t stateIndex)
