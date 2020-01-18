@@ -1,6 +1,6 @@
 #include "../../Unit/Unit.h"
 #include "../../UnitState/UnitState.h"
-#include "../../UnitState/StunUnitState.h"
+#include "../../UnitState/OuterUnitState/StunUnitState.h"
 #include "../../Arena/Arena.h"
 
 #include "StunMagic.h"
