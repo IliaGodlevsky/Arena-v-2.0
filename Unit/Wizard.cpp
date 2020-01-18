@@ -3,7 +3,6 @@
 #include "../Level/Level.h"
 #include "../Arena/Arena.h"
 #include "../Level/WizardLevel.h"
-#include "../UnitState/NotEnoughManaUnitState.h"
 #include "../Interface/Interface.h"
 
 Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory, 
@@ -21,8 +20,6 @@ Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory,
 	m_mail->putOn(*this);
 	m_shield->putOn(*this);
 	m_magicBook.takeNew(secondFactory->createItem());
-	if (!m_magicBook.canCastAnySpell())
-		m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
 }
 
 Wizard::Wizard(const Wizard& unit)
@@ -67,14 +64,4 @@ bool Wizard::isEnoughManaFor(const MagicPtr& magic)const
 {
 	IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
 	return m_mana >= countManaCost(manaCost->getCost());
-}
-
-UnitPtr Wizard::getPureClone()const
-{
-	Wizard* clone = new Wizard(*this);
-	clone->m_weapon = clone->m_weapon->getPureWeapon();
-	clone->m_shield = clone->m_shield->getPureShield();
-	if (!clone->m_magicBook.canCastAnySpell())
-		clone->m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(clone)));
-	return UnitPtr(clone);
 }
