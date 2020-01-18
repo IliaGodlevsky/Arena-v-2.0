@@ -266,9 +266,6 @@
     <ClCompile Include="Weapon\MagicClub.cpp">
       <Filter>Source\Equipment\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="UnitState\ActiveUnitState.cpp">
-      <Filter>Source\UnitState</Filter>
-    </ClCompile>
     <ClCompile Include="Factories\MagicFactories\BuffFactories\ArmorBuffFactory.cpp">
       <Filter>Source\Factories\MagicFactories\BuffFactories</Filter>
     </ClCompile>
@@ -392,24 +389,6 @@
     <ClCompile Include="ThreadGuard\ThreadGuard.cpp">
       <Filter>Source\ThreadGuard</Filter>
     </ClCompile>
-    <ClCompile Include="UnitState\MutedUnitState.cpp">
-      <Filter>Source\UnitState\OuterUnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\StunUnitState.cpp">
-      <Filter>Source\UnitState\OuterUnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\NotEnoughManaUnitState.cpp">
-      <Filter>Source\UnitState\InnerUnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\InnerUnitState.h">
-      <Filter>Source\UnitState\InnerUnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\OuterUnitState.cpp">
-      <Filter>Source\UnitState\OuterUnitState</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitState\InnerUnitState.cpp">
-      <Filter>Source\UnitState\InnerUnitState</Filter>
-    </ClCompile>
     <ClCompile Include="Magic\Elements\ParamChangeElem.cpp">
       <Filter>Source\Magic\Elements</Filter>
     </ClCompile>
@@ -439,6 +418,27 @@
     </ClCompile>
     <ClCompile Include="Exceptions\BadincomingMagicException.cpp">
       <Filter>Source\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState\DeadUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState\ActiveUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState\InnerUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState\NotEnoughManaUnitState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\OuterUnitState\MutedUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\OuterUnitState\OuterUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\OuterUnitState\StunUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -567,9 +567,6 @@
     </ClInclude>
     <ClInclude Include="Weapon\MagicClub.h">
       <Filter>Source\Equipment\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\ActiveUnitState.h">
-      <Filter>Source\UnitState</Filter>
     </ClInclude>
     <ClInclude Include="Factories\Factory.h">
       <Filter>Source\Factories</Filter>
@@ -703,18 +700,6 @@
     <ClInclude Include="ThreadGuard\ThreadGurad.h">
       <Filter>Source\ThreadGuard</Filter>
     </ClInclude>
-    <ClInclude Include="UnitState\MutedUnitState.h">
-      <Filter>Source\UnitState\OuterUnitState</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\StunUnitState.h">
-      <Filter>Source\UnitState\OuterUnitState</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\NotEnoughManaUnitState.h">
-      <Filter>Source\UnitState\InnerUnitState</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitState\OuterUnitState.h">
-      <Filter>Source\UnitState\OuterUnitState</Filter>
-    </ClInclude>
     <ClInclude Include="Interface\Interface.h">
       <Filter>Source\Interface</Filter>
     </ClInclude>
@@ -747,6 +732,27 @@
     </ClInclude>
     <ClInclude Include="Exceptions\BadincomingMagicException.h">
       <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\InnerUnitState\DeadUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\InnerUnitState\ActiveUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\InnerUnitState\InnerUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\InnerUnitState\NotEnoughManaUnitState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\OuterUnitState\MutedUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\OuterUnitState\OuterUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\OuterUnitState\StunUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
