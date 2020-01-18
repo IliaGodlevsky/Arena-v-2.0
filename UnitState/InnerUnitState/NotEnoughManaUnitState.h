@@ -10,15 +10,16 @@ public:
 	NotEnoughManaUnitState() = default;
 	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
 	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
-	UnitPtr chooseUnitToAttack(const Unit& decidingUnit,
+	UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
 		const Gladiators& units)const;
-	MagicPtr chooseMagicToCast(const Unit& decidingUnit,
+	MagicPtr chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
 		const Gladiators& units)const;
-	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
+	UnitPtr chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
 		const MagicPtr& magicToCast, 
 		const Gladiators& units)const;
 	bool isExpired()const override;
 	void showShortInfo()const override;
+	StatePtr clone()const;
 private:
 	enum { NOT_ENOUGH_MANA_STATE = 2 };
 	int getValue()const override;

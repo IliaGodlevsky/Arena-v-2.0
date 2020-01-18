@@ -6,16 +6,18 @@
 class StunUnitState : public OuterUnitState
 {
 public:
+	StunUnitState() = default;
 	StunUnitState(const Timer& timer);
 	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
 	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
-	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
+	UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
 		const Gladiators& units)const;
-	MagicPtr chooseMagicToCast(const Unit& decidingUnit, 
+	MagicPtr chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
 		const Gladiators& units)const;
-	UnitPtr chooseUnitToCast(const Unit& decidingUnit,
+	UnitPtr chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
 		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void showShortInfo()const;
+	StatePtr clone()const;
 private:
 	enum { STUN_UNIT_STATE  = 3};
 	int getValue()const override;

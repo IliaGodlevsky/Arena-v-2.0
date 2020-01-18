@@ -1,7 +1,8 @@
 #ifndef INNER_UNIT_STATE_H_
 #define INNER_UNIT_STATE_H_
 
-#include "UnitState.h"
+#include "../UnitState.h"
+#include "../../Globals/Globals.h"
 
 class InnerUnitState : public UnitState
 {

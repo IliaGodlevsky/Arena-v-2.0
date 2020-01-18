@@ -1,8 +1,8 @@
 #include "OuterUnitState.h"
-#include "../Arena/Arena.h"
+#include "../../Arena/Arena.h"
 
 OuterUnitState::OuterUnitState(const Timer& timer)
-	:m_timer(timer)
+	: m_timer(timer)
 {
 
 }

@@ -1,7 +1,7 @@
 #ifndef OUTER_UNIT_STATE_H_
 #define OUTER_UNIT_STATE_H_
 
-#include "UnitState.h"
+#include "../UnitState.h"
 
 class OuterUnitState : public UnitState
 {

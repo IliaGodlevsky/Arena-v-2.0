@@ -1,6 +1,6 @@
-#include "../Unit/Unit.h"
-
 #include "NotEnoughManaUnitState.h"
+#include "../../Decision/Decision.h"
+#include "../../Unit/Unit.h"
 
 NotEnoughManaUnitState::NotEnoughManaUnitState(Unit* unit)
 	: InnerUnitState(unit)
@@ -18,19 +18,19 @@ bool NotEnoughManaUnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damag
 	return UnitState::injureUnit(weapon, unit, damage);
 }
 
-UnitPtr NotEnoughManaUnitState::chooseUnitToAttack(const Unit& decidingUnit,
+UnitPtr NotEnoughManaUnitState::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
 	const Gladiators& units)const
 {
-	return m_decision->chooseUnitToAttack(decidingUnit, units);
+	return decision->chooseUnitToAttack(decidingUnit, units);
 }
 
-MagicPtr NotEnoughManaUnitState::chooseMagicToCast(const Unit& decidingUnit,
+MagicPtr NotEnoughManaUnitState::chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
 	const Gladiators& units)const
 {
 	return nullptr;
 }
 
-UnitPtr NotEnoughManaUnitState::chooseUnitToCast(const Unit& decidingUnit,
+UnitPtr NotEnoughManaUnitState::chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& units)const
 {
 	return nullptr;
@@ -49,4 +49,9 @@ int NotEnoughManaUnitState::getValue()const
 void NotEnoughManaUnitState::showShortInfo()const
 {
 	std::cout << "<Mana lack> ";
+}
+
+StatePtr NotEnoughManaUnitState::clone()const
+{
+	return StatePtr(new NotEnoughManaUnitState());
 }
