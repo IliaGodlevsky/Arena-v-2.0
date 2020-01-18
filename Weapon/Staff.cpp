@@ -1,6 +1,7 @@
 #include "Staff.h"
 
 #include "../Unit/Unit.h"
+#include "../UnitState/InnerUnitState/DeadUnitState.h"
 
 Staff::Staff(std::string name, int damage)
 	: Weapon(name, damage)
@@ -25,4 +26,6 @@ Staff& Staff::operator=(const Staff& weapon)
 void Staff::injureUnit(Unit& unit, int damage)const
 {
 	unit.m_health = unit.m_health - (m_damage + damage);
+	if (!unit.isAlive())
+		unit.m_stateHolder.takeNew(StatePtr(new DeadUnitState(&unit)));
 }
