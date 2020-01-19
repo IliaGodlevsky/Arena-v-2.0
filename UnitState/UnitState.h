@@ -14,6 +14,7 @@ public:
 	UnitState() = default;
 	virtual bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
 	virtual bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
+	virtual bool takeDamage(Unit& unit, int damage);
 	virtual UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit, 
 		const Gladiators& units)const = 0;
 	virtual MagicPtr chooseMagicToCast(DecisionPtr decision,const Unit& decidingUnit,
@@ -28,6 +29,8 @@ public:
 	virtual bool isEqual(const StatePtr& unitState)const final;
 	virtual bool isExpired()const = 0;
 	virtual StatePtr clone()const = 0;
+protected:
+	void reduceUnitHp(Unit& unit, int damage);
 private:
 	virtual int getValue()const = 0;
 

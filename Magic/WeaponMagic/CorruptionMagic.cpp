@@ -21,7 +21,7 @@ void CorruptionMagic::effectUnit(Unit& unit)
 
 void CorruptionMagic::uneffectUnit(Unit& unit)
 {
-	m_armorReduce.effectUnit(unit);
+	m_armorReduce.uneffectUnit(unit);
 }
 
 MagicPtr CorruptionMagic::clone()const

@@ -70,6 +70,11 @@ bool StateHolder::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
 	return m_items[CURRENT_STATE]->injureUnit(weapon, unit, damage);
 }
 
+bool StateHolder::takeDamage(Unit& unit, int damage)
+{
+	return m_items[CURRENT_STATE]->takeDamage(unit, damage);
+}
+
 UnitPtr StateHolder::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
 	const Gladiators& units)const
 {

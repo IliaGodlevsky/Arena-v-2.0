@@ -29,6 +29,24 @@ bool UnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
 	return true;
 }
 
+void UnitState::reduceUnitHp(Unit& unit, int damage)
+{
+	unit.m_health = unit.m_health - unit.calculateDamageAbsorb(damage);
+	if (!unit.isAlive())
+		unit.m_stateHolder.takeNew(StatePtr(new DeadUnitState(&unit)));
+}
+
+bool UnitState::takeDamage(Unit& unit, int damage)
+{
+	if (!unit.m_shield->isReflectChance())
+	{
+		reduceUnitHp(unit, damage);
+		return true;
+	}
+	std::cout << "But attack was reflected\n";
+	return false;
+}
+
 UnitPtr UnitState::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit, 
 	const Gladiators& units)const
 {

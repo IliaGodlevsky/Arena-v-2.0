@@ -2,6 +2,8 @@
 
 #include "StunUnitState.h"
 #include "../../Arena/Arena.h"
+#include "../../Unit/Unit.h"
+#include "../InnerUnitState/DeadUnitState.h"
 
 StunUnitState::StunUnitState(const Timer& timer)
 	: OuterUnitState(timer)
@@ -46,6 +48,12 @@ void StunUnitState::showShortInfo()const
 {
 	std::cout << "<Stun: " << m_timer.getStartTime()
 		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
+}
+
+bool StunUnitState::takeDamage(Unit& unit, int damage)
+{
+	UnitState::reduceUnitHp(unit, damage);
+	return true;
 }
 
 StatePtr StunUnitState::clone()const

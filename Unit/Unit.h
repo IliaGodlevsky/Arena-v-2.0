@@ -15,6 +15,7 @@
 
 class Unit
 {
+	friend class UnitState;
 public:
 	Unit() = delete;
 	Unit(DecisionPtr decision, ItemFactoryPtr factory);
@@ -40,6 +41,7 @@ public:
 	bool isAlive()const;
 	bool takeDamage(int damage);
 	bool isAlly(const Unit& unit)const;
+	int calculateDamageAbsorb(int damage)const;
 	UnitPtr chooseUnitToAttack(const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast, 
@@ -60,8 +62,6 @@ protected:
 	ShieldPtr m_shield = nullptr;
 	std::string m_name;
 	DecisionPtr m_decision = nullptr;
-protected:
-	int calculateDamageAbsorb(int damage)const;
 private:
 	int m_teamNumber = 0;
 };

@@ -134,15 +134,7 @@ bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 
 bool Unit::takeDamage(int damage)
 {
-	if (!m_shield->isReflectChance())
-	{
-		m_health = m_health - calculateDamageAbsorb(damage);
-		if (!isAlive())
-			m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
-		return true;
-	}
-	std::cout << "But attack was reflected\n";
-	return false;
+	return m_stateHolder.takeDamage(*this, damage);
 }
 
 bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
