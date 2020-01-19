@@ -40,7 +40,7 @@ template <class T>
 std::unique_ptr<T> Factory<T>::createItem()const
 {
 	if (m_items.empty())
-		throw EmptyContainerException("\nContainer " + std::string(typeid(*this).name()) + "is empty");
+		throw EmptyContainerException("\nContainer " + std::string(typeid(*this).name()) + " is empty");
 	index itemIndex = randomNumber(m_items.size() - 1);
 	return std::unique_ptr<T>(m_items[itemIndex]->clone());
 }
