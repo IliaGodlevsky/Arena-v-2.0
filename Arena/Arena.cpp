@@ -39,7 +39,6 @@ constexpr int Arena::getMinNumberOfPlayers()const
 Arena::Arena()
 {
 	showMiniature();
-	m_units.resize(setNumberOfUnits());
 }
 
 void Arena::showMiniature()const
@@ -104,6 +103,7 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
+	m_units.resize(setNumberOfUnits());
 	std::vector<std::string> unitsNames;
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
 	if (unitsNames.empty())
