@@ -63,6 +63,6 @@ void MagicBook::showShortInfo()const
 
 void MagicBook::takeNew(const MagicPtr& magic)
 {
-	if (itemHasPassedControl(magic))
+	if (itemHasPassedControl(magic) || !hasItem(magic))
 		m_items.push_back(MagicPtr(magic->clone()));
 }
