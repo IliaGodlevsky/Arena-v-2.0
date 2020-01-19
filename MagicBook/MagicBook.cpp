@@ -37,6 +37,16 @@ void MagicBook::magicList()const
 	}
 }
 
+void MagicBook::setItemColor(const MagicPtr& magic)const
+{
+	IBuff* buff = nullptr;
+	buff = DYNAMIC(IBuff*, magic);
+	if (buff->isBuff())
+		setColor(LIGHT_GREEN);
+	else
+		setColor(LIGHT_RED);
+}
+
 bool MagicBook::canCastAnySpell()const
 {
 	for (size_t i = 0; i < size(); i++)

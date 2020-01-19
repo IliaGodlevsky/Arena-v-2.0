@@ -28,7 +28,7 @@ int Arena::m_round = 0;
 // that can take part in the game
 constexpr int Arena::getMaxNubmerOfPlayers()const
 {
-	return 8;
+	return 7; 
 }
 
 constexpr int Arena::getMinNumberOfPlayers()const

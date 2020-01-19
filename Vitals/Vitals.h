@@ -28,5 +28,12 @@ private:
 	int m_valueRegeneration = 0;
 private:
 	void fixOverflow();
+	void setValueColor()const;
+	void setRegenColor()const;
+private:
+	bool isHighHpLevel()const;
+	bool isNormalHpLevel()const;
+	double HIGH_HP_LEVEL = 0.8;
+	double LOW_HP_LEVEL = 0.3;
 };
 #endif

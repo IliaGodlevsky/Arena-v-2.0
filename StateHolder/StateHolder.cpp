@@ -108,6 +108,16 @@ void StateHolder::takeOffExpired()
 	}
 }
 
+void StateHolder::setItemColor(const StatePtr& unitState)const
+{
+	InnerUnitState* inner = nullptr;
+	inner = DYNAMIC(InnerUnitState*, unitState);
+	if (inner == nullptr)
+		setColor(LIGHT_RED);
+	else
+		setColor(LIGHT_BLUE);
+}
+
 void StateHolder::showShortInfo()const
 {
 	std::cout << "States: ";

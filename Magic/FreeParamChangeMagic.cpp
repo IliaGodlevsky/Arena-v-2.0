@@ -24,7 +24,9 @@ bool FreeParamChangeMagic::isEqual(const MagicPtr& magic)const
 
 void FreeParamChangeMagic::showFullInfo()const
 {
+	setColor(YELLOW);
 	Magic::showFullInfo();
+	setColor();
 }
 
 void FreeParamChangeMagic::showShortInfo()const

@@ -19,6 +19,7 @@ public:
 	void showShortInfo()const override;
 	void magicList()const;
 	void takeNew(const MagicPtr& magic) override;
+	void setItemColor(const MagicPtr& magic)const override;
 private:
 	Unit* m_unit = nullptr; // unit, that have this vector of magic
 };

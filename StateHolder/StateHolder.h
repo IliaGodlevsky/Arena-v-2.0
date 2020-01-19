@@ -32,6 +32,7 @@ public:
 		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void takeOffExpired() override;
 	void showShortInfo()const override;
+	void setItemColor(const StatePtr& unitState)const override;
 	~StateHolder();
 private:
 	Unit* m_holder = nullptr;

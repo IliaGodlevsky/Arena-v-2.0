@@ -20,6 +20,7 @@ public:
 	bool hasItem(const T& item)const;
 	virtual const T& operator[](size_t t)const final;
 	virtual void showShortInfo()const;
+	virtual void setItemColor(const T& item)const = 0;
 	virtual size_t size()const final;
 	virtual ~TemplateContainer() = default;
 protected:
@@ -46,7 +47,11 @@ template <class T>
 void TemplateContainer<T>::showShortInfo()const
 {
 	for (size_t i = 0; i < m_items.size(); i++)
+	{
+		setItemColor(m_items[i]);
 		m_items[i]->showShortInfo();
+	}
+	setColor();
 	std::cout << std::endl;
 }
 

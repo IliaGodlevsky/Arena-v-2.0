@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Vitals.h"
+#include "../Globals/Globals.h"
 
 Vitals::Vitals(int value, int maxValue,
 	int valueRegeneration)
@@ -78,9 +79,45 @@ Vitals::operator int()const
 	return m_value;
 }
 
+bool Vitals::isHighHpLevel()const
+{
+	return m_value <= m_maxValue && m_value >
+		m_maxValue * HIGH_HP_LEVEL;
+}
+
+bool Vitals::isNormalHpLevel()const
+{
+	return m_value <= m_maxValue * HIGH_HP_LEVEL && 
+		m_value > m_maxValue * LOW_HP_LEVEL;
+}
+
+void Vitals::setValueColor()const
+{
+	if (isHighHpLevel())
+		setColor(LIGHT_GREEN);
+	else if (isNormalHpLevel())
+		setColor(YELLOW);
+	else
+		setColor(LIGHT_RED);
+}
+
+void Vitals::setRegenColor()const
+{
+	if (m_valueRegeneration > 0)
+		setColor(LIGHT_GREEN);
+	else
+		setColor(LIGHT_RED);
+}
+
 void Vitals::showFullInfo(const char* vitalsType)const
 {
-	std::cout << vitalsType << ": " << m_value << "\\"
-		<< m_maxValue << " " << vitalsType << " regen: "
-		<< m_valueRegeneration << std::endl;
+	std::cout << vitalsType << ": ";
+	setValueColor();
+	std::cout << m_value;
+	setColor();
+	std::cout << "\\" << m_maxValue << " " << vitalsType;
+	std::cout << " regen: ";
+	setRegenColor();
+	std::cout << m_valueRegeneration << std::endl;
+	setColor();
 }

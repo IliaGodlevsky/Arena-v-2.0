@@ -65,6 +65,21 @@ void MagicOnMe::takeNew(const MagicPtr& magic)
 	}
 }
 
+void MagicOnMe::setItemColor(const MagicPtr& magic)const
+{
+	IBuff* buff = nullptr;
+	buff = DYNAMIC(IBuff*, magic);
+	if (buff != nullptr)
+	{
+		if (buff->isBuff())
+			setColor(LIGHT_GREEN);
+		else
+			setColor(LIGHT_RED);
+	}
+	else
+		setColor(YELLOW);
+}
+
 
 void MagicOnMe::showShortInfo()const
 {
@@ -73,11 +88,13 @@ void MagicOnMe::showShortInfo()const
 	for (size_t i = 0; i < size(); i++)
 	{
 		duration = DYNAMIC(IDuration*, operator[](i));
+		setItemColor(operator[](i));
 		std::cout << "<";
 		std::cout << operator[](i)->getName();
 		std::cout << ": " << duration->getStartTime() 
 			+ duration->getDuration() - Arena::getCurrentRound();
 		std::cout << "> ";
 	}
+	setColor();
 	std::cout << std::endl;
 }

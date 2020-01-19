@@ -193,6 +193,7 @@ void Unit::showFullInfo()const
 	std::cout << getName() << ", Level: " 
 		<< *m_level << ", " << "Team: " 
 		<< m_teamNumber << std::endl;
+	setColor();
 	m_health.showFullInfo("HP");
 	m_mana.showFullInfo("MP");
 	std::cout << "DMG: " << m_damage 
