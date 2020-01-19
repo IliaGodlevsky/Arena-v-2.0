@@ -6,11 +6,10 @@ int main()
 	bool answer = YES;
 	while (YES == answer)
 	{
-		try {
-
+		try 
+		{
 			arena.prepareUnits();
 			arena.proposeToPlayTeams();
-
 			while (!arena.isGameOver())
 			{
 				arena.showUnits();
@@ -21,7 +20,6 @@ int main()
 				arena.takeOfLosers();
 				arena.goNextUnit();
 			}
-
 			arena.showUnits();
 			std::cout << "Became the winner\n";
 			system("pause");
