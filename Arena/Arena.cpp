@@ -28,7 +28,7 @@ int Arena::m_round = 0;
 // that can take part in the game
 constexpr int Arena::getMaxNubmerOfPlayers()const
 {
-	return 7; 
+	return 5; 
 }
 
 constexpr int Arena::getMinNumberOfPlayers()const
@@ -38,7 +38,6 @@ constexpr int Arena::getMinNumberOfPlayers()const
 
 Arena::Arena()
 {
-	std::srand(static_cast<unsigned>(std::time(nullptr)));
 	showMiniature();
 	m_units.resize(setNumberOfUnits());
 }
@@ -219,7 +218,7 @@ void Arena::rewardKiller(UnitPtr victim)
 {
 	if (!victim->isAlive())
 	{
-		std::cout << m_units[m_unitIndex]->getName() << " slashed " << 
+		std::cout << m_units[m_unitIndex]->getName() << " \aslashed " << 
 			victim->getName() << std::endl;
 		m_units[m_unitIndex]->levelUp();
 		m_units[m_unitIndex]->takeKilledUnitMagic(*victim);

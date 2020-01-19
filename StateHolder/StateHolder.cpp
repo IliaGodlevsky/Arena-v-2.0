@@ -73,7 +73,7 @@ bool StateHolder::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
 UnitPtr StateHolder::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
 	const Gladiators& units)const
 {
-	return m_items[CURRENT_STATE]->chooseUnitToAttack(decision,decidingUnit, units);
+	return m_items[CURRENT_STATE]->chooseUnitToAttack(decision, decidingUnit, units);
 }
 
 MagicPtr StateHolder::chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
@@ -115,7 +115,7 @@ void StateHolder::setItemColor(const StatePtr& unitState)const
 	if (inner == nullptr)
 		setColor(LIGHT_RED);
 	else
-		setColor(LIGHT_BLUE);
+		setColor(BROWN);
 }
 
 void StateHolder::showShortInfo()const
