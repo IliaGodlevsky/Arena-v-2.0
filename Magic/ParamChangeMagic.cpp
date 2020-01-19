@@ -17,6 +17,11 @@ bool ParamChangeMagic::isEqual(const MagicPtr& magic)const
 		&& m_manaCost == temp->m_manaCost;
 }
 
+void ParamChangeMagic::effectUnit(Unit& unit)
+{
+	unit.m_magicOnMe.takeNew(clone());
+}
+
 void ParamChangeMagic::showFullInfo()const
 {
 	Magic::showFullInfo();

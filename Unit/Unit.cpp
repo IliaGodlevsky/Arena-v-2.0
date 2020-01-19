@@ -129,6 +129,9 @@ bool Unit::injureUnit(Unit& unit)
 
 bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 {
+	IDuration* duration = DYNAMIC(IDuration*, magic);
+	if (nullptr != duration)
+		duration->setStartTime(Arena::getCurrentRound());
 	return m_stateHolder.castMagic(*this, unit, magic);
 }
 

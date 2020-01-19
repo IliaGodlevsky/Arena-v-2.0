@@ -12,6 +12,7 @@ class ParamChangeMagic : public FreeParamChangeMagic,
 public:
 	ParamChangeMagic(std::string name, int manaCost,
 		Timer timer);
+	virtual void effectUnit(Unit& unit) = 0;
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
 	void showShortInfo()const override;

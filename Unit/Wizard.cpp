@@ -46,12 +46,10 @@ void Wizard::payMana(int manaCost)
 bool Wizard::castMagic(Unit& unit, MagicPtr& magic)
 {
 	IDuration* duration = DYNAMIC(IDuration*, magic);
+	const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / 3.0));
 	if (nullptr != duration)
-	{
-		const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / 3.0));
-		duration->setStartTime(Arena::getCurrentRound() - DURATION_ENHANCE);
-	}
-	return Unit::castMagic(unit, magic);
+		duration->setStartTime(Arena::getCurrentRound() + DURATION_ENHANCE);
+	return m_stateHolder.castMagic(*this, unit, magic);
 }
 
 int Wizard::countManaCost(int manaCost)const
