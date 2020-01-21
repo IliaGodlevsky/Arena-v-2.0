@@ -15,6 +15,7 @@ public:
 	virtual bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
 	virtual bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
 	virtual bool takeDamage(Unit& unit, int damage);
+	virtual bool takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic);
 	virtual UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit, 
 		const Gladiators& units)const = 0;
 	virtual MagicPtr chooseMagicToCast(DecisionPtr decision,const Unit& decidingUnit,

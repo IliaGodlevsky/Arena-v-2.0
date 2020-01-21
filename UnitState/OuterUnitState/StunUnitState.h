@@ -11,6 +11,7 @@ public:
 	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
 	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
 	bool takeDamage(Unit& unit, int damage) override;
+	bool takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic) override;
 	UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
 		const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,

@@ -11,6 +11,7 @@
 #include "../MagicFactories/BuffFactories/ArmorBuffFactory.h"
 #include "../MagicFactories/AttackFactories/PoisonMagicFactory.h"
 #include "../MagicFactories/AttackFactories/PoisonAndAttackMagicFactory.h"
+#include "../ShieldFactories/MagicShieldFactory.h"
 #include "../ShieldFactories/ShieldFactory.h"
 
 WarriorItemFactory::WarriorItemFactory()
@@ -27,4 +28,5 @@ WarriorItemFactory::WarriorItemFactory()
 	m_magicFactories.push_back(new PoisonMagicFactory());
 	m_magicFactories.push_back(new PoisonAndAttackMagicFactory());
 	m_shieldFactories.push_back(new ShieldFactory());
+	m_shieldFactories.push_back(new MagicShieldFactory());
 }

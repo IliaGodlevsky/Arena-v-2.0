@@ -75,6 +75,11 @@ bool StateHolder::takeDamage(Unit& unit, int damage)
 	return m_items[CURRENT_STATE]->takeDamage(unit, damage);
 }
 
+bool StateHolder::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)
+{
+	return m_items[CURRENT_STATE]->takeMagicEffect(unit, caster, magic);
+}
+
 UnitPtr StateHolder::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
 	const Gladiators& units)const
 {

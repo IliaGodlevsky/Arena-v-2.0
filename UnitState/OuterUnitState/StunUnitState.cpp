@@ -56,6 +56,12 @@ bool StunUnitState::takeDamage(Unit& unit, int damage)
 	return true;
 }
 
+bool StunUnitState::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)
+{
+	magic->effectUnit(unit);
+	return true;
+}
+
 StatePtr StunUnitState::clone()const
 {
 	return StatePtr(new StunUnitState(m_timer));

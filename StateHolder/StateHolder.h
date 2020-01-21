@@ -23,6 +23,7 @@ public:
 	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
 	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
 	bool takeDamage(Unit& unit, int damage);
+	bool takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic);
 	void takeNew(const StatePtr& unitState) override;
 	void expireIfFound(const StatePtr& unitState) override;
 	UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,

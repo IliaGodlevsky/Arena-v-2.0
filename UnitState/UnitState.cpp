@@ -3,6 +3,7 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
 #include "../Arena/Arena.h"
+#include "../Magic/Elements/HpReduceElem.h"
 #include "../Interface/Interface.h"
 #include "InnerUnitState/NotEnoughManaUnitState.h"
 #include "../UnitState/InnerUnitState/DeadUnitState.h"
@@ -31,20 +32,17 @@ bool UnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
 
 void UnitState::reduceUnitHp(Unit& unit, int damage)
 {
-	unit.m_health = unit.m_health - unit.calculateDamageAbsorb(damage);
-	if (!unit.isAlive())
-		unit.m_stateHolder.takeNew(StatePtr(new DeadUnitState(&unit)));
+	HpReduceElem(unit.m_shield->calculateDamageAbsorb(unit.m_armor, damage)).effectUnit(unit);
 }
 
 bool UnitState::takeDamage(Unit& unit, int damage)
 {
-	if (!unit.m_shield->isReflectChance())
-	{
-		reduceUnitHp(unit, damage);
-		return true;
-	}
-	std::cout << "But attack was reflected\n";
-	return false;
+	return unit.m_shield->takeDamage(unit, damage);
+}
+
+bool UnitState::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)
+{
+	return unit.m_shield->takeMagicEffect(unit, caster, magic);
 }
 
 UnitPtr UnitState::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit, 

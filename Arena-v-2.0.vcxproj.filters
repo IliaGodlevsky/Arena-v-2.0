@@ -440,6 +440,15 @@
     <ClCompile Include="UnitState\OuterUnitState\StunUnitState.cpp">
       <Filter>Source\UnitState\OuterUnitState</Filter>
     </ClCompile>
+    <ClCompile Include="Shield\MagicShield.cpp">
+      <Filter>Source\Equipment\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield\MirrorShield.cpp">
+      <Filter>Source\Equipment\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ShieldFactories\MagicShieldFactory.cpp">
+      <Filter>Source\Factories\ShieldFactories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -753,6 +762,15 @@
     </ClInclude>
     <ClInclude Include="UnitState\OuterUnitState\StunUnitState.h">
       <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield\MagicShield.h">
+      <Filter>Source\Equipment\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield\MirrorShield.h">
+      <Filter>Source\Equipment\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ShieldFactories\MagicShieldFactory.h">
+      <Filter>Source\Factories\ShieldFactories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

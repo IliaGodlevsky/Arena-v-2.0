@@ -41,7 +41,6 @@ public:
 	bool isAlive()const;
 	bool takeDamage(int damage);
 	bool isAlly(const Unit& unit)const;
-	int calculateDamageAbsorb(int damage)const;
 	UnitPtr chooseUnitToAttack(const Gladiators& units)const;
 	MagicPtr chooseMagicToCast(const Gladiators& units)const;
 	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast, 

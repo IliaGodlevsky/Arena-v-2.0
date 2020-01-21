@@ -142,28 +142,12 @@ bool Unit::takeDamage(int damage)
 
 bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 {
-	if (m_shield->isReflectChance() &&
-		!caster.isAlly(*this))
-	{
-		std::cout << "But magic was reflected\n";
-		return false;
-	}
-	magic->effectUnit(*this);
-	return true;
+	return m_stateHolder.takeMagicEffect(*this, caster, magic);
 }
 
 void Unit::setTeam(int teamNumber)
 {
 	m_teamNumber = teamNumber;
-}
-
-int Unit::calculateDamageAbsorb(int damage)const
-{
-	// The formula is taken from WarCraft 3
-	const double REDUCE_CONST = 0.06;
-	const double numerator = static_cast<double>(m_armor * REDUCE_CONST);
-	double percent_of_reduce = numerator / (1.0 + numerator);
-	return static_cast<int>(std::floor(damage * (1.0 - percent_of_reduce)));
 }
 
 UnitPtr Unit::chooseUnitToAttack(const Gladiators& units)const
