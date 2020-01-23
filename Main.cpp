@@ -4,7 +4,6 @@ int main()
 {
 	set_terminate(myTerminate);
 	set_unexpected(myTerminate);
-
 	auto& arena = Arena::getInstance();
 	bool answer = YES;
 	while (YES == answer)
