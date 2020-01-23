@@ -168,7 +168,7 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 
 void Unit::showFullInfo()const
 {
-	setColor(TextColor(m_teamNumber));
+	setColor(TextColor(m_teamNumber + 1));
 	std::cout << getName() << ", Level: " 
 		<< *m_level << ", " << "Team: " 
 		<< m_teamNumber << std::endl;
