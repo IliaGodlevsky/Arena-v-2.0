@@ -449,6 +449,12 @@
     <ClCompile Include="Factories\ShieldFactories\MagicShieldFactory.cpp">
       <Filter>Source\Factories\ShieldFactories</Filter>
     </ClCompile>
+    <ClCompile Include="Exceptions\ArenaUninterseptedException.cpp">
+      <Filter>Source\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\ShieldFactories\MirrorShieldFactory.cpp">
+      <Filter>Source\Factories\ShieldFactories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -770,6 +776,12 @@
       <Filter>Source\Equipment\Shield</Filter>
     </ClInclude>
     <ClInclude Include="Factories\ShieldFactories\MagicShieldFactory.h">
+      <Filter>Source\Factories\ShieldFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\ArenaUninterseptedException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\ShieldFactories\MirrorShieldFactory.h">
       <Filter>Source\Factories\ShieldFactories</Filter>
     </ClInclude>
   </ItemGroup>
