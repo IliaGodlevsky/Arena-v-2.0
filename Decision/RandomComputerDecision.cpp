@@ -21,13 +21,11 @@ UnitPtr RandomComputerDecision::chooseUnitToAttack(const Unit& decidingUnit,
 MagicPtr RandomComputerDecision::chooseMagicToCast(const Unit& decidingUnit,
 	const Gladiators& arena)const
 {
+	if (!decidingUnit.m_magicBook.canCastAnySpell())
+		return nullptr;
 	index magicToCastIndex = randomNumber(decidingUnit.m_magicBook.size() - 1);
 	while (!decidingUnit.isEnoughManaFor(decidingUnit.m_magicBook[magicToCastIndex]))
-	{
-		if (1 == decidingUnit.m_magicBook.size())
-			return nullptr;
 		magicToCastIndex = randomNumber(decidingUnit.m_magicBook.size() - 1);
-	}
 	return decidingUnit.m_magicBook[magicToCastIndex]->clone();
 }
 
@@ -35,7 +33,7 @@ UnitPtr RandomComputerDecision::chooseUnitToCast(const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& arena)const
 {
 	index unitToCast = randomNumber(arena.size() - 1);
-	while (isWrongSpellToCast(decidingUnit, *arena[unitToCast],magicToCast))
+	while (isWrongSpellToCast(decidingUnit, *arena[unitToCast], magicToCast))
 		unitToCast = randomNumber(arena.size() - 1);
 	return arena[unitToCast];
 }
