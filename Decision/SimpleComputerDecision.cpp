@@ -63,22 +63,31 @@ UnitPtr SimpleComputerDecision::getUnitPointer(const Unit& decidingUnit,
 	return nullptr; // unit is always in the vector so this return will never work
 }
 
-MagicPtr SimpleComputerDecision::chooseMagicToCast(const Unit& decideingUnit,
-	const Gladiators& arena)const
+MagicPtr SimpleComputerDecision::thinkAboutUnit(const Unit& unit, const Gladiators& units)const
 {
-	m_unitToCast = m_unitToAttack = nullptr;
-	m_magicToCast = nullptr;
 	MagicAim cast;
-	UnitPtr unitToCast = findUnitCanBeKilled(decideingUnit, arena, canBeKilled);
+	UnitPtr unitToCast = findUnitCanBeKilled(unit, units, canBeKilled);
 	if (nullptr != unitToCast)
 	{
-		cast = findMagicToPreventKill(unitToCast, getUnitPointer(decideingUnit, arena));
+		cast = findMagicToPreventKill(unitToCast, getUnitPointer(unit, units));
 		if (nullptr != std::get<UNIT_TO_CAST>(cast) && nullptr != std::get<MAGIC_TO_CAST>(cast))
 		{
 			m_unitToCast = std::get<UNIT_TO_CAST>(cast);
 			return std::get<MAGIC_TO_CAST>(cast)->clone();
 		}
 	}
+	return nullptr;
+}
+
+MagicPtr SimpleComputerDecision::chooseMagicToCast(const Unit& decideingUnit,
+	const Gladiators& arena)const
+{
+	m_unitToCast = m_unitToAttack = nullptr;
+	m_magicToCast = nullptr;
+	MagicPtr temp = thinkAboutUnit(decideingUnit, arena);
+	if (nullptr != temp)
+		return temp;
+	MagicAim cast;
 	cast = findMagicToKillUnit(decideingUnit, arena);
 	if (nullptr != std::get<UNIT_TO_CAST>(cast) && nullptr != std::get<MAGIC_TO_CAST>(cast))
 	{
@@ -92,7 +101,22 @@ MagicPtr SimpleComputerDecision::chooseMagicToCast(const Unit& decideingUnit,
 		m_unitToAttack = std::get<UNIT_TO_CAST>(cast);
 		return std::get<MAGIC_TO_CAST>(cast)->clone();
 	}
-	return RandomComputerDecision::chooseMagicToCast(decideingUnit, arena);
+	return chooseMagicToCastWithAllies(decideingUnit, arena);
+}
+
+MagicPtr SimpleComputerDecision::chooseMagicToCastWithAllies(const Unit& decidingUnit, const Gladiators& units)const
+{
+	MagicPtr temp = nullptr;
+	for (size_t i = 0; i < units.size(); i++)
+	{
+		if (&decidingUnit != &(*units[i]) && decidingUnit.isAlly(*units[i]))
+		{
+			temp = thinkAboutUnit(*units[i], units);
+			if (nullptr != temp)
+				return temp;
+		}
+	}
+	return RandomComputerDecision::chooseMagicToCast(decidingUnit, units);
 }
 
 UnitPtr SimpleComputerDecision::chooseUnitToCast(const Unit& decidingUnit,
