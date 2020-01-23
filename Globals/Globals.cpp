@@ -33,6 +33,8 @@ void eatLine()
 
 int randomNumber(int max, int min) 
 { 
+	if (min > max)
+		throw std::invalid_argument("randomNumber fuction error: min > max");
 	std::random_device seed;
 	std::mt19937 generator(seed());
 	std::uniform_int_distribution<int> 
@@ -61,8 +63,14 @@ std::vector<std::string> loadFromFile(const std::string& fileName)
 
 void exceptionMessage(std::exception& ex)
 {
-	std::cerr << ex.what() << std::endl;
+	std::cerr << "\a" << ex.what() << std::endl;
 	system("pause");
+}
+
+void myTerminate()
+{
+	throw ArenaUninterseptedException("Arena has failed.\nPlease, try to fix the bugs and"
+		" start it again.\nOr report about bug to godleevsky2015@gmail.com");
 }
 
 void setColor(TextColor text, TextColor background)
