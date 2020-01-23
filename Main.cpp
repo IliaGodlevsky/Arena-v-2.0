@@ -2,12 +2,16 @@
 
 int main()
 {
+	set_terminate(myTerminate);
+	set_unexpected(myTerminate);
+
 	auto& arena = Arena::getInstance();
 	bool answer = YES;
 	while (YES == answer)
 	{
 		try 
 		{
+			system("cls");
 			arena.prepareUnits();
 			arena.proposeToPlayTeams();
 			while (!arena.isGameOver())
@@ -30,9 +34,8 @@ int main()
 		catch (BadIncomingMagicException& ex) { exceptionMessage(ex); }
 		catch (ArenaException& ex) { exceptionMessage(ex); }
 		catch (std::exception& ex) { exceptionMessage(ex); }
+		catch (...) { std::cerr << "\aOups! Something is wrong\n"; }
 		answer = static_cast<bool>(inputNumber("Play again:"
 			" 1 - yes, 0 - no: ", YES, NO));
-		system("cls");
 	}
-	system("pause");
 }
