@@ -14,29 +14,17 @@
 #include "../Exceptions/BadWeaponMagicException.h"
 #include "../Exceptions/BadEquipmentException.h"
 #include "../Exceptions/BadincomingMagicException.h"
+#include "../Exceptions/ArenaUninterseptedException.h"
 
 #define YES true
 #define NO !YES
 #define NULLPTR nullptr
 
-enum TextColor
-{
-	BLACK = 0,
-	BLUE = 1,
-	GREEN = 2,
-	CYAN = 3,
-	RED = 4,
-	MAGNETA = 5,
-	BROWN = 6,
-	LIGHT_GREY = 7,
-	DARK_GREY = 8,
-	LIGHT_BLUE = 9,
-	LIGHT_GREEN = 10,
-	LIGHT_CYAN = 11,
-	LIGHT_RED = 12,
-	LIGHT_MAGNETA = 13,
-	YELLOW = 14,
-	WHITE = 15
+enum TextColor {
+	BLACK, BLUE, GREEN, CYAN, RED, MAGNETA,
+	BROWN, LIGHT_GREY, DARK_GREY, LIGHT_BLUE,
+	LIGHT_GREEN, LIGHT_CYAN, LIGHT_RED,
+	LIGHT_MAGNETA, YELLOW, WHITE
 };
 
 void setColor(TextColor text = WHITE, TextColor background = BLACK);
@@ -61,6 +49,7 @@ int randomNumber(int max, int min = 0);
 std::vector<std::string> loadFromFile(const std::string& fileName);
 
 void exceptionMessage(std::exception& ex);
+void myTerminate();
 
 const char* const teamPlayQuest = "Do you want to play "
 "in teams? <1 - yes, 0 - no>: ";
