@@ -98,7 +98,7 @@ void Arena::takeOfLosers()
 bool Arena::isGameOver()const
 {
 	return std::count_if(m_units.begin(), m_units.end(), [&](const UnitPtr& unit) 
-	{ return unit->isAlly(*m_units[0]); }) == m_units.size();
+	{ return unit->isAlly(*m_units[m_unitIndex]); }) == m_units.size();
 }
 
 void Arena::prepareUnits()
@@ -106,8 +106,6 @@ void Arena::prepareUnits()
 	m_units.resize(setNumberOfUnits());
 	std::vector<std::string> unitsNames;
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
-	if (unitsNames.empty())
-		unitsNames = m_reserveNames;
 	ThreadGuard guard(thread);
 	int teamNumber = 1;
 	auto unitGenerator = [&unitsNames, &thread, &teamNumber]()
@@ -121,6 +119,8 @@ void Arena::prepareUnits()
 		UnitPtr unit = unitFactories[factoryNumber - 1]->createUnit();
 		if (thread.joinable())
 			thread.join();
+		if (unitsNames.empty())
+			unitsNames = m_reserveNames;
 		unit->setName(unitsNames[randomNumber(unitsNames.size() - 1)]);
 		unit->setTeam(teamNumber);
 		system("cls");
@@ -179,7 +179,7 @@ std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 void Arena::pushAlliesToArena(const std::vector<Gladiators>& teams)
 {
 	std::back_insert_iterator<Gladiators> iter(m_units);
-	for (auto& team : teams)
+	for (auto& team : teams) 
 		std::copy(team.begin(), team.end(), iter);
 }
 
