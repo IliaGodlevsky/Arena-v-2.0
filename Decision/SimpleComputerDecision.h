@@ -40,7 +40,7 @@ private:
 		MagicPtr& magic,CastPredicate castPredicate, DecisionPredicate predicate)const;
 	UnitPtr getUnitPointer(const Unit& decidingUnit, const Gladiators& units)const;
 	MagicPtr chooseMagicToCastWithAllies(const Unit&, const Gladiators&)const;
-	MagicPtr thinkAboutUnit(const Unit& unit, const Gladiators& units)const;
+	MagicPtr findMagicToPreventAllyKill(const Unit& unit, const Gladiators& units)const;
 	MagicAim makePair(std::vector<MagicAim>& pair)const;
 	enum { UNIT_TO_CAST, MAGIC_TO_CAST };
 	mutable UnitPtr m_unitToAttack = nullptr;

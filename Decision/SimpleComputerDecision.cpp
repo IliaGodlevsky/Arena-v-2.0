@@ -63,7 +63,7 @@ UnitPtr SimpleComputerDecision::getUnitPointer(const Unit& decidingUnit,
 	return nullptr; // unit is always in the vector so this return will never work
 }
 
-MagicPtr SimpleComputerDecision::thinkAboutUnit(const Unit& unit, const Gladiators& units)const
+MagicPtr SimpleComputerDecision::findMagicToPreventAllyKill(const Unit& unit, const Gladiators& units)const
 {
 	MagicAim cast;
 	UnitPtr unitToCast = findUnitCanBeKilled(unit, units, canBeKilled);
@@ -84,7 +84,7 @@ MagicPtr SimpleComputerDecision::chooseMagicToCast(const Unit& decideingUnit,
 {
 	m_unitToCast = m_unitToAttack = nullptr;
 	m_magicToCast = nullptr;
-	MagicPtr temp = thinkAboutUnit(decideingUnit, arena);
+	MagicPtr temp = findMagicToPreventAllyKill(decideingUnit, arena);
 	if (nullptr != temp)
 		return temp;
 	MagicAim cast;
@@ -111,7 +111,7 @@ MagicPtr SimpleComputerDecision::chooseMagicToCastWithAllies(const Unit& decidin
 	{
 		if (&decidingUnit != &(*units[i]) && decidingUnit.isAlly(*units[i]))
 		{
-			temp = thinkAboutUnit(*units[i], units);
+			temp = findMagicToPreventAllyKill(*units[i], units);
 			if (nullptr != temp)
 				return temp;
 		}
