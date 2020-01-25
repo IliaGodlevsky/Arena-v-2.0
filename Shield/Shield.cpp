@@ -40,7 +40,6 @@ ShieldPtr Shield::clone()const
 
 ShieldPtr Shield::getPureShield()const
 {
-	const int ZERO_REFLCET_CHANCE = 0;
 	return ShieldPtr(new Shield(m_name, m_armor.getArmor()));
 }
 
@@ -51,13 +50,11 @@ bool Shield::takeDamage(Unit& unit, int damage)const
 		std::cout << "But attack was reflected\n";
 		return false;
 	}
-	HpReduceElem(calculateDamageAbsorb(unit.m_armor, damage)).effectUnit(unit);
 	return true;
 }
 
 bool Shield::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const
 {
-	magic->effectUnit(unit);
 	return true;
 }
 
