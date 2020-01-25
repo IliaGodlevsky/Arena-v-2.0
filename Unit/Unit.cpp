@@ -7,7 +7,7 @@
 #include "../Level/Level.h"
 #include "../Interface/Interface.h"
 #include "../UnitState/InnerUnitState/DeadUnitState.h"
-
+#include "../Magic/Elements/HpReduceElem.h"
 #include "Unit.h"
 
 Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
@@ -137,12 +137,26 @@ bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 
 bool Unit::takeDamage(int damage)
 {
-	return m_stateHolder.takeDamage(*this, damage);
+	if (m_stateHolder.takeDamage(*this, damage))
+	{
+		HpReduceElem(m_shield->calculateDamageAbsorb(m_armor, damage)).effectUnit(*this);
+		if(!isAlive())
+			m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
+		return true;
+	}
+	return false;
 }
 
 bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 {
-	return m_stateHolder.takeMagicEffect(*this, caster, magic);
+	if (m_stateHolder.takeMagicEffect(*this, caster, magic))
+	{
+		magic->effectUnit(*this);
+		if(!isAlive())
+			m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
+		return true;
+	}
+	return false;
 }
 
 void Unit::setTeam(int teamNumber)
