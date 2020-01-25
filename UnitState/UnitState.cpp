@@ -25,8 +25,6 @@ bool UnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
 	if (nullptr == weapon)
 		return false;
 	weapon->injureUnit(unit, damage);
-	if (!unit.isAlive())
-		unit.m_stateHolder.takeNew(StatePtr(new DeadUnitState(&unit)));
 	return true;
 }
 
