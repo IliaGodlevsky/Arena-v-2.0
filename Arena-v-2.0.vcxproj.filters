@@ -455,6 +455,12 @@
     <ClCompile Include="Factories\ShieldFactories\MirrorShieldFactory.cpp">
       <Filter>Source\Factories\ShieldFactories</Filter>
     </ClCompile>
+    <ClCompile Include="Magic\Elements\MpRegenReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\AttackMagic\AttackAndSilenceMagic.cpp">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -783,6 +789,12 @@
     </ClInclude>
     <ClInclude Include="Factories\ShieldFactories\MirrorShieldFactory.h">
       <Filter>Source\Factories\ShieldFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\MpRegenReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\AttackMagic\AttackAndSilenceMagic.h">
+      <Filter>Source\Magic\AttackMagic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
