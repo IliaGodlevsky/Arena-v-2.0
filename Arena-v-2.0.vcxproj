@@ -71,6 +71,7 @@
     <ClCompile Include="Level\WizardLevel.cpp" />
     <ClCompile Include="MagicBook\MagicBook.cpp" />
     <ClCompile Include="MagicOnMe\MagicOnMe.cpp" />
+    <ClCompile Include="Magic\AttackMagic\AttackAndSilenceMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\AttackAndStunMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\AttackMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\PoisonAndAttackMagic.cpp" />
@@ -89,6 +90,7 @@
     <ClCompile Include="Magic\Elements\DamageReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\HpReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\HpRegenReduceElem.cpp" />
+    <ClCompile Include="Magic\Elements\MpRegenReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\ParamChangeElem.cpp" />
     <ClCompile Include="Magic\FreeParamChangeMagic.cpp" />
     <ClCompile Include="Magic\Magic.cpp" />
@@ -183,6 +185,7 @@
     <ClInclude Include="Level\WizardLevel.h" />
     <ClInclude Include="MagicBook\MagicBook.h" />
     <ClInclude Include="MagicOnMe\MagicOnMe.h" />
+    <ClInclude Include="Magic\AttackMagic\AttackAndSilenceMagic.h" />
     <ClInclude Include="Magic\AttackMagic\AttackAndStunMagic.h" />
     <ClInclude Include="Magic\AttackMagic\AttackMagic.h" />
     <ClInclude Include="Magic\AttackMagic\PoisonAndAttackMagic.h" />
@@ -201,6 +204,7 @@
     <ClInclude Include="Magic\Elements\DamageReduceElem.h" />
     <ClInclude Include="Magic\Elements\HpReduceElem.h" />
     <ClInclude Include="Magic\Elements\HpRegenReduceElem.h" />
+    <ClInclude Include="Magic\Elements\MpRegenReduceElem.h" />
     <ClInclude Include="Magic\Elements\ParamChangeElem.h" />
     <ClInclude Include="Magic\FreeParamChangeMagic.h" />
     <ClInclude Include="Magic\Magic.h" />
