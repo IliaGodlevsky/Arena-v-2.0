@@ -18,14 +18,12 @@ ShieldPtr MagicShield::clone()const
 
 bool MagicShield::takeDamage(Unit& unit, int damage)const
 {
-	HpReduceElem(calculateDamageAbsorb(unit.m_armor, damage)).effectUnit(unit);
 	return true;
 }
 
 bool MagicShield::takeMagicEffect(Unit& unit, Unit& caster,
 	MagicPtr& magic)const
 {
-	IBuff* buff = DYNAMIC(IBuff*, magic);
 	if (PosibilityCounter(m_reflectChance) && !unit.isAlly(caster))
 	{
 		std::cout << "But magic was reflected\n";
