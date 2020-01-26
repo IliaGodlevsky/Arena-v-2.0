@@ -461,6 +461,12 @@
     <ClCompile Include="Magic\AttackMagic\AttackAndSilenceMagic.cpp">
       <Filter>Source\Magic\AttackMagic</Filter>
     </ClCompile>
+    <ClCompile Include="Magic\Elements\MpReduceElem.cpp">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\AttackMagic\ManaReduceMagic.cpp">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -794,6 +800,12 @@
       <Filter>Source\Magic\Elements</Filter>
     </ClInclude>
     <ClInclude Include="Magic\AttackMagic\AttackAndSilenceMagic.h">
+      <Filter>Source\Magic\AttackMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\Elements\MpReduceElem.h">
+      <Filter>Source\Magic\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\AttackMagic\ManaReduceMagic.h">
       <Filter>Source\Magic\AttackMagic</Filter>
     </ClInclude>
   </ItemGroup>

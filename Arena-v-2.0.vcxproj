@@ -74,6 +74,7 @@
     <ClCompile Include="Magic\AttackMagic\AttackAndSilenceMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\AttackAndStunMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\AttackMagic.cpp" />
+    <ClCompile Include="Magic\AttackMagic\ManaReduceMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\PoisonAndAttackMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\PoisonMagic.cpp" />
     <ClCompile Include="Magic\BuffMagic\ArmorAndDamageBuffMagic.cpp" />
