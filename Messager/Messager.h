@@ -2,6 +2,7 @@
 #define MESSAGER_H_
 
 #include <fstream>
+#include <vector>
 
 class Messager
 {
@@ -12,29 +13,32 @@ public:
 	Messager& operator=(Messager&&) = delete;
 	~Messager();
 public:
+	void takeStream(std::ostream& os);
+	bool deleteStream(std::ostream& os);
 	static Messager& getIncstance();
-	void changeStream();
 	template <typename T, typename ...Args>
 	void writeMessage(const T& value, const Args&... args)const;
-private:
 	template <typename T>
 	void writeMessage(const T& value)const;
+private:	
 	void writeMessage()const;
 private:
 	Messager();
-	std::ofstream* fout;
+	std::vector<std::ostream*> streams;
 };
 
 template <typename T, typename ...Args>
 void Messager::writeMessage(const T& value, const Args&... args)const
 {
-	(*fout) << value;
+	for (size_t i = 0; i < streams.size(); i++)
+		(*streams[i]) << value;
 	writeMessage(args...);
 }
 
 template <typename T>
 void Messager::writeMessage(const T& value)const
 {
-	(*fout) << value;
+	for (size_t i = 0; i < streams.size(); i++)
+		(*streams[i]) << value;
 }
 #endif

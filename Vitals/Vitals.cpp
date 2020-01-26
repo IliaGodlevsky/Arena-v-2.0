@@ -111,13 +111,12 @@ void Vitals::setRegenColor()const
 
 void Vitals::showFullInfo(const char* vitalsType)const
 {
-	std::cout << vitalsType << ": ";
+	commentator.writeMessage(vitalsType, ": ");
 	setValueColor();
-	std::cout << m_value;
+	commentator.writeMessage(m_value);
 	setColor();
-	std::cout << "\\" << m_maxValue << " " << vitalsType;
-	std::cout << " regen: ";
+	commentator.writeMessage("\\", m_maxValue, " ", vitalsType, " regen: ");
 	setRegenColor();
-	std::cout << m_valueRegeneration << std::endl;
+	commentator.writeMessage(m_valueRegeneration, "\n");
 	setColor();
 }

@@ -23,7 +23,7 @@ void Magic::showFullInfo()const
 
 void Magic::showShortInfo()const
 {
-	std::cout << m_name;
+	commentator.writeMessage(m_name);
 }
 
 const std::string& Magic::getName()const

@@ -20,6 +20,8 @@
 #define NO !YES
 #define NULLPTR nullptr
 
+static Messager& commentator = Messager::getIncstance();
+
 enum TextColor {
 	BLACK, BLUE, GREEN, CYAN, RED, MAGNETA,
 	BROWN, LIGHT_GREY, DARK_GREY, LIGHT_BLUE,

@@ -23,9 +23,9 @@ void StunMagic::effectUnit(Unit& unit)
 
 void StunMagic::showShortInfo()const
 {
-	std::cout << "<";
+	commentator.writeMessage("<");
 	Magic::showShortInfo();
-	std::cout << "> ";
+	commentator.writeMessage("> ");
 }
 
 MagicPtr StunMagic::clone()const

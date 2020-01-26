@@ -29,8 +29,8 @@ void Shield::showFullInfo()const
 
 void Shield::showShortInfo()const
 {
-	std::cout << "<" << m_name << ": " << m_armor.getArmor() 
-		<< "\\" << m_reflectChance << ">\n";
+	commentator.writeMessage("<", m_name, ": ", m_armor.getArmor()
+		, "\\", m_reflectChance, ">\n");
 }
 
 ShieldPtr Shield::clone()const

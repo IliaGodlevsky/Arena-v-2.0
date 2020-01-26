@@ -45,7 +45,7 @@ void ManaReduceMagic::showFullInfo()const
 
 void ManaReduceMagic::showShortInfo()const
 {
-	std::cout << "<";
+	commentator.writeMessage("<");
 	Magic::showShortInfo();
-	std::cout << ": " << m_manaCost << "> ";
+	commentator.writeMessage(": ", m_manaCost, "> ");
 }

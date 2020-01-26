@@ -68,14 +68,13 @@ Arena& Arena::getInstance()
 void Arena::showUnits()const
 {
 	system("pause"); system("cls");
-	std::cout << "Round: " 
-		<< getCurrentRound() + 1 << std::endl;
+	commentator.writeMessage("Round: ", getCurrentRound() + 1, "\n");
 	for (size_t i = 0; i < m_units.size(); i++)
 	{
-		std::cout << i + 1 << ". ";
+		commentator.writeMessage(i + 1, ". ");
 		m_units[i]->showFullInfo();
 		setColor();
-		std::cout << std::endl;
+		commentator.writeMessage("\n");
 	}
 }
 
@@ -189,8 +188,7 @@ void Arena::playCastStep()
 	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast, m_units);
 	if (nullptr != m_unitToCast && nullptr != m_magicToCast)
 	{
-		auto& messager = Messager::getIncstance();
-		messager.writeMessage(m_units[m_unitIndex]->getName(),
+		commentator.writeMessage(m_units[m_unitIndex]->getName(),
 			" charmed ", m_unitToCast->getName(),
 			" with ", m_magicToCast->getName() + "\n");
 		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
@@ -205,8 +203,7 @@ void Arena::playAttackStep()
 		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
 		if (nullptr != m_unitToAttack)
 		{
-			auto& messager = Messager::getIncstance();
-			messager.writeMessage(m_units[m_unitIndex]->getName(),
+			commentator.writeMessage(m_units[m_unitIndex]->getName(),
 				" attacked ", m_unitToAttack->getName() + "\n");
 			m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
 			rewardKiller(m_unitToAttack);
@@ -218,8 +215,8 @@ void Arena::rewardKiller(UnitPtr victim)
 {
 	if (!victim->isAlive())
 	{
-		std::cout << m_units[m_unitIndex]->getName() << " \aslashed " << 
-			victim->getName() << std::endl;
+		commentator.writeMessage(m_units[m_unitIndex]->getName(), " \aslashed ",
+			victim->getName(), "\n");
 		m_units[m_unitIndex]->levelUp();
 		m_units[m_unitIndex]->takeKilledUnitMagic(*victim);
 	}

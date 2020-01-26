@@ -52,7 +52,7 @@ void TemplateContainer<T>::showShortInfo()const
 		m_items[i]->showShortInfo();
 	}
 	setColor();
-	std::cout << std::endl;
+	commentator.writeMessage("\n");
 }
 
 template <class T>

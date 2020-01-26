@@ -1,0 +1,1199 @@
+Round: 1
+1. Nurita, Level: 1, Team: 2
+HP: 180\180 HP regen: 2
+MP: 135\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 180\180 HP regen: 2
+MP: 135\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita charmed Kirby with Mental fist
+But magic was reflected
+Round: 1
+1. Nurita, Level: 1, Team: 2
+HP: 180\180 HP regen: 2
+MP: 83\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 180\180 HP regen: 2
+MP: 135\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 1
+1. Nurita, Level: 1, Team: 2
+HP: 180\180 HP regen: 2
+MP: 83\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 171\180 HP regen: 2
+MP: 135\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby charmed Nurita with Corrosion
+Round: 1
+1. Nurita, Level: 1, Team: 2
+HP: 180\180 HP regen: 2
+MP: 83\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 171\180 HP regen: 2
+MP: 112\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby attacked Nurita
+Round: 2
+1. Nurita, Level: 1, Team: 2
+HP: 169\180 HP regen: -1
+MP: 89\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 173\180 HP regen: 2
+MP: 118\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita charmed Kirby with Corruption
+Round: 2
+1. Nurita, Level: 1, Team: 2
+HP: 169\180 HP regen: -1
+MP: 80\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 173\180 HP regen: 2
+MP: 118\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 2
+1. Nurita, Level: 1, Team: 2
+HP: 169\180 HP regen: -1
+MP: 80\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 164\180 HP regen: -2
+MP: 118\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby charmed Nurita with Silence fist
+Round: 2
+1. Nurita, Level: 1, Team: 2
+HP: 154\180 HP regen: -1
+MP: 80\135 MP regen: 6
+DMG: 9 Arm: 2
+States: <Muted: 2> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 164\180 HP regen: -2
+MP: 90\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby attacked Nurita
+Round: 3
+1. Nurita, Level: 1, Team: 2
+HP: 143\180 HP regen: -1
+MP: 86\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 162\180 HP regen: -2
+MP: 96\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 3
+1. Nurita, Level: 1, Team: 2
+HP: 143\180 HP regen: -1
+MP: 86\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 162\180 HP regen: -2
+MP: 96\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 3
+1. Nurita, Level: 1, Team: 2
+HP: 143\180 HP regen: -1
+MP: 86\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 153\180 HP regen: -2
+MP: 96\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby charmed Nurita with Silence fist
+Round: 3
+1. Nurita, Level: 1, Team: 2
+HP: 128\180 HP regen: -1
+MP: 86\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 2> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 153\180 HP regen: -2
+MP: 68\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby attacked Nurita
+Round: 4
+1. Nurita, Level: 1, Team: 2
+HP: 117\180 HP regen: -1
+MP: 92\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 151\180 HP regen: -2
+MP: 74\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 4
+1. Nurita, Level: 1, Team: 2
+HP: 117\180 HP regen: -1
+MP: 92\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 151\180 HP regen: -2
+MP: 74\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 4
+1. Nurita, Level: 1, Team: 2
+HP: 117\180 HP regen: -1
+MP: 92\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 142\180 HP regen: -2
+MP: 74\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby charmed Nurita with Corrosion
+Round: 4
+1. Nurita, Level: 1, Team: 2
+HP: 117\180 HP regen: -1
+MP: 92\135 MP regen: 6
+DMG: 9 Arm: 2
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> <Corrosion: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 142\180 HP regen: -2
+MP: 51\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby attacked Nurita
+Round: 5
+1. Nurita, Level: 1, Team: 2
+HP: 106\180 HP regen: -1
+MP: 98\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 140\180 HP regen: -2
+MP: 57\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita charmed Kirby with Corruption
+Round: 5
+1. Nurita, Level: 1, Team: 2
+HP: 106\180 HP regen: -1
+MP: 89\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 140\180 HP regen: -2
+MP: 57\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> <Corruption: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 5
+1. Nurita, Level: 1, Team: 2
+HP: 106\180 HP regen: -1
+MP: 89\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 131\180 HP regen: -2
+MP: 57\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 5
+1. Nurita, Level: 1, Team: 2
+HP: 106\180 HP regen: -1
+MP: 89\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 131\180 HP regen: -2
+MP: 57\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby attacked Nurita
+Round: 6
+1. Nurita, Level: 1, Team: 2
+HP: 95\180 HP regen: -1
+MP: 95\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 129\180 HP regen: -2
+MP: 63\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita charmed Kirby with Mental fist
+Round: 6
+1. Nurita, Level: 1, Team: 2
+HP: 95\180 HP regen: -1
+MP: 43\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 104\180 HP regen: -2
+MP: 63\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 2> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 6
+1. Nurita, Level: 1, Team: 2
+HP: 95\180 HP regen: -1
+MP: 43\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 95\180 HP regen: -2
+MP: 63\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 2> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 6
+1. Nurita, Level: 1, Team: 2
+HP: 95\180 HP regen: -1
+MP: 43\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 95\180 HP regen: -2
+MP: 63\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 2> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 7
+1. Nurita, Level: 1, Team: 2
+HP: 94\180 HP regen: 2
+MP: 49\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 93\180 HP regen: -2
+MP: 69\135 MP regen: 6
+DMG: 10 Arm: 7
+States: <Stun: 1> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita charmed Kirby with Corruption
+Round: 7
+1. Nurita, Level: 1, Team: 2
+HP: 94\180 HP regen: 2
+MP: 40\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 93\180 HP regen: -2
+MP: 69\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 1> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> <Corruption: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 7
+1. Nurita, Level: 1, Team: 2
+HP: 94\180 HP regen: 2
+MP: 40\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 84\180 HP regen: -2
+MP: 69\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 1> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 7
+1. Nurita, Level: 1, Team: 2
+HP: 94\180 HP regen: 2
+MP: 40\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 84\180 HP regen: -2
+MP: 69\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 1> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 8
+1. Nurita, Level: 1, Team: 2
+HP: 96\180 HP regen: 2
+MP: 46\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 82\180 HP regen: -2
+MP: 75\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 8
+1. Nurita, Level: 1, Team: 2
+HP: 96\180 HP regen: 2
+MP: 46\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 82\180 HP regen: -2
+MP: 75\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 8
+1. Nurita, Level: 1, Team: 2
+HP: 96\180 HP regen: 2
+MP: 46\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 73\180 HP regen: -2
+MP: 75\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby charmed Nurita with Silence fist
+Round: 8
+1. Nurita, Level: 1, Team: 2
+HP: 81\180 HP regen: 2
+MP: 46\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 2> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 73\180 HP regen: -2
+MP: 47\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby attacked Nurita
+Round: 9
+1. Nurita, Level: 1, Team: 2
+HP: 70\180 HP regen: -1
+MP: 52\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 71\180 HP regen: -2
+MP: 53\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 9
+1. Nurita, Level: 1, Team: 2
+HP: 70\180 HP regen: -1
+MP: 52\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 71\180 HP regen: -2
+MP: 53\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 9
+1. Nurita, Level: 1, Team: 2
+HP: 70\180 HP regen: -1
+MP: 52\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 62\180 HP regen: -2
+MP: 53\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby charmed Nurita with Corrosion
+Round: 9
+1. Nurita, Level: 1, Team: 2
+HP: 70\180 HP regen: -1
+MP: 52\135 MP regen: 6
+DMG: 9 Arm: 2
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> <Corrosion: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 62\180 HP regen: -2
+MP: 30\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby attacked Nurita
+Round: 10
+1. Nurita, Level: 1, Team: 2
+HP: 59\180 HP regen: -1
+MP: 58\135 MP regen: 6
+DMG: 9 Arm: 2
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 60\180 HP regen: -2
+MP: 36\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 1> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita charmed Kirby with Mental fist
+Round: 10
+1. Nurita, Level: 1, Team: 2
+HP: 59\180 HP regen: -1
+MP: 6\135 MP regen: 6
+DMG: 9 Arm: 2
+States: <Mana lack> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 35\180 HP regen: -2
+MP: 36\135 MP regen: 6
+DMG: 10 Arm: 7
+States: <Stun: 2> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 1> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 10
+1. Nurita, Level: 1, Team: 2
+HP: 59\180 HP regen: -1
+MP: 6\135 MP regen: 6
+DMG: 9 Arm: 2
+States: <Mana lack> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 26\180 HP regen: -2
+MP: 36\135 MP regen: 6
+DMG: 10 Arm: 7
+States: <Stun: 2> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 10
+1. Nurita, Level: 1, Team: 2
+HP: 59\180 HP regen: -1
+MP: 6\135 MP regen: 6
+DMG: 9 Arm: 2
+States: <Mana lack> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Corrosion: 1> <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 26\180 HP regen: -2
+MP: 36\135 MP regen: 6
+DMG: 10 Arm: 7
+States: <Stun: 2> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 11
+1. Nurita, Level: 1, Team: 2
+HP: 58\180 HP regen: -1
+MP: 12\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 24\180 HP regen: -2
+MP: 42\135 MP regen: 6
+DMG: 10 Arm: 7
+States: <Stun: 1> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita charmed Kirby with Corruption
+Round: 11
+1. Nurita, Level: 1, Team: 2
+HP: 58\180 HP regen: -1
+MP: 3\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Mana lack> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 24\180 HP regen: -2
+MP: 42\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 1> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> <Corruption: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 11
+1. Nurita, Level: 1, Team: 2
+HP: 58\180 HP regen: -1
+MP: 3\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Mana lack> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 15\180 HP regen: -2
+MP: 42\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 1> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 11
+1. Nurita, Level: 1, Team: 2
+HP: 58\180 HP regen: -1
+MP: 3\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Mana lack> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 15\180 HP regen: -2
+MP: 42\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Stun: 1> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 2> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 12
+1. Nurita, Level: 1, Team: 2
+HP: 57\180 HP regen: 2
+MP: 9\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 13\180 HP regen: -2
+MP: 48\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 12
+1. Nurita, Level: 1, Team: 2
+HP: 57\180 HP regen: 2
+MP: 9\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 13\180 HP regen: -2
+MP: 48\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Round: 12
+1. Nurita, Level: 1, Team: 2
+HP: 57\180 HP regen: 2
+MP: 9\135 MP regen: 6
+DMG: 9 Arm: 7
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 4\180 HP regen: -2
+MP: 48\135 MP regen: 6
+DMG: 10 Arm: 4
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby charmed Nurita with Silence fist
+Round: 12
+1. Nurita, Level: 1, Team: 2
+HP: 42\180 HP regen: 2
+MP: 9\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 2> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 4\180 HP regen: -2
+MP: 20\135 MP regen: 6
+DMG: 10 Arm: 4
+States: <Mana lack> 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Corruption: 1> <Ancient course: 3> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Kirby attacked Nurita
+Round: 13
+1. Nurita, Level: 1, Team: 2
+HP: 31\180 HP regen: -1
+MP: 15\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 2\180 HP regen: -2
+MP: 26\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Round: 13
+1. Nurita, Level: 1, Team: 2
+HP: 31\180 HP regen: -1
+MP: 15\135 MP regen: 6
+DMG: 9 Arm: 7
+States: <Muted: 1> 
+MagicBook: <Corruption: 10> <Mental fist: 55> 
+Effect: <Life trap: 2> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+
+2. Kirby, Level: 1, Team: 1
+HP: 2\180 HP regen: -2
+MP: 26\135 MP regen: 6
+DMG: 10 Arm: 7
+States: 
+MagicBook: <Corrosion: 25> <Silence fist: 30> 
+Effect: <Ancient course: 2> 
+Weapon: <Archmage staff: 4>
+Armor: <Mantle: 2>
+Shield: <Crystal shield: 3\8>
+
+Nurita attacked Kirby
+Nurita slashed Kirby
+Round: 14
+1. Nurita, Level: 2, Team: 2
+HP: 67\185 HP regen: 0
+MP: 84\155 MP regen: 9
+DMG: 10 Arm: 8
+States: 
+MagicBook: <Corruption: 10> <Mental fist: 55> <Corrosion: 25> 
+Effect: <Life trap: 1> 
+Weapon: <Ancient staff: 3>
+Armor: <Mantle: 2>
+Shield: <Buckler: 3\15>
+

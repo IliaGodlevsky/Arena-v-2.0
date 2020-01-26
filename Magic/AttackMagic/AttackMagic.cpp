@@ -46,7 +46,7 @@ void AttackMagic::showFullInfo()const
 
 void AttackMagic::showShortInfo()const
 {
-	std::cout << "<";
+	commentator.writeMessage("<");
 	Magic::showShortInfo();
-	std::cout << ": " << m_manaCost << "> ";
+	commentator.writeMessage(": ", m_manaCost, "> ");
 }

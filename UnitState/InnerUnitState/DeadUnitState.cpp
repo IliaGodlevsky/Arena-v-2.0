@@ -43,7 +43,7 @@ bool DeadUnitState::isExpired()const
 
 void DeadUnitState::showShortInfo()const
 {
-	std::cout << "<Dead> ";
+	commentator.writeMessage("<Dead> ");
 }
 
 int DeadUnitState::getValue()const

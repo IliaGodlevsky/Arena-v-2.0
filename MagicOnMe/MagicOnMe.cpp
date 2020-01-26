@@ -84,17 +84,14 @@ void MagicOnMe::setItemColor(const MagicPtr& magic)const
 void MagicOnMe::showShortInfo()const
 {
 	IDuration* duration = nullptr;
-	std::cout << "Effect: ";
+	commentator.writeMessage("Effect: ");
 	for (size_t i = 0; i < size(); i++)
 	{
 		duration = DYNAMIC(IDuration*, operator[](i));
 		setItemColor(operator[](i));
-		std::cout << "<";
-		std::cout << operator[](i)->getName();
-		std::cout << ": " << duration->getStartTime() 
-			+ duration->getDuration() - Arena::getCurrentRound();
-		std::cout << "> ";
+		commentator.writeMessage("<", operator[](i)->getName(), ": ", duration->getStartTime()
+			+ duration->getDuration() - Arena::getCurrentRound(), "> ");
 	}
 	setColor();
-	std::cout << std::endl;
+	commentator.writeMessage("\n");
 }

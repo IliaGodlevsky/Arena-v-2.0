@@ -29,9 +29,9 @@ void ParamChangeMagic::showFullInfo()const
 
 void ParamChangeMagic::showShortInfo()const
 {
-	std::cout << "<";
+	commentator.writeMessage("<");
 	Magic::showShortInfo();
-	std::cout << ": " << m_manaCost << "> ";
+	commentator.writeMessage(": ", m_manaCost, "> ");
 }
 
 int ParamChangeMagic::getCost()const

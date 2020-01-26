@@ -46,8 +46,8 @@ int StunUnitState::getValue()const
 
 void StunUnitState::showShortInfo()const
 {
-	std::cout << "<Stun: " << m_timer.getStartTime()
-		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
+	commentator.writeMessage("<Stun: ", m_timer.getStartTime()
+		+ m_timer.getDuration() - Arena::getCurrentRound(), "> ");
 }
 
 bool StunUnitState::takeDamage(Unit& unit, int damage)

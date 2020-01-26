@@ -183,24 +183,21 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 void Unit::showFullInfo()const
 {
 	setColor(TextColor(m_teamNumber + 1));
-	std::cout << getName() << ", Level: " 
-		<< *m_level << ", " << "Team: " 
-		<< m_teamNumber << std::endl;
+	commentator.writeMessage(getName(), ", Level: ",
+		*m_level, ", ", "Team: ", m_teamNumber,"\n");
 	setColor();
 	m_health.showFullInfo("HP");
 	m_mana.showFullInfo("MP");
-	std::cout << "DMG: " << m_damage 
-		+ m_weapon->getDamage();
-	std::cout << " Arm: " << m_armor 
-		<< std::endl;
+	commentator.writeMessage("DMG: ", m_damage +
+		m_weapon->getDamage(), " Arm: ", m_armor, "\n");
 	m_stateHolder.showShortInfo();
 	m_magicBook.showShortInfo();
 	m_magicOnMe.showShortInfo();
-	std::cout << "Weapon: ";
+	commentator.writeMessage("Weapon: ");
 	m_weapon->showShortInfo();
-	std::cout << "Armor: ";
+	commentator.writeMessage("Armor: ");
 	m_mail->showShortInfo();
-	std::cout << "Shield: ";
+	commentator.writeMessage("Shield: ");
 	m_shield->showShortInfo();
 }
 
