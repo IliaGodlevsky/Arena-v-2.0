@@ -25,7 +25,7 @@ bool ManaReduceMagic::isBuff()const
 
 int ManaReduceMagic::getCost()const
 {
-	return IManaCost::getCost();
+	return m_manaCost;
 }
 
 bool ManaReduceMagic::isEqual(const MagicPtr& magic)const
