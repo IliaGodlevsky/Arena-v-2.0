@@ -217,6 +217,7 @@
     <ClInclude Include="Magic\WeaponMagic\DegenerateMagic.h" />
     <ClInclude Include="Magic\WeaponMagic\StunMagic.h" />
     <ClInclude Include="PossibilityCounter\PosibilityCounter.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Shield\MagicShield.h" />
     <ClInclude Include="Shield\MirrorShield.h" />
     <ClInclude Include="Shield\Shield.h" />
@@ -242,6 +243,12 @@
     <ClInclude Include="Weapon\MagicWeapon.h" />
     <ClInclude Include="Weapon\Staff.h" />
     <ClInclude Include="Weapon\Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="battle-gear_38456.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

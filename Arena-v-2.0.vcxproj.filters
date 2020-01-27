@@ -799,5 +799,16 @@
     <ClInclude Include="Magic\AttackMagic\ManaReduceMagic.h">
       <Filter>Source\Magic\AttackMagic</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="battle-gear_38456.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
