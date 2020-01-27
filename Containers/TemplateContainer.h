@@ -48,6 +48,8 @@ void TemplateContainer<T>::showShortInfo()const
 	for (size_t i = 0; i < m_items.size(); i++)
 	{
 		setItemColor(m_items[i]);
+		if (i % 2 == 0 && i != 0)
+			std::cout << std::endl << "\t";
 		m_items[i]->showShortInfo();
 	}
 	setColor();

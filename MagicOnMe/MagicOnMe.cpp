@@ -89,6 +89,8 @@ void MagicOnMe::showShortInfo()const
 	{
 		duration = DYNAMIC(IDuration*, operator[](i));
 		setItemColor(operator[](i));
+		if (i % 2 == 0 && i != 0)
+			std::cout << std::endl << "\t";
 		std::cout << "<" << operator[](i)->getName() 
 			<< ": " << duration->getStartTime()
 			+ duration->getDuration() - Arena::getCurrentRound() << "> ";
