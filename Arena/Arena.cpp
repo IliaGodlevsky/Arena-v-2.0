@@ -195,9 +195,9 @@ void Arena::playCastStep()
 	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast, m_units);
 	if (nullptr != m_unitToCast && nullptr != m_magicToCast)
 	{
-		std::cout << m_units[m_unitIndex]->getName() <<
-			" charmed " << m_unitToCast->getName() <<
-			" with " << m_magicToCast->getName() << std::endl;
+		std::cout << m_units[m_unitIndex]->getName()
+			<< " charmed " << m_unitToCast->getName()
+			<< " with " << m_magicToCast->getName() << std::endl;
 		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
 		rewardKiller(m_unitToCast);
 	}
@@ -210,8 +210,8 @@ void Arena::playAttackStep()
 		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
 		if (nullptr != m_unitToAttack)
 		{
-			std::cout<<m_units[m_unitIndex]->getName()<<
-				" attacked " << m_unitToAttack->getName() << std::endl;
+			std::cout << m_units[m_unitIndex]->getName()
+				<< " attacked " << m_unitToAttack->getName() << std::endl;
 			m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
 			rewardKiller(m_unitToAttack);
 		}
@@ -222,8 +222,9 @@ void Arena::rewardKiller(UnitPtr victim)
 {
 	if (!victim->isAlive())
 	{
-		std::cout<<m_units[m_unitIndex]->getName()<< " \aslashed "<<
-			victim->getName() << std::endl;
+		signal(Signals::WAIT_TIME, Signals::DEATH);
+		std::cout << m_units[m_unitIndex]->getName()
+			<< " slashed " << victim->getName() << std::endl;
 		m_units[m_unitIndex]->levelUp();
 		m_units[m_unitIndex]->takeKilledUnitMagic(*victim);
 	}

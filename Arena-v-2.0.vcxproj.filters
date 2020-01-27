@@ -799,7 +799,9 @@
     <ClInclude Include="Magic\AttackMagic\ManaReduceMagic.h">
       <Filter>Source\Magic\AttackMagic</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

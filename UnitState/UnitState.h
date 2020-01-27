@@ -29,8 +29,6 @@ public:
 	virtual bool isEqual(const StatePtr& unitState)const final;
 	virtual bool isExpired()const = 0;
 	virtual StatePtr clone()const = 0;
-protected:
-	void reduceUnitHp(Unit& unit, int damage);
 private:
 	virtual int getValue()const = 0;
 

@@ -26,6 +26,11 @@ enum TextColor {
 	LIGHT_MAGNETA, YELLOW, WHITE
 };
 
+enum Signals { 
+	ATTACK_BLOCK = 1, MAGIC_BLOCK, 
+	MAGIC_REFLECT, DEATH, WAIT_TIME = 250
+};
+
 void setColor(TextColor text = WHITE, TextColor background = BLACK);
 
 class Unit;
@@ -49,6 +54,7 @@ std::vector<std::string> loadFromFile(const std::string& fileName);
 
 void exceptionMessage(std::exception& ex);
 void myTerminate();
+void signal(int milliseconds, int numberOfSignals);
 
 const char* const teamPlayQuest = "Do you want to play "
 "in teams? <1 - yes, 0 - no>: ";

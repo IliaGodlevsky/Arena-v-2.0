@@ -1,5 +1,7 @@
 #include "Arena/Arena.h"
 
+#include <csignal>
+
 int main()
 {
 	set_terminate(myTerminate);

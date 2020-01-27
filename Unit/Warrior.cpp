@@ -57,7 +57,9 @@ bool Warrior::secondHit(Unit& unit)
 	const int secondHitPossibility = 7;
 	if (PosibilityCounter(secondHitPossibility * (*m_level)))
 	{
-		std::cout << getName() << " hitted "<< unit.getName() << " twice\n";
+		signal(Signals::WAIT_TIME / 2, Signals::ATTACK_BLOCK);
+		std::cout << getName() << " hitted "
+			<< unit.getName() << " twice\n";
 		const int multiDamage = damageMultiply(m_damage + m_weapon->getDamage()) / 2 
 			- m_weapon->getDamage();
 		return m_stateHolder.injureUnit(m_weapon, unit, multiDamage);

@@ -203,8 +203,8 @@ MagicAim SimpleComputerDecision::findMagicToKillUnit(
 			enemy = units[j]->getPureClone();
 			if (!decidingUnit.isAlly(*units[j]) &&
 				!isWrongSpellToCast(decidingUnit, *units[j], magic) &&
-				decidingUnit.isEnoughManaFor(magic)
-				&& units[j]->isAlive())
+				units[j]->isAlive() &&
+				!canKill(me->getPureClone(), enemy->getPureClone()))
 			{
 				me->castMagic(*enemy, magic);
 				if (!enemy->isAlive())

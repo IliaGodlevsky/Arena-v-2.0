@@ -1,4 +1,6 @@
 #include <fstream>
+#include <chrono>
+#include <thread>
 
 #include "Globals.h"
 
@@ -71,6 +73,15 @@ void myTerminate()
 {
 	throw ArenaUninterseptedException("Arena has failed.\nPlease, try to fix the bugs and"
 		" start it again.\nOr report about bug to godleevsky2015@gmail.com");
+}
+
+void signal(int milliseconds, int numberOfSignals)
+{
+	for (int i = 0; i < numberOfSignals; i++)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+		std::cout << "\a";
+	}
 }
 
 void setColor(TextColor text, TextColor background)

@@ -47,6 +47,7 @@ bool Shield::takeDamage(Unit& unit, int damage)const
 {
 	if (PosibilityCounter(m_reflectChance))
 	{
+		signal(Signals::WAIT_TIME, Signals::ATTACK_BLOCK);
 		std::cout << "But attack was reflected\n";
 		return false;
 	}

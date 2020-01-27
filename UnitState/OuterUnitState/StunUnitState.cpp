@@ -52,13 +52,11 @@ void StunUnitState::showShortInfo()const
 
 bool StunUnitState::takeDamage(Unit& unit, int damage)
 {
-	UnitState::reduceUnitHp(unit, damage);
 	return true;
 }
 
 bool StunUnitState::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)
 {
-	magic->effectUnit(unit);
 	return true;
 }
 

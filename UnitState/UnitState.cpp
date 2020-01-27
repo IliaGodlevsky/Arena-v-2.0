@@ -28,11 +28,6 @@ bool UnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
 	return true;
 }
 
-void UnitState::reduceUnitHp(Unit& unit, int damage)
-{
-	HpReduceElem(unit.m_shield->calculateDamageAbsorb(unit.m_armor, damage)).effectUnit(unit);
-}
-
 bool UnitState::takeDamage(Unit& unit, int damage)
 {
 	return unit.m_shield->takeDamage(unit, damage);
