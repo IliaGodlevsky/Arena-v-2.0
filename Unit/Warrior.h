@@ -13,7 +13,6 @@ public:
 	Warrior& operator=(const Warrior&) = delete;
 	Warrior& operator=(Warrior&&) = delete;
 	~Warrior() = default;
-public:
 	bool injureUnit(Unit& unit);
 private:
 	int damageMultiply(int damage)const;

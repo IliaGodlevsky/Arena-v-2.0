@@ -50,7 +50,7 @@ void SilenceMagic::showFullInfo()const
 
 void SilenceMagic::showShortInfo()const
 {
-	commentator.writeMessage("<");
+	std::cout << "<";
 	Magic::showShortInfo();
-	commentator.writeMessage(": ", m_manaCost, "> ");
+	std::cout << ": " << m_manaCost << "> ";
 }

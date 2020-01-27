@@ -9,7 +9,6 @@
 #include <random>
 #include <windows.h>
 
-#include "../Messager/Messager.h"
 #include "../Exceptions/EmptyContainerException.h"
 #include "../Exceptions/BadWeaponMagicException.h"
 #include "../Exceptions/BadEquipmentException.h"
@@ -19,8 +18,6 @@
 #define YES true
 #define NO !YES
 #define NULLPTR nullptr
-
-static Messager& commentator = Messager::getIncstance();
 
 enum TextColor {
 	BLACK, BLUE, GREEN, CYAN, RED, MAGNETA,

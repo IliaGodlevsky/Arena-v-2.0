@@ -19,37 +19,31 @@ public:
 	Arena(Arena&&) = delete;
 	Arena& operator=(const Arena&) = delete;
 	Arena& operator=(Arena&&) = delete;
-	void showUnits()const;
-public:
+	~Arena() = default;
 	bool isGameOver()const;
+	void showUnits()const;
 	void goNewRound();
 	void playCastStep();
 	void playAttackStep();
 	void rewardKiller(UnitPtr victim);
 	void goNextUnit();
 	void takeOfLosers();
-public:
 	void prepareUnits();
 	void proposeToPlayTeams();
-	~Arena() = default;
-public:
 	int setNumberOfUnits()const;
 private:
+	Arena();
 	void showMiniature()const;
 	std::vector<Gladiators> breakIntoTeams(size_t teamsNumber);
 	void pushAlliesToArena(const std::vector<Gladiators>& teams);
-	Arena();
-private:
 	Gladiators m_units;
 	constexpr int getMaxNubmerOfPlayers()const;
-	constexpr int getMinNumberOfPlayers()const;
-private:
-	static int m_round;
-private:
+	constexpr int getMinNumberOfPlayers()const;	
 	UnitPtr m_unitToAttack = nullptr;
 	UnitPtr m_unitToCast = nullptr;
 	MagicPtr m_magicToCast = nullptr;
 	index m_unitIndex = 0;
+	static int m_round;
 };
 
 #endif

@@ -24,7 +24,6 @@ public:
 		const MagicPtr& magicToCast, const Gladiators& units)const = 0;
 	virtual ~UnitState() = default;
 	virtual void showShortInfo()const;
-public:
 	virtual bool operator <(const UnitState& unitState)const final;
 	virtual bool operator >(const UnitState& unitState)const final;
 	virtual bool isEqual(const StatePtr& unitState)const final;

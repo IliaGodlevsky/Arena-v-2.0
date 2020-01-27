@@ -31,7 +31,7 @@ void Weapon::showFullInfo()const
 
 void Weapon::showShortInfo()const
 {
-	commentator.writeMessage("<", m_name, ": ", m_damage, ">\n");
+	std::cout << "<" << m_name << ": " << m_damage << ">\n";
 }
 
 void Weapon::injureUnit(Unit& unit, int damage)const

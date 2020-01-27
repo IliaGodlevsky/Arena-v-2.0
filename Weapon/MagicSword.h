@@ -10,7 +10,6 @@ public:
 	MagicSword(const MagicSword& sword);
 	MagicSword& operator=(const MagicSword& sword);
 	~MagicSword() = default;
-public:
 	WeaponPtr clone()const override;
 };
 

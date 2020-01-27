@@ -9,7 +9,6 @@ public:
 	MagicStaff(std::string name, int damage, MagicPtr magic);
 	MagicStaff(const MagicStaff& weapon);
 	MagicStaff& operator=(const MagicStaff& weapon);
-public:
 	void injureUnit(Unit& unit, int damage)const;
 	WeaponPtr clone()const;
 	WeaponPtr getPureWeapon()const;

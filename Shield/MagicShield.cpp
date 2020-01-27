@@ -26,7 +26,7 @@ bool MagicShield::takeMagicEffect(Unit& unit, Unit& caster,
 {
 	if (PosibilityCounter(m_reflectChance) && !unit.isAlly(caster))
 	{
-		commentator.writeMessage("But magic was reflected\n");
+		std::cout << "But magic was reflected\n";
 		return false;
 	}
 	return Shield::takeMagicEffect(unit, caster, magic);

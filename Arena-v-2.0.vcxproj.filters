@@ -111,9 +111,6 @@
     <Filter Include="Source\Factories\ShieldFactories">
       <UniqueIdentifier>{f78414e6-4443-430f-a9a9-957c49f1feac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Messager">
-      <UniqueIdentifier>{c1818706-51f0-463f-b98a-8716578d3c3c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Factories\MagicFactories\NeutralFactories">
       <UniqueIdentifier>{a4dc70cd-7b1e-400a-989e-e027414b59dc}</UniqueIdentifier>
     </Filter>
@@ -325,9 +322,6 @@
     </ClCompile>
     <ClCompile Include="Factories\ShieldFactories\ShieldFactory.cpp">
       <Filter>Source\Factories\ShieldFactories</Filter>
-    </ClCompile>
-    <ClCompile Include="Messager\Messager.cpp">
-      <Filter>Source\Messager</Filter>
     </ClCompile>
     <ClCompile Include="Decision\RandomComputerDecision.cpp">
       <Filter>Source\Decision</Filter>
@@ -657,9 +651,6 @@
     </ClInclude>
     <ClInclude Include="Factories\ShieldFactories\ShieldFactory.h">
       <Filter>Source\Factories\ShieldFactories</Filter>
-    </ClInclude>
-    <ClInclude Include="Messager\Messager.h">
-      <Filter>Source\Messager</Filter>
     </ClInclude>
     <ClInclude Include="Decision\RandomComputerDecision.h">
       <Filter>Source\Decision</Filter>

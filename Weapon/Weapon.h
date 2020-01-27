@@ -14,7 +14,6 @@ public:
 	Weapon(const Weapon& weapon);
 	Weapon& operator=(const Weapon& weapon);
 	virtual ~Weapon() = default;
-public:
 	virtual void injureUnit(Unit& unit, int damage)const;
 	virtual void showFullInfo()const;
 	virtual void showShortInfo()const final;

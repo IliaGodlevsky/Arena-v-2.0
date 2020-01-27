@@ -17,7 +17,6 @@ public:
 	StateHolder(StateHolder&& stateHolder) = delete;
 	StateHolder& operator=(const StateHolder& stateHolder) = delete;
 	StateHolder& operator=(StateHolder&& stateHolder) = delete;
-public:
 	bool itemHasPassedControl(const StatePtr& unitState)const override;
 	void makeExpire(size_t stateIndex)override;
 	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);

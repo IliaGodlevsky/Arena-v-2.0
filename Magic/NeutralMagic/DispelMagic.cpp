@@ -46,7 +46,7 @@ void DispelMagic::showFullInfo()const
 
 void  DispelMagic::showShortInfo()const
 {
-	commentator.writeMessage("<");
+	std::cout << "<";
 	Magic::showShortInfo();
-	commentator.writeMessage(": ", m_manaCost, "> ");
+	std::cout << ": " << m_manaCost << "> ";
 }

@@ -15,13 +15,13 @@ bool MirrorShield::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)con
 	if (PosibilityCounter(m_reflectChance) && !unit.isAlly(caster))
 	{
 		AttackMagic* temp = DYNAMIC(AttackMagic*, magic);
-		commentator.writeMessage("But magic was reflected");
+		std::cout << "But magic was reflected";
 		if (nullptr == temp)
 		{
 			magic->effectUnit(caster);
-			commentator.writeMessage(" back to ", caster.getName());
+			std::cout << " back to ", caster.getName();
 		}
-		commentator.writeMessage("\n");
+		std::cout << "\n";
 		return false;
 	}
 	return Shield::takeMagicEffect(unit, caster, magic);

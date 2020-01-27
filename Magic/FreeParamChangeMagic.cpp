@@ -31,9 +31,9 @@ void FreeParamChangeMagic::showFullInfo()const
 
 void FreeParamChangeMagic::showShortInfo()const
 {
-	commentator.writeMessage("<");
+	std::cout << "<";
 	Magic::showShortInfo();
-	commentator.writeMessage("> ");
+	std::cout << "> ";
 }
 
 int FreeParamChangeMagic::getDuration()const

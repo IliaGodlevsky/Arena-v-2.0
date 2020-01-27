@@ -13,7 +13,6 @@ public:
 	TemplateContainer(TemplateContainer&&) = default;
 	TemplateContainer& operator=(const TemplateContainer&) = delete;
 	TemplateContainer& operator=(TemplateContainer&&) = default;
-public:
 	virtual bool itemHasPassedControl(const T& item)const = 0;
 	virtual void takeNew(const T& item) = 0;
 	size_t getItemIndex(const T& item)const;
@@ -52,7 +51,7 @@ void TemplateContainer<T>::showShortInfo()const
 		m_items[i]->showShortInfo();
 	}
 	setColor();
-	commentator.writeMessage("\n");
+	std::cout << std::endl;
 }
 
 template <class T>

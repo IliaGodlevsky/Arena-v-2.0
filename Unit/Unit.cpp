@@ -25,7 +25,6 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	if (nullptr == m_shield || nullptr == m_mail || nullptr == m_weapon || nullptr == m_decision)
 		throw BadEquipmentException("Unit doesn't have enough equipment to fight");
 	m_level = std::unique_ptr<Level>(new Level(this));
-
 }
 
 Unit::Unit(const Unit& unit)
@@ -183,21 +182,23 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 void Unit::showFullInfo()const
 {
 	setColor(TextColor(m_teamNumber + 1));
-	commentator.writeMessage(getName(), ", Level: ",
-		*m_level, ", ", "Team: ", m_teamNumber,"\n");
+	std::cout<<getName()<<", Level: "<<
+		*m_level << ", " << "Team: " 
+		<< m_teamNumber << std::endl;
 	setColor();
 	m_health.showFullInfo("HP");
 	m_mana.showFullInfo("MP");
-	commentator.writeMessage("DMG: ", m_damage +
-		m_weapon->getDamage(), " Arm: ", m_armor, "\n");
+	std::cout<<"DMG: "<<m_damage +
+		m_weapon->getDamage() 
+		<< " Arm: " << m_armor << std::endl;
 	m_stateHolder.showShortInfo();
 	m_magicBook.showShortInfo();
 	m_magicOnMe.showShortInfo();
-	commentator.writeMessage("Weapon: ");
+	std::cout << "Weapon: ";
 	m_weapon->showShortInfo();
-	commentator.writeMessage("Armor: ");
+	std::cout << "Armor: ";
 	m_mail->showShortInfo();
-	commentator.writeMessage("Shield: ");
+	std::cout << "Shield: ";
 	m_shield->showShortInfo();
 }
 

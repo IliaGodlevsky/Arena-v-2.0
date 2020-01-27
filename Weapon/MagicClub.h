@@ -10,7 +10,6 @@ public:
 	MagicClub(const MagicClub& club);
 	MagicClub& operator=(const MagicClub& club);
 	~MagicClub() = default;
-public:
 	WeaponPtr clone()const override;
 };
 

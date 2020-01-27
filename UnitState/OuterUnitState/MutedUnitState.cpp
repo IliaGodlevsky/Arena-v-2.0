@@ -45,8 +45,8 @@ int MutedUnitState::getValue()const
 
 void MutedUnitState::showShortInfo()const
 {
-	commentator.writeMessage("<Muted: ", m_timer.getStartTime()
-		+ m_timer.getDuration() - Arena::getCurrentRound(), "> ");
+	std::cout << "<Muted: " << m_timer.getStartTime()
+		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
 }
 
 StatePtr MutedUnitState::clone()const

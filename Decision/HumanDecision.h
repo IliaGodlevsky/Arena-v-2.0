@@ -11,7 +11,6 @@ public:
 	HumanDecision(HumanDecision&& decision) = default;
 	HumanDecision& operator=(const HumanDecision&) = default;
 	HumanDecision& operator=(HumanDecision&&) = default;
-public:
 	UnitPtr chooseUnitToAttack(const Unit& decidingUnit, 
 		const Gladiators& units)const override;
 	MagicPtr chooseMagicToCast(const Unit& decidingUnit, 
@@ -25,7 +24,6 @@ public:
 private:
 	bool wantToCastMagic(const Unit& decidingUnit)const;
 	mutable bool m_wantToCastMagic = false;
-private:
 	const std::string WANT_TO_CAST_QUESTION = "do you want to cast a magic <1 - yes/0 - no>: ";
 	const std::string UNIT_TO_ATTACK_CHOOSE_MESSAGE = "choose unit to attack: ";
 	const std::string MAGIC_TO_CAST_CHOOSE_MESSAGE = "Choose magic: ";

@@ -11,7 +11,6 @@ public:
 	Vitals(Vitals&&) = default;
 	Vitals& operator=(const Vitals&) = default;
 	Vitals& operator=(Vitals&&) = default;
-public:
 	Vitals operator++(int i);
 	Vitals operator-(int value)const;
 	Vitals operator+(const Vitals& vit)const;
@@ -26,14 +25,10 @@ private:
 	int m_value = 0;
 	int m_maxValue = 0;
 	int m_valueRegeneration = 0;
-private:
 	void fixOverflow();
 	void setValueColor()const;
 	void setRegenColor()const;
-private:
 	bool isHighHpLevel()const;
 	bool isNormalHpLevel()const;
-	double HIGH_HP_LEVEL = 0.8;
-	double LOW_HP_LEVEL = 0.3;
 };
 #endif

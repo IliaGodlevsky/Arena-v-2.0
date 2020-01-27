@@ -13,6 +13,8 @@
 
 #include "Arena.h"
 
+// reserve names for computer players, can be needed
+// if file with names is empty or is not found
 const std::vector<std::string> m_reserveNames =
 {
 	"Bill","Glen","Mark","Gven","Sally","Opera",
@@ -22,6 +24,7 @@ const std::vector<std::string> m_reserveNames =
 	"Elizabeth","Unberto","Izabell","Oxford","Mark"
 };
 
+// current round
 int Arena::m_round = 0;
 
 // Return the maximum number of players
@@ -68,13 +71,13 @@ Arena& Arena::getInstance()
 void Arena::showUnits()const
 {
 	system("pause"); system("cls");
-	commentator.writeMessage("Round: ", getCurrentRound() + 1, "\n");
+	std::cout << "Round: " << getCurrentRound() + 1 << "\n";
 	for (size_t i = 0; i < m_units.size(); i++)
 	{
-		commentator.writeMessage(i + 1, ". ");
+		std::cout << i + 1 << ". ";
 		m_units[i]->showFullInfo();
 		setColor();
-		commentator.writeMessage("\n");
+		std::cout << std::endl;
 	}
 }
 
@@ -96,6 +99,8 @@ void Arena::takeOfLosers()
 
 bool Arena::isGameOver()const
 {
+	// if the number of ally players in the game is equal to 
+	// arena size, the game is considered to be over
 	return std::count_if(m_units.begin(), m_units.end(), [&](const UnitPtr& unit) 
 	{ return unit->isAlly(*m_units[m_unitIndex]); }) == m_units.size();
 }
@@ -106,6 +111,7 @@ void Arena::prepareUnits()
 	std::vector<std::string> unitsNames;
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
 	ThreadGuard guard(thread);
+	// number of player team
 	int teamNumber = 1;
 	auto unitGenerator = [&unitsNames, &thread, &teamNumber]()
 	{	
@@ -131,6 +137,7 @@ void Arena::prepareUnits()
 
 void Arena::proposeToPlayTeams()
 {
+	
 	const int MIN_PLAYERS_TO_PLAY_TEAMS = 2;
 	const int MIN_TEAMS_NUMBER = 2;
 	if (m_units.size() > MIN_PLAYERS_TO_PLAY_TEAMS)
@@ -188,9 +195,9 @@ void Arena::playCastStep()
 	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast, m_units);
 	if (nullptr != m_unitToCast && nullptr != m_magicToCast)
 	{
-		commentator.writeMessage(m_units[m_unitIndex]->getName(),
-			" charmed ", m_unitToCast->getName(),
-			" with ", m_magicToCast->getName() + "\n");
+		std::cout << m_units[m_unitIndex]->getName() <<
+			" charmed " << m_unitToCast->getName() <<
+			" with " << m_magicToCast->getName() << std::endl;
 		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
 		rewardKiller(m_unitToCast);
 	}
@@ -203,8 +210,8 @@ void Arena::playAttackStep()
 		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
 		if (nullptr != m_unitToAttack)
 		{
-			commentator.writeMessage(m_units[m_unitIndex]->getName(),
-				" attacked ", m_unitToAttack->getName() + "\n");
+			std::cout<<m_units[m_unitIndex]->getName()<<
+				" attacked " << m_unitToAttack->getName() << std::endl;
 			m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
 			rewardKiller(m_unitToAttack);
 		}
@@ -215,8 +222,8 @@ void Arena::rewardKiller(UnitPtr victim)
 {
 	if (!victim->isAlive())
 	{
-		commentator.writeMessage(m_units[m_unitIndex]->getName(), " \aslashed ",
-			victim->getName(), "\n");
+		std::cout<<m_units[m_unitIndex]->getName()<< " \aslashed "<<
+			victim->getName() << std::endl;
 		m_units[m_unitIndex]->levelUp();
 		m_units[m_unitIndex]->takeKilledUnitMagic(*victim);
 	}

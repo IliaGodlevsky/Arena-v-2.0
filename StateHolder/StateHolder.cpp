@@ -130,7 +130,7 @@ void StateHolder::setItemColor(const StatePtr& unitState)const
 
 void StateHolder::showShortInfo()const
 {
-	commentator.writeMessage("States: ");
+	std::cout << "States: ";
 	TemplateContainer<StatePtr>::showShortInfo();
 }
 

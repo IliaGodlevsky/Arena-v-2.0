@@ -12,7 +12,6 @@ public:
 	Battles& operator=(const Battles&) = default;
 	Battles& operator=(Battles&&) = default;
 	Battles() = default;
-public:
 	void changeValue(int value);
 	operator int()const;
 protected:

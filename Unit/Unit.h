@@ -24,7 +24,6 @@ public:
 	Unit& operator=(const Unit& unit) = delete;
 	Unit& operator=(Unit&& unit) = delete;
 	virtual ~Unit() = default;
-public:
 	virtual bool injureUnit(Unit& unit);
 	virtual bool castMagic(Unit& unit, MagicPtr& magic);
 	virtual void setName(std::string name)final;
@@ -46,7 +45,6 @@ public:
 	UnitPtr chooseUnitToCast(const MagicPtr& magicToCast, 
 		const Gladiators& units)const;
 	virtual UnitPtr getPureClone()const;
-public:
 	Battles m_damage;
 	Battles m_armor;
 	Vitals m_health;

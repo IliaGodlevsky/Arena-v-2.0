@@ -9,7 +9,6 @@ public:
 	Staff(std::string name, int damage);
 	Staff(const Staff& weapon);
 	Staff& operator=(const Staff& weapon);
-public:
 	virtual void injureUnit(Unit& unit, int damage)const;
 };
 

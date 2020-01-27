@@ -48,7 +48,7 @@ int NotEnoughManaUnitState::getValue()const
 
 void NotEnoughManaUnitState::showShortInfo()const
 {
-	commentator.writeMessage("<Mana lack> ");
+	std::cout << "<Mana lack> ";
 }
 
 StatePtr NotEnoughManaUnitState::clone()const

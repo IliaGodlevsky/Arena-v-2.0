@@ -57,7 +57,7 @@ bool MagicBook::canCastAnySpell()const
 
 void MagicBook::showShortInfo()const
 {
-	commentator.writeMessage("MagicBook: ");
+	std::cout << "MagicBook: ";
 	TemplateContainer<MagicPtr>::showShortInfo();
 }
 

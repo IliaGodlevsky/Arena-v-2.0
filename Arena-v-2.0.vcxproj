@@ -102,7 +102,6 @@
     <ClCompile Include="Magic\WeaponMagic\DegenerateMagic.cpp" />
     <ClCompile Include="Magic\WeaponMagic\StunMagic.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Messager\Messager.cpp" />
     <ClCompile Include="PossibilityCounter\PosibilityCounter.cpp" />
     <ClCompile Include="Shield\MagicShield.cpp" />
     <ClCompile Include="Shield\MirrorShield.cpp" />
@@ -217,7 +216,6 @@
     <ClInclude Include="Magic\WeaponMagic\CorruptionMagic.h" />
     <ClInclude Include="Magic\WeaponMagic\DegenerateMagic.h" />
     <ClInclude Include="Magic\WeaponMagic\StunMagic.h" />
-    <ClInclude Include="Messager\Messager.h" />
     <ClInclude Include="PossibilityCounter\PosibilityCounter.h" />
     <ClInclude Include="Shield\MagicShield.h" />
     <ClInclude Include="Shield\MirrorShield.h" />

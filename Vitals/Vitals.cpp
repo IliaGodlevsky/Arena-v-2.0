@@ -4,6 +4,9 @@
 #include "Vitals.h"
 #include "../Globals/Globals.h"
 
+const double HIGH_HP_LEVEL = 0.8;
+const double LOW_HP_LEVEL = 0.3;
+
 Vitals::Vitals(int value, int maxValue,
 	int valueRegeneration)
 	: m_value(value), m_maxValue(maxValue),
@@ -111,12 +114,12 @@ void Vitals::setRegenColor()const
 
 void Vitals::showFullInfo(const char* vitalsType)const
 {
-	commentator.writeMessage(vitalsType, ": ");
+	std::cout << vitalsType << ": ";
 	setValueColor();
-	commentator.writeMessage(m_value);
+	std::cout << m_value;
 	setColor();
-	commentator.writeMessage("\\", m_maxValue, " ", vitalsType, " regen: ");
+	std::cout << "\\" << m_maxValue << " " << vitalsType << " regen: ";
 	setRegenColor();
-	commentator.writeMessage(m_valueRegeneration, "\n");
+	std::cout << m_valueRegeneration << std::endl;
 	setColor();
 }

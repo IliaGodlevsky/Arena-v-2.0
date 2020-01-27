@@ -13,7 +13,6 @@ public:
 	MagicBook& operator=(const MagicBook& book) = delete;
 	MagicBook& operator=(MagicBook&& book) = delete;
 	MagicBook(Unit* unit, const MagicBook& book);
-public:
 	bool itemHasPassedControl(const MagicPtr& magic)const override;
 	bool canCastAnySpell()const;
 	void showShortInfo()const override;

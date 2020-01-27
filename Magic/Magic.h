@@ -22,7 +22,6 @@ class Magic
 public:
 	Magic(std::string name);
 	virtual ~Magic() = default;
-public:
 	virtual void effectUnit(Unit& unit) = 0;
 	virtual MagicPtr clone()const = 0; // Prototype
 	virtual bool isEqual(const MagicPtr& magic)const = 0;

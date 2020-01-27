@@ -11,7 +11,6 @@ public:
 	Decision(Decision&& decision) = default;
 	Decision& operator=(const Decision&) = default;
 	Decision& operator=(Decision&&) = default;
-public:
 	virtual UnitPtr chooseUnitToAttack(const Unit&, const Gladiators&)const = 0;
 	virtual MagicPtr chooseMagicToCast(const Unit&, const Gladiators&)const = 0;
 	virtual UnitPtr chooseUnitToCast(const Unit&, const MagicPtr&, const Gladiators&)const = 0;
