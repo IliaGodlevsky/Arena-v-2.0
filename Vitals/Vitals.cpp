@@ -108,6 +108,8 @@ void Vitals::setRegenColor()const
 {
 	if (m_valueRegeneration > 0)
 		setColor(LIGHT_GREEN);
+	else if (0 == m_valueRegeneration)
+		setColor(YELLOW);
 	else
 		setColor(LIGHT_RED);
 }
@@ -120,6 +122,8 @@ void Vitals::showFullInfo(const char* vitalsType)const
 	setColor();
 	std::cout << "\\" << m_maxValue << " " << vitalsType << " regen: ";
 	setRegenColor();
+	std::cout.setf(std::ios_base::showpos);
 	std::cout << m_valueRegeneration << std::endl;
+	std::cout.unsetf(std::ios_base::showpos);
 	setColor();
 }

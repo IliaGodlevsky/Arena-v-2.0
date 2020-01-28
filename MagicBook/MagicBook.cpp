@@ -2,6 +2,7 @@
 #include "../Magic/Magic.h"
 #include "../Interface/Interface.h"
 #include "../Exceptions/BadincomingMagicException.h"
+#include "../Magic/AttackMagic/AttackMagic.h"
 
 #include "MagicBook.h"
 
@@ -39,12 +40,15 @@ void MagicBook::magicList()const
 
 void MagicBook::setItemColor(const MagicPtr& magic)const
 {
-	IBuff* buff = nullptr;
-	buff = DYNAMIC(IBuff*, magic);
+	AttackMagic* attack = DYNAMIC(AttackMagic*, magic);
+	IBuff* buff = DYNAMIC(IBuff*, magic);
 	if (buff->isBuff())
 		setColor(LIGHT_GREEN);
-	else
+	else if (!buff->isBuff() && nullptr == attack)
 		setColor(LIGHT_RED);
+	else if (nullptr != attack)
+		setColor(YELLOW);
+	
 }
 
 bool MagicBook::canCastAnySpell()const

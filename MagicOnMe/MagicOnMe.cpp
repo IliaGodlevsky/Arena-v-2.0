@@ -67,8 +67,7 @@ void MagicOnMe::takeNew(const MagicPtr& magic)
 
 void MagicOnMe::setItemColor(const MagicPtr& magic)const
 {
-	IBuff* buff = nullptr;
-	buff = DYNAMIC(IBuff*, magic);
+	IBuff* buff = DYNAMIC(IBuff*, magic);
 	if (buff != nullptr)
 	{
 		if (buff->isBuff())
@@ -77,7 +76,7 @@ void MagicOnMe::setItemColor(const MagicPtr& magic)const
 			setColor(LIGHT_RED);
 	}
 	else
-		setColor(YELLOW);
+		setColor(LIGHT_CYAN);
 }
 
 
