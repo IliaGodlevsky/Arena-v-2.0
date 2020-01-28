@@ -48,4 +48,6 @@ bool DamageDebuffMagic::isDispelable()const
 void DamageDebuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
+	std::cout << "Reduces enemy damage by "
+		<< m_damageReduce << " for " << m_timer.getDuration() << " rounds\n";
 }

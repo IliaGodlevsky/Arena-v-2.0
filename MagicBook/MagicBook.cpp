@@ -65,6 +65,15 @@ void MagicBook::showShortInfo()const
 	TemplateContainer<MagicPtr>::showShortInfo();
 }
 
+void MagicBook::showFullInfo()const
+{
+	for (size_t i = 0; i < size(); i++)
+	{
+		std::cout << i + 1 << ". ";
+		operator[](i)->showFullInfo();
+	}
+}
+
 void MagicBook::takeNew(const MagicPtr& magic)
 {
 	if (itemHasPassedControl(magic) && !hasItem(magic))

@@ -52,4 +52,6 @@ bool ArmorAndDamageBuffMagic::isEqual(const MagicPtr& magic)const
 void ArmorAndDamageBuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
+	std::cout << "Adds " << m_armorAmplify << " armor and "
+		<< m_damageAmplify << " damage for " << m_timer.getDuration() << " rounds\n";
 }

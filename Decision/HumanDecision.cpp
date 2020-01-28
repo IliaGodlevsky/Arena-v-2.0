@@ -37,13 +37,21 @@ MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit,
 {
 	if (!wantToCastMagic(decidingUnit))
 		return nullptr;
-	std::cout << "Choose spell to cast\n";
+	std::cout << "Choose magic to cast\n";
 	decidingUnit.m_magicBook.magicList();
+	std::cout << decidingUnit.m_magicBook.size() + 1 
+		<< ". Show more info about magic\n";
 	index magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
-		decidingUnit.m_magicBook.size(), 1);
+		decidingUnit.m_magicBook.size() + 1, 1);
+	if (decidingUnit.m_magicBook.size() + 1 == magicToCastIndex)
+	{
+		decidingUnit.m_magicBook.showFullInfo();
+		magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
+			decidingUnit.m_magicBook.size(), 1);
+	}	
 	while (!decidingUnit.isEnoughManaFor(decidingUnit.m_magicBook[magicToCastIndex - 1]))
 	{
-		std::cout << "Not enough mana for this spell\n";
+		std::cout << "Not enough mana for this magic\n";
 		magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
 			decidingUnit.m_magicBook.size(), 1);
 	}
@@ -62,7 +70,7 @@ UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 		units.size(), 1);
 	while (isWrongSpellToCast(decidingUnit, *units[unitToCastIndex - 1], magicToCast))
 	{
-		std::cout << "You can't use this spell on this unit\n";
+		std::cout << "You can't use this magic on this unit\n";
 		unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE,
 			units.size(), 1);
 	}

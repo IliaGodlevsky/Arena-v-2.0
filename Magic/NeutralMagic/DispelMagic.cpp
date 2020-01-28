@@ -40,7 +40,6 @@ bool DispelMagic::isEqual(const MagicPtr& magic)const
 void DispelMagic::showFullInfo()const
 {
 	Magic::showFullInfo();
-
 	std::cout << "Dispels all magic on unit\n";
 }
 

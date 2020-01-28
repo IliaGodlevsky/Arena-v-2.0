@@ -48,4 +48,6 @@ bool DamageBuffMagic::isDispelable()const
 void DamageBuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
+	std::cout << "Adds " << m_damageAmplify 
+		<< " damage for " << m_timer.getDuration() << " rounds\n";
 }

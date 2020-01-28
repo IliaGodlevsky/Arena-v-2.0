@@ -9,10 +9,10 @@ DamageReduceElem::DamageReduceElem(int damageReduce)
 
 void DamageReduceElem::effectUnit(Unit& unit)
 {
-	unit.m_damage.changeValue(-m_change);
+	unit.m_damage.changeAdditaionalValue(-m_change);
 }
 
 void DamageReduceElem::uneffectUnit(Unit& unit)
 {
-	unit.m_damage.changeValue(m_change);
+	unit.m_damage.changeAdditaionalValue(m_change);
 }

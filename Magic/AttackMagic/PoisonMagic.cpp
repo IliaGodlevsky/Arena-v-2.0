@@ -47,6 +47,6 @@ bool PoisonMagic::isEqual(const MagicPtr& magic)const
 void PoisonMagic::showFullInfo()const
 {
 	Magic::showFullInfo();
-	std::cout << "Reduces regen by " << m_regenReduce 
-		<< " for " << m_timer.getDuration();
+	std::cout << "Reduces regen by " << m_regenReduce
+		<< " for " << m_timer.getDuration() << " rounds\n";
 }

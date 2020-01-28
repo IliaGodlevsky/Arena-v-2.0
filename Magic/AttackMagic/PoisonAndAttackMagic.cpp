@@ -33,5 +33,5 @@ bool PoisonAndAttackMagic::isEqual(const MagicPtr& magic)const
 void PoisonAndAttackMagic::showFullInfo()const
 {
 	PoisonMagic::showFullInfo();
-	std::cout << "Damage: " << m_damage << std::endl;
+	std::cout << "Deals: " << m_damage << " damage\n";
 }

@@ -51,4 +51,6 @@ bool ArmorAndDamageDebuffMagic::isEqual(const MagicPtr& magic)const
 void ArmorAndDamageDebuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
+	std::cout << "Reduces enemy armor by " << m_armorReduce << " and enemy damage by "
+		<< m_damageReduce << " for " << m_timer.getDuration() << " rounds\n";
 }

@@ -48,5 +48,8 @@ bool ArmorBuffMagic::isEqual(const MagicPtr& magic)const
 
 void ArmorBuffMagic::showFullInfo()const
 {
+	ParamChangeMagic::showFullInfo();
+	std::cout << "Adds " << m_armorAmplify 
+		<< " armor for " << m_timer.getDuration() << " rounds\n";
 
 }

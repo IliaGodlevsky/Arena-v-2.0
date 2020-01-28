@@ -18,6 +18,7 @@ Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
 	m_mail->putOn(*this);
 	m_shield->putOn(*this);
 	m_level = std::unique_ptr<Level>(new WarriorLevel(this));
+	m_damage.changeValue(m_weapon->getDamage());
 }
 
 Warrior::Warrior(const Warrior& unit)
@@ -38,8 +39,7 @@ Warrior::Warrior(Warrior&& unit)
 
 bool Warrior::injureUnit(Unit& unit)
 {
-	const int multiDamage = damageMultiply(m_damage
-		+ m_weapon->getDamage()) - m_weapon->getDamage();
+	const int multiDamage = damageMultiply(m_damage);
 	m_stateHolder.injureUnit(m_weapon, unit, multiDamage);
 	secondHit(unit);
 	return true;
@@ -57,11 +57,10 @@ bool Warrior::secondHit(Unit& unit)
 	const int secondHitPossibility = 7;
 	if (PosibilityCounter(secondHitPossibility * (*m_level)))
 	{
-		signal(Signals::WAIT_TIME - 75, Signals::ATTACK_BLOCK);
+		signal(Signals::WAIT_TIME - 60, Signals::ATTACK_BLOCK);
 		std::cout << getName() << " hitted "
 			<< unit.getName() << " twice\n";
-		const int multiDamage = damageMultiply(m_damage + m_weapon->getDamage()) / 2 
-			- m_weapon->getDamage();
+		const int multiDamage = damageMultiply(m_damage) / 2;
 		return m_stateHolder.injureUnit(m_weapon, unit, multiDamage);
 	}
 	return false;

@@ -9,10 +9,10 @@ ArmorAmplifyElem::ArmorAmplifyElem(int armorAmplify)
 
 void ArmorAmplifyElem::effectUnit(Unit& unit)
 {
-	unit.m_armor.changeValue(m_change);
+	unit.m_armor.changeAdditaionalValue(m_change);
 }
 
 void ArmorAmplifyElem::uneffectUnit(Unit& unit)
 {
-	unit.m_armor.changeValue(-m_change);
+	unit.m_armor.changeAdditaionalValue(-m_change);
 }

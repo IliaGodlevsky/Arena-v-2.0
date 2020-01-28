@@ -37,7 +37,8 @@ bool AttackAndSilenceMagic::isEqual(const MagicPtr& magic)const
 
 void AttackAndSilenceMagic::showFullInfo()const
 {
-
+	AttackMagic::showFullInfo();
+	std::cout << "Mutes unit for " << m_timer.getDuration() << " rounds\n";
 }
 
 void AttackAndSilenceMagic::showShortInfo()const

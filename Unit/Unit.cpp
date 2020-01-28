@@ -188,9 +188,10 @@ void Unit::showFullInfo()const
 	setColor();
 	m_health.showFullInfo("HP");
 	m_mana.showFullInfo("MP");
-	std::cout<<"DMG: "<<m_damage +
-		m_weapon->getDamage() 
-		<< " Arm: " << m_armor << std::endl;
+	m_damage.showShortInfo("DMG");
+	std::cout << " ";
+	m_armor.showShortInfo("ARM");
+	std::cout << std::endl;
 	m_stateHolder.showShortInfo();
 	m_magicBook.showShortInfo();
 	m_magicOnMe.showShortInfo();

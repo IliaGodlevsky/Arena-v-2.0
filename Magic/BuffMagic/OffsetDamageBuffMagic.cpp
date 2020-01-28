@@ -52,4 +52,6 @@ bool OffsetDamageBuffMagic::isEqual(const MagicPtr& magic)const
 void OffsetDamageBuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
+	std::cout << "Takes " << m_armorReduce << " armor and adds "
+		<< m_damageAmplify << " damage for " << m_timer.getDuration() << " rounds\n";
 }

@@ -9,10 +9,10 @@ ArmorReduceElem::ArmorReduceElem(int armorReduce)
 
 void ArmorReduceElem::uneffectUnit(Unit& unit)
 {
-	unit.m_armor.changeValue(m_change);
+	unit.m_armor.changeAdditaionalValue(m_change);
 }
 
 void ArmorReduceElem::effectUnit(Unit& unit)
 {
-	unit.m_armor.changeValue(-m_change);
+	unit.m_armor.changeAdditaionalValue(-m_change);
 }

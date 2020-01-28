@@ -9,10 +9,10 @@ DamageAmplifyElem::DamageAmplifyElem(int damageAmplify)
 
 void DamageAmplifyElem::effectUnit(Unit& unit)
 {
-	unit.m_damage.changeValue(m_change);
+	unit.m_damage.changeAdditaionalValue(m_change);
 }
 
 void DamageAmplifyElem::uneffectUnit(Unit& unit)
 {
-	unit.m_damage.changeValue(-m_change);
+	unit.m_damage.changeAdditaionalValue(-m_change);
 }

@@ -40,7 +40,8 @@ bool ManaReduceMagic::isEqual(const MagicPtr& magic)const
 
 void ManaReduceMagic::showFullInfo()const
 {
-	
+	Magic::showFullInfo();
+	std::cout << "Burns " << m_mpReduce << " mana\n";
 }
 
 void ManaReduceMagic::showShortInfo()const

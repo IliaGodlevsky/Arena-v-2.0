@@ -41,7 +41,7 @@ int AttackMagic::getCost()const
 void AttackMagic::showFullInfo()const
 {
 	Magic::showFullInfo();
-	m_damage.showFullInfo();
+	std::cout << "Deals " << m_damage << " damage\n";
 }
 
 void AttackMagic::showShortInfo()const

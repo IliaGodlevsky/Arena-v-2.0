@@ -38,7 +38,7 @@ bool AttackAndStunMagic::isEqual(const MagicPtr& magic)const
 void AttackAndStunMagic::showFullInfo()const
 {
 	AttackMagic::showFullInfo();
-	std::cout << "Stuns unit for " << m_timer.getDuration();
+	std::cout << "Stuns unit for " << m_timer.getDuration() << " rounds\n";
 }
 
 void AttackAndStunMagic::showShortInfo()const

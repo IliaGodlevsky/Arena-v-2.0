@@ -20,6 +20,7 @@ Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory,
 	m_mail->putOn(*this);
 	m_shield->putOn(*this);
 	m_magicBook.takeNew(secondFactory->createItem());
+	m_damage.changeValue(m_weapon->getDamage());
 }
 
 Wizard::Wizard(const Wizard& unit)

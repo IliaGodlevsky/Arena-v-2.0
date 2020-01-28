@@ -25,7 +25,7 @@ MagicWeapon& MagicWeapon::operator=(const MagicWeapon& weapon)
 
 void MagicWeapon::injureUnit(Unit& unit, int dmg)const
 {
-	if (unit.takeDamage(m_damage + dmg))
+	if (unit.takeDamage(dmg))
 		m_magic->effectUnit(unit);
 }
 

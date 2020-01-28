@@ -36,7 +36,7 @@ void Weapon::showShortInfo()const
 
 void Weapon::injureUnit(Unit& unit, int damage)const
 {
-	unit.takeDamage(m_damage + damage);
+	unit.takeDamage(damage);
 }
 
 WeaponPtr Weapon::clone()const

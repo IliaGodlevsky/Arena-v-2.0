@@ -45,7 +45,8 @@ bool SilenceMagic::isEqual(const MagicPtr& magic)const
 void SilenceMagic::showFullInfo()const
 {
 	Magic::showFullInfo();
-	std::cout << "Enemy can't cast magic\n";
+	std::cout << "Enemy can't cast magic for " 
+		<< m_timer.getDuration() << " rounds\n";
 }
 
 void SilenceMagic::showShortInfo()const

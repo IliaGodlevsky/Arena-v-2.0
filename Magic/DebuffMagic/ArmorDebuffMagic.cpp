@@ -48,5 +48,7 @@ bool ArmorDebuffMagic::isEqual(const MagicPtr& magic)const
 
 void ArmorDebuffMagic::showFullInfo()const
 {
-
+	ParamChangeMagic::showFullInfo();
+	std::cout << "Reduces enemy armor by " << m_armorReduce
+		<< " for " << m_timer.getDuration() << " rounds\n";
 }
