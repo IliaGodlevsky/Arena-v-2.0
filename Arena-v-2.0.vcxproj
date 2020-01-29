@@ -112,6 +112,7 @@
     <ClCompile Include="UnitState\InnerUnitState\ActiveUnitState.cpp" />
     <ClCompile Include="UnitState\InnerUnitState\DeadUnitState.cpp" />
     <ClCompile Include="UnitState\InnerUnitState\InnerUnitState.cpp" />
+    <ClCompile Include="UnitState\InnerUnitState\NotEnoughDamageState.cpp" />
     <ClCompile Include="UnitState\InnerUnitState\NotEnoughManaUnitState.cpp" />
     <ClCompile Include="UnitState\OuterUnitState\MutedUnitState.cpp" />
     <ClCompile Include="UnitState\OuterUnitState\OuterUnitState.cpp" />
@@ -227,6 +228,7 @@
     <ClInclude Include="UnitState\InnerUnitState\ActiveUnitState.h" />
     <ClInclude Include="UnitState\InnerUnitState\DeadUnitState.h" />
     <ClInclude Include="UnitState\InnerUnitState\InnerUnitState.h" />
+    <ClInclude Include="UnitState\InnerUnitState\NotEnoughDamageState.h" />
     <ClInclude Include="UnitState\InnerUnitState\NotEnoughManaUnitState.h" />
     <ClInclude Include="UnitState\OuterUnitState\MutedUnitState.h" />
     <ClInclude Include="UnitState\OuterUnitState\OuterUnitState.h" />

@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef ARENA_H_
 #define ARENA_H_
 

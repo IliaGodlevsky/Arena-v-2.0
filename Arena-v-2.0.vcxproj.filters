@@ -461,6 +461,9 @@
     <ClCompile Include="Magic\AttackMagic\ManaReduceMagic.cpp">
       <Filter>Source\Magic\AttackMagic</Filter>
     </ClCompile>
+    <ClCompile Include="UnitState\InnerUnitState\NotEnoughDamageState.cpp">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -801,6 +804,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\InnerUnitState\NotEnoughDamageState.h">
+      <Filter>Source\UnitState\InnerUnitState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

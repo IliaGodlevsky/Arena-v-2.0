@@ -107,7 +107,13 @@ void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 	const std::string YOU_HAVE_MAGIC_MSG = "You have such a magic. "
 		"Do you really want to take it?: ";
 	victim.m_magicBook.magicList();
-	index magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
+	std::cout << victim.m_magicBook.size() + 1 << ". Show more info about magic\n";
+	index magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size() + 1, 1);
+	if (victim.m_magicBook.size() + 1 == magicToTake)
+	{
+		victim.m_magicBook.showFullInfo();
+		magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
+	}
 	bool wantToTakeMagic;
 	while (decidingUnit.m_magicBook.hasItem(victim.m_magicBook[magicToTake - 1]))
 	{
