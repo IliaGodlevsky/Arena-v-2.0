@@ -16,13 +16,11 @@ bool MirrorShield::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)con
 	{
 		AttackMagic* temp = DYNAMIC(AttackMagic*, magic);
 		signal(Signals::WAIT_TIME, Signals::MAGIC_REFLECT);
-		setColor();
 		std::cout << "But magic was reflected";
 		if (nullptr == temp)
 		{
 			magic->effectUnit(caster);
 			std::cout << " back to ";
-			setColor();
 			std::cout << caster.getName();
 		}
 		std::cout << std::endl;
