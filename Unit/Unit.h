@@ -24,8 +24,8 @@ public:
 	Unit& operator=(const Unit& unit) = delete;
 	Unit& operator=(Unit&& unit) = delete;
 	virtual ~Unit() = default;
-	virtual bool injureUnit(Unit& unit);
-	virtual bool castMagic(Unit& unit, MagicPtr& magic);
+	bool castMagic(Unit& unit, MagicPtr& magic);
+	virtual bool injureUnit(Unit& unit);	
 	virtual void setName(std::string name)final;
 	virtual void payMana(int manaCost);
 	virtual bool isEnoughManaFor(const MagicPtr& magic)const;
@@ -60,6 +60,7 @@ protected:
 	std::string m_name;
 	DecisionPtr m_decision = nullptr;
 private:
+	virtual void prepareMagic(MagicPtr& magic)const;
 	int m_teamNumber = 0;
 };
 

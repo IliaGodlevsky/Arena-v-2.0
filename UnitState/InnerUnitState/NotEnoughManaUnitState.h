@@ -8,15 +8,7 @@ class NotEnoughManaUnitState : public InnerUnitState
 public:
 	NotEnoughManaUnitState(Unit* unit);
 	NotEnoughManaUnitState() = default;
-	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
-	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
-	UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
-		const Gladiators& units)const;
-	MagicPtr chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
-		const Gladiators& units)const;
-	UnitPtr chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
-		const MagicPtr& magicToCast, 
-		const Gladiators& units)const;
+	bool canCast()const;
 	bool isExpired()const override;
 	void showShortInfo()const override;
 	StatePtr clone()const;

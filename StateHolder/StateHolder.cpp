@@ -1,11 +1,11 @@
+#include <numeric>
+
 #include "StateHolder.h"
 
 #include "../Unit/Unit.h"
 #include "../Arena/Arena.h"
-#include "../UnitState/OuterUnitState/StunUnitState.h"
-#include "../UnitState/OuterUnitState/MutedUnitState.h"
 #include "../Magic/Magic.h"
-#include "../Decision/Decision.h"
+#include "../UnitState/OuterUnitState/OuterUnitState.h"
 #include "../UnitState/InnerUnitState/ActiveUnitState.h"
 
 enum { CURRENT_STATE };
@@ -14,6 +14,16 @@ inline bool isMoreImportantState(const StatePtr& st1,
 	const StatePtr& st2)
 {
 	return *st1 > *st2;
+}
+
+inline bool castAccum(const StatePtr st1, bool accum)
+{
+	return st1->canCast() && accum;
+}
+
+inline bool attackAccum(const StatePtr st1, bool accum)
+{
+	return st1->canAttack() && accum;
 }
 
 StateHolder::StateHolder(Unit* unit)
@@ -40,10 +50,7 @@ StateHolder::StateHolder(Unit* unit, const StateHolder& stateHolder)
 
 bool StateHolder::itemHasPassedControl(const StatePtr& unitState)const
 {
-	if (nullptr == unitState)
-		return false;
-	else
-		return true;
+	return nullptr != unitState;
 }
 
 void StateHolder::takeNew(const StatePtr& unitState)
@@ -60,42 +67,24 @@ void StateHolder::takeNew(const StatePtr& unitState)
 	}
 }
 
-bool StateHolder::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+bool StateHolder::canCast()const
 {
-	return m_items[CURRENT_STATE]->castMagic(caster, unit, magic);
+	return stateAccumulator(m_items, castAccum);
 }
 
-bool StateHolder::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
+bool StateHolder::canAttack()const
 {
-	return m_items[CURRENT_STATE]->injureUnit(weapon, unit, damage);
+	return stateAccumulator(m_items, attackAccum);
 }
 
-bool StateHolder::takeDamage(Unit& unit, int damage)
+bool StateHolder::canTakeDamage(Unit& unit, int damage)const
 {
-	return m_items[CURRENT_STATE]->takeDamage(unit, damage);
+	return m_items[CURRENT_STATE]->canTakeDamage(unit, damage);
 }
 
-bool StateHolder::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)
+bool StateHolder::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const
 {
-	return m_items[CURRENT_STATE]->takeMagicEffect(unit, caster, magic);
-}
-
-UnitPtr StateHolder::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return m_items[CURRENT_STATE]->chooseUnitToAttack(decision, decidingUnit, units);
-}
-
-MagicPtr StateHolder::chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return m_items[CURRENT_STATE]->chooseMagicToCast(decision, decidingUnit, units);
-}
-
-UnitPtr StateHolder::chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
-	const MagicPtr& magicToCast, const Gladiators& units)const
-{
-	return m_items[CURRENT_STATE]->chooseUnitToCast(decision, decidingUnit, magicToCast, units);
+	return m_items[CURRENT_STATE]->canTakeMagicEffect(unit, caster, magic);
 }
 
 void StateHolder::makeExpire(size_t stateIndex)
@@ -120,9 +109,8 @@ void StateHolder::takeOffExpired()
 
 void StateHolder::setItemColor(const StatePtr& unitState)const
 {
-	InnerUnitState* inner = nullptr;
-	inner = DYNAMIC(InnerUnitState*, unitState);
-	if (inner == nullptr)
+	InnerUnitState* inner = DYNAMIC(InnerUnitState*, unitState);
+	if (nullptr == inner)
 		setColor(LIGHT_RED);
 	else
 		setColor(BROWN);

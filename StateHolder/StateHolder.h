@@ -3,10 +3,21 @@
 
 #include "../Globals/Globals.h"
 #include "../UnitState/UnitState.h"
-#include "../UnitState/InnerUnitState/ActiveUnitState.h"
 #include "../Containers/ExpireableContainer.h"
 
-bool isMoreImportantState(const StatePtr& st1, const StatePtr& st2);
+bool isMoreImportantState(const StatePtr& st1, 
+	const StatePtr& st2);
+template <typename Predicate>
+bool stateAccumulator(const std::vector<StatePtr>& states, 
+	Predicate pred)
+{
+	bool accum = true;
+	for (size_t i = 0; i < states.size(); i++)
+		accum = pred(states[i], accum);
+	return accum;
+}
+bool castAccum(const StatePtr st1, bool accum);
+bool attackAccum(const StatePtr st1, bool accum);
 
 class StateHolder : public ExpireableContainer<StatePtr>
 {
@@ -19,18 +30,12 @@ public:
 	StateHolder& operator=(StateHolder&& stateHolder) = delete;
 	bool itemHasPassedControl(const StatePtr& unitState)const override;
 	void makeExpire(size_t stateIndex)override;
-	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
-	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
-	bool takeDamage(Unit& unit, int damage);
-	bool takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic);
+	bool canCast()const;
+	bool canAttack()const;
+	bool canTakeDamage(Unit& unit, int damage)const;
+	bool canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const;
 	void takeNew(const StatePtr& unitState) override;
 	void expireIfFound(const StatePtr& unitState) override;
-	UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
-		const Gladiators& units)const;
-	MagicPtr chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
-		const Gladiators& units)const;
-	UnitPtr chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const;
 	void takeOffExpired() override;
 	void showShortInfo()const override;
 	void setItemColor(const StatePtr& unitState)const override;

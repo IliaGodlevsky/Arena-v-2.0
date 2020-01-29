@@ -3,7 +3,7 @@
 #include "../Arena/Arena.h"
 #include "../Magic/Magic.h"
 #include "../UnitState/InnerUnitState/NotEnoughManaUnitState.h"
-#include "../UnitState/InnerUnitState/ActiveUnitState.h"
+#include "../UnitState/InnerUnitState/NotEnoughDamageState.h"
 #include "../Level/Level.h"
 #include "../Interface/Interface.h"
 #include "../UnitState/InnerUnitState/DeadUnitState.h"
@@ -123,20 +123,32 @@ void Unit::payMana(int manaCost)
 
 bool Unit::injureUnit(Unit& unit)
 {
-	return m_stateHolder.injureUnit(m_weapon, unit, m_damage);
+	if (m_stateHolder.canAttack() && nullptr != m_weapon)
+	{
+		m_weapon->injureUnit(unit, m_damage);
+		return true;
+	}
+	return false;
 }
 
 bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 {
-	IDuration* duration = DYNAMIC(IDuration*, magic);
-	if (nullptr != duration)
-		duration->setStartTime(Arena::getCurrentRound());
-	return m_stateHolder.castMagic(*this, unit, magic);
+	if (m_stateHolder.canCast() && nullptr != magic)
+	{	
+		IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
+		prepareMagic(magic);
+		unit.takeMagicEffect(*this, magic);
+		payMana(manaCost->getCost());
+		if (!m_magicBook.canCastAnySpell())
+			m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
+		return true;
+	}
+	return false;
 }
 
 bool Unit::takeDamage(int damage)
 {
-	if (m_stateHolder.takeDamage(*this, damage))
+	if (m_stateHolder.canTakeDamage(*this, damage))
 	{
 		HpReduceElem(m_shield->calculateDamageAbsorb(m_armor, damage)).effectUnit(*this);
 		if(!isAlive())
@@ -148,11 +160,13 @@ bool Unit::takeDamage(int damage)
 
 bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 {
-	if (m_stateHolder.takeMagicEffect(*this, caster, magic))
+	if (m_stateHolder.canTakeMagicEffect(*this, caster, magic))
 	{
 		magic->effectUnit(*this);
 		if(!isAlive())
 			m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
+		if (m_damage <= 0)
+			m_stateHolder.takeNew(StatePtr(new NotEnoughDamageState(this)));
 		return true;
 	}
 	return false;
@@ -164,26 +178,32 @@ void Unit::setTeam(int teamNumber)
 }
 
 UnitPtr Unit::chooseUnitToAttack(const Gladiators& units)const
-{
-	return m_stateHolder.chooseUnitToAttack(m_decision, *this, units);
+{	
+	if (m_stateHolder.canAttack())
+		return m_decision->chooseUnitToAttack(*this, units);
+	return nullptr;
 }
 
 MagicPtr Unit::chooseMagicToCast(const Gladiators& units)const
 {
-	return m_stateHolder.chooseMagicToCast(m_decision, *this, units);
+	if (m_stateHolder.canCast())
+		return m_decision->chooseMagicToCast(*this, units);
+	return nullptr;
 }
 
 UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast, 
 	const Gladiators& units)const
 {
-	return m_stateHolder.chooseUnitToCast(m_decision, *this, magicToCast, units);
+	if (m_stateHolder.canCast())
+		return m_decision->chooseUnitToCast(*this, magicToCast, units);
+	return nullptr;
 }
 
 void Unit::showFullInfo()const
 {
 	setColor(TextColor(m_teamNumber + 1));
-	std::cout<<getName()<<", Level: "<<
-		*m_level << ", " << "Team: " 
+	std::cout << getName() << ", Level: " <<
+		*m_level << ", " << "Team: "
 		<< m_teamNumber << std::endl;
 	setColor();
 	m_health.showFullInfo("HP");
@@ -209,4 +229,11 @@ UnitPtr Unit::getPureClone()const
 	clone->m_weapon = clone->m_weapon->getPureWeapon();
 	clone->m_shield = clone->m_shield->getPureShield();
 	return clone;
+}
+
+void Unit::prepareMagic(MagicPtr& magic)const
+{
+	IDuration* duration = DYNAMIC(IDuration*, magic);
+	if (nullptr != duration)
+		duration->setStartTime(Arena::getCurrentRound());
 }

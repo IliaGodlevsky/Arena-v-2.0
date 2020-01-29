@@ -11,32 +11,14 @@ StunUnitState::StunUnitState(const Timer& timer)
 
 }
 
-bool StunUnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+bool StunUnitState::canCast()const
 {
 	return false;
 }
 
-bool StunUnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
+bool StunUnitState::canAttack()const
 {
 	return false;
-}
-
-UnitPtr StunUnitState::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return UnitState::chooseUnitToAttack(decision, decidingUnit, units);
-}
-
-MagicPtr StunUnitState::chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return UnitState::chooseMagicToCast(decision, decidingUnit, units);
-}
-
-UnitPtr StunUnitState::chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
-	const MagicPtr& magicToCast, const Gladiators& units)const
-{
-	return UnitState::chooseUnitToCast(decision, decidingUnit, magicToCast, units);
 }
 
 int StunUnitState::getValue()const
@@ -50,12 +32,12 @@ void StunUnitState::showShortInfo()const
 		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
 }
 
-bool StunUnitState::takeDamage(Unit& unit, int damage)
+bool StunUnitState::canTakeDamage(Unit& unit, int damage)const
 {
 	return true;
 }
 
-bool StunUnitState::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)
+bool StunUnitState::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const
 {
 	return true;
 }

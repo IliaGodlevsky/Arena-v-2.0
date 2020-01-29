@@ -3,57 +3,25 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
 #include "../Arena/Arena.h"
-#include "../Magic/Elements/HpReduceElem.h"
-#include "../Interface/Interface.h"
-#include "InnerUnitState/NotEnoughManaUnitState.h"
-#include "../UnitState/InnerUnitState/DeadUnitState.h"
 
-bool UnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+bool UnitState::canCast()const
 {
-	IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
-	if (!caster.isEnoughManaFor(magic)|| nullptr == magic)
-		return false;
-	unit.takeMagicEffect(caster, magic);
-	caster.payMana(manaCost->getCost());
-	if (!caster.m_magicBook.canCastAnySpell())
-		caster.m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(&caster)));
 	return true;
 }
 
-bool UnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
+bool UnitState::canAttack()const
 {
-	if (nullptr == weapon)
-		return false;
-	weapon->injureUnit(unit, damage);
 	return true;
 }
 
-bool UnitState::takeDamage(Unit& unit, int damage)
+bool UnitState::canTakeDamage(Unit& unit, int damage)const
 {
 	return unit.m_shield->takeDamage(unit, damage);
 }
 
-bool UnitState::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)
+bool UnitState::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const
 {
 	return unit.m_shield->takeMagicEffect(unit, caster, magic);
-}
-
-UnitPtr UnitState::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit, 
-	const Gladiators& units)const
-{
-	return nullptr;
-}
-
-MagicPtr UnitState::chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return nullptr;
-}
-
-UnitPtr UnitState::chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
-	const MagicPtr& magicToCast, const Gladiators& units)const
-{
-	return nullptr;
 }
 
 bool UnitState::operator < (const UnitState& unitState)const

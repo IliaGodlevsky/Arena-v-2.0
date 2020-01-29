@@ -16,11 +16,11 @@ public:
 	Wizard& operator=(const Wizard&) = delete;
 	Wizard& operator=(Wizard&&) = delete;
 	void payMana(int manaCost)override;
-	bool castMagic(Unit& unit, MagicPtr& magic);
 	bool isEnoughManaFor(const MagicPtr& magic)const;
 	~Wizard() = default;
 private:
 	int countManaCost(int manaCost)const;
+	void prepareMagic(MagicPtr& magic)const;
 };
 
 #endif

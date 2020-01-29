@@ -8,16 +8,10 @@ class StunUnitState : public OuterUnitState
 public:
 	StunUnitState() = default;
 	StunUnitState(const Timer& timer);
-	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
-	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
-	bool takeDamage(Unit& unit, int damage) override;
-	bool takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic) override;
-	UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
-		const Gladiators& units)const;
-	MagicPtr chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
-		const Gladiators& units)const;
-	UnitPtr chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const;
+	bool canCast()const;
+	bool canAttack()const;
+	bool canTakeDamage(Unit& unit, int damage) const override;
+	bool canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic) const override;
 	void showShortInfo()const;
 	StatePtr clone()const;
 private:

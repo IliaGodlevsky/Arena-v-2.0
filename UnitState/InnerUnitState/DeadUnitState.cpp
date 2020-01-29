@@ -7,33 +7,14 @@ DeadUnitState::DeadUnitState(Unit* unit)
 
 }
 
-bool DeadUnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+bool DeadUnitState::canCast()const
 {
 	return false;
 }
 
-bool DeadUnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
+bool DeadUnitState::canAttack()const
 {
 	return false;
-}
-
-UnitPtr DeadUnitState::chooseUnitToAttack(DecisionPtr decision,const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return nullptr;
-}
-
-MagicPtr DeadUnitState::chooseMagicToCast(DecisionPtr decision,const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return nullptr;
-}
-
-UnitPtr DeadUnitState::chooseUnitToCast(DecisionPtr decision,const Unit& decidingUnit,
-	const MagicPtr& magicToCast,
-	const Gladiators& units)const
-{
-	return nullptr;
 }
 
 bool DeadUnitState::isExpired()const

@@ -8,32 +8,9 @@ NotEnoughManaUnitState::NotEnoughManaUnitState(Unit* unit)
 
 }
 
-bool NotEnoughManaUnitState::castMagic(Unit& caster, Unit& unit, MagicPtr& magic)
+bool NotEnoughManaUnitState::canCast()const
 {
 	return false;
-}
-
-bool NotEnoughManaUnitState::injureUnit(WeaponPtr& weapon, Unit& unit, int damage)
-{
-	return UnitState::injureUnit(weapon, unit, damage);
-}
-
-UnitPtr NotEnoughManaUnitState::chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return decision->chooseUnitToAttack(decidingUnit, units);
-}
-
-MagicPtr NotEnoughManaUnitState::chooseMagicToCast(DecisionPtr decision, const Unit& decidingUnit,
-	const Gladiators& units)const
-{
-	return nullptr;
-}
-
-UnitPtr NotEnoughManaUnitState::chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
-	const MagicPtr& magicToCast, const Gladiators& units)const
-{
-	return nullptr;
 }
 
 bool NotEnoughManaUnitState::isExpired()const

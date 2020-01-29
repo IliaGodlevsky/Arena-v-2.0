@@ -8,16 +8,10 @@ class ActiveUnitState : public InnerUnitState
 public:
 	ActiveUnitState() = default;
 	ActiveUnitState(Unit* unit);
-	UnitPtr chooseUnitToAttack(DecisionPtr decision,const Unit& decidingUnit,
-		const Gladiators& units)const override;
-	MagicPtr chooseMagicToCast(DecisionPtr decision,const Unit& decidingUnit,
-		const Gladiators& units)const override;
-	UnitPtr chooseUnitToCast(DecisionPtr decision,const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const override;
 	bool isExpired()const;
 	StatePtr clone()const;
 private:
-	enum { ACTIVE_STATE = 0 };
+	enum { ACTIVE_STATE = -1 };
 	int getValue()const override;
 };
 

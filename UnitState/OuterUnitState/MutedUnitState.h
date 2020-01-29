@@ -8,14 +8,7 @@ class MutedUnitState : public OuterUnitState
 public:
 	MutedUnitState(const Timer& timer);
 	MutedUnitState() = default;
-	bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
-	bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
-	UnitPtr chooseUnitToAttack(DecisionPtr decision,const Unit& decidingUnit,
-		const Gladiators& units)const override;
-	MagicPtr chooseMagicToCast(DecisionPtr decision,const Unit& decidingUnit,
-		const Gladiators& units)const override;
-	UnitPtr chooseUnitToCast(DecisionPtr decision,const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const override;
+	bool canCast()const;
 	void showShortInfo()const;
 	StatePtr clone()const;
 private:

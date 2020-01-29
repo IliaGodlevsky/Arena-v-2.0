@@ -12,16 +12,11 @@ class UnitState
 {
 public:
 	UnitState() = default;
-	virtual bool castMagic(Unit& caster, Unit& unit, MagicPtr& magic);
-	virtual bool injureUnit(WeaponPtr& weapon, Unit& unit, int damage);
-	virtual bool takeDamage(Unit& unit, int damage);
-	virtual bool takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic);
-	virtual UnitPtr chooseUnitToAttack(DecisionPtr decision, const Unit& decidingUnit, 
-		const Gladiators& units)const = 0;
-	virtual MagicPtr chooseMagicToCast(DecisionPtr decision,const Unit& decidingUnit,
-		const Gladiators& units)const = 0;
-	virtual UnitPtr chooseUnitToCast(DecisionPtr decision, const Unit& decidingUnit,
-		const MagicPtr& magicToCast, const Gladiators& units)const = 0;
+	virtual bool canCast()const;
+	virtual bool canAttack()const;
+	virtual bool canTakeDamage(Unit& unit, int damage)const;
+	virtual bool canTakeMagicEffect(Unit& unit, 
+		Unit& caster, MagicPtr& magic)const;
 	virtual ~UnitState() = default;
 	virtual void showShortInfo()const;
 	virtual bool operator <(const UnitState& unitState)const final;
