@@ -14,6 +14,8 @@
 
 #include "Arena.h"
 
+enum { WARRIOR = 1, WIZARD };
+
 // reserve names for computer players, can be needed
 // if file with names is empty or is not found
 const std::vector<std::string> m_reserveNames =
@@ -105,17 +107,16 @@ void Arena::prepareUnits()
 	std::vector<std::string> unitsNames;
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
 	ThreadGuard guard(thread);
-	// number of player team
 	int teamNumber = 1;
-	auto unitGenerator = [&unitsNames, &thread, &teamNumber]()
-	{	
-		enum { WARRIOR = 1, WIZARD };
-		std::vector<UnitFactoryPtr> unitFactories({ 
-			UnitFactoryPtr(new WarriorFactory()),
+	std::vector<UnitFactoryPtr> unitFactories({ UnitFactoryPtr(new WarriorFactory()),
 			UnitFactoryPtr(new WizardFactory()) });
-		index factoryNumber = inputNumber("1. Warrior 2. "
+	index factoryNumber;
+	UnitPtr unit;
+	auto unitGenerator = [&]()
+	{		
+		factoryNumber = inputNumber("1. Warrior 2. "
 			"Wizard\nChoose unit type: ", WIZARD, WARRIOR);
-		UnitPtr unit = unitFactories[factoryNumber - 1]->createUnit();
+		unit = unitFactories[factoryNumber - 1]->createUnit();
 		if (thread.joinable())
 			thread.join();
 		if (unitsNames.empty())
@@ -130,8 +131,7 @@ void Arena::prepareUnits()
 }
 
 void Arena::proposeToPlayTeams()
-{
-	
+{	
 	const int MIN_PLAYERS_TO_PLAY_TEAMS = 2;
 	const int MIN_TEAMS_NUMBER = 2;
 	if (m_units.size() > MIN_PLAYERS_TO_PLAY_TEAMS)
@@ -142,10 +142,15 @@ void Arena::proposeToPlayTeams()
 			size_t teamsNumber = inputNumber("Enter teams"
 				" number: ", m_units.size(), MIN_TEAMS_NUMBER);
 			std::vector<Gladiators> teams = breakIntoTeams(teamsNumber);
-			pushAlliesToArena(teams);
+			for (auto& team : teams)
+				std::copy(team.begin(), team.end(), std::back_inserter(m_units));
 		}
 	}
-	std::shuffle(m_units.begin(), m_units.end(), 
+}
+
+void Arena::setStartUnit()
+{
+	std::shuffle(m_units.begin(), m_units.end(),
 		std::mt19937(std::random_device()()));
 	m_currentUnit = m_units.begin();
 }
@@ -175,13 +180,6 @@ std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 		}
 	}
 	return teams;
-}
-
-void Arena::pushAlliesToArena(const std::vector<Gladiators>& teams)
-{
-	std::back_insert_iterator<Gladiators> iter(m_units);
-	for (auto& team : teams) 
-		std::copy(team.begin(), team.end(), iter);
 }
 
 void Arena::playCastStep()

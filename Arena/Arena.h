@@ -28,12 +28,13 @@ public:
 	void takeOfLosers();
 	void prepareUnits();
 	void proposeToPlayTeams();
+	void setStartUnit();
 	int setNumberOfUnits()const;
+
 private:
 	Arena();
 	void showMiniature()const;
 	std::vector<Gladiators> breakIntoTeams(size_t teamsNumber);
-	void pushAlliesToArena(const std::vector<Gladiators>& teams);
 	Gladiators m_units;
 	constexpr int getMaxNubmerOfPlayers()const;
 	constexpr int getMinNumberOfPlayers()const;	

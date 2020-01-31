@@ -12,6 +12,7 @@ int main()
 			system("cls");
 			arena.prepareUnits();
 			arena.proposeToPlayTeams();
+			arena.setStartUnit();
 			while (!arena.isGameOver())
 			{
 				arena.showUnits();
