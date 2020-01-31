@@ -21,35 +21,30 @@
 Компоненты STL
 
 Алгоритмы, используемые в программе:
-std::shuffle 
-std::generate 
-std::copy 
-std::for_each 
-std::remove_if 
-std::find_if
-std::accumulate
-std::sort
-std::count_if
+1. std::shuffle 
+2. std::generate 
+3. std::copy 
+4. std::for_each 
+5. std::remove_if 
+6. std::find_if
+7. std::accumulate
+8. std::sort
+9. std::count_if
 
 Функторы, используемые в программе
-
-std::mem_fn
-
-лямбда выражения разной сложности
-
+1. std::mem_fn
+2. лямбда выражения разной сложности
 
 Контейнеры, используемые в программе
-
-std::vector
+1. std::vector
 
 Умные указатели, используемые в программе
-std::unique_ptr
-std::shared_ptr
+1. std::unique_ptr
+2. std::shared_ptr
 
 
 Шаблонная функции, используемые в программе
-
-std::back_inserter
+1. std::back_inserter
 
 
 Используются следующие паттерны:
