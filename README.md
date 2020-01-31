@@ -19,30 +19,48 @@
 15. Лямбда функции
 
 Компоненты STL
+
 Алгоритмы, используемые в программе:
+
 std::shuffle 
+
 std::generate 
+
 std::copy 
+
 std::for_each 
+
 std::remove_if 
+
 std::find_if
+
 std::accumulate
+
 std::sort
+
 std::count_if
 
+
 Функторы, используемые в программе
+
 std::mem_fn
+
 лямбда выражения разной сложности
 
+
 Контейнеры, используемые в программе
+
 std::vector
 
 Умные указатели, используемые в программе
 std::unique_ptr
 std::shared_ptr
 
+
 Шаблонная функции, используемые в программе
+
 std::back_inserter
+
 
 Используются следующие паттерны:
 1. Синглтон
