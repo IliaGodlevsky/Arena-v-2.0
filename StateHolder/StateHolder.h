@@ -5,20 +5,6 @@
 #include "../UnitState/UnitState.h"
 #include "../Containers/ExpireableContainer.h"
 
-bool isMoreImportantState(const StatePtr& st1, 
-	const StatePtr& st2);
-template <typename Predicate>
-bool stateAccumulator(const std::vector<StatePtr>& states, 
-	Predicate pred)
-{
-	bool accum = true;
-	for (size_t i = 0; i < states.size(); i++)
-		accum = pred(states[i], accum);
-	return accum;
-}
-bool castAccum(const StatePtr st1, bool accum);
-bool attackAccum(const StatePtr st1, bool accum);
-
 class StateHolder : public ExpireableContainer<StatePtr>
 {
 public:
@@ -29,7 +15,7 @@ public:
 	StateHolder& operator=(const StateHolder& stateHolder) = delete;
 	StateHolder& operator=(StateHolder&& stateHolder) = delete;
 	bool itemHasPassedControl(const StatePtr& unitState)const override;
-	void makeExpire(size_t stateIndex)override;
+	void makeExpire(StatePtr& state)override;
 	bool canCast()const;
 	bool canAttack()const;
 	bool canTakeDamage(Unit& unit, int damage)const;

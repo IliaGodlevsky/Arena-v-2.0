@@ -40,6 +40,7 @@ private:
 	UnitPtr m_unitToAttack = nullptr;
 	UnitPtr m_unitToCast = nullptr;
 	MagicPtr m_magicToCast = nullptr;
+	Gladiators::iterator m_currentUnit;
 	index m_unitIndex = 0;
 	static int m_round;
 };

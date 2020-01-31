@@ -17,7 +17,7 @@ public:
 	void takeOffExpired() override;
 	void takeNew(const MagicPtr& magic) override;
 	void showShortInfo()const override;
-	void makeExpire(size_t magicIndex)override;
+	void makeExpire(MagicPtr& magic)override;
 private:
 	void setItemColor(const MagicPtr& magic)const override;
 	Unit* m_unit = nullptr; // unit, that have this vector of spells

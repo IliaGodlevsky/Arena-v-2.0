@@ -28,10 +28,12 @@ bool MagicOnMe::itemHasPassedControl(const MagicPtr& magic)const
 		return true;
 }
 
-void MagicOnMe::makeExpire(size_t magicIndex)
+void MagicOnMe::makeExpire(MagicPtr& magic)
 {
-	IDispelable* dispel = DYNAMIC(IDispelable*, m_items[magicIndex]);
-	IDuration* duration = DYNAMIC(IDuration*, m_items[magicIndex]);
+	auto temp = std::find_if(m_items.begin(), m_items.end(),
+		[&](const MagicPtr& it) {return magic->isEqual(it); });
+	IDispelable* dispel = DYNAMIC(IDispelable*, (*temp));
+	IDuration* duration = DYNAMIC(IDuration*, (*temp));
 	if (dispel->isDispelable())
 	{
 		duration->setStartTime(Arena::getCurrentRound() - 

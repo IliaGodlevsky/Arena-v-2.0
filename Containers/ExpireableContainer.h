@@ -11,26 +11,27 @@ class ExpireableContainer : public TemplateContainer<T>
 {
 public:
 	virtual void takeOffExpired() = 0;
-	virtual void expire(size_t itemIndex);
+	virtual void expire(T& item);
 	virtual void expireAll();
-	virtual void makeExpire(size_t itemIndex) = 0;
+	virtual void makeExpire(T& item) = 0;
 	virtual ~ExpireableContainer() = default;
 protected:
 	virtual void expireIfFound(const T& item);
 };
 
 template <class T>
-void ExpireableContainer<T>::expire(size_t itemIndex)
+void ExpireableContainer<T>::expire(T& item)
 {
-	makeExpire(itemIndex);
+	makeExpire(item);
 	takeOffExpired();
 }
 
 template <class T>
 void ExpireableContainer<T>::expireAll()
 {
-	for (size_t i = 0; i < TemplateContainer<T>::m_items.size(); i++)
-		makeExpire(i);
+	std::for_each(TemplateContainer<T>::m_items.begin(),
+		TemplateContainer<T>::m_items.end(),
+		[&](T& item) {this->makeExpire(item); });
 	takeOffExpired();
 }
 
@@ -39,8 +40,10 @@ void ExpireableContainer<T>::expireIfFound(const T& item)
 {
 	if (TemplateContainer<T>::hasItem(item))
 	{
-		index itemIndex = TemplateContainer<T>::getItemIndex(item);
-		expire(itemIndex);
+		auto temp = std::find_if(TemplateContainer<T>::m_items.begin(),
+			TemplateContainer<T>::m_items.end(), 
+			[&](const T& it) {return item->isEqual(it); });
+		expire(*temp);
 	}
 }
 #endif

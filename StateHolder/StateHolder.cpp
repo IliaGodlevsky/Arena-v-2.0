@@ -1,4 +1,5 @@
 #include <numeric>
+#include <functional>
 
 #include "StateHolder.h"
 
@@ -10,22 +11,6 @@
 
 enum { CURRENT_STATE };
 
-inline bool isMoreImportantState(const StatePtr& st1, 
-	const StatePtr& st2)
-{
-	return *st1 > *st2;
-}
-
-inline bool castAccum(const StatePtr st1, bool accum)
-{
-	return st1->canCast() && accum;
-}
-
-inline bool attackAccum(const StatePtr st1, bool accum)
-{
-	return st1->canAttack() && accum;
-}
-
 StateHolder::StateHolder(Unit* unit)
 	: m_holder(unit)
 {
@@ -36,8 +21,8 @@ void StateHolder::expireIfFound(const StatePtr& unitState)
 {
 	if (hasItem(unitState))
 	{
-		index stateIndex = getItemIndex(unitState);
-		m_items.erase(m_items.begin() + stateIndex);
+		m_items.erase(std::find_if(m_items.begin(), m_items.end(),
+			[&](const StatePtr& it) {return unitState->isEqual(it); }));
 	}
 }
 
@@ -63,18 +48,25 @@ void StateHolder::takeNew(const StatePtr& unitState)
 		if (innerState = DYNAMIC(InnerUnitState*, temp))
 			innerState->setOwner(m_holder);
 		m_items.push_back(temp);
-		std::sort(m_items.begin(), m_items.end(), isMoreImportantState);
+		std::sort(m_items.begin(), m_items.end(),
+			[](const StatePtr& st1, const StatePtr& st2) {return *st1 > *st2; });
 	}
 }
 
 bool StateHolder::canCast()const
 {
-	return stateAccumulator(m_items, castAccum);
+	// Logical multiply. If some state's canCast method 
+	// returns false, the whole sum  will be zero (false)
+	return std::accumulate(m_items.begin(), m_items.end(), bool(true), 
+		[](bool accum, const StatePtr st)->bool {return st->canCast() * accum; });
 }
 
 bool StateHolder::canAttack()const
 {
-	return stateAccumulator(m_items, attackAccum);
+	// Logical multiply. If some state's canAttack method 
+	// returns false, the whole sum  will be zero (false)
+	return std::accumulate(m_items.begin(), m_items.end(), bool(true),
+		[](bool accum, const StatePtr st)->bool {return st->canAttack() * accum; });
 }
 
 bool StateHolder::canTakeDamage(Unit& unit, int damage)const
@@ -87,24 +79,20 @@ bool StateHolder::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)c
 	return m_items[CURRENT_STATE]->canTakeMagicEffect(unit, caster, magic);
 }
 
-void StateHolder::makeExpire(size_t stateIndex)
+void StateHolder::makeExpire(StatePtr& state)
 {
-	OuterUnitState* state = nullptr;
-	if (state = DYNAMIC(OuterUnitState*, m_items[stateIndex]))
-		state->setStartTime(Arena::getCurrentRound() - 
-			state->getDuration() - 1);
+	auto temp = std::find_if(m_items.begin(),m_items.end(),
+		[&](const StatePtr& it) {return state->isEqual(it); });
+	OuterUnitState* st = nullptr;
+	if (st = DYNAMIC(OuterUnitState*, (*temp)))
+		st->setStartTime(Arena::getCurrentRound() - 
+			st->getDuration() - 1);
 }
 
 void StateHolder::takeOffExpired()
 {
-	for (size_t i = 0; i < m_items.size(); i++)
-	{	
-		if (m_items[i]->isExpired())
-		{
-			m_items.erase(m_items.begin() + i);
-			i--;
-		}
-	}
+	m_items.erase(std::remove_if(m_items.begin(), m_items.end(),
+		std::mem_fn(&UnitState::isExpired)), m_items.end());
 }
 
 void StateHolder::setItemColor(const StatePtr& unitState)const

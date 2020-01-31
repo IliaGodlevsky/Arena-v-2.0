@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <functional>
 
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
@@ -76,8 +77,6 @@ void Arena::showUnits()const
 	{
 		std::cout << i + 1 << ". ";
 		m_units[i]->showFullInfo();
-		setColor();
-		std::cout << std::endl;
 	}
 }
 
@@ -85,16 +84,11 @@ void Arena::showUnits()const
 // removed from the game
 void Arena::takeOfLosers()
 {
-	for (size_t i = 0; i < m_units.size(); i++)
-	{
-		if (!m_units[i]->isAlive())
-		{
-			m_units.erase(m_units.begin() + i);
-			if (m_unitIndex > i)
-				--m_unitIndex;
-			i--;
-		}
-	}
+	UnitPtr temp = *m_currentUnit;
+	m_units.erase(std::remove_if(m_units.begin(), m_units.end(), 
+		[](const UnitPtr unit) {return !unit->isAlive(); }), m_units.end());
+	m_currentUnit = std::find_if(m_units.begin(), m_units.end(), 
+		[&](const UnitPtr unit) {return temp == unit; });
 }
 
 bool Arena::isGameOver()const
@@ -102,7 +96,7 @@ bool Arena::isGameOver()const
 	// if the number of ally players in the game is equal to 
 	// arena size, the game is considered to be over
 	return std::count_if(m_units.begin(), m_units.end(), [&](const UnitPtr& unit) 
-	{ return unit->isAlly(*m_units[m_unitIndex]); }) == m_units.size();
+	{ return unit->isAlly(**m_currentUnit); }) == m_units.size();
 }
 
 void Arena::prepareUnits()
@@ -153,6 +147,7 @@ void Arena::proposeToPlayTeams()
 	}
 	std::shuffle(m_units.begin(), m_units.end(), 
 		std::mt19937(std::random_device()()));
+	m_currentUnit = m_units.begin();
 }
 
 std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
@@ -191,14 +186,14 @@ void Arena::pushAlliesToArena(const std::vector<Gladiators>& teams)
 
 void Arena::playCastStep()
 {
-	m_magicToCast = m_units[m_unitIndex]->chooseMagicToCast(m_units);
-	m_unitToCast = m_units[m_unitIndex]->chooseUnitToCast(m_magicToCast, m_units);
+	m_magicToCast = (*m_currentUnit)->chooseMagicToCast(m_units);
+	m_unitToCast = (*m_currentUnit)->chooseUnitToCast(m_magicToCast, m_units);
 	if (nullptr != m_unitToCast && nullptr != m_magicToCast)
 	{
-		std::cout << m_units[m_unitIndex]->getName()
+		std::cout << (*m_currentUnit)->getName()
 			<< " charmed " << m_unitToCast->getName()
 			<< " with " << m_magicToCast->getName() << std::endl;
-		m_units[m_unitIndex]->castMagic(*m_unitToCast, m_magicToCast);
+		(*m_currentUnit)->castMagic(*m_unitToCast, m_magicToCast);
 		rewardKiller(m_unitToCast);
 	}
 }
@@ -207,12 +202,12 @@ void Arena::playAttackStep()
 {
 	if (!isGameOver())
 	{
-		m_unitToAttack = m_units[m_unitIndex]->chooseUnitToAttack(m_units);
+		m_unitToAttack = (*m_currentUnit)->chooseUnitToAttack(m_units);
 		if (nullptr != m_unitToAttack)
 		{
-			std::cout << m_units[m_unitIndex]->getName()
+			std::cout << (*m_currentUnit)->getName()
 				<< " attacked " << m_unitToAttack->getName() << std::endl;
-			m_units[m_unitIndex]->injureUnit(*m_unitToAttack);
+			(*m_currentUnit)->injureUnit(*m_unitToAttack);
 			rewardKiller(m_unitToAttack);
 		}
 	}
@@ -223,19 +218,19 @@ void Arena::rewardKiller(UnitPtr victim)
 	if (!victim->isAlive())
 	{
 		signal(Signals::WAIT_TIME, Signals::DEATH);
-		std::cout << m_units[m_unitIndex]->getName()
+		std::cout << (*m_currentUnit)->getName()
 			<< " slashed " << victim->getName() << std::endl;
-		m_units[m_unitIndex]->levelUp();
-		m_units[m_unitIndex]->takeKilledUnitMagic(*victim);
+		(*m_currentUnit)->levelUp();
+		(*m_currentUnit)->takeKilledUnitMagic(*victim);
 	}
 }
 
 void Arena::goNextUnit()
 {
-	m_unitIndex++;
-	if (m_unitIndex >= m_units.size())
+	m_currentUnit++;
+	if (m_currentUnit >= m_units.end())
 	{
-		m_unitIndex = 0;
+		m_currentUnit = m_units.begin();
 		m_round++;
 		goNewRound();
 	}
@@ -243,6 +238,6 @@ void Arena::goNextUnit()
 
 void Arena::goNewRound()
 {
-	for (auto unit : m_units)
-		unit->moveIntoNewRound();
+	std::for_each(m_units.begin(), m_units.end(), 
+		std::mem_fn(&Unit::moveIntoNewRound));
 }
