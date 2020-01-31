@@ -21,25 +21,15 @@
 Компоненты STL
 
 Алгоритмы, используемые в программе:
-
 std::shuffle 
-
 std::generate 
-
 std::copy 
-
 std::for_each 
-
 std::remove_if 
-
 std::find_if
-
 std::accumulate
-
 std::sort
-
 std::count_if
-
 
 Функторы, используемые в программе
 
