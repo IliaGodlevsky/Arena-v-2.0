@@ -7,9 +7,10 @@ class NeutralMagicFactory : public Factory<Magic>
 {
 public:
 	NeutralMagicFactory();
+private:
 	enum
 	{
-		DISPEL_MANA_COST = 50
+		DISPEL_MANA_COST = 35
 	};
 };
 

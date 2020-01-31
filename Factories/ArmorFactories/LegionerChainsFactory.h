@@ -10,8 +10,8 @@ public:
 private:
 	enum LegionerChainsParametres
 	{
-		FULL_MAIL_DEF = 4,
-		PLATE_MAIL_DEF = 2
+		FULL_MAIL_DEF = 2,
+		PLATE_MAIL_DEF = 1
 	};
 
 	enum LegionerChainsBonuses

@@ -9,8 +9,8 @@ Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory,
 	Factory<Magic>* secondFactory) : Unit(decision, factory)
 {
 	enum {
-		START_DAMAGE = 6, START_ARMOR = 2, START_HEALTH = 180,
-		START_HP_REGEN = 2, START_MANA = 110, START_MP_REGEN = 6
+		START_DAMAGE = 3, START_ARMOR = 1, START_HEALTH = 150,
+		START_HP_REGEN = 2, START_MANA = 100, START_MP_REGEN = 5
 	};
 	m_damage = Battles(START_DAMAGE);
 	m_armor = Battles(START_ARMOR);

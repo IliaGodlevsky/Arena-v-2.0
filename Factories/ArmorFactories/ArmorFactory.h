@@ -10,8 +10,8 @@ public:
 private:
 	enum ArmorParametres
 	{
-		LETHER_ARMOR_DEF = 3,
-		CHAIN_MAIL_DEF = 4,
+		LETHER_ARMOR_DEF = 2,
+		CHAIN_MAIL_DEF = 3,
 	};
 };
 

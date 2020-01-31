@@ -10,8 +10,8 @@ public:
 private:
 	enum MailParametres
 	{
-		SHADOW_MAIL_DEF = 2,
-		GHOST_MAIL_DEF = 4
+		SHADOW_MAIL_DEF = 1,
+		GHOST_MAIL_DEF = 2
 	};
 
 	enum MailBonuses

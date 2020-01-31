@@ -8,8 +8,8 @@ Warrior::Warrior(DecisionPtr decision, ItemFactoryPtr factory)
 	: Unit(decision, factory)
 {
 	enum { 
-		START_DAMAGE = 11, START_ARMOR = 3, START_HEALTH = 250, 
-		START_HP_REGEN = 5, START_MANA = 60, START_MP_REGEN = 2
+		START_DAMAGE = 9, START_ARMOR = 2, START_HEALTH = 200, 
+		START_HP_REGEN = 4, START_MANA = 65, START_MP_REGEN = 2
 	};
 	m_damage = Battles(START_DAMAGE);
 	m_armor = Battles(START_ARMOR);

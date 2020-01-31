@@ -137,10 +137,8 @@ UnitPtr SimpleComputerDecision::findUnitCanBeKilled(const Unit& decidingUnit,
 			if (predicate(me, enemy))
 				victims.push_back(units[i]);
 	}
-	if (victims.empty())
-		return nullptr;
-	else
-		return victims[randomNumber(victims.size() - 1)];
+	return victims.empty()? nullptr 
+		: victims[randomNumber(victims.size() - 1)];
 }
 
 bool SimpleComputerDecision::isDeadAfterCast(const Unit& unit1, 
@@ -227,26 +225,21 @@ MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 	{
 		magic = decidingUnit->m_magicBook[i]->clone();
 		buff = DYNAMIC(IBuff*, magic);
-		if (decidingUnit->isEnoughManaFor(magic))
+		me = decidingUnit->getPureClone();
+		aim = enemy->getPureClone();
+		if (!buff->isBuff() && !enemy->m_magicOnMe.hasItem(magic))
 		{
-			if (!buff->isBuff() && !enemy->m_magicOnMe.hasItem(magic))
-			{
-				me = decidingUnit->getPureClone();
-				aim = enemy->getPureClone();
-				me->castMagic(*aim, magic);
-				if (!aim->isAlive())
-					magics.push_back(std::make_pair(enemy, magic->clone()));
-				else if (!canBeKilled(me, aim))
-					magics.push_back(std::make_pair(enemy, magic->clone()));
-			}
-			else if (buff->isBuff() && !decidingUnit->m_magicOnMe.hasItem(magic))
-			{
-				me = decidingUnit->getPureClone();
-				me->castMagic(*me, magic);
-				aim = enemy->getPureClone();
-				if (!canBeKilled(me, aim))
-					magics.push_back(std::make_pair(decidingUnit, magic->clone()));
-			}
+			me->castMagic(*aim, magic);
+			if (!aim->isAlive())
+				magics.push_back(std::make_pair(enemy, magic->clone()));
+			else if (!canBeKilled(me, aim))
+				magics.push_back(std::make_pair(enemy, magic->clone()));
+		}
+		else if (buff->isBuff() && !decidingUnit->m_magicOnMe.hasItem(magic))
+		{
+			me->castMagic(*me, magic);
+			if (!canBeKilled(me, aim))
+				magics.push_back(std::make_pair(decidingUnit, magic->clone()));
 		}
 	}
 	return makePair(magics);

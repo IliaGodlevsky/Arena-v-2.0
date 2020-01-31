@@ -8,6 +8,8 @@
 #include "../Interface/Interface.h"
 #include "../UnitState/InnerUnitState/DeadUnitState.h"
 #include "../Magic/Elements/HpReduceElem.h"
+#include "../UnitState/OuterUnitState/MutedUnitState.h"
+#include "../UnitState/OuterUnitState/StunUnitState.h"
 #include "Unit.h"
 
 Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
@@ -25,6 +27,11 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	if (nullptr == m_shield || nullptr == m_mail || nullptr == m_weapon || nullptr == m_decision)
 		throw BadEquipmentException("Unit doesn't have enough equipment to fight");
 	m_level = std::unique_ptr<Level>(new Level(this));
+	//m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
+	//m_stateHolder.takeNew(StatePtr(new NotEnoughDamageState(this)));
+	//m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
+	//m_stateHolder.takeNew(StatePtr(new StunUnitState()));
+	//m_stateHolder.takeNew(StatePtr(new MutedUnitState()));
 }
 
 Unit::Unit(const Unit& unit)
@@ -221,6 +228,8 @@ void Unit::showFullInfo()const
 	m_mail->showShortInfo();
 	std::cout << "Shield: ";
 	m_shield->showShortInfo();
+	setColor();
+	std::cout << std::endl;
 }
 
 UnitPtr Unit::getPureClone()const

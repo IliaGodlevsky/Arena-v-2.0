@@ -10,8 +10,8 @@ public:
 private:
 	enum WizardCloakParametres
 	{
-		MANTLE_DEF = 2,
-		CAPE_DEF = 4
+		MANTLE_DEF = 1,
+		CAPE_DEF = 2
 	};
 
 	enum WizardCloakBonuses
