@@ -58,7 +58,7 @@ bool StateHolder::canCast()const
 	// Logical multiply. If some state's canCast method 
 	// returns false, the whole sum will be zero (false)
 	return std::accumulate(m_items.begin(), m_items.end(), bool(true), 
-		[](bool accum, const StatePtr st)->bool {return st->canCast() * accum; });
+		[](bool accum, const StatePtr st) {return st->canCast() && accum; });
 }
 
 bool StateHolder::canAttack()const
@@ -66,7 +66,7 @@ bool StateHolder::canAttack()const
 	// Logical multiply. If some state's canAttack method 
 	// returns false, the whole sum will be zero (false)
 	return std::accumulate(m_items.begin(), m_items.end(), bool(true),
-		[](bool accum, const StatePtr st)->bool {return st->canAttack() * accum; });
+		[](bool accum, const StatePtr st) {return st->canAttack() && accum; });
 }
 
 bool StateHolder::canTakeDamage(Unit& unit, int damage)const
