@@ -52,6 +52,7 @@
     <ClCompile Include="Factories\MagicFactories\BuffFactories\OffsetDamageBuffFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\DebuffFactories\ArmorAndDamageDebuffFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\DebuffFactories\ArmorDebuffFactory.cpp" />
+    <ClCompile Include="Factories\MagicFactories\DebuffFactories\AttackMissMagicFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\DebuffFactories\DamageDebuffFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\DebuffFactories\SilenceFactory.cpp" />
     <ClCompile Include="Factories\MagicFactories\NeutralFactories\NeutralMagicFactory.cpp" />
@@ -83,6 +84,7 @@
     <ClCompile Include="Magic\BuffMagic\OffsetDamageBuffMagic.cpp" />
     <ClCompile Include="Magic\DebuffMagic\ArmorAndDamageDebuffMagic.cpp" />
     <ClCompile Include="Magic\DebuffMagic\ArmorDebuffMagic.cpp" />
+    <ClCompile Include="Magic\DebuffMagic\AttackMissChanceMagic.cpp" />
     <ClCompile Include="Magic\DebuffMagic\DamageDebuffMagic.cpp" />
     <ClCompile Include="Magic\DebuffMagic\SilenceMagic.cpp" />
     <ClCompile Include="Magic\Elements\ArmorAmplifyElem.cpp" />
@@ -114,6 +116,7 @@
     <ClCompile Include="UnitState\InnerUnitState\InnerUnitState.cpp" />
     <ClCompile Include="UnitState\InnerUnitState\NotEnoughDamageState.cpp" />
     <ClCompile Include="UnitState\InnerUnitState\NotEnoughManaUnitState.cpp" />
+    <ClCompile Include="UnitState\OuterUnitState\MissAttackUnitState.cpp" />
     <ClCompile Include="UnitState\OuterUnitState\MutedUnitState.cpp" />
     <ClCompile Include="UnitState\OuterUnitState\OuterUnitState.cpp" />
     <ClCompile Include="UnitState\OuterUnitState\StunUnitState.cpp" />
@@ -167,6 +170,7 @@
     <ClInclude Include="Factories\MagicFactories\BuffFactories\OffsetDamageBuffFactory.h" />
     <ClInclude Include="Factories\MagicFactories\DebuffFactories\ArmorAndDamageDebuffFactory.h" />
     <ClInclude Include="Factories\MagicFactories\DebuffFactories\ArmorDebuffFactory.h" />
+    <ClInclude Include="Factories\MagicFactories\DebuffFactories\AttackMissMagicFactory.h" />
     <ClInclude Include="Factories\MagicFactories\DebuffFactories\DamageDebuffFactory.h" />
     <ClInclude Include="Factories\MagicFactories\DebuffFactories\SilenceFactory.h" />
     <ClInclude Include="Factories\MagicFactories\NeutralFactories\NeutralFactory.h" />
@@ -199,6 +203,7 @@
     <ClInclude Include="Magic\BuffMagic\OffsetDamageBuffMagic.h" />
     <ClInclude Include="Magic\DebuffMagic\ArmorAndDamageDebuffMagic.h" />
     <ClInclude Include="Magic\DebuffMagic\ArmorDebuffMagic.h" />
+    <ClInclude Include="Magic\DebuffMagic\AttackMissChanceMagic.h" />
     <ClInclude Include="Magic\DebuffMagic\DamageDebuffMagic.h" />
     <ClInclude Include="Magic\DebuffMagic\SilenceMagic.h" />
     <ClInclude Include="Magic\Elements\ArmorAmplifyElem.h" />
@@ -230,6 +235,7 @@
     <ClInclude Include="UnitState\InnerUnitState\InnerUnitState.h" />
     <ClInclude Include="UnitState\InnerUnitState\NotEnoughDamageState.h" />
     <ClInclude Include="UnitState\InnerUnitState\NotEnoughManaUnitState.h" />
+    <ClInclude Include="UnitState\OuterUnitState\MissAttackUnitState.h" />
     <ClInclude Include="UnitState\OuterUnitState\MutedUnitState.h" />
     <ClInclude Include="UnitState\OuterUnitState\OuterUnitState.h" />
     <ClInclude Include="UnitState\OuterUnitState\StunUnitState.h" />

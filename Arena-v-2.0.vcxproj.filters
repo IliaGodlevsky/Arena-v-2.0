@@ -75,9 +75,6 @@
     <Filter Include="Source\UnitState">
       <UniqueIdentifier>{d4045b1d-42a7-44af-baef-91c092a94911}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Vitals">
-      <UniqueIdentifier>{7494ec6b-72ce-4687-ae80-1c44f80581c5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Equipment\Weapon">
       <UniqueIdentifier>{102dba6b-ef69-48a0-92c7-faa3b1e954ea}</UniqueIdentifier>
     </Filter>
@@ -131,6 +128,9 @@
     </Filter>
     <Filter Include="Source\Magic\Elements">
       <UniqueIdentifier>{b828aef9-f2ca-44a7-b2db-cac6c94fed1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Vitals">
+      <UniqueIdentifier>{7494ec6b-72ce-4687-ae80-1c44f80581c5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -463,6 +463,15 @@
     </ClCompile>
     <ClCompile Include="UnitState\InnerUnitState\NotEnoughDamageState.cpp">
       <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState\OuterUnitState\MissAttackUnitState.cpp">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\DebuffMagic\AttackMissChanceMagic.cpp">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\MagicFactories\DebuffFactories\AttackMissMagicFactory.cpp">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -807,6 +816,15 @@
     </ClInclude>
     <ClInclude Include="UnitState\InnerUnitState\NotEnoughDamageState.h">
       <Filter>Source\UnitState\InnerUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState\OuterUnitState\MissAttackUnitState.h">
+      <Filter>Source\UnitState\OuterUnitState</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\DebuffMagic\AttackMissChanceMagic.h">
+      <Filter>Source\Magic\DebuffMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\MagicFactories\DebuffFactories\AttackMissMagicFactory.h">
+      <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
