@@ -27,11 +27,6 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
 	if (nullptr == m_shield || nullptr == m_mail || nullptr == m_weapon || nullptr == m_decision)
 		throw BadEquipmentException("Unit doesn't have enough equipment to fight");
 	m_level = std::unique_ptr<Level>(new Level(this));
-	//m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
-	//m_stateHolder.takeNew(StatePtr(new NotEnoughDamageState(this)));
-	//m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
-	//m_stateHolder.takeNew(StatePtr(new StunUnitState()));
-	//m_stateHolder.takeNew(StatePtr(new MutedUnitState()));
 }
 
 Unit::Unit(const Unit& unit)
@@ -208,7 +203,7 @@ UnitPtr Unit::chooseUnitToCast(const MagicPtr& magicToCast,
 
 void Unit::showFullInfo()const
 {
-	setColor(TextColor(m_teamNumber + 1));
+	setColor(TextColor(m_teamNumber + 7));
 	std::cout << getName() << ", Level: " <<
 		*m_level << ", " << "Team: "
 		<< m_teamNumber << std::endl;
