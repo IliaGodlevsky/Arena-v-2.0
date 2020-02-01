@@ -11,7 +11,7 @@ public:
 	bool isExpired()const;
 	StatePtr clone()const;
 private:
-	enum { ACTIVE_STATE = -1 };
+	enum { ACTIVE_STATE = -3 };
 	int getValue()const override;
 };
 
