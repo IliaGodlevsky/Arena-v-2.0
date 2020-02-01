@@ -13,6 +13,7 @@
 #include "../MagicFactories/AttackFactories/PoisonAndAttackMagicFactory.h"
 #include "../ShieldFactories/MagicShieldFactory.h"
 #include "../ShieldFactories/ShieldFactory.h"
+#include "../MagicFactories/DebuffFactories/AttackMissMagicFactory.h"
 
 WarriorItemFactory::WarriorItemFactory()
 {
@@ -29,4 +30,5 @@ WarriorItemFactory::WarriorItemFactory()
 	m_magicFactories.push_back(new PoisonAndAttackMagicFactory());
 	m_shieldFactories.push_back(new ShieldFactory());
 	m_shieldFactories.push_back(new MagicShieldFactory());
+	m_magicFactories.push_back(new AttackMissMagicFactory());
 }
