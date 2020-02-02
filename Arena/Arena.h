@@ -30,9 +30,9 @@ public:
 	void proposeToPlayTeams();
 	void setStartUnit();
 	int setNumberOfUnits()const;
-private:
-	Arena();
 	void showMiniature()const;
+private:
+	Arena();	
 	std::vector<Gladiators> breakIntoTeams(size_t teamsNumber);
 	Gladiators m_units;
 	constexpr int getMaxNubmerOfPlayers()const;

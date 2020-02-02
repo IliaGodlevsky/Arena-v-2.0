@@ -18,6 +18,7 @@
 #define YES true
 #define NO !YES
 #define NULLPTR nullptr
+#define is == 
 
 enum TextColor {
 	BLACK, BLUE, GREEN, CYAN, RED, MAGNETA,

@@ -44,7 +44,7 @@ constexpr int Arena::getMinNumberOfPlayers()const
 
 Arena::Arena()
 {
-	showMiniature();
+
 }
 
 void Arena::showMiniature()const

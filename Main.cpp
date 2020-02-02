@@ -5,10 +5,11 @@ int main()
 	set_terminate(myTerminate);
 	auto& arena = Arena::getInstance();
 	bool answer = YES;
-	while (YES == answer)
+	while (YES is answer)
 	{
 		try 
 		{
+			arena.showMiniature();
 			arena.prepareUnits();
 			arena.proposeToPlayTeams();
 			arena.setStartUnit();
