@@ -27,8 +27,8 @@ int main()
 		catch (std::exception& ex) { 
 			exceptionMessage(ex); 
 		}
-		answer = static_cast<bool>(inputNumber("Play again:"
-			" 1 - yes, 0 - no: ", YES, NO));
+		answer = static_cast<bool>(
+			inputNumber(playAgainMsg, YES, NO));
 		system("cls");
 	}
 }
