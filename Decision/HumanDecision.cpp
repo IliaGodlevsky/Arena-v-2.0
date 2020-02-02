@@ -13,13 +13,13 @@ UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit,
 {
 	std::cout << decidingUnit.getName() << ", ";
 	index unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
-		units.size(), 1);
+		(int)units.size(), 1);
 	while (units[unitIndex - 1]->isAlly(decidingUnit) ||
 		!units[unitIndex - 1]->isAlive())
 	{
 		std::cout << "You can't attack this unit\n";
 		unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
-			units.size(), 1);
+			(int)units.size(), 1);
 	}
 	return units[unitIndex - 1];
 }
@@ -42,18 +42,18 @@ MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit,
 	std::cout << decidingUnit.m_magicBook.size() + 1 
 		<< ". Show more info about magic\n";
 	index magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
-		decidingUnit.m_magicBook.size() + 1, 1);
-	if (decidingUnit.m_magicBook.size() + 1 == magicToCastIndex)
+		(int)decidingUnit.m_magicBook.size() + 1, 1);
+	if ((int)decidingUnit.m_magicBook.size() + 1 == magicToCastIndex)
 	{
 		decidingUnit.m_magicBook.showFullInfo();
 		magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
-			decidingUnit.m_magicBook.size(), 1);
+			(int)decidingUnit.m_magicBook.size(), 1);
 	}	
 	while (!decidingUnit.isEnoughManaFor(decidingUnit.m_magicBook[magicToCastIndex - 1]))
 	{
 		std::cout << "Not enough mana for this magic\n";
 		magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
-			decidingUnit.m_magicBook.size(), 1);
+			(int)decidingUnit.m_magicBook.size(), 1);
 	}
 	return MagicPtr(decidingUnit.m_magicBook[magicToCastIndex - 1]->clone());
 }
@@ -67,12 +67,12 @@ UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 	arena.showUnits();
 	std::cout << decidingUnit.getName() << ", ";
 	index unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE,
-		units.size(), 1);
+		(int)units.size(), 1);
 	while (isWrongSpellToCast(decidingUnit, *units[unitToCastIndex - 1], magicToCast))
 	{
 		std::cout << "You can't use this magic on this unit\n";
 		unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE,
-			units.size(), 1);
+			(int)units.size(), 1);
 	}
 	return units[unitToCastIndex - 1];
 }
@@ -108,18 +108,18 @@ void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 		"Do you really want to take it?: ";
 	victim.m_magicBook.magicList();
 	std::cout << victim.m_magicBook.size() + 1 << ". Show more info about magic\n";
-	index magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size() + 1, 1);
+	index magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, (int)victim.m_magicBook.size() + 1, 1);
 	if (victim.m_magicBook.size() + 1 == magicToTake)
 	{
 		victim.m_magicBook.showFullInfo();
-		magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
+		magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, (int)victim.m_magicBook.size(), 1);
 	}
 	bool wantToTakeMagic;
 	while (decidingUnit.m_magicBook.hasItem(victim.m_magicBook[magicToTake - 1]))
 	{
 		wantToTakeMagic = static_cast<bool>(inputNumber(YOU_HAVE_MAGIC_MSG, YES, NO));
 		if (NO == wantToTakeMagic)
-			magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, victim.m_magicBook.size(), 1);
+			magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, (int)victim.m_magicBook.size(), 1);
 		else
 			break;
 	}

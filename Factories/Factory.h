@@ -41,7 +41,7 @@ std::unique_ptr<T> Factory<T>::createItem()const
 {
 	if (m_items.empty())
 		throw EmptyContainerException("\nContainer " + std::string(typeid(*this).name()) + " is empty");
-	index itemIndex = randomNumber(m_items.size() - 1);
+	index itemIndex = randomNumber((int)m_items.size() - 1);
 	return std::unique_ptr<T>(m_items[itemIndex]->clone());
 }
 

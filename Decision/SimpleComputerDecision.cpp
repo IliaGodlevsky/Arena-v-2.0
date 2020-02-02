@@ -107,7 +107,7 @@ UnitPtr SimpleComputerDecision::chooseUnitToCast(const Unit& decidingUnit,
 UnitPtr SimpleComputerDecision::findUnitWithOutChosenMagic(const Unit& decidingUnit,
 	const MagicPtr& magicToCast, const Gladiators& arena)const
 {
-	size_t i = randomNumber(arena.size() - 1);
+	int i = randomNumber((int)arena.size() - 1);
 	size_t count = 0;
 	while (count < arena.size())
 	{
@@ -138,7 +138,7 @@ UnitPtr SimpleComputerDecision::findUnitCanBeKilled(const Unit& decidingUnit,
 				victims.push_back(units[i]);
 	}
 	return victims.empty()? nullptr 
-		: victims[randomNumber(victims.size() - 1)];
+		: victims[randomNumber((int)victims.size() - 1)];
 }
 
 bool SimpleComputerDecision::isDeadAfterCast(const Unit& unit1, 
@@ -158,7 +158,7 @@ MagicAim SimpleComputerDecision::makePair(
 		return std::make_pair(nullptr, nullptr);
 	else
 	{
-		index random = randomNumber(pair.size() - 1);
+		index random = randomNumber((int)pair.size() - 1);
 		return std::make_pair(std::get<UNIT_TO_CAST>(pair[random]),
 			std::get<MAGIC_TO_CAST>(pair[random])->clone());
 	}

@@ -12,25 +12,25 @@ ItemFactory::ItemFactory()
 
 MagicPtr ItemFactory::createMagic()const
 {
-	m_itemIndex = randomNumber(m_magicFactories.size() - 1);
+	m_itemIndex = randomNumber((int)m_magicFactories.size() - 1);
 	return m_magicFactories[m_itemIndex]->createItem();
 }
 
 WeaponPtr ItemFactory::createWeapon()const
 {
-	m_itemIndex = randomNumber(m_weaponFactories.size() - 1);
+	m_itemIndex = randomNumber((int)m_weaponFactories.size() - 1);
 	return m_weaponFactories[m_itemIndex]->createItem();
 }
 
 ArmPtr ItemFactory::createArmor()const
 {
-	m_itemIndex = randomNumber(m_armorFactories.size() - 1);
+	m_itemIndex = randomNumber((int)m_armorFactories.size() - 1);
 	return m_armorFactories[m_itemIndex]->createItem();
 }
 
 ShieldPtr ItemFactory::createShield()const
 {
-	m_itemIndex = randomNumber(m_shieldFactories.size() - 1);
+	m_itemIndex = randomNumber((int)m_shieldFactories.size() - 1);
 	return m_shieldFactories[m_itemIndex]->createItem();
 }
 

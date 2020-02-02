@@ -135,7 +135,7 @@ void Arena::prepareUnits()
 			thread.join();
 		if (unitsNames.empty())
 			unitsNames = m_reserveNames;
-		unit->setName(unitsNames[randomNumber(unitsNames.size() - 1)]);
+		unit->setName(unitsNames[randomNumber((int)unitsNames.size() - 1)]);
 		unit->setTeam(teamNumber);
 		teamNumber++;
 		return unit;
@@ -152,8 +152,8 @@ void Arena::proposeToPlayTeams()
 		const bool answer = static_cast<bool>(inputNumber(teamPlayQuest, YES, NO));
 		if (YES == answer)
 		{
-			size_t teamsNumber = inputNumber("Enter teams"
-				" number: ", m_units.size(), MIN_TEAMS_NUMBER);
+			size_t teamsNumber = (size_t)inputNumber("Enter teams"
+				" number: ", (int)m_units.size(), MIN_TEAMS_NUMBER);
 			std::vector<Gladiators> teams = breakIntoTeams(teamsNumber);
 			for (auto& team : teams)
 				std::copy(team.begin(), team.end(), std::back_inserter(m_units));
@@ -171,7 +171,7 @@ void Arena::setStartUnit()
 std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 {
 	index unitIndex;
-	const size_t QUIT = 0;
+	const int QUIT = 0;
 	const size_t LIMIT = m_units.size();
 	std::vector<Gladiators> teams;
 	for (size_t i = 0; i < teamsNumber; i++)
@@ -181,11 +181,11 @@ std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 		{
 			showUnits();
 			unitIndex = inputNumber("Choose unit for " + std::to_string(i + 1)
-				+ " team" + " (0 to stop): ", m_units.size(), QUIT);
+				+ " team" + " (0 to stop): ", (int)m_units.size(), QUIT);
 			if (QUIT == unitIndex || m_units.empty())
 				break;
 			teams[i].push_back(m_units[unitIndex - 1]);
-			m_units[unitIndex - 1]->setTeam(i + 1);
+			m_units[unitIndex - 1]->setTeam(int(i) + 1);
 			m_units.erase(m_units.begin() + (unitIndex - 1));
 			if (m_units.size() == (teamsNumber - i - 1))
 				break;

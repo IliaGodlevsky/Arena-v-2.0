@@ -44,7 +44,7 @@ using DecisionPtr = std::shared_ptr<Decision>;
 class Magic;
 using MagicPtr = std::unique_ptr<Magic>;
 
-typedef unsigned index;
+typedef int index;
 
 int inputNumber(const std::string& message, int upper, int lower);
 bool isError(int choice, int upper, int lower);

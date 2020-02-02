@@ -18,5 +18,5 @@ index UnitFactory::chooseDecsion()const
 	if (nullptr == m_itemFactory)
 		throw BadEquipmentException("No actual item factory for units. Bad class is "
 			+ std::string(typeid(*this).name()));
-	return inputNumber("\t\t\t1. Human 2. Computer\n\t\t\tChoose decision: ", m_decisions.size(), 1);
+	return inputNumber("\t\t\t1. Human 2. Computer\n\t\t\tChoose decision: ", (int)m_decisions.size(), 1);
 }
