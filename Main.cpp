@@ -5,16 +5,13 @@ int main()
 	set_terminate(myTerminate);
 	auto& arena = Arena::getInstance();
 	bool answer = YES;
-	while (YES is answer)
-	{
-		try 
-		{
+	while (YES is answer) {
+		try {
 			arena.showMiniature();
 			arena.prepareUnits();
 			arena.proposeToPlayTeams();
 			arena.setStartUnit();
-			while (!arena.isGameOver())
-			{
+			while (!arena.isGameOver()) {
 				arena.showUnits();
 				arena.playCastStep();
 				arena.takeOfLosers();
@@ -27,7 +24,9 @@ int main()
 			std::cout << "Became the winner\n";
 			system("pause");
 		}
-		catch (std::exception& ex) { exceptionMessage(ex); }
+		catch (std::exception& ex) { 
+			exceptionMessage(ex); 
+		}
 		answer = static_cast<bool>(inputNumber("Play again:"
 			" 1 - yes, 0 - no: ", YES, NO));
 		system("cls");
