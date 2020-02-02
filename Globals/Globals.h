@@ -62,5 +62,7 @@ void signal(int milliseconds, int numberOfSignals);
 
 const char* const teamPlayQuest = "Do you want to play "
 "in teams? <1 - yes, 0 - no>: ";
+const char* const playAgainMsg = "Play again:"
+" 1 - yes, 0 - no: ";
 
 #endif
