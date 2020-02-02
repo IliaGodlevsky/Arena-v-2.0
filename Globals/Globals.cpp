@@ -63,6 +63,20 @@ std::vector<std::string> loadFromFile(const std::string& fileName)
 	return lines;
 }
 
+int calculateDamageAbsorb(int armor, int damage)
+{
+	return static_cast<int>(std::floor(damage * 
+		(1.0 - getPercentOfReduce(armor))));
+}
+
+double getPercentOfReduce(int armor)
+{
+	// The formula is taken from WarCraft 3
+	const double REDUCE_CONST = 0.06;
+	const double numerator = static_cast<double>(armor * REDUCE_CONST);
+	return numerator / (1.0 + numerator);
+}
+
 void exceptionMessage(std::exception& ex)
 {
 	std::cerr << "\a" << ex.what() << std::endl;

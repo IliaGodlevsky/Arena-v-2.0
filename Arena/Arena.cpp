@@ -49,13 +49,26 @@ Arena::Arena()
 
 void Arena::showMiniature()const
 {
-	std::cout << "Welcome to Arena\n";
+	std::cout << R"(
+        ___           ___           ___           ___           ___     
+       /\  \         /\  \         /\  \         /\__\         /\  \    
+      /::\  \       /::\  \       /::\  \       /::|  |       /::\  \   
+     /:/\:\  \     /:/\:\  \     /:/\:\  \     /:|:|  |      /:/\:\  \  
+    /::\~\:\  \   /::\~\:\  \   /::\~\:\  \   /:/|:|  |__   /::\~\:\  \ 
+   /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/ |:| /\__\ /:/\:\ \:\__\
+   \/__\:\/:/  / \/_|::\/:/  / \:\~\:\ \/__/ \/__|:|/:/  / \/__\:\/:/  /
+        \::/  /     |:|::/  /   \:\ \:\__\       |:/:/  /       \::/  / 
+        /:/  /      |:|\/__/     \:\ \/__/       |::/  /        /:/  /  
+       /:/  /       |:|  |        \:\__\         /:/  /        /:/  /   
+       \/__/         \|__|         \/__/         \/__/         \/__/    
+)";
 }
 
 // Sets number of players, that will play the game
 int Arena::setNumberOfUnits()const
 {
-	return inputNumber("Set number of players: ",
+	std::cout << std::endl << std::endl;
+	return inputNumber("\t\t\tSet number of players: ",
 		getMaxNubmerOfPlayers(), getMinNumberOfPlayers());
 }
 
@@ -86,9 +99,10 @@ void Arena::showUnits()const
 // removed from the game
 void Arena::takeOfLosers()
 {
-	UnitPtr temp = *m_currentUnit;
+	UnitPtr temp = *m_currentUnit; // save address of current unit
 	m_units.erase(std::remove_if(m_units.begin(), m_units.end(), 
 		[](const UnitPtr unit) {return !unit->isAlive(); }), m_units.end());
+	// restore position of current unit
 	m_currentUnit = std::find_if(m_units.begin(), m_units.end(), 
 		[&](const UnitPtr unit) {return temp == unit; });
 }
@@ -114,8 +128,8 @@ void Arena::prepareUnits()
 	UnitPtr unit;
 	auto unitGenerator = [&]()
 	{		
-		factoryNumber = inputNumber("1. Warrior 2. "
-			"Wizard\nChoose unit type: ", WIZARD, WARRIOR);
+		factoryNumber = inputNumber("\t\t\t1. Warrior 2. "
+			"Wizard\n\t\t\tChoose unit type: ", WIZARD, WARRIOR);
 		unit = unitFactories[factoryNumber - 1]->createUnit();
 		if (thread.joinable())
 			thread.join();
@@ -123,7 +137,6 @@ void Arena::prepareUnits()
 			unitsNames = m_reserveNames;
 		unit->setName(unitsNames[randomNumber(unitsNames.size() - 1)]);
 		unit->setTeam(teamNumber);
-		system("cls");
 		teamNumber++;
 		return unit;
 	};
@@ -227,7 +240,7 @@ void Arena::goNextUnit()
 {
 	m_currentUnit++;
 	if (m_currentUnit >= m_units.end())
-	{
+	{   // back to first unit
 		m_currentUnit = m_units.begin();
 		m_round++;
 		goNewRound();

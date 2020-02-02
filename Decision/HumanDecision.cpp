@@ -82,13 +82,13 @@ std::string HumanDecision::setName(std::string name)const
 	const int NAME_SIZE = 70;
 	char unitName[NAME_SIZE];
 	eatLine();
-	std::cout << "Enter your name: ";
+	std::cout << "\t\t\tEnter your name: ";
 	std::cin.get(unitName, NAME_SIZE);
 	name = unitName;
 	while ("\n" == name || name.empty())
 	{
 		eatLine();
-		std::cout << "Enter your name: ";
+		std::cout << "\t\t\tEnter your name: ";
 		std::cin.get(unitName, NAME_SIZE);
 		name = unitName;
 	}

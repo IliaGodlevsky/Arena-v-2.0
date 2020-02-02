@@ -30,7 +30,6 @@ public:
 	void proposeToPlayTeams();
 	void setStartUnit();
 	int setNumberOfUnits()const;
-
 private:
 	Arena();
 	void showMiniature()const;

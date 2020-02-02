@@ -15,7 +15,6 @@ public:
 	virtual void showShortInfo()const;
 	virtual bool takeDamage(Unit& unit, int damage)const;
 	virtual bool takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const;
-	int calculateDamageAbsorb(int armor, int damage)const;
 	void putOn(Unit& unit)const;
 	void putOff(Unit& unit)const;
 	virtual ShieldPtr clone()const;

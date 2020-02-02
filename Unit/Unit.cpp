@@ -152,7 +152,7 @@ bool Unit::takeDamage(int damage)
 {
 	if (m_stateHolder.canTakeDamage(*this, damage))
 	{
-		HpReduceElem(m_shield->calculateDamageAbsorb(m_armor, damage)).effectUnit(*this);
+		HpReduceElem(calculateDamageAbsorb(m_armor, damage)).effectUnit(*this);
 		if(!isAlive())
 			m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
 		return true;
@@ -223,7 +223,6 @@ void Unit::showFullInfo()const
 	m_mail->showShortInfo();
 	std::cout << "Shield: ";
 	m_shield->showShortInfo();
-	setColor();
 	std::cout << std::endl;
 }
 

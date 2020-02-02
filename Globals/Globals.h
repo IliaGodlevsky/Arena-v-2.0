@@ -52,6 +52,9 @@ void eatLine();
 int randomNumber(int max, int min = 0);
 std::vector<std::string> loadFromFile(const std::string& fileName);
 
+int calculateDamageAbsorb(int armor, int damage);
+double getPercentOfReduce(int armor);
+
 void exceptionMessage(std::exception& ex);
 void myTerminate();
 void signal(int milliseconds, int numberOfSignals);

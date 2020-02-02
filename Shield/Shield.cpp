@@ -58,12 +58,3 @@ bool Shield::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const
 {
 	return true;
 }
-
-int Shield::calculateDamageAbsorb(int armor, int damage)const
-{
-	// The formula is taken from WarCraft 3
-	const double REDUCE_CONST = 0.06;
-	const double numerator = static_cast<double>(armor * REDUCE_CONST);
-	double percent_of_reduce = numerator / (1.0 + numerator);
-	return static_cast<int>(std::floor(damage * (1.0 - percent_of_reduce)));
-}
