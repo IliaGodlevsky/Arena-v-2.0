@@ -1,5 +1,4 @@
 #include <iostream>
-#include <ctime>
 #include <functional>
 
 #include "../Unit/Unit.h"
@@ -124,13 +123,11 @@ void Arena::prepareUnits()
 	int teamNumber = 1;
 	std::vector<UnitFactoryPtr> unitFactories({ UnitFactoryPtr(new WarriorFactory()),
 			UnitFactoryPtr(new WizardFactory()) });
-	index factoryNumber;
-	UnitPtr unit;
 	auto unitGenerator = [&]()
 	{		
-		factoryNumber = inputNumber("\t\t\t1. Warrior 2. "
+		index factoryNumber = inputNumber("\t\t\t1. Warrior 2. "
 			"Wizard\n\t\t\tChoose unit type: ", WIZARD, WARRIOR);
-		unit = unitFactories[factoryNumber - 1]->createUnit();
+		UnitPtr unit = unitFactories[factoryNumber - 1]->createUnit();
 		if (thread.joinable())
 			thread.join();
 		if (unitsNames.empty())
