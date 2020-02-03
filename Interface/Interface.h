@@ -33,6 +33,7 @@ struct IDuration
 	virtual bool isExpired()const = 0;
 	virtual int getDuration()const = 0;
 	virtual int getStartTime()const = 0;
+	int getDurationRemained()const;
 	virtual ~IDuration() = default;
 };
 
