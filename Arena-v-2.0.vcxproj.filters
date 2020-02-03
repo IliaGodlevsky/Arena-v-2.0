@@ -473,6 +473,9 @@
     <ClCompile Include="Factories\MagicFactories\DebuffFactories\AttackMissMagicFactory.cpp">
       <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
     </ClCompile>
+    <ClCompile Include="Interface\Interface.cpp">
+      <Filter>Source\Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">

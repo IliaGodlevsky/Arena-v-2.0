@@ -67,6 +67,7 @@
     <ClCompile Include="Factories\WeaponFactories\MagicStaffFactory.cpp" />
     <ClCompile Include="Factories\WeaponFactories\MagicSwordFactory.cpp" />
     <ClCompile Include="Globals\Globals.cpp" />
+    <ClCompile Include="Interface\Interface.cpp" />
     <ClCompile Include="Level\Level.cpp" />
     <ClCompile Include="Level\WarriorLevel.cpp" />
     <ClCompile Include="Level\WizardLevel.cpp" />
