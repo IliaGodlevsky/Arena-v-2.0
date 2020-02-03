@@ -1,4 +1,3 @@
-#include <numeric>
 #include <functional>
 
 #include "StateHolder.h"
@@ -29,8 +28,8 @@ void StateHolder::expireIfFound(const StatePtr& unitState)
 StateHolder::StateHolder(Unit* unit, const StateHolder& stateHolder)
 	: StateHolder(unit)
 {
-	for (size_t i = 0; i < stateHolder.size(); i++)
-		takeNew(stateHolder[i]);
+	std::for_each(stateHolder.m_items.begin(), stateHolder.m_items.end(),
+		[&](const StatePtr& st) { takeNew(st); });
 }
 
 bool StateHolder::itemHasPassedControl(const StatePtr& unitState)const
@@ -55,18 +54,14 @@ void StateHolder::takeNew(const StatePtr& unitState)
 
 bool StateHolder::canCast()const
 {
-	// Logical multiply. If some state's canCast method 
-	// returns false, the whole sum will be zero (false)
-	return std::accumulate(m_items.begin(), m_items.end(), bool(true), 
-		[](bool accum, const StatePtr st) {return st->canCast() && accum; });
+	return std::all_of(m_items.begin(), m_items.end(), 
+		[](const StatePtr st) {return st->canCast(); });
 }
 
 bool StateHolder::canAttack()const
 {
-	// Logical multiply. If some state's canAttack method 
-	// returns false, the whole sum will be zero (false)
-	return std::accumulate(m_items.begin(), m_items.end(), bool(true),
-		[](bool accum, const StatePtr st) {return st->canAttack() && accum; });
+	return std::all_of(m_items.begin(), m_items.end(),
+		[](const StatePtr st) {return st->canAttack(); });
 }
 
 bool StateHolder::canTakeDamage(Unit& unit, int damage)const
