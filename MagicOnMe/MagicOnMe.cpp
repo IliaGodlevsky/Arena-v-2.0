@@ -43,21 +43,11 @@ void MagicOnMe::makeExpire(MagicPtr& magic)
 
 void MagicOnMe::takeOffExpired()
 {
-	IDuration* duration = nullptr;
-	IUneffect* uneffect = nullptr;
-	m_items.erase(std::remove_if(m_items.begin(), m_items.end(),
-		[&](const MagicPtr& magic)
-	{
-		duration = DYNAMIC(IDuration*, magic);
-		uneffect = DYNAMIC(IUneffect*, magic);
-		if (duration->isExpired())
-		{
-			uneffect->uneffectUnit(*m_unit);
-			return true;
-		}
-		return false;
-
-	}), m_items.end());
+	auto expired = std::partition(m_items.begin(), m_items.end(),
+		[](const MagicPtr& magic) {return !DYNAMIC(IDuration*, magic)->isExpired(); });
+	std::for_each(expired, m_items.end(),
+		[&](const MagicPtr& magic) { DYNAMIC(IUneffect*, magic)->uneffectUnit(*m_unit); });
+	m_items.erase(expired, m_items.end());
 }
 
 void MagicOnMe::takeNew(const MagicPtr& magic)
@@ -88,18 +78,14 @@ void MagicOnMe::showShortInfo()const
 {
 	IDuration* duration = nullptr;
 	std::cout << "Effect: ";
-	int dur = 0;
 	for (size_t i = 0; i < size(); i++)
 	{		
 		duration = DYNAMIC(IDuration*, operator[](i));
-		dur = duration->getStartTime()
-			+ duration->getDuration() -
-			Arena::getCurrentRound();
 		setItemColor(operator[](i));
 		if (i % 2 == 0 && i != 0)
 			std::cout << std::endl << "\t";
 		std::cout << "<" << operator[](i)->getName()
-			<< ": " << dur << "> ";
+			<< ": " << duration->getDurationRemained() << "> ";
 	}
 	setColor();
 	std::cout << std::endl;
