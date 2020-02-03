@@ -189,7 +189,7 @@ std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 			system("cls");
 		}
 	}
-	return teams;
+	return teams; 
 }
 
 void Arena::playCastStep()
