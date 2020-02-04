@@ -19,7 +19,7 @@ bool DeadUnitState::canAttack()const
 
 bool DeadUnitState::isExpired()const
 {
-	return m_unit->isAlive();
+	return false;
 }
 
 void DeadUnitState::showShortInfo()const

@@ -1,6 +1,8 @@
 #ifndef VITALS_H_
 #define VITALS_H_
 
+/* A class that is responsible
+for units health or mana */
 class Vitals
 {
 public:

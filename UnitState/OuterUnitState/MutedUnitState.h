@@ -3,6 +3,8 @@
 
 #include "OuterUnitState.h"
 
+/* Under this state unit is 
+not able to cast any magic */
 class MutedUnitState : public OuterUnitState
 {
 public:

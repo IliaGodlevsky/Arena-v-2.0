@@ -1,6 +1,8 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
+/* A class that is responsible for 
+duration of states or magic */
 class Timer
 {
 public:

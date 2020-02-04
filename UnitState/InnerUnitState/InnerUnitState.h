@@ -4,6 +4,8 @@
 #include "../UnitState.h"
 #include "../../Globals/Globals.h"
 
+/* A base class for all states, 
+that unit gains from itself*/
 class InnerUnitState : public UnitState
 {
 public:

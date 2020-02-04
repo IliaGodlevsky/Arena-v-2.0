@@ -17,6 +17,7 @@ inline bool canCast(const std::unique_ptr<D>& item)
 	return nullptr != temp;
 }
 
+// a base interface for all magic classes in the game
 class Magic
 {
 public:

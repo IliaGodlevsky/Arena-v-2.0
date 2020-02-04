@@ -4,6 +4,7 @@
 #include "../Globals/Globals.h"
 #include "../Containers/ExpireableContainer.h"
 
+/* A container that collects magics, under what unit is*/
 class MagicOnMe : public ExpireableContainer<MagicPtr>
 {
 public:

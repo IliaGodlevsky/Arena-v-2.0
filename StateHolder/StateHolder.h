@@ -5,6 +5,8 @@
 #include "../UnitState/UnitState.h"
 #include "../Containers/ExpireableContainer.h"
 
+/*A container class, that collects unit
+states, and checks them for expireness */
 class StateHolder : public ExpireableContainer<StatePtr>
 {
 public:

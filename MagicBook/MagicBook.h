@@ -4,6 +4,7 @@
 #include "../Globals/Globals.h"
 #include "../Containers/TemplateContainer.h"
 
+/* A class, that collects magic, that can be casted*/
 class MagicBook : public TemplateContainer<MagicPtr>
 {
 public:

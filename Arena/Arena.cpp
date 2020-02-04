@@ -142,14 +142,14 @@ void Arena::prepareUnits()
 
 void Arena::proposeToPlayTeams()
 {	
-	const int MIN_PLAYERS_TO_PLAY_TEAMS = 2;
-	const int MIN_TEAMS_NUMBER = 2;
+	constexpr int MIN_PLAYERS_TO_PLAY_TEAMS = 2;
+	constexpr int MIN_TEAMS_NUMBER = 2;
 	if (m_units.size() > MIN_PLAYERS_TO_PLAY_TEAMS)
 	{
 		const bool answer = static_cast<bool>(inputNumber(teamPlayQuest, YES, NO));
 		if (YES == answer)
 		{
-			size_t teamsNumber = (size_t)inputNumber("Enter teams"
+			const size_t teamsNumber = (size_t)inputNumber("Enter teams"
 				" number: ", (int)m_units.size(), MIN_TEAMS_NUMBER);
 			std::vector<Gladiators> teams = breakIntoTeams(teamsNumber);
 			for (auto& team : teams)
@@ -168,7 +168,7 @@ void Arena::setStartUnit()
 std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 {
 	index unitIndex;
-	const int QUIT = 0;
+	constexpr int QUIT = 0;
 	const size_t LIMIT = m_units.size();
 	std::vector<Gladiators> teams;
 	for (size_t i = 0; i < teamsNumber; i++)

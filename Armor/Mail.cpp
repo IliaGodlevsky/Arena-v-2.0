@@ -11,19 +11,19 @@ Mail::Mail(std::string name, int armor, Vitals health)
 void Mail::putOn(Unit& unit)const
 {
 	Armor::putOn(unit);
-	unit.m_health = unit.m_health + this->m_health;
+	unit.m_health = unit.m_health + m_health;
 }
 
 void Mail::putOff(Unit& unit)const
 {
 	Armor::putOff(unit);
-	unit.m_health = unit.m_health - this->m_health;
+	unit.m_health = unit.m_health - m_health;
 }
 
 void Mail::showFullInfo()const
 {
 	Armor::showFullInfo();
-	std::cout << "Health add: " << this->m_health << std::endl;
+	std::cout << "Health add: " << m_health << std::endl;
 }
 
 ArmPtr Mail::clone()const

@@ -4,6 +4,8 @@
 #include "OuterUnitState.h"
 #include "../../PossibilityCounter/PosibilityCounter.h"
 
+/* Under this state unit has 
+a chance to miss an attack*/
 class MissAttackUnitState : public OuterUnitState
 {
 public:

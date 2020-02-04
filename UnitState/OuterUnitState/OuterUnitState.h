@@ -3,6 +3,8 @@
 
 #include "../UnitState.h"
 
+/* A base class for all states, that unit gains
+from outer world ( from magic, weapon and etc.)*/
 class OuterUnitState : public UnitState
 {
 public:

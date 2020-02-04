@@ -21,6 +21,7 @@ MagicBook::MagicBook(Unit* unit, const MagicBook& book)
 
 bool MagicBook::itemHasPassedControl(const MagicPtr& magic)const
 {
+	// magic must realise a definite interface
 	if (!canCast<IManaCost*>(magic) || !canCast<IBuff*>(magic))
 		throw BadIncomingMagicException("Incoming magic doesn't"
 			" have needed interface. Bad class is MagicBook");

@@ -3,6 +3,10 @@
 
 #include "InnerUnitState.h"
 
+/* When unit dies, it recieves this state
+he can't attack, can't spell and take any 
+damage and magic from other units. But this 
+state will never expire*/
 class DeadUnitState : public InnerUnitState
 {
 public:

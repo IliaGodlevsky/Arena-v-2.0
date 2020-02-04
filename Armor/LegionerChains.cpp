@@ -11,22 +11,22 @@ LegionerChains::LegionerChains(std::string name, int armor,
 void LegionerChains::putOn(Unit& unit)const
 {
 	Armor::putOn(unit);
-	unit.m_health = unit.m_health + this->m_health;
-	unit.m_mana = unit.m_mana + this->m_mana;
+	unit.m_health = unit.m_health + m_health;
+	unit.m_mana = unit.m_mana + m_mana;
 }
 
 void LegionerChains::putOff(Unit& unit)const
 {
 	Armor::putOff(unit);
-	unit.m_health = unit.m_health - this->m_health;
-	unit.m_mana = unit.m_mana - this->m_mana;
+	unit.m_health = unit.m_health - m_health;
+	unit.m_mana = unit.m_mana - m_mana;
 }
 
 void LegionerChains::showFullInfo()const
 {
 	Armor::showFullInfo();
-	std::cout << "Health add: " << this->m_health << std::endl;
-	std::cout << "Mana add: " << this->m_mana << std::endl;
+	std::cout << "Health add: " << m_health << std::endl;
+	std::cout << "Mana add: " << m_mana << std::endl;
 }
 
 ArmPtr LegionerChains::clone()const

@@ -13,11 +13,13 @@ StunUnitState::StunUnitState(const Timer& timer)
 
 bool StunUnitState::canCast()const
 {
+	// unit is not able to cast any magic while being stunned
 	return false;
 }
 
 bool StunUnitState::canAttack()const
 {
+	// unit is not able to attack while being stunned
 	return false;
 }
 
@@ -34,11 +36,13 @@ void StunUnitState::showShortInfo()const
 
 bool StunUnitState::canTakeDamage(Unit& unit, int damage)const
 {
+	// unit will take any incoming damage and won't reflect it
 	return true;
 }
 
 bool StunUnitState::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const
 {
+	// unit will take any incoming magic and won't reflect int
 	return true;
 }
 

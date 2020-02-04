@@ -3,6 +3,8 @@
 
 #include "InnerUnitState.h"
 
+/* Under this state unit can't 
+attack because of damage sub zero*/
 class NotEnoughDamageState : public InnerUnitState
 {
 public:

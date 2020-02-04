@@ -1,6 +1,8 @@
 #ifndef POSIBILITY_H_
 #define POSIBILITY_H_
 
+/* A class that is responsible for 
+the possibilities in the game*/
 class PosibilityCounter
 {
 public:

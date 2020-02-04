@@ -3,6 +3,8 @@
 
 #include "OuterUnitState.h"
 
+/* Under this state unit can't attack and cast magic
+and takes all damage and magic in spite of shield */
 class StunUnitState : public OuterUnitState
 {
 public:

@@ -46,15 +46,18 @@ void Wizard::payMana(int manaCost)
 
 void Wizard::prepareMagic(MagicPtr& magic)const
 {
+	// Each 3 levels wizard gets one round to magic duration
+	constexpr int LEVELS_PER_DURATION = 3;
 	IDuration* duration = DYNAMIC(IDuration*, magic);
-	const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / 3.0));
+	const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / LEVELS_PER_DURATION));
 	if (nullptr != duration)
 		duration->setStartTime(Arena::getCurrentRound() + DURATION_ENHANCE);
 }
 
 int Wizard::countManaCost(int manaCost)const
 {
-	const double MANA_COST_REDUCE = 0.05;
+	// Each level (starting from 1st) wizard pays less mana for magic
+	constexpr double MANA_COST_REDUCE = 0.05;
 	return static_cast<int>(manaCost * (1 - MANA_COST_REDUCE * (*m_level)));
 }
 

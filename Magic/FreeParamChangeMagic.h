@@ -6,6 +6,7 @@
 #include "Elements/ParamChangeElem.h"
 #include "../Timer/Timer.h"
 
+/* A base for all magic, that can be casted by weapon*/
 class FreeParamChangeMagic : public Magic, 
 	public IUneffect, public IDispelable, public IDuration
 {

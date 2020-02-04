@@ -72,7 +72,7 @@ int calculateDamageAbsorb(int armor, int damage)
 double getPercentOfReduce(int armor)
 {
 	// The formula is taken from WarCraft 3
-	const double REDUCE_CONST = 0.06;
+	constexpr double REDUCE_CONST = 0.06;
 	const double numerator = static_cast<double>(armor * REDUCE_CONST);
 	return numerator / (1.0 + numerator);
 }

@@ -51,14 +51,16 @@ bool Warrior::injureUnit(Unit& unit)
 
 int Warrior::damageMultiply(int damage)const
 {
-	const double DAMAGE_ENHANCE = 0.05;
+	// Each level warrior deals more damage
+	constexpr double DAMAGE_ENHANCE = 0.05;
 	return static_cast<int>(std::ceil(damage  *
 		(1 + DAMAGE_ENHANCE * (*m_level - 1))));
 }
 
 bool Warrior::secondHit(Unit& unit)
 {
-	const int secondHitPossibility = 7;
+	// Each level warrior has more chance to hit enemy twice
+	constexpr int secondHitPossibility = 7;
 	if (PosibilityCounter(secondHitPossibility * (*m_level)))
 	{
 		signal(Signals::WAIT_TIME + 75, Signals::ATTACK_BLOCK);

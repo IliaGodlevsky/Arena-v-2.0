@@ -3,6 +3,8 @@
 
 #include "InnerUnitState.h"
 
+/* When unit doesn't have enough mana 
+to cast any magic it will recieve this state*/
 class NotEnoughManaUnitState : public InnerUnitState
 {
 public:

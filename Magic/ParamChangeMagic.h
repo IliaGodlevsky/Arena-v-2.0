@@ -6,6 +6,7 @@
 #include "Elements/ParamChangeElem.h"
 #include "../Timer/Timer.h"
 
+/* A base class for all magic, that comes to magic book*/
 class ParamChangeMagic : public FreeParamChangeMagic, 
 	public IBuff, public IManaCost
 {

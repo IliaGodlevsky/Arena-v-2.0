@@ -3,6 +3,7 @@
 
 #include "InnerUnitState.h"
 
+/* Default unit state. */
 class ActiveUnitState : public InnerUnitState
 {
 public:

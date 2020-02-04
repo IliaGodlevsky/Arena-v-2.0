@@ -8,6 +8,9 @@
 class UnitState;
 using StatePtr = std::shared_ptr<UnitState>;
 
+/* The state of unit. Base class. States are responsible 
+for unit's ability to attack and take attacks and ability
+to cast magic and take magic from other units */
 class UnitState
 {
 public:
@@ -26,6 +29,5 @@ public:
 	virtual StatePtr clone()const = 0;
 private:
 	virtual int getValue()const = 0;
-
 };
 #endif

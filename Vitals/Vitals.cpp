@@ -4,8 +4,8 @@
 #include "Vitals.h"
 #include "../Globals/Globals.h"
 
-const double HIGH_HP_LEVEL = 0.8;
-const double LOW_HP_LEVEL = 0.3;
+constexpr double HIGH_HP_LEVEL = 0.8;
+constexpr double LOW_HP_LEVEL = 0.3;
 
 Vitals::Vitals(int value, int maxValue,
 	int valueRegeneration)
@@ -34,9 +34,9 @@ Vitals Vitals::operator-(int value)const
 
 Vitals Vitals::operator+(const Vitals& vit)const
 {
-	int val = m_value + vit.m_value;
-	int max_val = m_maxValue + vit.m_maxValue;
-	int regen = m_valueRegeneration + vit.m_valueRegeneration;
+	const int val = m_value + vit.m_value;
+	const int max_val = m_maxValue + vit.m_maxValue;
+	const int regen = m_valueRegeneration + vit.m_valueRegeneration;
 	Vitals temp(val, max_val, regen);
 	temp.fixOverflow();
 	return temp;
@@ -44,9 +44,9 @@ Vitals Vitals::operator+(const Vitals& vit)const
 
 Vitals Vitals::operator-(const Vitals& vit)const
 {
-	int val = static_cast<int>(fdim(m_value, vit.m_value));
-	int max_val = static_cast<int>(fdim(m_maxValue, vit.m_maxValue));
-	int regen = m_valueRegeneration - vit.m_valueRegeneration;
+	const int val = static_cast<int>(fdim(m_value, vit.m_value));
+	const int max_val = static_cast<int>(fdim(m_maxValue, vit.m_maxValue));
+	const int regen = m_valueRegeneration - vit.m_valueRegeneration;
 	Vitals temp(val, max_val, regen);
 	temp.fixOverflow();
 	return temp;
@@ -84,14 +84,14 @@ Vitals::operator int()const
 
 bool Vitals::isHighHpLevel()const
 {
-	return m_value <= m_maxValue && m_value >
-		m_maxValue * HIGH_HP_LEVEL;
+	return (m_value <= m_maxValue) &&
+		(m_value > m_maxValue * HIGH_HP_LEVEL);
 }
 
 bool Vitals::isNormalHpLevel()const
 {
-	return m_value <= m_maxValue * HIGH_HP_LEVEL && 
-		m_value > m_maxValue * LOW_HP_LEVEL;
+	return (m_value <= m_maxValue * HIGH_HP_LEVEL) && 
+		(m_value > m_maxValue * LOW_HP_LEVEL);
 }
 
 void Vitals::setValueColor()const

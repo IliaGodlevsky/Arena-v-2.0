@@ -20,6 +20,7 @@ MagicOnMe::MagicOnMe(Unit* unit, const MagicOnMe& magicOnMe)
 
 bool MagicOnMe::itemHasPassedControl(const MagicPtr& magic)const
 {
+	// Magic, that comes to this class, must have a definite interface
 	if (!canCast<IDispelable*>(magic) || !canCast<IDuration*>(magic)
 		|| !canCast<IUneffect*>(magic))
 		throw BadIncomingMagicException("Incoming magic doesn't"
@@ -43,6 +44,7 @@ void MagicOnMe::makeExpire(MagicPtr& magic)
 
 void MagicOnMe::takeOffExpired()
 {
+	// sort magic to those, which expired, and to those, that are acting
 	auto expired = std::partition(m_items.begin(), m_items.end(),
 		[](const MagicPtr& magic) {return !DYNAMIC(IDuration*, magic)->isExpired(); });
 	std::for_each(expired, m_items.end(),
