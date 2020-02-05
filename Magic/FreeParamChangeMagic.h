@@ -21,7 +21,5 @@ public:
 	void setStartTime(int round)override;
 	bool isExpired()const override;
 	virtual ~FreeParamChangeMagic() = default;
-protected:
-	Timer m_timer;
 };
 #endif

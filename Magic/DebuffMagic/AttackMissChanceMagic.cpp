@@ -4,7 +4,7 @@
 
 AttackMissChanceMagic::AttackMissChanceMagic(std::string name,
 	int missChance, int manaCost, Timer timer) : Magic(name), m_missChance(missChance),
-	m_manaCost(manaCost), m_timer(timer)
+	IManaCost(manaCost), m_timer(timer)
 {
 
 }
@@ -48,9 +48,4 @@ void AttackMissChanceMagic::showShortInfo()const
 	std::cout << "<";
 	Magic::showShortInfo();
 	std::cout << ": " << m_manaCost << "> ";
-}
-
-int AttackMissChanceMagic::getCost()const
-{
-	return m_manaCost;
 }

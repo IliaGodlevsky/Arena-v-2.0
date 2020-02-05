@@ -3,7 +3,7 @@
 #include "AttackMagic.h"
 
 AttackMagic::AttackMagic(std::string name, int manaCost, HpReduceElem damage)
-	: Magic(name), m_damage(damage), m_manaCost(manaCost)
+	: Magic(name), m_damage(damage), IManaCost(manaCost)
 {
 
 }
@@ -31,11 +31,6 @@ bool AttackMagic::isEqual(const MagicPtr& magic)const
 	return Magic::isEqual(magic) &&
 		temp->m_damage == m_damage && 
 		m_manaCost == temp->m_manaCost;
-}
-
-int AttackMagic::getCost()const
-{
-	return m_manaCost;
 }
 
 void AttackMagic::showFullInfo()const

@@ -3,7 +3,7 @@
 
 ParamChangeMagic::ParamChangeMagic(std::string name, int manaCost,
 	Timer timer)
-	: FreeParamChangeMagic(name, timer), m_manaCost(manaCost)
+	: FreeParamChangeMagic(name, timer), IManaCost(manaCost)
 {
 
 }
@@ -32,11 +32,6 @@ void ParamChangeMagic::showShortInfo()const
 	std::cout << "<";
 	Magic::showShortInfo();
 	std::cout << ": " << m_manaCost << "> ";
-}
-
-int ParamChangeMagic::getCost()const
-{
-	return m_manaCost;
 }
 
 int ParamChangeMagic::getDuration()const

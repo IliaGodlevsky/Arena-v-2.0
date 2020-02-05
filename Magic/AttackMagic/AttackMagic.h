@@ -12,13 +12,11 @@ public:
 	virtual void effectUnit(Unit& unit) override;
 	virtual MagicPtr clone()const override;
 	virtual bool isBuff()const override;
-	virtual int getCost()const override;
 	virtual bool isEqual(const MagicPtr& magic)const override;
 	virtual void showFullInfo()const override;
 	virtual void showShortInfo()const override;
 	virtual ~AttackMagic() = default;
 protected:
-	int m_manaCost = 0;
 	HpReduceElem m_damage;
 };
 

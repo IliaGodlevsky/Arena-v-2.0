@@ -2,7 +2,7 @@
 #include "../Unit/Unit.h"
 
 FreeParamChangeMagic::FreeParamChangeMagic(std::string name, Timer timer)
-	: Magic(name), m_timer(timer)
+	: Magic(name), IDuration(timer)
 {
 
 }

@@ -6,14 +6,9 @@
 #include "SilenceMagic.h"
 
 SilenceMagic::SilenceMagic(std::string name, int manaCost, Timer timer)
-	: Magic(name), m_manaCost(manaCost), m_timer(timer)
+	: Magic(name), IManaCost(manaCost), m_timer(timer)
 {
 
-}
-
-int SilenceMagic::getCost()const
-{
-	return m_manaCost;
 }
 
 void SilenceMagic::effectUnit(Unit& unit)

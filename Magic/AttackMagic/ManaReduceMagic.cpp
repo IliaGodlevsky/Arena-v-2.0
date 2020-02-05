@@ -3,7 +3,7 @@
 #include "ManaReduceMagic.h"
 
 ManaReduceMagic::ManaReduceMagic(std::string name, int manaCost, MpReduceElem damage)
-	:Magic(name), m_manaCost(manaCost), m_mpReduce(damage)
+	:Magic(name), IManaCost(manaCost), m_mpReduce(damage)
 {
 
 }
@@ -21,11 +21,6 @@ MagicPtr ManaReduceMagic::clone()const
 bool ManaReduceMagic::isBuff()const
 {
 	return false;
-}
-
-int ManaReduceMagic::getCost()const
-{
-	return m_manaCost;
 }
 
 bool ManaReduceMagic::isEqual(const MagicPtr& magic)const

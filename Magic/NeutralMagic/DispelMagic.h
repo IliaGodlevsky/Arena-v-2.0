@@ -14,9 +14,6 @@ public:
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
 	void showShortInfo()const override;
-	int getCost()const override;
-private:
-	int m_manaCost = 0;
 };
 
 #endif

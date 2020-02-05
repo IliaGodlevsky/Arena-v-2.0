@@ -4,7 +4,7 @@
 
 
 DispelMagic::DispelMagic(std::string name, int manaCost)
-	: Magic(name), m_manaCost(manaCost)
+	: Magic(name), IManaCost(manaCost)
 {
 
 }
@@ -13,11 +13,6 @@ void DispelMagic::effectUnit(Unit& unit)
 {
 	unit.m_magicOnMe.expireAll();
 	unit.m_stateHolder.expireAll();
-}
-
-int DispelMagic::getCost()const
-{
-	return m_manaCost;
 }
 
 MagicPtr DispelMagic::clone()const

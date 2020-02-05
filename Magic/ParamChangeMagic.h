@@ -17,13 +17,11 @@ public:
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
 	void showShortInfo()const override;
-	int getCost()const override;
 	int getDuration()const override;
 	int getStartTime()const override;
 	void setStartTime(int round)override;
 	bool isExpired()const override;
 	virtual ~ParamChangeMagic() = default;
 protected:
-	int m_manaCost = 0;
 };
 #endif

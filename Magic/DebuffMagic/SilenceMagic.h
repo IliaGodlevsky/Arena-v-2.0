@@ -15,10 +15,8 @@ public:
 	bool isEqual(const MagicPtr& magic)const override;
 	void showShortInfo()const override;
 	void showFullInfo()const override;
-	int getCost()const override;
 private:
 	Timer m_timer;
-	int m_manaCost = 0;
 };
 
 #endif
