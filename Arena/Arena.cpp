@@ -26,11 +26,8 @@ const std::vector<std::string> m_reserveNames =
 	"Elizabeth","Unberto","Izabell","Oxford","Mark"
 };
 
-// current round
 int Arena::m_round = 0;
 
-// Return the maximum number of players
-// that can take part in the game
 constexpr int Arena::getMaxNubmerOfPlayers()const
 {
 	return 6; 
@@ -63,7 +60,6 @@ void Arena::showMiniature()const
 )";
 }
 
-// Sets number of players, that will play the game
 int Arena::setNumberOfUnits()const
 {
 	std::cout << std::endl << std::endl;
@@ -76,7 +72,6 @@ int Arena::getCurrentRound()
 	return m_round;
 }
 
-// Returns the object of a class
 Arena& Arena::getInstance()
 {
 	static Arena instance;
@@ -94,22 +89,17 @@ void Arena::showUnits()const
 	}
 }
 
-// If some unit is dead, it will be
-// removed from the game
 void Arena::takeOfLosers()
 {
-	UnitPtr temp = *m_currentUnit; // save address of current unit
+	UnitPtr currentUnit = *m_currentUnit;
 	m_units.erase(std::remove_if(m_units.begin(), m_units.end(), 
 		[](const UnitPtr unit) {return !unit->isAlive(); }), m_units.end());
-	// restore position of current unit
 	m_currentUnit = std::find_if(m_units.begin(), m_units.end(), 
-		[&](const UnitPtr unit) {return temp == unit; });
+		[&](const UnitPtr unit) {return currentUnit == unit; });
 }
 
 bool Arena::isGameOver()const
 {
-	// if the number of ally players in the game is equal to 
-	// arena size, the game is considered to be over
 	return std::count_if(m_units.begin(), m_units.end(), [&](const UnitPtr& unit) 
 	{ return unit->isAlly(**m_currentUnit); }) == m_units.size();
 }
@@ -237,7 +227,7 @@ void Arena::goNextUnit()
 {
 	m_currentUnit++;
 	if (m_currentUnit >= m_units.end())
-	{   // back to first unit
+	{   
 		m_currentUnit = m_units.begin();
 		m_round++;
 		goNewRound();
