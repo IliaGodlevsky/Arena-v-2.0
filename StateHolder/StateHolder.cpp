@@ -76,10 +76,10 @@ bool StateHolder::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)c
 
 void StateHolder::makeExpire(StatePtr& state)
 {
-	auto temp = std::find_if(m_items.begin(),m_items.end(),
+	auto expired = std::find_if(m_items.begin(),m_items.end(),
 		[&](const StatePtr& it) {return state->isEqual(it); });
 	OuterUnitState* st = nullptr;
-	if (st = DYNAMIC(OuterUnitState*, (*temp)))
+	if (st = DYNAMIC(OuterUnitState*, (*expired)))
 		st->setStartTime(Arena::getCurrentRound() - 
 			st->getDuration() - 1);
 }
@@ -92,8 +92,8 @@ void StateHolder::takeOffExpired()
 
 void StateHolder::setItemColor(const StatePtr& unitState)const
 {
-	InnerUnitState* inner = DYNAMIC(InnerUnitState*, unitState);
-	if (nullptr == inner)
+	InnerUnitState* innerState = DYNAMIC(InnerUnitState*, unitState);
+	if (!innerState)
 		setColor(LIGHT_RED);
 	else
 		setColor(BROWN);
