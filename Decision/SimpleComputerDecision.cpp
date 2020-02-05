@@ -3,25 +3,25 @@
 #include "SimpleComputerDecision.h"
 #include "../Interface/Interface.h"
 
-inline bool canKill(UnitPtr unit1, UnitPtr unit2)
+bool canKill(UnitPtr unit1, UnitPtr unit2)
 {
 	unit1->injureUnit(*unit2);
 	return !unit2->isAlive();
 }
 
-inline bool canBeKilled(UnitPtr unit1, UnitPtr unit2)
+bool canBeKilled(UnitPtr unit1, UnitPtr unit2)
 {
 	return canKill(unit2, unit1);
 }
 
-inline bool isDeadAfterBuff(UnitPtr unit1, 
+bool isDeadAfterBuff(UnitPtr unit1, 
 	UnitPtr unit2, MagicPtr& magic)
 {
 	unit1->castMagic(*unit1, magic);
 	return canKill(unit1, unit2);
 }
 
-inline bool isDeadAfterDebuff(UnitPtr unit1,
+bool isDeadAfterDebuff(UnitPtr unit1,
 	UnitPtr unit2, MagicPtr& magic)
 {
 	unit1->castMagic(*unit2, magic);

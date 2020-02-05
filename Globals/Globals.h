@@ -59,6 +59,7 @@ double getPercentOfReduce(int armor);
 void exceptionMessage(std::exception& ex);
 void myTerminate();
 void signal(int milliseconds, int numberOfSignals);
+void checkArgs(int& upper, int& lower);
 
 const char* const teamPlayQuest = "Do you want to play "
 "in teams? <1 - yes, 0 - no>: ";

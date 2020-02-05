@@ -4,9 +4,16 @@
 
 #include "Globals.h"
 
+void checkArgs(int& upper, int& lower)
+{
+	if (upper < lower)
+		std::swap(upper, lower);
+}
+
 int inputNumber(const std::string& message,
 	int upper, int lower)
 {
+	checkArgs(upper, lower);
 	int choice;
 	std::cout << message;
 	std::cin >> choice;
@@ -35,8 +42,7 @@ void eatLine()
 
 int randomNumber(int max, int min) 
 { 
-	if (min > max)
-		throw std::invalid_argument("randomNumber fuction error: min > max");
+	checkArgs(max, min);
 	std::random_device seed;
 	std::mt19937 generator(seed());
 	std::uniform_int_distribution<int> 
