@@ -133,20 +133,21 @@ UnitPtr SimpleComputerDecision::findUnitCanBeKilled(const Unit& decidingUnit,
 	{
 		me = decidingUnit.getPureClone();
 		enemy = units[i]->getPureClone();
-		if (!decidingUnit.isAlly(*units[i]) && units[i]->isAlive())
+		if (!isWrongUnitToAttack(decidingUnit, units[i]))
 			if (predicate(me, enemy))
 				victims.push_back(units[i]);
 	}
-	return victims.empty()? nullptr 
+	return victims.empty() ? nullptr 
 		: victims[randomNumber((int)victims.size() - 1)];
 }
 
 bool SimpleComputerDecision::isDeadAfterCast(const Unit& unit1, 
-	const UnitPtr& unit2, MagicPtr& magic, CastPredicate castPredicate, DecisionPredicate predicate)const
+	const UnitPtr& unit2, MagicPtr& magic, CastPredicate castPredicate, 
+	DecisionPredicate predicate)const
 {
 	UnitPtr me = unit1.getPureClone();
 	UnitPtr victim = unit2->getPureClone();
-	if ((this->*predicate)(unit1, *unit2, magic) && unit1.isEnoughManaFor(magic))
+	if (predicate(unit1, *unit2, magic) && unit1.isEnoughManaFor(magic))
 		return castPredicate(me, victim, magic);
 	return false;
 }
@@ -174,11 +175,11 @@ MagicAim SimpleComputerDecision::findUnitToKillWithWeaponAndMagic(const Unit& de
 		magic = decidingUnit.m_magicBook[i]->clone();
 		for (size_t j = 0; j < units.size(); j++)
 		{
-			if (isDeadAfterCast(decidingUnit, units[j], magic, isDeadAfterBuff,
-				&SimpleComputerDecision::canCastBuffOnUnit))
+			if (isDeadAfterCast(decidingUnit, units[j], magic, 
+				isDeadAfterBuff, canCastBuffOnUnit))
 				victims.push_back(std::make_pair(units[j], magic->clone()));
-			else if (isDeadAfterCast(decidingUnit, units[j], magic, isDeadAfterDebuff,
-				&SimpleComputerDecision::canCastDebuffOnUnit))
+			else if (isDeadAfterCast(decidingUnit, units[j], magic, 
+				isDeadAfterDebuff, canCastDebuffOnUnit))
 				victims.push_back(std::make_pair(units[j], magic->clone()));
 		}
 	}
@@ -199,9 +200,8 @@ MagicAim SimpleComputerDecision::findMagicToKillUnit(
 		{
 			me = decidingUnit.getPureClone();
 			enemy = units[j]->getPureClone();
-			if (!decidingUnit.isAlly(*units[j]) &&
+			if (!isWrongUnitToAttack(decidingUnit,units[j]) &&
 				!isWrongSpellToCast(decidingUnit, *units[j], magic) &&
-				units[j]->isAlive() &&
 				!canKill(me->getPureClone(), enemy->getPureClone()))
 			{
 				me->castMagic(*enemy, magic);

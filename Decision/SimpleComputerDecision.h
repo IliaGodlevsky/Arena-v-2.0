@@ -6,6 +6,7 @@
 using Predicate = bool(*)(UnitPtr, UnitPtr);
 using CastPredicate = bool(*)(UnitPtr, UnitPtr, MagicPtr&);
 using MagicAim = std::pair<UnitPtr, MagicPtr>;
+using DecisionPredicate = bool(*)(const Unit&, const Unit&, const MagicPtr&);
 
 bool canKill(UnitPtr unit1, UnitPtr unit2);
 bool canBeKilled(UnitPtr unit1, UnitPtr unit2);
@@ -28,8 +29,7 @@ public:
 	UnitPtr chooseUnitToCast(const Unit&, const MagicPtr&, const Gladiators&)const override;
 	virtual std::string getDecisionType()const override;
 	DecisionPtr clone()const;
-private:	
-	using DecisionPredicate = bool(SimpleComputerDecision::*)(const Unit&, const Unit&,const MagicPtr&)const;
+private:
 	UnitPtr findUnitWithOutChosenMagic(const Unit&, const MagicPtr&,const Gladiators&)const;
 	UnitPtr findUnitCanBeKilled(const Unit&, const Gladiators&, Predicate)const;
 	MagicAim findMagicToKillUnit(const Unit&, const Gladiators&)const;
