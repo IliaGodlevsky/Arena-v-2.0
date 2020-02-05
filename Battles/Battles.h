@@ -1,8 +1,7 @@
 #ifndef BATTLES_H_
 #define BATTLES_H_
 
-/* A class that responses for damage and armor 
-of unit, weapon, shield and armor */
+/* A class that responses for damage or armor */
 class Battles
 {
 public:
