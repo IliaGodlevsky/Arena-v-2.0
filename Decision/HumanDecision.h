@@ -2,6 +2,10 @@
 #define HUMAN_DECISION_H_
 
 #include "Decision.h"
+#include "../MagicBook/MagicBook.h"
+
+index chooseMagicIndex(const std::string& message, 
+	const MagicBook& magicBook);
 
 class HumanDecision : public Decision
 {
@@ -28,6 +32,9 @@ private:
 	const std::string UNIT_TO_ATTACK_CHOOSE_MESSAGE = "choose unit to attack: ";
 	const std::string MAGIC_TO_CAST_CHOOSE_MESSAGE = "Choose magic: ";
 	const std::string UNIT_TO_CAST_CHOOSE_MESSAGE = "choose unit to charm: ";
+	const std::string CHOOSE_MAGIC_TO_TAKE_MSG = "choose units spell you want to take: ";
+	const std::string YOU_HAVE_MAGIC_MSG = "You have such a magic. "
+		"Do you really want to take it?: ";
 };
 
 #endif

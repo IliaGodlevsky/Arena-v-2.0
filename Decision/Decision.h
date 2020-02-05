@@ -3,6 +3,14 @@
 
 #include "../Globals/Globals.h"
 
+bool isWrongUnitToAttack(const Unit& decidingUnit, const UnitPtr& unit);
+bool canCastBuffOnUnit(const Unit& caster, const Unit& aim,
+	const MagicPtr& magic);
+bool canCastDebuffOnUnit(const Unit& caster, const Unit& aim,
+	const MagicPtr& magic);
+bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
+	const MagicPtr& spell);
+
 class Decision
 {
 public:
@@ -20,12 +28,7 @@ public:
 	virtual DecisionPtr clone()const = 0;
 	virtual ~Decision() = default;
 protected:
-	virtual bool canCastBuffOnUnit(const Unit& caster, const Unit& aim, 
-		const MagicPtr& magic)const;
-	virtual bool canCastDebuffOnUnit(const Unit& caster, const Unit& aim, 
-		const MagicPtr& magic)const;
-	virtual bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
-		const MagicPtr& spell)const;
+
 };
 
 #endif
