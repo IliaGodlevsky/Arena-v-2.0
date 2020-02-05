@@ -45,9 +45,9 @@ void MagicBook::setItemColor(const MagicPtr& magic)const
 	IBuff* buff = DYNAMIC(IBuff*, magic);
 	if (buff->isBuff())
 		setColor(LIGHT_GREEN);
-	else if (!buff->isBuff() && nullptr == attack)
+	else if (!buff->isBuff() && !attack)
 		setColor(LIGHT_RED);
-	else if (nullptr != attack)
+	else if (attack)
 		setColor(YELLOW);
 	
 }
