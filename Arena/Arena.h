@@ -2,9 +2,22 @@
 #define ARENA_H_
 
 #include <thread>
+#include <array>
 
 #include "../Globals/Globals.h"
 #include "../Factories/UnitFactory/UnitFactory.h"
+
+enum { GAME_STEPS = 2, PREPARE_STEPS };
+
+class Arena;
+
+using GameStep = void(Arena::*)();
+template <int size>
+using ArenaActions = std::array<GameStep, size>;
+
+void invoke(GameStep& method);
+void playStep(GameStep& method);
+void playSteps(Arena& arena);
 
 // A class, where the game cycles. Has methods and members
 // that runs the game cycle

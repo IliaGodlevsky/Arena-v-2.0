@@ -1,5 +1,7 @@
 #include "Arena/Arena.h"
 
+extern ArenaActions<PREPARE_STEPS> prepares;
+
 int main()
 {
 	set_terminate(myTerminate);
@@ -8,18 +10,10 @@ int main()
 	while (YES is answer) {
 		try {
 			arena.showMiniature();
-			arena.prepareUnits();
-			arena.proposeToPlayTeams();
-			arena.setStartUnit();
-			while (!arena.isGameOver()) {
-				arena.showUnits();
-				arena.playCastStep();
-				arena.takeOfLosers();
-				arena.showUnits();
-				arena.playAttackStep();
-				arena.takeOfLosers();
-				arena.goNextUnit();
-			}
+			std::for_each(prepares.begin(), 
+				prepares.end(), invoke);
+			while (!arena.isGameOver())
+				playSteps(arena);
 			arena.showUnits();
 			std::cout << "Became the winner\n";
 			system("pause");

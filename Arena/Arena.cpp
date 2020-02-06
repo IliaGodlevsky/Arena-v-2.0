@@ -13,6 +13,43 @@
 
 #include "Arena.h"
 
+ArenaActions<GAME_STEPS> steps =
+{
+	&Arena::playCastStep,
+	&Arena::playAttackStep
+};
+
+ArenaActions<PREPARE_STEPS> prepares =
+{
+	&Arena::prepareUnits,
+	&Arena::proposeToPlayTeams,
+	&Arena::setStartUnit
+};
+
+void invoke(GameStep& method)
+{
+	(Arena::getInstance().*method)();
+}
+
+void playStep(GameStep& method)
+{
+	Arena::getInstance().showUnits();
+	invoke(method);
+	Arena::getInstance().takeOfLosers();
+}
+
+void playSteps(Arena& arena)
+{
+	static int i = 0;
+	playStep(steps[i]);
+	i++;
+	if (i >= GAME_STEPS)
+	{
+		i = 0;
+		arena.goNextUnit();
+	}
+}
+
 enum { WARRIOR = 1, WIZARD };
 
 // reserve names for computer players, can be needed
@@ -198,16 +235,13 @@ void Arena::playCastStep()
 
 void Arena::playAttackStep()
 {
-	if (!isGameOver())
+	m_unitToAttack = (*m_currentUnit)->chooseUnitToAttack(m_units);
+	if (nullptr != m_unitToAttack)
 	{
-		m_unitToAttack = (*m_currentUnit)->chooseUnitToAttack(m_units);
-		if (nullptr != m_unitToAttack)
-		{
-			std::cout << (*m_currentUnit)->getName()
-				<< " attacked " << m_unitToAttack->getName() << std::endl;
-			(*m_currentUnit)->injureUnit(*m_unitToAttack);
-			rewardKiller(m_unitToAttack);
-		}
+		std::cout << (*m_currentUnit)->getName()
+			<< " attacked " << m_unitToAttack->getName() << std::endl;
+		(*m_currentUnit)->injureUnit(*m_unitToAttack);
+		rewardKiller(m_unitToAttack);
 	}
 }
 
