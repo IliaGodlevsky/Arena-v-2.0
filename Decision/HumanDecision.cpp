@@ -111,11 +111,11 @@ void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 	std::cout << decidingUnit.getName() << ", ";
 	index magicToTake = chooseMagicIndex(CHOOSE_MAGIC_TO_TAKE_MSG, 
 		victim.m_magicBook);
-	bool wantToTakeMagic;
+	bool wantsToTakeMagic;
 	while (decidingUnit.m_magicBook.hasItem(victim.m_magicBook[magicToTake - 1]))
 	{
-		wantToTakeMagic = static_cast<bool>(inputNumber(YOU_HAVE_MAGIC_MSG, YES, NO));
-		if (NO == wantToTakeMagic)
+		wantsToTakeMagic = static_cast<bool>(inputNumber(YOU_HAVE_MAGIC_MSG, YES, NO));
+		if (!wantsToTakeMagic)
 			magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, 
 			(int)victim.m_magicBook.size(), 1);
 		else

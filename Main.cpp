@@ -4,8 +4,8 @@ int main()
 {
 	set_terminate(myTerminate);
 	auto& arena = Arena::getInstance();
-	bool answer = YES;
-	while (YES is answer) {
+	bool wantsToPlay = YES;
+	while (wantsToPlay) {
 		try {
 			arena.showMiniature();
 			std::for_each(prepares.begin(), 
@@ -17,7 +17,7 @@ int main()
 		catch (std::exception& ex) { 
 			exceptionMessage(ex); 
 		}
-		answer = static_cast<bool>(
+		wantsToPlay = static_cast<bool>(
 			inputNumber(playAgainMsg, YES, NO));
 		system("cls");
 	}
