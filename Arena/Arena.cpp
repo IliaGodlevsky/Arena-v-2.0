@@ -13,44 +13,37 @@
 
 #include "Arena.h"
 
-ArenaActions<GAME_STEPS> steps =
-{
-	&Arena::playCastStep,
-	&Arena::playAttackStep
-};
+enum { WARRIOR = 1, WIZARD };
 
-ArenaActions<PREPARE_STEPS> prepares =
-{
-	&Arena::prepareUnits,
-	&Arena::proposeToPlayTeams,
-	&Arena::setStartUnit
-};
-
-void invoke(GameStep& method)
+void invoke(const GameStep& method)
 {
 	(Arena::getInstance().*method)();
 }
 
-void playStep(GameStep& method)
+void playStep(Arena& arena, const GameStep& method)
 {
-	Arena::getInstance().showUnits();
+	arena.showUnits();
 	invoke(method);
-	Arena::getInstance().takeOfLosers();
+	arena.takeOfLosers();
 }
 
 void playSteps(Arena& arena)
 {
 	static int i = 0;
-	playStep(steps[i]);
-	i++;
-	if (i >= GAME_STEPS)
+	playStep(arena, steps[i]);
+	if (++i >= steps.size())
 	{
 		i = 0;
 		arena.goNextUnit();
 	}
 }
 
-enum { WARRIOR = 1, WIZARD };
+void announceWinner(Arena& arena)
+{
+	arena.showUnits();
+	std::cout << "Became the winner\n";
+	system("pause");
+}
 
 // reserve names for computer players, can be needed
 // if file with names is empty or is not found
@@ -259,8 +252,7 @@ void Arena::rewardKiller(UnitPtr victim)
 
 void Arena::goNextUnit()
 {
-	m_currentUnit++;
-	if (m_currentUnit >= m_units.end())
+	if (++m_currentUnit >= m_units.end())
 	{   
 		m_currentUnit = m_units.begin();
 		m_round++;

@@ -1,7 +1,5 @@
 #include "Arena/Arena.h"
 
-extern ArenaActions<PREPARE_STEPS> prepares;
-
 int main()
 {
 	set_terminate(myTerminate);
@@ -14,9 +12,7 @@ int main()
 				prepares.end(), invoke);
 			while (!arena.isGameOver())
 				playSteps(arena);
-			arena.showUnits();
-			std::cout << "Became the winner\n";
-			system("pause");
+			announceWinner(arena);
 		}
 		catch (std::exception& ex) { 
 			exceptionMessage(ex); 

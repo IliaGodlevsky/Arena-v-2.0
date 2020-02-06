@@ -7,18 +7,6 @@
 #include "../Globals/Globals.h"
 #include "../Factories/UnitFactory/UnitFactory.h"
 
-enum { GAME_STEPS = 2, PREPARE_STEPS };
-
-class Arena;
-
-using GameStep = void(Arena::*)();
-template <int size>
-using ArenaActions = std::array<GameStep, size>;
-
-void invoke(GameStep& method);
-void playStep(GameStep& method);
-void playSteps(Arena& arena);
-
 // A class, where the game cycles. Has methods and members
 // that runs the game cycle
 class Arena
@@ -58,4 +46,25 @@ private:
 	static int m_round;
 };
 
+enum { GAME_STEPS = 2, PREPARE_STEPS };
+
+using GameStep = void(Arena::*)();
+template <int size>
+using ArenaActions = std::array<GameStep, size>;
+
+void invoke(const GameStep& method);
+void playStep(Arena& arena, const GameStep& method);
+void playSteps(Arena& arena);
+void announceWinner(Arena& arena);
+
+const ArenaActions<GAME_STEPS> steps{
+	&Arena::playCastStep,
+	&Arena::playAttackStep
+};
+
+const ArenaActions<PREPARE_STEPS> prepares{
+	&Arena::prepareUnits,
+	&Arena::proposeToPlayTeams,
+	&Arena::setStartUnit
+};
 #endif
