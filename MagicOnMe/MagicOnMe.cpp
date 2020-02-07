@@ -42,7 +42,7 @@ void MagicOnMe::makeExpire(MagicPtr& magic)
 
 void MagicOnMe::takeOffExpired()
 {
-	// sort magic to those, which expired, and to those, that are acting
+	// sort magic to those, which has expired, and to those, that are acting
 	const auto expiredMagics = std::partition(m_items.begin(), m_items.end(),
 		[](const MagicPtr& magic) {return !DYNAMIC(IExpirable*, magic)->isExpired(); });
 	std::for_each(expiredMagics, m_items.end(),
