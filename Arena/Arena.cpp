@@ -42,7 +42,6 @@ void announceWinner(Arena& arena)
 {
 	arena.showUnits();
 	std::cout << "Became the winner\n";
-	system("pause");
 }
 
 // reserve names for computer players, can be needed
