@@ -8,10 +8,10 @@ int main()
 	while (wantsToPlay) {
 		try {
 			arena.showMiniature();
-			std::for_each(prepares.begin(), 
-				prepares.end(), invoke);
+			std::for_each(prepareSteps.begin(), 
+				prepareSteps.end(), invoke);
 			while (!arena.isGameOver())
-				playSteps(arena);
+				playGameSteps(arena);
 			announceWinner(arena);
 		}
 		catch (std::exception& ex) { 

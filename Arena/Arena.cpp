@@ -20,20 +20,21 @@ void invoke(const GameStep& method)
 	(Arena::getInstance().*method)();
 }
 
-void playStep(Arena& arena, const GameStep& method)
+void playGameStep(Arena& arena, const GameStep& method)
 {
 	arena.showUnits();
 	invoke(method);
 	arena.takeOfLosers();
 }
 
-void playSteps(Arena& arena)
+void playGameSteps(Arena& arena)
 {
-	static int i = 0;
-	playStep(arena, steps[i]);
-	if (++i >= steps.size())
+	enum { CAST_STEP, ATTACK_STEP };
+	static int gameStep = CAST_STEP;
+	playGameStep(arena, gameSteps[gameStep]);
+	if (++gameStep >= gameSteps.size())
 	{
-		i = 0;
+		gameStep = CAST_STEP;
 		arena.goNextUnit();
 	}
 }

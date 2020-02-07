@@ -53,16 +53,16 @@ template <int size>
 using ArenaActions = std::array<GameStep, size>;
 
 void invoke(const GameStep& method);
-void playStep(Arena& arena, const GameStep& method);
-void playSteps(Arena& arena);
+void playGameStep(Arena& arena, const GameStep& method);
+void playGameSteps(Arena& arena);
 void announceWinner(Arena& arena);
 
-const ArenaActions<GAME_STEPS> steps{
+const ArenaActions<GAME_STEPS> gameSteps{
 	&Arena::playCastStep,
 	&Arena::playAttackStep
 };
 
-const ArenaActions<PREPARE_STEPS> prepares{
+const ArenaActions<PREPARE_STEPS> prepareSteps{
 	&Arena::prepareUnits,
 	&Arena::proposeToPlayTeams,
 	&Arena::setStartUnit
