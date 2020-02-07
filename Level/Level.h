@@ -13,6 +13,7 @@ public:
 	virtual ~Level() = default;
 	operator int()const;
 protected:
+	enum { MAX_LEVEL = 5 };
 	int m_level = 1;
 	Unit* m_unit = nullptr; // unit, that have this level class
 };

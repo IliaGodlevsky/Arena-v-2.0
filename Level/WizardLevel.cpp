@@ -18,6 +18,7 @@ WizardLevel& WizardLevel::operator++()
 		Vitals(MP_PER_LVL, MP_PER_LVL, MP_REGEN_PER_LVL);
 	m_unit->m_damage.changeValue(DMG_PER_LVL);
 	m_unit->m_armor.changeValue(ARM_PER_LVL);
-	m_level++;
+	if (m_level < MAX_LEVEL)
+		m_level++;
 	return *this;
 }
