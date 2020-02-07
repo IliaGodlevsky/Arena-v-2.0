@@ -2,9 +2,9 @@
 
 #include "CorruptionMagic.h"
 
-CorruptionMagic::CorruptionMagic(std::string name, Timer timer,
+CorruptionMagic::CorruptionMagic(std::string name, Time time,
 	ArmorReduceElem armorReduce, PosibilityCounter propability)
-	: FreeParamChangeMagic(name, timer),
+	: FreeParamChangeMagic(name, time),
 	m_armorReduce(armorReduce), m_posibility(propability)
 {
 
@@ -26,7 +26,7 @@ void CorruptionMagic::uneffectUnit(Unit& unit)
 
 MagicPtr CorruptionMagic::clone()const
 {
-	return MagicPtr(new CorruptionMagic(m_name, m_timer,
+	return MagicPtr(new CorruptionMagic(m_name, m_time,
 		m_armorReduce, m_posibility));
 }
 

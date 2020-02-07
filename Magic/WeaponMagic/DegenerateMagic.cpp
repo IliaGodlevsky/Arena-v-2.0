@@ -2,9 +2,9 @@
 
 #include "DegenerateMagic.h"
 
-DegenerateMagic::DegenerateMagic(std::string name, Timer timer,
+DegenerateMagic::DegenerateMagic(std::string name, Time time,
 	HpRegenReduceElem degeneration, PosibilityCounter posibility)
-	: FreeParamChangeMagic(name, timer),
+	: FreeParamChangeMagic(name, time),
 	m_regenReduce(degeneration),
 	m_posibility(posibility)
 {
@@ -32,7 +32,8 @@ void DegenerateMagic::uneffectUnit(Unit& unit)
 
 MagicPtr DegenerateMagic::clone()const
 {
-	return MagicPtr(new DegenerateMagic(m_name, m_timer, m_regenReduce, m_posibility));
+	return MagicPtr(new DegenerateMagic(m_name, m_time, 
+		m_regenReduce, m_posibility));
 }
 
 bool DegenerateMagic::isEqual(const MagicPtr& magic)const

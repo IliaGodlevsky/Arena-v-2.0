@@ -8,7 +8,7 @@ not able to cast any magic */
 class MutedUnitState : public OuterUnitState
 {
 public:
-	MutedUnitState(const Timer& timer);
+	MutedUnitState(Time time);
 	MutedUnitState() = default;
 	bool canCast()const;
 	void showShortInfo()const;

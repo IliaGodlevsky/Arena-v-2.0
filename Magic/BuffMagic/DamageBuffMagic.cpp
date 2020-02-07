@@ -3,8 +3,8 @@
 #include "DamageBuffMagic.h"
 
 DamageBuffMagic::DamageBuffMagic(std::string name, int manaCost,
-	Timer timer, DamageAmplifyElem damageAmplify)
-	: ParamChangeMagic(name, manaCost, timer), 
+	Time time, DamageAmplifyElem damageAmplify)
+	: ParamChangeMagic(name, manaCost, time), 
 	m_damageAmplify(damageAmplify)
 {
 
@@ -23,7 +23,7 @@ void DamageBuffMagic::uneffectUnit(Unit& unit)
 
 MagicPtr DamageBuffMagic::clone()const
 {
-	return MagicPtr(new DamageBuffMagic(m_name, m_manaCost, m_timer, m_damageAmplify));
+	return MagicPtr(new DamageBuffMagic(m_name, m_manaCost, m_time, m_damageAmplify));
 }
 
 bool DamageBuffMagic::isEqual(const MagicPtr& magic)const
@@ -48,6 +48,6 @@ bool DamageBuffMagic::isDispelable()const
 void DamageBuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
-	std::cout << "Adds " << m_damageAmplify 
-		<< " damage for " << m_timer.getDuration() << " rounds\n";
+	std::cout << "Adds " << m_damageAmplify
+		<< " damage for " << getDuration() << " rounds\n";
 }

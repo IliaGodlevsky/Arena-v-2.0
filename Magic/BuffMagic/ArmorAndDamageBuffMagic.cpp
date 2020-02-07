@@ -1,9 +1,9 @@
 #include "ArmorAndDamageBuffMagic.h"
 
 ArmorAndDamageBuffMagic::ArmorAndDamageBuffMagic(std::string name, int manaCost,
-	Timer timer, ArmorAmplifyElem armorAmplify,
+	Time time, ArmorAmplifyElem armorAmplify,
 	DamageAmplifyElem damageAmplify)
-	: ParamChangeMagic(name, manaCost, timer),
+	: ParamChangeMagic(name, manaCost, time),
 	m_armorAmplify(armorAmplify),
 	m_damageAmplify(damageAmplify)
 {
@@ -25,7 +25,7 @@ void ArmorAndDamageBuffMagic::uneffectUnit(Unit& unit)
 
 MagicPtr ArmorAndDamageBuffMagic::clone()const
 {
-	return MagicPtr(new ArmorAndDamageBuffMagic(m_name, m_manaCost, m_timer,
+	return MagicPtr(new ArmorAndDamageBuffMagic(m_name, m_manaCost, m_time,
 		m_armorAmplify, m_damageAmplify));
 }
 
@@ -53,5 +53,5 @@ void ArmorAndDamageBuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
 	std::cout << "Adds " << m_armorAmplify << " armor and "
-		<< m_damageAmplify << " damage for " << m_timer.getDuration() << " rounds\n";
+		<< m_damageAmplify << " damage for " << getDuration() << " rounds\n";
 }

@@ -19,9 +19,10 @@ public:
 	virtual const T& operator[](size_t t)const final;
 	virtual void showShortInfo()const;
 	virtual void setItemColor(const T& item)const = 0;
-	virtual size_t size()const final;
+	virtual size_t size()const final;	
 	virtual ~TemplateContainer() = default;
 protected:
+	virtual void showItem(const T& item)const;
 	std::vector<T> m_items;
 };
 
@@ -40,7 +41,7 @@ void TemplateContainer<T>::showShortInfo()const
 		setItemColor(m_items[i]);
 		if (i % 2 == 0 && i != 0)
 			std::cout << std::endl << "\t";
-		m_items[i]->showShortInfo();
+		showItem(m_items[i]);
 	}
 	setColor();
 	std::cout << std::endl;
@@ -50,6 +51,12 @@ template <class T>
 size_t TemplateContainer<T>::size()const
 {
 	return m_items.size();
+}
+
+template <class T>
+void TemplateContainer<T>::showItem(const T& item)const
+{
+	item->showShortInfo();
 }
 
 template <class T>

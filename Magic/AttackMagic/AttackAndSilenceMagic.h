@@ -8,7 +8,7 @@ class AttackAndSilenceMagic : public AttackMagic
 {
 public:
 	AttackAndSilenceMagic(std::string name, int manaCost,
-		Timer timer, int damage);
+		int duration, int damage);
 	void effectUnit(Unit& unit) override;
 	MagicPtr clone()const override;
 	bool isBuff()const override;
@@ -17,7 +17,7 @@ public:
 	void showShortInfo()const override;
 protected:
 	SilenceMagic m_silence;
-	Timer m_timer;
+	int m_duration;
 };
 
 #endif

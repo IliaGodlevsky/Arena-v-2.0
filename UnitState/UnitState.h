@@ -2,7 +2,6 @@
 #define STATE_H_
 
 #include "../Globals/Globals.h"
-#include "../Timer/Timer.h"
 #include "../Weapon/Weapon.h"
 
 class UnitState;
@@ -25,7 +24,6 @@ public:
 	virtual bool operator <(const UnitState& unitState)const final;
 	virtual bool operator >(const UnitState& unitState)const final;
 	virtual bool isEqual(const StatePtr& unitState)const final;
-	virtual bool isExpired()const = 0;
 	virtual StatePtr clone()const = 0;
 private:
 	virtual int getValue()const = 0;

@@ -1,8 +1,8 @@
 #include "../../Unit/Unit.h"
 #include "MissAttackUnitState.h"
 
-MissAttackUnitState::MissAttackUnitState(Timer timer,
-	PosibilityCounter missChance) : OuterUnitState(timer),
+MissAttackUnitState::MissAttackUnitState(Time time,
+	PosibilityCounter missChance) : OuterUnitState(time), 
 	m_missChance(missChance)
 {
 
@@ -15,13 +15,12 @@ bool MissAttackUnitState::canAttack()const
 
 void MissAttackUnitState::showShortInfo()const
 {
-	std::cout << "<See double: " << m_timer.getStartTime()
-		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
+	std::cout << "<See double: " << getDurationRemained() << "> ";
 }
 
 StatePtr MissAttackUnitState::clone()const
 {
-	return StatePtr(new MissAttackUnitState(m_timer, m_missChance));
+	return StatePtr(new MissAttackUnitState(m_time, m_missChance));
 }
 
 int MissAttackUnitState::getValue()const

@@ -10,7 +10,7 @@ class OffsetDamageBuffMagic
 {
 public:
 	OffsetDamageBuffMagic(std::string name, int manaCost,
-		Timer timer, ArmorReduceElem armorReduce, 
+		Time time, ArmorReduceElem armorReduce, 
 		DamageAmplifyElem damageAmplify);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit) override;

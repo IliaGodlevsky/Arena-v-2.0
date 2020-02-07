@@ -1,10 +1,9 @@
 #ifndef EXPIREABLE_CONTAINER_H_
 #define EXPIREABLE_CONTAINER_H_
 
-#include <vector>
-
 #include "TemplateContainer.h"
 #include "../Arena/Arena.h"
+#include "../Expiring/Expiring.h"
 
 template<class T>
 class ExpireableContainer : public TemplateContainer<T>

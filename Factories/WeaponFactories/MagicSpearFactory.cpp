@@ -7,7 +7,9 @@
 MagicSpearFactory::MagicSpearFactory()
 {
 	m_items.push_back(WeaponPtr(new MagicSpear("Amazonian spear", AMAZONE_SPEAR_DAMAGE,
-		MagicPtr(new CorruptionMagic("Hole", Timer(HOLE_DURATION), HOLE_ARMOR_REDUCE, PosibilityCounter(HOLE_POSSIBILITY))))));
+		MagicPtr(new CorruptionMagic("Hole", HOLE_DURATION, 
+			HOLE_ARMOR_REDUCE, PosibilityCounter(HOLE_POSSIBILITY))))));
 	m_items.push_back(WeaponPtr(new MagicSpear("Gladiator spear", GLADIATORS_SPEAR_DAMAGE,
-		MagicPtr(new CorruptionMagic("Pierce", Timer(PIERCE_DURATION), PIERCE_ARMOR_REDUCE, PosibilityCounter(PIERCE_POSSIBILTY))))));
+		MagicPtr(new CorruptionMagic("Pierce", PIERCE_DURATION, 
+			PIERCE_ARMOR_REDUCE, PosibilityCounter(PIERCE_POSSIBILTY))))));
 }

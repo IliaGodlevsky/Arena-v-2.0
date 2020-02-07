@@ -4,6 +4,7 @@
 
 #include "MagicOnMe.h"
 #include "../Interface/Interface.h"
+#include "../Expiring/Expiring.h"
 
 MagicOnMe::MagicOnMe(Unit* unit)
 	: m_unit(unit)
@@ -21,7 +22,7 @@ MagicOnMe::MagicOnMe(Unit* unit, const MagicOnMe& magicOnMe)
 bool MagicOnMe::itemHasPassedControl(const MagicPtr& magic)const
 {
 	// Magic, that comes to this class, must have a definite interface
-	if (!canCast<IDispelable*>(magic) || !canCast<IDuration*>(magic)
+	if (!canCast<IDispelable*>(magic) || !canCast<Expiring*>(magic)
 		|| !canCast<IUneffect*>(magic))
 		throw BadIncomingMagicException("Incoming magic doesn't"
 			" have needed interface. Bad class is MagicOnMe");
@@ -34,16 +35,16 @@ void MagicOnMe::makeExpire(MagicPtr& magic)
 	const auto expireCandidate = std::find_if(m_items.begin(), m_items.end(),
 		[&](const MagicPtr& it) {return magic->isEqual(it); });
 	IDispelable* dispel = DYNAMIC(IDispelable*, (*expireCandidate));
-	IDuration* duration = DYNAMIC(IDuration*, (*expireCandidate));
+	Expiring* expiring = DYNAMIC(Expiring*, (*expireCandidate));
 	if (dispel->isDispelable())
-		duration->expire();
+		expiring->makeExpire();
 }
 
 void MagicOnMe::takeOffExpired()
 {
 	// sort magic to those, which expired, and to those, that are acting
 	const auto expiredMagics = std::partition(m_items.begin(), m_items.end(),
-		[](const MagicPtr& magic) {return !DYNAMIC(IDuration*, magic)->isExpired(); });
+		[](const MagicPtr& magic) {return !DYNAMIC(IExpirable*, magic)->isExpired(); });
 	std::for_each(expiredMagics, m_items.end(),
 		[&](const MagicPtr& magic) { DYNAMIC(IUneffect*, magic)->uneffectUnit(*m_unit); });
 	m_items.erase(expiredMagics, m_items.end());
@@ -72,20 +73,16 @@ void MagicOnMe::setItemColor(const MagicPtr& magic)const
 		setColor(LIGHT_CYAN);
 }
 
+void MagicOnMe::showItem(const MagicPtr& magic)const
+{
+	Expiring* expiring = DYNAMIC(Expiring*, magic);
+	std::cout << "<" << magic->getName()
+		<< ": " << expiring->getDurationRemained() << "> ";
+}
+
 
 void MagicOnMe::showShortInfo()const
 {
-	IDuration* duration = nullptr;
 	std::cout << "Effect: ";
-	for (size_t i = 0; i < size(); i++)
-	{		
-		duration = DYNAMIC(IDuration*, operator[](i));
-		setItemColor(operator[](i));
-		if (i % 2 == 0 && i != 0)
-			std::cout << std::endl << "\t";
-		std::cout << "<" << operator[](i)->getName()
-			<< ": " << duration->getDurationRemained() << "> ";
-	}
-	setColor();
-	std::cout << std::endl;
+	TemplateContainer<MagicPtr>::showShortInfo();
 }

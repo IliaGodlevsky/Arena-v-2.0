@@ -33,9 +33,6 @@
     <Filter Include="Source\Magic\NeutralMagic">
       <UniqueIdentifier>{d87154ec-a728-4e07-9d1d-baf7445be8d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Timer">
-      <UniqueIdentifier>{ea1494a5-b50d-4dd4-82bc-712bb9df956f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Battles">
       <UniqueIdentifier>{309e8fc5-6aa3-4c6f-aeb3-c39e0db0aa5a}</UniqueIdentifier>
     </Filter>
@@ -132,6 +129,9 @@
     <Filter Include="Source\Vitals">
       <UniqueIdentifier>{7494ec6b-72ce-4687-ae80-1c44f80581c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Expiring">
+      <UniqueIdentifier>{ea1494a5-b50d-4dd4-82bc-712bb9df956f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -169,9 +169,6 @@
     </ClCompile>
     <ClCompile Include="Magic\Magic.cpp">
       <Filter>Source\Magic</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer\Timer.cpp">
-      <Filter>Source\Timer</Filter>
     </ClCompile>
     <ClCompile Include="Armor\Armor.cpp">
       <Filter>Source\Equipment\Armor</Filter>
@@ -476,6 +473,9 @@
     <ClCompile Include="Interface\Interface.cpp">
       <Filter>Source\Interface</Filter>
     </ClCompile>
+    <ClCompile Include="Expiring\Expiring.cpp">
+      <Filter>Source\Expiring</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -510,9 +510,6 @@
     </ClInclude>
     <ClInclude Include="Magic\Magic.h">
       <Filter>Source\Magic</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer\Timer.h">
-      <Filter>Source\Timer</Filter>
     </ClInclude>
     <ClInclude Include="Armor\Armor.h">
       <Filter>Source\Equipment\Armor</Filter>
@@ -828,6 +825,9 @@
     </ClInclude>
     <ClInclude Include="Factories\MagicFactories\DebuffFactories\AttackMissMagicFactory.h">
       <Filter>Source\Factories\MagicFactories\DebuffFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Expiring\Expiring.h">
+      <Filter>Source\Expiring</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

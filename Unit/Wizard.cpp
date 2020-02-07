@@ -4,6 +4,7 @@
 #include "../Arena/Arena.h"
 #include "../Level/WizardLevel.h"
 #include "../Interface/Interface.h"
+#include "../Expiring/Expiring.h"
 
 Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory, 
 	Factory<Magic>* secondFactory) : Unit(decision, factory)
@@ -48,10 +49,10 @@ void Wizard::prepareMagic(MagicPtr& magic)const
 {
 	// Each 3 levels wizard gets one round to magic duration
 	constexpr int LEVELS_PER_DURATION = 3;
-	IDuration* duration = DYNAMIC(IDuration*, magic);
+	Expiring* expiring = DYNAMIC(Expiring*, magic);
 	const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / LEVELS_PER_DURATION));
-	if (nullptr != duration)
-		duration->setStartTime(Arena::getCurrentRound() + DURATION_ENHANCE);
+	if (nullptr != expiring)
+		expiring->setStartTime(Arena::getCurrentRound() + DURATION_ENHANCE);
 }
 
 int Wizard::countManaCost(int manaCost)const

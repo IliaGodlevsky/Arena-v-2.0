@@ -35,6 +35,7 @@
     <ClCompile Include="Exceptions\BadincomingMagicException.cpp" />
     <ClCompile Include="Exceptions\BadWeaponMagicException.cpp" />
     <ClCompile Include="Exceptions\EmptyContainerException.cpp" />
+    <ClCompile Include="Expiring\Expiring.cpp" />
     <ClCompile Include="Factories\ArmorFactories\ArmorFactory.cpp" />
     <ClCompile Include="Factories\ArmorFactories\LegionerChainsFactory.cpp" />
     <ClCompile Include="Factories\ArmorFactories\MailFactory.cpp" />
@@ -111,7 +112,6 @@
     <ClCompile Include="Shield\Shield.cpp" />
     <ClCompile Include="StateHolder\StateHolder.cpp" />
     <ClCompile Include="ThreadGuard\ThreadGuard.cpp" />
-    <ClCompile Include="Timer\Timer.cpp" />
     <ClCompile Include="UnitState\InnerUnitState\ActiveUnitState.cpp" />
     <ClCompile Include="UnitState\InnerUnitState\DeadUnitState.cpp" />
     <ClCompile Include="UnitState\InnerUnitState\InnerUnitState.cpp" />
@@ -153,6 +153,7 @@
     <ClInclude Include="Exceptions\BadincomingMagicException.h" />
     <ClInclude Include="Exceptions\BadWeaponMagicException.h" />
     <ClInclude Include="Exceptions\EmptyContainerException.h" />
+    <ClInclude Include="Expiring\Expiring.h" />
     <ClInclude Include="Factories\ArmorFactories\ArmorFactory.h" />
     <ClInclude Include="Factories\ArmorFactories\LegionerChainsFactory.h" />
     <ClInclude Include="Factories\ArmorFactories\MailFactory.h" />
@@ -230,7 +231,6 @@
     <ClInclude Include="Shield\Shield.h" />
     <ClInclude Include="StateHolder\StateHolder.h" />
     <ClInclude Include="ThreadGuard\ThreadGurad.h" />
-    <ClInclude Include="Timer\Timer.h" />
     <ClInclude Include="UnitState\InnerUnitState\ActiveUnitState.h" />
     <ClInclude Include="UnitState\InnerUnitState\DeadUnitState.h" />
     <ClInclude Include="UnitState\InnerUnitState\InnerUnitState.h" />

@@ -7,8 +7,8 @@
 
 
 AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
-	Timer timer, int damage)
-	: AttackMagic(name, manaCost, damage), m_timer(timer)
+	int duration, int damage)
+	: AttackMagic(name, manaCost, damage), m_duration(duration)
 {
 
 }
@@ -16,13 +16,13 @@ AttackAndStunMagic::AttackAndStunMagic(std::string name, int manaCost,
 void AttackAndStunMagic::effectUnit(Unit& unit)
 {
 	AttackMagic::effectUnit(unit);
-	unit.m_stateHolder.takeNew(StatePtr(new StunUnitState(Timer(m_timer.getDuration(), 
-		Arena::getCurrentRound()))));
+	unit.m_stateHolder.takeNew(StatePtr(new StunUnitState({ m_duration,
+		Arena::getCurrentRound() })));
 }
 
 MagicPtr AttackAndStunMagic::clone()const
 {
-	return MagicPtr(new AttackAndStunMagic(m_name, m_manaCost, m_timer, m_damage));
+	return MagicPtr(new AttackAndStunMagic(m_name, m_manaCost, m_duration, m_damage));
 }
 
 bool AttackAndStunMagic::isBuff()const
@@ -38,7 +38,7 @@ bool AttackAndStunMagic::isEqual(const MagicPtr& magic)const
 void AttackAndStunMagic::showFullInfo()const
 {
 	AttackMagic::showFullInfo();
-	std::cout << "Stuns unit for " << m_timer.getDuration() << " rounds\n";
+	std::cout << "Stuns unit for " << m_duration << " rounds\n";
 }
 
 void AttackAndStunMagic::showShortInfo()const

@@ -1,12 +1,11 @@
 #include "../../Magic/Magic.h"
 
 #include "StunUnitState.h"
-#include "../../Arena/Arena.h"
 #include "../../Unit/Unit.h"
 #include "../InnerUnitState/DeadUnitState.h"
 
-StunUnitState::StunUnitState(const Timer& timer)
-	: OuterUnitState(timer)
+StunUnitState::StunUnitState(Time time)
+	: OuterUnitState(time)
 {
 
 }
@@ -30,8 +29,7 @@ int StunUnitState::getValue()const
 
 void StunUnitState::showShortInfo()const
 {
-	std::cout << "<Stun: " << m_timer.getStartTime()
-		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
+	std::cout << "<Stun: " << getDurationRemained() << "> ";
 }
 
 bool StunUnitState::canTakeDamage(Unit& unit, int damage)const
@@ -48,5 +46,5 @@ bool StunUnitState::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic
 
 StatePtr StunUnitState::clone()const
 {
-	return StatePtr(new StunUnitState(m_timer));
+	return StatePtr(new StunUnitState(m_time));
 }

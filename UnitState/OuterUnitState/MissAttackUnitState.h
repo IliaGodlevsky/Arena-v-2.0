@@ -10,7 +10,7 @@ class MissAttackUnitState : public OuterUnitState
 {
 public:
 	MissAttackUnitState() = default;
-	MissAttackUnitState(Timer timer, PosibilityCounter missChance);
+	MissAttackUnitState(Time time, PosibilityCounter missChance);
 	bool canAttack()const override;
 	void showShortInfo()const override;
 	StatePtr clone()const override;

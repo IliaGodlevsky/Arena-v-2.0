@@ -6,9 +6,9 @@
 #include "AttackAndSilenceMagic.h"
 
 AttackAndSilenceMagic::AttackAndSilenceMagic(std::string name, int manaCost,
-	Timer timer, int damage)
-	: AttackMagic(name, manaCost, damage), m_silence(name, manaCost, timer),
-	m_timer(timer)
+	int duration, int damage)
+	: AttackMagic(name, manaCost, damage), m_silence(name, manaCost, duration),
+	m_duration(duration)
 {
 
 }
@@ -21,7 +21,7 @@ void AttackAndSilenceMagic::effectUnit(Unit& unit)
 
 MagicPtr AttackAndSilenceMagic::clone()const
 {
-	return MagicPtr(new AttackAndSilenceMagic(m_name, m_manaCost, m_timer, m_damage));
+	return MagicPtr(new AttackAndSilenceMagic(m_name, m_manaCost, m_duration, m_damage));
 }
 
 bool AttackAndSilenceMagic::isBuff()const
@@ -38,7 +38,7 @@ bool AttackAndSilenceMagic::isEqual(const MagicPtr& magic)const
 void AttackAndSilenceMagic::showFullInfo()const
 {
 	AttackMagic::showFullInfo();
-	std::cout << "Mutes unit for " << m_timer.getDuration() << " rounds\n";
+	std::cout << "Mutes unit for " << m_duration << " rounds\n";
 }
 
 void AttackAndSilenceMagic::showShortInfo()const

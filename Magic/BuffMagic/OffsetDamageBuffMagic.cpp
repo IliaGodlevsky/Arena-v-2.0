@@ -1,9 +1,9 @@
 #include "OffsetDamageBuffMagic.h"
 
 OffsetDamageBuffMagic::OffsetDamageBuffMagic(std::string name, int manaCost,
-	Timer timer, ArmorReduceElem armorReduce,
+	Time time, ArmorReduceElem armorReduce,
 	DamageAmplifyElem damageAmplify)
-	: ParamChangeMagic(name, manaCost, timer),
+	: ParamChangeMagic(name, manaCost, time),
 	m_damageAmplify(damageAmplify),
 	m_armorReduce(armorReduce)
 {
@@ -25,7 +25,7 @@ void OffsetDamageBuffMagic::uneffectUnit(Unit& unit)
 
 MagicPtr OffsetDamageBuffMagic::clone()const
 {
-	return MagicPtr(new OffsetDamageBuffMagic(m_name, m_manaCost, m_timer,
+	return MagicPtr(new OffsetDamageBuffMagic(m_name, m_manaCost, m_time,
 		m_armorReduce, m_damageAmplify));
 }
 
@@ -53,5 +53,5 @@ void OffsetDamageBuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
 	std::cout << "Takes " << m_armorReduce << " armor and adds "
-		<< m_damageAmplify << " damage for " << m_timer.getDuration() << " rounds\n";
+		<< m_damageAmplify << " damage for " << getDuration() << " rounds\n";
 }

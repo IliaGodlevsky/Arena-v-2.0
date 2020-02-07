@@ -20,6 +20,7 @@ public:
 	void showShortInfo()const override;
 	void makeExpire(MagicPtr& magic)override;
 private:
+	void showItem(const MagicPtr& magic)const override;
 	void setItemColor(const MagicPtr& magic)const override;
 	Unit* m_unit = nullptr; // unit, that have this vector of spells
 };

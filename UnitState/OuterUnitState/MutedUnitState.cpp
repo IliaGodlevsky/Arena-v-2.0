@@ -4,8 +4,8 @@
 #include "../../Decision/Decision.h"
 #include "../../Unit/Unit.h"
 
-MutedUnitState::MutedUnitState(const Timer& timer)
-	: OuterUnitState(timer)
+MutedUnitState::MutedUnitState(Time time)
+	: OuterUnitState(time)
 {
 
 }
@@ -22,11 +22,10 @@ int MutedUnitState::getValue()const
 
 void MutedUnitState::showShortInfo()const
 {
-	std::cout << "<Muted: " << m_timer.getStartTime()
-		+ m_timer.getDuration() - Arena::getCurrentRound() << "> ";
+	std::cout << "<Muted: " << getDurationRemained() << "> ";
 }
 
 StatePtr MutedUnitState::clone()const
 {
-	return StatePtr(new MutedUnitState(m_timer));
+	return StatePtr(new MutedUnitState(m_time));
 }

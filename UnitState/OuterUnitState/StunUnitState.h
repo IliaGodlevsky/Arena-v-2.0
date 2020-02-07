@@ -9,7 +9,7 @@ class StunUnitState : public OuterUnitState
 {
 public:
 	StunUnitState() = default;
-	StunUnitState(const Timer& timer);
+	StunUnitState(Time time);
 	bool canCast()const;
 	bool canAttack()const;
 	bool canTakeDamage(Unit& unit, int damage) const override;

@@ -1,8 +1,8 @@
 #include "ArmorAndDamageDebuffMagic.h"
 
 ArmorAndDamageDebuffMagic::ArmorAndDamageDebuffMagic(std::string name, int manaCost,
-	Timer timer, ArmorReduceElem armorReduce, DamageReduceElem damageReduce)
-	: ParamChangeMagic(name, manaCost, timer),
+	Time time, ArmorReduceElem armorReduce, DamageReduceElem damageReduce)
+	: ParamChangeMagic(name, manaCost, time),
 	m_armorReduce(armorReduce),
 	m_damageReduce(damageReduce)
 {
@@ -24,7 +24,7 @@ void ArmorAndDamageDebuffMagic::uneffectUnit(Unit& unit)
 
 MagicPtr ArmorAndDamageDebuffMagic::clone()const
 {
-	return MagicPtr(new ArmorAndDamageDebuffMagic(m_name, m_manaCost, m_timer,
+	return MagicPtr(new ArmorAndDamageDebuffMagic(m_name, m_manaCost, m_time,
 		m_armorReduce, m_damageReduce));
 }
 
@@ -52,5 +52,5 @@ void ArmorAndDamageDebuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
 	std::cout << "Reduces enemy armor by " << m_armorReduce << " and enemy damage by "
-		<< m_damageReduce << " for " << m_timer.getDuration() << " rounds\n";
+		<< m_damageReduce << " for " << getDuration() << " rounds\n";
 }

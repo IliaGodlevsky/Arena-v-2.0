@@ -7,7 +7,7 @@
 class StunMagic : public Magic
 {
 public:
-	StunMagic(std::string name, Timer timer, 
+	StunMagic(std::string name, int duration, 
 		PosibilityCounter propability);
 	void effectUnit(Unit& unit) override;
 	MagicPtr clone()const override;
@@ -16,7 +16,7 @@ public:
 	void showShortInfo()const override;
 private:
 	PosibilityCounter m_posibility;
-	Timer m_timer;
+	int m_duration = 0;
 };
 
 #endif

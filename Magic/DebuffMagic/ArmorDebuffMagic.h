@@ -8,7 +8,7 @@ class ArmorDebuffMagic : public ParamChangeMagic
 {
 public:
 	ArmorDebuffMagic(std::string name, int manaCost,
-		Timer timer, ArmorReduceElem armorReduce);
+		Time time, ArmorReduceElem armorReduce);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit) override;
 	MagicPtr clone()const override;

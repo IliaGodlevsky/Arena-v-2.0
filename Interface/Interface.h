@@ -2,30 +2,29 @@
 #define INTERFACE_H_
 
 #include "../Globals/Globals.h"
-#include "../Timer/Timer.h"
 
 /*interface for magic, that after expiry 
 must take off its effect from unit*/
-interface IUneffect
+struct IUneffect
 {
 	virtual void uneffectUnit(Unit& unit) = 0;
 	virtual ~IUneffect() = default;
 };
 
-interface IBuff
+struct IBuff
 {
 	virtual bool isBuff()const = 0;
 	virtual ~IBuff() = default;
 };
 
-interface IDispelable
+struct IDispelable
 {
 	virtual bool isDispelable()const = 0;
 	virtual ~IDispelable() = default;
 };
 
 /* interface for magic, that costs mana*/
-interface IManaCost
+struct IManaCost
 {
 public:
 	IManaCost(int manaCost);
@@ -36,19 +35,10 @@ protected:
 };
 
 // interface for magic, that must expire after some period
-interface IDuration
+struct IExpirable
 {
-public:
-	IDuration(Timer timer);
-	virtual void setStartTime(int round) = 0;
 	virtual bool isExpired()const = 0;
-	virtual int getDuration()const = 0;
-	virtual int getStartTime()const = 0;
-	int getDurationRemained()const;
-	void expire();
-	virtual ~IDuration() = default;
-protected:
-	Timer m_timer;
+	virtual ~IExpirable() = default;
 };
 
 #endif

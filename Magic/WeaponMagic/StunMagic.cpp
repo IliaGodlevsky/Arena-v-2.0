@@ -5,9 +5,8 @@
 
 #include "StunMagic.h"
 
-StunMagic::StunMagic(std::string name, Timer timer, PosibilityCounter propability)
-	: Magic(name),
-	m_posibility(propability), m_timer(timer)
+StunMagic::StunMagic(std::string name, int duration, PosibilityCounter propability)
+	: Magic(name), m_posibility(propability), m_duration(duration)
 {
 
 }
@@ -17,7 +16,7 @@ void StunMagic::effectUnit(Unit& unit)
 	if (m_posibility)
 	{
 		unit.recieveNewState(StatePtr(new StunUnitState(
-			Timer(m_timer.getDuration(), Arena::getCurrentRound()))));
+			{ m_duration, Arena::getCurrentRound() })));
 	}
 }
 
@@ -31,7 +30,7 @@ void StunMagic::showShortInfo()const
 MagicPtr StunMagic::clone()const
 {
 	return MagicPtr(new StunMagic(m_name,
-		m_timer, m_posibility));
+		m_duration, m_posibility));
 }
 
 bool StunMagic::isEqual(const MagicPtr& magic)const
@@ -44,6 +43,5 @@ bool StunMagic::isEqual(const MagicPtr& magic)const
 void StunMagic::showFullInfo()const
 {
 	std::cout << "Name: " << m_name << std::endl;
-	std::cout << "Duration: " << m_timer.getDuration() << std::endl;
-	std::cout << "Stuns unit for " << m_timer.getDuration() << " rounds\n";
+	std::cout << "Stuns unit for " << m_duration << " rounds\n";
 }

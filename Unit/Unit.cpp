@@ -5,7 +5,7 @@
 #include "../UnitState/InnerUnitState/NotEnoughManaUnitState.h"
 #include "../UnitState/InnerUnitState/NotEnoughDamageState.h"
 #include "../Level/Level.h"
-#include "../Interface/Interface.h"
+#include "../Expiring/Expiring.h"
 #include "../UnitState/InnerUnitState/DeadUnitState.h"
 #include "../Magic/Elements/HpReduceElem.h"
 #include "../UnitState/OuterUnitState/MutedUnitState.h"
@@ -236,7 +236,7 @@ UnitPtr Unit::getPureClone()const
 
 void Unit::prepareMagic(MagicPtr& magic)const
 {
-	IDuration* duration = DYNAMIC(IDuration*, magic);
-	if (nullptr != duration)
-		duration->setStartTime(Arena::getCurrentRound());
+	Expiring* expiring = DYNAMIC(Expiring*, magic);
+	if (nullptr != expiring)
+		expiring->setStartTime(Arena::getCurrentRound());
 }

@@ -2,9 +2,9 @@
 
 #include "PoisonMagic.h"
 
-PoisonMagic::PoisonMagic(std::string name, int manaCost, Timer timer,
+PoisonMagic::PoisonMagic(std::string name, int manaCost, Time time,
 	HpRegenReduceElem regenReduce)
-	: ParamChangeMagic(name, manaCost, timer), m_regenReduce(regenReduce)
+	: ParamChangeMagic(name, manaCost, time), m_regenReduce(regenReduce)
 {
 
 }
@@ -27,7 +27,7 @@ void PoisonMagic::uneffectUnit(Unit& unit)
 
 MagicPtr PoisonMagic::clone()const
 {
-	return MagicPtr(new PoisonMagic(m_name, m_manaCost, m_timer, m_regenReduce));
+	return MagicPtr(new PoisonMagic(m_name, m_manaCost, m_time, m_regenReduce));
 }
 
 bool PoisonMagic::isBuff()const
@@ -48,5 +48,5 @@ void PoisonMagic::showFullInfo()const
 {
 	Magic::showFullInfo();
 	std::cout << "Reduces regen by " << m_regenReduce
-		<< " for " << m_timer.getDuration() << " rounds\n";
+		<< " for " << getDuration() << " rounds\n";
 }

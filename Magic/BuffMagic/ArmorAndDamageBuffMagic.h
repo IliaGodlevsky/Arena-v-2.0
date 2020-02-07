@@ -10,7 +10,7 @@ class ArmorAndDamageBuffMagic
 {
 public:
 	ArmorAndDamageBuffMagic(std::string name, int manaCost,
-		Timer timer, ArmorAmplifyElem armorAmplify, 
+		Time time, ArmorAmplifyElem armorAmplify, 
 		DamageAmplifyElem damageAmplify);
 	void effectUnit(Unit& unit) override;
 	void uneffectUnit(Unit& unit) override;

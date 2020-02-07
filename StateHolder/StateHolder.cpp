@@ -87,7 +87,10 @@ void StateHolder::makeExpire(StatePtr& state)
 void StateHolder::takeOffExpired()
 {
 	m_items.erase(std::remove_if(m_items.begin(), m_items.end(),
-		std::mem_fn(&UnitState::isExpired)), m_items.end());
+		[](const StatePtr st) 
+	{
+		return DYNAMIC(IExpirable*, st)->isExpired();
+	}), m_items.end());
 }
 
 void StateHolder::setItemColor(const StatePtr& unitState)const

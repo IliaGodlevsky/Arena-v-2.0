@@ -8,7 +8,7 @@
 class CorruptionMagic : public FreeParamChangeMagic
 {
 public:
-	CorruptionMagic(std::string name, Timer timer,
+	CorruptionMagic(std::string name, Time time,
 		ArmorReduceElem armorReduce, 
 		PosibilityCounter propability);
 	void effectUnit(Unit& unit) override;

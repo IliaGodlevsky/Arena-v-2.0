@@ -18,10 +18,10 @@ public:
 	bool canCastAnySpell()const;
 	void showShortInfo()const override;
 	void showFullInfo()const;
-	void magicList()const;
+	void magicList()const;	
 	void takeNew(const MagicPtr& magic) override;
-	void setItemColor(const MagicPtr& magic)const override;
 private:
+	void setItemColor(const MagicPtr& magic)const override;
 	Unit* m_unit = nullptr; // unit, that have this vector of magic
 };
 #endif

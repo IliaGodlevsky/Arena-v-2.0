@@ -3,14 +3,13 @@
 
 #include "../Magic.h"
 #include "../../Interface/Interface.h"
-#include "../../Timer/Timer.h"
 
 class AttackMissChanceMagic : public Magic, 
 	public IManaCost, public IBuff
 {
 public:
 	AttackMissChanceMagic(std::string name, 
-		int missChance, int manaCost, Timer timer);
+		int missChance, int manaCost, int duration);
 	MagicPtr clone()const override;
 	bool isBuff()const override;
 	void effectUnit(Unit& unit) override;
@@ -18,7 +17,7 @@ public:
 	void showFullInfo()const override;
 	void showShortInfo()const override;
 private:
-	Timer m_timer;
+	int m_duration = 0;
 	int m_missChance = 0;
 };
 #endif

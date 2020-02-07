@@ -4,8 +4,8 @@
 
 
 ArmorBuffMagic::ArmorBuffMagic(std::string name, int manaCost,
-	Timer timer, ArmorAmplifyElem armorAmplify)
-	: ParamChangeMagic(name, manaCost, timer), 
+	Time time, ArmorAmplifyElem armorAmplify)
+	: ParamChangeMagic(name, manaCost, time), 
 	m_armorAmplify(armorAmplify)
 {
 
@@ -24,7 +24,7 @@ void ArmorBuffMagic::uneffectUnit(Unit& unit)
 
 MagicPtr ArmorBuffMagic::clone()const
 {
-	return MagicPtr(new ArmorBuffMagic(m_name, m_manaCost, m_timer, m_armorAmplify));
+	return MagicPtr(new ArmorBuffMagic(m_name, m_manaCost, m_time, m_armorAmplify));
 }
 
 bool ArmorBuffMagic::isBuff()const
@@ -50,6 +50,6 @@ void ArmorBuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
 	std::cout << "Adds " << m_armorAmplify 
-		<< " armor for " << m_timer.getDuration() << " rounds\n";
+		<< " armor for " << getDuration() << " rounds\n";
 
 }

@@ -3,12 +3,11 @@
 
 #include "../Magic.h"
 #include "../../Interface/Interface.h"
-#include "../../Timer/Timer.h"
 
 class SilenceMagic : public Magic, public IBuff, public IManaCost
 {
 public:
-	SilenceMagic(std::string name, int manaCost, Timer timer);
+	SilenceMagic(std::string name, int manaCost, int duration);
 	void effectUnit(Unit& unit) override;
 	MagicPtr clone()const override;
 	bool isBuff()const override;
@@ -16,7 +15,7 @@ public:
 	void showShortInfo()const override;
 	void showFullInfo()const override;
 private:
-	Timer m_timer;
+	int m_duration = 0;
 };
 
 #endif

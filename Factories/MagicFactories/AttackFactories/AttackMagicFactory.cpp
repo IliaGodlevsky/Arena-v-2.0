@@ -10,7 +10,7 @@ AttackMagicFactory::AttackMagicFactory()
 	m_items.push_back(MagicPtr(new AttackMagic("Magic hummer", 
 		MAGIC_HUMMER_MANA_COST, MAGIC_HUMMER_DAMAGE)));
 	m_items.push_back(MagicPtr(new AttackAndSilenceMagic("Silence fist", 
-		SILENCE_FIST_MANA_COST, Timer(SILENCE_FIST_DURATION), SILENCE_FIST_DAMAGE)));
+		SILENCE_FIST_MANA_COST, SILENCE_FIST_DURATION, SILENCE_FIST_DAMAGE)));
 	m_items.push_back(MagicPtr(new AttackAndSilenceMagic("Fear", 
-		FEAR_MANA_COST, Timer(FEAR_DURATION), FEAR_DAMAGE)));
+		FEAR_MANA_COST, FEAR_DURATION, FEAR_DAMAGE)));
 }

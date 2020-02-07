@@ -4,8 +4,8 @@
 
 
 ArmorDebuffMagic::ArmorDebuffMagic(std::string name, int manaCost,
-	Timer timer, ArmorReduceElem armorReduce)
-	: ParamChangeMagic(name, manaCost, timer),
+	Time time, ArmorReduceElem armorReduce)
+	: ParamChangeMagic(name, manaCost, time),
 	m_armorReduce(armorReduce)
 {
 
@@ -24,7 +24,7 @@ void ArmorDebuffMagic::uneffectUnit(Unit& unit)
 
 MagicPtr ArmorDebuffMagic::clone()const
 {
-	return MagicPtr(new ArmorDebuffMagic(m_name, m_manaCost, m_timer, m_armorReduce));
+	return MagicPtr(new ArmorDebuffMagic(m_name, m_manaCost, m_time, m_armorReduce));
 }
 
 bool ArmorDebuffMagic::isBuff()const
@@ -50,5 +50,5 @@ void ArmorDebuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
 	std::cout << "Reduces enemy armor by " << m_armorReduce
-		<< " for " << m_timer.getDuration() << " rounds\n";
+		<< " for " << getDuration() << " rounds\n";
 }

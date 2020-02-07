@@ -3,8 +3,8 @@
 #include "DamageDebuffMagic.h"
 
 DamageDebuffMagic::DamageDebuffMagic(std::string name, int manaCost,
-	Timer timer, DamageReduceElem damageReduce)
-	: ParamChangeMagic(name, manaCost, timer),
+	Time time, DamageReduceElem damageReduce)
+	: ParamChangeMagic(name, manaCost, time),
 	m_damageReduce(damageReduce)
 {
 
@@ -23,7 +23,7 @@ void DamageDebuffMagic::uneffectUnit(Unit& unit)
 
 MagicPtr DamageDebuffMagic::clone()const
 {
-	return MagicPtr(new DamageDebuffMagic(m_name, m_manaCost, m_timer, m_damageReduce));
+	return MagicPtr(new DamageDebuffMagic(m_name, m_manaCost, m_time, m_damageReduce));
 }
 
 bool DamageDebuffMagic::isEqual(const MagicPtr& magic)const
@@ -49,5 +49,5 @@ void DamageDebuffMagic::showFullInfo()const
 {
 	ParamChangeMagic::showFullInfo();
 	std::cout << "Reduces enemy damage by "
-		<< m_damageReduce << " for " << m_timer.getDuration() << " rounds\n";
+		<< m_damageReduce << " for " << getDuration() << " rounds\n";
 }

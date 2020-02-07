@@ -8,7 +8,7 @@
 class DegenerateMagic : public FreeParamChangeMagic
 {
 public:
-	DegenerateMagic(std::string name, Timer timer,
+	DegenerateMagic(std::string name, Time time,
 		HpRegenReduceElem armorReduce,
 		PosibilityCounter propability);
 	void effectUnit(Unit& unit) override;
