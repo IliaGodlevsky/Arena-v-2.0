@@ -45,6 +45,7 @@ public:
 	virtual int getDuration()const = 0;
 	virtual int getStartTime()const = 0;
 	int getDurationRemained()const;
+	void expire();
 	virtual ~IDuration() = default;
 protected:
 	Timer m_timer;

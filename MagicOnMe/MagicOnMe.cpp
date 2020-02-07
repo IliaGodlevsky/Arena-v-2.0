@@ -31,25 +31,22 @@ bool MagicOnMe::itemHasPassedControl(const MagicPtr& magic)const
 
 void MagicOnMe::makeExpire(MagicPtr& magic)
 {
-	auto temp = std::find_if(m_items.begin(), m_items.end(),
+	const auto expireCandidate = std::find_if(m_items.begin(), m_items.end(),
 		[&](const MagicPtr& it) {return magic->isEqual(it); });
-	IDispelable* dispel = DYNAMIC(IDispelable*, (*temp));
-	IDuration* duration = DYNAMIC(IDuration*, (*temp));
+	IDispelable* dispel = DYNAMIC(IDispelable*, (*expireCandidate));
+	IDuration* duration = DYNAMIC(IDuration*, (*expireCandidate));
 	if (dispel->isDispelable())
-	{
-		duration->setStartTime(Arena::getCurrentRound() - 
-			duration->getDuration() - 1);
-	}
+		duration->expire();
 }
 
 void MagicOnMe::takeOffExpired()
 {
 	// sort magic to those, which expired, and to those, that are acting
-	auto expired = std::partition(m_items.begin(), m_items.end(),
+	const auto expiredMagics = std::partition(m_items.begin(), m_items.end(),
 		[](const MagicPtr& magic) {return !DYNAMIC(IDuration*, magic)->isExpired(); });
-	std::for_each(expired, m_items.end(),
+	std::for_each(expiredMagics, m_items.end(),
 		[&](const MagicPtr& magic) { DYNAMIC(IUneffect*, magic)->uneffectUnit(*m_unit); });
-	m_items.erase(expired, m_items.end());
+	m_items.erase(expiredMagics, m_items.end());
 }
 
 void MagicOnMe::takeNew(const MagicPtr& magic)

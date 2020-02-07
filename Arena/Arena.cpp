@@ -141,8 +141,9 @@ void Arena::prepareUnits()
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
 	ThreadGuard guard(thread);
 	int teamNumber = 1;
-	std::vector<UnitFactoryPtr> unitFactories({ UnitFactoryPtr(new WarriorFactory()),
-			UnitFactoryPtr(new WizardFactory()) });
+	std::vector<UnitFactoryPtr> unitFactories({
+		UnitFactoryPtr(new WarriorFactory()),
+		UnitFactoryPtr(new WizardFactory()) });
 	auto unitGenerator = [&]()
 	{		
 		index factoryNumber = inputNumber("\t\t\t1. Warrior 2. "
@@ -153,8 +154,7 @@ void Arena::prepareUnits()
 		if (unitsNames.empty())
 			unitsNames = m_reserveNames;
 		unit->setName(unitsNames[randomNumber((int)unitsNames.size() - 1)]);
-		unit->setTeam(teamNumber);
-		teamNumber++;
+		unit->setTeam(teamNumber++);
 		return unit;
 	};
 	std::generate(m_units.begin(), m_units.end(), unitGenerator);
@@ -166,8 +166,8 @@ void Arena::proposeToPlayTeams()
 	constexpr int MIN_TEAMS_NUMBER = 2;
 	if (m_units.size() > MIN_PLAYERS_TO_PLAY_TEAMS)
 	{
-		const bool answer = static_cast<bool>(inputNumber(teamPlayQuest, YES, NO));
-		if (YES == answer)
+		const bool wantsToPlayInTeams = static_cast<bool>(inputNumber(teamPlayQuest, YES, NO));
+		if (wantsToPlayInTeams)
 		{
 			const size_t teamsNumber = (size_t)inputNumber("Enter teams"
 				" number: ", (int)m_units.size(), MIN_TEAMS_NUMBER);

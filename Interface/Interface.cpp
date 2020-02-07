@@ -13,6 +13,11 @@ int IDuration::getDurationRemained()const
 		Arena::getCurrentRound();
 }
 
+void IDuration::expire()
+{
+	setStartTime(Arena::getCurrentRound() - getDuration() - 1);
+}
+
 IManaCost::IManaCost(int manaCost)
 	: m_manaCost(manaCost)
 {
