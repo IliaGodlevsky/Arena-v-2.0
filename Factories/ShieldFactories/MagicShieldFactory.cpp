@@ -4,7 +4,7 @@
 MagicShieldFactory::MagicShieldFactory()
 {
 	m_items.push_back(ShieldPtr(new MagicShield("Ruby shield",
-		RUBY_SHIELD_ARMOR, RUBY_SHIELD_REFLECT_CHANCE*10)));
+		RUBY_SHIELD_ARMOR, RUBY_SHIELD_REFLECT_CHANCE)));
 	m_items.push_back(ShieldPtr(new MagicShield("Sapphire shield", 
-		SAPPHIRE_SHIELD_ARMOR, SAPPHIRE_SHIELD_REFLECT_CHANCE*10)));
+		SAPPHIRE_SHIELD_ARMOR, SAPPHIRE_SHIELD_REFLECT_CHANCE)));
 }
