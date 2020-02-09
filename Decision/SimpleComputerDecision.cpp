@@ -100,7 +100,7 @@ UnitPtr SimpleComputerDecision::chooseUnitToCast(const Unit& decidingUnit,
 {
 	if (nullptr != m_unitToCast)
 		return m_unitToCast;
-	else 
+	else if (nullptr != magicToCast)
 		return findUnitWithOutChosenMagic(decidingUnit, magicToCast, arena);
 }
 
@@ -114,8 +114,7 @@ UnitPtr SimpleComputerDecision::findUnitWithOutChosenMagic(const Unit& decidingU
 	while (count < arena.size())
 	{
 		if (!isWrongSpellToCast(decidingUnit, *arena[i], magicToCast)
-			&& !arena[i]->m_magicOnMe.hasItem(magicToCast)
-			&& decidingUnit.isEnoughManaFor(magicToCast))
+			&& !arena[i]->m_magicOnMe.hasItem(magicToCast))
 			return arena[i];
 		i++;
 		count++;
