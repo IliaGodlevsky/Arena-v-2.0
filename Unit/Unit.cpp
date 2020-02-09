@@ -135,15 +135,19 @@ bool Unit::injureUnit(Unit& unit)
 
 bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 {
-	if (m_stateHolder.canCast() && nullptr != magic)
+	if (nullptr != magic)
 	{	
-		IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
-		prepareMagic(magic);
-		unit.takeMagicEffect(*this, magic);
-		payMana(manaCost->getCost());
-		if (!m_magicBook.canCastAnySpell())
-			m_stateHolder.takeNew(StatePtr(new NotEnoughManaUnitState(this)));
-		return true;
+		if (isEnoughManaFor(magic))
+		{
+			IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
+			prepareMagic(magic);
+			unit.takeMagicEffect(*this, magic);
+			payMana(manaCost->getCost());
+			if (!m_magicBook.canCastAnySpell())
+				m_stateHolder.takeNew(StatePtr(new 
+					NotEnoughManaUnitState(this)));
+			return true;
+		}
 	}
 	return false;
 }
