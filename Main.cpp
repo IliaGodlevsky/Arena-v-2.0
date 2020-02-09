@@ -3,8 +3,8 @@
 int main(){
 	set_terminate(myTerminate);
 	auto& arena = Arena::getInstance();
-	bool wantsToPlay = YES;
-	while (wantsToPlay) {
+	bool wantsToPlay;
+	do {
 		try {
 			arena.showMiniature();
 			std::for_each(prepareSteps.begin(), 
@@ -19,5 +19,5 @@ int main(){
 		wantsToPlay = static_cast<bool>(
 			inputNumber(playAgainMsg, YES, NO));
 		system("cls");
-	}
+	} while (wantsToPlay);
 }

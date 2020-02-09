@@ -5,7 +5,7 @@
 MirrorShieldFactory::MirrorShieldFactory()
 {
 	m_items.push_back(ShieldPtr(new MirrorShield("Crystal shield",
-		CRYSTAL_SHIELD_ARMOR, CRYSTAL_SHIELD_CHANCE)));
+		CRYSTAL_SHIELD_ARMOR, CRYSTAL_SHIELD_CHANCE*10)));
 	m_items.push_back(ShieldPtr(new MirrorShield("Spirit shield",
-		SPIRIT_SHIELD_ARMOR, SPIRIT_SHIELD_CHANCE)));
+		SPIRIT_SHIELD_ARMOR, SPIRIT_SHIELD_CHANCE*10)));
 }

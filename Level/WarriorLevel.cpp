@@ -20,5 +20,6 @@ WarriorLevel& WarriorLevel::operator++()
 	m_unit->m_armor.changeValue(ARM_PER_LVL);
 	if (m_level < MAX_LEVEL)
 		m_level++;
+	m_unit->m_stateHolder.takeOffExpired();
 	return *this;
 }

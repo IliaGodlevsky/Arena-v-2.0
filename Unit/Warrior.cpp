@@ -63,7 +63,7 @@ bool Warrior::secondHit(Unit& unit)
 	constexpr int secondHitPossibility = 7;
 	if (PosibilityCounter(secondHitPossibility * (*m_level)))
 	{
-		signal(Signals::WAIT_TIME + 75, Signals::ATTACK_BLOCK);
+		signal(Signals::WAIT_TIME, Signals::DOUBLE_ATTACK);
 		std::cout << getName() << " hitted "
 			<< unit.getName() << " twice\n";
 		const int multiDamage = damageMultiply(m_damage) / 2;

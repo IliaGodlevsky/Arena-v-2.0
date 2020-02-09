@@ -43,9 +43,14 @@ ShieldPtr Shield::getPureShield()const
 	return ShieldPtr(new Shield(m_name, m_armor.getArmor()));
 }
 
+bool Shield::isReflected()const
+{
+	return PosibilityCounter(m_reflectChance);
+}
+
 bool Shield::takeDamage(Unit& unit, int damage)const
 {
-	if (PosibilityCounter(m_reflectChance))
+	if (isReflected())
 	{
 		signal(Signals::WAIT_TIME, Signals::ATTACK_BLOCK);
 		std::cout << "But attack was reflected\n";

@@ -16,6 +16,7 @@ public:
 	virtual bool takeDamage(Unit& unit, int damage)const;
 	virtual bool takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const;
 	void putOn(Unit& unit)const;
+	virtual bool isReflected()const;
 	void putOff(Unit& unit)const;
 	virtual ShieldPtr clone()const;
 	virtual ShieldPtr getPureShield()const final;

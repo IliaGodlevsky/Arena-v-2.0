@@ -3,29 +3,36 @@
 #include "SimpleComputerDecision.h"
 #include "../Interface/Interface.h"
 
-bool canKill(UnitPtr unit1, UnitPtr unit2)
+bool canKill(UnitPtr activeUnit, UnitPtr passiveUnit)
 {
-	unit1->injureUnit(*unit2);
-	return !unit2->isAlive();
+	activeUnit->injureUnit(*passiveUnit);
+	return !passiveUnit->isAlive();
 }
 
-bool canBeKilled(UnitPtr unit1, UnitPtr unit2)
+bool canBeKilled(UnitPtr activeUnit, UnitPtr passiveUnit)
 {
-	return canKill(unit2, unit1);
+	return canKill(passiveUnit, activeUnit);
 }
 
-bool isDeadAfterBuff(UnitPtr unit1, 
-	UnitPtr unit2, MagicPtr& magic)
+bool isDeadAfterBuffAndHit(UnitPtr activeUnit, 
+	UnitPtr passiveUnit, MagicPtr& buff)
 {
-	unit1->castMagic(*unit1, magic);
-	return canKill(unit1, unit2);
+	activeUnit->castMagic(*activeUnit, buff);
+	return canKill(activeUnit, passiveUnit);
 }
 
-bool isDeadAfterDebuff(UnitPtr unit1,
-	UnitPtr unit2, MagicPtr& magic)
+bool isDeadAfterDebuffAndHit(UnitPtr activeUnit,
+	UnitPtr passiveUnit, MagicPtr& debuff)
 {
-	unit1->castMagic(*unit2, magic);
-	return canKill(unit1, unit2);
+	activeUnit->castMagic(*passiveUnit, debuff);
+	return canKill(activeUnit, passiveUnit);
+}
+
+bool isDeadAfterDebuff(UnitPtr activeUnit,
+	UnitPtr passiveUnit, MagicPtr& debuff)
+{
+	activeUnit->castMagic(*passiveUnit, debuff);
+	return !passiveUnit->isAlive();
 }
 
 SimpleComputerDecision::SimpleComputerDecision()
@@ -100,7 +107,7 @@ UnitPtr SimpleComputerDecision::chooseUnitToCast(const Unit& decidingUnit,
 {
 	if (nullptr != m_unitToCast)
 		return m_unitToCast;
-	else if (nullptr != magicToCast)
+	else 
 		return findUnitWithOutChosenMagic(decidingUnit, magicToCast, arena);
 }
 
@@ -177,10 +184,10 @@ MagicAim SimpleComputerDecision::findUnitToKillWithWeaponAndMagic(const Unit& de
 		for (size_t j = 0; j < units.size(); j++)
 		{
 			if (isDeadAfterCast(decidingUnit, units[j], magic, 
-				isDeadAfterBuff, canCastBuffOnUnit))
+				isDeadAfterBuffAndHit, canCastBuffOnUnit))
 				victims.push_back(std::make_pair(units[j], magic->clone()));
 			else if (isDeadAfterCast(decidingUnit, units[j], magic, 
-				isDeadAfterDebuff, canCastDebuffOnUnit))
+				isDeadAfterDebuffAndHit, canCastDebuffOnUnit))
 				victims.push_back(std::make_pair(units[j], magic->clone()));
 		}
 	}
@@ -204,11 +211,10 @@ MagicAim SimpleComputerDecision::findMagicToKillUnit(
 			if (!isWrongUnitToAttack(decidingUnit, units[j]) &&
 				!isWrongSpellToCast(decidingUnit, *units[j], magic) &&
 				!canKill(me->getPureClone(), enemy->getPureClone()) &&
-				decidingUnit.isEnoughManaFor(magic))
+				decidingUnit.isEnoughManaFor(magic) &&
+				isDeadAfterDebuff(me,enemy,magic))
 			{
-				me->castMagic(*enemy, magic);
-				if (!enemy->isAlive())
-					magics.push_back(std::make_pair(units[j], magic->clone()));
+				magics.push_back(std::make_pair(units[j], magic->clone()));
 			}
 		}
 	}

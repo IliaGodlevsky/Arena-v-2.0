@@ -1,5 +1,6 @@
 #include "../Shield/MirrorShield.h"
 #include "../PossibilityCounter/PosibilityCounter.h"
+#include "../UnitState/InnerUnitState/NotEnoughDamageState.h"
 #include "../Magic/AttackMagic/AttackMagic.h"
 #include "../Interface/Interface.h"
 #include "../Unit/Unit.h"
@@ -12,21 +13,19 @@ MirrorShield::MirrorShield(std::string name, int armor, int reflectChance)
 
 bool MirrorShield::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const
 {
-	if (PosibilityCounter(m_reflectChance) && !unit.isAlly(caster))
+	bool isEffected = MagicShield::takeMagicEffect(unit, caster, magic);
+	if (!isEffected)
 	{
 		AttackMagic* temp = DYNAMIC(AttackMagic*, magic);
-		signal(Signals::WAIT_TIME, Signals::MAGIC_REFLECT);
-		std::cout << "But magic was reflected";
 		if (nullptr == temp)
 		{
-			magic->effectUnit(caster);
-			std::cout << " back to ";
-			std::cout << caster.getName();
+			signal(Signals::WAIT_TIME, Signals::MAGIC_REFLECT);
+			caster.takeMagicEffect(caster, magic);
+			std::cout << "back to ";
+			std::cout << caster.getName() << std::endl;
 		}
-		std::cout << std::endl;
-		return false;
 	}
-	return Shield::takeMagicEffect(unit, caster, magic);
+	return isEffected;
 }
 
 ShieldPtr MirrorShield::clone()const

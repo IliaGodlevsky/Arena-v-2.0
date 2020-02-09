@@ -28,8 +28,8 @@ enum TextColor {
 };
 
 enum Signals { 
-	ATTACK_BLOCK = 1, MAGIC_BLOCK, 
-	MAGIC_REFLECT, DEATH, WAIT_TIME = 250
+	DOUBLE_ATTACK = 1, ATTACK_BLOCK = 1, MAGIC_BLOCK, 
+	MAGIC_REFLECT = 1, DEATH = 4, WAIT_TIME = 250
 };
 
 void setColor(TextColor text = WHITE, TextColor background = BLACK);

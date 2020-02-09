@@ -4,6 +4,7 @@
 #include "../Unit/Unit.h"
 #include "../Interface/Interface.h"
 #include "../UnitState/InnerUnitState/DeadUnitState.h"
+#include "../Decision/Decision.h"
 
 MagicShield::MagicShield(std::string name, int armor, int reflectChance)
 	: Shield(name, armor, reflectChance)
@@ -24,7 +25,7 @@ bool MagicShield::takeDamage(Unit& unit, int damage)const
 bool MagicShield::takeMagicEffect(Unit& unit, Unit& caster,
 	MagicPtr& magic)const
 {
-	if (PosibilityCounter(m_reflectChance) && !unit.isAlly(caster))
+	if (isReflected() && !unit.isAlly(caster))
 	{
 		signal(Signals::WAIT_TIME, Signals::MAGIC_BLOCK);
 		std::cout << "But magic was reflected\n";

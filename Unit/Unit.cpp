@@ -125,16 +125,18 @@ void Unit::payMana(int manaCost)
 
 bool Unit::injureUnit(Unit& unit)
 {
+	bool hasAttacked = false;
 	if (m_stateHolder.canAttack() && nullptr != m_weapon)
 	{
 		m_weapon->injureUnit(unit, m_damage);
-		return true;
+		hasAttacked = true;
 	}
-	return false;
+	return hasAttacked;
 }
 
 bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 {
+	bool hasCasted = false;
 	if (nullptr != magic)
 	{	
 		if (isEnoughManaFor(magic))
@@ -146,36 +148,38 @@ bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 			if (!m_magicBook.canCastAnySpell())
 				m_stateHolder.takeNew(StatePtr(new 
 					NotEnoughManaUnitState(this)));
-			return true;
+			hasCasted = true;
 		}
 	}
-	return false;
+	return hasCasted;
 }
 
 bool Unit::takeDamage(int damage)
 {
+	bool isDamaged = false;
 	if (m_stateHolder.canTakeDamage(*this, damage))
 	{
-		HpReduceElem(calculateDamageAbsorb(m_armor, damage)).effectUnit(*this);
-		if(!isAlive())
-			m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
-		return true;
+		HpReduceElem(calculateDamageAbsorb(m_armor, damage)).effectUnit(*this);		
+		isDamaged = true;
 	}
-	return false;
+	if (!isAlive())
+		m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
+	return isDamaged;
 }
 
 bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 {
+	bool isEffected = false;
 	if (m_stateHolder.canTakeMagicEffect(*this, caster, magic))
 	{
+		isEffected = true;
 		magic->effectUnit(*this);
-		if(!isAlive())
-			m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
-		if (m_damage <= 0)
-			m_stateHolder.takeNew(StatePtr(new NotEnoughDamageState(this)));
-		return true;
 	}
-	return false;
+	if (!isAlive())
+		m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
+	if (m_damage <= 0)
+		m_stateHolder.takeNew(StatePtr(new NotEnoughDamageState(this)));
+	return isEffected;
 }
 
 void Unit::setTeam(int teamNumber)

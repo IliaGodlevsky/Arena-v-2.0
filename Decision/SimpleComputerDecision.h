@@ -8,13 +8,16 @@ using CastPredicate = bool(*)(UnitPtr, UnitPtr, MagicPtr&);
 using MagicAim = std::pair<UnitPtr, MagicPtr>;
 using DecisionPredicate = bool(*)(const Unit&, const Unit&, const MagicPtr&);
 
-bool canKill(UnitPtr unit1, UnitPtr unit2);
-bool canBeKilled(UnitPtr unit1, UnitPtr unit2);
+bool canKill(UnitPtr activeUnit, UnitPtr passiveUnit);
+bool canBeKilled(UnitPtr activeUnit, UnitPtr passiveUnit);
 
-bool isDeadAfterBuff(UnitPtr unit1, 
-	UnitPtr unit2, MagicPtr& magic);
-bool isDeadAfterDebuff(UnitPtr unit1,
-	UnitPtr unit2, MagicPtr& magic);
+bool isDeadAfterBuffAndHit(UnitPtr activeUnit, 
+	UnitPtr passiveUnit, MagicPtr& buff);
+bool isDeadAfterDebuffAndHit(UnitPtr activeUnit,
+	UnitPtr passiveUnit, MagicPtr& debuff);
+
+bool isDeadAfterDebuff(UnitPtr activeUnit,
+	UnitPtr passiveUnit, MagicPtr& debuff);
 
 class SimpleComputerDecision : public RandomComputerDecision
 {
