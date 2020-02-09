@@ -46,7 +46,7 @@ int randomNumber(int max, int min)
 	std::random_device seed;
 	std::mt19937 generator(seed());
 	std::uniform_int_distribution<int> 
-		distributor(min, max);
+		distributor(min, max); // [min,max]
 	return distributor(generator);
 }
 

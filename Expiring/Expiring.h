@@ -21,6 +21,7 @@ public:
 	Expiring(Expiring&&) = default;
 	Expiring& operator= (const Expiring&) = default;
 	Expiring& operator= (Expiring&&) = default;
+	virtual ~Expiring() = 0;
 	bool isExpired()const override;
 	void setStartTime(int round);
 	bool operator==(const Expiring& expiring)const;

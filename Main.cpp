@@ -1,7 +1,6 @@
 #include "Arena/Arena.h"
 
-int main()
-{
+int main(){
 	set_terminate(myTerminate);
 	auto& arena = Arena::getInstance();
 	bool wantsToPlay = YES;
@@ -15,7 +14,7 @@ int main()
 			announceWinner(arena);
 		}
 		catch (std::exception& ex) { 
-			exceptionMessage(ex); 
+			exceptionMessage(ex);
 		}
 		wantsToPlay = static_cast<bool>(
 			inputNumber(playAgainMsg, YES, NO));

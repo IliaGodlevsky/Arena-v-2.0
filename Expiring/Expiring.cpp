@@ -33,7 +33,7 @@ bool Expiring::isExpired()const
 
 bool Expiring::operator==(const Expiring& expiring)const
 {
-	return m_time.duration == expiring.m_time.duration;
+	return getDuration() == expiring.getDuration();
 }
 
 int Expiring::getDuration()const
@@ -55,4 +55,9 @@ int Expiring::getDurationRemained()const
 void Expiring::makeExpire()
 {
 	setStartTime(Arena::getCurrentRound() - getDuration() - 1);
+}
+
+Expiring::~Expiring()
+{
+
 }

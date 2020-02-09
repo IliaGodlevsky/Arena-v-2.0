@@ -60,7 +60,7 @@ int Arena::m_round = 0;
 
 constexpr int Arena::getMaxNubmerOfPlayers()const
 {
-	return 6; 
+	return 6;
 }
 
 constexpr int Arena::getMinNumberOfPlayers()const
