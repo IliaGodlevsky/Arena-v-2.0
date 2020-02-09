@@ -75,6 +75,7 @@ Arena::Arena()
 
 void Arena::showMiniature()const
 {
+	setColor(LIGHT_RED);
 	std::cout << R"(
         ___           ___           ___           ___           ___     
        /\  \         /\  \         /\  \         /\__\         /\  \    
@@ -87,10 +88,29 @@ void Arena::showMiniature()const
         /:/  /      |:|\/__/     \:\ \/__/       |::/  /        /:/  /  
        /:/  /       |:|  |        \:\__\         /:/  /        /:/  /   
        \/__/         \|__|         \/__/         \/__/         \/__/    )";
-	std::cout << "\n\n\n\t\t\tMade in MS Visual Studio 2017\n";
-	std::cout << "\t\t\tCreated with Visual C++11\n";
-	std::cout << "\t\t\tAuthor: Ilya Hadleuski\n";
-	std::cout << "\t\t\tE-mail: godleevsky2015@gmail.com\n";
+	setColor(LIGHT_GREY);
+	std::cout << R"(     
+      _,.
+    ,` -.)
+   ( _/-\\-._
+  /,|`--._,-^|            ,
+  \_| |`-._/||          ,'|       Made in MS Visual Studio 2017
+    |  `-, / |         /  /       Created with Visual C++11
+    |     || |        /  /        Author: Ilya Hadleuski
+     `r-._||/   __   /  /         E-mail: godleevsky2015@gmail.com
+ __,-<_     )`-/  `./  /
+'  \   `---'   \   /  /
+    |           |./  /
+    /           //  /
+\_/' \         |/  /
+ |    |   _,^-'/  /
+ |    , ``  (\/  /_
+  \,.->._    \X-=/^
+  (  /   `-._//^`
+   `Y-.____(__}
+    |     {__)
+          ())";
+	setColor();
 }
 
 int Arena::setNumberOfUnits()const
