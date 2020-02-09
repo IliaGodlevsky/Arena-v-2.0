@@ -70,7 +70,7 @@ constexpr int Arena::getMinNumberOfPlayers()const
 
 Arena::Arena()
 {
-
+	m_round = 0;
 }
 
 void Arena::showMiniature()const
@@ -86,13 +86,16 @@ void Arena::showMiniature()const
         \::/  /     |:|::/  /   \:\ \:\__\       |:/:/  /       \::/  / 
         /:/  /      |:|\/__/     \:\ \/__/       |::/  /        /:/  /  
        /:/  /       |:|  |        \:\__\         /:/  /        /:/  /   
-       \/__/         \|__|         \/__/         \/__/         \/__/    
-)";
+       \/__/         \|__|         \/__/         \/__/         \/__/    )";
+	std::cout << "\n\n\n\t\t\tMade in MS Visual Studio 2017\n";
+	std::cout << "\t\t\tCreated with Visual C++11\n";
+	std::cout << "\t\t\tAuthor: Ilya Hadleuski\n";
+	std::cout << "\t\t\tE-mail: godleevsky2015@gmail.com\n";
 }
 
 int Arena::setNumberOfUnits()const
 {
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 	return inputNumber("\t\t\tSet number of players: ",
 		getMaxNubmerOfPlayers(), getMinNumberOfPlayers());
 }

@@ -17,6 +17,5 @@ public:
 	void showFullInfo()const override;
 	void showShortInfo()const override;
 	virtual ~ParamChangeMagic() = default;
-protected:
 };
 #endif

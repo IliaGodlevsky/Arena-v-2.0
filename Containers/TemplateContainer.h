@@ -62,6 +62,6 @@ void TemplateContainer<T>::showItem(const T& item)const
 template <class T>
 const T& TemplateContainer<T>::operator[](size_t t)const
 {
-	return m_items[t];
+	return m_items.at(t);
 }
 #endif

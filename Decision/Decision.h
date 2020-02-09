@@ -3,7 +3,7 @@
 
 #include "../Globals/Globals.h"
 
-bool isWrongUnitToAttack(const Unit& decidingUnit, const UnitPtr& unit);
+bool isWrongUnitToAttack(const Unit& decidingUnit, const Unit& unit);
 bool canCastBuffOnUnit(const Unit& caster, const Unit& aim,
 	const MagicPtr& magic);
 bool canCastDebuffOnUnit(const Unit& caster, const Unit& aim,

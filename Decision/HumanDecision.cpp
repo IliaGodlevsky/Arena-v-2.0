@@ -31,7 +31,7 @@ UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit,
 	std::cout << decidingUnit.getName() << ", ";
 	index unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
 		(int)units.size(), 1);
-	while (isWrongUnitToAttack(decidingUnit, units[unitIndex - 1]))
+	while (isWrongUnitToAttack(decidingUnit, *units[unitIndex - 1]))
 	{
 		std::cout << "You can't attack this unit\n";
 		unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
@@ -85,17 +85,16 @@ UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 
 std::string HumanDecision::setName(std::string name)const
 {
-	const int NAME_SIZE = 70;
-	char unitName[NAME_SIZE];
+	char unitName[UCHAR_MAX];
 	eatLine();
 	std::cout << "\t\t\tEnter your name: ";
-	std::cin.get(unitName, NAME_SIZE);
+	std::cin.get(unitName, UCHAR_MAX);
 	name = unitName;
 	while ("\n" == name || name.empty())
 	{
 		eatLine();
 		std::cout << "\t\t\tEnter your name: ";
-		std::cin.get(unitName, NAME_SIZE);
+		std::cin.get(unitName, UCHAR_MAX);
 		name = unitName;
 	}
 	return name;
@@ -108,7 +107,6 @@ std::string HumanDecision::getDecisionType()const
 
 void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 {
-	std::cout << decidingUnit.getName() << ", ";
 	index magicToTake = chooseMagicIndex(CHOOSE_MAGIC_TO_TAKE_MSG, 
 		victim.m_magicBook);
 	bool wantsToTakeMagic;

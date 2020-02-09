@@ -3,12 +3,13 @@
 
 #include "MagicClub.h"
 
+
 MagicClub::MagicClub(std::string name, int damage, MagicPtr magic)
 	: MagicWeapon(name, damage, magic->clone())
 {
-		if (!canCast<StunMagic*>(magic))
-			throw BadWeaponMagicException("Bad class is " + std::string(typeid(*this).name())
-				+ "\nTry to use other weapon magic");
+	if (!canCast<StunMagic*>(magic))
+		throw BadWeaponMagicException("Bad class is " + std::string(typeid(*this).name())
+			+ "\nTry to use other weapon magic");
 }
 
 MagicClub::MagicClub(const MagicClub& club)

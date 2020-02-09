@@ -3,9 +3,9 @@
 #include "../Unit/Unit.h"
 #include "../Interface/Interface.h"
 
-bool isWrongUnitToAttack(const Unit& decidingUnit, const UnitPtr& unit)
+bool isWrongUnitToAttack(const Unit& decidingUnit, const Unit& unit)
 {
-	return unit->isAlly(decidingUnit) || !unit->isAlive();
+	return unit.isAlly(decidingUnit) || !unit.isAlive();
 }
 
 bool canCastBuffOnUnit(const Unit& caster, const Unit& aim,
@@ -19,7 +19,7 @@ bool canCastDebuffOnUnit(const Unit& caster, const Unit& aim,
 	const MagicPtr& magic)
 {
 	IBuff* buff = DYNAMIC(IBuff*, magic);
-	return !buff->isBuff() && !caster.isAlly(aim) && aim.isAlive();
+	return !buff->isBuff() && !isWrongUnitToAttack(caster, aim);
 }
 
 bool isWrongSpellToCast(const Unit& caster, const Unit& aim,
