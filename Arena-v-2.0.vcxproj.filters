@@ -132,6 +132,9 @@
     <Filter Include="Source\Expiring">
       <UniqueIdentifier>{ea1494a5-b50d-4dd4-82bc-712bb9df956f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\ParametresInitialiser">
+      <UniqueIdentifier>{8b6a22c5-0387-4d58-836a-aef65ee0a50b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -475,6 +478,12 @@
     </ClCompile>
     <ClCompile Include="Expiring\Expiring.cpp">
       <Filter>Source\Expiring</Filter>
+    </ClCompile>
+    <ClCompile Include="ParametresInitialiser\WarriorParamInitialiser.cpp">
+      <Filter>Source\ParametresInitialiser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParametresInitialiser\WizardParamInitialiser.cpp">
+      <Filter>Source\ParametresInitialiser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -828,6 +837,15 @@
     </ClInclude>
     <ClInclude Include="Expiring\Expiring.h">
       <Filter>Source\Expiring</Filter>
+    </ClInclude>
+    <ClInclude Include="ParametresInitialiser\ParametresInitialiser.h">
+      <Filter>Source\ParametresInitialiser</Filter>
+    </ClInclude>
+    <ClInclude Include="ParametresInitialiser\WarriorParamInitialiser.h">
+      <Filter>Source\ParametresInitialiser</Filter>
+    </ClInclude>
+    <ClInclude Include="ParametresInitialiser\WizardParamInitialiser.h">
+      <Filter>Source\ParametresInitialiser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
