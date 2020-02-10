@@ -17,7 +17,7 @@ public:
 	virtual void takeNew(const T& item) = 0;
 	bool hasItem(const T& item)const;
 	virtual const T& operator[](size_t t)const final;
-	virtual void showShortInfo()const;
+	virtual void showShortInfo()const final;
 	virtual void setItemColor(const T& item)const = 0;
 	virtual size_t size()const final;	
 	virtual ~TemplateContainer() = default;
