@@ -70,7 +70,7 @@ constexpr int Arena::getMinNumberOfPlayers()const
 
 Arena::Arena()
 {
-	m_round = 0;
+	
 }
 
 void Arena::showMiniature()const
@@ -206,6 +206,7 @@ void Arena::setStartUnit()
 	std::shuffle(m_units.begin(), m_units.end(),
 		std::mt19937(std::random_device()()));
 	m_currentUnit = m_units.begin();
+	m_round = 0;
 }
 
 std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
