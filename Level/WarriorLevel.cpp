@@ -8,18 +8,54 @@ WarriorLevel::WarriorLevel(Unit* unit)
 
 }
 
+LevelPtr WarriorLevel::clone()const
+{
+	LevelPtr level = LevelPtr(new WarriorLevel());
+	level->setLevel(m_level);
+	return level;
+}
+
 WarriorLevel& WarriorLevel::operator++()
 {
-	m_unit->m_health = m_unit->m_health +
-		Vitals(HP_PER_LVL, HP_PER_LVL, HP_REGEN_PER_LVL);
-	m_unit->m_health.restore(HP_RESTORE_PERCENT);
-	m_unit->m_mana.restore(MP_RESTORE_PERSENT);
-	m_unit->m_mana = m_unit->m_mana +
-		Vitals(MP_PER_LVL, MP_PER_LVL, MP_REGEN_PER_LVL);
-	m_unit->m_damage.changeValue(DMG_PER_LVL);
-	m_unit->m_armor.changeValue(ARM_PER_LVL);
-	if (m_level < MAX_LEVEL)
-		m_level++;
-	m_unit->m_stateHolder.takeOffExpired();
-	return *this;
+	return static_cast<WarriorLevel&>(Level::operator++());
+}
+
+int WarriorLevel::getAddedHpPerLevel()const
+{
+	return 15;
+}
+
+int WarriorLevel::getAddedMpPerLevel()const
+{
+	return 5;
+}
+
+int WarriorLevel::getAddedHpRegenPerLevel()const
+{
+	return 2;
+}
+
+int WarriorLevel::getAddedMpRegenPerLevel()const
+{
+	return 1;
+}
+
+int WarriorLevel::getAddedDamagePerLevel()const
+{
+	return 2;
+}
+
+int WarriorLevel::getAddedArmorPerLevel()const
+{
+	return 1;
+}
+
+int WarriorLevel::getHpRestorePercent()const
+{
+	return 14;
+}
+
+int WarriorLevel::getMpRestorePercent()const
+{
+	return 10;
 }

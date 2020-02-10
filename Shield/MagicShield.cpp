@@ -25,7 +25,7 @@ bool MagicShield::takeDamage(Unit& unit, int damage)const
 bool MagicShield::takeMagicEffect(Unit& unit, Unit& caster,
 	MagicPtr& magic)const
 {
-	if (isReflected() && !unit.isAlly(caster))
+	if (isReflected() && canCastDebuffOnUnit(caster, unit, magic))
 	{
 		signal(Signals::WAIT_TIME, Signals::MAGIC_BLOCK);
 		std::cout << "But magic was reflected\n";

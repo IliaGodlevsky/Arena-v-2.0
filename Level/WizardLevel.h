@@ -6,20 +6,19 @@
 class WizardLevel : public Level
 {
 public:
+	WizardLevel() = default;
 	WizardLevel(Unit* unit);
+	LevelPtr clone()const override;
 	WizardLevel& operator++()override;
 private:
-	enum
-	{
-		HP_PER_LVL = 5,
-		MP_PER_LVL = 15,
-		HP_REGEN_PER_LVL = 1,
-		MP_REGEN_PER_LVL = 3,
-		DMG_PER_LVL = 1,
-		ARM_PER_LVL = 1,
-		HP_RESTORE_PERCENT = 10,
-		MP_RESTORE_PERSENT = 15
-	};
+	int getAddedHpPerLevel()const override;
+	int getAddedMpPerLevel()const override;
+	int getAddedHpRegenPerLevel()const override;
+	int getAddedMpRegenPerLevel()const override;
+	int getAddedDamagePerLevel()const override;
+	int getAddedArmorPerLevel()const override;
+	int getHpRestorePercent()const override;
+	int getMpRestorePercent()const override;
 };
 
 #endif

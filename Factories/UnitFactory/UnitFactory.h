@@ -16,7 +16,6 @@ public:
 	virtual UnitPtr operator()() = 0;
 	virtual ~UnitFactory() = default;
 protected:
-	ItemFactoryPtr m_itemFactory = nullptr;
 	std::vector<DecisionPtr> m_decisions;
 protected:
 	virtual index chooseDecsion()const final;

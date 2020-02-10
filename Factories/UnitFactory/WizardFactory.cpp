@@ -10,14 +10,13 @@ WizardFactory::WizardFactory()
 {
 	m_secondMagics.push_back(new AttackAndStunMagicFactory());
 	m_secondMagics.push_back(new AttackMagicFactory());
-	m_itemFactory = ItemFactoryPtr(new WizardItemFactory());
 }
 
 UnitPtr WizardFactory::createUnit()const
 {
 	index magicFactoryNumber = randomNumber((int)m_secondMagics.size() - 1);
 	return UnitPtr(new Wizard(m_decisions[chooseDecsion() - 1]->clone(),
-		m_itemFactory, m_secondMagics[magicFactoryNumber]));
+		m_secondMagics[magicFactoryNumber]));
 }
 
 UnitPtr WizardFactory::operator()()

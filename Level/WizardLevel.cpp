@@ -10,16 +10,52 @@ WizardLevel::WizardLevel(Unit* unit)
 
 WizardLevel& WizardLevel::operator++()
 {
-	m_unit->m_health = m_unit->m_health + 
-		Vitals(HP_PER_LVL, HP_PER_LVL, HP_REGEN_PER_LVL);
-	m_unit->m_health.restore(HP_RESTORE_PERCENT);
-	m_unit->m_mana.restore(MP_RESTORE_PERSENT);
-	m_unit->m_mana = m_unit->m_mana + 
-		Vitals(MP_PER_LVL, MP_PER_LVL, MP_REGEN_PER_LVL);
-	m_unit->m_damage.changeValue(DMG_PER_LVL);
-	m_unit->m_armor.changeValue(ARM_PER_LVL);
-	if (m_level < MAX_LEVEL)
-		m_level++;
-	m_unit->m_stateHolder.takeOffExpired();
-	return *this;
+	return static_cast<WizardLevel&>(Level::operator++());
+}
+
+LevelPtr WizardLevel::clone()const
+{
+	LevelPtr level = LevelPtr(new WizardLevel());
+	level->setLevel(m_level);
+	return level;
+}
+
+int WizardLevel::getAddedHpPerLevel()const
+{
+	return 5;
+}
+
+int WizardLevel::getAddedMpPerLevel()const
+{
+	return 15;
+}
+
+int WizardLevel::getAddedHpRegenPerLevel()const
+{
+	return 1;
+}
+
+int WizardLevel::getAddedMpRegenPerLevel()const
+{
+	return 3;
+}
+
+int WizardLevel::getAddedDamagePerLevel()const
+{
+	return 1;
+}
+
+int WizardLevel::getAddedArmorPerLevel()const
+{
+	return 1;
+}
+
+int WizardLevel::getHpRestorePercent()const
+{
+	return 10;
+}
+
+int WizardLevel::getMpRestorePercent()const
+{
+	return 15;
 }

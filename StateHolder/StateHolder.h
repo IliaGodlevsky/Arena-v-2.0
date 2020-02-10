@@ -25,7 +25,6 @@ public:
 	void takeNew(const StatePtr& unitState) override;
 	void expireIfFound(const StatePtr& unitState) override;
 	void takeOffExpired() override;
-	void showShortInfo()const override;	
 	~StateHolder();
 private:
 	void setItemColor(const StatePtr& unitState)const override;

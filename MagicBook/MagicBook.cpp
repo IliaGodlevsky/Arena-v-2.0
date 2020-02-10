@@ -58,12 +58,6 @@ bool MagicBook::canCastAnySpell()const
 		[&](const MagicPtr& magic) {return m_unit->isEnoughManaFor(magic); });
 }
 
-void MagicBook::showShortInfo()const
-{
-	std::cout << "MagicBook: ";
-	TemplateContainer<MagicPtr>::showShortInfo();
-}
-
 void MagicBook::showFullInfo()const
 {
 	for (size_t i = 0; i < size(); i++)

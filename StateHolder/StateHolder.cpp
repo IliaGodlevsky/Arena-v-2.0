@@ -102,12 +102,6 @@ void StateHolder::setItemColor(const StatePtr& unitState)const
 		setColor(BROWN);
 }
 
-void StateHolder::showShortInfo()const
-{
-	std::cout << "States: ";
-	TemplateContainer<StatePtr>::showShortInfo();
-}
-
 StateHolder::~StateHolder()
 {
 

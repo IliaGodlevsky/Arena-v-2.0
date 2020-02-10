@@ -7,7 +7,7 @@ class Warrior : public Unit
 {
 public:
 	Warrior() = delete;
-	Warrior(DecisionPtr decision, ItemFactoryPtr factory);
+	Warrior(DecisionPtr decision);
 	Warrior(const Warrior& unit);
 	Warrior(Warrior&& unit);
 	Warrior& operator=(const Warrior&) = delete;

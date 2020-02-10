@@ -9,8 +9,7 @@ class Wizard : public Unit
 {
 public:
 	Wizard() = delete;
-	Wizard(DecisionPtr decision, ItemFactoryPtr factory, 
-		Factory<Magic>* secondFactory);
+	Wizard(DecisionPtr decision, Factory<Magic>* secondFactory);
 	Wizard(const Wizard& unit);
 	Wizard(Wizard&&);
 	Wizard& operator=(const Wizard&) = delete;

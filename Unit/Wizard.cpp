@@ -5,39 +5,29 @@
 #include "../Level/WizardLevel.h"
 #include "../Interface/Interface.h"
 #include "../Expiring/Expiring.h"
+#include "../Factories/ItemFactory/WizardItemFactory.h"
+#include "../ParametresInitialiser/WizardParamInitialiser.h"
 
-Wizard::Wizard(DecisionPtr decision, ItemFactoryPtr factory, 
-	Factory<Magic>* secondFactory) : Unit(decision, factory)
+Wizard::Wizard(DecisionPtr decision,
+	Factory<Magic>* secondFactory) :
+	Unit(decision, 
+		ItemFactoryPtr(new WizardItemFactory()),
+		LevelPtr(new WizardLevel(this)), 
+		ParamInitPtr(new WizardParamInitialiser()))
 {
-	enum {
-		START_DAMAGE = 3, START_ARMOR = 1, START_HEALTH = 150,
-		START_HP_REGEN = 2, START_MANA = 100, START_MP_REGEN = 5
-	};
-	m_damage = Battles(START_DAMAGE);
-	m_armor = Battles(START_ARMOR);
-	m_health = Vitals(START_HEALTH, START_HEALTH, START_HP_REGEN);
-	m_mana = Vitals(START_MANA, START_MANA, START_MP_REGEN);
-	m_level = std::unique_ptr<Level>(new WizardLevel(this));
-	m_mail->putOn(*this);
-	m_shield->putOn(*this);
 	m_magicBook.takeNew(secondFactory->createItem());
-	m_damage.changeValue(m_weapon->getDamage());
 }
 
 Wizard::Wizard(const Wizard& unit)
 	: Unit(unit)
 {
-	m_level = std::unique_ptr<Level>(new WizardLevel(this));
-	*m_level = *unit.m_level;
-	m_level->setOwner(this);
+
 }
 
 Wizard::Wizard(Wizard&& unit)
-	: Unit(unit)
+	: Wizard(unit)
 {
-	m_level = std::unique_ptr<Level>(new WizardLevel(this));
-	*m_level = *unit.m_level;
-	m_level->setOwner(this);
+
 }
 
 void Wizard::payMana(int manaCost)

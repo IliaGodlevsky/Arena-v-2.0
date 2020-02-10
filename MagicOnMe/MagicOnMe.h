@@ -17,7 +17,6 @@ public:
 	bool itemHasPassedControl(const MagicPtr& magic)const override;
 	void takeOffExpired() override;
 	void takeNew(const MagicPtr& magic) override;
-	void showShortInfo()const override;
 	void makeExpire(MagicPtr& magic)override;
 private:
 	void showItem(const MagicPtr& magic)const override;

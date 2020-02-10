@@ -12,21 +12,43 @@
 #include "../UnitState/OuterUnitState/StunUnitState.h"
 #include "Unit.h"
 
-Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory) :
+Unit::Unit(DecisionPtr decision)
+	: Unit(decision, nullptr, nullptr, nullptr)
+
+{
+
+}
+
+Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory,
+	LevelPtr level, ParamInitPtr initialiser) :
 	m_magicBook(this),
 	m_magicOnMe(this),
 	m_decision(decision->clone()),
-	m_stateHolder(this)
+	m_stateHolder(this),
+	m_level(std::move(level))
 {
+	m_damage = Battles(initialiser->getStartDamage());
+	m_armor = Battles(initialiser->getStartArmor());
+	m_health = Vitals(
+		initialiser->getStartHp(), 
+		initialiser->getStartHp(), 
+		initialiser->getStartHpRegen());
+	m_mana = Vitals(
+		initialiser->getStartMp(), 
+		initialiser->getStartMp(), 
+		initialiser->getStartMpRegen());
 	m_magicBook.takeNew(factory->createMagic());
 	m_weapon = factory->createWeapon();
 	m_mail = factory->createArmor();
 	m_shield = factory->createShield();
+	m_damage.changeValue(m_weapon->getDamage());
+	m_mail->putOn(*this);
+	m_shield->putOn(*this);
 	if (m_magicBook.size() == 0)
 		throw EmptyContainerException("MagicBook is empty");
-	if (nullptr == m_shield || nullptr == m_mail || nullptr == m_weapon || nullptr == m_decision)
+	if (nullptr == m_shield || nullptr == m_mail 
+		|| nullptr == m_weapon || nullptr == m_decision)
 		throw BadEquipmentException("Unit doesn't have enough equipment to fight");
-	m_level = std::unique_ptr<Level>(new Level(this));
 }
 
 Unit::Unit(const Unit& unit)
@@ -41,29 +63,16 @@ Unit::Unit(const Unit& unit)
 	m_mana(unit.m_mana),
 	m_weapon(unit.m_weapon->clone()),
 	m_mail(unit.m_mail->clone()),
-	m_shield(unit.m_shield->clone())
+	m_shield(unit.m_shield->clone()),
+	m_level(unit.m_level->clone())
 {
-	m_level = std::unique_ptr<Level>(new Level(this));
-	*m_level = *unit.m_level;
 	m_level->setOwner(this);
 }
 
 Unit::Unit(Unit&& unit)
-	: m_damage(unit.m_damage),
-	m_armor(unit.m_armor),
-	m_magicBook(this, unit.m_magicBook),
-	m_name(unit.m_name),
-	m_magicOnMe(this, unit.m_magicOnMe),
-	m_decision(unit.m_decision->clone()),
-	m_stateHolder(this, unit.m_stateHolder),
-	m_health(unit.m_health),
-	m_mana(unit.m_mana),
-	m_weapon(std::move(unit.m_weapon)),
-	m_mail(std::move(unit.m_mail)),
-	m_shield(std::move(unit.m_shield))
+	: Unit(unit)
 {
-	m_level = std::move(unit.m_level);
-	m_level->setOwner(this);
+
 }
 
 const std::string& Unit::getName()const
@@ -222,8 +231,11 @@ void Unit::showFullInfo()const
 	std::cout << " ";
 	m_armor.showShortInfo("ARM");
 	std::cout << std::endl;
+	std::cout << "States: ";
 	m_stateHolder.showShortInfo();
+	std::cout << "Magic: ";
 	m_magicBook.showShortInfo();
+	std::cout << "Effects: ";
 	m_magicOnMe.showShortInfo();
 	std::cout << "Weapon: ";
 	m_weapon->showShortInfo();

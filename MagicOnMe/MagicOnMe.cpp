@@ -79,10 +79,3 @@ void MagicOnMe::showItem(const MagicPtr& magic)const
 	std::cout << "<" << magic->getName()
 		<< ": " << expiring->getDurationRemained() << "> ";
 }
-
-
-void MagicOnMe::showShortInfo()const
-{
-	std::cout << "Effect: ";
-	TemplateContainer<MagicPtr>::showShortInfo();
-}
