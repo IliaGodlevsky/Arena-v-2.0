@@ -29,14 +29,9 @@ bool MagicBook::itemHasPassedControl(const MagicPtr& magic)const
 		return true;
 }
 
-void MagicBook::magicList()const
+void MagicBook::showListOfMagic()const
 {
-	for (size_t i = 0; i < size(); i++)
-	{
-		std::cout << i + 1 << ". ";
-		operator[](i)->showShortInfo();
-		std::cout << std::endl;
-	}
+	showInfo(&MagicBook::showShort);
 }
 
 void MagicBook::setItemColor(const MagicPtr& magic)const
@@ -60,15 +55,31 @@ bool MagicBook::canCastAnySpell()const
 
 void MagicBook::showFullInfo()const
 {
-	for (size_t i = 0; i < size(); i++)
-	{
-		std::cout << i + 1 << ". ";
-		operator[](i)->showFullInfo();
-	}
+	showInfo(&MagicBook::showFull);
 }
 
 void MagicBook::takeNew(const MagicPtr& magic)
 {
 	if (itemHasPassedControl(magic) && !hasItem(magic))
 		m_items.push_back(MagicPtr(magic->clone()));
+}
+
+void MagicBook::showInfo(const ShowMethod& show)const
+{
+	for (size_t i = 0; i < size(); i++)
+	{
+		std::cout << i + 1 << ". ";
+		(this->*show)(operator[](i));
+	}
+}
+
+void MagicBook::showFull(const MagicPtr& magic)const
+{
+	magic->showFullInfo();
+}
+
+void MagicBook::showShort(const MagicPtr& magic)const
+{
+	magic->showShortInfo();
+	std::cout << std::endl;
 }

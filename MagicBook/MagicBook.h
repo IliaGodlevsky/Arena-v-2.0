@@ -17,9 +17,13 @@ public:
 	bool itemHasPassedControl(const MagicPtr& magic)const override;
 	bool canCastAnySpell()const;
 	void showFullInfo()const;
-	void magicList()const;	
+	void showListOfMagic()const;	
 	void takeNew(const MagicPtr& magic) override;
 private:
+	using ShowMethod = void(MagicBook::*)(const MagicPtr&)const;
+	void showInfo(const ShowMethod& show)const;
+	void showFull(const MagicPtr& magic)const;
+	void showShort(const MagicPtr& magic)const;
 	void setItemColor(const MagicPtr& magic)const override;
 	Unit* m_unit = nullptr; // unit, that have this vector of magic
 };
