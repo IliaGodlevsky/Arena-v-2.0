@@ -6,7 +6,7 @@
 index chooseMagicIndex(const std::string& message, 
 	const MagicBook& magicBook)
 {
-	magicBook.magicList();
+	magicBook.showListOfMagic();
 	std::cout << magicBook.size() + 1 
 		<< ". Show more info about magic\n";
 	index magicToCastIndex = inputNumber(message, 
