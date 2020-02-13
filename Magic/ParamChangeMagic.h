@@ -10,12 +10,13 @@ class ParamChangeMagic : public FreeParamChangeMagic,
 	public IBuff, public IManaCost
 {
 public:
-	ParamChangeMagic(std::string name, int manaCost,
-		Time time);
-	virtual void effectUnit(Unit& unit) = 0;
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
 	void showShortInfo()const override;
 	virtual ~ParamChangeMagic() = default;
+	ParamChangeMagic(std::string name, int manaCost,
+		Time time, const ElementsInit& holder);
+	ParamChangeMagic(std::string name, int manaCost,
+		Time time, const ElementHolder& holder);
 };
 #endif

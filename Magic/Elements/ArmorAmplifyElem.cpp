@@ -16,3 +16,20 @@ void ArmorAmplifyElem::uneffectUnit(Unit& unit)
 {
 	unit.m_armor.changeAdditaionalValue(-m_change);
 }
+
+bool ArmorAmplifyElem::isEqual(const ParamChangeElemPtr& element)const
+{
+	if (!canCast<ArmorAmplifyElem*>(element))
+		return false;
+	return ParamChangeElem::isEqual(element);
+}
+
+ParamChangeElemPtr ArmorAmplifyElem::clone()const
+{
+	return ParamChangeElemPtr(new ArmorAmplifyElem(m_change));
+}
+
+void ArmorAmplifyElem::showInfo()const
+{
+	std::cout << "Adds " << m_change << " armor";
+}

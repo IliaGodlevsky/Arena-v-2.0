@@ -9,6 +9,9 @@ public:
 	DamageReduceElem(int damageReduce);
 	void effectUnit(Unit& unit)override;
 	void uneffectUnit(Unit& unit)override;
+	bool isEqual(const ParamChangeElemPtr& element)const;
+	ParamChangeElemPtr clone()const;
+	void showInfo()const override;
 	~DamageReduceElem() = default;
 };
 #endif

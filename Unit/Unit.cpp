@@ -29,14 +29,10 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory,
 {
 	m_damage = Battles(initialiser->getStartDamage());
 	m_armor = Battles(initialiser->getStartArmor());
-	m_health = Vitals(
-		initialiser->getStartHp(), 
-		initialiser->getStartHp(), 
-		initialiser->getStartHpRegen());
-	m_mana = Vitals(
-		initialiser->getStartMp(), 
-		initialiser->getStartMp(), 
-		initialiser->getStartMpRegen());
+	m_health = Vitals( initialiser->getStartHp(), 
+		initialiser->getStartHp(), initialiser->getStartHpRegen());
+	m_mana = Vitals( initialiser->getStartMp(), 
+		initialiser->getStartMp(), initialiser->getStartMpRegen());
 	m_magicBook.takeNew(factory->createMagic());
 	m_weapon = factory->createWeapon();
 	m_mail = factory->createArmor();
@@ -188,6 +184,7 @@ bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 		m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
 	if (m_damage <= 0)
 		m_stateHolder.takeNew(StatePtr(new NotEnoughDamageState(this)));
+	m_stateHolder.takeOffExpired();
 	return isEffected;
 }
 

@@ -3,9 +3,18 @@
 #include "CorruptionMagic.h"
 
 CorruptionMagic::CorruptionMagic(std::string name, Time time,
-	ArmorReduceElem armorReduce, PosibilityCounter propability)
-	: FreeParamChangeMagic(name, time),
-	m_armorReduce(armorReduce), m_posibility(propability)
+	int armorReduce, PosibilityCounter propability)
+	: FreeParamChangeMagic(name, time, 
+		{ ParamChangeElemPtr(new ArmorReduceElem(armorReduce)) }),
+	 m_posibility(propability)
+{
+
+}
+
+CorruptionMagic::CorruptionMagic(std::string name, Time time,
+	const ElementHolder& elements, PosibilityCounter propability)
+	: FreeParamChangeMagic(name, time, elements),
+	m_posibility(propability)
 {
 
 }
@@ -13,21 +22,13 @@ CorruptionMagic::CorruptionMagic(std::string name, Time time,
 void CorruptionMagic::effectUnit(Unit& unit)
 {
 	if (m_posibility)
-	{
 		FreeParamChangeMagic::effectUnit(unit);
-		m_armorReduce.effectUnit(unit);
-	}
-}
-
-void CorruptionMagic::uneffectUnit(Unit& unit)
-{
-	m_armorReduce.uneffectUnit(unit);
 }
 
 MagicPtr CorruptionMagic::clone()const
 {
 	return MagicPtr(new CorruptionMagic(m_name, m_time,
-		m_armorReduce, m_posibility));
+		m_elemHolder, m_posibility));
 }
 
 bool CorruptionMagic::isDispelable()const
@@ -41,11 +42,5 @@ bool CorruptionMagic::isEqual(const MagicPtr& magic)const
 		return false;
 	CorruptionMagic* temp = DYNAMIC(CorruptionMagic*, magic);
 	return FreeParamChangeMagic::isEqual(magic)
-		&& m_posibility == temp->m_posibility
-		&& m_armorReduce == temp->m_armorReduce;
-}
-
-void CorruptionMagic::showFullInfo()const
-{
-	FreeParamChangeMagic::showFullInfo();
+		&& m_posibility == temp->m_posibility;
 }

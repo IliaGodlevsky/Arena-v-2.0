@@ -9,6 +9,9 @@ public:
 	ArmorReduceElem(int armorReduce);
 	void uneffectUnit(Unit& unit)override;
 	void effectUnit(Unit& unit) override;
+	bool isEqual(const ParamChangeElemPtr& element)const;
+	ParamChangeElemPtr clone()const;
+	void showInfo()const override;
 	~ArmorReduceElem() = default;
 };
 #endif

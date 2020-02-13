@@ -4,27 +4,18 @@
 
 
 ArmorDebuffMagic::ArmorDebuffMagic(std::string name, int manaCost,
-	Time time, ArmorReduceElem armorReduce)
-	: ParamChangeMagic(name, manaCost, time),
-	m_armorReduce(armorReduce)
+	Time time, int armorReduce)
+	: ParamChangeMagic(name, manaCost, time, 
+		{ParamChangeElemPtr(new ArmorReduceElem(armorReduce))})
+
 {
 
-}
-
-void ArmorDebuffMagic::effectUnit(Unit& unit)
-{
-	ParamChangeMagic::effectUnit(unit);
-	m_armorReduce.effectUnit(unit);
-}
-
-void ArmorDebuffMagic::uneffectUnit(Unit& unit)
-{
-	m_armorReduce.uneffectUnit(unit);
 }
 
 MagicPtr ArmorDebuffMagic::clone()const
 {
-	return MagicPtr(new ArmorDebuffMagic(m_name, m_manaCost, m_time, m_armorReduce));
+	return MagicPtr(new ArmorDebuffMagic(m_name, 
+		m_manaCost, m_time, m_elemHolder));
 }
 
 bool ArmorDebuffMagic::isBuff()const
@@ -41,14 +32,5 @@ bool ArmorDebuffMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<ArmorDebuffMagic*>(magic))
 		return false;
-	ArmorDebuffMagic* temp = DYNAMIC(ArmorDebuffMagic*, magic);
-	return ParamChangeMagic::isEqual(magic)
-		&& m_armorReduce == temp->m_armorReduce;
-}
-
-void ArmorDebuffMagic::showFullInfo()const
-{
-	ParamChangeMagic::showFullInfo();
-	std::cout << "Reduces enemy armor by " << m_armorReduce
-		<< " for " << getDuration() << " rounds\n";
+	return ParamChangeMagic::isEqual(magic);
 }

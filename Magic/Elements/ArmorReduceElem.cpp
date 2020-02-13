@@ -16,3 +16,20 @@ void ArmorReduceElem::effectUnit(Unit& unit)
 {
 	unit.m_armor.changeAdditaionalValue(-m_change);
 }
+
+bool ArmorReduceElem::isEqual(const ParamChangeElemPtr& element)const
+{
+	if (!canCast<ArmorReduceElem*>(element))
+		return false;
+	return ParamChangeElem::isEqual(element);
+}
+
+ParamChangeElemPtr ArmorReduceElem::clone()const
+{
+	return ParamChangeElemPtr(new ArmorReduceElem(m_change));
+}
+
+void ArmorReduceElem::showInfo()const
+{
+	std::cout << "Reduces enemy armor by " << m_change;
+}

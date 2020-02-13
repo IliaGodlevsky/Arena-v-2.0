@@ -7,18 +7,14 @@
 class DamageDebuffMagic : public ParamChangeMagic
 {
 public:
+	using ParamChangeMagic::ParamChangeMagic;
 	DamageDebuffMagic(std::string name, int manaCost,
-		Time time, DamageReduceElem armorReduce);
-	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit) override;
+		Time time, int armorReduce);
 	MagicPtr clone()const override;
 	bool isBuff()const override;
 	bool isDispelable()const override;
 	bool isEqual(const MagicPtr& magic)const override;
-	void showFullInfo()const override;
 	~DamageDebuffMagic() = default;
-private:
-	DamageReduceElem m_damageReduce;
 };
 
 #endif

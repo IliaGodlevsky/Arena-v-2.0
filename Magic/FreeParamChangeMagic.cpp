@@ -1,8 +1,16 @@
 #include "FreeParamChangeMagic.h"
 #include "../Unit/Unit.h"
 
-FreeParamChangeMagic::FreeParamChangeMagic(std::string name, Time time)
-	: Magic(name), Expiring(time)
+FreeParamChangeMagic::FreeParamChangeMagic(std::string name, Time time,
+	const ElementsInit& holder)
+	: Magic(name), Expiring(time), m_elemHolder(holder)
+{
+
+}
+
+FreeParamChangeMagic::FreeParamChangeMagic(std::string name, Time time,
+	const ElementHolder& holder)
+	: Magic(name), Expiring(time), m_elemHolder(holder)
 {
 
 }
@@ -10,7 +18,13 @@ FreeParamChangeMagic::FreeParamChangeMagic(std::string name, Time time)
 void FreeParamChangeMagic::effectUnit(Unit& unit)
 {
 	setStartTime(Arena::getCurrentRound());
+	m_elemHolder.effectUnit(unit);
 	unit.m_magicOnMe.takeNew(clone());
+}
+
+void FreeParamChangeMagic::uneffectUnit(Unit& unit)
+{
+	m_elemHolder.uneffectUnit(unit);
 }
 
 bool FreeParamChangeMagic::isEqual(const MagicPtr& magic)const
@@ -19,7 +33,8 @@ bool FreeParamChangeMagic::isEqual(const MagicPtr& magic)const
 		return false;
 	FreeParamChangeMagic* temp = DYNAMIC(FreeParamChangeMagic*, magic);
 	return Magic::isEqual(magic)
-		&& Expiring::operator==(*temp);
+		&& Expiring::operator==(*temp)
+		&& m_elemHolder.isEqual(temp->m_elemHolder);
 }
 
 void FreeParamChangeMagic::showFullInfo()const

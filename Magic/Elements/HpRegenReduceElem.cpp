@@ -17,3 +17,20 @@ void HpRegenReduceElem::uneffectUnit(Unit& unit)
 {
 	unit.m_health.changeRegeneration(m_change);
 }
+
+bool HpRegenReduceElem::isEqual(const ParamChangeElemPtr& element)const
+{
+	if (!canCast<HpRegenReduceElem*>(element))
+		return false;
+	return ParamChangeElem::isEqual(element);
+}
+
+ParamChangeElemPtr HpRegenReduceElem::clone()const
+{
+	return ParamChangeElemPtr(new HpRegenReduceElem(m_change));
+}
+
+void HpRegenReduceElem::showInfo()const
+{
+	std::cout << "Reduces regen by " << m_change;
+}

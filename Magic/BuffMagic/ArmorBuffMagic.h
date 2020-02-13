@@ -7,18 +7,14 @@
 class ArmorBuffMagic : public ParamChangeMagic
 {
 public:
+	using ParamChangeMagic::ParamChangeMagic;
 	ArmorBuffMagic(std::string name, int manaCost,
-		Time time, ArmorAmplifyElem armorAmplify);
-	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit) override;
+		Time time, int armorAmplify);
 	MagicPtr clone()const override;
 	bool isBuff()const override;
 	bool isDispelable()const override;
 	bool isEqual(const MagicPtr& magic)const override;
-	void showFullInfo()const override;
 	~ArmorBuffMagic() = default;
-private:
-	ArmorAmplifyElem m_armorAmplify;
 };
 
 #endif

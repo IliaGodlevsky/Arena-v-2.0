@@ -3,36 +3,23 @@
 #include "DamageBuffMagic.h"
 
 DamageBuffMagic::DamageBuffMagic(std::string name, int manaCost,
-	Time time, DamageAmplifyElem damageAmplify)
-	: ParamChangeMagic(name, manaCost, time), 
-	m_damageAmplify(damageAmplify)
+	Time time, int damageAmplify)
+	: ParamChangeMagic(name, manaCost, time,
+		{ ParamChangeElemPtr(new DamageAmplifyElem(damageAmplify)) })
 {
 
-}
-
-void DamageBuffMagic::effectUnit(Unit& unit)
-{
-	ParamChangeMagic::effectUnit(unit);
-	m_damageAmplify.effectUnit(unit);
-}
-
-void DamageBuffMagic::uneffectUnit(Unit& unit)
-{
-	m_damageAmplify.uneffectUnit(unit);
 }
 
 MagicPtr DamageBuffMagic::clone()const
 {
-	return MagicPtr(new DamageBuffMagic(m_name, m_manaCost, m_time, m_damageAmplify));
+	return MagicPtr(new DamageBuffMagic(m_name, m_manaCost, m_time, m_elemHolder));
 }
 
 bool DamageBuffMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<DamageBuffMagic*>(magic))
 		return false;
-	DamageBuffMagic* temp = DYNAMIC(DamageBuffMagic*, magic);
-	return ParamChangeMagic::isEqual(magic)&&
-		m_damageAmplify == temp->m_damageAmplify;
+	return ParamChangeMagic::isEqual(magic);
 }
 
 bool DamageBuffMagic::isBuff()const
@@ -43,11 +30,4 @@ bool DamageBuffMagic::isBuff()const
 bool DamageBuffMagic::isDispelable()const
 {
 	return true;
-}
-
-void DamageBuffMagic::showFullInfo()const
-{
-	ParamChangeMagic::showFullInfo();
-	std::cout << "Adds " << m_damageAmplify
-		<< " damage for " << getDuration() << " rounds\n";
 }

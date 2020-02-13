@@ -9,17 +9,14 @@ class CorruptionMagic : public FreeParamChangeMagic
 {
 public:
 	CorruptionMagic(std::string name, Time time,
-		ArmorReduceElem armorReduce, 
-		PosibilityCounter propability);
+		int armorReduce, PosibilityCounter propability);
+	CorruptionMagic(std::string name, Time time,
+		const ElementHolder& elements, PosibilityCounter propability);
 	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit)override;
 	MagicPtr clone()const override;
 	bool isEqual(const MagicPtr& magic)const override;
-	void showFullInfo()const override;
 	bool isDispelable()const override;
 	~CorruptionMagic() = default;
-private:
-	ArmorReduceElem m_armorReduce;
 	PosibilityCounter m_posibility;
 };
 

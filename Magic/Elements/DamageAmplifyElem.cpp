@@ -16,3 +16,20 @@ void DamageAmplifyElem::uneffectUnit(Unit& unit)
 {
 	unit.m_damage.changeAdditaionalValue(-m_change);
 }
+
+bool DamageAmplifyElem::isEqual(const ParamChangeElemPtr& element)const
+{
+	if (!canCast<DamageAmplifyElem*>(element))
+		return false;
+	return ParamChangeElem::isEqual(element);
+}
+
+ParamChangeElemPtr DamageAmplifyElem::clone()const
+{
+	return ParamChangeElemPtr(new DamageAmplifyElem(m_change));
+}
+
+void DamageAmplifyElem::showInfo()const
+{
+	std::cout << "Adds " << m_change << " damage";
+}

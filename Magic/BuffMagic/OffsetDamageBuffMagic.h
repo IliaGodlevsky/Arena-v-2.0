@@ -9,20 +9,14 @@ class OffsetDamageBuffMagic
 	: public ParamChangeMagic
 {
 public:
+	using ParamChangeMagic::ParamChangeMagic;
 	OffsetDamageBuffMagic(std::string name, int manaCost,
-		Time time, ArmorReduceElem armorReduce, 
-		DamageAmplifyElem damageAmplify);
-	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit) override;
+		Time time, int armorReduce, int damageAmplify);
 	MagicPtr clone()const override;
 	bool isBuff()const override;
 	bool isDispelable()const override;
 	bool isEqual(const MagicPtr& magic)const override;
-	void showFullInfo()const override;
 	~OffsetDamageBuffMagic() = default;
-private:
-	DamageAmplifyElem m_damageAmplify;
-	ArmorReduceElem m_armorReduce;
 };
 
 #endif

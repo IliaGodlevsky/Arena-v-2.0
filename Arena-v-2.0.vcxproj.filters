@@ -39,9 +39,6 @@
     <Filter Include="Source\Decision">
       <UniqueIdentifier>{f0080a41-8210-4b82-b102-783fa92ba3b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Exceptions">
-      <UniqueIdentifier>{3824148a-8c56-47e4-8184-1f5be7ec6fea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Globals">
       <UniqueIdentifier>{2e7f6533-5a14-4678-94a9-b081401c606f}</UniqueIdentifier>
     </Filter>
@@ -135,6 +132,9 @@
     <Filter Include="Source\ParametresInitialiser">
       <UniqueIdentifier>{8b6a22c5-0387-4d58-836a-aef65ee0a50b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Equipment\Shield\Exceptions">
+      <UniqueIdentifier>{3824148a-8c56-47e4-8184-1f5be7ec6fea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -183,7 +183,7 @@
       <Filter>Source\Decision</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\BadWeaponMagicException.cpp">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="Globals\Globals.cpp">
       <Filter>Source\Globals</Filter>
@@ -372,13 +372,13 @@
       <Filter>Source\Factories\WeaponFactories</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\EmptyContainerException.cpp">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\BadEquipmentException.cpp">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\ArenaException.cpp">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="ThreadGuard\ThreadGuard.cpp">
       <Filter>Source\ThreadGuard</Filter>
@@ -411,7 +411,7 @@
       <Filter>Source\Magic</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\BadincomingMagicException.cpp">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="UnitState\InnerUnitState\DeadUnitState.cpp">
       <Filter>Source\UnitState\InnerUnitState</Filter>
@@ -444,21 +444,12 @@
       <Filter>Source\Factories\ShieldFactories</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\ArenaUninterseptedException.cpp">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="Factories\ShieldFactories\MirrorShieldFactory.cpp">
       <Filter>Source\Factories\ShieldFactories</Filter>
     </ClCompile>
-    <ClCompile Include="Magic\Elements\MpRegenReduceElem.cpp">
-      <Filter>Source\Magic\Elements</Filter>
-    </ClCompile>
     <ClCompile Include="Magic\AttackMagic\AttackAndSilenceMagic.cpp">
-      <Filter>Source\Magic\AttackMagic</Filter>
-    </ClCompile>
-    <ClCompile Include="Magic\Elements\MpReduceElem.cpp">
-      <Filter>Source\Magic\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="Magic\AttackMagic\ManaReduceMagic.cpp">
       <Filter>Source\Magic\AttackMagic</Filter>
     </ClCompile>
     <ClCompile Include="UnitState\InnerUnitState\NotEnoughDamageState.cpp">
@@ -484,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="ParametresInitialiser\WizardParamInitialiser.cpp">
       <Filter>Source\ParametresInitialiser</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\ElementHolder.cpp">
+      <Filter>Source\Magic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -530,7 +524,7 @@
       <Filter>Source\Decision</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\BadWeaponMagicException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Globals\Globals.h">
       <Filter>Source\Globals</Filter>
@@ -728,13 +722,13 @@
       <Filter>Source\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\EmptyContainerException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\BadEquipmentException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\ArenaException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="ThreadGuard\ThreadGurad.h">
       <Filter>Source\ThreadGuard</Filter>
@@ -770,7 +764,7 @@
       <Filter>Source\Magic</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\BadincomingMagicException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="UnitState\InnerUnitState\DeadUnitState.h">
       <Filter>Source\UnitState\InnerUnitState</Filter>
@@ -803,21 +797,12 @@
       <Filter>Source\Factories\ShieldFactories</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\ArenaUninterseptedException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source\Equipment\Shield\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Factories\ShieldFactories\MirrorShieldFactory.h">
       <Filter>Source\Factories\ShieldFactories</Filter>
     </ClInclude>
-    <ClInclude Include="Magic\Elements\MpRegenReduceElem.h">
-      <Filter>Source\Magic\Elements</Filter>
-    </ClInclude>
     <ClInclude Include="Magic\AttackMagic\AttackAndSilenceMagic.h">
-      <Filter>Source\Magic\AttackMagic</Filter>
-    </ClInclude>
-    <ClInclude Include="Magic\Elements\MpReduceElem.h">
-      <Filter>Source\Magic\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="Magic\AttackMagic\ManaReduceMagic.h">
       <Filter>Source\Magic\AttackMagic</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -846,6 +831,9 @@
     </ClInclude>
     <ClInclude Include="ParametresInitialiser\WizardParamInitialiser.h">
       <Filter>Source\ParametresInitialiser</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\ElementHolder.h">
+      <Filter>Source\Magic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

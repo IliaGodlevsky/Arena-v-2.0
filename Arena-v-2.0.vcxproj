@@ -77,7 +77,6 @@
     <ClCompile Include="Magic\AttackMagic\AttackAndSilenceMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\AttackAndStunMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\AttackMagic.cpp" />
-    <ClCompile Include="Magic\AttackMagic\ManaReduceMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\PoisonAndAttackMagic.cpp" />
     <ClCompile Include="Magic\AttackMagic\PoisonMagic.cpp" />
     <ClCompile Include="Magic\BuffMagic\ArmorAndDamageBuffMagic.cpp" />
@@ -89,14 +88,13 @@
     <ClCompile Include="Magic\DebuffMagic\AttackMissChanceMagic.cpp" />
     <ClCompile Include="Magic\DebuffMagic\DamageDebuffMagic.cpp" />
     <ClCompile Include="Magic\DebuffMagic\SilenceMagic.cpp" />
+    <ClCompile Include="Magic\ElementHolder.cpp" />
     <ClCompile Include="Magic\Elements\ArmorAmplifyElem.cpp" />
     <ClCompile Include="Magic\Elements\ArmorReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\DamageAmplifyElem.cpp" />
     <ClCompile Include="Magic\Elements\DamageReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\HpReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\HpRegenReduceElem.cpp" />
-    <ClCompile Include="Magic\Elements\MpReduceElem.cpp" />
-    <ClCompile Include="Magic\Elements\MpRegenReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\ParamChangeElem.cpp" />
     <ClCompile Include="Magic\FreeParamChangeMagic.cpp" />
     <ClCompile Include="Magic\Magic.cpp" />
@@ -198,7 +196,6 @@
     <ClInclude Include="Magic\AttackMagic\AttackAndSilenceMagic.h" />
     <ClInclude Include="Magic\AttackMagic\AttackAndStunMagic.h" />
     <ClInclude Include="Magic\AttackMagic\AttackMagic.h" />
-    <ClInclude Include="Magic\AttackMagic\ManaReduceMagic.h" />
     <ClInclude Include="Magic\AttackMagic\PoisonAndAttackMagic.h" />
     <ClInclude Include="Magic\AttackMagic\PoisonMagic.h" />
     <ClInclude Include="Magic\BuffMagic\ArmorAndDamageBuffMagic.h" />
@@ -210,14 +207,13 @@
     <ClInclude Include="Magic\DebuffMagic\AttackMissChanceMagic.h" />
     <ClInclude Include="Magic\DebuffMagic\DamageDebuffMagic.h" />
     <ClInclude Include="Magic\DebuffMagic\SilenceMagic.h" />
+    <ClInclude Include="Magic\ElementHolder.h" />
     <ClInclude Include="Magic\Elements\ArmorAmplifyElem.h" />
     <ClInclude Include="Magic\Elements\ArmorReduceElem.h" />
     <ClInclude Include="Magic\Elements\DamageAmplifyElem.h" />
     <ClInclude Include="Magic\Elements\DamageReduceElem.h" />
     <ClInclude Include="Magic\Elements\HpReduceElem.h" />
     <ClInclude Include="Magic\Elements\HpRegenReduceElem.h" />
-    <ClInclude Include="Magic\Elements\MpReduceElem.h" />
-    <ClInclude Include="Magic\Elements\MpRegenReduceElem.h" />
     <ClInclude Include="Magic\Elements\ParamChangeElem.h" />
     <ClInclude Include="Magic\FreeParamChangeMagic.h" />
     <ClInclude Include="Magic\Magic.h" />

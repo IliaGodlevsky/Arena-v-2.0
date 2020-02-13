@@ -3,8 +3,15 @@
 #include "../../Unit/Unit.h"
 
 PoisonAndAttackMagic::PoisonAndAttackMagic(std::string name, int manaCost,
-	Time time, HpReduceElem damage, HpRegenReduceElem regenReduce)
+	Time time, HpReduceElem damage, int regenReduce)
 	: PoisonMagic(name, manaCost, time, regenReduce), m_damage(damage)
+{
+
+}
+
+PoisonAndAttackMagic::PoisonAndAttackMagic(std::string name,
+	int manaCost, Time time, HpReduceElem damage, const ElementHolder& elements)
+	: PoisonMagic(name, manaCost, time, elements), m_damage(damage)
 {
 
 }
@@ -18,7 +25,7 @@ void PoisonAndAttackMagic::effectUnit(Unit& unit)
 MagicPtr PoisonAndAttackMagic::clone()const
 {
 	return MagicPtr(new PoisonAndAttackMagic(m_name, m_manaCost,
-		m_time, m_damage, m_regenReduce));
+		m_time, m_damage, m_elemHolder));
 }
 
 bool PoisonAndAttackMagic::isEqual(const MagicPtr& magic)const

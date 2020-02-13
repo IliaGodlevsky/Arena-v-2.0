@@ -9,20 +9,14 @@ class ArmorAndDamageBuffMagic
 	: public ParamChangeMagic
 {
 public:
+	using ParamChangeMagic::ParamChangeMagic;
 	ArmorAndDamageBuffMagic(std::string name, int manaCost,
-		Time time, ArmorAmplifyElem armorAmplify, 
-		DamageAmplifyElem damageAmplify);
-	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit) override;
+		Time time, int armorAmplify, int damageAmplify);
 	MagicPtr clone()const override;
 	bool isBuff()const override;
 	bool isDispelable()const override;
 	bool isEqual(const MagicPtr& magic)const override;
-	void showFullInfo()const override;
 	~ArmorAndDamageBuffMagic() = default;
-private:
-	ArmorAmplifyElem m_armorAmplify;
-	DamageAmplifyElem m_damageAmplify;
 };
 
 #endif

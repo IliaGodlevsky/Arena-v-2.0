@@ -9,17 +9,15 @@ class DegenerateMagic : public FreeParamChangeMagic
 {
 public:
 	DegenerateMagic(std::string name, Time time,
-		HpRegenReduceElem armorReduce,
-		PosibilityCounter propability);
+		int armorReduce, PosibilityCounter propability);
+	DegenerateMagic(std::string name, Time time,
+		const ElementHolder& elements, PosibilityCounter propability);
 	void effectUnit(Unit& unit) override;
-	void uneffectUnit(Unit& unit)override;
 	MagicPtr clone()const override;
 	bool isEqual(const MagicPtr& magic)const override;
-	void showFullInfo()const override;
 	bool isDispelable()const override;
 	~DegenerateMagic() = default;
 private:
-	HpRegenReduceElem m_regenReduce;
 	PosibilityCounter m_posibility;
 };
 

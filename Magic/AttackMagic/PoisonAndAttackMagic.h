@@ -10,7 +10,9 @@ class PoisonAndAttackMagic
 public:
 	PoisonAndAttackMagic(std::string name,
 		int manaCost, Time time,
-		HpReduceElem damage, HpRegenReduceElem regenReduce);
+		HpReduceElem damage, int regenReduce);
+	PoisonAndAttackMagic(std::string name, int manaCost, Time time, 
+		HpReduceElem damage, const ElementHolder& elements);
 	void effectUnit(Unit& unit) override;
 	MagicPtr clone()const override;
 	bool isEqual(const MagicPtr& magic)const override;
