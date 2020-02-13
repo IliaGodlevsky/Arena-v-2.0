@@ -26,8 +26,12 @@ MagicWeapon& MagicWeapon::operator=(const MagicWeapon& weapon)
 
 void MagicWeapon::injureUnit(Unit& unit, int dmg)const
 {
-	if (unit.takeDamage(dmg))	
+	if (unit.takeDamage(dmg))
+	{
+		setStartTime(m_magic, Arena::getCurrentRound());
 		m_magic->effectUnit(unit);
+	}
+	
 }
 
 void MagicWeapon::showFullInfo()const

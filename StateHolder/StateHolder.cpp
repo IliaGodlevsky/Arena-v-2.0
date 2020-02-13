@@ -55,13 +55,13 @@ void StateHolder::takeNew(const StatePtr& unitState)
 bool StateHolder::canCast()const
 {
 	return std::all_of(m_items.begin(), m_items.end(), 
-		[](const StatePtr st) {return st->canCast(); });
+		std::mem_fn(&UnitState::canCast));
 }
 
 bool StateHolder::canAttack()const
 {
-	return std::all_of(m_items.begin(), m_items.end(),
-		[](const StatePtr st) {return st->canAttack(); });
+	return std::all_of(m_items.begin(), m_items.end(), 
+		std::mem_fn(&UnitState::canAttack));
 }
 
 bool StateHolder::canTakeDamage(Unit& unit, int damage)const
@@ -87,15 +87,14 @@ void StateHolder::makeExpire(StatePtr& state)
 void StateHolder::takeOffExpired()
 {
 	m_items.erase(std::remove_if(m_items.begin(), m_items.end(),
-		[](const StatePtr st) 
-	{
-		return DYNAMIC(IExpirable*, st)->isExpired();
-	}), m_items.end());
+		[](const StatePtr st) { return DYNAMIC(IExpirable*, st)->isExpired();}), 
+		m_items.end());
 }
 
 void StateHolder::setItemColor(const StatePtr& unitState)const
 {
-	InnerUnitState* innerState = DYNAMIC(InnerUnitState*, unitState);
+	InnerUnitState* innerState 
+		= DYNAMIC(InnerUnitState*, unitState);
 	if (!innerState)
 		setColor(LIGHT_RED);
 	else

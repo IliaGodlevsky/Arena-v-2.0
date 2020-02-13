@@ -30,6 +30,7 @@ MagicStaff& MagicStaff::operator=(const MagicStaff& weapon)
 void MagicStaff::injureUnit(Unit& unit, int damage)const
 {
 	Staff::injureUnit(unit, damage);
+	setStartTime(m_magic, Arena::getCurrentRound());
 	m_magic->effectUnit(unit);
 }
 

@@ -39,10 +39,9 @@ void Wizard::prepareMagic(MagicPtr& magic)const
 {
 	// Each 3 levels wizard gets one round to magic duration
 	constexpr int LEVELS_PER_DURATION = 3;
-	Expiring* expiring = DYNAMIC(Expiring*, magic);
-	const int DURATION_ENHANCE = static_cast<int>(std::floor(*m_level / LEVELS_PER_DURATION));
-	if (nullptr != expiring)
-		expiring->setStartTime(Arena::getCurrentRound() + DURATION_ENHANCE);
+	const int DURATION_ENHANCE = static_cast<int>
+		(std::floor(*m_level / LEVELS_PER_DURATION));
+	setStartTime(magic, Arena::getCurrentRound() + DURATION_ENHANCE);
 }
 
 int Wizard::countManaCost(int manaCost)const

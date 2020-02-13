@@ -14,6 +14,8 @@
 #include "../Factories/ItemFactory/ItemFactory.h"
 #include "../ParametresInitialiser/ParametresInitialiser.h"
 
+void setStartTime(const MagicPtr& magic, int round);
+
 class Unit
 {
 	friend class UnitState;

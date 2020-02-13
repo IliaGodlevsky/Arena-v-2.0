@@ -12,6 +12,13 @@
 #include "../UnitState/OuterUnitState/StunUnitState.h"
 #include "Unit.h"
 
+void setStartTime(const MagicPtr& magic, int round)
+{
+	Expiring* expiring = DYNAMIC(Expiring*, magic);
+	if (nullptr != expiring)
+		expiring->setStartTime(round);
+}
+
 Unit::Unit(DecisionPtr decision)
 	: Unit(decision, nullptr, nullptr, nullptr)
 
@@ -253,7 +260,5 @@ UnitPtr Unit::getPureClone()const
 
 void Unit::prepareMagic(MagicPtr& magic)const
 {
-	Expiring* expiring = DYNAMIC(Expiring*, magic);
-	if (nullptr != expiring)
-		expiring->setStartTime(Arena::getCurrentRound());
+	setStartTime(magic, Arena::getCurrentRound());
 }

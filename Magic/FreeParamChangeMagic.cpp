@@ -17,7 +17,6 @@ FreeParamChangeMagic::FreeParamChangeMagic(std::string name, Time time,
 
 void FreeParamChangeMagic::effectUnit(Unit& unit)
 {
-	setStartTime(Arena::getCurrentRound());
 	m_elemHolder.effectUnit(unit);
 	unit.m_magicOnMe.takeNew(clone());
 }
