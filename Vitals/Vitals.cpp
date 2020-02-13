@@ -12,7 +12,7 @@ Vitals::Vitals(int value, int maxValue,
 	: m_value(value), m_maxValue(maxValue),
 	m_valueRegeneration(valueRegeneration)
 {
-	fixOverflow();
+	
 }
 
 Vitals Vitals::operator++(int i)
@@ -44,12 +44,8 @@ Vitals Vitals::operator+(const Vitals& vit)const
 
 Vitals Vitals::operator-(const Vitals& vit)const
 {
-	const int val = static_cast<int>(fdim(m_value, vit.m_value));
-	const int max_val = static_cast<int>(fdim(m_maxValue, vit.m_maxValue));
-	const int regen = m_valueRegeneration - vit.m_valueRegeneration;
-	Vitals temp(val, max_val, regen);
-	temp.fixOverflow();
-	return temp;
+	return operator+(Vitals(-vit.m_value, 
+		-vit.m_maxValue, -vit.m_valueRegeneration));
 }
 
 void Vitals::changeRegeneration(int regeneration)
