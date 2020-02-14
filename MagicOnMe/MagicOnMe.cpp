@@ -33,7 +33,7 @@ bool MagicOnMe::itemHasPassedControl(const MagicPtr& magic)const
 void MagicOnMe::makeExpire(MagicPtr& magic)
 {
 	const auto expireCandidate = std::find_if(m_items.begin(), m_items.end(),
-		[&](const MagicPtr& it) {return magic->isEqual(it); });
+		std::bind(&Magic::isEqual, std::ref(magic), _1));
 	IDispelable* dispel = DYNAMIC(IDispelable*, (*expireCandidate));
 	Expiring* expiring = DYNAMIC(Expiring*, (*expireCandidate));
 	if (dispel->isDispelable())

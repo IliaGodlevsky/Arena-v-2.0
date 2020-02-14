@@ -12,7 +12,7 @@ ActiveUnitState::ActiveUnitState(Unit* unit)
 
 bool ActiveUnitState::isExpired()const
 {
-	return !m_unit->isAlive();
+	return m_unit->isDead();
 }
 
 int ActiveUnitState::getValue()const

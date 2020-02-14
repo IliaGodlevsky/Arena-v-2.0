@@ -145,10 +145,10 @@ void Arena::showUnits()const
 void Arena::takeOfLosers()
 {
 	UnitPtr currentUnit = *m_currentUnit;
-	m_units.erase(std::remove_if(m_units.begin(), m_units.end(), 
-		[](const UnitPtr unit) {return !unit->isAlive(); }), m_units.end());
-	m_currentUnit = std::find_if(m_units.begin(), m_units.end(), 
-		[&](const UnitPtr unit) {return currentUnit == unit; });
+	m_units.erase(std::remove_if(m_units.begin(), m_units.end(),
+		std::mem_fn(&Unit::isDead)), m_units.end());
+	m_currentUnit = std::find_if(m_units.begin(), m_units.end(),
+		std::bind1st(std::equal_to<UnitPtr>(), currentUnit));
 }
 
 bool Arena::isGameOver()const
@@ -264,7 +264,7 @@ void Arena::playAttackStep()
 
 void Arena::rewardKiller(UnitPtr victim)
 {
-	if (!victim->isAlive())
+	if (victim->isDead())
 	{
 		signal(Signals::WAIT_TIME, Signals::DEATH);
 		std::cout << (*m_currentUnit)->getName()

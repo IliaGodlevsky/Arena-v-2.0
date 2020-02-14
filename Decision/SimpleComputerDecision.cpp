@@ -6,7 +6,7 @@
 bool canKill(UnitPtr activeUnit, UnitPtr passiveUnit)
 {
 	activeUnit->injureUnit(*passiveUnit);
-	return !passiveUnit->isAlive();
+	return passiveUnit->isDead();
 }
 
 bool canBeKilled(UnitPtr activeUnit, UnitPtr passiveUnit)
@@ -32,7 +32,7 @@ bool isDeadAfterDebuff(UnitPtr activeUnit,
 	UnitPtr passiveUnit, MagicPtr& debuff)
 {
 	activeUnit->castMagic(*passiveUnit, debuff);
-	return !passiveUnit->isAlive();
+	return passiveUnit->isDead();
 }
 
 SimpleComputerDecision::SimpleComputerDecision()

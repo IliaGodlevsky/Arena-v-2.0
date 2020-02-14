@@ -1,6 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
@@ -19,6 +20,7 @@
 #define NO !YES
 #define NULLPTR nullptr
 #define is == 
+using namespace std::placeholders;
 
 enum TextColor {
 	BLACK, BLUE, GREEN, CYAN, RED, MAGNETA,

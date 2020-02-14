@@ -37,7 +37,7 @@ public:
 	void recieveNewState(StatePtr unitState);
 	void moveIntoNewRound();
 	const std::string& getName()const;
-	bool isAlive()const;
+	bool isDead()const;
 	bool takeDamage(int damage);
 	bool isAlly(const Unit& unit)const;
 	UnitPtr chooseUnitToAttack(const Gladiators& units)const;

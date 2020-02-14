@@ -47,8 +47,7 @@ void StateHolder::takeNew(const StatePtr& unitState)
 		if (innerState = DYNAMIC(InnerUnitState*, temp))
 			innerState->setOwner(m_holder);
 		m_items.push_back(temp);
-		std::sort(m_items.begin(), m_items.end(),
-			[](const StatePtr& st1, const StatePtr& st2) {return *st1 > *st2; });
+		std::sort(m_items.begin(), m_items.end(), std::greater<StatePtr>());
 	}
 }
 
@@ -76,8 +75,8 @@ bool StateHolder::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)c
 
 void StateHolder::makeExpire(StatePtr& state)
 {
-	auto expired = std::find_if(m_items.begin(),m_items.end(),
-		[&](const StatePtr& it) {return state->isEqual(it); });
+	auto expired = std::find_if(m_items.begin(), m_items.end(),
+		std::bind(&UnitState::isEqual, state, _1));
 	OuterUnitState* st = nullptr;
 	if (st = DYNAMIC(OuterUnitState*, (*expired)))
 		st->setStartTime(Arena::getCurrentRound() - 

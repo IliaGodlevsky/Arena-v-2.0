@@ -26,6 +26,6 @@ Staff& Staff::operator=(const Staff& weapon)
 void Staff::injureUnit(Unit& unit, int damage)const
 {
 	unit.m_health = unit.m_health - damage;
-	if (!unit.isAlive())
+	if (unit.isDead())
 		unit.m_stateHolder.takeNew(StatePtr(new DeadUnitState(&unit)));
 }

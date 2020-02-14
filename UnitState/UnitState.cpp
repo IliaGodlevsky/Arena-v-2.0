@@ -24,14 +24,15 @@ bool UnitState::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)con
 	return unit.m_shield->takeMagicEffect(unit, caster, magic);
 }
 
-bool UnitState::operator < (const UnitState& unitState)const
-{
-	return getValue() < unitState.getValue();
-}
-
 bool UnitState::operator>(const UnitState& state)const
 {
 	return getValue() > state.getValue();
+}
+
+bool operator >(const StatePtr& unitState1,
+	const StatePtr& unitState2)
+{
+	return unitState1->getValue() > unitState2->getValue();
 }
 
 void UnitState::showShortInfo()const

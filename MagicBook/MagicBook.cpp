@@ -50,7 +50,7 @@ void MagicBook::setItemColor(const MagicPtr& magic)const
 bool MagicBook::canCastAnySpell()const
 {
 	return std::any_of(m_items.begin(), m_items.end(),
-		[&](const MagicPtr& magic) {return m_unit->isEnoughManaFor(magic); });
+		std::bind(&Unit::isEnoughManaFor, m_unit, _1));
 }
 
 void MagicBook::showFullInfo()const

@@ -45,8 +45,7 @@ void ElementHolder::takeElement(const ParamChangeElemPtr& element)
 
 bool ElementHolder::isEqual(const ElementHolder& holder)const
 {
-	return std::is_permutation(m_elements.begin(), 
+	return std::is_permutation(m_elements.begin(),
 		m_elements.end(), holder.m_elements.begin(),
-		[](const ParamChangeElemPtr& magic1, 
-			const ParamChangeElemPtr& magic2) {return magic1->isEqual(magic2); });
+		std::bind(&ParamChangeElem::isEqual, _1, _2));
 }

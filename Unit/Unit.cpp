@@ -93,9 +93,9 @@ void Unit::levelUp()
 	m_level->operator++();
 }
 
-bool Unit::isAlive()const
+bool Unit::isDead()const
 {
-	return m_health > 0;
+	return m_health.isDead();
 }
 
 void Unit::recieveNewState(StatePtr Unitstate)
@@ -110,7 +110,7 @@ void Unit::takeKilledUnitMagic(const Unit& victim)
 
 void Unit::moveIntoNewRound()
 {
-	if (isAlive())
+	if (!isDead())
 	{
 		m_health++;
 		m_mana++;
@@ -174,7 +174,7 @@ bool Unit::takeDamage(int damage)
 		HpReduceElem(calculateDamageAbsorb(m_armor, damage)).effectUnit(*this);		
 		isDamaged = true;
 	}
-	if (!isAlive())
+	if (isDead())
 		m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
 	return isDamaged;
 }
@@ -187,7 +187,7 @@ bool Unit::takeMagicEffect(Unit& caster, MagicPtr& magic)
 		isEffected = true;
 		magic->effectUnit(*this);
 	}
-	if (!isAlive())
+	if (isDead())
 		m_stateHolder.takeNew(StatePtr(new DeadUnitState(this)));
 	if (m_damage <= 0)
 		m_stateHolder.takeNew(StatePtr(new NotEnoughDamageState(this)));

@@ -21,7 +21,8 @@ public:
 		Unit& caster, MagicPtr& magic)const;
 	virtual ~UnitState() = default;
 	virtual void showShortInfo()const;
-	virtual bool operator <(const UnitState& unitState)const final;
+	friend bool operator >(const StatePtr& unitState1,
+		const StatePtr& unitState2);
 	virtual bool operator >(const UnitState& unitState)const final;
 	virtual bool isEqual(const StatePtr& unitState)const final;
 	virtual StatePtr clone()const = 0;
