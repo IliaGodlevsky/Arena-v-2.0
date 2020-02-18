@@ -1,11 +1,7 @@
 #ifndef ARENA_H_
 #define ARENA_H_
 
-#include <thread>
-#include <array>
-
 #include "../Globals/Globals.h"
-#include "../Factories/UnitFactory/UnitFactory.h"
 
 // A class, where the game cycles. Has methods and members
 // that runs the game cycle
