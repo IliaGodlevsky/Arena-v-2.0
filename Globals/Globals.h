@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <random>
 #include <windows.h>
+#include <array>
+#include <cmath>
 
 #include "../Exceptions/EmptyContainerException.h"
 #include "../Exceptions/BadWeaponMagicException.h"
