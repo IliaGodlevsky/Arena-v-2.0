@@ -1,5 +1,3 @@
-#include <cmath>
-
 #include "Battles.h"
 #include "../Globals/Globals.h"
 
