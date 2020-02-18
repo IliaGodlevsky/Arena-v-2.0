@@ -1,6 +1,3 @@
-#include <iostream>
-#include <functional>
-
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
 #include "../ThreadGuard/ThreadGurad.h"
