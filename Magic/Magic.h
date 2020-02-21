@@ -1,15 +1,13 @@
 #ifndef MAGIC_H_
 #define MAGIC_H_
 
-#include <type_traits>
-
 #include "../Globals/Globals.h"
 
 // WARNING: item = unique_ptr<T>, type = T*
 #define DYNAMIC(type, item) (dynamic_cast<type>(item.get()))
 
 template <typename T, typename D>
-inline bool canCast(const std::unique_ptr<D>& item)
+constexpr inline bool canCast(const std::unique_ptr<D>& item)
 {
 	if (nullptr == item)
 		return false;
