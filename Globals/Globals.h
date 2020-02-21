@@ -20,18 +20,18 @@
 
 #define YES true
 #define NO !YES
-#define NULLPTR nullptr
-#define is == 
 using namespace std::placeholders;
 
-enum TextColor {
+using Strings = std::vector<std::string>;
+
+enum TextColor : int {
 	BLACK, BLUE, GREEN, CYAN, RED, MAGNETA,
 	BROWN, LIGHT_GREY, DARK_GREY, LIGHT_BLUE,
 	LIGHT_GREEN, LIGHT_CYAN, LIGHT_RED,
 	LIGHT_MAGNETA, YELLOW, WHITE
 };
 
-enum Signals { 
+enum class Signals : int { 
 	DOUBLE_ATTACK = 1, ATTACK_BLOCK = 1, MAGIC_BLOCK, 
 	MAGIC_REFLECT = 1, DEATH = 4, WAIT_TIME = 250
 };
@@ -55,14 +55,14 @@ bool isError(int choice, int upper, int lower);
 void eatLine();
 
 int randomNumber(int max, int min = 0);
-std::vector<std::string> loadFromFile(const std::string& fileName);
+Strings loadFromFile(const std::string& fileName);
 
 int calculateDamageAbsorb(int armor, int damage);
 double getPercentOfReduce(int armor);
 
 void exceptionMessage(std::exception& ex);
 void myTerminate();
-void signal(int milliseconds, int numberOfSignals);
+void signal(Signals milliseconds, Signals numberOfSignals);
 void checkArgs(int& upper, int& lower);
 
 const char* const teamPlayQuest = "Do you want to play "

@@ -1,6 +1,3 @@
-#include <cmath>
-#include <iostream>
-
 #include "Vitals.h"
 #include "../Globals/Globals.h"
 

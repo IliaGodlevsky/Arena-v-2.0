@@ -21,7 +21,7 @@ void StateHolder::expireIfFound(const StatePtr& unitState)
 	if (hasItem(unitState))
 	{
 		m_items.erase(std::find_if(m_items.begin(), m_items.end(),
-			[&](const StatePtr& it) {return unitState->isEqual(it); }));
+			std::bind(&UnitState::isEqual, unitState, _1)));
 	}
 }
 
@@ -79,8 +79,7 @@ void StateHolder::makeExpire(StatePtr& state)
 		std::bind(&UnitState::isEqual, state, _1));
 	OuterUnitState* st = nullptr;
 	if (st = DYNAMIC(OuterUnitState*, (*expired)))
-		st->setStartTime(Arena::getCurrentRound() - 
-			st->getDuration() - 1);
+		st->makeExpire();
 }
 
 void StateHolder::takeOffExpired()

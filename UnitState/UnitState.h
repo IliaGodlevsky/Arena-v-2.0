@@ -2,7 +2,6 @@
 #define STATE_H_
 
 #include "../Globals/Globals.h"
-#include "../Weapon/Weapon.h"
 
 class UnitState;
 using StatePtr = std::shared_ptr<UnitState>;

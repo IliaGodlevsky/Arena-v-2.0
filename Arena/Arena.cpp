@@ -44,7 +44,7 @@ void announceWinner(Arena& arena)
 
 // reserve names for computer players, can be needed
 // if file with names is empty or is not found
-const std::vector<std::string> m_reserveNames =
+const Strings m_reserveNames =
 {
 	"Bill","Glen","Mark","Gven","Sally","Opera",
 	"Dgill","Sam","Oliver","Gvinett","Tony","Moody",
@@ -157,7 +157,7 @@ bool Arena::isGameOver()const
 void Arena::prepareUnits()
 {
 	m_units.resize(setNumberOfUnits());
-	std::vector<std::string> unitsNames;
+	Strings unitsNames;
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
 	ThreadGuard guard(thread);
 	int teamNumber = 1;

@@ -50,14 +50,14 @@ int randomNumber(int max, int min)
 	return distributor(generator);
 }
 
-std::vector<std::string> loadFromFile(const std::string& fileName)
+Strings loadFromFile(const std::string& fileName)
 {
-	std::vector<std::string> lines;
+	Strings lines;
 	std::string line;
 	std::ifstream fin(fileName);
 	if (fin.fail())
 	{
-		std::cout << "\aCouldn't open file\n";
+		std::cout << "\aCouldn't open file.\nUse reserved unit names\n";
 		return lines;
 	}
 	while (!fin.eof())
@@ -95,11 +95,12 @@ void myTerminate()
 		" start it again.\nOr report about bug to godleevsky2015@gmail.com");
 }
 
-void signal(int milliseconds, int numberOfSignals)
+void signal(Signals milliseconds, Signals numberOfSignals)
 {
-	for (int i = 0; i < numberOfSignals; i++)
+	for (int i = 0; i < static_cast<int>(numberOfSignals); i++)
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+		std::this_thread::sleep_for(std::
+			chrono::milliseconds(static_cast<int>(milliseconds)));
 		std::cout << "\a";
 	}
 }
