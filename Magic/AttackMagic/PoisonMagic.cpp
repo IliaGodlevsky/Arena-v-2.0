@@ -26,5 +26,6 @@ bool PoisonMagic::isBuff()const
 
 bool PoisonMagic::isEqual(const MagicPtr& magic)const
 {
-	return ::isEqual<PoisonMagic*, ParamChangeMagic>(magic);
+	return canCast<PoisonMagic*>(magic) 
+		&& ParamChangeMagic::isEqual(magic);
 }

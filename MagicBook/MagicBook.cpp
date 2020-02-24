@@ -1,7 +1,6 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
 #include "../Interface/Interface.h"
-#include "../Exceptions/BadincomingMagicException.h"
 #include "../Magic/AttackMagic/AttackMagic.h"
 
 #include "MagicBook.h"
@@ -44,7 +43,6 @@ void MagicBook::setItemColor(const MagicPtr& magic)const
 		setColor(LIGHT_RED);
 	else if (attack)
 		setColor(YELLOW);
-	
 }
 
 bool MagicBook::canCastAnySpell()const

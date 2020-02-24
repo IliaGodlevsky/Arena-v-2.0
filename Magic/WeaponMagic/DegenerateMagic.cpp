@@ -30,9 +30,6 @@ MagicPtr DegenerateMagic::clone()const
 
 bool DegenerateMagic::isEqual(const MagicPtr& magic)const
 {
-	if (!canCast<DegenerateMagic*>(magic))
-		return false;
-	const auto temp = dCast<DegenerateMagic*>(magic);
-	return FreeParamChangeMagic::isEqual(magic) &&
-		m_posibility == temp->m_posibility;
+	return canCast<DegenerateMagic*>(magic) &&
+		WeaponMagic::isEqual(magic);
 }

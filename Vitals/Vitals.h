@@ -5,6 +5,7 @@
 for units health or mana */
 class Vitals
 {
+	enum { DEAD_LINE, TOTAL = 100 };
 public:
 	Vitals(int value, int maxValue,
 		int valueRegeneration = 0);
@@ -18,12 +19,11 @@ public:
 	Vitals operator+(const Vitals& vit)const;
 	Vitals operator-(const Vitals& vit)const;
 	void changeRegeneration(int regeneration);
-	void restore(int percent = 100);
+	void restore(int percent = TOTAL);
 	bool isDead()const;
 	operator int()const;
 	void showFullInfo(const char* vitalsType)const;
 private:
-	enum { DEAD_LINE };
 	int m_value = 0;
 	int m_maxValue = 0;
 	int m_valueRegeneration = 0;

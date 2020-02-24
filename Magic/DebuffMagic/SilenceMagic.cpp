@@ -30,7 +30,7 @@ bool SilenceMagic::isBuff()const
 bool SilenceMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<SilenceMagic*>(magic))
-		return NO;
+		return false;
 	const auto temp = dCast<SilenceMagic*>(magic);
 	return Magic::isEqual(magic) &&
 		m_manaCost == temp->m_manaCost

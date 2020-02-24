@@ -15,13 +15,6 @@ constexpr inline auto canCast(const SmartPointer& pointer)
 	return nullptr != dCast<ClassPointer>(pointer);
 }
 
-template <class DerivedClassPointer, class BaseClass>
-constexpr inline bool isEqual(const MagicPtr& magic)
-{
-	return canCast<DerivedClassPointer>(magic)
-		&& BaseClass::isEqual(magic);
-}
-
 // a base interface for all magic classes in the game
 class Magic
 {

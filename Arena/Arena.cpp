@@ -168,7 +168,7 @@ void Arena::prepareUnits()
 	{		
 		index factoryNumber = inputNumber("\t\t\t1. Warrior 2. "
 			"Wizard\n\t\t\tChoose unit type: ", WIZARD, WARRIOR);
-		UnitPtr unit = unitFactories[factoryNumber - 1]->createUnit();
+		auto unit = unitFactories[factoryNumber - 1]->createUnit();
 		if (thread.joinable())
 			thread.join();
 		if (unitsNames.empty())
@@ -206,12 +206,12 @@ void Arena::setStartUnit()
 	m_round = 0;
 }
 
-std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
+Units Arena::breakIntoTeams(size_t teamsNumber)
 {
 	index unitIndex;
-	constexpr int QUIT = 0;
-	const size_t LIMIT = m_units.size();
-	std::vector<Gladiators> teams;
+	constexpr auto QUIT = 0;
+	const auto LIMIT = m_units.size();
+	Units teams;
 	for (size_t i = 0; i < teamsNumber; i++)
 	{
 		teams.resize(i + 1);

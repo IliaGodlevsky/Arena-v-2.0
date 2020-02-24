@@ -11,9 +11,8 @@ Magic::Magic(std::string name)
 
 bool Magic::isEqual(const MagicPtr& magic)const
 {
-	if (nullptr == magic)
-		return false;
-	return m_name == magic->m_name;
+	return canCast<Magic*>(magic) && 
+		m_name == magic->m_name;
 }
 
 void Magic::showFullInfo()const

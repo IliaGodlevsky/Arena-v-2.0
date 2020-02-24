@@ -31,7 +31,8 @@ bool AttackAndSilenceMagic::isBuff()const
 
 bool AttackAndSilenceMagic::isEqual(const MagicPtr& magic)const
 {
-	return ::isEqual<AttackAndSilenceMagic*, AttackMagic>(magic);
+	return AttackMagic::isEqual(magic)
+		&& canCast<AttackAndSilenceMagic*>(magic);
 }
 
 void AttackAndSilenceMagic::showFullInfo()const

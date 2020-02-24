@@ -30,7 +30,6 @@ bool CorruptionMagic::isDispelable()const
 
 bool CorruptionMagic::isEqual(const MagicPtr& magic)const
 {
-	if (!canCast<CorruptionMagic*>(magic))
-		return false;
-	return WeaponMagic::isEqual(magic);
+	return canCast<CorruptionMagic*>(magic) &&
+		WeaponMagic::isEqual(magic);
 }

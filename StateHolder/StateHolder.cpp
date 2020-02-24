@@ -1,5 +1,3 @@
-#include <functional>
-
 #include "StateHolder.h"
 
 #include "../Unit/Unit.h"

@@ -27,7 +27,6 @@ bool ArmorAndDamageDebuffMagic::isDispelable()const
 
 bool ArmorAndDamageDebuffMagic::isEqual(const MagicPtr& magic)const
 {
-	if (!canCast<ArmorAndDamageDebuffMagic*>(magic))
-		return false;
-	return ParamChangeMagic::isEqual(magic);
+	return canCast<ArmorAndDamageDebuffMagic*>(magic) 
+		&& ParamChangeMagic::isEqual(magic);
 }

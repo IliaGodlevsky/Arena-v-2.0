@@ -18,10 +18,7 @@
 #include "../Exceptions/BadincomingMagicException.h"
 #include "../Exceptions/ArenaUninterseptedException.h"
 
-#define YES true
-#define NO !YES
 using namespace std::placeholders;
-
 using Strings = std::vector<std::string>;
 
 enum TextColor : int {
@@ -36,11 +33,15 @@ enum class Signals : int {
 	MAGIC_REFLECT = 1, DEATH = 4, WAIT_TIME = 250
 };
 
-void setColor(TextColor text = WHITE, TextColor background = BLACK);
+enum { NO, YES };
+
+void setColor(TextColor text = WHITE, 
+	TextColor background = BLACK);
 
 class Unit;
 using UnitPtr = std::shared_ptr<Unit>;
 using Gladiators = std::vector<UnitPtr>;
+using Units = std::vector<Gladiators>;
 
 class Decision;
 using DecisionPtr = std::shared_ptr<Decision>;

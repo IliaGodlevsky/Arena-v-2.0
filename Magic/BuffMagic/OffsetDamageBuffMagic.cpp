@@ -27,7 +27,6 @@ bool OffsetDamageBuffMagic::isDispelable()const
 
 bool OffsetDamageBuffMagic::isEqual(const MagicPtr& magic)const
 {
-	if (!canCast<OffsetDamageBuffMagic*>(magic))
-		return false;
-	return ParamChangeMagic::isEqual(magic);
+	return canCast<OffsetDamageBuffMagic*>(magic)
+		&& ParamChangeMagic::isEqual(magic);
 }

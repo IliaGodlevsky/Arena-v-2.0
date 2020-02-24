@@ -35,9 +35,8 @@ MagicPtr StunMagic::clone()const
 
 bool StunMagic::isEqual(const MagicPtr& magic)const
 {
-	if (!canCast<StunMagic*>(magic))
-		return false;
-	return Magic::isEqual(magic);
+	return canCast<StunMagic*>(magic) &&
+		Magic::isEqual(magic);
 }
 
 void StunMagic::showFullInfo()const

@@ -1,6 +1,5 @@
 #include "../Unit/Unit.h"
 #include "../Magic/Magic.h"
-#include "../Exceptions/BadincomingMagicException.h"
 
 #include "MagicOnMe.h"
 #include "../Interface/Interface.h"
