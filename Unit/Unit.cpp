@@ -14,7 +14,7 @@
 
 void setStartTime(const MagicPtr& magic, int round)
 {
-	Expiring* expiring = DYNAMIC(Expiring*, magic);
+	const auto expiring = dCast<Expiring*>(magic);
 	if (nullptr != expiring)
 		expiring->setStartTime(round);
 }
@@ -121,7 +121,7 @@ void Unit::moveIntoNewRound()
 
 bool Unit::isEnoughManaFor(const MagicPtr& magic)const
 {
-	IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
+	const auto manaCost = dCast<IManaCost*>(magic);
 	return m_mana >= manaCost->getCost();
 }
 
@@ -153,7 +153,7 @@ bool Unit::castMagic(Unit& unit, MagicPtr& magic)
 	{	
 		if (isEnoughManaFor(magic))
 		{
-			IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
+			const auto manaCost = dCast<IManaCost*>(magic);
 			prepareMagic(magic);
 			unit.takeMagicEffect(*this, magic);
 			payMana(manaCost->getCost());
@@ -252,7 +252,7 @@ void Unit::showFullInfo()const
 
 UnitPtr Unit::getPureClone()const
 {
-	UnitPtr clone = UnitPtr(new Unit(*this));
+	auto clone = UnitPtr(new Unit(*this));
 	clone->m_weapon = clone->m_weapon->getPureWeapon();
 	clone->m_shield = clone->m_shield->getPureShield();
 	return clone;

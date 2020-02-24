@@ -76,7 +76,7 @@ MagicPtr SimpleComputerDecision::chooseMagicToCast(const Unit& decideingUnit,
 	m_unitToCast = m_unitToAttack = nullptr;
 	m_magicToCast = nullptr;
 	MagicAim cast;
-	UnitPtr unitToCast = findUnitCanBeKilled(decideingUnit, arena, canBeKilled);
+	auto unitToCast = findUnitCanBeKilled(decideingUnit, arena, canBeKilled);
 	if (nullptr != unitToCast)
 	{
 		cast = findMagicToPreventKill(unitToCast, getUnitPointer(decideingUnit, arena));
@@ -152,8 +152,8 @@ bool SimpleComputerDecision::isDeadAfterCast(const Unit& unit1,
 	const UnitPtr& unit2, MagicPtr& magic, CastPredicate castPredicate, 
 	DecisionPredicate predicate)const
 {
-	UnitPtr me = unit1.getPureClone();
-	UnitPtr victim = unit2->getPureClone();
+	auto me = unit1.getPureClone();
+	auto victim = unit2->getPureClone();
 	if (predicate(unit1, *unit2, magic) && unit1.isEnoughManaFor(magic))
 		return castPredicate(me, victim, magic);
 	return false;
@@ -231,7 +231,7 @@ MagicAim SimpleComputerDecision::findMagicToPreventKill(const UnitPtr& enemy,
 	for (size_t i = 0; i < decidingUnit->m_magicBook.size(); i++)
 	{
 		magic = decidingUnit->m_magicBook[i]->clone();
-		buff = DYNAMIC(IBuff*, magic);
+		buff = dCast<IBuff*>(magic);
 		me = decidingUnit->getPureClone();
 		aim = enemy->getPureClone();
 		if (decidingUnit->isEnoughManaFor(magic))

@@ -10,7 +10,7 @@
 
 #include "Arena.h"
 
-enum { WARRIOR = 1, WIZARD };
+enum : unsigned { WARRIOR = 1, WIZARD };
 
 void invoke(const GameStep& method)
 {
@@ -26,8 +26,8 @@ void playGameStep(Arena& arena, const GameStep& method)
 
 void playGameSteps(Arena& arena)
 {
-	enum { CAST_STEP, ATTACK_STEP };
-	static int gameStep = CAST_STEP;
+	enum : unsigned { CAST_STEP, ATTACK_STEP };
+	static unsigned gameStep = CAST_STEP;
 	playGameStep(arena, gameSteps[gameStep]);
 	if (++gameStep >= gameSteps.size())
 	{
@@ -141,7 +141,7 @@ void Arena::showUnits()const
 
 void Arena::takeOfLosers()
 {
-	UnitPtr currentUnit = *m_currentUnit;
+	const auto currentUnit = *m_currentUnit;
 	m_units.erase(std::remove_if(m_units.begin(), m_units.end(),
 		std::mem_fn(&Unit::isDead)), m_units.end());
 	m_currentUnit = std::find_if(m_units.begin(), m_units.end(),
@@ -191,7 +191,7 @@ void Arena::proposeToPlayTeams()
 		{
 			const size_t teamsNumber = (size_t)inputNumber("Enter teams"
 				" number: ", (int)m_units.size(), MIN_TEAMS_NUMBER);
-			std::vector<Gladiators> teams = breakIntoTeams(teamsNumber);
+			auto teams = breakIntoTeams(teamsNumber);
 			for (auto& team : teams)
 				std::copy(team.begin(), team.end(), std::back_inserter(m_units));
 		}
@@ -235,8 +235,8 @@ std::vector<Gladiators> Arena::breakIntoTeams(size_t teamsNumber)
 
 void Arena::playCastStep()
 {
-	m_magicToCast = (*m_currentUnit)->chooseMagicToCast(m_units);
-	m_unitToCast = (*m_currentUnit)->chooseUnitToCast(m_magicToCast, m_units);
+	auto m_magicToCast = (*m_currentUnit)->chooseMagicToCast(m_units);
+	auto m_unitToCast = (*m_currentUnit)->chooseUnitToCast(m_magicToCast, m_units);
 	if (nullptr != m_unitToCast && nullptr != m_magicToCast)
 	{
 		std::cout << (*m_currentUnit)->getName()
@@ -249,7 +249,7 @@ void Arena::playCastStep()
 
 void Arena::playAttackStep()
 {
-	m_unitToAttack = (*m_currentUnit)->chooseUnitToAttack(m_units);
+	auto m_unitToAttack = (*m_currentUnit)->chooseUnitToAttack(m_units);
 	if (nullptr != m_unitToAttack)
 	{
 		std::cout << (*m_currentUnit)->getName()

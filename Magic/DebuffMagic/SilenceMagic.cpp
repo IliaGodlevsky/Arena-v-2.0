@@ -31,7 +31,7 @@ bool SilenceMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<SilenceMagic*>(magic))
 		return NO;
-	SilenceMagic* temp = DYNAMIC(SilenceMagic*, magic);
+	const auto temp = dCast<SilenceMagic*>(magic);
 	return Magic::isEqual(magic) &&
 		m_manaCost == temp->m_manaCost
 		&& m_duration == temp->m_duration;

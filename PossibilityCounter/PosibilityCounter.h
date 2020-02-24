@@ -7,7 +7,7 @@ class PosibilityCounter
 {
 public:
 	explicit PosibilityCounter(int posibility);
-	PosibilityCounter() = default;
+	PosibilityCounter() = delete;
 	PosibilityCounter(const PosibilityCounter&) = default;
 	PosibilityCounter(PosibilityCounter&&) = default;
 	PosibilityCounter& operator=(const PosibilityCounter&) = default;

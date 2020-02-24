@@ -103,6 +103,7 @@
     <ClCompile Include="Magic\WeaponMagic\CorruptionMagic.cpp" />
     <ClCompile Include="Magic\WeaponMagic\DegenerateMagic.cpp" />
     <ClCompile Include="Magic\WeaponMagic\StunMagic.cpp" />
+    <ClCompile Include="Magic\WeaponMagic\WeaponMagic.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ParametresInitialiser\WarriorParamInitialiser.cpp" />
     <ClCompile Include="ParametresInitialiser\WizardParamInitialiser.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Magic\WeaponMagic\CorruptionMagic.h" />
     <ClInclude Include="Magic\WeaponMagic\DegenerateMagic.h" />
     <ClInclude Include="Magic\WeaponMagic\StunMagic.h" />
+    <ClInclude Include="Magic\WeaponMagic\WeaponMagic.h" />
     <ClInclude Include="ParametresInitialiser\ParametresInitialiser.h" />
     <ClInclude Include="ParametresInitialiser\WarriorParamInitialiser.h" />
     <ClInclude Include="ParametresInitialiser\WizardParamInitialiser.h" />

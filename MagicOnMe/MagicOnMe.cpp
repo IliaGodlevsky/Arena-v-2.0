@@ -34,8 +34,8 @@ void MagicOnMe::makeExpire(MagicPtr& magic)
 {
 	const auto expireCandidate = std::find_if(m_items.begin(), m_items.end(),
 		std::bind(&Magic::isEqual, std::ref(magic), _1));
-	IDispelable* dispel = DYNAMIC(IDispelable*, (*expireCandidate));
-	Expiring* expiring = DYNAMIC(Expiring*, (*expireCandidate));
+	const auto dispel = dCast<IDispelable*>(*expireCandidate);
+	const auto expiring = dCast<Expiring*>(*expireCandidate);
 	if (dispel->isDispelable())
 		expiring->makeExpire();
 }
@@ -44,9 +44,9 @@ void MagicOnMe::takeOffExpired()
 {
 	// sort magic to those, which has expired, and to those, that are acting
 	const auto expiredMagics = std::partition(m_items.begin(), m_items.end(),
-		[](const MagicPtr& magic) {return !DYNAMIC(IExpirable*, magic)->isExpired(); });
+		[](const MagicPtr& magic) {return !dCast<IExpirable*>(magic)->isExpired(); });
 	std::for_each(expiredMagics, m_items.end(),
-		[&](const MagicPtr& magic) { DYNAMIC(IUneffect*, magic)->uneffectUnit(*m_unit); });
+		[&](const MagicPtr& magic) { dCast<IUneffect*>(magic)->uneffectUnit(*m_unit); });
 	m_items.erase(expiredMagics, m_items.end());
 }
 
@@ -61,7 +61,7 @@ void MagicOnMe::takeNew(const MagicPtr& magic)
 
 void MagicOnMe::setItemColor(const MagicPtr& magic)const
 {
-	IBuff* buff = DYNAMIC(IBuff*, magic);
+	const auto buff = dCast<IBuff*>(magic);
 	if (buff != nullptr)
 	{
 		if (buff->isBuff())
@@ -75,7 +75,7 @@ void MagicOnMe::setItemColor(const MagicPtr& magic)const
 
 void MagicOnMe::showItem(const MagicPtr& magic)const
 {
-	Expiring* expiring = DYNAMIC(Expiring*, magic);
+	const auto expiring = dCast<Expiring*>(magic);
 	std::cout << "<" << magic->getName()
 		<< ": " << expiring->getDurationRemained() << "> ";
 }

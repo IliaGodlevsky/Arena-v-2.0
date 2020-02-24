@@ -11,14 +11,14 @@ bool isWrongUnitToAttack(const Unit& decidingUnit, const Unit& unit)
 bool canCastBuffOnUnit(const Unit& caster, const Unit& aim,
 	const MagicPtr& magic)
 {
-	IBuff* buff = DYNAMIC(IBuff*, magic);
+	const auto buff = dCast<IBuff*>(magic);
 	return buff->isBuff() && caster.isAlly(aim) && !aim.isDead();
 }
 
 bool canCastDebuffOnUnit(const Unit& caster, const Unit& aim,
 	const MagicPtr& magic)
 {
-	IBuff* buff = DYNAMIC(IBuff*, magic);
+	const auto buff = dCast<IBuff*>(magic);
 	return !buff->isBuff() && !isWrongUnitToAttack(caster, aim);
 }
 

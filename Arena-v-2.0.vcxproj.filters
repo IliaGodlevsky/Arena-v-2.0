@@ -479,6 +479,9 @@
     <ClCompile Include="Magic\ElementHolder.cpp">
       <Filter>Source\Magic</Filter>
     </ClCompile>
+    <ClCompile Include="Magic\WeaponMagic\WeaponMagic.cpp">
+      <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena\Arena.h">
@@ -834,6 +837,9 @@
     </ClInclude>
     <ClInclude Include="Magic\ElementHolder.h">
       <Filter>Source\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\WeaponMagic\WeaponMagic.h">
+      <Filter>Source\Magic\WeaponMagic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

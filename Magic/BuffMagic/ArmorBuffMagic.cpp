@@ -29,7 +29,6 @@ bool ArmorBuffMagic::isDispelable()const
 
 bool ArmorBuffMagic::isEqual(const MagicPtr& magic)const
 {
-	if (!canCast<ArmorBuffMagic*>(magic))
-		return false;
-	return ParamChangeMagic::isEqual(magic);
+	return canCast<ArmorBuffMagic*>(magic) &&
+		ParamChangeMagic::isEqual(magic);
 }

@@ -14,7 +14,7 @@ Vitals::Vitals(int value, int maxValue,
 
 Vitals Vitals::operator++(int i)
 {
-	Vitals temp = *this;
+	auto temp = *this;
 	m_value += m_valueRegeneration;
 	fixOverflow();
 	if (DEAD_LINE == m_value)
@@ -24,7 +24,7 @@ Vitals Vitals::operator++(int i)
 
 Vitals Vitals::operator-(int value)const
 {
-	Vitals temp = *this;
+	auto temp = *this;
 	temp.m_value = static_cast<int>(fdim(temp.m_value, value));
 	return temp;
 }

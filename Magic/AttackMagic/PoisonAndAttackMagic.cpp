@@ -32,7 +32,7 @@ bool PoisonAndAttackMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<PoisonAndAttackMagic*>(magic))
 		return false;
-	PoisonAndAttackMagic* temp = DYNAMIC(PoisonAndAttackMagic*, magic);
+	const auto temp = dCast<PoisonAndAttackMagic*>(magic);
 	return PoisonMagic::isEqual(magic)
 		&& m_damage == temp->m_damage;
 }

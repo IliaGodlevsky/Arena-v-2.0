@@ -42,9 +42,8 @@ void StateHolder::takeNew(const StatePtr& unitState)
 	if (itemHasPassedControl(unitState))
 	{
 		expireIfFound(unitState);
-		StatePtr temp = unitState->clone();
-		InnerUnitState* innerState = nullptr;
-		if (innerState = DYNAMIC(InnerUnitState*, temp))
+		const auto temp = unitState->clone();
+		if (const auto innerState = dCast<InnerUnitState*>(temp))
 			innerState->setOwner(m_holder);
 		m_items.push_back(temp);
 		std::sort(m_items.begin(), m_items.end(), std::greater<StatePtr>());
@@ -75,24 +74,23 @@ bool StateHolder::canTakeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)c
 
 void StateHolder::makeExpire(StatePtr& state)
 {
-	auto expired = std::find_if(m_items.begin(), m_items.end(),
+	const auto expireCandidate = std::find_if(m_items.begin(), m_items.end(),
 		std::bind(&UnitState::isEqual, state, _1));
-	OuterUnitState* st = nullptr;
-	if (st = DYNAMIC(OuterUnitState*, (*expired)))
+	if (const auto st = dCast<OuterUnitState*>(*expireCandidate))
 		st->makeExpire();
 }
 
 void StateHolder::takeOffExpired()
 {
 	m_items.erase(std::remove_if(m_items.begin(), m_items.end(),
-		[](const StatePtr st) { return DYNAMIC(IExpirable*, st)->isExpired();}), 
+		[](const StatePtr st) { return dCast<IExpirable*>(st)->isExpired();}), 
 		m_items.end());
 }
 
 void StateHolder::setItemColor(const StatePtr& unitState)const
 {
-	InnerUnitState* innerState 
-		= DYNAMIC(InnerUnitState*, unitState);
+	const auto innerState
+		= dCast<InnerUnitState*>(unitState);
 	if (!innerState)
 		setColor(LIGHT_RED);
 	else

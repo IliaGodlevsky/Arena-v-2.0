@@ -29,7 +29,7 @@ bool AttackMissChanceMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<AttackMissChanceMagic*>(magic))
 		return false;
-	AttackMissChanceMagic* temp = DYNAMIC(AttackMissChanceMagic*, magic);
+	const auto temp = dCast<AttackMissChanceMagic*>(magic);
 	return Magic::isEqual(magic) &&
 		temp->m_duration == m_duration && 
 		temp->m_missChance == m_missChance &&

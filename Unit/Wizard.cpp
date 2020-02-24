@@ -53,6 +53,6 @@ int Wizard::countManaCost(int manaCost)const
 
 bool Wizard::isEnoughManaFor(const MagicPtr& magic)const
 {
-	IManaCost* manaCost = DYNAMIC(IManaCost*, magic);
+	const auto manaCost = dCast<IManaCost*>(magic);
 	return m_mana >= countManaCost(manaCost->getCost());
 }

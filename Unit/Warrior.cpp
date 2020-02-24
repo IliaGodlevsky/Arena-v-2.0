@@ -41,7 +41,6 @@ bool Warrior::injureUnit(Unit& unit)
 
 int Warrior::damageMultiply(int damage)const
 {
-
 	// Each level warrior deals more damage
 	constexpr double DAMAGE_ENHANCE = 0.05;
 	return static_cast<int>(std::ceil(damage  *

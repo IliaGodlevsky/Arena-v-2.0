@@ -27,7 +27,7 @@ bool AttackMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<AttackMagic*>(magic))
 		return false;
-	AttackMagic* temp = DYNAMIC(AttackMagic*, magic);
+	const auto temp = dCast<AttackMagic*>(magic);
 	return Magic::isEqual(magic) &&
 		temp->m_damage == m_damage && 
 		m_manaCost == temp->m_manaCost;

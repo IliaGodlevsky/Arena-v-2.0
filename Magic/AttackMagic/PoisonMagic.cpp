@@ -26,8 +26,5 @@ bool PoisonMagic::isBuff()const
 
 bool PoisonMagic::isEqual(const MagicPtr& magic)const
 {
-	if (!canCast<PoisonMagic*>(magic))
-		return false;
-	PoisonMagic* temp = DYNAMIC(PoisonMagic*, magic);
-	return ParamChangeMagic::isEqual(magic);
+	return ::isEqual<PoisonMagic*, ParamChangeMagic>(magic);
 }

@@ -36,8 +36,8 @@ void MagicBook::showListOfMagic()const
 
 void MagicBook::setItemColor(const MagicPtr& magic)const
 {
-	AttackMagic* attack = DYNAMIC(AttackMagic*, magic);
-	IBuff* buff = DYNAMIC(IBuff*, magic);
+	const auto attack = dCast<AttackMagic*>(magic);
+	const auto buff = dCast<IBuff*>(magic);
 	if (buff->isBuff())
 		setColor(LIGHT_GREEN);
 	else if (!buff->isBuff() && !attack)

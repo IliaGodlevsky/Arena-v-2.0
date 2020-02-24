@@ -3,16 +3,23 @@
 
 #include "../Globals/Globals.h"
 
-// WARNING: item = unique_ptr<T>, type = T*
-#define DYNAMIC(type, item) (dynamic_cast<type>(item.get()))
-
-template <typename T, typename D>
-constexpr inline bool canCast(const std::unique_ptr<D>& item)
+template <typename ClassPointer, typename SmartPointer>
+constexpr inline auto dCast(const SmartPointer& item)
 {
-	if (nullptr == item)
-		return false;
-	T temp = DYNAMIC(T, item);
-	return nullptr != temp;
+	return dynamic_cast<ClassPointer>(item.get());
+}
+
+template <typename ClassPointer, typename SmartPointer>
+constexpr inline auto canCast(const SmartPointer& pointer)
+{
+	return nullptr != dCast<ClassPointer>(pointer);
+}
+
+template <class DerivedClassPointer, class BaseClass>
+constexpr inline bool isEqual(const MagicPtr& magic)
+{
+	return canCast<DerivedClassPointer>(magic)
+		&& BaseClass::isEqual(magic);
 }
 
 // a base interface for all magic classes in the game

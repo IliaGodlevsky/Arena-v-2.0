@@ -19,7 +19,7 @@ bool ParamChangeMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<ParamChangeMagic*>(magic))
 		return false;
-	ParamChangeMagic* temp = DYNAMIC(ParamChangeMagic*, magic);
+	const auto temp = dCast<ParamChangeMagic*>(magic);
 	return FreeParamChangeMagic::isEqual(magic)
 		&& m_manaCost == temp->m_manaCost;
 }

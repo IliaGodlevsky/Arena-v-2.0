@@ -3,7 +3,7 @@
 
 #include "../Interface/Interface.h"
 
-struct Time 
+struct Time
 { 
 	Time(int duration, int startTime = 0);
 	Time(const Time&) = default;

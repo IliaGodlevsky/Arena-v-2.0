@@ -30,7 +30,7 @@ bool FreeParamChangeMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<FreeParamChangeMagic*>(magic))
 		return false;
-	FreeParamChangeMagic* temp = DYNAMIC(FreeParamChangeMagic*, magic);
+	const auto temp = dCast<FreeParamChangeMagic*>(magic);
 	return Magic::isEqual(magic)
 		&& Expiring::operator==(*temp)
 		&& m_elemHolder.isEqual(temp->m_elemHolder);

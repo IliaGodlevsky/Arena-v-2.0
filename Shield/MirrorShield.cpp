@@ -13,10 +13,10 @@ MirrorShield::MirrorShield(std::string name, int armor, int reflectChance)
 
 bool MirrorShield::takeMagicEffect(Unit& unit, Unit& caster, MagicPtr& magic)const
 {
-	bool isEffected = MagicShield::takeMagicEffect(unit, caster, magic);
+	const bool isEffected = MagicShield::takeMagicEffect(unit, caster, magic);
 	if (!isEffected)
 	{
-		AttackMagic* temp = DYNAMIC(AttackMagic*, magic);
+		const auto temp = dCast<AttackMagic*>(magic);
 		if (nullptr == temp)
 		{
 			signal(Signals::WAIT_TIME, Signals::MAGIC_REFLECT);

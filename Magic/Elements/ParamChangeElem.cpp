@@ -15,6 +15,6 @@ bool ParamChangeElem::isEqual(const ParamChangeElemPtr& element)const
 {
 	if (!canCast<ParamChangeElem*>(element))
 		return false;
-	ParamChangeElem* temp = DYNAMIC(ParamChangeElem*, element);
+	const auto temp = dCast<ParamChangeElem*>(element);
 	return m_change == temp->m_change;
 }

@@ -4,24 +4,17 @@
 
 DegenerateMagic::DegenerateMagic(std::string name, Time time,
 	int degeneration, PosibilityCounter posibility)
-	: FreeParamChangeMagic(name, time,
-		{ ParamChangeElemPtr(new HpRegenReduceElem(degeneration)) }), 
-	m_posibility(posibility)
+	: WeaponMagic(name, time,
+		{ ParamChangeElemPtr(new HpRegenReduceElem(degeneration)) }, posibility)
 {
 
 }
 
 DegenerateMagic::DegenerateMagic(std::string name, Time time,
 	const ElementHolder& elements, PosibilityCounter propability)
-	: FreeParamChangeMagic(name, time, elements), m_posibility(propability)
+	: WeaponMagic(name, time, elements, propability)
 {
 
-}
-
-void DegenerateMagic::effectUnit(Unit& unit)
-{
-	if (m_posibility)
-		FreeParamChangeMagic::effectUnit(unit);
 }
 
 bool DegenerateMagic::isDispelable()const
@@ -39,7 +32,7 @@ bool DegenerateMagic::isEqual(const MagicPtr& magic)const
 {
 	if (!canCast<DegenerateMagic*>(magic))
 		return false;
-	DegenerateMagic* temp = DYNAMIC(DegenerateMagic*, magic);
+	const auto temp = dCast<DegenerateMagic*>(magic);
 	return FreeParamChangeMagic::isEqual(magic) &&
 		m_posibility == temp->m_posibility;
 }

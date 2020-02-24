@@ -10,9 +10,9 @@ class ParamChangeMagic : public FreeParamChangeMagic,
 	public IBuff, public IManaCost
 {
 public:
-	bool isEqual(const MagicPtr& magic)const override;
-	void showFullInfo()const override;
-	void showShortInfo()const override;
+	virtual bool isEqual(const MagicPtr& magic)const override;
+	virtual void showFullInfo()const override;
+	virtual void showShortInfo()const override;
 	virtual ~ParamChangeMagic() = default;
 	ParamChangeMagic(std::string name, int manaCost,
 		Time time, const ElementsInit& holder);
