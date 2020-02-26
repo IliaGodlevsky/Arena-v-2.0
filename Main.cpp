@@ -1,14 +1,15 @@
 #include "Arena/Arena.h"
+#include <climits>
 
 int main(){
 	set_terminate(myTerminate);
 	auto& arena = Arena::getInstance();
-	bool wantsToPlay;
+	bool wantsToPlayAgain;
 	do {
 		try {
 			arena.showMiniature();
-			std::for_each(prepareSteps.begin(), 
-				prepareSteps.end(), invoke);
+			for (auto step : prepareSteps)
+				invoke(step);
 			while (!arena.isGameOver())
 				playGameSteps(arena);
 			announceWinner(arena);
@@ -16,8 +17,8 @@ int main(){
 		catch (std::exception& ex) { 
 			exceptionMessage(ex);
 		}
-		wantsToPlay = static_cast<bool>(
+		wantsToPlayAgain = static_cast<bool>(
 			inputNumber(playAgainMsg, YES, NO));
 		system("cls");
-	} while (wantsToPlay);
+	} while (wantsToPlayAgain);
 }
