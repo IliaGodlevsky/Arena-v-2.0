@@ -1,5 +1,4 @@
 #include "Arena/Arena.h"
-#include <climits>
 
 int main(){
 	set_terminate(myTerminate);
