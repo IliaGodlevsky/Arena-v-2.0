@@ -89,12 +89,6 @@ void exceptionMessage(std::exception& ex)
 	system("pause");
 }
 
-void myTerminate()
-{
-	throw ArenaUninterseptedException("Arena has failed.\nPlease, try to fix the bugs and"
-		" start it again.\nOr report about bug to godleevsky2015@gmail.com");
-}
-
 void signal(Signals milliseconds, Signals numberOfSignals)
 {
 	for (int i = 0; i < static_cast<int>(numberOfSignals); i++)

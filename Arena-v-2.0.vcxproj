@@ -30,7 +30,6 @@
     <ClCompile Include="Decision\HumanDecision.cpp" />
     <ClCompile Include="Decision\SimpleComputerDecision.cpp" />
     <ClCompile Include="Exceptions\ArenaException.cpp" />
-    <ClCompile Include="Exceptions\ArenaUninterseptedException.cpp" />
     <ClCompile Include="Exceptions\BadEquipmentException.cpp" />
     <ClCompile Include="Exceptions\BadincomingMagicException.cpp" />
     <ClCompile Include="Exceptions\BadWeaponMagicException.cpp" />
@@ -149,7 +148,6 @@
     <ClInclude Include="Decision\HumanDecision.h" />
     <ClInclude Include="Decision\SimpleComputerDecision.h" />
     <ClInclude Include="Exceptions\ArenaException.h" />
-    <ClInclude Include="Exceptions\ArenaUninterseptedException.h" />
     <ClInclude Include="Exceptions\BadEquipmentException.h" />
     <ClInclude Include="Exceptions\BadincomingMagicException.h" />
     <ClInclude Include="Exceptions\BadWeaponMagicException.h" />

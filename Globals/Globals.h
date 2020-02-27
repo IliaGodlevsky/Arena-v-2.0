@@ -62,7 +62,6 @@ int calculateDamageAbsorb(int armor, int damage);
 double getPercentOfReduce(int armor);
 
 void exceptionMessage(std::exception& ex);
-void myTerminate();
 void signal(Signals milliseconds, Signals numberOfSignals);
 void checkArgs(int& upper, int& lower);
 
