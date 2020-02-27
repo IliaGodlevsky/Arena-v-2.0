@@ -109,8 +109,8 @@ bool wantsToPlayAgain()
 {	
 	const char* playAgainMsg = "Play again: 1 - "
 		"yes, 0 - no: ";
-	const bool playAgain = 
+	const bool playerWantsToplayAgain = 
 		inputNumber(playAgainMsg, YES, NO);
 	system("cls");
-	return playAgain;
+	return playerWantsToplayAgain;
 }
