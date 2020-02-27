@@ -18,5 +18,5 @@ int main(){
 		wantsToPlayAgain = static_cast<bool>(
 			inputNumber(playAgainMsg, YES, NO));
 		system("cls");
-	} while (wantsToPlayAgain);
+	} while (wantsToPlayAgain); 
 }
