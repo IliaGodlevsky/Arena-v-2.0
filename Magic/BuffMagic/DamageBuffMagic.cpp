@@ -17,9 +17,8 @@ MagicPtr DamageBuffMagic::clone()const
 
 bool DamageBuffMagic::isEqual(const MagicPtr& magic)const
 {
-	if (!canCast<DamageBuffMagic*>(magic))
-		return false;
-	return ParamChangeMagic::isEqual(magic);
+	return canCast<DamageBuffMagic*>(magic)
+		&& ParamChangeMagic::isEqual(magic);
 }
 
 bool DamageBuffMagic::isBuff()const

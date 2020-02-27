@@ -20,9 +20,8 @@ void HpRegenReduceElem::uneffectUnit(Unit& unit)
 
 bool HpRegenReduceElem::isEqual(const ParamChangeElemPtr& element)const
 {
-	if (!canCast<HpRegenReduceElem*>(element))
-		return false;
-	return ParamChangeElem::isEqual(element);
+	return canCast<HpRegenReduceElem*>(element)
+		&& ParamChangeElem::isEqual(element);
 }
 
 ParamChangeElemPtr HpRegenReduceElem::clone()const

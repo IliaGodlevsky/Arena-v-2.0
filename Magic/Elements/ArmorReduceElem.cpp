@@ -19,9 +19,8 @@ void ArmorReduceElem::effectUnit(Unit& unit)
 
 bool ArmorReduceElem::isEqual(const ParamChangeElemPtr& element)const
 {
-	if (!canCast<ArmorReduceElem*>(element))
-		return false;
-	return ParamChangeElem::isEqual(element);
+	return canCast<ArmorReduceElem*>(element)
+		&& ParamChangeElem::isEqual(element);
 }
 
 ParamChangeElemPtr ArmorReduceElem::clone()const

@@ -19,9 +19,8 @@ void ArmorAmplifyElem::uneffectUnit(Unit& unit)
 
 bool ArmorAmplifyElem::isEqual(const ParamChangeElemPtr& element)const
 {
-	if (!canCast<ArmorAmplifyElem*>(element))
-		return false;
-	return ParamChangeElem::isEqual(element);
+	return canCast<ArmorAmplifyElem*>(element)
+		&& ParamChangeElem::isEqual(element);
 }
 
 ParamChangeElemPtr ArmorAmplifyElem::clone()const

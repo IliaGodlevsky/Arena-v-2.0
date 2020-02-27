@@ -19,9 +19,8 @@ void DamageAmplifyElem::uneffectUnit(Unit& unit)
 
 bool DamageAmplifyElem::isEqual(const ParamChangeElemPtr& element)const
 {
-	if (!canCast<DamageAmplifyElem*>(element))
-		return false;
-	return ParamChangeElem::isEqual(element);
+	return canCast<DamageAmplifyElem*>(element)
+		&& ParamChangeElem::isEqual(element);
 }
 
 ParamChangeElemPtr DamageAmplifyElem::clone()const

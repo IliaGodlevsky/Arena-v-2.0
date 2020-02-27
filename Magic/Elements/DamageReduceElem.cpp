@@ -19,9 +19,8 @@ void DamageReduceElem::uneffectUnit(Unit& unit)
 
 bool DamageReduceElem::isEqual(const ParamChangeElemPtr& element)const
 {
-	if (!canCast<DamageReduceElem*>(element))
-		return false;
-	return ParamChangeElem::isEqual(element);
+	return canCast<DamageReduceElem*>(element)
+		&& ParamChangeElem::isEqual(element);
 }
 
 ParamChangeElemPtr DamageReduceElem::clone()const
