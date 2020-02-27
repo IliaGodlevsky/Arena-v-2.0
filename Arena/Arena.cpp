@@ -44,7 +44,7 @@ void announceWinner(Arena& arena)
 
 // reserve names for computer players, can be needed
 // if file with names is empty or is not found
-const Strings m_reserveNames =
+const Strings reserveNames =
 {
 	"Bill","Glen","Mark","Gven","Sally","Opera",
 	"Dgill","Sam","Oliver","Gvinett","Tony","Moody",
@@ -172,7 +172,7 @@ void Arena::prepareUnits()
 		if (thread.joinable())
 			thread.join();
 		if (unitsNames.empty())
-			unitsNames = m_reserveNames;
+			unitsNames = reserveNames;
 		unit->setName(unitsNames[randomNumber((int)unitsNames.size() - 1)]);
 		unit->setTeam(teamNumber++);
 		return unit;
