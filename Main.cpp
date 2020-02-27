@@ -14,6 +14,5 @@ int main(){
 		catch (std::exception& ex) { 
 			exceptionMessage(ex);
 		}
-		system("cls");
 	} while (wantsToPlayAgain());
 }

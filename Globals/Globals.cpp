@@ -106,7 +106,9 @@ void setColor(TextColor text, TextColor background)
 }
 
 bool wantsToPlayAgain()
-{
-	return inputNumber("Play again: 1 - "
+{	
+	bool playAgain = inputNumber("Play again: 1 - "
 		"yes, 0 - no: ", YES, NO);
+	system("cls");
+	return playAgain;
 }
