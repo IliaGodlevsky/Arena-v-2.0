@@ -1,7 +1,6 @@
 #include "Arena/Arena.h"
 
 int main(){
-	set_terminate(myTerminate);
 	auto& arena = Arena::getInstance();
 	bool wantsToPlayAgain;
 	do {
