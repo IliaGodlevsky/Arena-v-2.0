@@ -15,5 +15,5 @@ int main(){
 			exceptionMessage(ex);
 		}
 		system("cls");
-	} while (wantsToPlayAgain()); 
+	} while (wantsToPlayAgain());
 }
