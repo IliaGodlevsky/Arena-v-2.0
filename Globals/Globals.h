@@ -16,7 +16,6 @@
 #include "../Exceptions/BadWeaponMagicException.h"
 #include "../Exceptions/BadEquipmentException.h"
 #include "../Exceptions/BadincomingMagicException.h"
-#include "../Exceptions/ArenaUninterseptedException.h"
 
 using namespace std::placeholders;
 using Strings = std::vector<std::string>;
