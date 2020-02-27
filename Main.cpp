@@ -3,7 +3,6 @@
 int main(){
 	set_terminate(myTerminate);
 	auto& arena = Arena::getInstance();
-	bool wantsToPlayAgain;
 	do {
 		try {
 			arena.showMiniature();
@@ -16,8 +15,6 @@ int main(){
 		catch (std::exception& ex) { 
 			exceptionMessage(ex);
 		}
-		wantsToPlayAgain = static_cast<bool>(
-			inputNumber(playAgainMsg, YES, NO));
 		system("cls");
-	} while (wantsToPlayAgain);
+	} while (inputNumber(playAgainMsg, YES, NO));
 }
