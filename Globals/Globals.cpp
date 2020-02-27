@@ -104,3 +104,9 @@ void setColor(TextColor text, TextColor background)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 
 		(WORD)((background << 4) | text));
 }
+
+bool wantsToPlayAgain()
+{
+	return inputNumber("Play again: 1 - "
+		"yes, 0 - no: ", YES, NO);
+}
