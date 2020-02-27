@@ -107,8 +107,10 @@ void setColor(TextColor text, TextColor background)
 
 bool wantsToPlayAgain()
 {	
-	bool playAgain = inputNumber("Play again: 1 - "
-		"yes, 0 - no: ", YES, NO);
+	const char* playAgainMsg = "Play again: 1 - "
+		"yes, 0 - no: ";
+	const bool playAgain = 
+		inputNumber(playAgainMsg, YES, NO);
 	system("cls");
 	return playAgain;
 }
