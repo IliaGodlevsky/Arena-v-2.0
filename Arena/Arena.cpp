@@ -85,7 +85,7 @@ void Arena::showMiniature()const
         /:/  /      |:|\/__/     \:\ \/__/       |::/  /        /:/  /  
        /:/  /       |:|  |        \:\__\         /:/  /        /:/  /   
        \/__/         \|__|         \/__/         \/__/         \/__/    )";
-	setColor(LIGHT_GREY);
+	setColor(LIGHT_CYAN);
 	std::cout << R"(     
       _,.
     ,` -.)
