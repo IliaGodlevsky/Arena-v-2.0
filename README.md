@@ -25,25 +25,30 @@
 4. std::for_each 
 5. std::remove_if 
 6. std::find_if
-7. std::partiotion
+7. std::partition
 8. std::sort
 9. std::count_if
 10. std::any_of
 11. std::all_of
+12. std::is_permutation
 
 Функторы, используемые в программе
 1. std::mem_fn
-2. лямбда выражения разной сложности
+2. lambda
+3. std::bind1st
+4. std::bind
+5. std::greater
+6. std::equal_to
 
 Контейнеры, используемые в программе
 1. std::vector
+2. std::array
 
 Умные указатели, используемые в программе
 1. std::unique_ptr
 2. std::shared_ptr
 
-
-Шаблонная функции, используемые в программе
+Шаблонные функции, используемые в программе
 1. std::back_inserter
 
 
@@ -55,3 +60,5 @@
 6. Мост
 
 И многие другие
+
+Так же в игре используются принципы SOLID
