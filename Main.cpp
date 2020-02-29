@@ -1,4 +1,3 @@
-#include "Arena/Arena.h"
 #include "Arena/ArenaDelegate.h"
 
 int main(){
