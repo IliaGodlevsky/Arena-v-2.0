@@ -7,7 +7,7 @@ int main(){
 			arena.showMiniature();
 			for (auto step : prepareSteps)
 				invoke(step);
-			while (arena.isGameOver())
+			while (!arena.isGameOver())
 				playGameSteps(arena);
 			announceWinner(arena);
 		}
