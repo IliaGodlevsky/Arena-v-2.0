@@ -17,8 +17,8 @@ Vitals Vitals::operator++(int i)
 	auto temp = *this;
 	m_value += m_valueRegeneration;
 	fixOverflow();
-	if (DEAD_LINE == m_value)
-		m_value = 1;
+	if (EMPTY_LINE == m_value)
+		m_value = EMPTY_LINE + 1;
 	return temp;
 }
 
@@ -57,17 +57,17 @@ void Vitals::restore(int percent)
 	fixOverflow();
 }
 
-bool Vitals::isDead()const
+bool Vitals::isOutOf()const
 {
-	return m_value == DEAD_LINE;
+	return m_value == EMPTY_LINE;
 }
 
 void Vitals::fixOverflow()
 {
 	if (m_value > m_maxValue)
 		m_value = m_maxValue;
-	if (m_value < DEAD_LINE)
-		m_value = DEAD_LINE;
+	if (m_value < EMPTY_LINE)
+		m_value = EMPTY_LINE;
 }
 
 Vitals::operator int()const

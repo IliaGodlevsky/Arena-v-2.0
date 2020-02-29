@@ -10,36 +10,6 @@
 
 #include "Arena.h"
 
-void invoke(const GameStep& method)
-{
-	(Arena::getInstance().*method)();
-}
-
-void playGameStep(Arena& arena, const GameStep& method)
-{
-	arena.showUnits();
-	invoke(method);
-	arena.takeOfLosers();
-}
-
-void playGameSteps(Arena& arena)
-{
-	enum : unsigned { CAST_STEP, ATTACK_STEP };
-	static unsigned gameStep = CAST_STEP;
-	playGameStep(arena, gameSteps[gameStep]);
-	if (++gameStep >= gameSteps.size())
-	{
-		gameStep = CAST_STEP;
-		arena.goNextUnit();
-	}
-}
-
-void announceWinner(Arena& arena)
-{
-	arena.showUnits();
-	std::cout << "Became the winner\n";
-}
-
 // reserve names for computer players, can be needed
 // if file with names is empty or is not found
 const Strings reserveNames =
@@ -52,16 +22,6 @@ const Strings reserveNames =
 };
 
 int Arena::m_round = 0;
-
-constexpr int Arena::getMaxNubmerOfPlayers()const
-{
-	return 6;
-}
-
-constexpr int Arena::getMinNumberOfPlayers()const
-{
-	return 2;
-}
 
 Arena::Arena()
 {
@@ -108,11 +68,16 @@ void Arena::showMiniature()const
 	setColor();
 }
 
-int Arena::setNumberOfUnits()const
+void Arena::setNumberOfUnits()
 {
-	std::cout << std::endl;
-	return inputNumber("\t\t\tSet number of players: ",
-		getMaxNubmerOfPlayers(), getMinNumberOfPlayers());
+	const char* setMsg = "\n\t\t\tSet number of players: ";
+	enum { MAX_NUMBER_OF_UNITS = 6, 
+		MIN_NUMBER_OF_UNITS = 2 };
+	m_units.clear();
+	const int numberOfUnits = inputNumber(setMsg, 
+		MAX_NUMBER_OF_UNITS, 
+		MIN_NUMBER_OF_UNITS);	
+	m_units.resize(numberOfUnits);
 }
 
 int Arena::getCurrentRound()
@@ -154,7 +119,6 @@ bool Arena::isGameOver()const
 
 void Arena::prepareUnits()
 {
-	m_units.resize(setNumberOfUnits());
 	Strings unitsNames;
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
 	ThreadGuard guard(thread);
@@ -162,8 +126,8 @@ void Arena::prepareUnits()
 	std::vector<UnitFactoryPtr> unitFactories({
 		UnitFactoryPtr(new WarriorFactory()),
 		UnitFactoryPtr(new WizardFactory()) });
-	auto unitGenerator = [&]()
-	{	
+	std::generate(m_units.begin(), m_units.end(), [&]()
+	{
 		enum { WARRIOR = 1, WIZARD };
 		index factoryNumber = inputNumber("\t\t\t1. Warrior 2. "
 			"Wizard\n\t\t\tChoose unit type: ", WIZARD, WARRIOR);
@@ -175,17 +139,17 @@ void Arena::prepareUnits()
 		unit->setName(unitsNames[randomNumber((int)unitsNames.size() - 1)]);
 		unit->setTeam(teamNumber++);
 		return unit;
-	};
-	std::generate(m_units.begin(), m_units.end(), unitGenerator);
+	});
 }
 
 void Arena::proposeToPlayTeams()
 {	
-	constexpr int MIN_PLAYERS_TO_PLAY_TEAMS = 2;
-	constexpr int MIN_TEAMS_NUMBER = 2;
+	enum { MIN_PLAYERS_TO_PLAY_TEAMS = 2, 
+		MIN_TEAMS_NUMBER = 2 };
 	if (m_units.size() > MIN_PLAYERS_TO_PLAY_TEAMS)
 	{
-		const bool wantsToPlayInTeams = static_cast<bool>(inputNumber(teamPlayQuest, YES, NO));
+		const bool wantsToPlayInTeams 
+			= static_cast<bool>(inputNumber(teamPlayQuest, YES, NO));
 		if (wantsToPlayInTeams)
 		{
 			const size_t teamsNumber = (size_t)inputNumber("Enter teams"

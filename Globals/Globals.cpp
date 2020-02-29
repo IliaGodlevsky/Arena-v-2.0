@@ -79,7 +79,7 @@ double getPercentOfReduce(int armor)
 {
 	// The formula is taken from WarCraft 3
 	constexpr double REDUCE_CONST = 0.06;
-	const double numerator = static_cast<double>(armor * REDUCE_CONST);
+	const double numerator = double(armor) * REDUCE_CONST;
 	return numerator / (1.0 + numerator);
 }
 
@@ -109,8 +109,8 @@ bool wantsToPlayAgain()
 {	
 	const char* playAgainMsg = "Play again: 1 - "
 		"yes, 0 - no: ";
-	const bool playerWantsToplayAgain = 
+	const bool playerWantsToPlayAgain = 
 		inputNumber(playAgainMsg, YES, NO);
 	system("cls");
-	return playerWantsToplayAgain;
+	return playerWantsToPlayAgain;
 }

@@ -1,4 +1,5 @@
 #include "Arena/Arena.h"
+#include "Arena/ArenaDelegate.h"
 
 int main(){
 	auto& arena = Arena::getInstance();
@@ -7,7 +8,7 @@ int main(){
 			arena.showMiniature();
 			for (auto step : prepareSteps)
 				invoke(step);
-			while (!arena.isGameOver())
+			while (arena.isGameOver())
 				playGameSteps(arena);
 			announceWinner(arena);
 		}

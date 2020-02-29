@@ -95,7 +95,7 @@ void Unit::levelUp()
 
 bool Unit::isDead()const
 {
-	return m_health.isDead();
+	return m_health.isOutOf();
 }
 
 void Unit::recieveNewState(StatePtr Unitstate)

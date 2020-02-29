@@ -29,12 +29,12 @@ UnitPtr HumanDecision::chooseUnitToAttack(const Unit& decidingUnit,
 	const Gladiators& units)const
 {
 	std::cout << decidingUnit.getName() << ", ";
-	index unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
+	index unitIndex = inputNumber(unitToAttackChooseMsg,
 		(int)units.size(), 1);
 	while (isWrongUnitToAttack(decidingUnit, *units[unitIndex - 1]))
 	{
 		std::cout << "You can't attack this unit\n";
-		unitIndex = inputNumber(UNIT_TO_ATTACK_CHOOSE_MESSAGE,
+		unitIndex = inputNumber(unitToAttackChooseMsg,
 			(int)units.size(), 1);
 	}
 	return units[unitIndex - 1];
@@ -44,7 +44,7 @@ bool HumanDecision::wantToCastMagic(const Unit& decidingUnit)const
 {
 	std::cout << decidingUnit.getName() << ", ";
 	return m_wantToCastMagic = static_cast<bool>(inputNumber(
-		WANT_TO_CAST_QUESTION, YES, NO));
+		wantToCastMsg, YES, NO));
 }
 
 MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit, 
@@ -53,12 +53,12 @@ MagicPtr HumanDecision::chooseMagicToCast(const Unit& decidingUnit,
 	if (!wantToCastMagic(decidingUnit))
 		return nullptr;
 	std::cout << "Choose magic to cast\n";
-	index magicToCastIndex = chooseMagicIndex(MAGIC_TO_CAST_CHOOSE_MESSAGE,
+	index magicToCastIndex = chooseMagicIndex(magicToCastChooseMsg,
 		decidingUnit.m_magicBook);
 	while (!decidingUnit.isEnoughManaFor(decidingUnit.m_magicBook[magicToCastIndex - 1]))
 	{
 		std::cout << "Not enough mana for this magic\n";
-		magicToCastIndex = inputNumber(MAGIC_TO_CAST_CHOOSE_MESSAGE,
+		magicToCastIndex = inputNumber(magicToCastChooseMsg,
 			(int)decidingUnit.m_magicBook.size(), 1);
 	}
 	return MagicPtr(decidingUnit.m_magicBook[magicToCastIndex - 1]->clone());
@@ -71,13 +71,13 @@ UnitPtr HumanDecision::chooseUnitToCast(const Unit& decidingUnit,
 		return nullptr;
 	Arena::getInstance().showUnits();
 	std::cout << decidingUnit.getName() << ", ";
-	index unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE, 
+	index unitToCastIndex = inputNumber(unitToCastChooseMsg, 
 		(int)units.size(), 1);
 	while (isWrongSpellToCast(decidingUnit, 
 		*units[unitToCastIndex - 1], magicToCast))
 	{
 		std::cout << "You can't use this magic on this unit\n";
-		unitToCastIndex = inputNumber(UNIT_TO_CAST_CHOOSE_MESSAGE,
+		unitToCastIndex = inputNumber(unitToCastChooseMsg,
 			(int)units.size(), 1);
 	}
 	return units[unitToCastIndex - 1];
@@ -107,14 +107,14 @@ std::string HumanDecision::getDecisionType()const
 
 void HumanDecision::takeMagic(Unit& decidingUnit, const Unit& victim)
 {
-	index magicToTake = chooseMagicIndex(CHOOSE_MAGIC_TO_TAKE_MSG, 
+	index magicToTake = chooseMagicIndex(magicToTakeMsg, 
 		victim.m_magicBook);
 	bool wantsToTakeMagic;
 	while (decidingUnit.m_magicBook.hasItem(victim.m_magicBook[magicToTake - 1]))
 	{
-		wantsToTakeMagic = static_cast<bool>(inputNumber(YOU_HAVE_MAGIC_MSG, YES, NO));
+		wantsToTakeMagic = static_cast<bool>(inputNumber(haveMagicMsg, YES, NO));
 		if (!wantsToTakeMagic)
-			magicToTake = inputNumber(CHOOSE_MAGIC_TO_TAKE_MSG, 
+			magicToTake = inputNumber(magicToTakeMsg, 
 			(int)victim.m_magicBook.size(), 1);
 		else
 			break;

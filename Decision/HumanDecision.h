@@ -28,12 +28,12 @@ public:
 private:
 	bool wantToCastMagic(const Unit& decidingUnit)const;
 	mutable bool m_wantToCastMagic = false;
-	const std::string WANT_TO_CAST_QUESTION = "do you want to cast a magic <1 - yes/0 - no>: ";
-	const std::string UNIT_TO_ATTACK_CHOOSE_MESSAGE = "choose unit to attack: ";
-	const std::string MAGIC_TO_CAST_CHOOSE_MESSAGE = "Choose magic: ";
-	const std::string UNIT_TO_CAST_CHOOSE_MESSAGE = "choose unit to charm: ";
-	const std::string CHOOSE_MAGIC_TO_TAKE_MSG = "choose units spell you want to take: ";
-	const std::string YOU_HAVE_MAGIC_MSG = "You have such a magic. "
+	const char* wantToCastMsg = "do you want to cast a magic <1 - yes/0 - no>: ";
+	const char* unitToAttackChooseMsg = "choose unit to attack: ";
+	const char* magicToCastChooseMsg = "Choose magic: ";
+	const char* unitToCastChooseMsg = "choose unit to charm: ";
+	const char* magicToTakeMsg = "choose units spell you want to take: ";
+	const char* haveMagicMsg = "You have such a magic. "
 		"Do you really want to take it?: ";
 };
 

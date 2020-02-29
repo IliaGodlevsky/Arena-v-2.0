@@ -6,7 +6,7 @@ the possibilities in the game*/
 class PosibilityCounter
 {
 public:
-	explicit PosibilityCounter(int posibility);
+	PosibilityCounter(int posibility);
 	PosibilityCounter() = delete;
 	PosibilityCounter(const PosibilityCounter&) = default;
 	PosibilityCounter(PosibilityCounter&&) = default;
