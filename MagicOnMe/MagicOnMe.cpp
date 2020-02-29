@@ -23,7 +23,7 @@ bool MagicOnMe::itemHasPassedControl(const MagicPtr& magic)const
 	// Magic, that comes to this class, must have a definite interface
 	if (!canCast<IDispelable*>(magic) || !canCast<Expiring*>(magic)
 		|| !canCast<IUneffect*>(magic))
-		throw BadIncomingMagicException("Incoming magic doesn't"
+		throw BadIncomingMagicException("\nIncoming magic doesn't"
 			" have needed interface. Bad class is MagicOnMe");
 	else
 		return true;
