@@ -10,8 +10,6 @@
 
 #include "Arena.h"
 
-enum : unsigned { WARRIOR = 1, WIZARD };
-
 void invoke(const GameStep& method)
 {
 	(Arena::getInstance().*method)();
@@ -165,7 +163,8 @@ void Arena::prepareUnits()
 		UnitFactoryPtr(new WarriorFactory()),
 		UnitFactoryPtr(new WizardFactory()) });
 	auto unitGenerator = [&]()
-	{		
+	{	
+		enum { WARRIOR = 1, WIZARD };
 		index factoryNumber = inputNumber("\t\t\t1. Warrior 2. "
 			"Wizard\n\t\t\tChoose unit type: ", WIZARD, WARRIOR);
 		auto unit = unitFactories[factoryNumber - 1]->createUnit();
