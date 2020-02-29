@@ -70,11 +70,13 @@ void Arena::showMiniature()const
 
 void Arena::setNumberOfUnits()
 {
-	const char* setMsg = "\n\t\t\tSet number of players: ";
+	const char* setMsg 
+		= "\n\t\t\tSet number of players: ";
 	enum { MAX_NUMBER_OF_UNITS = 6, 
 		MIN_NUMBER_OF_UNITS = 2 };
 	m_units.clear();
-	const int numberOfUnits = inputNumber(setMsg, 
+	const int numberOfUnits = 
+		inputNumber(setMsg, 
 		MAX_NUMBER_OF_UNITS, 
 		MIN_NUMBER_OF_UNITS);	
 	m_units.resize(numberOfUnits);
