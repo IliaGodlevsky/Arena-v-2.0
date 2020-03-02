@@ -7,13 +7,15 @@ UnitFactory::UnitFactory():
 	m_decisions(0)
 {
 	m_decisions.push_back(DecisionPtr(new HumanDecision()));
-	m_decisions.push_back(DecisionPtr(new SimpleComputerDecision())); 
+	m_decisions.push_back(DecisionPtr(new RandomComputerDecision()));
+	m_decisions.push_back(DecisionPtr(new SimpleComputerDecision()));
 }
 
 index UnitFactory::chooseDecsion()const
 {
 	if (m_decisions.empty())
-		throw BadEquipmentException("No actual desicions for gamers. Bad class is "
+		throw BadEquipmentException("\nNo actual desicions for gamers. Bad class is "
 			+ std::string(typeid(*this).name()));
-	return inputNumber("\t\t\t1. Human 2. Computer\n\t\t\tChoose decision: ", (int)m_decisions.size(), 1);
+	return inputNumber("\t\t\t1. Human 2. Easy AI 3. "
+		"Normal AI\n\t\t\tChoose decision: ", (int)m_decisions.size(), 1);
 }

@@ -227,7 +227,9 @@ void Unit::showFullInfo()const
 	setColor(TextColor(m_teamNumber + 7));
 	std::cout << getName() << ", Level: " <<
 		*m_level << ", " << "Team: "
-		<< m_teamNumber << std::endl;
+		<< m_teamNumber << ", "
+		<< m_decision->getDecisionType()
+		<< std::endl;
 	setColor();
 	m_health.showFullInfo("HP");
 	m_mana.showFullInfo("MP");
