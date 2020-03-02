@@ -15,7 +15,7 @@ int main(){
 			exceptionMessage(ex);
 			exit(EXIT_FAILURE);
 		}
-		catch (std::exception& ex) { 
+		catch (std::exception& ex) {
 			exceptionMessage(ex);
 		}
 	} while (wantsToPlayAgain());
