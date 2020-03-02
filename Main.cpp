@@ -11,6 +11,10 @@ int main(){
 				playGameSteps(arena);
 			announceWinner(arena);
 		}
+		catch (ArenaException& ex) {
+			exceptionMessage(ex);
+			exit(EXIT_FAILURE);
+		}
 		catch (std::exception& ex) { 
 			exceptionMessage(ex);
 		}
