@@ -90,7 +90,8 @@ void Unit::setName(std::string name)
 
 void Unit::levelUp()
 {
-	m_level->operator++();
+	++*m_level;
+	m_stateHolder.takeOffExpired();
 }
 
 bool Unit::isDead()const

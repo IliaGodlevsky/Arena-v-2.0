@@ -16,14 +16,10 @@ void invoke(const Method& method)
 {
 	(Arena::getInstance().*method)();
 }
-void playGameStep(Arena& arena, const GameStep& method);
+void playGameStep(Arena& arena, 
+	const GameStep& method);
 void playGameSteps(Arena& arena);
 void announceWinner(Arena& arena);
-
-constexpr ArenaActions<GAME_STEPS> gameSteps{
-	&Arena::playCastStep,
-	&Arena::playAttackStep
-};
 
 constexpr ArenaActions<PREPARE_STEPS> prepareSteps{
 	&Arena::setNumberOfUnits,

@@ -31,7 +31,6 @@ Level& Level::operator++()
 		m_unit->m_armor.changeValue(getAddedArmorPerLevel());
 		m_level++;
 	}
-	m_unit->m_stateHolder.takeOffExpired();
 	return *this;
 }
 

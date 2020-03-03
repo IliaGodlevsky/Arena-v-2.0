@@ -125,14 +125,15 @@ void Arena::prepareUnits()
 	std::thread thread([&unitsNames]() { unitsNames = loadFromFile("Names.txt"); });
 	ThreadGuard guard(thread);
 	int teamNumber = 1;
-	std::vector<UnitFactoryPtr> unitFactories({
+	constexpr int UNITS_FACTORIES = 2;
+	const std::array<UnitFactoryPtr, UNITS_FACTORIES> unitFactories({
 		UnitFactoryPtr(new WarriorFactory()),
 		UnitFactoryPtr(new WizardFactory()) });
+	const char* chooseFactoryMsg = "\t\t\t1. Warrior 2. Wizard\n\t\t\tChoose unit type: ";
 	std::generate(m_units.begin(), m_units.end(), [&]()
 	{
 		enum { WARRIOR = 1, WIZARD };
-		index factoryNumber = inputNumber("\t\t\t1. Warrior 2. "
-			"Wizard\n\t\t\tChoose unit type: ", WIZARD, WARRIOR);
+		const index factoryNumber = inputNumber(chooseFactoryMsg, WIZARD, WARRIOR);
 		auto unit = unitFactories[factoryNumber - 1]->createUnit();
 		if (thread.joinable())
 			thread.join();
