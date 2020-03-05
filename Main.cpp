@@ -13,6 +13,7 @@ int main(){
 		}
 		catch (std::exception& ex) {
 			exceptionMessage(ex);
+			exit(EXIT_FAILURE);
 		}
 	} while (wantsToPlayAgain());
 }
