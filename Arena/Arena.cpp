@@ -93,17 +93,16 @@ void Arena::announceWinner()const
 	std::cout << "Became the winner\n";
 }
 
-void Arena::playGameStep(const GameStep& method)
+void Arena::playGameStep(const GameStep& gameStep)
 {
 	showUnits();
-	(this->*method)();
+	(this->*gameStep)();
 	takeOfLosers();
 }
 
 void Arena::playGameSteps()
 {
-	enum { GAME_STEPS = 2 };
-	enum { CAST_STEP, ATTACK_STEP };
+	enum { CAST_STEP, ATTACK_STEP, GAME_STEPS };
 	constexpr ArenaActions<GAME_STEPS> gameSteps{
 		&Arena::playCastStep,
 		&Arena::playAttackStep
