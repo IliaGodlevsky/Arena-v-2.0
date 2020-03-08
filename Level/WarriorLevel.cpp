@@ -2,6 +2,11 @@
 
 #include "WarriorLevel.h"
 
+WarriorLevel::WarriorLevel() : Level()
+{
+
+}
+
 WarriorLevel::WarriorLevel(Unit* unit)
 	: Level(unit)
 {

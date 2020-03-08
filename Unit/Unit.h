@@ -66,6 +66,7 @@ protected:
 	std::string m_name;
 private:
 	virtual void prepareMagic(MagicPtr& magic)const;
+	bool hasEnoughEquipment()const;
 	int m_teamNumber = 0;
 };
 

@@ -16,6 +16,7 @@ public:
 	virtual bool itemHasPassedControl(const T& item)const = 0;
 	virtual void takeNew(const T& item) = 0;
 	bool hasItem(const T& item)const;
+	bool isEmpty()const;
 	virtual const T& operator[](size_t t)const final;
 	virtual void showShortInfo()const final;
 	virtual void setItemColor(const T& item)const = 0;
@@ -25,6 +26,12 @@ protected:
 	virtual void showItem(const T& item)const;
 	std::vector<T> m_items;
 };
+
+template <class T>
+bool TemplateContainer<T>::isEmpty()const
+{
+	return m_items.empty();
+}
 
 template <class T>
 bool TemplateContainer<T>::hasItem(const T& item)const

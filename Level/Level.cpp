@@ -2,8 +2,14 @@
 
 #include "Level.h"
 
+Level::Level()
+	: Level(nullptr)
+{
+
+}
+
 Level::Level(Unit* unit)
-	: m_unit(unit)
+	: m_unit(unit), m_level(getStartLevelValue())
 {
 
 }
@@ -47,4 +53,9 @@ void Level::setOwner(Unit* unit)
 int Level::getMaxLevel()const
 {
 	return 6;
+}
+
+int Level::getStartLevelValue()const
+{
+	return 1;
 }

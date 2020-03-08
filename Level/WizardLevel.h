@@ -6,7 +6,7 @@
 class WizardLevel : public Level
 {
 public:
-	WizardLevel() = default;
+	WizardLevel();
 	WizardLevel(Unit* unit);
 	LevelPtr clone()const override;
 	WizardLevel& operator++()override;

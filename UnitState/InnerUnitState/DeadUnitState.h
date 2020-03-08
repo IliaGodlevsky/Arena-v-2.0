@@ -18,7 +18,6 @@ public:
 	void showShortInfo()const override;
 	StatePtr clone()const;
 private:
-	enum { DEAD_UNIT_STATE = 5 };
 	int getValue()const override;
 };
 #endif

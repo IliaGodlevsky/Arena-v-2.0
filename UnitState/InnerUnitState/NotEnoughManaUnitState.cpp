@@ -20,7 +20,7 @@ bool NotEnoughManaUnitState::isExpired()const
 
 int NotEnoughManaUnitState::getValue()const
 {
-	return NOT_ENOUGH_MANA_STATE;
+	return 2;
 }
 
 void NotEnoughManaUnitState::showShortInfo()const

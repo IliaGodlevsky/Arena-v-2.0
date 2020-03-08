@@ -2,6 +2,11 @@
 
 #include "WizardLevel.h"
 
+WizardLevel::WizardLevel() : Level()
+{
+
+}
+
 WizardLevel::WizardLevel(Unit* unit)
 	: Level(unit)
 {

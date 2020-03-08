@@ -25,5 +25,5 @@ StatePtr MissAttackUnitState::clone()const
 
 int MissAttackUnitState::getValue()const
 {
-	return MISS_ATTACK_UNIT_STATE;
+	return -1;
 }

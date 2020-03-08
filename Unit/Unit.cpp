@@ -47,10 +47,9 @@ Unit::Unit(DecisionPtr decision, ItemFactoryPtr factory,
 	m_damage.changeValue(m_weapon->getDamage());
 	m_mail->putOn(*this);
 	m_shield->putOn(*this);
-	if (m_magicBook.size() == 0)
+	if (m_magicBook.isEmpty())
 		throw EmptyContainerException("MagicBook is empty");
-	if (nullptr == m_shield || nullptr == m_mail 
-		|| nullptr == m_weapon || nullptr == m_decision)
+	if (!hasEnoughEquipment())
 		throw BadEquipmentException("Unit doesn't have enough equipment to fight");
 }
 
@@ -264,4 +263,10 @@ UnitPtr Unit::getPureClone()const
 void Unit::prepareMagic(MagicPtr& magic)const
 {
 	setStartTime(magic, Arena::getCurrentRound());
+}
+
+bool Unit::hasEnoughEquipment()const
+{
+	return nullptr != m_shield && nullptr != m_mail
+		&& nullptr != m_weapon && nullptr != m_decision;
 }

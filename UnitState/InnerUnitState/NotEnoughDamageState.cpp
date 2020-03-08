@@ -29,5 +29,5 @@ StatePtr NotEnoughDamageState::clone()const
 
 int NotEnoughDamageState::getValue()const
 {
-	return NOT_ENOUGH_DAMAGE_STATE;
+	return 4;
 }

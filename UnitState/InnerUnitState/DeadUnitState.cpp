@@ -29,7 +29,7 @@ void DeadUnitState::showShortInfo()const
 
 int DeadUnitState::getValue()const
 {
-	return DEAD_UNIT_STATE;
+	return 5;
 }
 
 StatePtr DeadUnitState::clone()const

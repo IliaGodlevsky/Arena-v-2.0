@@ -15,7 +15,6 @@ public:
 	void showShortInfo()const override;
 	StatePtr clone()const override;
 private:
-	enum { MISS_ATTACK_UNIT_STATE = -1 };
 	int getValue()const override;
 	PosibilityCounter m_missChance;
 };

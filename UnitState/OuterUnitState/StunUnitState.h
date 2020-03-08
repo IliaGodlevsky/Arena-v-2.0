@@ -17,7 +17,6 @@ public:
 	void showShortInfo()const;
 	StatePtr clone()const;
 private:
-	enum { STUN_UNIT_STATE  = 3};
 	int getValue()const override;
 };
 

@@ -68,6 +68,55 @@ void Arena::showMiniature()const
 	setColor();
 }
 
+void Arena::prepareArena()
+{
+	enum { PREPARE_STEPS = 4 };
+	constexpr ArenaActions<PREPARE_STEPS> prepareSteps{
+		&Arena::setNumberOfUnits,
+		&Arena::prepareUnits,
+		&Arena::proposeToPlayTeams,
+		&Arena::setStartUnit
+	};
+	for (auto step : prepareSteps)
+		(this->*step)();
+}
+
+void Arena::playArena()
+{
+	while (!isGameOver())
+		playGameSteps();
+}
+
+void Arena::announceWinner()const
+{
+	showUnits();
+	std::cout << "Became the winner\n";
+}
+
+void Arena::playGameStep(const GameStep& method)
+{
+	showUnits();
+	(this->*method)();
+	takeOfLosers();
+}
+
+void Arena::playGameSteps()
+{
+	enum { GAME_STEPS = 2 };
+	enum { CAST_STEP, ATTACK_STEP };
+	constexpr ArenaActions<GAME_STEPS> gameSteps{
+		&Arena::playCastStep,
+		&Arena::playAttackStep
+	};
+	static int gameStep = CAST_STEP;
+	playGameStep(gameSteps.at(gameStep));
+	if (++gameStep > ATTACK_STEP)
+	{
+		gameStep = CAST_STEP;
+		goNextUnit();
+	}
+}
+
 void Arena::setNumberOfUnits()
 {
 	const char* setMsg 

@@ -14,7 +14,6 @@ public:
 	void showShortInfo()const;
 	StatePtr clone()const;
 private:
-	enum { MUTED_UNIT_STATE = 1 };
 	int getValue()const override;
 };
 

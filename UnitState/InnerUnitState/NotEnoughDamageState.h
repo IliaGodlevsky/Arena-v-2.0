@@ -15,7 +15,6 @@ public:
 	void showShortInfo()const override;
 	StatePtr clone()const;
 private:
-	enum { NOT_ENOUGH_DAMAGE_STATE = 4 };
 	int getValue()const override;
 };
 

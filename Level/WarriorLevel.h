@@ -6,7 +6,7 @@
 class WarriorLevel : public Level
 {
 public:
-	WarriorLevel() = default;
+	WarriorLevel();
 	WarriorLevel(Unit* unit);
 	LevelPtr clone()const override;
 	WarriorLevel& operator++()override;

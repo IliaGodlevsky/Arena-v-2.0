@@ -87,6 +87,7 @@ void exceptionMessage(std::exception& ex)
 {
 	std::cerr << "\a" << ex.what() << std::endl;
 	system("pause");
+	exit(EXIT_FAILURE);
 }
 
 void signal(Signals milliseconds, Signals numberOfSignals)

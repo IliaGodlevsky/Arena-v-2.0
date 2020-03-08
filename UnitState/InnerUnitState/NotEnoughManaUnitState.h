@@ -15,7 +15,6 @@ public:
 	void showShortInfo()const override;
 	StatePtr clone()const;
 private:
-	enum { NOT_ENOUGH_MANA_STATE = 2 };
 	int getValue()const override;
 };
 

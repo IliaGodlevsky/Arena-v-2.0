@@ -7,12 +7,20 @@
 // that runs the game cycle
 class Arena
 {
+	using GameStep = void(Arena::*)();
+	template <int size>
+	using ArenaActions = std::array<GameStep, size>;
 public:
 	static int getCurrentRound();
 	static Arena& getInstance();
-	~Arena() = default;
-	bool isGameOver()const;
+	~Arena() = default;	
+	void showMiniature()const;
+	void prepareArena();
+	void playArena();
+	void announceWinner()const;
 	void showUnits()const;
+private:
+	bool isGameOver()const;	
 	void goNewRound();
 	void playCastStep();
 	void playAttackStep();
@@ -23,8 +31,8 @@ public:
 	void proposeToPlayTeams();
 	void setStartUnit();
 	void setNumberOfUnits();
-	void showMiniature()const;
-private:
+	void playGameStep(const GameStep& method);
+	void playGameSteps();
 	Arena(const Arena&) = delete;
 	Arena(Arena&&) = delete;
 	Arena& operator=(const Arena&) = delete;

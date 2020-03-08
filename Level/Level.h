@@ -9,18 +9,19 @@ using LevelPtr = std::unique_ptr<Level>;
 class Level
 {
 public:
-	Level() = default;
+	Level();
 	Level(Unit* unit);
 	Level(const Level&) = default;
 	virtual Level& operator++();
 	virtual void setOwner(Unit* unit)final;
-	virtual void setLevel(int level = 1)final;
+	virtual void setLevel(int level)final;
 	virtual ~Level() = default;
 	operator int()const;
 	virtual LevelPtr clone()const = 0;
 protected:
-	int m_level = 1;
+	int m_level;
 private:
+	virtual int getStartLevelValue()const;
 	virtual int getAddedHpPerLevel()const = 0;
 	virtual int getAddedMpPerLevel()const = 0;
 	virtual int getAddedHpRegenPerLevel()const = 0;
@@ -30,7 +31,7 @@ private:
 	virtual int getHpRestorePercent()const = 0;
 	virtual int getMpRestorePercent()const = 0;
 	virtual int getMaxLevel()const;
-	Unit* m_unit = nullptr; // unit, that have this level class
+	Unit* m_unit; // unit, that have this level class
 };
 
 #endif

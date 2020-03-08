@@ -24,7 +24,7 @@ bool StunUnitState::canAttack()const
 
 int StunUnitState::getValue()const
 {
-	return STUN_UNIT_STATE;
+	return 3;
 }
 
 void StunUnitState::showShortInfo()const

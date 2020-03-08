@@ -1,19 +1,16 @@
-#include "Arena/ArenaDelegate.h"
+#include "Arena/Arena.h"
 
 int main(){
 	auto& arena = Arena::getInstance();
 	do {
 		try {
 			arena.showMiniature();
-			for (auto step : prepareSteps)
-				invoke(step);
-			while (!arena.isGameOver())
-				playGameSteps(arena);
-			announceWinner(arena);
+			arena.prepareArena();
+			arena.playArena();
+			arena.announceWinner();
 		}
 		catch (std::exception& ex) {
 			exceptionMessage(ex);
-			exit(EXIT_FAILURE);
 		}
 	} while (wantsToPlayAgain());
 }

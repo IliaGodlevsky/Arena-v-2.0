@@ -17,7 +17,7 @@ bool ActiveUnitState::isExpired()const
 
 int ActiveUnitState::getValue()const
 {
-	return ACTIVE_STATE;
+	return -2;
 }
 
 StatePtr ActiveUnitState::clone()const

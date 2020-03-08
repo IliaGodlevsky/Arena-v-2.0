@@ -17,7 +17,7 @@ bool MutedUnitState::canCast()const
 
 int MutedUnitState::getValue()const
 {
-	return MUTED_UNIT_STATE;
+	return 1;
 }
 
 void MutedUnitState::showShortInfo()const
