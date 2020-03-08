@@ -70,50 +70,36 @@ void Arena::showMiniature()const
 
 void Arena::prepareArena()
 {
-	enum { PREPARE_STEPS = 4 };
-	constexpr ArenaActions<PREPARE_STEPS> prepareSteps{
-		&Arena::setNumberOfUnits,
-		&Arena::prepareUnits,
-		&Arena::proposeToPlayTeams,
-		&Arena::setStartUnit
-	};
-	for (auto step : prepareSteps)
-		(this->*step)();
+	setNumberOfUnits();
+	prepareUnits();
+	proposeToPlayTeams();
+	setStartUnit();
 }
 
 void Arena::playArena()
 {
+	enum { CAST_STEP, ATTACK_STEP, GAME_STEPS };
+	constexpr ArenaActions<GAME_STEPS> gameSteps{
+		&Arena::playCastStep, &Arena::playAttackStep
+	};
+	int gameStep = CAST_STEP;
 	while (!isGameOver())
-		playGameSteps();
+	{
+		showUnits();
+		(this->*gameSteps.at(gameStep))();
+		takeOfLosers();
+		if (++gameStep > ATTACK_STEP)
+		{
+			gameStep = CAST_STEP;
+			goNextUnit();
+		}
+	}
 }
 
 void Arena::announceWinner()const
 {
 	showUnits();
 	std::cout << "Became the winner\n";
-}
-
-void Arena::playGameStep(const GameStep& gameStep)
-{
-	showUnits();
-	(this->*gameStep)();
-	takeOfLosers();
-}
-
-void Arena::playGameSteps()
-{
-	enum { CAST_STEP, ATTACK_STEP, GAME_STEPS };
-	constexpr ArenaActions<GAME_STEPS> gameSteps{
-		&Arena::playCastStep,
-		&Arena::playAttackStep
-	};
-	static int gameStep = CAST_STEP;
-	playGameStep(gameSteps.at(gameStep));
-	if (++gameStep > ATTACK_STEP)
-	{
-		gameStep = CAST_STEP;
-		goNextUnit();
-	}
 }
 
 void Arena::setNumberOfUnits()

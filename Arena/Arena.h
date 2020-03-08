@@ -31,8 +31,6 @@ private:
 	void proposeToPlayTeams();
 	void setStartUnit();
 	void setNumberOfUnits();
-	void playGameStep(const GameStep& method);
-	void playGameSteps();
 	Arena(const Arena&) = delete;
 	Arena(Arena&&) = delete;
 	Arena& operator=(const Arena&) = delete;
