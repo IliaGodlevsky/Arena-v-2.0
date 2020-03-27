@@ -5,14 +5,14 @@
 
 class ElementHolder;
 using ElemHolderPtr = std::unique_ptr<ElementHolder>;
-using ElementsInit = std::initializer_list<ParamChangeElemPtr>;
-using Elements = std::vector<ParamChangeElemPtr>;
+using ElementsInitializerList = std::initializer_list<ParamChangeElemPtr>;
+using MagicElements = std::vector<ParamChangeElemPtr>;
 
 class ElementHolder
 {
 public:
 	ElementHolder() = default;
-	ElementHolder(const ElementsInit& elements);
+	ElementHolder(const ElementsInitializerList& elements);
 	ElementHolder(const ElementHolder& holder);
 	void effectUnit(Unit& unit);
 	void uneffectUnit(Unit& unit);
@@ -22,6 +22,6 @@ public:
 	bool isEqual(const ElementHolder& holder)const;
 	~ElementHolder() = default;
 private:
-	Elements m_elements;
+	MagicElements m_elements;
 };
 #endif

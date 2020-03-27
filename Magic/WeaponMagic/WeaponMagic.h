@@ -1,10 +1,10 @@
 #ifndef WEAPON_MAGIC_H_
 #define WEAPON_MAGIC_H_
 
-#include "../FreeParamChangeMagic.h"
+#include "../ManaFreeUnitParametresChangeMagic.h"
 #include "../../PossibilityCounter/PosibilityCounter.h"
 
-class WeaponMagic : public FreeParamChangeMagic
+class WeaponMagic : public ManaFreeUnitParametresChangeMagic
 {
 public:
 	WeaponMagic(std::string name, Time time,

@@ -404,12 +404,6 @@
     <ClCompile Include="Magic\Elements\HpReduceElem.cpp">
       <Filter>Source\Magic\Elements</Filter>
     </ClCompile>
-    <ClCompile Include="Magic\ParamChangeMagic.cpp">
-      <Filter>Source\Magic</Filter>
-    </ClCompile>
-    <ClCompile Include="Magic\FreeParamChangeMagic.cpp">
-      <Filter>Source\Magic</Filter>
-    </ClCompile>
     <ClCompile Include="Exceptions\BadincomingMagicException.cpp">
       <Filter>Source\Exceptions</Filter>
     </ClCompile>
@@ -478,6 +472,12 @@
     </ClCompile>
     <ClCompile Include="Magic\WeaponMagic\WeaponMagic.cpp">
       <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\ManaFreeUnitParametresChangeMagic.cpp">
+      <Filter>Source\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic\UnitParametresChangeMagic.cpp">
+      <Filter>Source\Magic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -757,12 +757,6 @@
     <ClInclude Include="Magic\Elements\HpReduceElem.h">
       <Filter>Source\Magic\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="Magic\ParamChangeMagic.h">
-      <Filter>Source\Magic</Filter>
-    </ClInclude>
-    <ClInclude Include="Magic\FreeParamChangeMagic.h">
-      <Filter>Source\Magic</Filter>
-    </ClInclude>
     <ClInclude Include="Exceptions\BadincomingMagicException.h">
       <Filter>Source\Exceptions</Filter>
     </ClInclude>
@@ -834,6 +828,12 @@
     </ClInclude>
     <ClInclude Include="Magic\WeaponMagic\WeaponMagic.h">
       <Filter>Source\Magic\WeaponMagic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\ManaFreeUnitParametresChangeMagic.h">
+      <Filter>Source\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic\UnitParametresChangeMagic.h">
+      <Filter>Source\Magic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

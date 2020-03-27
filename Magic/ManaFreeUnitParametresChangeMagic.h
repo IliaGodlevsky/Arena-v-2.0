@@ -8,7 +8,7 @@
 #include "ElementHolder.h"
 
 /* A base for all magic, that can be casted by weapon*/
-class FreeParamChangeMagic : public Magic, 
+class ManaFreeUnitParametresChangeMagic : public Magic, 
 	public IUneffect, public IDispelable, public Expiring
 {
 public:	
@@ -17,10 +17,10 @@ public:
 	bool isEqual(const MagicPtr& magic)const override;
 	void showFullInfo()const override;
 	void showShortInfo()const override;
-	virtual ~FreeParamChangeMagic() = default;
-	FreeParamChangeMagic(std::string name, Time time,
-		const ElementsInit& holder);
-	FreeParamChangeMagic(std::string name, Time time,
+	virtual ~ManaFreeUnitParametresChangeMagic() = default;
+	ManaFreeUnitParametresChangeMagic(std::string name, Time time,
+		const ElementsInitializerList& holder);
+	ManaFreeUnitParametresChangeMagic(std::string name, Time time,
 		const ElementHolder& holder);
 protected:
 	ElementHolder m_elemHolder;

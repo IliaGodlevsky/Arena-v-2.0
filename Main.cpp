@@ -5,7 +5,10 @@ int main(){
 	do {
 		try {
 			arena.showMiniature();
-			arena.prepareArena();
+			arena.setNumberOfUnits();
+			arena.prepareUnits();
+			arena.proposeToPlayTeams();
+			arena.setStartUnit();
 			arena.playArena();
 			arena.announceWinner();
 		}

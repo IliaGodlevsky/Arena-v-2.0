@@ -1,13 +1,13 @@
 #ifndef DAMAGE_BUFF_H_
 #define DAMAGE_BUFF_H_
 
-#include "../ParamChangeMagic.h"
+#include "../UnitParametresChangeMagic.h"
 #include "../Elements/DamageAmplifyElem.h"
 
-class DamageBuffMagic : public ParamChangeMagic
+class DamageBuffMagic : public UnitParametresChangeMagic
 {
 public:
-	using ParamChangeMagic::ParamChangeMagic;
+	using UnitParametresChangeMagic::UnitParametresChangeMagic;
 	DamageBuffMagic(std::string name, int manaCost,
 		Time time, int armorAmplify);
 	MagicPtr clone()const override;

@@ -3,7 +3,7 @@
 #include "PoisonMagic.h"
 
 PoisonMagic::PoisonMagic(std::string name, int manaCost, Time time, int regenReduce)
-	: ParamChangeMagic(name, manaCost, time,
+	: UnitParametresChangeMagic(name, manaCost, time,
 		{ ParamChangeElemPtr(new HpRegenReduceElem(regenReduce)) })
 {
 
@@ -27,5 +27,5 @@ bool PoisonMagic::isBuff()const
 bool PoisonMagic::isEqual(const MagicPtr& magic)const
 {
 	return canCast<PoisonMagic*>(magic) 
-		&& ParamChangeMagic::isEqual(magic);
+		&& UnitParametresChangeMagic::isEqual(magic);
 }

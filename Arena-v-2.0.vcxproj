@@ -95,10 +95,10 @@
     <ClCompile Include="Magic\Elements\HpReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\HpRegenReduceElem.cpp" />
     <ClCompile Include="Magic\Elements\ParamChangeElem.cpp" />
-    <ClCompile Include="Magic\FreeParamChangeMagic.cpp" />
+    <ClCompile Include="Magic\ManaFreeUnitParametresChangeMagic.cpp" />
     <ClCompile Include="Magic\Magic.cpp" />
     <ClCompile Include="Magic\NeutralMagic\DispelMagic.cpp" />
-    <ClCompile Include="Magic\ParamChangeMagic.cpp" />
+    <ClCompile Include="Magic\UnitParametresChangeMagic.cpp" />
     <ClCompile Include="Magic\WeaponMagic\CorruptionMagic.cpp" />
     <ClCompile Include="Magic\WeaponMagic\DegenerateMagic.cpp" />
     <ClCompile Include="Magic\WeaponMagic\StunMagic.cpp" />
@@ -214,10 +214,10 @@
     <ClInclude Include="Magic\Elements\HpReduceElem.h" />
     <ClInclude Include="Magic\Elements\HpRegenReduceElem.h" />
     <ClInclude Include="Magic\Elements\ParamChangeElem.h" />
-    <ClInclude Include="Magic\FreeParamChangeMagic.h" />
+    <ClInclude Include="Magic\ManaFreeUnitParametresChangeMagic.h" />
     <ClInclude Include="Magic\Magic.h" />
     <ClInclude Include="Magic\NeutralMagic\DispelMagic.h" />
-    <ClInclude Include="Magic\ParamChangeMagic.h" />
+    <ClInclude Include="Magic\UnitParametresChangeMagic.h" />
     <ClInclude Include="Magic\WeaponMagic\CorruptionMagic.h" />
     <ClInclude Include="Magic\WeaponMagic\DegenerateMagic.h" />
     <ClInclude Include="Magic\WeaponMagic\StunMagic.h" />

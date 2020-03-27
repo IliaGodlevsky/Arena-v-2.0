@@ -2,7 +2,7 @@
 
 ArmorAndDamageDebuffMagic::ArmorAndDamageDebuffMagic(std::string name, int manaCost,
 	Time time, int armorReduce, int damageReduce)
-	: ParamChangeMagic(name, manaCost, time, 
+	: UnitParametresChangeMagic(name, manaCost, time, 
 		{ParamChangeElemPtr(new ArmorReduceElem(armorReduce)),
 		ParamChangeElemPtr(new DamageReduceElem(damageReduce))})
 {
@@ -28,5 +28,5 @@ bool ArmorAndDamageDebuffMagic::isDispelable()const
 bool ArmorAndDamageDebuffMagic::isEqual(const MagicPtr& magic)const
 {
 	return canCast<ArmorAndDamageDebuffMagic*>(magic) 
-		&& ParamChangeMagic::isEqual(magic);
+		&& UnitParametresChangeMagic::isEqual(magic);
 }

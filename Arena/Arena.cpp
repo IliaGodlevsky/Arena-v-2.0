@@ -83,7 +83,7 @@ void Arena::playArena()
 		&Arena::playCastStep, &Arena::playAttackStep
 	};
 	int gameStep = CAST_STEP;
-	while (!isGameOver())
+	while (!isGameOver())  // game loop
 	{
 		showUnits();
 		(this->*gameSteps.at(gameStep))();

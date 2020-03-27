@@ -19,6 +19,10 @@ public:
 	void playArena();
 	void announceWinner()const;
 	void showUnits()const;
+	void prepareUnits();
+	void proposeToPlayTeams();
+	void setStartUnit();
+	void setNumberOfUnits();
 private:
 	bool isGameOver()const;	
 	void goNewRound();
@@ -27,10 +31,6 @@ private:
 	void rewardKiller(UnitPtr victim);
 	void goNextUnit();
 	void takeOfLosers();
-	void prepareUnits();
-	void proposeToPlayTeams();
-	void setStartUnit();
-	void setNumberOfUnits();
 	Arena(const Arena&) = delete;
 	Arena(Arena&&) = delete;
 	Arena& operator=(const Arena&) = delete;

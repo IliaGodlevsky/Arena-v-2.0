@@ -3,7 +3,7 @@
 ArmorAndDamageBuffMagic::ArmorAndDamageBuffMagic(std::string name, int manaCost,
 	Time time, int armorAmplify,
 	int damageAmplify)
-	: ParamChangeMagic(name, manaCost, time,
+	: UnitParametresChangeMagic(name, manaCost, time,
 		{ ParamChangeElemPtr(new ArmorAmplifyElem(armorAmplify)),
 			ParamChangeElemPtr(new DamageAmplifyElem(damageAmplify)) })
 {
@@ -29,5 +29,5 @@ bool ArmorAndDamageBuffMagic::isDispelable()const
 bool ArmorAndDamageBuffMagic::isEqual(const MagicPtr& magic)const
 {
 	return canCast<ArmorAndDamageBuffMagic*>(magic) &&
-		ParamChangeMagic::isEqual(magic);
+		UnitParametresChangeMagic::isEqual(magic);
 }

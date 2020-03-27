@@ -4,7 +4,7 @@
 
 DamageDebuffMagic::DamageDebuffMagic(std::string name, int manaCost,
 	Time time, int damageReduce)
-	: ParamChangeMagic(name, manaCost, time,
+	: UnitParametresChangeMagic(name, manaCost, time,
 		{ ParamChangeElemPtr(new DamageReduceElem(damageReduce)) })
 {
 
@@ -19,7 +19,7 @@ MagicPtr DamageDebuffMagic::clone()const
 bool DamageDebuffMagic::isEqual(const MagicPtr& magic)const
 {
 	return canCast<DamageDebuffMagic*>(magic) &&
-		ParamChangeMagic::isEqual(magic);
+		UnitParametresChangeMagic::isEqual(magic);
 }
 
 bool DamageDebuffMagic::isBuff()const

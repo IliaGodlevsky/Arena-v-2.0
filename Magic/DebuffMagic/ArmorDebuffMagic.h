@@ -1,13 +1,13 @@
 #ifndef ARMOR_DEBUFF_H_
 #define ARMOR_DEBUFF_H_
 
-#include "../ParamChangeMagic.h"
+#include "../UnitParametresChangeMagic.h"
 #include "../Elements/ArmorReduceElem.h"
 
-class ArmorDebuffMagic : public ParamChangeMagic
+class ArmorDebuffMagic : public UnitParametresChangeMagic
 {
 public:
-	using ParamChangeMagic::ParamChangeMagic;
+	using UnitParametresChangeMagic::UnitParametresChangeMagic;
 	ArmorDebuffMagic(std::string name, int manaCost,
 		Time time, int armorReduce);
 	MagicPtr clone()const override;

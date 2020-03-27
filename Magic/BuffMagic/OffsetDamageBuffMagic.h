@@ -1,15 +1,15 @@
 #ifndef OFFSET_DAMAGE_BUFF_H_
 #define OFFSET_DAMAGE_BUFF_H_
 
-#include "../ParamChangeMagic.h"
+#include "../UnitParametresChangeMagic.h"
 #include "../Elements/DamageAmplifyElem.h"
 #include "../Elements/ArmorReduceElem.h"
 
 class OffsetDamageBuffMagic
-	: public ParamChangeMagic
+	: public UnitParametresChangeMagic
 {
 public:
-	using ParamChangeMagic::ParamChangeMagic;
+	using UnitParametresChangeMagic::UnitParametresChangeMagic;
 	OffsetDamageBuffMagic(std::string name, int manaCost,
 		Time time, int armorReduce, int damageAmplify);
 	MagicPtr clone()const override;

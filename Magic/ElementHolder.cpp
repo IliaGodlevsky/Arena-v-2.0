@@ -10,7 +10,7 @@ ElementHolder::ElementHolder(const ElementHolder& holder)
 		takeElement(holder[i]);
 }
 
-ElementHolder::ElementHolder(const ElementsInit& elements)
+ElementHolder::ElementHolder(const ElementsInitializerList& elements)
 {
 	for (auto i = elements.begin(); i != elements.end(); i++)
 		takeElement(*i);
